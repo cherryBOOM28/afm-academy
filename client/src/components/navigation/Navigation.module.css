@@ -1,0 +1,69 @@
+.navbar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 620px;
+    justify-content: space-between;
+}
+
+.navbar li {
+    margin-right: 20px;
+}
+
+/* Styling for the dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdownToggle {
+    cursor: pointer;
+}
+
+.dropdownToggle:hover {
+    color: #1F3C88;
+}
+
+.dropdownToggle:active {
+    color: #1F3C88;
+}
+
+.dropdownMenu {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+background-color: #fff;
+padding: 12px;
+margin-top: 5px;
+border: 1px solid #ccc;
+border-radius: 5px;
+width: 230px;
+}
+
+.dropdown:hover .dropdownMenu {
+display: block;
+}
+
+.dropdownMenu li {
+    margin: 10px 0;
+    color: #000;
+    font-size: 16px;
+  
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.dropdownMenu__li {
+    text-decoration: none;
+}
+
+.links {
+    color: #000;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.links:hover {
+    color: #1F3C88;
+}

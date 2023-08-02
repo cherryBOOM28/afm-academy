@@ -1,0 +1,124 @@
+/* .homeWrapper {
+
+} */
+
+.container {
+    max-width: 940px;
+    margin: 0 auto;
+}
+
+.aboutUs__section {
+    margin: 123px 0 209px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.aboutUs__content {
+    max-width: 530px;
+}
+
+.aboutUs__headline {
+    color: #000;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.aboutUs__text {
+    color: #000;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 20px 0 41px;
+}
+
+.button {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.educationWrappwer {
+    background: #1A2751;
+    width: 100%;
+    padding: 60px 0 105px;
+}
+
+.education {
+    display: flex;
+    justify-content: space-between;
+}
+
+.headline {
+    color: #FFF;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.subtitle {
+    margin: 54px 0 30px;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.advantages {
+    max-width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.advantages_box {
+    width: 180px;
+    height: 105px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.30);
+    padding: 13px;
+}
+
+.advantages__text {
+    margin-top: 9px;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 15px; /* 93.75% */
+}
+
+.advantages__text__last {
+    margin-top: 9px;
+    color: #FFF;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 15px; /* 93.75% */
+}
+
+.coursesWrapper {
+    margin: 73px 0 73px;
+}
+
+.courses__headline {
+    color: #3A3939;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.newsWrapper {
+    margin: 73px 0 73px;
+}
+
+.news__headline {
+    color: #3A3939;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.partnersWrapper {
+    margin: 73px 0 73px;
+}
+
+.partners {
+    display: flex;
+    justify-content: space-between;
+}
