@@ -66,8 +66,8 @@ function Rules() {
                             </div>
                         </div>
                         <div className={cl.customerNumberThird}>
-                                <img src={circleThird} alt="circleThird" />
-                                <p className={cl.numberText}>осуществления операций с деньгами и (или) иным имуществом, в том числе подозрительных операций;</p>
+                            <img src={circleThird} alt="circleThird" />
+                            <p className={cl.numberText}>осуществления операций с деньгами и (или) иным имуществом, в том числе подозрительных операций;</p>
                         </div>
                     </div>
                 </div>

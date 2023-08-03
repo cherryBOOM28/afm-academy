@@ -10,3 +10,113 @@
     margin-top: 116px;
 }
 
+.blocksContent {
+    margin-top: 62px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.block {
+    padding: 23px 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    background: #F2F2F2;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 205px;
+    height: 167px;
+}
+
+.blockImg {
+    width: 46px;
+    height: 46px;
+}
+
+.blockHeadline {
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 11px 0;
+}
+
+.blockText {
+    width: 206px;
+    text-align: center;
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: lowercase;
+}
+
+.text {
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 23px;
+    margin: 23px 0 23px;
+}
+
+.rule {
+    position: relative;
+    margin: 23px 0 23px;
+    border-radius: 5px;
+    background: #F2F2F2;
+    /* width: 940px; */
+    display: flex;
+    padding: 21px 0 21px 20px;
+}
+
+.rule:before {
+    content: "";
+    position: absolute;
+    top: 21px;
+    left: 21px;
+    bottom: 21px;
+    width: 2px; 
+    background: #C4C4C4;
+}
+
+.ruleText {
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 23px; /* 143.75% */
+    margin-left: 16px;
+}
+
+.numberBlocks {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 940px;
+}
+
+.smallBlocks {
+    display: flex;
+    justify-content: space-between;
+    width: 940px;
+
+}
+
+.innerBlock {
+    border-radius: 5px;
+    background: #E2E2E2;
+    width: 300px;
+    /* padding: 21px; */
+}
+
+.numberBlocksText {
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 23px; /* 143.75% */
+}
+
+.bigBlock {
+    border-radius: 5px;
+    background: #E2E2E2;
+    /* width: 940px; */
+    padding: 21px;
+}
