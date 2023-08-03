@@ -11,8 +11,14 @@ import Login from './pages/login/Login';
 import Registration from './pages/registration/Registration';
 import Rules from './pages/sfm/rules/Rules';
 import Operations from './pages/sfm/operations/Operations';
+import Cookies from 'js-cookie';
+import AntiLaundering from './pages/podft/antiLaundering/AntiLaundering';
+import Fatf from './pages/podft/fatf/Fatf';
+import Eag from './pages/podft/eag/Eag';
+
 
 function App() {
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -36,6 +42,12 @@ function App() {
           <Route path="/subjects" element={<Subjects />}></Route>
           <Route path="/rules" element={<Rules />}></Route>
           <Route path="/operations" element={<Operations />}></Route>
+
+          <Route path="/anti-laundering" element={<AntiLaundering />}></Route>
+          <Route path="/fatf" element={<Fatf />}></Route>
+          <Route path="/eag" element={<Eag />}></Route>
+          <Route path="/mutual-evaluation" element={<AntiLaundering />}></Route>
+
 
 
         </Routes>

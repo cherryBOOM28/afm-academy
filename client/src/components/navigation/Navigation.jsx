@@ -28,16 +28,16 @@ function Navigation() {
                         <span className={cl.dropdownToggle}>ПОД/ФТ</span>
                         <ul className={cl.dropdownMenu}>
                             <li>
-                                <Link to="/services/service1" className={cl.links}>Антиотмывочная система РК </Link>
+                                <Link to="/anti-laundering" className={cl.links}>Антиотмывочная система РК </Link>
                             </li>
                             <li>
-                                <Link to="/services/service2" className={cl.links}>ФАТФ</Link>
+                                <Link to="/fatf" className={cl.links}>ФАТФ</Link>
                             </li>
                             <li>
-                                <Link to="/services/service2" className={cl.links}>ЕАГ</Link>
+                                <Link to="/eag" className={cl.links}>ЕАГ</Link>
                             </li>
                             <li>
-                                <Link to="/services/service2" className={cl.links}>Взаимная оценка </Link>
+                                <Link to="/mutual-evaluation" className={cl.links}>Взаимная оценка </Link>
                             </li>
                         </ul>
                     </li>

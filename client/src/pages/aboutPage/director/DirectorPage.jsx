@@ -16,6 +16,7 @@ const DirectorPage = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const cardData = findCardDataById(id);
+    console.log(id);
     
     const handleGoBack = () => {
         navigate(-1); // Navigate back to the previous page

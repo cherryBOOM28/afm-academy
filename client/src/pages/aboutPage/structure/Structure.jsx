@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import cl from './Structure.module.css';
 import jsonData from './structureData.json';
 import Header from '../../../components/header/Header';
@@ -27,6 +27,11 @@ function Structure() {
     return <p>First card data is missing 'id' property.</p>;
   }
 
+  const handleClick = (cardData) => {
+    console.log("User Information:", cardData);
+  };
+  
+
   return (
     <div className={cl.charterWrapper}>
         <Header />
@@ -37,10 +42,12 @@ function Structure() {
                     {/* Display the first card */}
                     <Link
                     className={`${cl.card__link} ${cl.firstCardContainer}`}
-                    to={{
-                        pathname: `/structure/${firstCard.id}`,
-                        state: { cardData: firstCard },
-                    }}
+                    // to={{
+                    //     pathname: `/structure/${firstCard.id}`,
+                    //     state: { cardData: firstCard },
+                    // }}
+                    to={`/structure/${firstCard.id}`}
+                    onClick={() => handleClick(firstCard)}
                     >
                     <div className={cl.card}>
                         <p className={cl.card__title}>{firstCard.title}</p>
@@ -57,10 +64,12 @@ function Structure() {
                                 <Link
                                     key={index}
                                     className={cl.card__link}
-                                    to={{
-                                    pathname: `/structure/${card.id}`,
-                                    state: { cardData: card },
-                                    }}
+                                    // to={{
+                                    // pathname: `/structure/${card.id}`,
+                                    // state: { cardData: card },
+                                    // }}
+                                    to={`/structure/${card.id}`}
+                                    onClick={() => handleClick(card)}
                                 >
                                     <div className={cl.card}>
                                         <p className={cl.card__title}>{card.title}</p>

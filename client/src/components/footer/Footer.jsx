@@ -73,7 +73,7 @@ function Footer({ email, phoneNumber }) {
                                     <Link to="/eag" className={cl.footer__text}>ЕАГ</Link>
                                 </li>
                                 <li>
-                                    <Link to="/mutual-evaluatio" className={cl.footer__text}>Взаимная оценка</Link>
+                                    <Link to="/mutual-evaluation" className={cl.footer__text}>Взаимная оценка</Link>
                                 </li>
                             </ul>
                         </nav>

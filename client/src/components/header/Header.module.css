@@ -110,6 +110,22 @@
     padding: 8px 9px;
 }
 
+.personalAccountBtn {
+    width: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.personalAccountLink {
+    text-decoration: none;
+}
+
+.personalAccount {
+    cursor: pointer;
+}
+
 .menu__navigation {
     margin-top: 20px;
 }
