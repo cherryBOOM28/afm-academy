@@ -12,7 +12,6 @@ const Registration = () => {
     confirmPassword: '',
   });
 
-  const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -22,13 +21,6 @@ const Registration = () => {
       [name]: value,
     }));
 
-    if (name === 'password' || name === 'confirmPassword') {
-      if (formData.password !== formData.confirmPassword) {
-        setPasswordError('Passwords do not match');
-      } else {
-        setPasswordError(''); 
-      }
-    }
   };
 
   const handleSubmit = (event) => {
@@ -77,7 +69,7 @@ const Registration = () => {
             required={true}
             placeholder="Повторите пароль"
           />
-          {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
+          {formData.password !== formData.confirmPassword ? <p style={{ marginTop: '10px', fontSize: '14px', color: 'red' }}>Пароли не совпадают</p> : '' }
           <p className={cl.passw}>
             Уже есть аккаунт? <Link to="/login">Войти</Link>
           </p>
