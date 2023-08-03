@@ -27,7 +27,7 @@ const Registration = () => {
     event.preventDefault();
     if (formData.password === formData.confirmPassword) {
       console.log('Registration successful:', formData);
-      navigate('/');
+      navigate('/login');
     } else {
       alert('Passwords do not match.');
     }
