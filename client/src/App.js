@@ -11,8 +11,9 @@ import Login from './pages/login/Login';
 import Registration from './pages/registration/Registration';
 import Rules from './pages/sfm/rules/Rules';
 import Operations from './pages/sfm/operations/Operations';
-
+import Cookies from 'js-cookie';
 function App() {
+
   return (
     <div className="App">
       <BrowserRouter>

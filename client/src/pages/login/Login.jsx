@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import cl from './Login.module.css';
 import logo from '../../assets/images/logo.svg';
 import Button from '../../components/UI/button/Button';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 function Login() {
     const [formData, setFormData] = useState({
@@ -23,17 +25,26 @@ function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('Login successful:', formData);
-        navigate('/');
+        axios
+            .post('http://localhost:1415/auth/signin', {username: formData.email, password: formData.password})
+            .then(res => {
+                console.log(res.data)
+                Cookies.set('token', res.data)
+                Cookies.set('email', formData.email)
+                navigate('/')
+            })
+        // navigate('/');
     };
 
     const handleRegisterClick = () => {
         navigate('/registration');
     };
+
     
     return (
         <div className={cl.loginWrapper}>
             <div className={cl.container}>
-                <form className={cl.loginForm} onSubmit={handleSubmit}>
+                <form className={cl.loginForm}>
                     <div className={cl.logo}>
                         <img src={logo} alt="logo" className={cl.logoImg} />
                         <p className={cl.logoText}>Академия финансового мониторинга</p>
@@ -58,7 +69,7 @@ function Login() {
                         placeholder="Пароль" 
                     />
                     <p className={cl.passw}>Забыли пароль?</p>
-                    <Button className={cl.button}>Войти</Button>
+                    <Button className={cl.button} onClick={handleSubmit}>Войти</Button>
                     <Button 
                         onClick={handleRegisterClick} 
                         className={cl.signInButton}>
