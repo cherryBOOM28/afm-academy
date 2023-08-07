@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import cl from './Login.module.css';
 import logo from '../../assets/images/logo.svg';
 import Button from '../../components/UI/button/Button';
-import axios from 'axios';
-import Cookies from 'js-cookie';
+// import axios from 'axios';
+// import Cookies from 'js-cookie';
 
 function Login() {
     const [formData, setFormData] = useState({

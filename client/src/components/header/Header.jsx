@@ -19,10 +19,10 @@ function Header() {
       setIsLoggedIn(true);
     };
   
-    const handleLogout = () => {
-      // Logic for handling the logout process (setIsLoggedIn to false).
-      setIsLoggedIn(false);
-    };
+    // const handleLogout = () => {
+    //   // Logic for handling the logout process (setIsLoggedIn to false).
+    //   setIsLoggedIn(false);
+    // };
   
     return (
       <div className={cl.headerWrapper}>

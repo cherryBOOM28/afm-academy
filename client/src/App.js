@@ -11,10 +11,11 @@ import Login from './pages/login/Login';
 import Registration from './pages/registration/Registration';
 import Rules from './pages/sfm/rules/Rules';
 import Operations from './pages/sfm/operations/Operations';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import AntiLaundering from './pages/podft/antiLaundering/AntiLaundering';
 import Fatf from './pages/podft/fatf/Fatf';
 import Eag from './pages/podft/eag/Eag';
+import MutualEvaluation from './pages/podft/mutualEvaluation/MutualEvaluation';
 
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
           <Route path="/anti-laundering" element={<AntiLaundering />}></Route>
           <Route path="/fatf" element={<Fatf />}></Route>
           <Route path="/eag" element={<Eag />}></Route>
-          <Route path="/mutual-evaluation" element={<AntiLaundering />}></Route>
+          <Route path="/mutual-evaluation" element={<MutualEvaluation />}></Route>
 
 
 

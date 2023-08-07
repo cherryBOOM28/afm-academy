@@ -108,6 +108,7 @@
 }
 
 .numberBlocksText {
+    padding: 21px;
     color: #000;
     font-size: 16px;
     font-weight: 400;
@@ -119,4 +120,12 @@
     background: #E2E2E2;
     /* width: 940px; */
     padding: 21px;
+}
+
+.text__last {
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 23px;
+    margin: 23px 0 73px;
 }
