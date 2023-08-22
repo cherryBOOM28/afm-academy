@@ -16,6 +16,7 @@ import AntiLaundering from './pages/podft/antiLaundering/AntiLaundering';
 import Fatf from './pages/podft/fatf/Fatf';
 import Eag from './pages/podft/eag/Eag';
 import MutualEvaluation from './pages/podft/mutualEvaluation/MutualEvaluation';
+import CalendarPage from './pages/calendar/Calendar';
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
           <Route path="/mutual-evaluation" element={<MutualEvaluation />}></Route>
 
 
+          <Route path="/calendar" element={<CalendarPage />}/>
 
         </Routes>
       </BrowserRouter>
