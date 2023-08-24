@@ -11,6 +11,7 @@ function Login() {
         email: '',
         password: '',
     });
+    const [errorMessage, setErrorMessage] = useState('');
     
     const navigate = useNavigate();
     
@@ -25,15 +26,28 @@ function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('Login successful:', formData);
-        axios
-            .post('http://localhost:1415/auth/signin', {username: formData.email, password: formData.password})
-            .then(res => {
-                console.log(res.data)
-                Cookies.set('token', res.data.token)
-                Cookies.set('email', formData.email)
-                navigate('/')
-            })
-        // navigate('/');
+        // axios
+        //     .post('http://localhost:1415/auth/signin', {username: formData.email, password: formData.password})
+        //     .then(res => {
+        //         console.log(res.data)
+        //         Cookies.set('token', res.data.token)
+        //         Cookies.set('email', formData.email)
+        //         navigate('/')
+        //     })
+        //     .catch(error => {
+        //         console.error('Login failed:', error);
+        //         if (error.response) {
+        //             console.log('Server Error:', error.response.data);
+        //             setErrorMessage(error.response.data.error)
+        //         } else if (error.request) {
+        //             setErrorMessage(error.request)
+        //             console.log('Request Error:', error.request.error);
+        //         } else {
+        //             setErrorMessage(error.message)
+        //             console.log('Error:', error.message.error);
+        //         }
+        //     });
+        navigate('/')
     };
 
     const handleRegisterClick = () => {
@@ -42,42 +56,49 @@ function Login() {
 
     
     return (
-        <div className={cl.loginWrapper}>
-            <div className={cl.container}>
-                <form className={cl.loginForm}>
-                    <div className={cl.logo}>
-                        <img src={logo} alt="logo" className={cl.logoImg} />
-                        <p className={cl.logoText}>Академия финансового мониторинга</p>
-                    </div>
-                    <p className={cl.login}>Вход</p>
-                    <input 
-                        className={cl.loginInput} 
-                        value={formData.email} 
-                        onChange={handleChange} 
-                        type="email" 
-                        name="email"
-                        required={true} 
-                        placeholder="E-mail" 
-                    />
-                    <input 
-                        className={cl.loginInput} 
-                        value={formData.password}
-                        onChange={handleChange}
-                        type="password" 
-                        name="password"
-                        required={true} 
-                        placeholder="Пароль" 
-                    />
-                    <p className={cl.passw}>Забыли пароль?</p>
-                    <Button className={cl.button} onClick={handleSubmit}>Войти</Button>
-                    <Button 
-                        onClick={handleRegisterClick} 
-                        className={cl.signInButton}>
-                            Зарегистрироваться
-                    </Button>
-                </form>
+        <>
+            {errorMessage != '' && ( // Only render the error box if errorMessage is truthy
+                <div className={cl.errorBox}>
+                    <a className={cl.errorMessage}>{typeof errorMessage === 'string' ? errorMessage : 'Произошла ошибка. Повторите попытку'}</a>
+                </div>
+            )}    
+            <div className={cl.loginWrapper}>
+                <div className={cl.container}>
+                    <form className={cl.loginForm}>
+                        <div className={cl.logo}>
+                            <img src={logo} alt="logo" className={cl.logoImg} />
+                            <p className={cl.logoText}>Академия финансового мониторинга</p>
+                        </div>
+                        <p className={cl.login}>Вход</p>
+                        <input 
+                            className={cl.loginInput} 
+                            value={formData.email} 
+                            onChange={handleChange} 
+                            type="email" 
+                            name="email"
+                            required={true} 
+                            placeholder="E-mail" 
+                            />
+                        <input 
+                            className={cl.loginInput} 
+                            value={formData.password}
+                            onChange={handleChange}
+                            type="password" 
+                            name="password"
+                            required={true} 
+                            placeholder="Пароль" 
+                            />
+                        <p className={cl.passw}>Забыли пароль?</p>
+                        <Button className={cl.button} onClick={handleSubmit}>Войти</Button>
+                        <Button 
+                            onClick={handleRegisterClick} 
+                            className={cl.signInButton}>
+                                Зарегистрироваться
+                        </Button>
+                    </form>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 

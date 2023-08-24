@@ -35,15 +35,15 @@ const Comments = ({ commentsUrl, currentUserId, postId }) => {
     }
   };
   const addComment = (text, parentId) => {
-    const token = Cookies.get('token')
-    axios.post('http://localhost:1415/question', {text, post_id: parentId}, {
-      headers: {
-        'Authorization': 'Bearer ' + token 
-      },
-    }).then((res) => {
-      setBackendComments([res.data.newQuestion, ...backendComments]);
-      setActiveComment(null);
-    });
+    // const token = Cookies.get('token')
+    // axios.post('http://localhost:1415/question', {text, post_id: parentId}, {
+    //   headers: {
+    //     'Authorization': 'Bearer ' + token 
+    //   },
+    // }).then((res) => {
+    //   setBackendComments([res.data.newQuestion, ...backendComments]);
+    //   setActiveComment(null);
+    // });
   };
 
   const updateComment = (text, commentId) => {
@@ -69,16 +69,16 @@ const Comments = ({ commentsUrl, currentUserId, postId }) => {
     }
   };
 
-  useEffect(() => {
-    const token = Cookies.get('token')
-    axios.post('http://localhost:1415/questions', {post_id: postId}, {
-      headers: {
-        'Authorization': 'Bearer ' + token 
-      },
-    }).then((res) => {
-      setBackendComments(res.data.questions);
-    });
-  }, []);
+  // useEffect(() => {
+  //   const token = Cookies.get('token')
+  //   axios.post('http://localhost:1415/questions', {post_id: postId}, {
+  //     headers: {
+  //       'Authorization': 'Bearer ' + token 
+  //     },
+  //   }).then((res) => {
+  //     setBackendComments(res.data.questions);
+  //   });
+  // }, []);
 
   return (
     <div className={cl.comments}>
@@ -86,7 +86,7 @@ const Comments = ({ commentsUrl, currentUserId, postId }) => {
       <div className={cl.comment__form__title}>Напишите комментарии</div>
       <CommentForm submitLabel="Отправить" handleSubmit={addComment} post_id={postId} />
       <div className={cl.comments__container}>
-        {rootComments.map((rootComment) => (
+        {/* {rootComments.map((rootComment) => (
           <Comment
             key={rootComment.id}
             commentID={rootComment.id}
@@ -100,7 +100,7 @@ const Comments = ({ commentsUrl, currentUserId, postId }) => {
             currentUserId={currentUserId}
             load={true}
           />
-        ))}
+        ))} */}
       </div>
     </div>
   );

@@ -1,3 +1,18 @@
+.errorBox {
+    position: fixed;
+    z-index: 9999;
+    top: 20px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width:450px;
+    background-color: #ffffff9f;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) 
+}
+.errorMessage {
+    color: #000000b4
+}
 .registrationWrapper {
     background-image: url('../../assets/images/bg.svg');
     background-position: center;
