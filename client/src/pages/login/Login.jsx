@@ -25,15 +25,15 @@ function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('Login successful:', formData);
-        // axios
-        //     .post('http://localhost:1415/auth/signin', {username: formData.email, password: formData.password})
-        //     .then(res => {
-        //         console.log(res.data)
-        //         Cookies.set('token', res.data)
-        //         Cookies.set('email', formData.email)
-        //         navigate('/')
-        //     })
-        navigate('/');
+        axios
+            .post('http://localhost:1415/auth/signin', {username: formData.email, password: formData.password})
+            .then(res => {
+                console.log(res.data)
+                Cookies.set('token', res.data.token)
+                Cookies.set('email', formData.email)
+                navigate('/')
+            })
+        // navigate('/');
     };
 
     const handleRegisterClick = () => {

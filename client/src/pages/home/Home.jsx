@@ -12,9 +12,10 @@ import Tabs from '../../components/tab/Tabs';
 import NewsTab from '../../components/newsTab/NewsTab';
 import FirstPartner from '../../assets/images/partner1.png';
 import Footer from '../../components/footer/Footer';
-
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+    const navigate = useNavigate()
     const imageList = [
         { src: FirstPartner, alt: 'Image 1' },
         { src: FirstPartner, alt: 'Image 2' },
@@ -23,6 +24,9 @@ function Home() {
         { src: FirstPartner, alt: 'Image 5' },
         { src: FirstPartner, alt: 'Image 6' }
       ];
+    const toAbout = () => {
+        navigate('/about')
+    }
     return (
         <div className={cl.homeWrapper}>
             <Header />
@@ -33,7 +37,7 @@ function Home() {
                             <div className={cl.aboutUs__content}> 
                                 <p className={cl.aboutUs__headline}>AML ACADEMY</p>
                                 <p className={cl.aboutUs__text}>Целью Академии является предоставление качественного обучения в сфере противодействия легализации (отмыванию) доходов, добытых преступным путем, и финансированию терроризма. Пройти обучение в Академии могут как субъекты частного предпринимательства (субъекты финансового мониторинга), так и сотрудники государственных органов. Задача, поставленная перед Академией – обеспечить подготовку высококвалифицированных кадров и субъектов финансового мониторинга для успешного функционирования национальной антиотмывочной системы</p>
-                                <Button className={cl.button}>Подробнее</Button>
+                                <Button className={cl.button} onClick={toAbout}>Подробнее</Button>
                             </div>
                         </div>
                     </div>

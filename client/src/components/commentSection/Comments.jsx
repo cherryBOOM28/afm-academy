@@ -8,23 +8,40 @@ import {
   updateComment as updateCommentApi,
   deleteComment as deleteCommentApi,
 } from "../../api";
+import axios from "axios";
+import Cookies from "js-cookie";
 
-const Comments = ({ commentsUrl, currentUserId }) => {
+const Comments = ({ commentsUrl, currentUserId, postId }) => {
   const [backendComments, setBackendComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
   const rootComments = backendComments.filter(
-    (backendComment) => backendComment.parentId === null
+    (backendComment) => backendComment.parentId === postId
   );
-  const getReplies = (commentId) =>
-    backendComments
-      .filter((backendComment) => backendComment.parentId === commentId)
-      .sort(
-        (a, b) =>
-          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-      );
+  const getReplies = async (commentId) => {
+    try {
+      const token = Cookies.get('token')
+      const response = await axios.post('http://localhost:1415/questions', {post_id: commentId}, {
+        headers: {
+          'Authorization': 'Bearer ' + token 
+        },
+      })
+      const backendComments = response.data.questions;
+      console.log(backendComments)
+  
+      return response.data.questions;
+    } catch (error) {
+      console.error('Error fetching replies:', error);
+      return []; // Return an empty array if there's an error or no replies found
+    }
+  };
   const addComment = (text, parentId) => {
-    createCommentApi(text, parentId).then((comment) => {
-      setBackendComments([comment, ...backendComments]);
+    const token = Cookies.get('token')
+    axios.post('http://localhost:1415/question', {text, post_id: parentId}, {
+      headers: {
+        'Authorization': 'Bearer ' + token 
+      },
+    }).then((res) => {
+      setBackendComments([res.data.newQuestion, ...backendComments]);
       setActiveComment(null);
     });
   };
@@ -53,8 +70,13 @@ const Comments = ({ commentsUrl, currentUserId }) => {
   };
 
   useEffect(() => {
-    getCommentsApi().then((data) => {
-      setBackendComments(data);
+    const token = Cookies.get('token')
+    axios.post('http://localhost:1415/questions', {post_id: postId}, {
+      headers: {
+        'Authorization': 'Bearer ' + token 
+      },
+    }).then((res) => {
+      setBackendComments(res.data.questions);
     });
   }, []);
 
@@ -62,19 +84,21 @@ const Comments = ({ commentsUrl, currentUserId }) => {
     <div className={cl.comments}>
       <h3 className={cl.comments__title}>Комментарии</h3>
       <div className={cl.comment__form__title}>Напишите комментарии</div>
-      <CommentForm submitLabel="Отправить" handleSubmit={addComment} />
+      <CommentForm submitLabel="Отправить" handleSubmit={addComment} post_id={postId} />
       <div className={cl.comments__container}>
         {rootComments.map((rootComment) => (
           <Comment
             key={rootComment.id}
+            commentID={rootComment.id}
             comment={rootComment}
-            replies={getReplies(rootComment.id)}
+            // replies={getReplies(rootComment.id)}
             activeComment={activeComment}
             setActiveComment={setActiveComment}
             addComment={addComment}
             deleteComment={deleteComment}
             updateComment={updateComment}
             currentUserId={currentUserId}
+            load={true}
           />
         ))}
       </div>

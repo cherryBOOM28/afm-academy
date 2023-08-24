@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CommentForm from "./CommentForm";
 import styles from './Comment.module.css';
 import userIcon from '../../assets/images/user-icon.png';
-
+import Cookies from "js-cookie";
+import axios from "axios";
 const Comment = ({
+  key,
   comment,
-  replies,
+  // replies,
+  // commentID,
   setActiveComment,
   activeComment,
   updateComment,
@@ -13,7 +16,9 @@ const Comment = ({
   addComment,
   parentId = null,
   currentUserId,
+  load
 }) => {
+  const [replies, setReplies] = useState([])
   const isEditing =
     activeComment &&
     activeComment.id === comment.id &&
@@ -30,6 +35,20 @@ const Comment = ({
   const canEdit = currentUserId === comment.userId && !timePassed;
   const replyId = parentId ? parentId : comment.id;
   const createdAt = new Date(comment.createdAt).toLocaleDateString();
+  useEffect(() => {
+    if (load) {
+
+      const token = Cookies.get('token')
+      axios.post('http://localhost:1415/questions', {post_id: comment.id}, {
+        headers: {
+          'Authorization': 'Bearer ' + token 
+        },
+      }).then((res) => {
+        setReplies(res.data.questions)
+      })
+      
+    }
+  }, [])
   return (
     <div key={comment.id} className={styles.comment}>
       <div className={styles.comment__image__container}>

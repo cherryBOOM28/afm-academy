@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import cl from './Header.module.css';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import logo from '../../assets/images/logo.svg';
 import language from '../../assets/icons/lang.svg';
 import igIcon from '../../assets/icons/ig.svg';
@@ -12,17 +14,19 @@ import { Link } from 'react-router-dom';
 import personalAccount from '../../assets/icons/acc.svg';
 
 function Header() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+  const [username, setUsername] = useState(Cookies.get('email')) || ''
   
-    const handleLogin = () => {
-      // Logic for handling the login process (setIsLoggedIn to true).
-      setIsLoggedIn(true);
-    };
-  
-    const handleLogout = () => {
-      // Logic for handling the logout process (setIsLoggedIn to false).
-      setIsLoggedIn(false);
-    };
+  const handleLogin = () => {
+    // Logic for handling the login process (setIsLoggedIn to true).
+    navigate('/login');
+  };
+
+  const handleLogout = () => {
+    Cookies.remove('token')
+    Cookies.remove('email')
+    setUsername('')
+  }; 
   
     return (
       <div className={cl.headerWrapper}>
@@ -60,13 +64,13 @@ function Header() {
                   <input type='search' className={cl.search__input} />
                 </div>
   
-                {!isLoggedIn ? (
+                {username != '' ? (
                   <>
                     <div className={cl.personalAccount}>
                       <img src={personalAccount} alt="personal Account" />
                     </div>
-                    <Link to="/" className={cl.personalAccountLink}>
-                      <Button className={cl.personalAccountBtn}>Выйти</Button>
+                    <Link className={cl.personalAccountLink}>
+                      <Button className={cl.personalAccountBtn} onClick={handleLogout}>Выйти</Button>
                     </Link>
                   </>
                 ) : (

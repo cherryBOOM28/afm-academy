@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import cl from './Registration.module.css';
 import logo from '../../assets/images/logo.svg';
 import Button from '../../components/UI/button/Button';
-
+import axios from 'axios';
 const Registration = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -26,8 +26,12 @@ const Registration = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (formData.password === formData.confirmPassword) {
-      console.log('Registration successful:', formData);
-      navigate('/login');
+      axios
+      .post('http://localhost:1415/auth/signup', {username: formData.email, password: formData.password})
+      .then(res => {
+          console.log(res.data)
+          navigate('/login');
+      })
     } else {
       alert('Passwords do not match.');
     }
@@ -36,7 +40,7 @@ const Registration = () => {
   return (
     <div className={cl.registrationWrapper}>
       <div className={cl.container}>
-        <form className={cl.registrationForm} onSubmit={handleSubmit}>
+        <form className={cl.registrationForm}>
           <div className={cl.logo}>
             <img src={logo} alt="logo" className={cl.logoImg} />
             <p className={cl.logoText}>Академия финансового мониторинга</p>
@@ -73,7 +77,7 @@ const Registration = () => {
           <p className={cl.passw}>
             Уже есть аккаунт? <Link to="/login">Войти</Link>
           </p>
-          <Button type="submit" className={cl.signInButton}>
+          <Button type="submit" className={cl.signInButton} onClick={handleSubmit}>
             Зарегистрироваться
           </Button>
         </form>
