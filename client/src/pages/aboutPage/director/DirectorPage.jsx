@@ -42,7 +42,7 @@ const DirectorPage = () => {
                     <Button onClick={handleGoBack} className={cl.btn}>Назад</Button>
                 </div>
             </div>
-            <Comments commentsUrl="http://localhost:3000/structure" currentUserId="1" />
+            <Comments commentsUrl="http://localhost:3000/structure" currentUserId="1" postId={id} />
         </div>
         <Footer />
     </div>

@@ -8,12 +8,13 @@ const CommentForm = ({
   hasCancelButton = false,
   handleCancel,
   initialText = "",
+  post_id
 }) => {
   const [text, setText] = useState(initialText);
   const isTextareaDisabled = text.length === 0;
   const onSubmit = (event) => {
     event.preventDefault();
-    handleSubmit(text);
+    handleSubmit(text, post_id);
     setText("");
   };
   return (

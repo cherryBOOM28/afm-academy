@@ -7,12 +7,19 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from "@fullcalendar/interaction"
 
+import axios from 'axios';
+
 import './Calendar.scss'
 
+const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const formattedDate = date.toISOString().split('T')[0]; // Extract date part
+    return formattedDate;
+};
 function CalendarPage(props) {
     const [ events, setEvents ] = useState([
         {
-            'id': 0,
+            '_id': 0,
             'date': '',
             'content': '',
             'title': '',
@@ -22,7 +29,7 @@ function CalendarPage(props) {
 
     const [showEvent, setShowEvent] = useState(false);
     const [currEvent, setCurrEvent] = useState({
-        'id': 0,
+        '_id': 0,
         'date': '',
         'content': '',
         'title': '',
@@ -30,47 +37,38 @@ function CalendarPage(props) {
     });
 
     useEffect(() => {
-        setEvents([
-            {
-                'id': 1,
-                'date': '2023-09-21',
-                '_date': '2023-09-21',
-                'content': 'Всеобщее декларирование: Особенности заполнения заполнения заполнения заполнения заполнения заполнения заполнения заполнения заполнения заполнения формы 250.00 и 270.00 за 2023 год',
-                'title': 'Вебинаp',
-                'type': 'Вебинаp',
+        console.log('Fetching events...');
+        axios.get('http://localhost:1415/events/all')
+            .then(res => {
+                console.log('Events response:', res.data);
 
-            },
-            {
-                'id': 2,
-                'date': '2023-08-24',
-                '_date': '2023-08-24',
-                'content': 'Всеобщее декларирование: Особенности заполнения заполнения заполнения заполнения заполнения заполнения заполнения заполнения заполнения заполнения формы 250.00 и 270.00 за 2023 год',
-                'title': 'Вебинаp',
-                'type': 'Вебинаp',
+                const formattedEvents = res.data.map(event => ({
+                    ...event,
+                    date: formatDate(event.date), 
+                    _date: formatDate(event._date)// Format the date here
+                    // You can format other date-related fields in a similar way
+                }));
 
-            },
-            {
-                'id': 3,
-                'date': '2023-09-21',
-                '_date': '2023-09-21',
-                'content': 'Всеобщее декларирование: Особенности заполнения заполнения заполнения заполнения заполнения заполнения заполнения заполнения заполнения заполнения формы 250.00 и 270.00 за 2023 год',
-                'title': 'Вебинаp',
-                'type': 'Вебинаp'
-            }
-        ])
-    }, [])
+                setEvents(formattedEvents);
+            })
+            .catch(error => {
+                console.error('Error fetching events:', error);
+                setEvents([])
+            });
+    }, []);
 
     const handleDateClick = (arg) => {
         // console.log(arg, typeof arg)
     }
 
     const handleEventClick = (arg) => {
+        console.log(arg)
         console.log(arg.event.extendedProps);
 
-        let id = arg.event.id - 0
+        // let id = arg.event.id - 0
 
         setCurrEvent(events.filter(item => {
-          return item.id === id
+          return item._id === arg.event.extendedProps._id
         })[0]);
 
         setShowEvent(true);
