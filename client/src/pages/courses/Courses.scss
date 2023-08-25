@@ -1,0 +1,95 @@
+.courses-page {
+    background-color: rgb(249, 249, 249);
+    position: relative;
+
+    > div:first-child {
+        background-color: white;
+        padding-bottom: 50px;
+    }
+
+    .container {
+        max-width: 940px;
+        margin: 0 auto;
+    }
+
+    .page-content {
+     
+        h1 {
+            margin-top: 50px;
+
+            font-family: Roboto;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 30px;
+            text-align: left;
+            color: #343434;
+
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-family: Roboto;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 23px;
+            text-align: left;
+
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-family: Roboto;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 19px;
+            text-align: left;
+
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-family: Roboto;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 23px;
+            letter-spacing: 0em;
+            text-align: left;
+
+            margin-bottom: 15px;
+        }
+
+        .courses-block {
+            margin-top: 20px;
+
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            
+            @media screen and (max-width: 940px) {
+                flex-wrap: wrap;
+                justify-content: space-between;
+
+                padding: 0 20px;
+            }
+
+
+            > div {
+                display: flex;
+                flex-direction: column;
+                padding: 15px;
+                align-items: center;
+
+                box-shadow: 2px 4px 4px 0px #00000040;
+
+                cursor: pointer;
+
+                h3 {
+                    margin-top: 10px;
+                    text-align: center;
+                }
+            }
+
+            margin-bottom: 73px;
+        }
+    }
+}

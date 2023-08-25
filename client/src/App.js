@@ -17,6 +17,12 @@ import Fatf from './pages/podft/fatf/Fatf';
 import Eag from './pages/podft/eag/Eag';
 import MutualEvaluation from './pages/podft/mutualEvaluation/MutualEvaluation';
 import CalendarPage from './pages/calendar/Calendar';
+import InfoPage from './pages/courseInfoPage/InfoPage';
+import CoursesPage from './pages/courses/Courses';
+import BasicCourse from './pages/courses-basic/BasicCourse';
+import SpecializedCourse from './pages/courses-specialized/SpecializedCourse';
+import SurveysPage from './pages/surveys/Surveys';
+import VebinarsPage from './pages/vebinar/VebinarsPage';
 
 
 function App() {
@@ -50,8 +56,19 @@ function App() {
           <Route path="/eag" element={<Eag />}></Route>
           <Route path="/mutual-evaluation" element={<MutualEvaluation />}></Route>
 
+          <Route path="/vebinars" element={<VebinarsPage />}/>
+          <Route path="/vebinars/calendar" element={<CalendarPage />}/>
+          <Route path="/vebinars/surveys" element={<SurveysPage />} />
+          <Route path="/vebinars/:id" element={<></>} />
 
-          <Route path="/calendar" element={<CalendarPage />}/>
+          <Route path='/courses' element={<CoursesPage />}/>
+          <Route path="/courses/info" element={<InfoPage />}/>
+          <Route path='/courses/basic' element={<BasicCourse />}/>
+          <Route path='/courses/specialized' element={<SpecializedCourse />}/>
+          <Route path='/courses/:id' element={<SpecializedCourse />}/>
+
+
+  
 
         </Routes>
       </BrowserRouter>

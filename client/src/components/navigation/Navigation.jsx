@@ -70,19 +70,19 @@ function Navigation() {
                         </ul>
                     </li>
                     <li className={cl.dropdown}>
-                        <span className={cl.dropdownToggle}>Курсы</span>
+                        <Link to={'/courses'} className={cl.links}><span className={cl.dropdownToggle}>Курсы</span></Link>
                         <ul className={cl.dropdownMenu}>
                             <li>
-                                <Link to="/services/service1" className={cl.links}>Базовый</Link>
+                                <Link to="/courses/basic" className={cl.links}>Базовый</Link>
                             </li>
                             <li>
-                                <Link to="/services/service2" className={cl.links}>Профильный</Link>
+                                <Link to="/courses/specialized" className={cl.links}>Профильный</Link>
                             </li>
                             <li>
-                                <Link to="/services/service2" className={cl.links}>Углубленный</Link>
+                                <Link to="/courses/professional" className={cl.links}>Углубленный</Link>
                             </li>
                             <li>
-                                <Link to="/services/service2" className={cl.links}>Повышение квалификации</Link>
+                                <Link to="/courses/advanced" className={cl.links}>Повышение квалификации</Link>
                             </li>
                         </ul>
                     </li>
@@ -97,6 +97,17 @@ function Navigation() {
                             </li>
                             <li>
                                 <Link to="/services/service2" className={cl.links}>Иное </Link>
+                            </li>
+                        </ul>
+                    </li>
+                    <li className={cl.dropdown}>
+                        <Link to={'/vebinars'} className={cl.links}><span className={cl.dropdownToggle}>Вебинары</span></Link>
+                        <ul className={cl.dropdownMenu}>
+                            <li>
+                                <Link to="/vebinars/calendar" className={cl.links}>Календарь мероприятий</Link>
+                            </li>
+                            <li>
+                                <Link to="/vebinars/surveys" className={cl.links}>Опросы</Link>
                             </li>
                         </ul>
                     </li>
