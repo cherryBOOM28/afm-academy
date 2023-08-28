@@ -10,10 +10,13 @@ import Lectors from '../../components/lectors-block/Lectors';
 
 import lectorImg from './../../assets/images/avatar-img.png';
 import FeedBacks from '../../components/feedbackBlock/FeedBacks';
+import ModalWindow from '../../components/ModalWindow/ModalWindow';
 
 function BasicCourse() {
+    const [showModal, setShowModal] = useState(false);
+
     return ( 
-        <div className="basic-course-page">
+        <div className={`basic-course-page`}>
             <div>
                 <div className="container">
                     <Header />
@@ -99,13 +102,23 @@ function BasicCourse() {
                 />
 
                 <div className='blue-btn'>
-                    <div>
+                    <div onClick={() => setShowModal(true)}>
                         Подать заявку
                     </div>
                 </div>
             </div>
-
+  
             <Footer />
+            {
+                showModal ? 
+                    <ModalWindow title={'Подать заявку'} setShowModal={setShowModal}>
+                        {/* <h1>Hello</h1> */}
+                        <p>Hello</p>
+                    </ModalWindow>
+                :
+                    <></>
+            }
+            
         </div>
     );
 }
