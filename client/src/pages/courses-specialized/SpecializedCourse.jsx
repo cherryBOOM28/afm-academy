@@ -10,8 +10,27 @@ import Lectors from '../../components/lectors-block/Lectors';
 
 import lectorImg from './../../assets/images/avatar-img.png';
 import FeedBacks from '../../components/feedbackBlock/FeedBacks';
+import ModalWindow from '../../components/ModalWindow/ModalWindow';
 
 function SpecializedCourse() {
+    const [showModal, setShowModal] = useState(false);
+
+    const [request, setRequest] = useState({
+        email: '',
+        name: '',
+        phone: ''
+    })
+
+    const requestOnchange = (key, value) => {
+        setRequest(
+            {...request, [key]: value}
+        )
+    }
+
+    useEffect(() => {
+        console.log(request)
+    }, [request])
+
     return ( 
         <div className="specialized-course-page">
             <div>
@@ -99,17 +118,67 @@ function SpecializedCourse() {
                 />
 
                 <div className='blue-btn'>
-                    <div>
+                    <div onClick={() => setShowModal(true)}>
                         Подать заявку
                     </div>
                 </div>
             </div>
 
             <Footer />
+            {
+                showModal ? 
+                    <ModalWindow title={'Подать заявку'} setShowModal={setShowModal}>
+                        <FormInput title={'Почта'} field={'email'} onChange={requestOnchange}/>
+                        <FormInput title={'ФИО'} field={'name'} onChange={requestOnchange}/>
+                        <FormInput title={'Номер телефона'} field={'phone'} onChange={requestOnchange}/>
+                        <div style={{display: 'flex', justifyContent: 'end', padding: '0px 20px'}}>
+                            <div 
+                                style={{background: '#1F3C88', padding: '10px 20px', color: 'white', fontSize: '16px', borderRadius: '5px', outline: 'none', cursor: 'pointer'}}
+                                onClick={() => {
+                                    setShowModal(false);
+                                }}
+                            >
+                                Отправить
+                            </div>
+                        </div>
+                    </ModalWindow>
+                :
+                    <></>
+            }
         </div>
     );
 }
 
+const FormInput = ({title, field, onChange}) => {
+    const labelStyle = {
+        'fontFamily': 'Roboto',
+        'fontSize': '1.2rem',
+        paddingLeft: '10px',
+    }
 
+    const inputStyle = {
+        color: 'black',
+        // width: '500px',
+        border: '1px solid black',
+        borderRadius: '5px',
+        fontSize: '1.2rem',
+        padding: '10px'
+    }
+
+    return (
+        <div style={{display: 'flex', flexDirection: 'column', gap: '5px', marginBottom: '20px', padding: '0px 20px'}}>
+
+            <label style={labelStyle} htmlFor={field}>{title}</label>
+            <input style={inputStyle} placeholder={field} type="text" name={field} onChange={(e) => {
+                let value = e.target.value;
+                onChange(field, value)
+                // console.log(onChange)
+            }}/>
+
+
+        </div>
+    )
+
+}
 
 export default SpecializedCourse;

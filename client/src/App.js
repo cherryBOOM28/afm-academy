@@ -24,54 +24,57 @@ import SpecializedCourse from './pages/courses-specialized/SpecializedCourse';
 import SurveysPage from './pages/surveys/Surveys';
 import VebinarsPage from './pages/vebinar/VebinarsPage';
 
+import { AuthProvider } from './auth/AuthContext';
 
 function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/registration" element={<Registration />} />
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/registration" element={<Registration />} />
 
 
-          <Route
-            path="/unauthenticated"
-            element={<Navigate to="/login" />}
-          />
+            <Route
+              path="/unauthenticated"
+              element={<Navigate to="/login" />}
+            />
 
-          <Route path="" element={<Home />}></Route>
-          <Route path="/about" element={<AboutUs />}></Route>
-          <Route path="/management" element={<Management />}></Route>
-          <Route path="/structure" element={<Structure />}></Route>
-          <Route path="/structure/:id" element={<DirectorPage />} />
-          <Route path="/charter" element={<Charter />}></Route>
+            <Route path="" element={<Home />}></Route>
+            <Route path="/about" element={<AboutUs />}></Route>
+            <Route path="/management" element={<Management />}></Route>
+            <Route path="/structure" element={<Structure />}></Route>
+            <Route path="/structure/:id" element={<DirectorPage />} />
+            <Route path="/charter" element={<Charter />}></Route>
 
-          <Route path="/subjects" element={<Subjects />}></Route>
-          <Route path="/rules" element={<Rules />}></Route>
-          <Route path="/operations" element={<Operations />}></Route>
+            <Route path="/subjects" element={<Subjects />}></Route>
+            <Route path="/rules" element={<Rules />}></Route>
+            <Route path="/operations" element={<Operations />}></Route>
 
-          <Route path="/anti-laundering" element={<AntiLaundering />}></Route>
-          <Route path="/fatf" element={<Fatf />}></Route>
-          <Route path="/eag" element={<Eag />}></Route>
-          <Route path="/mutual-evaluation" element={<MutualEvaluation />}></Route>
+            <Route path="/anti-laundering" element={<AntiLaundering />}></Route>
+            <Route path="/fatf" element={<Fatf />}></Route>
+            <Route path="/eag" element={<Eag />}></Route>
+            <Route path="/mutual-evaluation" element={<MutualEvaluation />}></Route>
 
-          <Route path="/vebinars" element={<VebinarsPage />}/>
-          <Route path="/vebinars/calendar" element={<CalendarPage />}/>
-          <Route path="/vebinars/surveys" element={<SurveysPage />} />
-          <Route path="/vebinars/:id" element={<></>} />
+            <Route path="/vebinars" element={<VebinarsPage />}/>
+            <Route path="/vebinars/calendar" element={<CalendarPage />}/>
+            <Route path="/vebinars/surveys" element={<SurveysPage />} />
+            <Route path="/vebinars/:id" element={<></>} />
 
-          <Route path='/courses' element={<CoursesPage />}/>
-          <Route path="/courses/info" element={<InfoPage />}/>
-          <Route path='/courses/basic' element={<BasicCourse />}/>
-          <Route path='/courses/specialized' element={<SpecializedCourse />}/>
-          <Route path='/courses/:id' element={<SpecializedCourse />}/>
+            <Route path='/courses' element={<CoursesPage />}/>
+            <Route path="/courses/info" element={<InfoPage />}/>
+            <Route path='/courses/basic' element={<BasicCourse />}/>
+            <Route path='/courses/specialized' element={<SpecializedCourse />}/>
+            <Route path='/courses/:id' element={<SpecializedCourse />}/>
 
 
-  
+    
 
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }

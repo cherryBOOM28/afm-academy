@@ -5,6 +5,7 @@ import Footer from '../../components/footer/Footer';
 
 import './Surveys.scss'
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../auth/AuthContext';
 
 function SurveysPage() {
     const [isSurvey, setSurvey] = useState(true);
@@ -13,6 +14,11 @@ function SurveysPage() {
     const [testList, setTestList] = useState([]);
 
     const navigate = useNavigate();
+
+    const {
+        isLoggedIn
+      } = useAuth()
+    
 
     useEffect(() => {
         setSurveyList([
@@ -89,7 +95,11 @@ function SurveysPage() {
 
                                             return (
                                                 <tr onClick={() => {
-                                                    if (status === 'active') navigate(`/survey/${id}`)
+                                                    if (status === 'active' && isLoggedIn) { 
+                                                        navigate(`/survey/${id}`)
+                                                    }
+
+                                                    if (!isLoggedIn) navigate('/login')
                                                 }}>
                                                     <td>{index + 1}</td>
                                                     <td>{date_open}</td>

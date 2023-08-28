@@ -44,8 +44,8 @@
 }
 
 .btn {
+    display: flex;
     margin-top: 20px;
-    align-items: flex-end;
-    justify-content: flex-end;
+    justify-content: center;
     width: 150px;
 }
