@@ -80,7 +80,7 @@ function Footer({ email, phoneNumber }) {
                         
                     </div>
                     <div className={cl.footer__block}>
-                        <p className={cl.footer__headline}>Курсы</p>
+                        <p className={cl.footer__headline}>Обучение</p>
                         <nav className={cl.footer__content}>
                             <ul>
                                 <li>
@@ -90,7 +90,7 @@ function Footer({ email, phoneNumber }) {
                                     <Link to="/profile" className={cl.footer__text}>Профильный</Link>
                                 </li>
                                 <li>
-                                    <Link to="/in-depth" className={cl.footer__text}>Углубленный</Link>
+                                    <Link to="/in-depth" className={cl.footer__text}>Продвинутый</Link>
                                 </li>
                                 <li>
                                     <Link to="/training" className={cl.footer__text}>Повышение квалификации</Link>

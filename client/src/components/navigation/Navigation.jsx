@@ -70,7 +70,7 @@ function Navigation() {
                         </ul>
                     </li>
                     <li className={cl.dropdown}>
-                        <Link to={'/courses'} className={cl.links}><span className={cl.dropdownToggle}>Курсы</span></Link>
+                        <Link to={'/courses'} className={cl.links}><span className={cl.dropdownToggle}>Обучение</span></Link>
                         <ul className={cl.dropdownMenu}>
                             <li>
                                 <Link to="/courses/basic" className={cl.links}>Базовый</Link>
@@ -79,7 +79,7 @@ function Navigation() {
                                 <Link to="/courses/specialized" className={cl.links}>Профильный</Link>
                             </li>
                             <li>
-                                <Link to="/courses/professional" className={cl.links}>Углубленный</Link>
+                                <Link to="/courses/professional" className={cl.links}>Продвинутый</Link>
                             </li>
                             <li>
                                 <Link to="/courses/advanced" className={cl.links}>Повышение квалификации</Link>
