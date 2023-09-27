@@ -14,7 +14,7 @@ export default function Map(){
 
   return (
     // Important! Always set the container height explicitly
-    <div style={{ height: '251px', width: '365px', borderRadius: '5px' }}>
+    <div style={{ height: '201px', width: '565px', borderRadius: '5px' }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "" }}
         defaultCenter={defaultProps.center}

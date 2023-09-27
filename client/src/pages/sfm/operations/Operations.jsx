@@ -1,6 +1,6 @@
 import React from 'react';
 import cl from './Operations.module.css';
-import Header from '../../../components/header/Header';
+import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
 import graphIcon from '../../../assets/icons/graph.svg';
 import groupIcon from '../../../assets/icons/group.svg';
@@ -11,7 +11,7 @@ import worldIcon from '../../../assets/icons/earth.svg';
 function Operations() {
     return (
         <div className={cl.OperationsWrapper}>
-            <Header />
+            <DefaultHeader />
             <div className={cl.container}>
                 <h1 className={cl.headline}>Операции, подлежащие финансовому мониторингу</h1>
                 <div className={cl.blocksContent}>
@@ -24,7 +24,7 @@ function Operations() {
                     </div>
                     <div className={cl.block}>
                         <img src={timeIcon} alt="timeIcon" className={cl.blockImg} />
-                        <p className={cl.blockHeadline}>Подозор.</p>
+                        <p className={cl.blockHeadline}>Подозрение</p>
                         <p className={cl.blockText}>
                             Подозрительная ОПЕРАЦИЯ в рамках утвержденных признаков подозрительной операции
                         </p>

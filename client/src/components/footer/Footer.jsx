@@ -157,7 +157,7 @@ function Footer({ email, phoneNumber }) {
                                     <Link to="/rules" className={cl.footer__text}>Пул экспертов Академии</Link>
                                 </li>
                                 <li>
-                                    <Link to="" className={cl.footer__text}>Заявка на позицию эксперта в Академии</Link>
+                                    <Link to="" className={cl.footer__text}>Заявка на позицию <br></br> эксперта в Академии</Link>
                                 </li>
                                 <li>
                                     <Link to="/jobs" className={cl.footer__text}>Вакансии</Link>

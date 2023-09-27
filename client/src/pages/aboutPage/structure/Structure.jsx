@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import cl from './Structure.module.css';
 import jsonData from './structureData.json';
-import Header from '../../../components/header/Header';
+import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import lineL from '../../../assets/icons/lineL.svg';
 import lineR from '../../../assets/icons/lineR.svg';
 import Footer from '../../../components/footer/Footer';
@@ -34,7 +34,7 @@ function Structure() {
 
   return (
     <div className={cl.charterWrapper}>
-        <Header />
+        <DefaultHeader />
         <div className={cl.container}>
             <h1 className={cl.headline}>Руководство Академии</h1>
             <div className={cl.charterContent}>

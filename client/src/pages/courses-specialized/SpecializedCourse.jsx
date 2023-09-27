@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import Footer from '../../components/footer/Footer';
-import Header from '../../components/header/Header';
+import DefaultHeader from '../../components/defaultHeader/DefaultHeader';
 
 import './SpecializedCourse.scss';
 import Collapsable from '../../components/UI/collapsable-block/Collapsable';
@@ -35,7 +35,7 @@ function SpecializedCourse() {
         <div className="specialized-course-page">
             <div>
                 <div className="container">
-                    <Header />
+                    <DefaultHeader />
                 </div>
             </div>
 

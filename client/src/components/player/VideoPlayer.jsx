@@ -4,7 +4,7 @@ const VideoPlayer = () => {
   return (
     <div>
       <iframe
-        width="492"
+        width="592"
         height="275"
         src="https://www.youtube-nocookie.com/embed/PtLz0ZSKmBM?controls=0&amp"
         title="YouTube video player"

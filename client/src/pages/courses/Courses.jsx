@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Header from '../../components/header/Header';
+import DefaultHeader from '../../components/defaultHeader/DefaultHeader';
 import Footer from '../../components/footer/Footer';
 
 import './Courses.scss';
@@ -18,7 +18,7 @@ function CoursesPage() {
         <div className="courses-page">
             <div>
                 <div className="container">
-                    <Header />
+                    <DefaultHeader />
                 </div>
             </div>
 

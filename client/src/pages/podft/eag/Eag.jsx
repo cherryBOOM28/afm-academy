@@ -1,6 +1,6 @@
 import React from 'react';
 import cl from './Eag.module.css';
-import Header from '../../../components/header/Header';
+import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
 import eagImg from '../../../assets/images/eag.svg';
 import eagGroup from '../../../assets/images/eagGroup.svg';
@@ -9,7 +9,7 @@ import eagGroup from '../../../assets/images/eagGroup.svg';
 function Eag() {
     return (
         <div className={cl.eagWrapper}>
-            <Header />
+            <DefaultHeader />
             <div className={cl.container}>
                 <h1 className={cl.headline}>ЕАГ</h1>
                 <div className={cl.eagImgContent}>
@@ -27,7 +27,7 @@ function Eag() {
             <div className={cl.groupWrapper}>
                 <div className={cl.container}>
                 <div className={cl.eagImgContent}>
-                    <img src={eagGroup} alt="eagGroup" />
+                    <img src={eagGroup} alt="eagGroup" style={{ height: '230px' }} />
                     <div className={cl.eagImgText}>
                         <span>Основные задачи ЕАГ:</span>
                         <br></br>
@@ -55,10 +55,11 @@ function Eag() {
                         <li>анализ тенденций в области отмывания денег и финансирования терроризма (типологии) и обмена передовой практикой борьбы с такими преступлениями с учетом региональных особенностей.</li>
                     </ul>
                 </div>
-                </div>
                 <div style={{marginBottom: '100px',}}>
                         <a href="https://eurasiangroup.org/ru" style={{color: 'black'}}>Ссылка на сайт ЕАГ</a>
-                    </div>
+                </div>
+                </div>
+                
             </div>
             <Footer />
         </div>

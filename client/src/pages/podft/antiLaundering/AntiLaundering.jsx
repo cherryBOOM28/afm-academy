@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import cl from './AntiLaundering.module.css';
-import Header from '../../../components/header/Header';
+import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
 import schemeImg from '../../../assets/images/scheme.svg';
 import arrowImg from '../../../assets/images/arrow.svg';
@@ -14,7 +14,7 @@ function AntiLaundering() {
 
     return (
         <div className={cl.antiLaunderingWrapper}>
-            <Header />
+            <DefaultHeader />
             <div className={cl.container}>
                 <h1 className={cl.headline}>Антиотмывочная система РК</h1>
                 <img src={schemeImg} alt="schemeImg" className={cl.scheme} />
@@ -50,8 +50,7 @@ function AntiLaundering() {
                             onClick={() => handleTabClick(3)} 
                             className={`${cl.stageThird} ${activeTab === 3 ? `${cl.active}` : ''}`}
                         >
-                            <p className={cl.stageText}>Третий этап (с 2021 года по н.вр.)
-                            </p>
+                            <p className={cl.stageText}>Третий этап (с 2021 года по н.вр.)</p>
                             <div className={cl.circle}></div>
                         </div>
                     </div>

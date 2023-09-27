@@ -1,5 +1,5 @@
 .container {
-    max-width: 940px;
+    max-width: 1140px;
     margin: 0 auto;
 }
 
@@ -90,20 +90,20 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 940px;
+    width: 1140px;
 }
 
 .smallBlocks {
     display: flex;
     justify-content: space-between;
-    width: 940px;
+    width: 1140px;
 
 }
 
 .innerBlock {
     border-radius: 5px;
     background: #E2E2E2;
-    width: 300px;
+    width: 360px;
     /* padding: 21px; */
 }
 

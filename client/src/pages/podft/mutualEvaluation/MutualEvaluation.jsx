@@ -1,6 +1,6 @@
 import React from 'react';
 import cl from './MutualEvaluation.module.css';
-import Header from '../../../components/header/Header';
+import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
 import mutualEvaluationImg from '../../../assets/images/marks.svg';
 
@@ -8,15 +8,16 @@ import mutualEvaluationImg from '../../../assets/images/marks.svg';
 function MutualEvaluation() {
     return (
         <div className={cl.mutualEvaluationWrapper}>
-            <Header />
+            <DefaultHeader />
             <div className={cl.container}>
                 <h1 className={cl.headline}>Взаимная оценка</h1>
                 <div className={cl.mutualEvaluationContent}>
+                <img src={mutualEvaluationImg} alt="mutualEvaluationImg" style={{ height: '190px' }} />
                     <p className={cl.mutualEvaluationText}>
                         Региональные группы по типу ФАТФ (РГТФ) проводят взаимные оценки, в рамках которых национальные системы ПОД/ФТ государств-участников проверяются на соответствие международным стандартам.
                         Под взаимностью подразумевается, что представители всех государств-членов РГТФ оценивают другие государства-члены по очереди в соответствии с графиком оценок. Подобные оценки также проводят Международный валютный фонд, Всемирный банк и непосредственно Группа разработки финансовых мер борьбы с отмыванием денег.
                     </p>
-                    <img src={mutualEvaluationImg} alt="mutualEvaluationImg" />
+                   
                 </div>
                 <div className={cl.mutualEvaluationBlock}>
                     <p className={cl.text}>

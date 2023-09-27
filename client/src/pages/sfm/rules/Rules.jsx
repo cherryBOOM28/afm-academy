@@ -1,6 +1,6 @@
 import React from 'react';
 import cl from './Rules.module.css';
-import Header from '../../../components/header/Header';
+import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
 import customerImg from '../../../assets/images/customer.svg';
 import circleFirst from '../../../assets/images/r1.svg'
@@ -11,7 +11,7 @@ import circleThird from '../../../assets/images/r3.svg'
 function Rules() {
     return (
         <div className={cl.rulesWrapper}>
-            <Header />
+            <DefaultHeader />
             <div className={cl.container}>
                 <h1 className={cl.headline}>Правила внутреннего контроля</h1>
                 <p className={cl.text}>
@@ -50,7 +50,7 @@ function Rules() {
                 <h1 className={cl.subtitle}>Надлежащая проверка клиентов</h1>
                 <div className={cl.customer}>
                     <div className={cl.customerBlock}>
-                        <img src={customerImg} alt="customerImg" />
+                        <img src={customerImg} alt="customerImg" style={{ height: '160px' }} />
                         <p className={cl.customerText}>Субъекты финансового мониторинга должны принимать меры по надлежащей проверке своих клиентов (их представителей) и бенефициарных собственников в соответствии с законодательством Республики Казахстан о противодействии легализации (отмыванию) доходов, полученных преступным путем, и финансированию терроризма. </p>
                     </div>
                     <p className={cl.text}>в соответствии с п.2 ст.5 Закона «О противодействии легализации (отмыванию) доходов, добытых преступным путем, и финансированию терроризма» субъекты финансового мониторинга осуществляют надлежащую проверку клиентов (их представителей) и бенефициарных собственников в случаях:</p>

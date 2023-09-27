@@ -1,6 +1,6 @@
 import React from 'react';
 import cl from './Management.module.css';
-import Header from '../../../components/header/Header';
+import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import firstDirector from '../../../assets/images/1.svg';
 import secondDirector from '../../../assets/images/2.svg';
 import thirdDirector from '../../../assets/images/3.svg';
@@ -12,7 +12,7 @@ function Management() {
     return (
         <div className={cl.managementWrapper}>
             <div className={cl.container}>
-                <Header />
+                <DefaultHeader />
                 <h1 className={cl.headline}>Совет директоров</h1>
                 <div className={cl.boardOfDirectors}>
                     <div className={cl.director}>

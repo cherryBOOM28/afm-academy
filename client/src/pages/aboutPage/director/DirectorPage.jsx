@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import cl from './DirectorPage.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import jsonData from '../structure/structureData.json'
-import Header from '../../../components/header/Header';
+import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Button from '../../../components/UI/button/Button';
 import Footer from '../../../components/footer/Footer';
 import Comments from '../../../components/commentSection/Comments';
@@ -47,7 +47,7 @@ const DirectorPage = () => {
 
   return (
     <div className={cl.directorPageWrapper}>
-        <Header />
+        <DefaultHeader />
         <div className={cl.container}>
             <div className={cl.card}>
                 <img src={cardData.photo} alt="Director profile" className={cl.card__img} />

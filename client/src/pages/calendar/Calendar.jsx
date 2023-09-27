@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Header from '../../components/header/Header';
+import DefaultHeader from '../../components/defaultHeader/DefaultHeader';
 import Footer from '../../components/footer/Footer';
 
 import FullCalendar from '@fullcalendar/react'
@@ -78,7 +78,7 @@ function CalendarPage(props) {
         <>
             <div className='calendar-page'>
                 <div className="container">
-                    <Header />
+                    <DefaultHeader />
                 </div>
                 <main className='page-content container'>
                     <h2>Календарь мероприятий</h2>

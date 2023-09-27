@@ -1,18 +1,18 @@
 import React from 'react';
 import cl from './Fatf.module.css';
 import fatfImg from '../../../assets/images/fatf.svg';
-import Header from '../../../components/header/Header';
+import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
 
 
 function Fatf() {
     return (
         <div className={cl.fatfWrapper}>
-            <Header />
+            <DefaultHeader />
             <div className={cl.container}>
                 <h1 className={cl.headline}>ФАТФ</h1>
                 <div className={cl.fatfContent}>
-                    <img src={fatfImg} alt="fatfImg" style={{ height: "350px" }} />
+                    <img src={fatfImg} alt="fatfImg" style={{ height: "237px" }} />
                     <div className={cl.fatfContentInner}>
                         <div className={cl.fatfBlock}>
                             <p className={cl.fatfBlockText}>

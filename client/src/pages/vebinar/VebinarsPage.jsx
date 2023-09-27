@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import './VebinarsPage.scss';
 
-import Header from '../../components/header/Header';
+import DefaultHeader from '../../components/defaultHeader/DefaultHeader';
 import Footer from '../../components/footer/Footer';
 
 import vebinarImg from './../../assets/images/vebinar-img.png';
@@ -66,7 +66,7 @@ function VebinarsPage() {
         <div className={'vebinars-page'}>
             <div>
                 <div className="container">
-                    <Header/>
+                    <DefaultHeader/>
                 </div>
             </div>
 

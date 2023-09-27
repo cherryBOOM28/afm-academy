@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Header from '../../components/header/Header';
+import DefaultHeader from '../../components/defaultHeader/DefaultHeader';
 import Footer from '../../components/footer/Footer';
 
 import './Surveys.scss'
@@ -50,7 +50,7 @@ function SurveysPage() {
         <div className='surveys-page'>
             <div>
                 <div className="container">
-                    <Header />
+                    <DefaultHeader />
                 </div>
             </div>
 

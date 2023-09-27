@@ -1,5 +1,5 @@
 .tabSliderContainer {
-    max-width: 940px;
+    max-width: 1120px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -27,7 +27,7 @@
 }
 
 .cardContent {
-    width: 260px;
+    width: 320px;
     height: 210px;
     border-radius: 10px;
     background: #fff;
@@ -64,7 +64,7 @@
 }
 
 .newsImg {
-    width: 256px;
+    width: 320px;
     height: 115px;
     object-fit: cover;
     border-radius: 10px;
@@ -89,6 +89,6 @@
 }
 
 .video {
-    width: 256px;
+    width: 320px;
     height: 115px;
 }

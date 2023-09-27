@@ -3,7 +3,7 @@
     padding: 0;
     margin: 0;
     display: flex;
-    width: 620px;
+    width: 820px;
     justify-content: space-between;
 }
 
@@ -18,10 +18,12 @@
 
 .dropdownToggle {
     cursor: pointer;
+    padding: 10px;
+    color: #fff;
 }
 
 .dropdownToggle:hover {
-    color: #1F3C88;
+    color: #F9CB36;
 }
 
 .dropdownToggle:active {
@@ -35,7 +37,7 @@ top: 100%;
 left: 0;
 background-color: #fff;
 padding: 12px;
-margin-top: 5px;
+margin-top: 6px;
 border: 1px solid #ccc;
 border-radius: 5px;
 width: 230px;
@@ -49,7 +51,6 @@ display: block;
     margin: 10px 0;
     color: #000;
     font-size: 16px;
-  
     font-weight: 400;
     text-decoration: none;
 }

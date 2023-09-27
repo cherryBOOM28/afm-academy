@@ -48,7 +48,7 @@ function Header() {
                 <a href='/#' className={cl.lang}>ENG</a>
               </div>
               <Link to="/" className={cl.header__logo}>
-                <img src={logo} alt="logo" />
+                <img src={logo} alt="logo" style={{ borderRadius: '50%' }} />
                 <p className={cl.logo__text}>Академия финансового мониторинга</p>
               </Link>
             </div>
@@ -77,7 +77,7 @@ function Header() {
                   <>
                     <div className={cl.personalAccount} style={{display: 'flex', alignItems: 'center', gap: '5px', marginRight: '15px'}}>
                       <img src={personalAccount} alt="personal Account" />
-                      <p style={{fontSize: '1.3rem', fontWeight: '300'}}>{authUser}</p>
+                      <p style={{fontSize: '1.3rem', fontWeight: '300', color: 'white'}}>{authUser}</p>
                     </div>
                     <Link className={cl.personalAccountLink}>
                       <Button className={cl.personalAccountBtn} onClick={handleLogout}>Выйти</Button>

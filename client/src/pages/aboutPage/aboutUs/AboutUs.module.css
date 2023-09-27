@@ -1,5 +1,5 @@
 .container {
-    max-width: 940px;
+    max-width: 1140px;
     margin: 0 auto;
 }
 
@@ -29,7 +29,7 @@
 
 .academy__p {
     margin-top: 23px;
-    width: 307px;
+    width: 507px;
     color: #000;
     font-size: 18px;
     font-weight: 400;
@@ -40,12 +40,12 @@
     margin: 73px 0 73px;
     display: flex;
     align-items: center;
-    gap: 47px;
+    gap: 25px;
 }
 
 .aboutTheFounder__p {
     margin-top: 14px;
-    width: 433px;
+    width: 833px;
     color: #000;
     font-family: Roboto;
     font-size: 16px;

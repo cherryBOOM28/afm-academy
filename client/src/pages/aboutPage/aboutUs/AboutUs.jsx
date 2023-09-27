@@ -1,6 +1,6 @@
 import React from 'react';
 import cl from './AboutUs.module.css';
-import Header from '../../../components/header/Header';
+import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import aboutUsImg from '../../../assets/images/aboutus.png';
 import aboutFounderImg from '../../../assets/images/afm.png';
 import Footer from '../../../components/footer/Footer';
@@ -11,7 +11,7 @@ function AboutUs() {
     return (
         <div className={cl.AboutUsWrapper}>
             <div className={cl.container}>
-                <Header />
+                <DefaultHeader />
             </div>
             <div className={cl.aboutUsContent}>
                 <div className={cl.academyWrapper}>
@@ -21,13 +21,13 @@ function AboutUs() {
                                 <p className={cl.headline}>Об Академии/ AML ACADEMY</p>
                                 <p className={cl.academy__p}>Академия финансового мониторинга АML ACADEMY была создана в 2023 году во исполнение Указа Главы государства «Об утверждении Концепции развития финансового мониторинга на 2022-2026 годы», на базе Международной Академии экономики и финансов.</p>
                             </div>
-                            <img src={aboutUsImg} alt="aboutUsImg" />
+                            <img src={aboutUsImg} alt="aboutUsImg" style={{ height: '' }} />
                         </div>
                     </div>
                 </div>
                 <div className={cl.container}>
                     <div className={cl.aboutTheFounder}>
-                        <img src={aboutFounderImg} alt="aboutTheFoubder" />
+                        <img src={aboutFounderImg} alt="aboutTheFoubder" style={{height: '210px'}} />
                         <div className={cl.aboutTheFounder__text}>
                             <p className={cl.headline}>Об Учредителе</p>
                             <p className={cl.aboutTheFounder__p}>

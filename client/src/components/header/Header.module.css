@@ -1,15 +1,18 @@
 .headerWrapper {
     margin-top: 43px;
+
+
 }
 
 .container {
-    max-width: 940px;
+    max-width: 1140px;
     margin: 0 auto;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
+
 }
 
 .header__logo {
@@ -36,14 +39,17 @@
     font-weight: 400;
     text-decoration: none;
     text-transform: uppercase;
+    color: #FFF;
 }
 
 .lang:hover {
     color: #1F3C88;
+    
 }
 
 .logo__text {
     width: 130px;
+    color: #FFF;
 }
 
 .logo__text {
@@ -51,6 +57,7 @@
     font-size: 20px;
     font-weight: 600;
     margin-left: 15px;
+    color: #FFF;
 }
 
 /* MENU  */
@@ -58,14 +65,13 @@
 .menu {
     display: flex;
     flex-direction: column;
-   
 }
 
 .menu__utils {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 620px;
+    width: 800px;
 }
 
 .socials {
@@ -96,7 +102,7 @@
 
 .search__input {
     position: relative;
-    width: 300px;
+    width: 400px;
     height: 40px;
     border-radius: 15px;
     border: 1px solid #FFF;
@@ -120,6 +126,7 @@
 
 .personalAccountLink {
     text-decoration: none;
+    color: #FFF;
 }
 
 .personalAccount {

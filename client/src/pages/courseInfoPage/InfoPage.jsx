@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Header from '../../components/header/Header';
+import DefaultHeader from '../../components/defaultHeader/DefaultHeader';
 import Footer from '../../components/footer/Footer';
 
 import './InfoPage.scss'
@@ -29,7 +29,7 @@ function InfoPage() {
         <div className="course-info-page">
             <div>
                 <div className="container">
-                    <Header />
+                    <DefaultHeader />
                 </div>
             </div>
 

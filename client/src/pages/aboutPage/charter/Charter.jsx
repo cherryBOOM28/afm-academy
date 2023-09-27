@@ -1,6 +1,6 @@
 import React from 'react';
 import cl from './Charter.module.css';
-import Header from '../../../components/header/Header';
+import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
 import pdf from '../../../assets/images/pdf.svg'
 import DownloadPDF from '../../../components/pdfSaver/DownloadPDF';
@@ -10,7 +10,7 @@ import DownloadPDF from '../../../components/pdfSaver/DownloadPDF';
 function Charter() {
     return (
         <div className={cl.charterWrapper}>
-            <Header />
+            <DefaultHeader />
             <div className={cl.container}>
                 <h1 className={cl.headline}>Устав</h1>
                 <DownloadPDF />
