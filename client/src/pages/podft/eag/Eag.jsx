@@ -56,6 +56,9 @@ function Eag() {
                     </ul>
                 </div>
                 </div>
+                <div style={{marginBottom: '100px',}}>
+                        <a href="https://eurasiangroup.org/ru" style={{color: 'black'}}>Ссылка на сайт ЕАГ</a>
+                    </div>
             </div>
             <Footer />
         </div>

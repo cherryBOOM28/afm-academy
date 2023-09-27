@@ -55,6 +55,9 @@ function Footer({ email, phoneNumber }) {
                                 <li>
                                     <Link to="/charter" className={cl.footer__text}>Устав</Link>
                                 </li>
+                                <li>
+                                    <Link to="/roadmap" className={cl.footer__text}>План развития</Link>
+                                </li>
                             </ul>
                         </nav>
                         

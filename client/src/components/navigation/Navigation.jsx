@@ -22,6 +22,9 @@ function Navigation() {
                             <li>
                                 <Link to="/charter" className={cl.links}>Устав</Link>
                             </li>
+                            <li>
+                                <Link to="/roadmap" className={cl.links}>План развития</Link>
+                            </li>
                         </ul>
                     </li>
                     <li className={cl.dropdown}>
