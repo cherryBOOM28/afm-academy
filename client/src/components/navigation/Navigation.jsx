@@ -3,6 +3,13 @@ import cl from './Navigation.module.css';
 import { Link } from 'react-router-dom';
 
 function Navigation() {
+    const scrollToNews = () => {
+        const newsSection = document.getElementById('newsSection');
+        if (newsSection) {
+          newsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <div>
             <nav>
@@ -68,6 +75,9 @@ function Navigation() {
                                 <Link to="/vebinars/surveys" className={cl.links}>Опросы</Link>
                             </li>
                         </ul>
+                    </li>
+                    <li className={cl.dropdown}>
+                        <a href="#" onClick={scrollToNews} className={cl.dropdownToggle}>Новости</a>
                     </li>
                     <li className={cl.dropdown}>
                         <span className={cl.dropdownToggle}>ПОД/ФТ</span>

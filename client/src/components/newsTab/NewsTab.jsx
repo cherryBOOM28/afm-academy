@@ -61,7 +61,7 @@ const NewsTab = () => {
 
 
   return (
-    <div className={cl.tabSliderContainer}>
+    <div id="newsSection" className={cl.tabSliderContainer}>
       <div className={cl.tabButtons}>
         <button
           className={activeTab === 'events' ? cl.active : ''}

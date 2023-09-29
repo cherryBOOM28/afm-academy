@@ -90,10 +90,10 @@ function Footer({ email, phoneNumber }) {
                                     <Link to="/courses" className={cl.footer__text}>Виды курсов</Link>
                                 </li>
                                 <li>
-                                    <Link to="/profile" className={cl.footer__text}>Каталог курсов</Link>
+                                    <Link to="/courses/catalog" className={cl.footer__text}>Каталог курсов</Link>
                                 </li>
                                 <li>
-                                    <Link to="/in-depth" className={cl.footer__text}>Мои курсы</Link>
+                                    <Link to="/courses/myCourses" className={cl.footer__text}>Мои курсы</Link>
                                 </li>
                             </ul>
                         </nav>

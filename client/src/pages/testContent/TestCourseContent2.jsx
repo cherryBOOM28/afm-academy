@@ -125,7 +125,7 @@ function Content2(props) {
                     </div>
 
                     <div className="next-page-button">
-                        Вы достигли конца этой сессии.
+                        Вы завершили модуль
                     </div>
                 </div>
             </div>

@@ -27,7 +27,8 @@
 }
 
 .cardContent {
-    width: 360px;
+    /* width: 320px; */
+    width: 85%;
     height: 210px;
     border-radius: 10px;
     background: #fff;
@@ -64,8 +65,8 @@
 }
 
 .newsImg {
-    width: 320px;
-    height: 115px;
+    /* width: 320px; */
+    height: 125px;
     object-fit: cover;
     border-radius: 10px;
 }
