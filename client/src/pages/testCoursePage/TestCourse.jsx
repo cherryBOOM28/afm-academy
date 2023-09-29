@@ -49,7 +49,7 @@ function TestCourse(props) {
             { 
                 id: 2,
                 group: 'background',
-                name: 'Глоссарий',
+                name: 'Входной тест',
                 progress: 100,
                 lector: {
                     name: 'Lennaert Peek',
@@ -71,7 +71,7 @@ function TestCourse(props) {
             { 
                 id: 4,
                 group: 'background',
-                name: 'Роль Уполномоченного органа (АФМ РК)',
+                name: 'Выходной тест',
                 progress: 100,
                 lector: {
                     name: 'Lennaert Peek',
@@ -79,17 +79,28 @@ function TestCourse(props) {
                 },
                 content: []
             },
-            { 
-                id: 5,
-                group: 'background',
-                name: 'Роль ГО регулятора',
-                progress: 100,
-                lector: {
-                    name: 'Lennaert Peek',
-                    image: lectorImage,
-                },
-                content: []
-            },
+            // { 
+            //     id: 4,
+            //     group: 'background',
+            //     name: 'Роль Уполномоченного органа (АФМ РК)',
+            //     progress: 100,
+            //     lector: {
+            //         name: 'Lennaert Peek',
+            //         image: lectorImage,
+            //     },
+            //     content: []
+            // },
+            // { 
+            //     id: 5,
+            //     group: 'background',
+            //     name: 'Роль ГО регулятора',
+            //     progress: 100,
+            //     lector: {
+            //         name: 'Lennaert Peek',
+            //         image: lectorImage,
+            //     },
+            //     content: []
+            // },
         ]);
 
         setActiveSessionId(1);
@@ -146,7 +157,7 @@ function TestCourse(props) {
                         {
                             activeSessionId === 1 
                                 ? <Content />
-                                : activeSessionId === 2
+                                : activeSessionId === 3
                                     ? <Content2 />
                                     : ''
                         }
