@@ -11,8 +11,8 @@ import worldIcon from '../../../assets/icons/earth.svg';
 function Operations() {
     return (
         <div className={cl.OperationsWrapper}>
-            <DefaultHeader />
             <div className={cl.container}>
+            <DefaultHeader />
                 <h1 className={cl.headline}>Операции, подлежащие финансовому мониторингу</h1>
                 <div className={cl.blocksContent}>
                     <div className={cl.block}>

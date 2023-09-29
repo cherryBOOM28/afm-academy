@@ -9,8 +9,9 @@ import eagGroup from '../../../assets/images/eagGroup.svg';
 function Eag() {
     return (
         <div className={cl.eagWrapper}>
-            <DefaultHeader />
+  
             <div className={cl.container}>
+            <DefaultHeader />
                 <h1 className={cl.headline}>ЕАГ</h1>
                 <div className={cl.eagImgContent}>
                     <img src={eagImg} alt="eagImg" />
@@ -27,7 +28,7 @@ function Eag() {
             <div className={cl.groupWrapper}>
                 <div className={cl.container}>
                 <div className={cl.eagImgContent}>
-                    <img src={eagGroup} alt="eagGroup" style={{ height: '230px' }} />
+                    <img src={eagGroup} alt="eagGroup" style={{ height: '210px' }} />
                     <div className={cl.eagImgText}>
                         <span>Основные задачи ЕАГ:</span>
                         <br></br>

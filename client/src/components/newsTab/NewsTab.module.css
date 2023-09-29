@@ -1,5 +1,5 @@
 .tabSliderContainer {
-    max-width: 1120px;
+    width: 80%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -27,7 +27,7 @@
 }
 
 .cardContent {
-    width: 320px;
+    width: 360px;
     height: 210px;
     border-radius: 10px;
     background: #fff;

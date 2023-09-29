@@ -1,5 +1,5 @@
 .container {
-    max-width: 1140px;
+    width: 80%;
     margin: 0 auto;
 }
 
@@ -17,7 +17,8 @@
 }
 
 .eagImgTextFirst {
-    width: 819px;
+    /* width: 819px; */
+    margin-left: 20px;
     color: #000;
     font-size: 16px;
     font-weight: 400;
@@ -25,7 +26,7 @@
 }
 
 .eagImgText {
-    width: 619px;
+    /* width: 619px; */
     color: #000;
     font-size: 16px;
     font-weight: 400;
@@ -59,7 +60,8 @@
 }
 
 .eagImgText {
-    width: 725px;
+    /* width: 725px; */
+    margin-left: 40px;
 }
 
 .eagLastText {

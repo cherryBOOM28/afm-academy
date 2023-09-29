@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import closeIcon from './../../pages/testCoursePage/closeIcon.svg';
 import finishedIcon from './../../pages/testCoursePage/finishedIcon.svg';
 import unfinishedIcon from './../../pages/testCoursePage/unfinishedIcon.svg';
+import lectureIcon from './lectureIcon.svg';
 
 import arrowDownIcon from './../../pages/testCoursePage/arrowDownIcon.svg';
 
@@ -17,7 +18,7 @@ export const Session = ({title, session, handleSessionClick, isActive}) => {
             key={session.name}
             onClick={() => handleSessionClick(session.id)}>
 
-            <img src={closeIcon} alt="icon" />
+            <img src={lectureIcon} style={{color: 'white', background: 'white'}} alt="icon" />
             <h6>{session.name}</h6>
             <div className="sessionProgress">
                 {

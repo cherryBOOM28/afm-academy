@@ -1,5 +1,5 @@
 .container {
-    max-width: 1140px;
+    width: 80%;
     margin: 0 auto;
 }
 
@@ -17,7 +17,8 @@
 }
 
 .mutualEvaluationText {
-    width: 745px;
+    /* width: 745px; */
+    margin-left: 20px;
     color: #000;
     font-size: 16px;
     font-weight: 400;

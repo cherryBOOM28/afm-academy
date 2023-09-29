@@ -48,8 +48,8 @@ function Home() {
                             {/* <img src={aboutUsPic} alt="About us" /> */}
                             <div className={cl.aboutUs__content}> 
                                 <p className={cl.aboutUs__headline}>AML ACADEMY</p>
-                                <p className={cl.aboutUs__text}>Обучение для безопасности финансов</p>
-                                <p className={cl.aboutUs__text_small}>Обучение в Академии для безопасной финансовой системы</p>
+                                {/* <p className={cl.aboutUs__text}>Обучение для безопасности финансов</p> */}
+                                <p className={cl.aboutUs__text_small}>Наши курсы</p>
                                 <div className={cl.courses_boxes}>
                                     <Link to="/courses/basic" style={{ textDecoration: 'none' }}>
                                         <div className={cl.aml_box}>

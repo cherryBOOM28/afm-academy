@@ -14,8 +14,9 @@ function AntiLaundering() {
 
     return (
         <div className={cl.antiLaunderingWrapper}>
-            <DefaultHeader />
+
             <div className={cl.container}>
+            <DefaultHeader />
                 <h1 className={cl.headline}>Антиотмывочная система РК</h1>
                 <img src={schemeImg} alt="schemeImg" className={cl.scheme} />
                 <p className={cl.text}>

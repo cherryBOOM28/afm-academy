@@ -34,8 +34,9 @@ function Structure() {
 
   return (
     <div className={cl.charterWrapper}>
-        <DefaultHeader />
+    
         <div className={cl.container}>
+        <DefaultHeader />
             <h1 className={cl.headline}>Руководство Академии</h1>
             <div className={cl.charterContent}>
                 <div className={cl.charterGrid}>

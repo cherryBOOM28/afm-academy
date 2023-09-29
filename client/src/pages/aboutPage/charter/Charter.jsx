@@ -10,8 +10,8 @@ import DownloadPDF from '../../../components/pdfSaver/DownloadPDF';
 function Charter() {
     return (
         <div className={cl.charterWrapper}>
-            <DefaultHeader />
             <div className={cl.container}>
+            <DefaultHeader />
                 <h1 className={cl.headline}>Устав</h1>
                 <DownloadPDF />
                 <div className={cl.charterContent}>
