@@ -27,7 +27,6 @@ function DefaultNavigation() {
                             </li>
                         </ul>
                     </li>
-                    
                     <li className={cl.dropdown}>
                         <Link to={'/courses'} className={cl.links}><span className={cl.dropdownToggle}>Обучение</span></Link>
                         <ul className={cl.dropdownMenu}>
@@ -70,7 +69,6 @@ function DefaultNavigation() {
                             </li>
                         </ul>
                     </li>
-
                     <li className={cl.dropdown}>
                         <span className={cl.dropdownToggle}>ПОД/ФТ</span>
                         <ul className={cl.dropdownMenu}>
@@ -116,6 +114,8 @@ function DefaultNavigation() {
                             </li>
                         </ul>
                     </li>
+                    {/*  */}
+                    
                 </ul>
             </nav>
         </div>
