@@ -28,19 +28,16 @@ function Navigation() {
                         </ul>
                     </li>
                     <li className={cl.dropdown}>
-                        <Link to={'/courses'} className={cl.links}><span className={cl.dropdownToggle}>Обучение</span></Link>
+                        <span className={cl.dropdownToggle}>Обучение</span>
                         <ul className={cl.dropdownMenu}>
                             <li>
-                                <Link to="/courses/basic" className={cl.links}>Базовый</Link>
+                                <Link to="/courses" className={cl.links}>Виды курсов</Link>
                             </li>
                             <li>
-                                <Link to="/courses/specialized" className={cl.links}>Профильный</Link>
+                                <Link to="/courses/catalog" className={cl.links}>Каталог курсов</Link>
                             </li>
                             <li>
-                                <Link to="/courses/professional" className={cl.links}>Продвинутый</Link>
-                            </li>
-                            <li>
-                                <Link to="/courses/advanced" className={cl.links}>Повышение квалификации</Link>
+                                <Link to="/courses/myCourses" className={cl.links}>Мои курсы</Link>
                             </li>
                         </ul>
                     </li>
@@ -59,8 +56,11 @@ function Navigation() {
                         </ul>
                     </li>
                     <li className={cl.dropdown}>
-                        <Link to={'/vebinars'} className={cl.links}><span className={cl.dropdownToggle}>Вебинары</span></Link>
+                        <span className={cl.dropdownToggle}>Вебинары</span>
                         <ul className={cl.dropdownMenu}>
+                            <li>
+                                <Link to="/vebinars" className={cl.links}>Все вебинары</Link>
+                            </li>
                             <li>
                                 <Link to="/vebinars/calendar" className={cl.links}>Календарь мероприятий</Link>
                             </li>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Footer from '../../components/footer/Footer';
 import DefaultHeader from '../../components/defaultHeader/DefaultHeader';
@@ -27,6 +28,8 @@ function BasicCourse() {
         )
     }
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         console.log(request)
     }, [request])
@@ -41,7 +44,33 @@ function BasicCourse() {
 
             <div className="page-content container">
 
-                <h1>Базовый курс</h1>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    // border: '1px solid red'
+                }}>
+                    <h1 style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                    }}>Базовый курс</h1>
+                    <div style={{
+                        padding: '10px 20px',
+                        fontSize: '16px',
+                        cursor: 'pointer',
+                        background: 'rgb(31, 60, 136)',
+                        color: 'white',
+                        borderRadius: '5px',
+
+                    }}
+                    onClick={() => {
+                        navigate('/courses/testCourse')
+                    }}
+                    >
+                        Начать курс
+                    </div>
+                </div>
                 <div className="collapsable-blocks">
                     <Collapsable title={'Что из себя представляет данный курс?'}>
                         <p>Базовый курс включает в себя теоретический минимум, необходимый для всех видов СФМ.</p>

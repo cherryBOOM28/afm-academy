@@ -26,6 +26,8 @@ import VebinarsPage from './pages/vebinar/VebinarsPage';
 
 import { AuthProvider } from './auth/AuthContext';
 import TestCourse from './pages/testCoursePage/TestCourse';
+import Catalog from './pages/courseCatalog/Catalog';
+import MyCourses from './pages/myCourses/MyCourses';
 
 function App() {
 
@@ -65,8 +67,10 @@ function App() {
             <Route path="/vebinars/:id" element={<></>} />
 
             <Route path='/courses' element={<CoursesPage />}/>
+            <Route path="/courses/catalog" element={<Catalog />}/>
+            <Route path="/courses/myCourses" element={<MyCourses />}/>
             <Route path="/courses/info" element={<InfoPage />}/>
-            <Route path='/courses/basic' element={<TestCourse />}/>
+            <Route path='/courses/basic' element={<BasicCourse />}/>
             <Route path='/courses/specialized' element={<SpecializedCourse />}/>
 
             <Route path='/courses/testCourse' element={<TestCourse />}/>
