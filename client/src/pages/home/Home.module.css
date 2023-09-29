@@ -74,6 +74,10 @@
     padding: 29px 0;
 }
 
+.aml_box:hover {
+    background: rgba(255, 255, 255, 0.236);
+}
+
 .course_box_name {
     margin-top: 13px;
     color: #FFF;
@@ -130,7 +134,7 @@
 .advantages__text {
     margin-top: 9px;
     color: #FFF;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 15px; /* 93.75% */
 }
@@ -138,7 +142,7 @@
 .advantages__text__last {
     margin-top: 9px;
     color: #FFF;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 15px; /* 93.75% */
 }
