@@ -69,6 +69,10 @@ function Navigation() {
                             </li>
                         </ul>
                     </li>
+                    <li href="scrollDownLink" className={cl.dropdown}>
+                        {/* <span className={cl.dropdownToggle}>Новости</span> */}
+                        <Link to="#bottom" style={{ color: 'white', textDecoration: 'none' }}>Новости</Link>
+                    </li>
                     <li className={cl.dropdown}>
                         <span className={cl.dropdownToggle}>ПОД/ФТ</span>
                         <ul className={cl.dropdownMenu}>

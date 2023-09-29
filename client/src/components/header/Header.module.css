@@ -13,22 +13,25 @@
 .header {
     display: flex;
     justify-content: space-between;
+    position: relative;
 
 }
 
 .header__logo {
+    position: absolute;
+    top: -15px;
     display: flex;
     align-items: center;
     position: relative;
-    width: 227px;
+    /* width: 227px; */
     text-decoration: none;
 
 }
 
 .languages {
     position: absolute;
-    right: 0;
-    top: -13px;
+    right: 25px;
+    top: -24px;
     display: flex;
     width: 131px;
     justify-content: space-between;
@@ -36,7 +39,7 @@
 
 .lang {
     color: #000;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     text-decoration: none;
     text-transform: uppercase;
@@ -51,6 +54,7 @@
 .logo__text {
     width: 130px;
     color: #FFF;
+    /* font-size: 28px; */
 }
 
 .logo__text {
@@ -72,7 +76,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 800px;
+    width: 900px;
 }
 
 .socials {
@@ -103,7 +107,7 @@
 
 .search__input {
     position: relative;
-    width: 400px;
+    width: 460px;
     height: 40px;
     border-radius: 15px;
     border: 1px solid #ffffff47;

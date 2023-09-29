@@ -12,18 +12,26 @@
     justify-content: space-between;
 }
 
-.header__logo {
+/* .header__logo {
     display: flex;
     align-items: center;
     position: relative;
     width: 227px;
     text-decoration: none;
+} */
+.header__logo {
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* width: 227px; */
+    text-decoration: none;
+
 }
 
 .languages {
     position: absolute;
-    right: 0;
-    top: -13px;
+    right: 25px;
+    top: -24px;
     display: flex;
     width: 131px;
     justify-content: space-between;

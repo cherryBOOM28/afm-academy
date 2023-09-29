@@ -47,8 +47,8 @@ const DirectorPage = () => {
 
   return (
     <div className={cl.directorPageWrapper}>
-        <DefaultHeader />
         <div className={cl.container}>
+        <DefaultHeader />
             <div className={cl.card}>
                 <img src={cardData.photo} alt="Director profile" className={cl.card__img} />
                 <div className={cl.card__block}>

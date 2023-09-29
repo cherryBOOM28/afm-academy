@@ -20,6 +20,7 @@ import basicCourse from '../../assets/icons/mdi_world-wide-web.svg';
 import proCourse from '../../assets/icons/subway_book.svg';
 import deepCourse from '../../assets/icons/simple-icons_progress.svg';
 import upCourse from '../../assets/icons/ep_menu.svg';
+import Navigation from '../../components/navigation/Navigation';
 
 
 
@@ -121,7 +122,7 @@ function Home() {
                     <div className={cl.container}>
                         <p className={cl.news__headline}>Новости</p>
                     </div>
-                    <NewsTab />
+                    <NewsTab exact component={Navigation}  />
                 </section>
                 <section className={cl.partnersWrapper}>
                     <div className={cl.container}>

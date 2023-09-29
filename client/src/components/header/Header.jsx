@@ -43,14 +43,10 @@ function Header() {
         <div className={cl.container}>
           <div className={cl.header}>
             <div className={cl.header__logo}>
-              <div className={cl.languages}>
-                <a href='/#' className={cl.lang}>қаз</a>
-                <a href='/#' className={cl.lang}>РУС</a>
-                <a href='/#' className={cl.lang}>ENG</a>
-              </div>
+              
               <Link to="/" className={cl.header__logo}>
-                <img src={logo} alt="logo" style={{ borderRadius: '50%' }} />
-                <p className={cl.logo__text}>Академия финансового мониторинга</p>
+                <img src={logo} alt="logo" style={{ borderRadius: '50%', width: "140px" }} />
+                {/* <p className={cl.logo__text}>Академия финансового мониторинга</p> */}
               </Link>
             </div>
             <div className={cl.menu}>
@@ -79,6 +75,11 @@ function Header() {
                     <div className={cl.personalAccount} style={{display: 'flex', alignItems: 'center', gap: '5px', marginRight: '15px'}}>
                       <img src={personalAccount} alt="personal Account" />
                       <p style={{fontSize: '1.1rem', fontWeight: '300', color: 'white'}}>{authUser}</p>
+                    </div>
+                    <div className={cl.languages}>
+                      <a href='/#' className={cl.lang}>қаз</a>
+                      <a href='/#' className={cl.lang}>РУС</a>
+                      <a href='/#' className={cl.lang}>ENG</a>
                     </div>
                     <Link className={cl.personalAccountLink}>
                       <Button className={cl.personalAccountBtn} onClick={handleLogout}>Выйти</Button>
