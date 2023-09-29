@@ -1,5 +1,5 @@
 .container {
-    max-width: 1140px;
+    width: 80%;
     margin: 0 auto;
 }
 
@@ -29,7 +29,8 @@
 
 .academy__p {
     margin-top: 23px;
-    width: 507px;
+    /* width: 507px; */
+    width: 95%;
     color: #000;
     font-size: 18px;
     font-weight: 400;
@@ -45,7 +46,8 @@
 
 .aboutTheFounder__p {
     margin-top: 14px;
-    width: 833px;
+    /* width: 833px; */
+    width: 100%;
     color: #000;
     font-family: Roboto;
     font-size: 16px;
@@ -111,7 +113,8 @@
 }
 
 .tasks__text__small {
-    width: 300px;
+    /* width: 300px; */
+    width: 100%;
     color: #000;
     font-size: 16px;
     font-weight: 400;
@@ -119,7 +122,8 @@
 }
 
 .tasks__text__middle {
-    width: 417px;
+    /* width: 417px; */
+    width: 100%;
     color: #000;
     font-size: 16px;
     font-weight: 400;

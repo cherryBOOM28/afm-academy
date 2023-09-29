@@ -1,5 +1,5 @@
 .container {
-    max-width: 1140px;
+    width: 80%;
     margin: 0 auto;
 }
 
@@ -28,7 +28,8 @@
 }
 
 .card {
-    width: 560px;
+    /* width: 560px; */
+    width: 49.2%;
     height: 90px;
     border-radius: 5px;
     background: #F9F9F9;

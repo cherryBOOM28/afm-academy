@@ -8,8 +8,8 @@ const data = require('../../../components/data/subjectsData.json');
 function Subjects() {
     return (
         <div className={cl.subjectsWrapper}>
-            <DefaultHeader />
             <div className={cl.container}>
+            <DefaultHeader />
                 <h1 className={cl.headline}>Виды субъектов финансового мониторинга</h1>
                 <p className={cl.subjectsText}>Согласно п.1 ст.3 Закона «О противодействии легализации (отмыванию) доходов, добытых преступным путем, и финансированию терроризма» к субъектам финансового мониторинга относятся:</p>
                 <div className={cl.cardContent}>

@@ -11,8 +11,8 @@ import circleThird from '../../../assets/images/r3.svg'
 function Rules() {
     return (
         <div className={cl.rulesWrapper}>
-            <DefaultHeader />
             <div className={cl.container}>
+            <DefaultHeader />
                 <h1 className={cl.headline}>Правила внутреннего контроля</h1>
                 <p className={cl.text}>
                     Правила внутреннего контроля являются внутренним документом субъекта финансового мониторинга, который регламентирует организационные основы работы, направленные на ПОД/ФТ/ФРОМУ, и устанавливает порядок действий субъектов в целях ПОД/ФТ/ФРОМУ.

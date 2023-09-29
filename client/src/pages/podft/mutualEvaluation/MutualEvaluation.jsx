@@ -8,8 +8,8 @@ import mutualEvaluationImg from '../../../assets/images/marks.svg';
 function MutualEvaluation() {
     return (
         <div className={cl.mutualEvaluationWrapper}>
-            <DefaultHeader />
             <div className={cl.container}>
+            <DefaultHeader />
                 <h1 className={cl.headline}>Взаимная оценка</h1>
                 <div className={cl.mutualEvaluationContent}>
                 <img src={mutualEvaluationImg} alt="mutualEvaluationImg" style={{ height: '190px' }} />

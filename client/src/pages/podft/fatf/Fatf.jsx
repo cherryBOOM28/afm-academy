@@ -8,11 +8,12 @@ import Footer from '../../../components/footer/Footer';
 function Fatf() {
     return (
         <div className={cl.fatfWrapper}>
-            <DefaultHeader />
+
             <div className={cl.container}>
+            <DefaultHeader />
                 <h1 className={cl.headline}>ФАТФ</h1>
                 <div className={cl.fatfContent}>
-                    <img src={fatfImg} alt="fatfImg" style={{ height: "237px" }} />
+                    <img src={fatfImg} alt="fatfImg" style={{ height: "220px" }} />
                     <div className={cl.fatfContentInner}>
                         <div className={cl.fatfBlock}>
                             <p className={cl.fatfBlockText}>
