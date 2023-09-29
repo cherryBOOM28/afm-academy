@@ -66,7 +66,7 @@ function App() {
 
             <Route path='/courses' element={<CoursesPage />}/>
             <Route path="/courses/info" element={<InfoPage />}/>
-            <Route path='/courses/basic' element={<BasicCourse />}/>
+            <Route path='/courses/basic' element={<TestCourse />}/>
             <Route path='/courses/specialized' element={<SpecializedCourse />}/>
 
             <Route path='/courses/testCourse' element={<TestCourse />}/>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import closeIcon from './closeIcon.svg'
 import lectorImage from './lectorImage.png';
 import arrowDownIcon from './arrowDownIcon.svg';
+import { useNavigate } from 'react-router-dom';
 
 import './testCourse.scss'
 
@@ -26,6 +27,8 @@ function TestCourse(props) {
 
     ]);
     const [activeSessionId, setActiveSessionId] = useState(-1);
+
+    const navigate = useNavigate();
 
     // onLoad useEffect
     useEffect(() => {
@@ -107,7 +110,9 @@ function TestCourse(props) {
                         {/* <div className="course-title">{courseName}</div> */}
                         <div className="course-subtitle">{courseName}</div>
                     </div>
-                    <div className='close-icon'>
+                    <div className='close-icon' onClick={() => {
+                        navigate('/courses/')
+                    }}>
                         <img src={closeIcon} alt="close" />
                     </div>
                 </div>
