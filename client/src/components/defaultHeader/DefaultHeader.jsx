@@ -78,7 +78,7 @@ function DefaultHeader() {
                   <>
                     <div className={cl.personalAccount} style={{display: 'flex', alignItems: 'center', gap: '5px', marginRight: '15px'}}>
                       <img src={personalAccount} alt="personal Account" />
-                      <p style={{fontSize: '1.3rem', fontWeight: '300', color: 'white'}}>{authUser}</p>
+                      <p style={{fontSize: '1.1rem', fontWeight: '300', color: 'black'}}>{authUser}</p>
                     </div>
                     <Link className={cl.personalAccountLink}>
                       <Button className={cl.personalAccountBtn} onClick={handleLogout}>Выйти</Button>

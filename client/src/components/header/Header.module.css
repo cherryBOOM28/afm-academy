@@ -105,9 +105,15 @@
     width: 400px;
     height: 40px;
     border-radius: 15px;
-    border: 1px solid #FFF;
-    background: #F9F9F9;
+    border: 1px solid #ffffff47;
+    background: #ffffff44;
     padding: 8px 9px 8px 38px;
+    color: #FFF;
+}
+
+.search__input:focus {
+    outline: none;
+    border: 1px solid #ffffff96;
 }
 
 .search__icon {

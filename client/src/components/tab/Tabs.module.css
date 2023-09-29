@@ -54,9 +54,9 @@
     font-weight: 400;
     line-height: 21px;
     
-    overflow: hidden; /* Hide the overflowing text */
-    text-overflow: ellipsis; /* Add the ellipsis (...) */
-    white-space: nowrap; /* Prevent the text from wrapping */
+    /* overflow: hidden; Hide the overflowing text */
+    /* text-overflow: ellipsis; Add the ellipsis (...) */
+    /* white-space: nowrap; Prevent the text from wrapping */
 }
 
 .btnTab {

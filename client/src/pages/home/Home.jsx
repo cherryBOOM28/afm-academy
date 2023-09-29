@@ -14,6 +14,14 @@ import FirstPartner from '../../assets/images/partner1.png';
 import Footer from '../../components/footer/Footer';
 import { useNavigate } from 'react-router-dom';
 import backgroundVideo from '../../assets/video/global.mp4';
+import { Link } from 'react-router-dom';
+
+import basicCourse from '../../assets/icons/mdi_world-wide-web.svg';
+import proCourse from '../../assets/icons/subway_book.svg';
+import deepCourse from '../../assets/icons/simple-icons_progress.svg';
+import upCourse from '../../assets/icons/ep_menu.svg';
+
+
 
 function Home() {
     const navigate = useNavigate()
@@ -40,8 +48,35 @@ function Home() {
                             {/* <img src={aboutUsPic} alt="About us" /> */}
                             <div className={cl.aboutUs__content}> 
                                 <p className={cl.aboutUs__headline}>AML ACADEMY</p>
-                                <p className={cl.aboutUs__text}>Целью Академии является предоставление качественного обучения в сфере противодействия легализации (отмыванию) доходов, добытых преступным путем, и финансированию терроризма. Пройти обучение в Академии могут как субъекты частного предпринимательства (субъекты финансового мониторинга), так и сотрудники государственных органов. Задача, поставленная перед Академией – обеспечить подготовку высококвалифицированных кадров и субъектов финансового мониторинга для успешного функционирования национальной антиотмывочной системы</p>
-                                <Button className={cl.button} onClick={toAbout}>Подробнее</Button>
+                                <p className={cl.aboutUs__text}>Обучение для безопасности финансов</p>
+                                <p className={cl.aboutUs__text_small}>Обучение в Академии для безопасной финансовой системы</p>
+                                <div className={cl.courses_boxes}>
+                                    <Link to="/courses/basic" style={{ textDecoration: 'none' }}>
+                                        <div className={cl.aml_box}>
+                                            <img src={basicCourse} alt="" />
+                                            <p className={cl.course_box_name}>Базовый</p>
+                                        </div>
+                                    </Link>
+                                    <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
+                                        <div className={cl.aml_box}>
+                                            <img src={proCourse} alt="" />
+                                            <p className={cl.course_box_name}>Профильный</p>
+                                        </div>
+                                    </Link>
+                                    <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
+                                        <div className={cl.aml_box}>
+                                            <img src={deepCourse} alt="" />
+                                            <p className={cl.course_box_name}>Углубленный</p>
+                                        </div>
+                                    </Link>
+                                    <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
+                                        <div className={cl.aml_box}>
+                                            <img src={upCourse} alt="" />
+                                            <p className={cl.course_box_name}>Повышение квалификации</p>
+                                        </div>
+                                    </Link>
+                                </div>
+                                {/* <Button className={cl.button} onClick={toAbout}>Подробнее</Button> */}
                             </div>
                         </div>
                     </div>
