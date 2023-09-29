@@ -122,7 +122,7 @@ function Home() {
                     <div className={cl.container}>
                         <p className={cl.news__headline}>Новости</p>
                     </div>
-                    <NewsTab exact component={Navigation}  />
+                    <NewsTab />
                 </section>
                 <section className={cl.partnersWrapper}>
                     <div className={cl.container}>

@@ -14,16 +14,22 @@
 /* Styling for the dropdown */
 .dropdown {
     position: relative;
+    margin-top: 10px;
 }
 
 .dropdownToggle {
+    border: 1px solid #ffffff8b;
+    /* background-color: #ffffff47; */
+    border-radius: 5px;
     cursor: pointer;
     padding: 10px;
     color: #fff;
+    text-decoration: none;
 }
 
 .dropdownToggle:hover {
     color: #F9CB36;
+    border: 1px solid #ffffffd6;
 }
 
 .dropdownToggle:active {
