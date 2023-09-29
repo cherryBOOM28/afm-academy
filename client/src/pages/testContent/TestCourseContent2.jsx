@@ -42,7 +42,7 @@ function Content2(props) {
                     </div>
 
                     <div className="next-page-button">
-                        Вы завершили урок
+                        Вы завершили модуль
                     </div>
                 </div>
             </div>
