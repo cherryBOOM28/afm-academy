@@ -52,6 +52,8 @@ function CoursesPage() {
                         }}>Каталог курсов</h3>
                     </div>
                 </div>
+
+
                 <div className='container'>
                     <h1 style={{
                         fontFamily: 'Roboto',
@@ -83,6 +85,8 @@ function CoursesPage() {
                             {img: course2, title: 'Профильный курс', route: '/courses/specialized'},
                             {img: course3, title: 'Профессиональный курс', route: '/courses/professional'},
                             {img: course4, title: 'Повышение квалификации', route: '/courses/advanced'},
+                            {img: course3, title: 'Профессиональный курс', route: '/courses/professional'},
+
 
                         ].map(course => (
                             <div onClick={() => {
@@ -90,6 +94,72 @@ function CoursesPage() {
                             }}>
                                 <img src={course.img} alt={course.title} />
                                 <h3>{course.title}</h3>
+                                <p>Доступно</p>
+                                <div className='characteristics'>
+                                    <p>РУС | 1ч 45мин</p>
+                                    <div>5.0</div>
+                                </div>
+                                <div>
+                                    Электронное обучение
+                                </div>
+                            </div>   
+                        ))
+                    }
+                </div>
+
+
+                <div className='container'>
+                    <h1 style={{
+                        fontFamily: 'Roboto',
+                        fontSize: '20px',
+                        fontWeight: '500',
+                        lineHeight: '23px',
+                        letterSpacing: '0em',
+                        textAlign: 'left'
+                        
+                    }}>Обучение</h1>
+                    <p style={{
+                        fontFamily: "Roboto",
+                        fontSize: '16px',
+                        fontWeight: '400',
+                        lineHeight: '19px',
+                        letterSpacing: '0em',
+                        textAlign: 'left',
+                        color: '#656678'
+                        
+                    }}>
+                        Широкий спектр профессиональных курсов в Астане по самым разным направлениям
+                    </p>
+                </div>
+
+                <div className="courses-block container">
+                    {
+                        [
+                            {img: course1, title: 'Базовый курс', route: '/courses/basic'},
+                            {img: course2, title: 'Профильный курс', route: '/courses/specialized'},
+                            {img: course3, title: 'Профессиональный курс', route: '/courses/professional'},
+                            {img: course4, title: 'Повышение квалификации', route: '/courses/advanced'},
+                            {img: course1, title: 'Базовый курс', route: '/courses/basic'},
+                            {img: course3, title: 'Профессиональный курс', route: '/courses/professional'},
+                            {img: course4, title: 'Повышение квалификации', route: '/courses/advanced'},
+
+
+
+
+                        ].map(course => (
+                            <div onClick={() => {
+                                navigate(course.route);
+                            }}>
+                                <img src={course.img} alt={course.title} />
+                                <h3>{course.title}</h3>
+                                <p>Доступно</p>
+                                <div className='characteristics'>
+                                    <p>РУС | 1ч 45мин</p>
+                                    <div>5.0</div>
+                                </div>
+                                <div>
+                                    Электронное обучение
+                                </div>
                             </div>   
                         ))
                     }
