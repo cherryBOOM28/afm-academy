@@ -25,6 +25,7 @@ import SurveysPage from './pages/surveys/Surveys';
 import VebinarsPage from './pages/vebinar/VebinarsPage';
 
 import { AuthProvider } from './auth/AuthContext';
+import TestCourse from './pages/testCoursePage/TestCourse';
 
 function App() {
 
@@ -67,10 +68,10 @@ function App() {
             <Route path="/courses/info" element={<InfoPage />}/>
             <Route path='/courses/basic' element={<BasicCourse />}/>
             <Route path='/courses/specialized' element={<SpecializedCourse />}/>
+
+            <Route path='/courses/testCourse' element={<TestCourse />}/>
+
             <Route path='/courses/:id' element={<SpecializedCourse />}/>
-
-
-    
 
           </Routes>
         </BrowserRouter>
