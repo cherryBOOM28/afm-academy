@@ -87,16 +87,13 @@ function Footer({ email, phoneNumber }) {
                         <nav className={cl.footer__content}>
                             <ul>
                                 <li>
-                                    <Link to="/base" className={cl.footer__text}>Базовый</Link>
+                                    <Link to="/courses" className={cl.footer__text}>Виды курсов</Link>
                                 </li>
                                 <li>
-                                    <Link to="/profile" className={cl.footer__text}>Профильный</Link>
+                                    <Link to="/profile" className={cl.footer__text}>Каталог курсов</Link>
                                 </li>
                                 <li>
-                                    <Link to="/in-depth" className={cl.footer__text}>Продвинутый</Link>
-                                </li>
-                                <li>
-                                    <Link to="/training" className={cl.footer__text}>Повышение квалификации</Link>
+                                    <Link to="/in-depth" className={cl.footer__text}>Мои курсы</Link>
                                 </li>
                             </ul>
                         </nav>
