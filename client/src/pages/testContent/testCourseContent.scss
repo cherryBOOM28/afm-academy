@@ -73,7 +73,7 @@
     .block_2 {
         width: 100%;
 
-        > div:nth-child(1), div:nth-child(5) {
+        > div:nth-child(1), div:nth-child(5), div:nth-child(8) {
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -86,7 +86,7 @@
 
         }
 
-        > div:not(:nth-child(1)):not(:nth-child(5)) {
+        > div:not(:nth-child(1)):not(:nth-child(5)):not(:nth-child(8)) {
             width: 100%;
             display: flex;
             flex-direction: column;

@@ -9,6 +9,7 @@ import './testCourse.scss'
 import { Session, SessionGroup } from '../../components/sessions/Sessions';
 import Content from '../testContent/TestCourseContent';
 import Content2 from '../testContent/TestCourseContent2';
+import QuizPage from '../testContent/quizPage';
 
 function TestCourse(props) {
     const [courseName, setCourseName] = useState('');
@@ -154,13 +155,7 @@ function TestCourse(props) {
                     </div>
 
                     <div className="course-content">
-                        {
-                            activeSessionId === 1 
-                                ? <Content />
-                                : activeSessionId === 3
-                                    ? <Content2 />
-                                    : ''
-                        }
+                        <GetContent activeSessionId={activeSessionId}/>
                     </div>
 
                 </div>
@@ -169,6 +164,14 @@ function TestCourse(props) {
 
         </div>
     );
+}
+
+const GetContent = ({activeSessionId}) => {
+
+    if (activeSessionId === 1) return <Content />
+    if (activeSessionId === 2 || activeSessionId === 4) return <QuizPage />
+    else return <Content2 />
+
 }
 
 

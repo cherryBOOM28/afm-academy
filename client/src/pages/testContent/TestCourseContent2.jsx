@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import lectorIcon from './lectorImage.png';
 import image21 from './image21.jpg';
 import image22 from './image22.jpg';
+import image24 from './image24.jpg';
 import schema1 from './schema-1.jpg';
 
 import playButton from './../../assets/icons/play-button.png';
@@ -113,7 +114,54 @@ function Content2(props) {
                     <div style={{
                         width: '100px'
                     }}>0:35 / 1:00</div>
-            </div>
+                </div>
+
+
+                <div style={{flexDirection: 'row', width: '100%'}}>
+                    <img src={image24} alt="image24" style={{
+                        maxWidth: '1000px',
+                        minWidth: '50%'
+                    }}/>
+                </div>
+                <div className="container" style={{
+                    flexDirection: 'column',
+                    width: '100%'
+                    
+                }}>
+                    <h2>Отмывание денег</h2>
+                    <p>В 20-30 годах XX века такие известные преступники, как Аль Капоне и Багси Морган, открывали прачечные, игорные заведения в целях «отмыва» (придание законности денежных средств) незаконно полученных средств.</p>
+                    <p>Схема заключалась в помещении денежных средств с большим наличным оборотом, в прачечные (стиральные машины с автоматами) принимавшие монеты в виде оплаты. Тем самым придавалось видимость активной деятельности компании.</p>
+                    <p>При этом, предикатным преступлением выступал доход, полученный от незаконного оборота алкогольной продукции. Оборот, производство, продажа и перевозка которого на тот момент была запрещена в рамках «сухого закона».</p>
+                </div>
+
+                <div className='container' style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    minWidth: '750px',
+                    maxWidth: '75%',
+                    margin: '0 auto',
+                    gap: '20px',
+
+                    marginBottom: '50px'
+                }}>
+                    
+                    <img src={playButton} alt="play" 
+                        style={{
+                            width: '50px',
+                            padding: '0px',
+                            margin: '0px',
+                            cursor: 'pointer'
+                        }}
+                    />
+
+                    <progress id="file" max="100" value="70" style={{
+                        width: '100%'
+                    }}>70%</progress>
+                    <div style={{
+                        width: '100px'
+                    }}>0:35 / 1:00</div>
+                </div>
             </div>
 
             
