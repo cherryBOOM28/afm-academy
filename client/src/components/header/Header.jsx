@@ -82,12 +82,12 @@ function Header() {
                       <a href='/#' className={cl.lang}>ENG</a>
                     </div>
                     <Link className={cl.personalAccountLink}>
-                      <Button className={cl.personalAccountBtn} onClick={handleLogout}>Выйти</Button>
+                      <Button className={cl.personalAccountBtn} onClick={handleLogout} style={{ borderRadius: '5px' }}>Выйти</Button>
                     </Link>
                   </>
                 ) : (
                   <Link to="/login">
-                    <Button onClick={handleLogin}>Войти</Button>
+                    <Button onClick={handleLogin} style={{ borderRadius: '5px' }}>Войти</Button>
                   </Link>
                 )}
   

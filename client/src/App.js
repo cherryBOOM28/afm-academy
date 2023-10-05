@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import './App.css';
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import Home from './pages/home/Home';
@@ -30,6 +31,15 @@ import Catalog from './pages/courseCatalog/Catalog';
 import MyCourses from './pages/myCourses/MyCourses';
 
 function App() {
+  const [jwtToken, setJwtToken] = useState('');
+
+  useEffect(() => {
+    const storedJwtToken = localStorage.getItem('jwtToken');
+    
+    if (storedJwtToken) {
+      setJwtToken(storedJwtToken);
+    }
+  }, []);
 
   return (
     <div className="App">
