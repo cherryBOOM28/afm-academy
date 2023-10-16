@@ -85,21 +85,19 @@
         }
 
         .form-body > .fields {
-            width: 100%;
-            
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 16px;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            // gap: 20px;
+            row-gap: 20px;
+            column-gap: 70px;
         }
         
         .field {
             // border: 1px solid red;
             display: flex;
             flex-direction: column;
-            max-width: 100%;
-            width: 300px;
+            // max-width: 100%;
+            // width: 50%;
             gap: 8px;
 
             > label {
@@ -122,6 +120,8 @@
             .custom-select {
                 position: relative;
                 display: inline-block;
+                box-sizing: content-box;
+                width: 100%;
             }
 
             select {
@@ -130,11 +130,6 @@
                 -webkit-appearance: none; /* Remove default arrow in Chrome and Safari */
                 -moz-appearance: none; /* Remove default arrow in Firefox */
                 appearance: none; /* Remove default arrow in other browsers */
-                // padding: 5px 30px 5px 5px; /* Adjust padding as needed */
-                // border: 1px solid #ccc;
-                // border-radius: 4px;
-                // width: 100%; /* Make the select take up the full width */
-                // cursor: pointer;
             }
 
             .dropdown-icon {
@@ -158,14 +153,40 @@
 
             .policy {
 
-                display: flex;
-                flex-direction: row;
-                gap: 11px;
-                align-items: center;
+                > div {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 11px;
+                    align-items: center;
 
-                p {
-                    color: #3A3939;
-                    text-align: center;
+                    p {
+                        color: #3A3939;
+                        text-align: center;
+                        font-feature-settings: 'clig' off, 'liga' off;
+                        font-family: Inter;
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 20px; /* 166.667% */
+                        letter-spacing: 0.3px;
+                    }
+
+                    a {
+                        color: #3A3939;
+                        font-feature-settings: 'clig' off, 'liga' off;
+                        font-family: Inter;
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 20px;
+                        letter-spacing: 0.3px;
+                        text-decoration-line: underline;
+                    }
+                }
+
+                .policy-error {
+                    padding-left: 28px;
+
                     font-feature-settings: 'clig' off, 'liga' off;
                     font-family: Inter;
                     font-size: 12px;
@@ -173,18 +194,7 @@
                     font-weight: 400;
                     line-height: 20px; /* 166.667% */
                     letter-spacing: 0.3px;
-                }
-
-                a {
-                    color: #3A3939;
-                    font-feature-settings: 'clig' off, 'liga' off;
-                    font-family: Inter;
-                    font-size: 12px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 20px;
-                    letter-spacing: 0.3px;
-                    text-decoration-line: underline;
+                    color: red;
                 }
             }
 

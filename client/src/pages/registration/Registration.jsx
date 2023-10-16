@@ -125,8 +125,11 @@ const Registration = () => {
                     </div>
                     <div className='actions'>
                         <div className='policy'>
-                            <input type="checkbox" name="" id="" />
-                            <p>Даю согласие на обработку <a href="#politics">персональных данных</a></p>
+                            <div>
+                                <input type="checkbox" name="" id="" />
+                                <p>Даю согласие на обработку <a href="#politics">персональных данных</a></p>
+                            </div>
+                            <p className='policy-error'>Даю согласие на обработку</p>
                         </div>
                         <div className='reg-btn' onClick={handleSubmit}>Регистрация</div>
                         <div className='have-account'>Уже есть аккаунт? <Link to={'/login'}><span>Войдите</span></Link></div>
@@ -141,7 +144,7 @@ const Field = ({ name, label, hint, isPassword, isSelect, selectItems, formData,
     if (isSelect) {
       return (
         <div className='field'>
-        <label htmlFor={name}>{label}</label>
+            <label htmlFor={name}>{label}</label>
             <div className="custom-select">
                 <select id={name} value={formData[name]} onChange={(e) => handleChange(e, name)}>
                 {selectItems.map(item => (

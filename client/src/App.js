@@ -29,6 +29,7 @@ import { AuthProvider } from './auth/AuthContext';
 import TestCourse from './pages/testCoursePage/TestCourse';
 import Catalog from './pages/courseCatalog/Catalog';
 import MyCourses from './pages/myCourses/MyCourses';
+import Profile from './pages/profilePage/Profile';
 
 function App() {
   const [jwtToken, setJwtToken] = useState('');
@@ -61,6 +62,10 @@ function App() {
             <Route path="/structure" element={<Structure />}></Route>
             <Route path="/structure/:id" element={<DirectorPage />} />
             <Route path="/charter" element={<Charter />}></Route>
+
+
+            <Route path="/profile" element={<Profile />}></Route>
+
 
             <Route path="/subjects" element={<Subjects />}></Route>
             <Route path="/rules" element={<Rules />}></Route>
