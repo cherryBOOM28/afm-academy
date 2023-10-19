@@ -9,6 +9,10 @@ import backgroundVideo from '../../assets/video/bg.mp4'
 import logo from '../../assets/images/logo.svg'
 import './registration.scss'
 import sfm_types from './../../components/data/sfm_types'
+import go_types from './../../components/data/go_types'
+import po_types from '../../components/data/po_types';
+
+import base_url from '../../settings/base_url';
 
 const Registration = () => {
     const [formData, setFormData] = useState({
@@ -27,8 +31,8 @@ const Registration = () => {
         
     }, [formData])
 
-    const [errorMessage,
-        setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [policyChecked, setPolicyChecked] = useState(false);
     const navigate = useNavigate();
 
     const handleChange = (e, name) => {
@@ -43,7 +47,7 @@ const Registration = () => {
 
         if (formData['password'] === formData['confirm_password']) {
             axios
-                .post('http://localhost:8080/api/aml/auth/register', 
+                .post(`${base_url}/api/aml/auth/register`, 
                 {
                     "firstname": formData['firstname'],
                     "lastname": formData['lastname'],
@@ -51,8 +55,8 @@ const Registration = () => {
                     "email": formData['email'],
                     "phone_number": formData['phone_number'],
                     "password": formData['password'],
-                    "system_entity_type": formData['system_entity_type'],
-                    "sfm_type": formData['sfm_type'],
+                    "member_of_the_system": formData['member_of_the_system'],
+                    "type_of_member": formData['type_of_member'] === 'Выберите' ? '' : formData['type_of_member'],
                 }
             )
                 .then(res => {
@@ -76,7 +80,14 @@ const Registration = () => {
             alert('Passwords do not match.');
         }
     };
-      
+
+    const getItems = (entity_type) => {
+        if (entity_type === 'Субъект финансового мониторнга') return sfm_types;
+        if (entity_type === 'Государственные органы-регуляторы') return go_types;
+        if (entity_type === 'Правоохранительные органы') return po_types;
+        else return ['Выберите']
+
+    }
 
     return (
         <div className='register-page'>
@@ -92,44 +103,44 @@ const Registration = () => {
 
                 <div className="form-body">
                     <div className='fields'>
-                        <Field formData={formData} handleChange={handleChange} name={'firstname'} label={'Имя'} hint={'Введите имя'}/>
-                        <Field formData={formData} handleChange={handleChange} name={'lastname'} label={'Фамилия'} hint={'Введите фамилию'}/>
-                        <Field formData={formData} handleChange={handleChange} name={'patronymic'} label={'Отчество'} hint={'Введите отчество'}/>
-                        <Field formData={formData} handleChange={handleChange} isPassword={true} name={'password'} label={'Пароль'} hint={'Придумайте пароль'}/>
-                        <Field formData={formData} handleChange={handleChange} isPassword={true} name={'confirm_password'} label={'Подтверждение пароля'} hint={'Подтвердите пароль'}/>
-                        <Field formData={formData} handleChange={handleChange} name={'email'} label={'Почта'} hint={'Введите почту'}/>
-                        <Field formData={formData} handleChange={handleChange} name={'phone_number'} label={'Номер телефона'} hint={'Введите номер телефона'}/>
-                        <Field 
+                        <InputField formData={formData} handleChange={handleChange} name={'firstname'} label={'Имя'} hint={'Введите имя'}/>
+                        <InputField formData={formData} handleChange={handleChange} name={'lastname'} label={'Фамилия'} hint={'Введите фамилию'}/>
+                        <InputField formData={formData} handleChange={handleChange} name={'patronymic'} label={'Отчество'} hint={'Введите отчество'}/>
+                        <InputField formData={formData} handleChange={handleChange} isPassword={true} name={'password'} label={'Пароль'} hint={'Придумайте пароль'}/>
+                        <InputField formData={formData} handleChange={handleChange} isPassword={true} name={'confirm_password'} label={'Подтверждение пароля'} hint={'Подтвердите пароль'}/>
+                        <InputField formData={formData} handleChange={handleChange} name={'email'} label={'Почта'} hint={'Введите почту'}/>
+                        <InputField formData={formData} handleChange={handleChange} name={'phone_number'} label={'Номер телефона'} hint={'Введите номер телефона'}/>
+                        <SelectField 
                             formData={formData} 
                             handleChange={handleChange} 
-                            isSelect={true} 
                             selectItems={[
-                                'Госудраственное учереждение',
+                                'Государственные органы-регуляторы',
                                 'Субъект финансового мониторнга',
-                                'Провохранные органы',
+                                'Правоохранительные органы',
                                 'Общественное объединение'
                             ]} 
-                            name={'system_entity_type'} 
+                            name={'member_of_the_system'} 
                             label={'Участник системы'} 
-                            hint={'Введите имя'}
                             />
-                        {formData['system_entity_type'] === 'Субъект финансового мониторнга' ? <Field 
+
+                        <SelectField 
                             formData={formData} 
                             handleChange={handleChange} 
-                            isSelect={true} 
-                            selectItems={sfm_types} 
-                            name={'sfm_type'} 
+                            selectItems={getItems(formData['member_of_the_system'])} 
+                            name={'type_of_member'} 
                             label={'Вид СФМ'} 
-                            hint={'Введите имя'}
-                            /> : null}
+                            />
+
                     </div>
                     <div className='actions'>
                         <div className='policy'>
                             <div>
-                                <input type="checkbox" name="" id="" />
-                                <p>Даю согласие на обработку <a href="#politics">персональных данных</a></p>
+                                <input type="checkbox" onChange={(e) => {
+                                    setPolicyChecked(e.target.checked);
+                                }}/>
+                                <p>Даю согласие на обработку <a href="#politics">персональных данных</a></p> 
                             </div>
-                            <p className='policy-error'>Даю согласие на обработку</p>
+                            {false ? <p className='policy-error'>Даю согласие на обработку</p>: null}
                         </div>
                         <div className='reg-btn' onClick={handleSubmit}>Регистрация</div>
                         <div className='have-account'>Уже есть аккаунт? <Link to={'/login'}><span>Войдите</span></Link></div>
@@ -140,9 +151,8 @@ const Registration = () => {
     );
 };
 
-const Field = ({ name, label, hint, isPassword, isSelect, selectItems, formData, handleChange }) => {
-    if (isSelect) {
-      return (
+const SelectField = ({ name, label, selectItems, formData, handleChange }) => {
+    return (
         <div className='field'>
             <label htmlFor={name}>{label}</label>
             <div className="custom-select">
@@ -156,22 +166,23 @@ const Field = ({ name, label, hint, isPassword, isSelect, selectItems, formData,
                 }}></div>
             </div>
         </div>
+    )
+}
 
-      )
-    } else {
-      return (
+const InputField = ({ name, label, hint, isPassword, formData, handleChange }) => {
+
+    return (
         <div className='field'>
-          <label htmlFor={name}>{label}</label>
-          <input
+            <label htmlFor={name}>{label}</label>
+            <input
             placeholder={hint}
             value={formData[name]}
             type={isPassword ? 'password' : 'text'}
             name={name}
             onChange={(e) => handleChange(e, name)}
-          />
+            />
         </div>
-      )
-    }
-  }
+    )
+}
 
 export default Registration;

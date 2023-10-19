@@ -34,9 +34,11 @@ function Home() {
         { src: FirstPartner, alt: 'Image 5' },
         { src: FirstPartner, alt: 'Image 6' }
       ];
+      
     const toAbout = () => {
         navigate('/about')
     }
+
     return (
         <div className={cl.homeWrapper}>
             <Header />

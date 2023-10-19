@@ -19,6 +19,9 @@ import { useAuth } from '../../auth/AuthContext';
 function DefaultHeader() {
   const navigate = useNavigate();
   const [username, setUsername] = useState(Cookies.get('email')) || ''
+
+  const jwtToken = localStorage.getItem('jwtToken');
+  const userEmail = localStorage.getItem('email');
   
   const {
     authUser,
@@ -72,10 +75,12 @@ function DefaultHeader() {
   
                 {username != '' ? (
                   <>
-                    <div className={cl.personalAccount} style={{display: 'flex', alignItems: 'center', gap: '5px', marginRight: '15px'}}>
-                      <img src={personalAccount} alt="personal Account" />
-                      <p style={{fontSize: '1.1rem', fontWeight: '300', color: 'black'}}>{authUser}</p>
-                    </div>
+                    <Link to={'/profile'} style={{color: 'inherit', textDecoration: 'inherit'}}>
+                      <div className={cl.personalAccount} style={{display: 'flex', alignItems: 'center', gap: '5px', marginRight: '15px'}}>
+                        <img src={personalAccount} alt="personal Account" />
+                        <p style={{fontSize: '1.1rem', fontWeight: '300', color: 'black'}}>{userEmail}</p>
+                      </div>
+                    </Link>
                     <div className={cl.languages}>
                       <a href='/#' className={cl.lang}>қаз</a>
                       <a href='/#' className={cl.lang}>РУС</a>

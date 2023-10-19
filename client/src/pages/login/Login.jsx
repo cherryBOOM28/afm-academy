@@ -8,15 +8,21 @@ import axios from 'axios';
 import backgroundVideo from '../../assets/video/bg.mp4'
 import logo from '../../assets/images/logo.svg'
 import switcher from '../../assets/icons/Switcher.svg'
+import SwitchOff from '../../assets/icons/switch-off.svg';
+import SwitchOn from '../../assets/icons/switch-on.svg';
 
 import './login.scss'
 import sfm_types from './../../components/data/sfm_types';
+
+import base_url from '../../settings/base_url';
 
 const Registration = () => {
     const [formData, setFormData] = useState({
         email: '', 
         password: '', 
     });
+
+    const [rememberMe, setRememberMe] = useState(true);
 
     useEffect(() => {
         
@@ -33,15 +39,21 @@ const Registration = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        console.log(formData)
+
         axios
-            .post('http://localhost:8080/api/aml/auth/authenticate', 
+            .post(`${base_url}/api/aml/auth/authenticate`, 
             {
                 "email": formData['email'],
                 "password": formData['password'],
             }
-        )
-            .then(res => {
+        ).then(res => {
+            console.log(res.data)
+            
                 localStorage.setItem('jwtToken', res.data.body.token);
+                localStorage.setItem('email', res.data.body.user.email);
+                localStorage.setItem('user_id', res.data.body.user.user_id);
 
                 console.log(res.data)
                 navigate('/');
@@ -58,6 +70,8 @@ const Registration = () => {
                     setErrorMessage(error.message.error)
                     // console.log('Error:', error.message);
                 }
+
+                console.log(error)
             })
     };
       
@@ -92,16 +106,18 @@ const Registration = () => {
                             />
                     </div>
                     <div className='actions'>
-                        <div className='remember-me'>
+                        {/* <div className='remember-me'>
                             <div>
-                                <div><img src={switcher} alt="" /></div>
+                                <div>
+                                    <img src={rememberMe ? SwitchOn : SwitchOff} alt="" />
+                                </div>
                                 <div>Запомнить меня</div>
                             </div>
                             <div className='forgot-password'>
                                 Забыли пароль?
                             </div>
-                        </div>
-                        <div className='reg-btn' onClick={handleSubmit}>Логин</div>
+                        </div> */}
+                        <div className='reg-btn' onClick={(event) => handleSubmit(event)}>Логин</div>
                         <div className='have-account'>У вас нет аккаунта? <Link to={'/registration'}><span>Зарегистрируйтесь</span></Link></div>
                     </div>
                 </div>
