@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import cl from './Tabs.module.css';
 import Button from '../UI/button/Button';
-import courseImg from '../../assets/images/course.png';
+// import courseImg from '../../assets/images/course.png';
+import courseImg from '../../assets/icons/course.svg';
+
 import { Link } from 'react-router-dom';
 
 function Tabs({ text }) {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import Footer from '../../components/footer/Footer';
 import DefaultHeader from '../../components/defaultHeader/DefaultHeader';
@@ -174,17 +174,23 @@ function BasicCourse() {
                             <FeedBacks 
                                 feedBacks={data !== null ? data.courseComments : []}
                             />
-
-                            <div className='blue-btn'>
-                                <div onClick={() => setShowModal(true)}>
-                                    Подать заявку
-                                </div>
-                            </div>
-                        </>
-                    ) : null
-                }
+                        </> ) : null 
+                        
+                    }
+                    <div className='blue-btn'>
+                        {/* <div onClick={() => setShowModal(true)}>
+                            Подать заявку
+                        </div> */}
+                    
+                        <div>
+                            <Link to="/payment" style={{ color: 'white', textDecoration: 'none' }}>
+                                Приобрести курс
+                            </Link>
+                        </div>
                 
-            </div>
+                    </div>
+                
+                </div>
   
             <Footer />
             {

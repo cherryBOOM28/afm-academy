@@ -30,6 +30,7 @@ import TestCourse from './pages/testCoursePage/TestCourse';
 import Catalog from './pages/courseCatalog/Catalog';
 import MyCourses from './pages/myCourses/MyCourses';
 import Profile from './pages/profilePage/Profile';
+import PaymentPage from './pages/paymentPage/PaymentPage';
 
 function App() {
   const [jwtToken, setJwtToken] = useState('');
@@ -92,6 +93,10 @@ function App() {
             <Route path='/courses/testCourse' element={<TestCourse />}/>
 
             <Route path='/courses/:id' element={<BasicCourse />}/>
+
+            {/* <Route path='/payment' element={<PaymentPage />}/> */}
+            <Route path='/payment' element={<PaymentPage />} />
+
 
           </Routes>
         </BrowserRouter>
