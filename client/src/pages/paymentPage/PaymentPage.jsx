@@ -1,10 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import cl from './PaymentPage.module.css';
 import qrImg from '../../assets/images/qr.svg';
 import instructionsImg from '../../assets/images/instractions.svg'
 import whatsappIcon from '../../assets/icons/ic_outline-whatsapp.svg';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import base_url from '../../settings/base_url';
 
 function PaymentPage(props) {
+    const {id} = useParams()
+
+    const [data, setData] = useState(null);
+    const [error, setError] = useState(null);
+    const [isLoading, setLoading] = useState(true);
+
+    const jwtToken = localStorage.getItem('jwtToken');
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${jwtToken}`,
+                    },
+                });
+
+                console.log(response.data);
+
+                if (response.status === 200) {
+                    setData(response.data);
+                } else {
+                    // Handle other status codes if needed
+                    setError(response.statusText);
+                    console.log(response.statusText);
+                }
+            } catch (error) {
+                setError(error);
+                console.error(error);
+            }
+
+            setLoading(false);
+        };
+        
+        fetchData();
+      }, []);
+
     return (
         <div className={cl.wrapper}>
             <div className={cl.qr_wrapper}>
@@ -17,7 +57,12 @@ function PaymentPage(props) {
                     <p className={cl.price}>
                         Цена
                         <span>
-                            25000тг
+                            {isLoading 
+                                ? "loading" 
+                                : data !== null 
+                                    ? data.course_price
+                                    : ""
+                            }
                         </span>
                     </p>
                     <img src={qrImg} alt="QR" />

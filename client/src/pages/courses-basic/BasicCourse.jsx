@@ -183,7 +183,7 @@ function BasicCourse() {
                         </div> */}
                     
                         <div>
-                            <Link to="/payment" style={{ color: 'white', textDecoration: 'none' }}>
+                            <Link to={`/payment/${id}`} style={{ color: 'white', textDecoration: 'none' }}>
                                 Приобрести курс
                             </Link>
                         </div>

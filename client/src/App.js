@@ -95,7 +95,7 @@ function App() {
             <Route path='/courses/:id' element={<BasicCourse />}/>
 
             {/* <Route path='/payment' element={<PaymentPage />}/> */}
-            <Route path='/payment' element={<PaymentPage />} />
+            <Route path='/payment/:id' element={<PaymentPage />} />
 
 
           </Routes>
