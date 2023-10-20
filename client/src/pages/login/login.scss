@@ -42,14 +42,15 @@
 
     > div:nth-child(1) {
         width: 50%;
-
-
+        transition: width 100ms ease-in-out;
 
         box-sizing: border-box;
         background-color: #1F3C8870;
 
         @media screen and (max-width: 900px) {
-            display: none;
+            width: 0px;
+            transition: width 100ms ease-in-out;
+
         }
     }
 
@@ -59,11 +60,14 @@
         overflow-x: hidden;
 
         width: 50%;
+        transition: width 100ms ease-in-out;
+
         box-sizing: border-box;
         background-color: #fff;
 
         @media screen and (max-width: 900px) {
             width: 100%;
+            transition: width 100ms ease-in-out;
         }
 
         display: flex;
@@ -129,26 +133,25 @@
                 padding-left: 16px;
             }
 
-            > input[type="text"], input[type="password"] {
-                @include fieldInput;
-            }
-
-            .custom-select {
+            > div {
                 position: relative;
-                display: inline-block;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+    
+            .show-password {
+                position: absolute;
+                right: 10px;
+    
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
             }
 
-            select {
+            input[type="text"], input[type="password"] {
                 @include fieldInput;
-
-                -webkit-appearance: none; /* Remove default arrow in Chrome and Safari */
-                -moz-appearance: none; /* Remove default arrow in Firefox */
-                appearance: none; /* Remove default arrow in other browsers */
-                // padding: 5px 30px 5px 5px; /* Adjust padding as needed */
-                // border: 1px solid #ccc;
-                // border-radius: 4px;
-                // width: 100%; /* Make the select take up the full width */
-                // cursor: pointer;
             }
 
             .dropdown-icon {

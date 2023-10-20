@@ -15,6 +15,14 @@ import course6 from './../../assets/images/courses-6.png';
 import course7 from './../../assets/images/courses-7.png';
 import course8 from './../../assets/images/courses-8.png';
 
+import { AiFillFolder } from "react-icons/ai";
+import { BsFilter } from "react-icons/bs";
+import { BiSearch } from "react-icons/bi";
+import { AiFillStar } from "react-icons/ai";
+
+
+
+
 import bookIcon from './../../assets/icons/book.svg'
 
 function Catalog() {
@@ -205,40 +213,37 @@ function Catalog() {
     }, [])
 
     return ( 
-        <div className="courses-page">
+        <div className="catalog-page">
             <div>
                 <div className="container">
                     <DefaultHeader />
                 </div>
             </div>
 
-            <main className='page-content '>
-                <div style={{
-                    background: '#F2F2F2',    
-                    padding: '25px 0px',
-                    marginTop: '60px'             
-                }}>
-                    <div className='container' style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        // justifyContent: 'center',
-                        gap: '15px',
-                    }}>
-                        <img src={bookIcon} alt="book icon" style={{
-                            height: '50px',
-                            width: '50px'
-                        }} />
-                        <h3 style={{
-                            fontFamily: 'Roboto',
-                            fontSize: '26px',
-                            fontWeight: '700',
-                            lineHeight: '50px',
-                            letterSpacing: '0em',
-                            textAlign: 'left',
-                            paddingTop: '8px'
-                        }}>Каталог курсов</h3>
+            <main className='page-content'>
+                <div className="catalog-header">
+                    <div className='container'>
+                        <div className='header-title'>
+                            <h3>Каталог курсов</h3>
+                        </div>
+                        <div className='header-actions'>
+                            <div className="filters">
+                                <div>
+                                    <AiFillFolder size={20} className='icon'/>
+                                    <span>Категории</span>
+                                </div>
+                                <div>
+                                    <BsFilter size={20} className='icon'/>
+                                    <span>Фильтр</span>
+                                </div>
+                            </div>
+                            <div className="search">
+                                <BiSearch size={20} className='icon'/>
+                                <input type="text" />
+                            </div>
+                        </div>
                     </div>
+
                 </div>
 
 
@@ -302,21 +307,28 @@ const CoursesBlock = ({categoryName, categoryDesc, courses}) => {
 
         <div className="courses-block container">
             {
-                courses.map(course => {
+                courses.map(({id, img, title, lang, duration, rate, type}) => {
+
                     return (
                         <div onClick={() => {
-                            navigate(course.route);
+                            navigate(`/courses/${id}`);
                         }}>
-                            <img src={course.img} alt={course.title} />
-                            <h3>{course.title}</h3>
-                            <div className='characteristics'>
-                                <p>{course.lang} | {course.duration}</p>
-                                <div>{course.rate}</div>
-                            </div>
+                            <img src={`${img}`} alt={title} />
                             <div>
-                                {course.type}
+                                <h3>{title}</h3>
+                                <div className='available'>Доступно</div>
+                                <div className='characteristics'>
+                                    <p>{lang} | {duration}</p>
+                                    <div className='rate'>
+                                        <AiFillStar className='icon' size={20}/>
+                                        <span>{rate}</span>
+                                    </div>
+                                </div>
+                                <div className='type'>
+                                    {type}
+                                </div>
                             </div>
-                        </div>   
+                        </div>  
                     )
                 })
             }

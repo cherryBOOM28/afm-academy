@@ -1,5 +1,6 @@
 .courses-page {
     background-color: rgb(249, 249, 249);
+    width: 100vw;
     position: relative;
 
     > div:first-child {
@@ -14,160 +15,244 @@
 
     .page-content {
      
-        h1 {
-            margin-top: 50px;
 
-            font-family: Roboto;
-            font-size: 26px;
-            font-weight: 700;
-            line-height: 30px;
-            text-align: left;
-            color: #343434;
+        .intro-info {
+            background-color: #1F3C88;
+            height: 423px;
 
-            margin-bottom: 20px;
+            padding: 40px 0px;
+
+            margin-bottom: 45px;
         }
 
-        h2 {
-            font-family: Roboto;
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 23px;
-            text-align: left;
-
-            margin-bottom: 20px;
-        }
-
-        h3 {
-            font-family: Roboto;
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 19px;
-            text-align: left;
-
-            margin-bottom: 15px;
-        }
-
-        p {
-            font-family: Roboto;
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 23px;
-            letter-spacing: 0em;
-            text-align: left;
-
-            margin-bottom: 15px;
-        }
-
-        .courses-block {
-            margin-top: 20px;
-
+        .intro-info > div {
             display: flex;
             flex-direction: row;
-            flex-wrap: wrap;
-            gap: 20px;
-            width: 100%;
-            
-            @media screen and (max-width: 95%) {
-                flex-wrap: wrap;
-                justify-content: space-between;
+            align-items: center;
+            justify-content: space-between;
+            gap: 88px;
 
-                padding: 0 20px;
-            }
+            box-sizing: border-box;
 
+            padding: 0px 50px;
 
-            > div {
-                width: 21%;
+            .text {
+                color: #FFF;
 
-                display: flex;
-                flex-direction: column;
-                padding: 15px;
-                align-items: left;
-                border-radius: 5px;
+                > h1 {
+                    font-family: Inter;
+                    font-size: 26px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: normal;
+                    color: #FFF;
 
-                box-shadow: 2px 4px 4px 0px #00000040;
+                    margin-bottom: 33px;
+                    padding-right: 40px;
+                    padding-bottom: 12px;
+                    width: max-content;
+                    box-sizing: border-box;
 
-                .characteristics {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    align-items: center;
-
-                    padding-bottom: 20px;
-                    border-bottom: #E2E2E2 3px solid;
-                    margin-bottom: 10px;
-
-                    > p {
-                        padding: 0;
-                        margin: 0;
-
-                        font-family: Roboto;
-                        font-size: 18px;
-                        font-weight: 400;
-                        line-height: 16px;
-                        letter-spacing: 0em;
-                        text-align: left;
-                        color: #747474;
-                    }
-
-                    > div {
-                        font-family: Roboto;
-                        font-size: 20px;
-                        font-weight: 700;
-                        line-height: 19px;
-                        letter-spacing: 0em;
-                        text-align: left;
-                        color: #3A3939;
-                    }
-                }
-
-                cursor: pointer;
-
-                h3 {
-                    margin-top: 10px;
-                    // text-align: left;
-
-                    font-family: Roboto;
-                    font-size: 18px;
-                    font-weight: 500;
-                    line-height: 21px;
-                    letter-spacing: 0em;
-                    text-align: left;
-
-                    color: #3A3939;
-
-                    margin-bottom: 30px;
+                    border-bottom: 2px solid #F9CB36;
                 }
 
                 > p {
-                    font-family: Roboto;
+                    color: inherit;
+                    font-family: Inter;
                     font-size: 16px;
+                    font-style: normal;
                     font-weight: 400;
-                    line-height: 19px;
-                    letter-spacing: 0em;
-                    text-align: left;
-                    color: black;
+                    line-height: 120%; /* 19.2px */
 
-                    margin-bottom: 32px;
-                }
-
-                > hr {
-                    color: #E2E2E2;
-                    margin-bottom: 20px;
-                }
-
-                > div:nth-child(2) {
-                    font-family: Roboto;
-                    font-size: 14px;
-                    font-weight: 400;
-                    line-height: 16px;
-                    letter-spacing: 0em;
-                    text-align: left;
-                    color: #747474;
-
+                    margin-bottom: 22px;
                 }
             }
 
-            margin-bottom: 73px;
+            img {
+                width: 100%;
+            }
+        }
+
+        .courses-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            justify-content: center; /* Center horizontally */
+            align-content: center;
+
+            > div {
+                cursor: pointer;
+
+                width: 100%;
+
+                border-radius: 5px;
+                background: #FFFEFE;
+                box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            
+                display: flex;
+                flex-direction: column;
+
+                margin-bottom: 100px;
+                
+                img {
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                }
+
+                > div {
+                    padding: 10px 15px;
+
+                    h3 {
+                        color: #3A3939;
+                        font-family: Roboto;
+                        font-size: 20px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: normal;
+
+                        margin-top: 10px;
+                    }
+    
+                    .available {
+                        margin-bottom: 20px;
+                    }
+
+                    .characteristics {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        margin-bottom: 15px;
+
+                        p {
+                            margin: 0;
+
+                            color: #747474;
+                            font-family: Inter;
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: normal;
+                        }
+
+                        .rate {
+                            margin: 0;
+
+                            color: #3A3939;
+                            font-family: Inter;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: normal;
+
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            gap: 5px;
+
+                            .icon {
+                                color: #1F3C88;
+                            }
+                        }
+                    }
+
+                    .type {
+                        border-top: 1px solid #E2E2E2;
+                        padding-top: 15px;
+                    }
+                } 
+            }
+
+        }
+
+        .faq-wrapper {
+            padding: 0px 130px;
+            box-sizing: border-box;
+
+            .faq-list {
+                width: 100%;
+                // height: 200px;
+                border-radius: 18px;
+                margin-bottom: 190px;
+                
+                padding: 80px 90px;
+                box-sizing: border-box;
+
+                background: var(--neutral-100, #FFF);
+                box-shadow: 0px 5px 16px 0px rgba(8, 15, 52, 0.06);
+
+
+                display: flex;
+                flex-direction: column;
+
+                .faq {
+                    padding: 40px 20px 40px 40px;
+
+                    display: flex;
+                    flex-direction: column;
+
+                    border-bottom: 1px solid #D9DBE9;
+                
+                    &:first-child {
+                        padding-top: 0px;
+                    }
+
+                    &:last-child {
+                        padding-bottom: 0px;
+                        border-bottom: none;
+                    }
+
+                    .question {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .icon {
+                            cursor: pointer;
+
+                            user-select: none;
+                        }
+
+                        p {
+                            margin: 0;
+
+                            color: #1F3C88;
+                            font-feature-settings: 'clig' off, 'liga' off;
+                            font-family: Inter;
+                            font-size: 18px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 28px; /* 155.556% */
+                        }
+                    }
+
+                    .answer {
+                        margin-top: 20px;
+                        transition: height 200ms ease-in-out, margin-top 200ms ease-in-out;
+
+                        p {
+                            color: var(--neutral-600, #6F6C90);
+                            font-feature-settings: 'clig' off, 'liga' off;
+                            font-family: Inter;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 110%; /* 17.6px */
+                        }
+
+                        &.hide {
+                            transition: height 200ms ease-in-out, margin-top 200ms ease-in-out;
+
+                            height: 0px;
+                            overflow: hidden;
+                            margin-top: 0px;
+                        }
+                    }
+                }
+            }
         }
     }
 }

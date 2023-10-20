@@ -49,6 +49,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
+            <Route path="/logout" element={<Login />} />
 
 
             <Route
@@ -85,12 +86,12 @@ function App() {
             <Route path="/courses/catalog" element={<Catalog />}/>
             <Route path="/courses/myCourses" element={<MyCourses />}/>
             <Route path="/courses/info" element={<InfoPage />}/>
-            <Route path='/courses/basic' element={<BasicCourse />}/>
-            <Route path='/courses/specialized' element={<SpecializedCourse />}/>
+            {/* <Route path='/courses/basic' element={<BasicCourse />}/> */}
+            {/* <Route path='/courses/specialized' element={<SpecializedCourse />}/> */}
 
             <Route path='/courses/testCourse' element={<TestCourse />}/>
 
-            <Route path='/courses/:id' element={<SpecializedCourse />}/>
+            <Route path='/courses/:id' element={<BasicCourse />}/>
 
           </Routes>
         </BrowserRouter>

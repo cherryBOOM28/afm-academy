@@ -4,6 +4,7 @@ import './FeedBacks.scss'
 
 import activeDot from './../../assets/icons/yellow-dot.png';
 import nonactiveDot from './../../assets/icons/grey-dot.png';
+import img from './../../assets/images/vebinar-img.png';
 
 function FeedBacks({ feedBacks }) {
 
@@ -20,8 +21,6 @@ function FeedBacks({ feedBacks }) {
     useEffect(() => {
         let _maxPage = Math.ceil(feedBacks.length / 3);
         setMaxPage(_maxPage);
-
-        console.log(maxPage, page)
 
         let _showFeedBacks = [feedBacks[page * 3 - 3], feedBacks[page * 3 - 2], feedBacks[page * 3 - 1]]
 
@@ -40,15 +39,13 @@ function FeedBacks({ feedBacks }) {
             {showFeedBacks.map(feedBack => {
                 if (!feedBack) return null;
 
-                console.log(showFeedBacks)
-
                 return (
                     <div className='feedBack-card'>
                         <div>
-                            <img src={feedBack.img ? feedBack.img : ""} alt={feedBack.name} />
-                            <div>{feedBack.name}</div>
+                            <div className='img'>{feedBack.user ? feedBack.user.firstname.substring(0, 1) : ''}{feedBack.user ? feedBack.user.lastname.substring(0, 1) : ''}</div>
+                            <div className='name'>{feedBack.user ? feedBack.user.firstname : ''} {feedBack.user ? feedBack.user.lastname : ''} {feedBack.user ? feedBack.user.patronymic : ''}</div>
                         </div>
-                        <p>{feedBack.text}</p>
+                        <p>{feedBack.comment}</p>
                     </div>
                 )
             })}

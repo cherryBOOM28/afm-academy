@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Footer from '../../components/footer/Footer';
 import DefaultHeader from '../../components/defaultHeader/DefaultHeader';
@@ -12,9 +12,18 @@ import Lectors from '../../components/lectors-block/Lectors';
 import lectorImg from './../../assets/images/avatar-img.png';
 import FeedBacks from '../../components/feedbackBlock/FeedBacks';
 import ModalWindow from '../../components/ModalWindow/ModalWindow';
+import axios from 'axios';
+import base_url from '../../settings/base_url';
 
 function BasicCourse() {
+    const jwtToken = localStorage.getItem('jwtToken');
+
+    const {id} = useParams();
+
     const [showModal, setShowModal] = useState(false);
+    const [data, setData] = useState(null);
+    const [error, setError] = useState(null);
+    const [isLoading, setLoading] = useState(true);
 
     const [request, setRequest] = useState({
         email: '',
@@ -31,8 +40,33 @@ function BasicCourse() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(request)
-    }, [request])
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${jwtToken}`,
+                    },
+                });
+
+                console.log(response.data);
+
+                if (response.status === 200) {
+                    setData(response.data);
+                } else {
+                    // Handle other status codes if needed
+                    setError(response.statusText);
+                    console.log(response.statusText);
+                }
+            } catch (error) {
+                setError(error);
+                console.error(error);
+            }
+
+            setLoading(false);
+        };
+        
+        fetchData();
+      }, []);
 
     return ( 
         <div className={`basic-course-page`}>
@@ -49,12 +83,11 @@ function BasicCourse() {
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    // border: '1px solid red'
                 }}>
                     <h1 style={{
                         display: 'flex',
                         alignItems: 'center',
-                    }}>Базовый курс</h1>
+                    }}>{data ? data.course_name : ''}</h1>
                     <div style={{
                         padding: '10px 20px',
                         fontSize: '16px',
@@ -87,7 +120,7 @@ function BasicCourse() {
                     </Collapsable>
                     <Collapsable title={'Стоимость курса'}>
                         <p>
-                            1000000 тг
+                            {data ? data.course_price : ''}
                         </p>
                     </Collapsable>
                     <Collapsable title={'Дата ближайшего курса'}>
@@ -97,14 +130,14 @@ function BasicCourse() {
                     </Collapsable>
                     <Collapsable title={'Программа курса'}>
                         <p style={{lineHeight: '23px'}}>
-                        1. Общая характеристика национальной системы противодействия отмыванию преступных доходов финансированию терроризма <br/>
-                        2. Международная система противодействия отмыванию преступных доходов и финансированию терроризма <br/>
-                        3. Нормы Закона Республики Казахстан от 28 августа 2009 года «О противодействии легализации (отмыванию) доходов, полученных преступным путем, и финансированию терроризма <br/>
-                        4. Государственный контроль/надзор за соблюдением законодательства Республики Казахстан о ПОД/ФТ <br/>
-                        5. Подразделение финансовой разведки<br/>
-                        6. Требования к внутренним нормативным документам<br/>
-                        7. Требования к субъектам финансового мониторинга по подготовке и обучению в сфере ПОД/ФТ<br/>
-                        8. Заключительная часть
+                        {
+                            data ? data.chapters.map((chapter, index) => {
+
+                                console.log(chapter)
+                                return <>{index+1}. {chapter.chapter_description}<br /></>
+
+                            }) : null
+                        }
                         </p>
                     </Collapsable>
                     <Collapsable title={'Дата ближайшего курса'}>
@@ -134,23 +167,23 @@ function BasicCourse() {
                     ]}
                 />
 
-                <h2>Отзывы</h2>
-                <FeedBacks 
-                    feedBacks={[
-                        { img: lectorImg, name: 'Felipe M.1', text: '"Мне очень понравился гибкий график курсов. Я могу подстроить обучение под свое расписание и настроение."'},
-                        { img: lectorImg, name: 'Felipe M.2', text: '"Мне очень понравился гибкий график курсов. Я могу подстроить обучение под свое расписание и настроение."'},
-                        { img: lectorImg, name: 'Felipe M.3', text: '"Мне очень понравился гибкий график курсов. Я могу подстроить обучение под свое расписание и настроение."'},
-                        { img: lectorImg, name: 'Felipe M.4', text: '"Мне очень понравился гибкий график курсов. Я могу подстроить обучение под свое расписание и настроение."'},
-                        { img: lectorImg, name: 'Felipe M.5', text: '"Мне очень понравился гибкий график курсов. Я могу подстроить обучение под свое расписание и настроение."'},
-                        // { img: letorImg, name: 'Felipe M.6', text: '"Мне очень понравился гибкий график курсов. Я могу подстроить обучение под свое расписание и настроение."'},
-                    ]}
-                />
+                {data !== null && data.courseComments !== null 
+                    ? (
+                        <>
+                            <h2>Отзывы</h2>
+                            <FeedBacks 
+                                feedBacks={data !== null ? data.courseComments : []}
+                            />
 
-                <div className='blue-btn'>
-                    <div onClick={() => setShowModal(true)}>
-                        Подать заявку
-                    </div>
-                </div>
+                            <div className='blue-btn'>
+                                <div onClick={() => setShowModal(true)}>
+                                    Подать заявку
+                                </div>
+                            </div>
+                        </>
+                    ) : null
+                }
+                
             </div>
   
             <Footer />
@@ -202,7 +235,6 @@ const FormInput = ({title, field, onChange}) => {
             <input style={inputStyle} placeholder={field} type="text" name={field} onChange={(e) => {
                 let value = e.target.value;
                 onChange(field, value)
-                // console.log(onChange)
             }}/>
 
 

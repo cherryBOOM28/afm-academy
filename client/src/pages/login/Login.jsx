@@ -11,6 +11,8 @@ import switcher from '../../assets/icons/Switcher.svg'
 import SwitchOff from '../../assets/icons/switch-off.svg';
 import SwitchOn from '../../assets/icons/switch-on.svg';
 
+import {AiFillEye, AiFillEyeInvisible} from 'react-icons/ai';
+
 import './login.scss'
 import sfm_types from './../../components/data/sfm_types';
 
@@ -59,7 +61,7 @@ const Registration = () => {
                 navigate('/');
             })
             .catch(error => {
-                // console.error('Registration failed:', error);
+                console.error('Registration failed:', error);
                 if (error.response) {
                     setErrorMessage(error.response.data.error)
                     // console.log('Server Error:', error.response.data);
@@ -90,19 +92,20 @@ const Registration = () => {
 
                 <div className="form-body">
                     <div className='fields'>
-                        <Field 
+                        <InputField 
                             formData={formData} 
                             handleChange={handleChange} 
                             name={'email'} 
                             label={'Почта'} 
                             hint={'Введите почту'}
                             />
-                        <Field 
+                        <InputField 
                             formData={formData} 
                             handleChange={handleChange} 
                             name={'password'} 
                             label={'Пароль'} 
                             hint={'Введите пароль'}
+                            isPassword={true}
                             />
                     </div>
                     <div className='actions'>
@@ -126,38 +129,43 @@ const Registration = () => {
     );
 };
 
-const Field = ({ name, label, hint, isPassword, isSelect, selectItems, formData, handleChange }) => {
-    if (isSelect) {
-      return (
+const InputField = ({ name, label, hint, isPassword, formData, handleChange }) => {
+    const [showPassword, setShowPassword] = useState(
+        isPassword
+    );
+
+    return (
         <div className='field'>
-        <label htmlFor={name}>{label}</label>
-            <div className="custom-select">
-                <select id={name} value={formData[name]} onChange={(e) => handleChange(e, name)}>
-                {selectItems.map(item => (
-                    <option key={item} value={item}>{item}</option>
-                ))}
-                </select>
-                <div className="dropdown-icon" onClick={() => {
-                    document.getElementById(name).click();
-                }}></div>
+            <label htmlFor={name}>{label}</label>
+            <div>
+                <input
+                    placeholder={hint}
+                    value={formData[name]}
+                    type={showPassword
+                                ? 'password'
+                                : 'text'}
+                    name={name}
+                    onChange={(e) => handleChange(e, name)}
+                />
+                {isPassword 
+                    ? (
+                        <div className='show-password'> 
+                            {
+                                !showPassword ?
+                                    <AiFillEyeInvisible style={{cursor: 'pointer'}} size={23} onClick={() => {
+                                        setShowPassword(prev => !prev)
+                                    }}/>
+                                :
+                                    <AiFillEye style={{cursor: 'pointer'}} size={23} onClick={() => {
+                                        setShowPassword(prev => !prev)
+                                    }}/>
+                            } 
+                        </div> 
+                    ) : null
+                }
             </div>
         </div>
-
-      )
-    } else {
-      return (
-        <div className='field'>
-          <label htmlFor={name}>{label}</label>
-          <input
-            placeholder={hint}
-            value={formData[name]}
-            type={isPassword ? 'password' : 'text'}
-            name={name}
-            onChange={(e) => handleChange(e, name)}
-          />
-        </div>
-      )
-    }
-  }
+    )
+}
 
 export default Registration;

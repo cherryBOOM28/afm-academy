@@ -31,7 +31,6 @@ function DefaultHeader() {
   } = useAuth()
 
   const handleLogin = () => {
-    // Logic for handling the login process (setIsLoggedIn to true).
     navigate('/login');
   };
 
@@ -39,6 +38,10 @@ function DefaultHeader() {
     Cookies.remove('token')
     Cookies.remove('email')
     setUsername('')
+
+    console.log("works")
+
+    navigate('/logout')
   }; 
   
     return (
@@ -86,7 +89,7 @@ function DefaultHeader() {
                       <a href='/#' className={cl.lang}>РУС</a>
                       <a href='/#' className={cl.lang}>ENG</a>
                     </div>
-                    <Link className={cl.personalAccountLink}>
+                    <Link className={cl.personalAccountLink} to={'/logout'}>
                       <Button className={cl.personalAccountBtn} onClick={handleLogout}>Выйти</Button>
                     </Link>
                   </>

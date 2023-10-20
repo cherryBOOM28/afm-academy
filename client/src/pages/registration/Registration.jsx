@@ -12,6 +12,8 @@ import sfm_types from './../../components/data/sfm_types'
 import go_types from './../../components/data/go_types'
 import po_types from '../../components/data/po_types';
 
+import {AiFillEye, AiFillEyeInvisible} from 'react-icons/ai';
+
 import base_url from '../../settings/base_url';
 
 const Registration = () => {
@@ -170,17 +172,40 @@ const SelectField = ({ name, label, selectItems, formData, handleChange }) => {
 }
 
 const InputField = ({ name, label, hint, isPassword, formData, handleChange }) => {
+    const [showPassword, setShowPassword] = useState(
+        isPassword
+    );
 
     return (
         <div className='field'>
             <label htmlFor={name}>{label}</label>
-            <input
-            placeholder={hint}
-            value={formData[name]}
-            type={isPassword ? 'password' : 'text'}
-            name={name}
-            onChange={(e) => handleChange(e, name)}
-            />
+            <div>
+                <input
+                    placeholder={hint}
+                    value={formData[name]}
+                    type={showPassword
+                                ? 'password'
+                                : 'text'}
+                    name={name}
+                    onChange={(e) => handleChange(e, name)}
+                />
+                {isPassword 
+                    ? (
+                        <div className='show-password'> 
+                            {
+                                !showPassword ?
+                                    <AiFillEye style={{cursor: 'pointer'}} size={23} onClick={() => {
+                                        setShowPassword(prev => !prev)
+                                    }}/>
+                                :
+                                    <AiFillEyeInvisible style={{cursor: 'pointer'}} size={23} onClick={() => {
+                                        setShowPassword(prev => !prev)
+                                    }}/>
+                            } 
+                        </div> 
+                    ) : null
+                }
+            </div>
         </div>
     )
 }
