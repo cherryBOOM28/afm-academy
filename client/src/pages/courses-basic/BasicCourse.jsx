@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Footer from '../../components/footer/Footer';
 import DefaultHeader from '../../components/defaultHeader/DefaultHeader';
@@ -147,10 +147,18 @@ function BasicCourse() {
                 />
 
                 <div className='blue-btn'>
-                    <div onClick={() => setShowModal(true)}>
+                    {/* <div onClick={() => setShowModal(true)}>
                         Подать заявку
+                    </div> */}
+                 
+                    <div>
+                        <Link to="/payment" style={{ color: 'white', textDecoration: 'none' }}>
+                            Приобрести курс
+                        </Link>
                     </div>
+               
                 </div>
+               
             </div>
   
             <Footer />

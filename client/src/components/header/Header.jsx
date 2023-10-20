@@ -7,7 +7,7 @@ import language from '../../assets/icons/lang.svg';
 import igIcon from '../../assets/icons/ig.svg';
 import fbIcon from '../../assets/icons/fb.svg';
 import tgIcon from '../../assets/icons/tg.svg';
-import searchIcon from '../../assets/icons/search.svg';
+// import searchIcon from '../../assets/icons/search.svg';
 import search_icon from '../../assets/icons/search-light.svg';
 import Button from '../UI/button/Button';
 import Navigation from '../navigation/Navigation';
