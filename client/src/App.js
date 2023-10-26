@@ -31,6 +31,7 @@ import Catalog from './pages/courseCatalog/Catalog';
 import MyCourses from './pages/myCourses/MyCourses';
 import Profile from './pages/profilePage/Profile';
 import PaymentPage from './pages/paymentPage/PaymentPage';
+import Sandbox from './pages/Sandbox';
 
 function App() {
   const [jwtToken, setJwtToken] = useState('');
@@ -96,6 +97,8 @@ function App() {
 
             {/* <Route path='/payment' element={<PaymentPage />}/> */}
             <Route path='/payment/:id' element={<PaymentPage />} />
+
+            <Route path='/sandbox' element={<Sandbox />}/>'
 
 
           </Routes>

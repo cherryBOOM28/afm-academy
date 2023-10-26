@@ -151,7 +151,7 @@ const CourseCard = ({id, img, title, lang, duration, rate, type}) => {
     return (
         <div onClick={() => {
             navigate(`/courses/${id}`);
-        }}>
+        }} key={id}>
             <img src={`${img}`} alt={title} />
             <div>
                 <h3>{title}</h3>

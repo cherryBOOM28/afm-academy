@@ -179,13 +179,14 @@
                 cursor: pointer;
 
                 width: 100%;
-
                 border-radius: 5px;
                 background: #FFFEFE;
                 box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
             
                 display: flex;
                 flex-direction: column;
+
+                height: 400px;
 
                 // margin-bottom: 100px;
                 
@@ -197,6 +198,10 @@
 
                 > div {
                     padding: 10px 15px;
+                    display: flex;
+                    flex-direction: column;
+
+                    height: 100%;
 
                     h3 {
                         color: #3A3939;
@@ -210,6 +215,12 @@
                     }
     
                     .available {
+                        border-radius: 5px;
+                        background: #CADEFC;
+
+                        padding: 8px 40px;
+                        width: max-content;
+
                         margin-bottom: 20px;
                     }
 
@@ -218,8 +229,6 @@
                         flex-direction: row;
                         justify-content: space-between;
                         align-items: center;
-
-                        margin-bottom: 15px;
 
                         p {
                             margin: 0;
@@ -254,8 +263,18 @@
                     }
 
                     .type {
-                        border-top: 1px solid #E2E2E2;
-                        padding-top: 15px;
+                        margin: 0;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-end;
+                        box-sizing: content-box;
+                        height: 100%;
+
+                        > div {
+                            border-top: 1px solid #E2E2E2;
+                            padding-top: 15px;
+                        }
+                        
                     }
                 } 
             }

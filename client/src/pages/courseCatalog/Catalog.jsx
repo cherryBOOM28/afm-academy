@@ -24,193 +24,63 @@ import { AiFillStar } from "react-icons/ai";
 
 
 import bookIcon from './../../assets/icons/book.svg'
+import base_url from '../../settings/base_url';
+import axios from 'axios';
 
 function Catalog() {
     const navigate = useNavigate();
-    const [courses, setCourses] = useState([]);
+
+    const [error, setError] = useState(null);
+    const [isLoading, setLoading] = useState(true);
+
+    const [coursesByCategory, setCoursesByCategory] = useState(null);
+
+    const jwtToken = localStorage.getItem('jwtToken');
 
     useEffect(() => {
-        setCourses([
-            {
-                img: course1, 
-                category: 'Антиотмывочная система РК',
-                title: 'Базовый курс',
-                route: '/courses/basic',
-                status: 'В процессе',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '5.0',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course2, 
-                title: 'Профильный курс', 
-                category: 'Антиотмывочная система РК',
-                route: '/courses/specialized',
-                status: 'В процессе',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '4.9',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course3, 
-                title: 'Профессиональный курс', 
-                category: 'Антиотмывочная система РК',
-                route: '/courses/professional',
-                status: 'В процессе',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '4.7',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course4, 
-                title: 'Повышение квалификации', 
-                category: 'Антиотмывочная система РК',
-                route: '/courses/advanced',
-                status: 'Завершен',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '4.2',
-                type: 'Электронное обучение',
-            },
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${base_url}/api/aml/course/getCourses`, {
+                    headers: {
+                        Authorization: `Bearer ${jwtToken}`,
+                    },
+                });
 
-            {
-                img: course1, 
-                category: 'Антиотмывочная система РК',
-                title: 'Базовый курс',
-                route: '/courses/basic',
-                status: 'В процессе',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '4.3',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course4, 
-                title: 'Повышение квалификации', 
-                category: 'Антиотмывочная система РК',
-                route: '/courses/advanced',
-                status: 'Завершен',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '4.2',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course4, 
-                title: 'Повышение квалификации', 
-                category: 'Антиотмывочная система РК',
-                route: '/courses/advanced',
-                status: 'Завершен',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '4.2',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course2, 
-                title: 'Профильный курс', 
-                category: 'Антиотмывочная система РК',
-                route: '/courses/specialized',
-                status: 'В процессе',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '4.3',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course3, 
-                title: 'Профессиональный курс', 
-                category: 'Антиотмывочная система РК',
-                route: '/courses/professional',
-                status: 'В процессе',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '5.0',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course2, 
-                title: 'Профильный курс', 
-                category: 'Антиотмывочная система РК',
-                route: '/courses/specialized',
-                status: 'В процессе',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '4.3',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course5, 
-                title: 'Повышение квалификации', 
-                category: 'Обучение',
-                route: '/courses/advanced',
-                status: 'Завершен',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '4.5',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course6, 
-                title: 'Повышение квалификации', 
-                category: 'Обучение',
-                route: '/courses/advanced',
-                status: 'Завершен',
-                lang: 'РУС',
-                duration: '4ч 45мин',
-                rate: '5.0',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course7, 
-                title: 'Повышение квалификации', 
-                category: 'Обучение',
-                route: '/courses/advanced',
-                status: 'Завершен',
-                lang: 'РУС',
-                duration: '5ч 45мин',
-                rate: '3.2',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course8, 
-                title: 'Повышение квалификации', 
-                category: 'Обучение',
-                route: '/courses/advanced',
-                status: 'Завершен',
-                lang: 'РУС',
-                duration: '2ч 45мин',
-                rate: '4.2',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course7, 
-                title: 'Python beginner', 
-                category: 'IT Technologies',
-                route: '/courses/advanced',
-                status: 'Не начато',
-                lang: 'ENG',
-                duration: '9ч 45мин',
-                rate: '4.6',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course8, 
-                title: 'Javascript разработчик (средний)', 
-                category: 'IT Technologies',
-                route: '/courses/advanced',
-                status: 'Не начато',
-                lang: 'РУС',
-                duration: '4ч 45мин',
-                rate: '3.6',
-                type: 'Электронное обучение',
-            },
 
-        ])
-    }, [])
+                const _coursesByCategory = {};
+
+                if (response.status === 200) {
+                    response.data.forEach(course => {
+                        const categoryName = course.courseCategory.category_name;
+                        if (!_coursesByCategory[categoryName]) {
+                            _coursesByCategory[categoryName] = [];
+                        }
+                        _coursesByCategory[categoryName].push(course);
+                    });
+    
+                    console.log(_coursesByCategory)
+                    setCoursesByCategory(_coursesByCategory);
+                    // setData(response.data);
+                } else {
+                    // Handle other status codes if needed
+                    setError(response.statusText);
+                    console.log(response.statusText);
+                }
+
+                // Iterate through the courses and categorize them
+                
+
+                
+            } catch (error) {
+                setError(error);
+                console.error(error);
+            }
+
+            setLoading(false);
+        };
+        
+        fetchData();
+      }, []);
 
     return ( 
         <div className="catalog-page">
@@ -246,21 +116,17 @@ function Catalog() {
 
                 </div>
 
-
-                <CoursesBlock 
-                    categoryName={'Антиотмывочная система РК'} 
-                    categoryDesc={'Курсы AML ACADEMY составлены специалистами в области ПОД/ФТ с многолетним опытом работы в данной сфере, в том числе в уполномоченном государственном органе.'} 
-                    courses={courses} />
-
-                <CoursesBlock 
-                    categoryName={'Обучение'} 
-                    categoryDesc={'Широкий спектр профессиональных курсов в Астане по самым разным направлениям'} 
-                    courses={courses} />
-
-                <CoursesBlock 
-                    categoryName={'IT Technologies'} 
-                    categoryDesc={'lorem ipsum dolor sit amet, consectetur adipiscing'} 
-                    courses={courses} />
+                {
+                    coursesByCategory !== null ? Object.keys(coursesByCategory).map(categoryName => {
+                        
+                        return (
+                            <CoursesBlock 
+                                categoryName={categoryName} 
+                                categoryDesc={categoryName} 
+                                courses={coursesByCategory[categoryName]} /> 
+                        )
+                    }) : null
+                }
                 
             </main>
 
@@ -269,73 +135,69 @@ function Catalog() {
     );
 }
 
-const CoursesBlock = ({categoryName, categoryDesc, courses}) => {
-    console.log(categoryName, courses)
-    // console.log(typeof categoryName, typeof courses[0]['category'] || '');
+const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
+    console.log(categoryName, courses);
 
     const navigate = useNavigate();
-    courses = courses.filter(({ category }) => category === categoryName);
 
-    if (courses.length === 0) return;
+    const filteredCourses = courses.filter((course) => course.courseCategory.category_name === categoryName);
+
+    if (filteredCourses.length === 0) {
+        return null;
+    }
 
     return (
         <>
+            <div className='container'>
+                <h1 style={{
+                    fontFamily: 'Roboto',
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '23px',
+                    letterSpacing: '0em',
+                    textAlign: 'left'
+                }}>{categoryName}</h1>
+                <p style={{
+                    fontFamily: "Roboto",
+                    fontSize: '16px',
+                    fontWeight: '400',
+                    lineHeight: '19px',
+                    letterSpacing: '0em',
+                    textAlign: 'left',
+                    color: '#656678'
+                }}>
+                    {categoryDesc}
+                </p>
+            </div>
 
-        <div className='container'>
-            <h1 style={{
-                fontFamily: 'Roboto',
-                fontSize: '20px',
-                fontWeight: '500',
-                lineHeight: '23px',
-                letterSpacing: '0em',
-                textAlign: 'left'
-                
-            }}>{categoryName}</h1>
-            <p style={{
-                fontFamily: "Roboto",
-                fontSize: '16px',
-                fontWeight: '400',
-                lineHeight: '19px',
-                letterSpacing: '0em',
-                textAlign: 'left',
-                color: '#656678'
-                
-            }}>
-                {categoryDesc}
-            </p>
-        </div>
-
-        <div className="courses-block container">
-            {
-                courses.map(({id, img, title, lang, duration, rate, type}) => {
-
-                    return (
-                        <div onClick={() => {
-                            navigate(`/courses/${id}`);
-                        }}>
-                            <img src={`${img}`} alt={title} />
+            <div className="courses-block container">
+                {
+                    filteredCourses.map(({ id, course_image, course_name, lang, duration, rate, type }) => (
+                        <div key={id} onClick={() => navigate(`/courses/${id}`)}>
+                            <img src={`${course_image}`} alt={course_name} />
                             <div>
-                                <h3>{title}</h3>
+                                <h3>{course_name}</h3>
                                 <div className='available'>Доступно</div>
                                 <div className='characteristics'>
-                                    <p>{lang} | {duration}</p>
+                                    <p>{lang !== null && lang !== undefined ? lang : 'РУС'} | {duration !== null && duration !== undefined ? duration : '1ч'}</p>
                                     <div className='rate'>
-                                        <AiFillStar className='icon' size={20}/>
-                                        <span>{rate}</span>
+                                        <AiFillStar className='icon' size={20} />
+                                        <span>{rate !== null && rate !== undefined ? rate : '5.0'}</span>
                                     </div>
                                 </div>
                                 <div className='type'>
-                                    {type}
+                                    <div>
+                                        {type !== undefined && type !== null ? type : 'Электронное обучение'}
+                                    </div>
                                 </div>
                             </div>
-                        </div>  
-                    )
-                })
-            }
-        </div>
-        
+                        </div>
+                    ))
+                }
+            </div>
         </>
-    )
-}
+    );
+};
+
 
 export default Catalog;
