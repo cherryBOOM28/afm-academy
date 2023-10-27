@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 import './style.scss'
 
-const NotNumberedDots = ({ list }) => {
+const SmallNotNuberedDots = ({ list }) => {
     return (
         <>
-            <div className='not-numbered-dots'>
+            <div className='small-not-numbered-dots'>
                 {
                     list.map((item, index) => {
                         return (
@@ -21,4 +21,4 @@ const NotNumberedDots = ({ list }) => {
     );
 }
 
-export default NotNumberedDots;
+export default SmallNotNuberedDots;

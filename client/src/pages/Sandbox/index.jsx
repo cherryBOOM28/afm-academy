@@ -9,7 +9,8 @@ import image1 from './image1.png';
 import { useNavigate } from 'react-router-dom';
 import ContentHeaderWithImage from '../../components/courseTemplates/complex/ContentHeaderWithImage';
 import TextPlusDots_1 from '../../components/courseTemplates/complex/TextPlusDots/TextPlusDots_1';
-import TextPlusDots_2 from '../../components/courseTemplates/complex/TextPlusDots/TextPlusDots_1';
+import TextPlusDots_2 from '../../components/courseTemplates/complex/TextPlusDots/TextPlusDots_2';
+import HeaderWithTitleAndText from '../../components/courseTemplates/complex/HeaderWithTitleAndText';
 
 function Sandbox() {
     const [courseName, setCourseName] = useState('');
@@ -80,7 +81,7 @@ function Sandbox() {
                                 </div>
                             </div>
 
-                            <ContentHeaderWithImage 
+                            {/* <ContentHeaderWithImage 
                                 title={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'} 
                                 image={image1} 
                                 imageText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}
@@ -100,6 +101,18 @@ function Sandbox() {
                                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
                                 ]}
                             />
+
+                            <HeaderWithTitleAndText 
+                                header={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}
+                                title={'Lorem ipsum dolor sit amet'}
+                                text={[
+                                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
+                                ]}
+                                
+                            /> */}
+
+                            
                                 
                         </div>
                     </div>
