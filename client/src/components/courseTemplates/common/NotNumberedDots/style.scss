@@ -1,0 +1,49 @@
+.not-numbered-dots {
+    width: 100%;
+    padding: 0px 70px;
+
+    margin-top: 30px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+
+    box-sizing: border-box;
+
+    > div {
+        display: flex;
+        flex-direction: row;
+        gap: 33px;
+
+        > span {
+            width: 10px;
+            height: 10px;
+            // padding: 15px;
+            border-radius: 50%;
+            background-color: #CADEFC;
+
+            box-sizing: border-box;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #3A3939;
+            font-family: Inter;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 26px; /* 144.444% */
+        }
+
+        > p {
+            color: #000;
+
+            font-family: Inter;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 140%; /* 22.4px */
+        }
+    }
+}
