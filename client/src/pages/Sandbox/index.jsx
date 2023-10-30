@@ -7,7 +7,7 @@ import lectorImage from './lectorImage.png';
 import image1 from './image1.png';
 
 import { useNavigate } from 'react-router-dom';
-import ContentHeaderWithImage from '../../components/courseTemplates/complex/ContentHeaderWithImage';
+import ContentHeaderWithImage from './../../components/courseTemplates/complex/images/ContentHeaderWithImage';
 import TextPlusDots_1 from '../../components/courseTemplates/complex/TextPlusDots/TextPlusDots_1';
 import TextPlusDots_2 from '../../components/courseTemplates/complex/TextPlusDots/TextPlusDots_2';
 import HeaderWithTitleAndText from '../../components/courseTemplates/complex/HeaderWithTitleAndText';

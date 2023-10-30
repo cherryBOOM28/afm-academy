@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './style.scss'
-import TextWithTitle from '../../common/TextWithTitle';
+import TextWithTitle from './../../../common/TextWithTitle';
 
 function ContentHeaderWithImage({ image, title, imageText, ...props }) {
     return ( 
