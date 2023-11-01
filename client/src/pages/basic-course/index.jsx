@@ -13,6 +13,7 @@ import Report_Warning from '../../components/courseTemplates/common/Warnings/Rep
 import Sizebox from '../../components/courseTemplates/common/Sizebox';
 import NumberedDots from '../../components/courseTemplates/common/NumberedDots';
 import ImageLine from '../../components/courseTemplates/common/ImageLine';
+import DropDownTextWithTabs from '../../components/courseTemplates/complex/DropDownTextWithTabs';
 
 function Basic_course(props) {
     const [courseName, setCourseName] = useState('Базовый курс');
@@ -112,9 +113,25 @@ function Basic_course(props) {
 
                             <ImageLine img={null} height={130} color={'#CADEFC'}/>
 
-                            <Sizebox height={100}/>
+                            <Sizebox height={36}/>
 
-
+                            <DropDownTextWithTabs 
+                                tabs={[
+                                    'Общие понятия',
+                                    'Понятия в сфере ПОД/ФТ',
+                                    'Понятия в сфере ПОД/ФТ',
+                                    'Понятия в сфере ПОД/ФТ',
+                                    'Понятия в сфере ПОД/ФТ',
+                                    'Понятия в сфере ПОД/ФТ',
+                                    'Понятия в сфере ПОД/ФТ',
+                                ]}
+                                tabsData={[]}
+                                headerTextColor={'#170F49'}
+                                activeHeaderTextColor={'#1F3C88'}
+                                textColor={'#6F6C90'}
+                                tabsTextColor={'#3A3939'}
+                                tabsBackgroundColor={'#BAD6FF'}
+                            />
                         </div>
                     </div>
 

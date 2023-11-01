@@ -1,0 +1,18 @@
+.dropDownTextWithTabs {
+    padding: 0px 70px;
+
+    .tabs {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 7px 15px;
+        flex-wrap: wrap;
+
+        .tab {
+            padding: 7px 20px;
+            border-radius: 10px;
+
+            cursor: pointer;
+        }
+    }
+}
