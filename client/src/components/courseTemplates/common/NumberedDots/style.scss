@@ -1,3 +1,7 @@
+> h3 {
+    font-weight: 600;
+}
+
 .numbered-dots {
     width: 100%;
     padding: 0px 70px;
@@ -6,21 +10,20 @@
 
     display: flex;
     flex-direction: column;
-    gap: 27px;
+    gap: 20px;
 
     box-sizing: border-box;
 
     > div {
         display: flex;
         flex-direction: row;
-        gap: 33px;
+        gap: 20px;
 
         > span {
             width: 40px;
             height: 40px;
             padding: 15px;
             border-radius: 50%;
-            background-color: #F9CB36;
 
             box-sizing: border-box;
 
@@ -32,18 +35,25 @@
             font-family: Inter;
             font-size: 18px;
             font-style: normal;
-            font-weight: 500;
+            font-weight: 600;
             line-height: 26px; /* 144.444% */
         }
 
-        > p {
-            color: #000;
+        > div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
 
-            font-family: Inter;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: 140%; /* 22.4px */
+            > p {
+    
+                color: #000;
+    
+                font-family: Inter;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 140%; /* 22.4px */
+            }
         }
     }
 }

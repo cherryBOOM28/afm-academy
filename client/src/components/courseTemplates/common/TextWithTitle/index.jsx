@@ -2,17 +2,27 @@ import React, { useState, useEffect } from 'react';
 import './style.scss'
 
 
-function TextWithTitle({ title, text }) {
+function TextWithTitle({ title, text, color }) {
+    const defaultColor = '#000000';
+    const _color = color ? color : defaultColor; 
+
     return ( 
         <div className="text-with-title">
-            <h4>{title}</h4>
+            <h4 style={{
+                color: _color,
+            }}>{title}</h4>
             {
                 Array.isArray(text) 
                     ? (
                         <div>
                             {
                                 text.map(i => (
-                                    <p>{i}</p>
+                                    <p
+                                        style={{
+                                            color: _color,
+                                        }}
+                                        key={i}
+                                    >{i}</p>
                                 ))
                             }
                         </div>

@@ -11,6 +11,12 @@ import ContentHeaderWithImage from './../../components/courseTemplates/complex/i
 import TextPlusDots_1 from '../../components/courseTemplates/complex/TextPlusDots/TextPlusDots_1';
 import TextPlusDots_2 from '../../components/courseTemplates/complex/TextPlusDots/TextPlusDots_2';
 import HeaderWithTitleAndText from '../../components/courseTemplates/complex/HeaderWithTitleAndText';
+import ImageTextAndDots_1 from '../../components/courseTemplates/complex/images/ImageTextAndDots_1';
+import ImageWithText from '../../components/courseTemplates/common/ImageWithText';
+import ImageHeaderAndText from '../../components/courseTemplates/complex/images/ImageHeaderAndText';
+import ImageTextAndNumberedDots from '../../components/courseTemplates/complex/images/ImageTextAndNumberedDots';
+import ImageAndText_Colored from '../../components/courseTemplates/complex/images/ImageAndText_Colored';
+import TestPage from '../../components/courseTemplates/complex/Test';
 
 function Sandbox() {
     const [courseName, setCourseName] = useState('');
@@ -66,7 +72,7 @@ function Sandbox() {
                             </div>
                         </div>
                         <div className="nav-body">
-
+                            
                         </div>
 
                     </div>
@@ -112,8 +118,55 @@ function Sandbox() {
                                 
                             /> */}
 
-                            
+                            {/* <ImageTextAndDots_1 
+                                title={'Lorem ipsum dolor sit amet'}
+                                text={[
+                                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',
+                                ]}
+                                listTitle={'Lorem ipsum dolor sit amet'}
+                                list={[
+                                    'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid',
+                                    'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid',
+                                    'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid'
+                                ]}
+                            /> */}
+
+                            {/* <ImageHeaderAndText 
+                                image={null}
+                                imageText={'Lorem ipsum dolor sit'}
+                                title={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incid'}
+                                text={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor'}
+                                textColor={null}
+                                imageTextColor={null}
+                            /> */}
+                            {/* <ImageWithText imageText={"lorem ipsum dolor sit amet"}/> */}
                                 
+                            {/* <ImageTextAndNumberedDots 
+                                image={null}
+                                title={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor'}
+                                text={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}
+                                list={[
+                                    'list item 1',
+                                    'list item 2',
+                                    'list item 3',
+                                ]}
+                            /> */}
+
+                            {/* <ImageAndText_Colored 
+                                image={null}
+                                title={'Lorem ipsum dolor sit'}
+                                text={[
+                                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid',
+                                    
+                                ]}
+                                backgroundColor={'#4E6B9F'}
+                                color={'#ffffff'}
+                            /> */}
+
+                            <TestPage />
+
+
                         </div>
                     </div>
 
