@@ -14,6 +14,7 @@ import Sizebox from '../../components/courseTemplates/common/Sizebox';
 import NumberedDots from '../../components/courseTemplates/common/NumberedDots';
 import ImageLine from '../../components/courseTemplates/common/ImageLine';
 import DropDownTextWithTabs from '../../components/courseTemplates/complex/DropDownTextWithTabs';
+import TextAndLink from '../../components/courseTemplates/complex/TextAndLink';
 
 function Basic_course(props) {
     const [courseName, setCourseName] = useState('Базовый курс');
@@ -119,19 +120,60 @@ function Basic_course(props) {
                                 tabs={[
                                     'Общие понятия',
                                     'Понятия в сфере ПОД/ФТ',
-                                    'Понятия в сфере ПОД/ФТ',
-                                    'Понятия в сфере ПОД/ФТ',
-                                    'Понятия в сфере ПОД/ФТ',
-                                    'Понятия в сфере ПОД/ФТ',
-                                    'Понятия в сфере ПОД/ФТ',
+                                    'Проверка клиентов',
+                                    'СФМ',
+                                    'Риск-ориентированный подход',
                                 ]}
-                                tabsData={[]}
+                                tabsData={[
+                                    {header: 'Header', data: 'fajsfa', tabName: 'Общие понятия'},
+                                    {header: 'Header1', data: 'fajsfa', tabName: 'Общие понятия'},
+                                    {header: 'Heade2', data: 'fajsfa', tabName: 'Понятия в сфере ПОД/ФТ'},
+                                    {header: 'Heade3', data: 'fajsfa', tabName: 'Понятия в сфере ПОД/ФТ'},
+                                ]}
                                 headerTextColor={'#170F49'}
                                 activeHeaderTextColor={'#1F3C88'}
                                 textColor={'#6F6C90'}
                                 tabsTextColor={'#3A3939'}
                                 tabsBackgroundColor={'#BAD6FF'}
                             />
+
+                            <Sizebox height={100}/>
+
+                            <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
+                                <>
+                                Нажмите на <span className="bold">ссылку</span> ниже, чтобы перейти к
+                                Закону «О противодействии легализации (отмыванию) доходов, 
+                                полученных преступным путем, и финансированию терроризма»
+                                </>
+                            </HeaderWithLine>
+
+                            <Sizebox height={83}/>
+
+                            <TextAndLink
+                                text={'Закон «О противодействии легализации (отмыванию) доходов, полученных преступным путем, и финансированию терроризма»'}
+                                link={'google.com'}
+                            />
+
+                            <Sizebox height={65}/>
+
+                            <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
+                                <>
+                                Теперь, когда вы 
+                                <span className="bold">понимаете, ключевые понятия и сокращения</span>, 
+                                можем перейти к изучению системы ПОД/ФТ
+
+                                </>
+                            </HeaderWithLine>
+
+                            <Sizebox height={100}/>
+
+                            <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
+                                <>
+                                Перейдем к следующему блоку обучения
+                                </>
+                            </HeaderWithLine>
+
+                            
                         </div>
                     </div>
 
