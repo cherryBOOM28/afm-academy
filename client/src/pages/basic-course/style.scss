@@ -27,12 +27,23 @@
         justify-content: space-between;
         align-items: center;
 
-        padding: 10px 20px;
+        padding: 42px 70px;
         box-sizing: border-box;
 
         > div:nth-child(1) {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            align-items: center;
+            gap: 15px;
+
+            > .show-nav-btn {
+                padding-top: 1px;
+                cursor: pointer;
+
+                &-icon {
+                    font-weight: 600;
+                }
+            }
 
         }
 
@@ -45,43 +56,48 @@
             }
         }
 
-        .course-title {
-            font-size: 14px;
-        }
-
         .course-subtitle {
-            font-size: 18px;
-            // margin-top: 10px;
+            color: #343434;
+
+            font-family: Ubuntu;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
         }
     }
 
     .course-body {
         
-        height: 100vh;
+        height: calc(100vh - 80px);
         width: 100%;
         display: flex;
         flex-direction: row;
 
-
         .course-nav {
             width: 300px;
             height: 100%;
+            transition: width 0.5s ease-in-out;
 
             box-sizing: border-box;
-
             background-color: $sidebarBackgroundColor;
-            // background-color: black;
-
             overflow: scroll;
 
             &::-webkit-scrollbar {
                 display: none;
               }
-              
-              /* Hide scrollbar for IE, Edge and Firefox */
-            
             -ms-overflow-style: none;  /* IE and Edge */
             scrollbar-width: none;  /* Firefox */
+
+            &.hide {
+                width: 0px;
+                transition: width 0.5s ease-in-out;
+
+                * {
+                    // display: none;
+                    // transition: display 0.5s ease-in-out;
+                }
+            }
 
             .nav-head {
                 display: flex;
@@ -143,7 +159,21 @@
             -ms-overflow-style: none;  /* IE and Edge */
             scrollbar-width: none;  /* Firefox */
 
-            width: calc(100% - 300px);
+            width: calc(100%);
+            // padding: 0px 100px;
+
+            transition: width 0.5s ease-in-out;
+            
+            &.open {
+                width: calc(100% - 300px);
+                // padding: 0px;
+                transition: width 0.5s ease-in-out
+                // , padding 0.5s ease-in-out
+                ;
+            }
+
+            height: 100%;
+            box-sizing: border-box;
 
             > .content {
 
@@ -174,9 +204,24 @@
             
                 }
 
-                > h1, h2, h3, h4, h5, h6 {
+                h2 {
+                    color: #3A3939;
+
+                    /* H2 */
+                    font-family: Ubuntu;
+                    font-size: 24px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 140%;
+                }
+
+                > h1, h2, h3, h5 {
                     margin-right: 70px;
                     margin-left: 70px;
+                }
+
+                .bold {
+                    font-weight: 600;
                 }
 
                 .content-header {

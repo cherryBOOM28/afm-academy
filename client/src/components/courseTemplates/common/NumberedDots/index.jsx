@@ -2,13 +2,19 @@ import React, { useState, useEffect } from 'react';
 
 import './style.scss'
 
-const NumberedDots = ({ list, color, header }) => {
-    const defaultColor = '#F9CB36';
+const NumberedDots = ({ list, dotsColor, color, header }) => {
+    const defaultDotsColor = '#F9CB36';
+    const defaultColor = '#3A3939';
 
     return (
         <>  
             {
-                header ? <h3>{header}</h3> : null
+                header ? <h3 
+                    style={{
+                        fontWeight: 600,
+                        color: color ? color : defaultColor,
+                    }}
+                >{header}</h3> : null
             }
             <div className='numbered-dots'>
                 {
@@ -20,13 +26,18 @@ const NumberedDots = ({ list, color, header }) => {
                                 <span 
                                     style={{
                                         backgroundColor: 
-                                            color !== null && color!== undefined 
-                                                ? color
-                                                : defaultColor,
+                                        dotsColor !== null && dotsColor !== undefined 
+                                                ? dotsColor
+                                                : defaultDotsColor,
+                                        color: color ? color : defaultColor,
                                     }}
                                 >{i}</span>
                                 <div>
-                                    <p>{item}</p>
+                                    <p
+                                        style={{
+                                            color: color ? color : defaultColor,
+                                        }}      
+                                    >{item}</p>
                                 </div>
                             </div>
                         )
