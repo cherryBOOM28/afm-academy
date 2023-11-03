@@ -2,7 +2,7 @@ import React from 'react';
 
 import './style.scss';
 
-function TextWithBackground({ text, color, backgroundColor }) {
+function TextWithBackground({ header, text, color, backgroundColor }) {
     const defaultColor = '#3A3939'
     const defaultBackgroundColor = '#CADEFC'
 
@@ -16,7 +16,10 @@ function TextWithBackground({ text, color, backgroundColor }) {
             style={{
                 backgroundColor: _backgroundColor
             }}
-        >
+        >   
+            {header ? (
+                <div className="header" style={pStyle}>{header}</div>
+            ) : null}
             {
                 Array.isArray(text)?
                     text.map((t, i) => <p style={pStyle} key={i}>{t}</p>) 

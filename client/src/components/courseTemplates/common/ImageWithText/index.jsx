@@ -36,10 +36,13 @@ function ImageWithText({ img, imageText, color, children }) {
                         }}
                     ></div>    
                 </div> 
-                <p>
+                <p
+                    style={{color: color !== undefined && color !== null ? color : '#000000'}}
+                >
                     {imageText}
                 </p>
             </div>
+            <div className="dim"></div>
         </div>
     );
 }

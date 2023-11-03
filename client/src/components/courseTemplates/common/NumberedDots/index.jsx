@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './style.scss'
+import Sizebox from '../Sizebox';
 
 const NumberedDots = ({ list, dotsColor, color, header }) => {
     const defaultDotsColor = '#F9CB36';
@@ -9,12 +10,17 @@ const NumberedDots = ({ list, dotsColor, color, header }) => {
     return (
         <>  
             {
-                header ? <h3 
-                    style={{
-                        fontWeight: 600,
-                        color: color ? color : defaultColor,
-                    }}
-                >{header}</h3> : null
+                header ? 
+                <>
+                    <h3 
+                        style={{
+                            fontWeight: 600,
+                            color: color ? color : defaultColor,
+                        }}
+                    >{header}</h3> 
+                    <Sizebox height={30} />
+                </>
+                : null
             }
             <div className='numbered-dots'>
                 {

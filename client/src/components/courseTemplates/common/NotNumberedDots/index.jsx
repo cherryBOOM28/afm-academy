@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './style.scss'
+import Sizebox from '../Sizebox';
 
 const NotNumberedDots = ({ list, header, dotsColor, color }) => {
 
@@ -12,14 +13,19 @@ const NotNumberedDots = ({ list, header, dotsColor, color }) => {
     return (
         <>
             {
-                header ? <h3 
-                    style={{
-                        fontWeight: 600,
-                        color: color ? color : defaultColor,
-                        lineHeight: '140%',
-                        fontSize: '24px'
-                    }}
-                >{header}</h3> : null
+                header ? (
+                    <>
+                        <h3 
+                            style={{
+                                fontWeight: 600,
+                                color: color ? color : defaultColor,
+                                lineHeight: '140%',
+                                fontSize: '24px'
+                            }}
+                        >{header}</h3>
+                        <Sizebox height={37} />
+                    </>
+                ) : null
             }
             <div className='not-numbered-dots'>
                 {
