@@ -1150,7 +1150,7 @@ const LessonPage = ({ children, name, lecturer }) => {
 const TODO = ({text}) => (
     <div
         style={{
-            background: 'red',
+            background: 'rgb(202, 222, 252)',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
