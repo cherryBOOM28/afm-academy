@@ -44,7 +44,7 @@ function OneToFour({
                         </div>
                     </div>
                     <Sizebox height={51} />
-                    <motion.div className="body"
+                    <motion.div className="body-wrapper"
                         variants={{
                             hidden: {
                                 height: 0,
@@ -60,14 +60,16 @@ function OneToFour({
                         initial='hidden'
                         animate={mainControls}
                     >
-                        {
-                            list ? list.map((item, index) => {
+                        <div className="body">
+                            {
+                                list ? list.map((item, index) => {
 
-                                return (
-                                    <div></div>
-                                )
-                            }) : null
-                        }
+                                    return (
+                                        <div></div>
+                                    )
+                                }) : null
+                            }
+                        </div>
                     </motion.div>
                 </div>
             </div>

@@ -49,6 +49,7 @@ import DropdownList_r5 from '../../components/courseTemplates/complex/interactiv
 import DropdownList from '../../components/courseTemplates/complex/interactives/DropdownList';
 import VideoLine from '../../components/courseTemplates/common/VideoLine';
 import OneToFour from '../../components/courseTemplates/complex/interactives/OneToFour';
+import VideoWithTitleAndText from '../../components/courseTemplates/complex/Video/VideoWithTitleAndText';
 
 function Basic_course(props) {
     const [courseName, setCourseName] = useState('Базовый курс');
@@ -402,9 +403,19 @@ function Basic_course(props) {
 
                     <Sizebox height={80} />
 
-                    <Reveal>
-                        <VideoLine />
-                    </Reveal>
+                    <Centered>
+                        <RandomParapraph fontSize={'26px'}>
+                            Схема заключалась в <span className="bold">помещении денежных средств</span> 
+                            с большим наличным оборотом, в прачечные 
+                            (стиральные машины с автоматами) 
+                            принимавшие монеты в виде оплаты. 
+
+                        </RandomParapraph>
+                    </Centered>
+
+                    <Sizebox height={47} />
+
+                    <VideoWithTitleAndText title={'Помещение денежных средств'} text={'Тем самым придавалось видимость активной деятельности компании. При этом, предикатным преступлением выступал доход, полученный от незаконного оборота алкогольной продукции. Оборот, производство, продажа и перевозка которого на тот момент была запрещена в рамках «сухого закона». \nНа тот период времени, отсутствовала практика противодействия легализации доходов, однако предусматривало налогообложение всех доходов, в том числе полученных преступным путем.'}/>
 
                     <Sizebox height={80} />
 
