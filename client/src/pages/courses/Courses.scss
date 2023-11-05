@@ -9,8 +9,9 @@
     }
 
     .container {
-        width: 80%;
-        margin: 0 auto;
+        // width: 80%;
+        // margin: 0 auto;
+        padding: 0px 120px;
     }
 
     .page-content {
@@ -76,12 +77,53 @@
             }
         }
 
+        .loading {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            grid-auto-flow: dense;
+        }
+        
+        .loading > div {
+            height: 400px;
+            width: 100%;
+            background: linear-gradient(90deg, #f0f0f0, #f8f8f8, #f0f0f0); /* Lighter gradient for the loading effect */
+            box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            animation: loadingAnimation 2s infinite linear; /* Animation applied to the div */
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @keyframes loadingAnimation {
+            0% {
+                background-position: -200% 0; /* Initial position off the left side of the container */
+            }
+            25% {
+                background-position: -100% 0; /* Initial position off the left side of the container */
+            }
+            50% {
+                background-position: 0 0; /* Initial position off the left side of the container */
+            }
+            75% {
+                background-position: 100% 0; /* Initial position off the left side of the container */
+            }
+            100% {
+                background-position: 200% 0; /* Moves completely to the right */
+            }
+        }
+
         .courses-row {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
+            grid-auto-flow: dense;
             justify-content: center; /* Center horizontally */
             align-content: center;
+
+            margin-bottom: 100px;
 
             > div {
                 cursor: pointer;
@@ -95,7 +137,7 @@
                 display: flex;
                 flex-direction: column;
 
-                margin-bottom: 100px;
+                // margin-bottom: 100px;
                 
                 img {
                     width: 100%;
@@ -114,7 +156,7 @@
                         font-weight: 600;
                         line-height: normal;
 
-                        margin-top: 10px;
+                        margin-bottom: 10px;
                     }
     
                     .available {

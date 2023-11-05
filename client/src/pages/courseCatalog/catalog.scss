@@ -8,8 +8,9 @@
     }
 
     .container {
-        max-width: 1140px;
-        margin: 0 auto;
+        // max-width: 1140px;
+        padding: 0px 120px;
+        // margin: 0 auto;
     }
 
     .page-content {
@@ -62,8 +63,6 @@
             width: 100%;
             background-color: #1F3C88;
 
-            
-
             .container {
                 width: 100%;
                 height: 100%;
@@ -84,8 +83,6 @@
                     font-style: normal;
                     font-weight: 700;
                     line-height: normal;
-
-                    
                 }
 
                 padding: 0;
@@ -168,10 +165,49 @@
 
         }
 
+        .loading {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            grid-auto-flow: dense;
+        }
+        
+        .loading > div {
+            height: 400px;
+            width: 100%;
+            background: linear-gradient(90deg, #f0f0f0, #f8f8f8, #f0f0f0); /* Lighter gradient for the loading effect */
+            box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+            animation: loadingAnimation 2s infinite linear; /* Animation applied to the div */
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @keyframes loadingAnimation {
+            0% {
+                background-position: -200% 0; /* Initial position off the left side of the container */
+            }
+            25% {
+                background-position: -100% 0; /* Initial position off the left side of the container */
+            }
+            50% {
+                background-position: 0 0; /* Initial position off the left side of the container */
+            }
+            75% {
+                background-position: 100% 0; /* Initial position off the left side of the container */
+            }
+            100% {
+                background-position: 200% 0; /* Moves completely to the right */
+            }
+        }
+
         .courses-block {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Change the minimum width as needed */
             gap: 20px;
+            grid-auto-flow: dense;
             justify-content: center; /* Center horizontally */
             align-content: center;
             

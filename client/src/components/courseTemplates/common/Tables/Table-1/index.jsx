@@ -14,6 +14,21 @@ function Table_1({ rows, borderColor, color }) {
         color: _color,
     }
 
+    const [open, setOpen] = useState(false);
+    const maxDisplayedRows = 10;
+    const [displayedRows, setDisplayedRows] = useState(rows.slice(0, maxDisplayedRows));
+
+    const handleOpen = () => {
+        setDisplayedRows(rows);
+        setOpen(true);
+    }
+
+    const handleClose = () => {
+        setDisplayedRows(rows.slice(0, maxDisplayedRows));
+        setOpen(false);
+    }
+
+
     if (rows === undefined || rows === null) return null;
 
     return ( 
@@ -45,8 +60,8 @@ function Table_1({ rows, borderColor, color }) {
                         </div>
 
                             <div className="table-body" style={cellStyle}>
-                                {rows.map(( row, index ) => (
-                                        <div className="table-row">
+                                {displayedRows.map(( row, index ) => (
+                                        <div className="table-row" key={index}>
                                             <div style={cellStyle}></div>
                                             <div style={cellStyle} className='row-head'>
                                                 <p>
@@ -67,7 +82,10 @@ function Table_1({ rows, borderColor, color }) {
                             <div style={cellStyle}></div>
                             <div style={cellStyle}></div>
                             <div style={cellStyle} className='showAll'>
-                                <div>Посмотреть все</div>
+                                {open 
+                                    ? <div onClick={handleClose}>Свернуть</div>
+                                    : <div onClick={handleOpen}>Посмотреть все</div>
+                                }
                             </div>
                             <div style={cellStyle}></div>
                         </div>

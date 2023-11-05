@@ -80,21 +80,39 @@ function CoursesPage() {
                     </div>
                 </div>
 
-                <div className="courses-row container">
-                    {
-                        data !== null ? data.map(course => (
-                            <CourseCard 
-                                id={course.course_id}
-                                img={course.course_image}
-                                title={course.course_name}
-                                lang={'РУС'}
-                                duration={'1ч 45мин'}
-                                rate={'5.0'}
-                                type={'Электронное обучение'}
-                            />
-                        )) : null
-                    }
-                </div>
+                {
+                    isLoading 
+                    ? (
+                        <div className="container">
+                            <div className="loading" style={{
+                                margin: '20px 0px'
+                            }}>
+                                <div>загружаем</div>
+                                <div>загружаем</div>
+                                <div>загружаем</div>
+                                <div>загружаем</div>
+                                <div>загружаем</div>
+                            </div>
+                        </div>
+                    )
+                    : (
+                        <div className="courses-row container">
+                            {
+                                data !== null ? data.map(course => (
+                                    <CourseCard 
+                                        id={course.course_id}
+                                        img={course.course_image}
+                                        title={course.course_name}
+                                        lang={'РУС'}
+                                        duration={'1ч 45мин'}
+                                        rate={'5.0'}
+                                        type={'Электронное обучение'}
+                                    />
+                                )) : null
+                            }
+                        </div>
+                    )
+                }
 
                 <div className="container">
                     <div className="faq-wrapper">

@@ -20,9 +20,6 @@ import { BsFilter } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
 import { AiFillStar } from "react-icons/ai";
 
-
-
-
 import bookIcon from './../../assets/icons/book.svg'
 import base_url from '../../settings/base_url';
 import axios from 'axios';
@@ -45,7 +42,6 @@ function Catalog() {
                         Authorization: `Bearer ${jwtToken}`,
                     },
                 });
-
 
                 const _coursesByCategory = {};
 
@@ -116,7 +112,21 @@ function Catalog() {
 
                 </div>
 
+
                 {
+                    isLoading ? (
+                        <div className="container">
+                            <div className="loading" style={{
+                                margin: '20px 0px'
+                            }}>
+                                <div>загружаем</div>
+                                <div>загружаем</div>
+                                <div>загружаем</div>
+                                <div>загружаем</div>
+                                <div>загружаем</div>
+                            </div>
+                        </div>
+                    ) : 
                     coursesByCategory !== null ? Object.keys(coursesByCategory).map(categoryName => {
                         
                         return (
@@ -142,9 +152,9 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
 
     const filteredCourses = courses.filter((course) => course.courseCategory.category_name === categoryName);
 
-    if (filteredCourses.length === 0) {
-        return null;
-    }
+    // if (filteredCourses.length === 0) {
+    //     return null;
+    // }
 
     return (
         <>
@@ -169,30 +179,33 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                     {categoryDesc}
                 </p>
             </div>
-
             <div className="courses-block container">
                 {
-                    filteredCourses.map(({ id, course_image, course_name, lang, duration, rate, type }) => (
-                        <div key={id} onClick={() => navigate(`/courses/${id}`)}>
-                            <img src={`${course_image}`} alt={course_name} />
-                            <div>
-                                <h3>{course_name}</h3>
-                                <div className='available'>Доступно</div>
-                                <div className='characteristics'>
-                                    <p>{lang !== null && lang !== undefined ? lang : 'РУС'} | {duration !== null && duration !== undefined ? duration : '1ч'}</p>
-                                    <div className='rate'>
-                                        <AiFillStar className='icon' size={20} />
-                                        <span>{rate !== null && rate !== undefined ? rate : '5.0'}</span>
+                    filteredCourses.map((course) => {
+                        const { id, course_image, course_name, lang, duration, rate, type } = course;
+
+                        return (
+                            <div key={id} onClick={() => navigate(`/courses/${id}`)}>
+                                <img src={`${course_image}`} alt={course_name} />
+                                <div>
+                                    <h3>{course_name}</h3>
+                                    <div className='available'>Доступно</div>
+                                    <div className='characteristics'>
+                                        <p>{lang !== null && lang !== undefined ? lang : 'РУС'} | {duration !== null && duration !== undefined ? duration : '1ч'}</p>
+                                        <div className='rate'>
+                                            <AiFillStar className='icon' size={20} />
+                                            <span>{rate !== null && rate !== undefined ? rate : '5.0'}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className='type'>
-                                    <div>
-                                        {type !== undefined && type !== null ? type : 'Электронное обучение'}
+                                    <div className='type'>
+                                        <div>
+                                            {type !== undefined && type !== null ? type : 'Электронное обучение'}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    ))
+                        )
+                    })
                 }
             </div>
         </>

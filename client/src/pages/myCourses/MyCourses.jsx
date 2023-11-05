@@ -12,95 +12,54 @@ import course3 from './../../assets/images/courses-3.png';
 import course4 from './../../assets/images/courses-4.png';
 
 import bookIcon from './../../assets/icons/book.svg'
+import axios from 'axios';
+import base_url from '../../settings/base_url';
+
+import { AiFillStar } from "react-icons/ai";
+import { MdOndemandVideo } from "react-icons/md";
+
 
 function MyCourses() {
     const navigate = useNavigate();
+
     const [courses, setCourses] = useState([]);
+    const [error, setError] = useState(null);
+    const [isLoading, setLoading] = useState(true);
+
+    const jwtToken = localStorage.getItem('jwtToken');
 
     useEffect(() => {
-        setCourses([
-            {
-                img: course1, 
-                cateory: 'Антиотмывочная система РК',
-                title: 'Базовый курс',
-                route: '/courses/basic',
-                status: 'В процессе',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '5.0',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course2, 
-                title: 'Профильный курс', 
-                cateory: 'Антиотмывочная система РК',
-                route: '/courses/specialized',
-                status: 'Не начато',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '5.0',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course3, 
-                title: 'Профессиональный курс', 
-                cateory: 'Антиотмывочная система РК',
-                route: '/courses/professional',
-                status: 'В процессе',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '5.0',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course4, 
-                title: 'Повышение квалификации', 
-                cateory: 'Антиотмывочная система РК',
-                route: '/courses/advanced',
-                status: 'Завершен',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '5.0',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course4, 
-                title: 'Повышение квалификации', 
-                cateory: 'Антиотмывочная система РК',
-                route: '/courses/advanced',
-                status: 'Завершен',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '5.0',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course4, 
-                title: 'Повышение квалификации', 
-                cateory: 'Антиотмывочная система РК',
-                route: '/courses/advanced',
-                status: 'Завершен',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '5.0',
-                type: 'Электронное обучение',
-            },
-            {
-                img: course4, 
-                title: 'Повышение квалификации', 
-                cateory: 'Антиотмывочная система РК',
-                route: '/courses/advanced',
-                status: 'Завершен',
-                lang: 'РУС',
-                duration: '1ч 45мин',
-                rate: '5.0',
-                type: 'Электронное обучение',
-            },
-        ]);
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${base_url}/api/aml/course/getUserCourses`, {
+                    headers: {
+                        Authorization: `Bearer ${jwtToken}`,
+                    },
+                });
+
+                if (response.status === 200) {
+                    console.log(response.data)
+                    setCourses(response.data);
+                } else {
+                    // Handle other status codes if needed
+                    setError(response.statusText);
+                    console.log(response.statusText);
+                }
+
+                
+            } catch (error) {
+                setError(error);
+                console.error(error);
+            }
+
+            setLoading(false);
+        };
+        
+        fetchData();
     }, []);
 
     return ( 
-        <div className="courses-page">
+        <div className="my-courses-page">
             <div>
                 <div className="container">
                     <DefaultHeader />
@@ -161,12 +120,64 @@ function MyCourses() {
                     </p>
                 </div>
 
-                <div className="courses-block container">
-                    {
-                        courses.map(course => (
-                            <Course course={course} /> 
-                        ))
-                    }
+                <div className="courses-block">
+                    <div className="container">
+                        <div className="courses-wrapper">
+                            {
+                                isLoading 
+                                    ? (<div className="loading">
+                                        <div>загружаем</div>
+                                        <div>загружаем</div>
+                                        <div>загружаем</div>
+                                        <div>загружаем</div>
+                                        <div>загружаем</div>
+                                    </div>)
+                                    : (
+                                        <div className="courses-list">
+                                            {
+                                                courses.map((course, index) => {
+                                                    console.log(course);
+                                                    const courseDTO = course.courseDTO;
+                                                    const { course_image, course_name } = courseDTO;
+                                                    const { status } = course;
+
+                                                    return <div className='course-card' key={index} 
+                                                        onClick={() => {
+                                                            if (status === 'process') {
+                                                                navigate(`/courses/${course.id}/read`)
+                                                            } else {
+                                                                navigate(`/courses/${course.id}`);
+                                                            }
+                                                        }}
+                                                    >
+                                                        <img src={course_image} alt={course_name} />
+                                                        <div className="info">
+                                                            <div className="course-name">{course_name}</div>
+                                                            <div className="status" style={{backgroundColor: status === 'available' ? '#CADEFC' : '#cafccf'}}>
+                                                                {status === 'available' ? 'Доступно' : 'В процессе'}
+                                                            </div>
+                                                            <div className="info-row">
+                                                                <div className='langAndDuration'>
+                                                                    {'РУС'} | {'1ч 45мин'}
+                                                                </div>
+                                                                <div className="rating">
+                                                                    <AiFillStar className='star-icon' size={23}/>
+                                                                    <span>5.0</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="type">
+                                                            <MdOndemandVideo size={23}/>
+                                                            <span>Электронное обучение</span>
+                                                        </div>
+                                                    </div>
+                                                })
+                                            }
+                                        </div>
+                                    )
+                            }
+                        </div>
+                    </div>
                 </div>
             </main>
 

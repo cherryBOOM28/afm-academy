@@ -131,7 +131,7 @@ function BasicCourse() {
                     <Collapsable title={'Программа курса'}>
                         <p style={{lineHeight: '23px'}}>
                         {
-                            data ? data.chapters.map((chapter, index) => {
+                            data && data.chapters ? data.chapters.map((chapter, index) => {
 
                                 console.log(chapter)
                                 return <>{index+1}. {chapter.chapter_description}<br /></>

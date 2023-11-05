@@ -94,7 +94,8 @@ function App() {
 
             <Route path='/courses/testCourse' element={<TestCourse />}/>
 
-            <Route path='/courses/:id' element={<Basic_course />}/>
+            <Route path='/courses/:id/' element={<BasicCourse />}/>
+            <Route path='/courses/:id/read' element={<Basic_course />}/>
 
             {/* <Route path='/payment' element={<PaymentPage />}/> */}
             <Route path='/payment/:id' element={<PaymentPage />} />
