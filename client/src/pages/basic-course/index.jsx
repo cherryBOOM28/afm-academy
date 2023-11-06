@@ -261,6 +261,7 @@ function Basic_course(props) {
 
                     <Reveal>
                         <NextLesson handleOnClick={() => {
+                            scrollToTopAnimated();
                             setActiveSessionId(activeSessionId + 1);
                         }}/> 
                     </Reveal>
@@ -414,7 +415,7 @@ function Basic_course(props) {
 
                     <Reveal>
                         {/* <h2>Пояснение к видео</h2> */}
-                        <RandomH2>Пояснение к видео</RandomH2>
+                        <RandomH2></RandomH2>
                     </Reveal>
 
                     <Sizebox height={22} />
@@ -537,6 +538,8 @@ function Basic_course(props) {
  
                     <Reveal>
                         <NextLesson handleOnClick={() => {
+                            scrollToTopAnimated();
+
                             setActiveSessionId(activeSessionId + 1);
                         }}/> 
                     </Reveal>
@@ -703,6 +706,8 @@ function Basic_course(props) {
 
                     <Reveal>
                         <NextLesson handleOnClick={() => {
+                            scrollToTopAnimated();
+
                             setActiveSessionId(activeSessionId + 1);
                         }}/> 
                     </Reveal>
@@ -804,7 +809,9 @@ function Basic_course(props) {
 
                     <Reveal>
                         <NextLesson handleOnClick={() => {
+                            scrollToTopAnimated();
                             setActiveSessionId(activeSessionId + 1);
+
                         }}/> 
                     </Reveal>
 
@@ -1329,6 +1336,8 @@ function Basic_course(props) {
 
                     <Reveal>
                         <NextLesson handleOnClick={() => {
+                            scrollToTopAnimated();
+
                             setActiveSessionId(activeSessionId + 1);
                         }}/> 
                     </Reveal>
