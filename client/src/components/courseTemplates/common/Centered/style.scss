@@ -1,0 +1,25 @@
+.centered {
+    padding: 0px 160px;
+
+    @media (max-width: 1000px) {
+        padding: 0px 70px;
+    }
+
+    @media (max-width: 1300px) {
+        padding: 0px 100px;
+    }
+
+    @media (min-width: 1500px) {
+        padding: 0px 250px;
+    }
+
+    @media (min-width: 1700px) {
+        padding: 0px 350px;
+    }
+
+    @media (min-width: 1900px) {
+        padding: 0px 450px;
+    }
+
+    text-align: center;
+}

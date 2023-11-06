@@ -1,19 +1,64 @@
 .shortBiography-wrapper {
     width: 100%;
     padding: 0px 200px;
+
+    @media (max-width: 1000px) {
+        padding: 0px 70px;
+    }
+
+    @media (max-width: 1300px) {
+        padding: 0px 100px;
+    }
+
+    @media (min-width: 1500px) {
+        padding: 0px 300px;
+    }
+
+    @media (min-width: 1700px) {
+        padding: 0px 450px;
+    }
+
+    @media (min-width: 1900px) {
+        padding: 0px 500px;
+    }
+
     box-sizing: border-box;
 
     .shortBiography {
         display: flex;
         flex-direction: row;
+
+        @media (max-width: 1000px) {
+            flex-direction: column;
+        }
+
         gap: 40px;
 
         padding: 45px;
         box-sizing: border-box;
 
         &-img {
+            min-width: 260px;
             width: 260px;
-            height: 226px;
+            height: auto;
+
+            
+
+            @media (min-width: 1500px) {
+                width: 300px;
+                height: auto;
+            }
+        
+            @media (min-width: 1700px) {
+                width: 400px;
+                height: auto;
+            }
+        
+            @media (min-width: 1900px) {
+                width: 500px;
+                height: auto;
+            }
+
             border-radius: 5;
             overflow: hidden;
 

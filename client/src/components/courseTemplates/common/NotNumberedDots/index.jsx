@@ -16,6 +16,7 @@ const NotNumberedDots = ({ list, header, dotsColor, color }) => {
                 header ? (
                     <>
                         <h3 
+                            className='not-numbered-dots-header'
                             style={{
                                 fontWeight: 600,
                                 color: color ? color : defaultColor,

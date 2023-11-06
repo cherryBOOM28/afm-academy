@@ -12,6 +12,20 @@
     align-items: center;
 
     padding: 42px 70px;
+
+    // @media (min-width: 1500px) {
+    //     padding: 42px 150px;
+    // }
+
+    // @media (min-width: 1700px) {
+    //     padding: 42px 200px;
+    // }
+
+    // @media (min-width: 1900px) {
+    //     padding: 42px 250px;
+    // }
+
+
     box-sizing: border-box;
 
     > div:nth-child(1) {

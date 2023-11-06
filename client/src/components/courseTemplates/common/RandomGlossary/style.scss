@@ -4,7 +4,21 @@
     justify-content: flex-start;
     align-items: flex-start;
     gap: 20px;
+
     padding: 35px 70px;
+
+    @media (min-width: 1500px) {
+        padding: 35px 150px;
+    }
+
+    @media (min-width: 1700px) {
+        padding: 35px 200px;
+    }
+
+    @media (min-width: 1900px) {
+        padding: 35px 250px;
+    }
+
 
     .title {
         text-align: center;

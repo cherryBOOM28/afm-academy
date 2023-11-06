@@ -1,7 +1,35 @@
 
+.numbered-dots-header {
+    // padding: 0px 70px;
+    
+    @media (min-width: 1500px) {
+        padding: 0px 80px;
+    }
+
+    @media (min-width: 1700px) {
+        padding: 0px 130px;
+    }
+
+    @media (min-width: 1900px) {
+        padding: 0px 180px;
+    }
+}
+
 .numbered-dots {
     width: 100%;
     padding: 0px 70px;
+    
+    @media (min-width: 1500px) {
+        padding: 0px 150px;
+    }
+
+    @media (min-width: 1700px) {
+        padding: 0px 200px;
+    }
+
+    @media (min-width: 1900px) {
+        padding: 0px 250px;
+    }
 
     // margin-top: 30px;
 

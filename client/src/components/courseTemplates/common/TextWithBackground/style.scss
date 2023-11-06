@@ -5,6 +5,19 @@
     gap: 20px;
 
     padding: 30px 70px 25px 70px;
+
+    @media (min-width: 1500px) {
+        padding: 30px 150px 25px 150px;
+    }
+
+    @media (min-width: 1700px) {
+        padding: 30px 200px 25px 200px;
+    }
+
+    @media (min-width: 1900px) {
+        padding: 30px 250px 25px 250px;
+    }
+
     box-sizing: border-box;
 
     .header {

@@ -50,6 +50,7 @@ import DropdownList from '../../components/courseTemplates/complex/interactives/
 import VideoLine from '../../components/courseTemplates/common/VideoLine';
 import OneToFour from '../../components/courseTemplates/complex/interactives/OneToFour';
 import VideoWithTitleAndText from '../../components/courseTemplates/complex/Video/VideoWithTitleAndText';
+import RandomH2 from '../../components/courseTemplates/common/RandomH2';
 
 function Basic_course(props) {
     const [courseName, setCourseName] = useState('Базовый курс');
@@ -103,7 +104,7 @@ function Basic_course(props) {
             case 1: 
                 return (<LessonPage name={'Основные понятия и сокращения'} lecturer={'AML Academy'}>
                     <Sizebox height={28} />
-                    
+
                     <Reveal>
                         <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
                             <>
@@ -366,11 +367,15 @@ function Basic_course(props) {
                     <Sizebox height={50} />
 
                     <Reveal>
-                        <p style={{padding: '0px 120px'}}>Теперь, когда Вы знаете, что из себя <span className='bold'>представляют</span> превентивные 
+                        <RandomParapraph>
+                            <>
+                            Теперь, когда Вы знаете, что из себя <span className='bold'>представляют</span> превентивные 
                             и пресекающие меры, давайте рассмотрим <span className='bold'>примеры</span> превентивных 
                             мер используемые <span className='bold'>АФМ</span>, которые <span className='bold'>эффективно</span> используются в 
                             рамках <span className='bold'>взаимодействия</span> с участниками национальной 
-                            антиотмывочной системы</p>
+                            антиотмывочной системы
+                            </>
+                        </RandomParapraph>
                     </Reveal>
 
                     <Sizebox height={100} />
@@ -408,7 +413,8 @@ function Basic_course(props) {
                     <Sizebox height={80} />
 
                     <Reveal>
-                        <h2>Пояснение к видео</h2>
+                        {/* <h2>Пояснение к видео</h2> */}
+                        <RandomH2>Пояснение к видео</RandomH2>
                     </Reveal>
 
                     <Sizebox height={22} />

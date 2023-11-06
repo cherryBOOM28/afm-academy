@@ -12,7 +12,6 @@ import Login from './pages/login/Login';
 import Registration from './pages/registration/Registration';
 import Rules from './pages/sfm/rules/Rules';
 import Operations from './pages/sfm/operations/Operations';
-// import Cookies from 'js-cookie';
 import AntiLaundering from './pages/podft/antiLaundering/AntiLaundering';
 import Fatf from './pages/podft/fatf/Fatf';
 import Eag from './pages/podft/eag/Eag';

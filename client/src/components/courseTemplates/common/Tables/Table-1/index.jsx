@@ -34,6 +34,7 @@ function Table_1({ rows, borderColor, color }) {
     return ( 
         <>
             <p
+                className='table-1-header'
                 style={{
                     color: '#3A3939',
 
@@ -44,7 +45,6 @@ function Table_1({ rows, borderColor, color }) {
                     lineHeight: '140%',
 
                     marginTop: '50px',
-                    padding: '0px 70px'
                 }}
             >
                 Разберем список следующих сокращений:

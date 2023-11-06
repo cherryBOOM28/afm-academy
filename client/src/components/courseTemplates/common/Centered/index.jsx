@@ -1,11 +1,10 @@
 
+import './style.scss';
+
 function Centered({ children }) {
-    return ( 
+    return (
         <div
-            style={{
-                padding: '0px 160px',
-                textAlign: 'center'
-            }}
+            className="centered"
         >
             {children}
         </div>

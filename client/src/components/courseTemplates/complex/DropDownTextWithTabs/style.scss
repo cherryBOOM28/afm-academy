@@ -1,5 +1,23 @@
 .dropDownTextWithTabs {
     padding: 0px 70px;
+    padding-bottom: 10px;
+
+    @media (min-width: 1500px) {
+        padding: 0px 150px;
+        padding-bottom: 10px;
+
+    }
+
+    @media (min-width: 1700px) {
+        padding: 0px 200px;
+        padding-bottom: 10px;
+
+    }
+
+    @media (min-width: 1900px) {
+        padding: 0px 250px;
+        padding-bottom: 10px;
+    }
 
     .tabs {
         display: flex;

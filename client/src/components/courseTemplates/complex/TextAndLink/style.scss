@@ -5,9 +5,22 @@
     align-items: flex-start;
 
     padding: 0px 230px;
+    box-sizing: border-box;
 
     @media screen and (max-width: 1000px) {
         padding: 0px 70px;
+    }
+    
+    @media (min-width: 1500px) {
+        padding: 0px 350px;
+    }
+
+    @media (min-width: 1700px) {
+        padding: 0px 400px;
+    }
+
+    @media (min-width: 1900px) {
+        padding: 0px 500px;
     }
 
     .text {

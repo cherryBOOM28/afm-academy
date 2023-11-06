@@ -13,6 +13,7 @@ const NumberedDots = ({ list, dotsColor, color, header }) => {
                 header ? 
                 <>
                     <h3 
+                        className='numbered-dots-header'
                         style={{
                             fontWeight: 600,
                             color: color ? color : defaultColor,
