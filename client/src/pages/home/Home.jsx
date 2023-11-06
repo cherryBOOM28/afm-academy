@@ -1,19 +1,22 @@
 import React from 'react';
 import cl from './Home.module.css';
-import Header from '../../components/header/Header';
+
 import aboutUsPic from '../../assets/images/main.svg'
-import Button from '../../components/UI/button/Button';
 import accIcon from '../../assets/icons/pacc.svg';
 import bookIcon from '../../assets/icons/book.svg';
 import realtionIcon from '../../assets/icons/relation.svg';
 import laptopIcon from '../../assets/icons/laptop.svg';
+import backgroundVideo from '../../assets/video/bgvideo.mov';
+
+import Button from '../../components/UI/button/Button';
+import Header from '../../components/header/Header';
 import VideoPlayer from '../../components/player/VideoPlayer';
 import Tabs from '../../components/tab/Tabs';
 import NewsTab from '../../components/newsTab/NewsTab';
 import FirstPartner from '../../assets/images/partner1.png';
 import Footer from '../../components/footer/Footer';
 import { useNavigate } from 'react-router-dom';
-import backgroundVideo from '../../assets/video/global.mp4';
+
 import { Link } from 'react-router-dom';
 
 import basicCourse from '../../assets/icons/mdi_world-wide-web.svg';
