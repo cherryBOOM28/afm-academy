@@ -20,7 +20,7 @@ function Reveal({ children }) {
                     hidden: { opacity: 0, y: 75 },
                     visible: { opacity: 1, y: 0 }
                 }}
-                transition={{ duration: 0.3, ease: 'easeInOut', delay: 0.25 }}
+                transition={{ duration: 0.7, ease: 'easeInOut', delay: 0.25 }}
                 initial='hidden'
                 animate={mainControls}
             >{children}</motion.div>
