@@ -8,7 +8,7 @@
         align-items: center;
 
         .oneToFour {
-            padding: 5px 0px;
+            // padding: 5px 0px;
             margin: 0 auto;
             width: 100%;
         
@@ -66,6 +66,7 @@
 
             .body-wrapper {
                 width: 100%;
+                padding: 50px 0px;
             }
 
             .body {
@@ -89,8 +90,6 @@
                 }
 
                 place-items: center; /* Aligns content to center both horizontally and vertically */
-            
-                overflow: hidden;
             
                 > div {
                     width: 100%;

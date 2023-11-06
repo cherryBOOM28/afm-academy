@@ -53,10 +53,10 @@ function OneToFour({
                             },
                             visible: {
                                 height: 'max-content',
-                                paddingTop: '10px',
                                 paddingBottom: '10px'
                             }
                         }}
+                        transition={{ duration: 0.5, ease: 'easeInOut' }}
                         initial='hidden'
                         animate={mainControls}
                     >

@@ -95,7 +95,7 @@ const _Item = ({name, hint, items}) => {
                         padding: '30px'
                     }
                 }}
-                transition={{ duration: 0.3, ease: 'easeInOut', delay: 0.25 }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
                 initial={'hidden'}
                 animate={mainControls}
             >
