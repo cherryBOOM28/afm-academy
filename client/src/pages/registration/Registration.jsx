@@ -15,6 +15,7 @@ import po_types from '../../components/data/po_types';
 import {AiFillEye, AiFillEyeInvisible} from 'react-icons/ai';
 
 import base_url from '../../settings/base_url';
+import { Box, Modal } from '@mui/material';
 
 const Registration = () => {
     const [formData, setFormData] = useState({
@@ -36,6 +37,7 @@ const Registration = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [policyChecked, setPolicyChecked] = useState(false);
     const navigate = useNavigate();
+    const [openModal, setOpenModal] = useState(false);
 
     const handleChange = (e, name) => {
         e.preventDefault();
@@ -63,7 +65,8 @@ const Registration = () => {
             )
                 .then(res => {
                     console.log(res.data)
-                    navigate('/login');
+                    setOpenModal(true);
+                    // navigate('/login');
                 })
                 .catch(error => {
                     // console.error('Registration failed:', error);
@@ -93,6 +96,91 @@ const Registration = () => {
 
     return (
         <div className='register-page'>
+            <Modal
+                open={openModal}
+                onClose={() => {
+                    setOpenModal(false);
+                    navigate('/login')
+                }}
+            >
+                <Box sx={{ 
+                    width: '590px', 
+                    padding: '30px 55px', 
+                    boxSizing: 'border-box',
+                    background: '#FFFFFF', 
+                    borderRadius: '10px',
+                    outline: 'none',
+                    border: 'none',
+
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)'
+                }}>
+                    <h1
+                        style={{
+                            color: '#3A3939',
+                            textAlign: 'center',
+                            fontFamily: 'Ubuntu',
+                            fontSize: '22px',
+                            fontStyle: 'normal',
+                            fontWeight: '400',
+                            lineHeight: '26px',
+
+                            marginBottom: '15px'
+                        }}
+                    >Поздравляем с успешной регистрацией на нашем сайте</h1>
+                    <p style={{
+                        color: '#3A3939',
+                        textAlign: 'center',
+                        fontFeatureSettings: `'clig' off, 'liga' off`,
+                        fontFamily: 'Ubuntu',
+                        fontSize: '18px',
+                        fontStyle: 'normal',
+                        fontWeight: '400',
+                        lineHeight: '26px',
+
+                        marginBottom: '15px'
+                    }}>
+                        Для завершения процесса активации вашей учетной записи и получения дополнительной информации, <strong style={{fontWeight: '700'}}>перейдите в свою почту</strong>.
+                    </p>
+                    <p style={{
+                        color: '#4D4D4D',
+                        textAlign: 'center',
+                        fontFeatureSettings: `'clig' off, 'liga' off`,
+                        fontFamily: 'Ubuntu',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '400',
+                        lineHeight: '26px', /* 162.5% */
+
+                        marginBottom: '15px'
+                    }}>
+                        Если вы не видите наше сообщение в папке "Входящие", проверьте папку "Спам". Иногда письма могут туда попадать.
+                    </p>
+                    <div 
+                    onClick={() => {openModal(false); navigate('/login')}}
+                    style={{
+                        width: 'max-content',
+                        margin: '0 auto',
+                        borderRadius: '8px',
+                        background: '#1F3C88',
+                        borderRadius: '8px',
+                        padding: '12px 96px',
+                        color: '#FFF',
+                        fontFeatureSettings: `'clig' off, 'liga' off`,
+                        fontFamily: 'Manrope',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '700',
+                        lineHeight: '24px', /* 150% */
+                        letterSpacing: '0.2px',
+                        cursor: 'pointer',
+                    }}>
+                        Перейти на почту
+                    </div>
+                </Box>
+            </Modal>
             <div className='backgroundVideo'>
                 <video autoPlay loop muted className='bg-video'>
                     <source src={backgroundVideo} type="video/mp4" />

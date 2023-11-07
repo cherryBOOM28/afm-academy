@@ -17,6 +17,7 @@ import './login.scss'
 import sfm_types from './../../components/data/sfm_types';
 
 import base_url from '../../settings/base_url';
+import { Box, Modal } from '@mui/material';
 
 const Registration = () => {
     const [formData, setFormData] = useState({
@@ -25,6 +26,7 @@ const Registration = () => {
     });
 
     const [rememberMe, setRememberMe] = useState(true);
+    const [openModal, setOpenModal] = useState(true);
 
     useEffect(() => {
         
