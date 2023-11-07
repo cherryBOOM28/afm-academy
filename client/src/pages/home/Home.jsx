@@ -45,102 +45,103 @@ function Home() {
     return (
         <div className={cl.homeWrapper}>
             <Header />
-                <section className={cl.aboutUs}>
-                    <div className={cl.container}>
-                        <div className={cl.aboutUs__section}>
-                            <video autoPlay loop muted className={cl.videoBackground}>
-                                <source src={backgroundVideo} type="video/mp4" />
-                            </video>
-                            {/* <img src={aboutUsPic} alt="About us" /> */}
-                            <div className={cl.aboutUs__content}> 
-                                <p className={cl.aboutUs__headline}>AML ACADEMY</p>
-                                {/* <p className={cl.aboutUs__text}>Обучение для безопасности финансов</p> */}
-                                <p className={cl.aboutUs__text_small}>Наши курсы</p>
-                                <div className={cl.courses_boxes}>
-                                    <Link to="/courses/basic" style={{ textDecoration: 'none' }}>
-                                        <div className={cl.aml_box}>
-                                            <img src={basicCourse} alt="" />
-                                            <p className={cl.course_box_name}>Базовый</p>
-                                        </div>
-                                    </Link>
-                                    <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
-                                        <div className={cl.aml_box}>
-                                            <img src={proCourse} alt="" />
-                                            <p className={cl.course_box_name}>Профильный</p>
-                                        </div>
-                                    </Link>
-                                    <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
-                                        <div className={cl.aml_box}>
-                                            <img src={deepCourse} alt="" />
-                                            <p className={cl.course_box_name}>Углубленный</p>
-                                        </div>
-                                    </Link>
-                                    <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
-                                        <div className={cl.aml_box}>
-                                            <img src={upCourse} alt="" />
-                                            <p className={cl.course_box_name}>Повышение квалификации</p>
-                                        </div>
-                                    </Link>
-                                </div>
-                                {/* <Button className={cl.button} onClick={toAbout}>Подробнее</Button> */}
+            <section className={cl.aboutUs}>
+                <div className={cl.container}>
+                    <div className={cl.aboutUs__section}>
+                        <video autoPlay loop muted className={cl.videoBackground}>
+                            <source src={backgroundVideo} type="video/mp4" />
+                        </video>
+                        {/* <img src={aboutUsPic} alt="About us" /> */}
+                        <div className={cl.aboutUs__content}> 
+                            <p className={cl.aboutUs__headline}>AML ACADEMY</p>
+                            {/* <p className={cl.aboutUs__text}>Обучение для безопасности финансов</p> */}
+                            <p className={cl.aboutUs__text_small}>Наши курсы</p>
+                            <div className={cl.courses_boxes}>
+                                <Link to="/courses/basic" style={{ textDecoration: 'none' }}>
+                                    <div className={cl.aml_box}>
+                                        <img src={basicCourse} alt="" />
+                                        <p className={cl.course_box_name}>Базовый</p>
+                                    </div>
+                                </Link>
+                                <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
+                                    <div className={cl.aml_box}>
+                                        <img src={proCourse} alt="" />
+                                        <p className={cl.course_box_name}>Профильный</p>
+                                    </div>
+                                </Link>
+                                <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
+                                    <div className={cl.aml_box}>
+                                        <img src={deepCourse} alt="" />
+                                        <p className={cl.course_box_name}>Углубленный</p>
+                                    </div>
+                                </Link>
+                                <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
+                                    <div className={cl.aml_box}>
+                                        <img src={upCourse} alt="" />
+                                        <p className={cl.course_box_name}>Повышение квалификации</p>
+                                    </div>
+                                </Link>
                             </div>
+                            {/* <Button className={cl.button} onClick={toAbout}>Подробнее</Button> */}
                         </div>
                     </div>
-                </section>
-                <section className={cl.educationWrappwer}>
-                    <div className={cl.container}>
-                        <p className={cl.headline}>Качество обучения</p>
-                        <p className={cl.subtitle}>Преимущества Академии</p>
-                        <div className={cl.education}>
-                            <div className={cl.advantages}>
-                                <div className={cl.advantages_box}>
-                                    <img src={accIcon} alt="acc" />
-                                    <p className={cl.advantages__text}>Квалифицированные эксперты с опытом работы в сфере ПОД/ФТ</p>
-                                </div>
-                                <div className={cl.advantages_box}>
-                                    <img src={bookIcon} alt="acc" />
-                                    <p className={cl.advantages__text}>Удобный формат обучения</p>
-                                </div>
-                                <div className={cl.advantages_box}>
-                                    <img src={realtionIcon} alt="acc" />
-                                    <p className={cl.advantages__text}>Тесное взаимодействие с АФМ</p>
-                                </div>
-                                <div className={cl.advantages_box}>
-                                    <img src={laptopIcon} alt="acc" />
-                                    <p className={cl.advantages__text__last}>Программы, разработанные
-                                    в соответствии с требованиями
-                                    законодательства о ПОД/ФТ</p>
-                                </div>
+                </div>
+            </section>
+            <section className={cl.educationWrappwer}>
+                <div className={cl.container}>
+                    <p className={cl.headline}>Качество обучения</p>
+                    <p className={cl.subtitle}>Преимущества Академии</p>
+                    <div className={cl.education}>
+                        <div className={cl.advantages}>
+                            <div className={cl.advantages_box}>
+                                <img src={accIcon} alt="acc" />
+                                <p className={cl.advantages__text}>Квалифицированные эксперты с опытом работы в сфере ПОД/ФТ</p>
                             </div>
-                            <VideoPlayer />
+                            <div className={cl.advantages_box}>
+                                <img src={bookIcon} alt="acc" />
+                                <p className={cl.advantages__text}>Удобный формат обучения</p>
+                            </div>
+                            <div className={cl.advantages_box}>
+                                <img src={realtionIcon} alt="acc" />
+                                <p className={cl.advantages__text}>Тесное взаимодействие с АФМ</p>
+                            </div>
+                            <div className={cl.advantages_box}>
+                                <img src={laptopIcon} alt="acc" />
+                                <p className={cl.advantages__text__last}>Программы, разработанные
+                                в соответствии с требованиями
+                                законодательства о ПОД/ФТ</p>
+                            </div>
                         </div>
+                        <VideoPlayer />
                     </div>
-                </section>
-                <section className={cl.coursesWrapper}>
-                    <div className={cl.container}>
-                        <h1 className={cl.courses__headline}>Курсы в сфере ПОД/ФТ</h1>
-                        <Tabs />                       
-                    </div>    
-                </section>
+                </div>
+            </section>
+            
+            <section className={cl.coursesWrapper} id='coursesSection'>
+                <div className={cl.container}>
+                    <h1 className={cl.courses__headline}>Курсы в сфере ПОД/ФТ</h1>
+                    <Tabs />                       
+                </div>    
+            </section>
 
-                <section className={cl.newsWrapper}>
-                    <div className={cl.container}>
-                        <p className={cl.news__headline}>Новости</p>
+            <section className={cl.newsWrapper} id='news'>
+                <div className={cl.container}>
+                    <p className={cl.news__headline}>Новости</p>
+                </div>
+                <NewsTab />
+            </section>
+            <section className={cl.partnersWrapper}>
+                <div className={cl.container}>
+                    <h1 className={cl.courses__headline}>Партнеры</h1>
+                    <div className={cl.partners}>
+                        {imageList.map((image, index) => (
+                            <img key={index} src={image.src} alt={image.alt} />
+                        ))}
                     </div>
-                    <NewsTab />
-                </section>
-                <section className={cl.partnersWrapper}>
-                    <div className={cl.container}>
-                        <h1 className={cl.courses__headline}>Партнеры</h1>
-                        <div className={cl.partners}>
-                            {imageList.map((image, index) => (
-                                <img key={index} src={image.src} alt={image.alt} />
-                            ))}
-                        </div>
-                    </div>
-                </section>
-                {/* <Dropdown /> */}
-                <Footer />
+                </div>
+            </section>
+            {/* <Dropdown /> */}
+            <Footer />
         </div>
         
     );

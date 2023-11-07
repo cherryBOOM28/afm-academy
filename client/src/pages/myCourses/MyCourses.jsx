@@ -135,7 +135,7 @@ function MyCourses() {
                                     : (
                                         <div className="courses-list">
                                             {
-                                                courses.map((course, index) => {
+                                                courses.filter(course => course.status === 'process').map((course, index) => {
                                                     console.log(course);
                                                     const courseDTO = course.courseDTO;
                                                     const { course_image, course_name } = courseDTO;
