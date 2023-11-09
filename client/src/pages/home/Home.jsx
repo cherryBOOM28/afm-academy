@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import cl from './Home.module.css';
 
 import aboutUsPic from '../../assets/images/main.svg'
@@ -15,7 +15,7 @@ import Tabs from '../../components/tab/Tabs';
 import NewsTab from '../../components/newsTab/NewsTab';
 import FirstPartner from '../../assets/images/partner1.png';
 import Footer from '../../components/footer/Footer';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { Link } from 'react-router-dom';
 
@@ -38,6 +38,31 @@ function Home() {
         { src: FirstPartner, alt: 'Image 6' }
       ];
       
+    const scrollToCourses = () => {
+        const coursesSection = document.getElementById('coursesSection');
+        if (coursesSection) {
+            coursesSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    const scrollToNews = () => {
+        const newsSection = document.getElementById('newsSection');
+        if (newsSection) {
+          newsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    const params = useParams();
+    const location = useLocation();
+    useEffect(() => {
+        // console.log(params);
+        if (location.hash === '#coursesSection') {
+            scrollToCourses();
+        } else if (location.hash === '#newsSection') {
+            scrollToNews();
+        }
+    }, [])
+
     const toAbout = () => {
         navigate('/about')
     }

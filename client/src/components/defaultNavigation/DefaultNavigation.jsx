@@ -1,13 +1,21 @@
 import React from 'react';
 import cl from './DefaultNavigation.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function DefaultNavigation() {
+    // const history = useHistory();
+    const navigate = useNavigate();
+
     const scrollToNews = () => {
         const newsSection = document.getElementById('newsSection');
         if (newsSection) {
           newsSection.scrollIntoView({ behavior: 'smooth' });
         }
+    };
+
+    const scrollToCourses = () => {
+        // history.push('/');
+        navigate('/#coursesSection');
     };
     
     return (
@@ -38,7 +46,7 @@ function DefaultNavigation() {
                         <span className={cl.dropdownToggle}>Обучение</span>
                         <ul className={cl.dropdownMenu}>
                             <li>
-                                <Link to="/courses" className={cl.links}>Виды курсов</Link>
+                                <a onClick={scrollToCourses} className={cl.links}>Виды курсов</a>
                             </li>
                             <li>
                                 <Link to="/courses/catalog" className={cl.links}>Каталог курсов</Link>

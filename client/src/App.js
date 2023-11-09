@@ -59,7 +59,8 @@ function App() {
               element={<Navigate to="/login" />}
             />
 
-            <Route path="" element={<Home />}></Route>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/:scroll" element={<Home />}></Route>
             <Route path="/about" element={<AboutUs />}></Route>
             <Route path="/management" element={<Management />}></Route>
             <Route path="/structure" element={<Structure />}></Route>
