@@ -84,7 +84,7 @@ function App() {
             <Route path="/vebinars/surveys" element={<SurveysPage />} />
             <Route path="/vebinars/:id" element={<></>} />
 
-            <Route path='/courses' element={<CoursesPage />}/>
+            {/* <Route path='/courses' element={<CoursesPage />}/> */}
             <Route path="/courses/catalog" element={<Catalog />}/>
             <Route path="/courses/myCourses" element={<MyCourses />}/>
             <Route path="/courses/info" element={<InfoPage />}/>

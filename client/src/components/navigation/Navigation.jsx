@@ -10,6 +10,13 @@ function Navigation() {
         }
     };
 
+    const scrollToCourses = () => {
+        const coursesSection = document.getElementById('coursesSection');
+        if (coursesSection) {
+            coursesSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <div>
             <nav>
@@ -38,8 +45,8 @@ function Navigation() {
                         <span className={cl.dropdownToggle}>Обучение</span>
                         <ul className={cl.dropdownMenu}>
                             <li>
-                                <Link to="/courses" className={cl.links}>Виды курсов</Link>
-                            </li>
+                                <a href='#' onClick={scrollToCourses} className={cl.links}>Виды курсов</a>
+                            </li>  
                             <li>
                                 <Link to="/courses/catalog" className={cl.links}>Каталог курсов</Link>
                             </li>
