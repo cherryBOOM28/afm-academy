@@ -20,7 +20,7 @@ const getItems = (entity_type) => {
     else return ['Выберите']
 }
 
-function ProfileGeneral({ isEdit }) {
+function ProfileGeneral() {
     const navigate = useNavigate();
     // const [generalInfo, setGeneralInfo] = useState(null);
     const jwtToken = localStorage.getItem('jwtToken');
@@ -34,6 +34,8 @@ function ProfileGeneral({ isEdit }) {
     const [isLoading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const [isEdit, setEdit] = useState(false);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -42,6 +44,16 @@ function ProfileGeneral({ isEdit }) {
                         Authorization: `Bearer ${jwtToken}`,
                     },
                 });
+                // const response = {
+                //     body: {
+                //         user_id: 0,
+                //         "lastname": 'Doe',
+                //         "firstname": 'John',
+                //         "patronymic": 'Snow',
+                //         "email": 'John@gmail.com',
+
+                //     }
+                // }
 
                 if (response.status === 200) {
                     setData(response.data);
@@ -85,7 +97,7 @@ function ProfileGeneral({ isEdit }) {
             "firstname": localData.firstname,
             "patronymic": localData.patronymic,
             "email": localData.email,
-            "password": localData.password,
+            // "password": localData.password,
             ...changedData,
         };
 
@@ -122,6 +134,10 @@ function ProfileGeneral({ isEdit }) {
     
     return ( 
         <div className="general-info">
+            <div className="profile-img">
+                <span>{(localData ? localData['firstname'] : '*****').substring(0, 1)}</span>
+                <span>{(localData ? localData['lastname'] : '*****').substring(0, 1)}</span>
+            </div>
             <div className="fields">
                 <InputField
                     value={localData ? localData['firstname'] : '*****'}
@@ -171,13 +187,13 @@ function ProfileGeneral({ isEdit }) {
                     label={'Участник системы'}
                     hint={'Участник системы'}
                     handleChange={handleInfoChange}/>
-                <InputField
+                {/* <InputField
                     isEdit={isEdit}
                     isPassword={true}
                     name={'password'}
                     label={'Изменить пароль'}
                     hint={'Введите новый пароль'}
-                    handleChange={handleInfoChange}/>
+                    handleChange={handleInfoChange}/> */}
                 <SelectField
                     isEdit={isEdit}
                     name={'sfm_type'}
@@ -186,6 +202,35 @@ function ProfileGeneral({ isEdit }) {
                     label={'Вид СФМ'}
                     hint={'Участник системы'}
                     handleChange={handleInfoChange}/>
+            </div>
+            <div className="actions">
+                {
+                    !isEdit 
+                        ? (
+                            <div 
+                                className={`redact`} 
+                                onClick={() => setEdit(true)}
+                            >
+                                Изменить
+                            </div>
+                        )
+                        : (
+                            <>
+                            <div 
+                                className={`save`} 
+                                onClick={() => setEdit(false)}
+                            >
+                                Сохранить
+                            </div>
+                            <div 
+                                className={`cancel`} 
+                                onClick={() => setEdit(false)}
+                            >
+                                Отменить
+                            </div>
+                            </>
+                        )
+                }
             </div>
         </div>
     );

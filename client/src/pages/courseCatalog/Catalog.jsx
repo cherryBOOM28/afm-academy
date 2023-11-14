@@ -19,6 +19,7 @@ import { AiFillFolder } from "react-icons/ai";
 import { BsFilter } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
 import { AiFillStar } from "react-icons/ai";
+import { MdOndemandVideo } from "react-icons/md";
 
 import bookIcon from './../../assets/icons/book.svg'
 import base_url from '../../settings/base_url';
@@ -37,17 +38,19 @@ function Catalog() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${base_url}/api/aml/course/getCourses`, {
+                const response = await axios.get(`${base_url}/api/aml/course/getUserCourses`, {
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,
                     },
                 });
 
+                console.log(response.data)
+
                 const _coursesByCategory = {};
 
                 if (response.status === 200) {
                     response.data.forEach(course => {
-                        const categoryName = course.courseCategory.category_name;
+                        const categoryName = course.courseDTO.courseCategory.category_name;
                         if (!_coursesByCategory[categoryName]) {
                             _coursesByCategory[categoryName] = [];
                         }
@@ -150,7 +153,7 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
 
     const navigate = useNavigate();
 
-    const filteredCourses = courses.filter((course) => course.courseCategory.category_name === categoryName);
+    const filteredCourses = courses.filter((course) => course.courseDTO.courseCategory.category_name === categoryName);
 
     // if (filteredCourses.length === 0) {
     //     return null;
@@ -181,30 +184,41 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
             </div>
             <div className="courses-block container">
                 {
-                    filteredCourses.map((course) => {
-                        const { id, course_image, course_name, lang, duration, rate, type } = course;
+                    filteredCourses.map((course, index) => {
+                        const courseDTO = course.courseDTO;
+                        const { course_image, course_name } = courseDTO;
+                        const { status } = course;
 
-                        return (
-                            <div key={id} onClick={() => navigate(`/courses/${id}`)}>
-                                <img src={`${course_image}`} alt={course_name} />
-                                <div>
-                                    <h3>{course_name}</h3>
-                                    <div className='available'>Доступно</div>
-                                    <div className='characteristics'>
-                                        <p>{lang !== null && lang !== undefined ? lang : 'РУС'} | {duration !== null && duration !== undefined ? duration : '1ч'}</p>
-                                        <div className='rate'>
-                                            <AiFillStar className='icon' size={20} />
-                                            <span>{rate !== null && rate !== undefined ? rate : '5.0'}</span>
-                                        </div>
+                        return <div className='course-card' key={index} 
+                            onClick={() => {
+                                if (status === 'process') {
+                                    navigate(`/courses/${course.id}/read`)
+                                } else {
+                                    navigate(`/courses/${course.id}`);
+                                }
+                            }}
+                        >
+                            <img src={course_image} alt={course_name} />
+                            <div className="info">
+                                <div className="course-name">{course_name}</div>
+                                <div className="status" style={{backgroundColor: status === 'available' ? '#CADEFC' : '#cafccf'}}>
+                                    {status === 'available' ? 'Доступно' : 'В процессе'}
+                                </div>
+                                <div className="info-row">
+                                    <div className='langAndDuration'>
+                                        {'РУС'} | {'1ч 45мин'}
                                     </div>
-                                    <div className='type'>
-                                        <div>
-                                            {type !== undefined && type !== null ? type : 'Электронное обучение'}
-                                        </div>
+                                    <div className="rating">
+                                        <AiFillStar className='star-icon' size={23}/>
+                                        <span>5.0</span>
                                     </div>
                                 </div>
                             </div>
-                        )
+                            <div className="type">
+                                <MdOndemandVideo size={23}/>
+                                <span>Электронное обучение</span>
+                            </div>
+                        </div>
                     })
                 }
             </div>

@@ -56,9 +56,9 @@ function ProfileJob({}) {
       }, [updateData]);
 
     const handleOnAdd = (data) => {
-        console.log("handleOnAdd called")
+        console.log("handleOnAdd called");
+        console.log(data)
         const user_id = localStorage.getItem('user_id');
-
 
         const options = {
             headers: {
@@ -66,13 +66,23 @@ function ProfileJob({}) {
             },
         }
 
+        const formateDateToString = (date) => {
+            const year = date.getFullYear();
+            const month = ('0' + (date.getMonth() + 1)).slice(-2); // Adding 1 because months are zero-based
+            const day = ('0' + date.getDate()).slice(-2);
+
+            return `${year}-${month}-${day}`;
+        }
+
         const params = {
             user_id: user_id,
             org_name: data.name, 
             position: data.subname, 
-            start_date: data.start_date, 
-            end_date: data.end_date, 
+            start_date: formateDateToString(data.start_date), 
+            end_date: formateDateToString(data.end_date), 
         }
+
+        console.log(params)
 
         const fetchData = async () => {
             setLoading(true);

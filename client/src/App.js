@@ -24,7 +24,7 @@ import SpecializedCourse from './pages/courses-specialized/SpecializedCourse';
 import SurveysPage from './pages/surveys/Surveys';
 import VebinarsPage from './pages/vebinar/VebinarsPage';
 
-import { AuthProvider } from './auth/AuthContext';
+import { AuthProvider, useAuth } from './auth/AuthContext';
 import TestCourse from './pages/testCoursePage/TestCourse';
 import Catalog from './pages/courseCatalog/Catalog';
 import MyCourses from './pages/myCourses/MyCourses';
@@ -32,6 +32,19 @@ import Profile from './pages/profilePage/Profile';
 import PaymentPage from './pages/paymentPage/PaymentPage';
 import Sandbox from './pages/Sandbox';
 import Basic_course from './pages/basic-course';
+import PrivateRoute from './auth/PrivateRoute';
+
+
+// const PrivateRoute = ({ element: Element, ...rest }) => {
+//   const { isLoggedIn } = useAuth();
+
+//   return (
+//     <Route
+//       {...rest}
+//       element={isLoggedIn ? <Element /> : <Navigate to="/login" />}
+//     />
+//   );
+// };
 
 function App() {
   const [jwtToken, setJwtToken] = useState('');
@@ -49,15 +62,11 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/registration" element={<Registration />} />
+            <Route path="/login" element={<PrivateRoute shouldBeLoggedIn={false} component={Login} redirect={'/profile'}/>} />
+            <Route path="/registration" element={<PrivateRoute shouldBeLoggedIn={false} component={Registration} redirect={'/profile'}/>} />
+
             <Route path="/logout" element={<Login />} />
 
-
-            <Route
-              path="/unauthenticated"
-              element={<Navigate to="/login" />}
-            />
 
             <Route path="/" element={<Home />}></Route>
             <Route path="/:scroll" element={<Home />}></Route>
@@ -68,8 +77,7 @@ function App() {
             <Route path="/charter" element={<Charter />}></Route>
 
 
-            <Route path="/profile" element={<Profile />}></Route>
-
+            <Route path="/profile" element={<PrivateRoute shouldBeLoggedIn={true} component={Profile}/>}></Route>
 
             <Route path="/subjects" element={<Subjects />}></Route>
             <Route path="/rules" element={<Rules />}></Route>
@@ -87,7 +95,7 @@ function App() {
 
             {/* <Route path='/courses' element={<CoursesPage />}/> */}
             <Route path="/courses/catalog" element={<Catalog />}/>
-            <Route path="/courses/myCourses" element={<MyCourses />}/>
+            <Route path="/courses/myCourses" element={<PrivateRoute shouldBeLoggedIn={true} component={MyCourses} redirect={'/courses/catalog'}/>}/>
             <Route path="/courses/info" element={<InfoPage />}/>
             {/* <Route path='/courses/basic' element={<BasicCourse />}/> */}
             {/* <Route path='/courses/specialized' element={<SpecializedCourse />}/> */}
@@ -95,7 +103,7 @@ function App() {
             <Route path='/courses/testCourse' element={<TestCourse />}/>
 
             <Route path='/courses/:id/' element={<BasicCourse />}/>
-            <Route path='/courses/:id/read' element={<Basic_course />}/>
+            <Route path='/courses/:id/read' element={<PrivateRoute shouldBeLoggedIn={true} component={Basic_course} redirect={'/courses/catalog'}/>}/>
 
             {/* <Route path='/payment' element={<PaymentPage />}/> */}
             <Route path='/payment/:id' element={<PaymentPage />} />

@@ -46,7 +46,7 @@ function DefaultNavigation() {
                         <span className={cl.dropdownToggle}>Обучение</span>
                         <ul className={cl.dropdownMenu}>
                             <li>
-                                <a onClick={scrollToCourses} className={cl.links}>Виды курсов</a>
+                                <a onClick={scrollToCourses} className={cl.links} style={{cursor: 'pointer'}}>Виды курсов</a>
                             </li>
                             <li>
                                 <Link to="/courses/catalog" className={cl.links}>Каталог курсов</Link>

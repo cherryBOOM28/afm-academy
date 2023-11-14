@@ -50,7 +50,12 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
     }
 
     const _handleSave = () => {
-        handleOnAdd(addData)
+        console.log(addData)
+        handleOnAdd({
+            ...addData,
+            start_date: new Date(addData.start_date),
+            end_date: new Date(addData.end_date)
+        })
 
         setIsAdding(false)
     }
@@ -64,6 +69,10 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
         })
         setIsAdding(false)
     }
+
+    useEffect(() => {
+        console.log(rows)
+    }, [])
 
     return (
         <TableContainer component={Paper} style={{backgroundColor: 'transparent', border: 'none', boxShadow: 'none', padding: '0', boxSizing: 'border-box'}}>
@@ -95,10 +104,10 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
                             <input type="text" style={addInputStyle} value={addData['subname']} onChange={(e) => handleAddDataChange('subname', e.target.value)}/>
                         </TableCell>
                         <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>
-                            <input type="text" style={addInputStyle} value={addData['start_date']} onChange={(e) => handleAddDataChange('start_date', e.target.value)}/>
+                            <input type="date" style={addInputStyle} value={addData['start_date']} onChange={(e) => handleAddDataChange('start_date', e.target.value)}/>
                         </TableCell>
                         <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>
-                            <input type="text" style={addInputStyle} value={addData['end_date']} onChange={(e) => handleAddDataChange('end_date', e.target.value)}/>
+                            <input type="date" style={addInputStyle} value={addData['end_date']} onChange={(e) => handleAddDataChange('end_date', e.target.value)}/>
                         </TableCell>
                         <TableCell 
                             style={{ padding: cellPadding, font: cellFont, color: cellColor, display: 'flex', flexDirection: 'row', alignItems: 'center',gap: '10px'}} 
@@ -113,8 +122,8 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
                         <TableRow key={index} id={row.job_ex_id}>
                             <TableCell style={{ minWidth: '200px', padding: cellPadding, font: cellFont, color: cellColor }}>{row.org_name}</TableCell>
                             <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>{row.position}</TableCell>
-                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>{row.start_date ? row.start_date.substring(0, 10) : ''}</TableCell>
-                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>{row.end_date ? row.end_date.substring(0, 10) : ''}</TableCell>
+                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>{row.start_date ? row.start_date : ''}</TableCell>
+                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>{row.end_date ? row.end_date : ''}</TableCell>
                             <TableCell 
                                 style={{ padding: cellPadding, font: cellFont, color: cellColor, display: 'flex', flexDirection: 'row-reverse', gap: '10px'}} 
                                 align='right'

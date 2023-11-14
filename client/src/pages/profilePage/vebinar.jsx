@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import VebinarTable from '../../components/vebinarTable/VebinarTable';
 
-import {BiFilter} from 'react-icons/bi';
+import { BiFilter } from 'react-icons/bi';
 
 import './vebinar.scss'
 

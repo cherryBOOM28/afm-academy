@@ -18,8 +18,10 @@ import sfm_types from './../../components/data/sfm_types';
 
 import base_url from '../../settings/base_url';
 import { Box, Modal } from '@mui/material';
+import { useAuth } from '../../auth/AuthContext';
 
 const Registration = () => {
+    const { setIsLoggedIn, setAuthUser } = useAuth();
     const [formData, setFormData] = useState({
         email: '', 
         password: '', 
@@ -54,29 +56,33 @@ const Registration = () => {
             }
         ).then(res => {
             console.log(res.data)
-            
-                localStorage.setItem('jwtToken', res.data.body.token);
-                localStorage.setItem('email', res.data.body.user.email);
-                localStorage.setItem('user_id', res.data.body.user.user_id);
+        
+            localStorage.setItem('jwtToken', res.data.body.token);
+            localStorage.setItem('email', res.data.body.user.email);
+            localStorage.setItem('user_id', res.data.body.user.user_id);
 
-                console.log(res.data)
-                navigate('/');
-            })
-            .catch(error => {
-                console.error('Registration failed:', error);
-                if (error.response) {
-                    setErrorMessage(error.response.data.error)
-                    // console.log('Server Error:', error.response.data);
-                } else if (error.request) {
-                    setErrorMessage(error.request.error)
-                    // console.log('Request Error:', error.request);
-                } else {
-                    setErrorMessage(error.message.error)
-                    // console.log('Error:', error.message);
-                }
+            console.log(res.data)
 
-                console.log(error)
-            })
+            setIsLoggedIn(true);
+            setAuthUser(res.data.body.user);
+
+            navigate('/');
+        })
+        .catch(error => {
+            console.error('Registration failed:', error);
+            if (error.response) {
+                setErrorMessage(error.response.data.error)
+                // console.log('Server Error:', error.response.data);
+            } else if (error.request) {
+                setErrorMessage(error.request.error)
+                // console.log('Request Error:', error.request);
+            } else {
+                setErrorMessage(error.message.error)
+                // console.log('Error:', error.message);
+            }
+
+            console.log(error)
+        })
     };
       
 

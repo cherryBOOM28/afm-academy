@@ -16,6 +16,7 @@ import ProfileHeader from '../../components/profile-header';
 import ProfileGeneral from '../../components/profile-generalInfo';
 import ProfileJob from '../../components/profile-job';
 import ProfileEducation from '../../components/profile-education';
+import ProfilePassword from '../../components/profile-password';
 
 function Profile(props) {
 
@@ -32,6 +33,29 @@ function Profile(props) {
         setIsEdit(prev => !prev);
     }
     
+    const getSection = () => {
+        if (currentTab === 1) {
+            return <ProfileGeneral isEdit={isEdit} />
+        }
+
+        if (currentTab === 2) {
+            return <Vebinar/>
+        }
+        
+        if (currentTab === 3) {
+            return <ProfileJob isEdit={isEdit} />                  
+        }
+        
+        if (currentTab === 4) {
+            return <ProfileEducation />
+        }
+
+        if (currentTab === 5) {
+            return <ProfilePassword />
+        }
+
+        return null;
+    }
 
     return (
         <div className="profile-page"> 
@@ -45,32 +69,30 @@ function Profile(props) {
                         <div>Назад к главной</div>
                     </Link>
 
-                    <ProfileHeader handleRedact={handleRedact}/>
+                    {/* <ProfileHeader handleRedact={handleRedact}/> */}
 
                     <div className="profile-page-body">
                         <div className="side-bar">
                             <div className={`${currentTab === 1 ? 'active' : ''}`} onClick={() => handleTabClick(1)}>
-                                <BsFillPersonFill/>
-                                <p>Мои данные</p>
+                                <p>Личные данные</p>
                             </div>
                             <div className={`${currentTab === 2 ? 'active' : ''}`} onClick={() => handleTabClick(2)}>
-                                <BiSolidVideo/>
-                                <p>Участие в вебинаре</p>
+                                <p>Вебинары</p>
+                            </div>
+                            <div className={`${currentTab === 3 ? 'active' : ''}`} onClick={() => handleTabClick(3)}>
+                                <p>Опыт работы</p>
+                            </div>
+                            <div className={`${currentTab === 4 ? 'active' : ''}`} onClick={() => handleTabClick(4)}>
+                                <p>Сертификаты</p>
+                            </div>
+                            <div className={`${currentTab === 5 ? 'active' : ''}`} onClick={() => handleTabClick(5)}>
+                                <p>Сменить пароль</p>
                             </div>
                         </div>
                         <div className="main-section">
                             {
-                                currentTab === 1 
-                                    ? 
-                                        <>
-                                            <ProfileGeneral isEdit={isEdit} />
-                                            <ProfileJob isEdit={isEdit} />                  
-                                            <ProfileEducation />
-                                        </>
-                                    : 
-                                        <Vebinar/>
+                                getSection()
                             }
-                            
                         </div>
                     </div>
                 </div>
