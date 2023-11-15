@@ -21,7 +21,7 @@ const VebinarTable = () => {
     const [rows, setRows] = useState([
         {
             id: 1,
-            title: 'title1fasigjiashgkahgkhakdghaodhglisduhg;ajdghhedghadioghadgj;udgiehguqeughqeitgauihgkqshfuiauwitghaeioghuahgiaeh', 
+            title: 'title', 
             img: img,
             time: '2002',
             lector: 'maku',
@@ -31,7 +31,7 @@ const VebinarTable = () => {
         },
         {
             id: 1,
-            title: 'title1fasigjiashgkahgkhakdghaodhglisduhg;ajdghhedghadioghadgj;udgiehguqeughqeitgauihgkqshfuiauwitghaeioghuahgiaeh', 
+            title: 'title', 
             img: img,
             time: '2002',
             lector: 'maku',
