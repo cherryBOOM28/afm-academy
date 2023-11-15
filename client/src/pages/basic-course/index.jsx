@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Children } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useMotionValueEvent, useScroll } from 'framer-motion';
 
 import lectorImage from './lectorImage.png';
@@ -51,11 +51,20 @@ import VideoLine from '../../components/courseTemplates/common/VideoLine';
 import OneToFour from '../../components/courseTemplates/complex/interactives/OneToFour';
 import VideoWithTitleAndText from '../../components/courseTemplates/complex/Video/VideoWithTitleAndText';
 import RandomH2 from '../../components/courseTemplates/common/RandomH2';
+import axios from 'axios';
+import base_url from '../../settings/base_url';
 
 function Basic_course(props) {
     const [courseName, setCourseName] = useState('Базовый курс');
     const [isNavOpen, setIsNavOpen] = useState(true);
     const [activeSessionId, setActiveSessionId] = useState(1);
+
+    const jwtToken = localStorage.getItem('jwtToken');
+
+    const { id } = useParams();
+    const [data, setData] = useState(null);
+    const [error, setError] = useState(null);
+    const [isLoading, setLoading] = useState(true);
 
     const navigate = useNavigate();
 
@@ -92,6 +101,36 @@ function Basic_course(props) {
     useEffect(() => {
         handleWindowResolution();
         window.addEventListener('resize', handleWindowResolution);
+
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${base_url}/api/aml/course/getCourseById/1`, {
+                    headers: {
+                        Authorization: `Bearer ${jwtToken}`,
+                    },
+                });
+
+                console.log(response.data)
+
+                if (response.status === 200) {
+                    setData(response.data);
+                } else {
+                    // Handle other status codes if needed
+                    setError(response.statusText);
+                    console.log(response.statusText);
+                }
+
+                
+            } catch (error) {
+                setError(error);
+                console.error(error);
+            }
+
+            setLoading(false);
+        };
+        
+        console.log(jwtToken);
+        fetchData();
     }, [])
 
     const handleSessionClick = (id) => {

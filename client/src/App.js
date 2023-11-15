@@ -103,7 +103,11 @@ function App() {
             <Route path='/courses/testCourse' element={<TestCourse />}/>
 
             <Route path='/courses/:id/' element={<BasicCourse />}/>
-            <Route path='/courses/:id/read' element={<PrivateRoute shouldBeLoggedIn={true} component={Basic_course} redirect={'/courses/catalog'}/>}/>
+            <Route path='/courses/:id/read' element={
+              // <PrivateRoute shouldBeLoggedIn={true} component={
+                <Basic_course />
+              // } redirect={'/courses/catalog'}/>
+            }/>
 
             {/* <Route path='/payment' element={<PaymentPage />}/> */}
             <Route path='/payment/:id' element={<PaymentPage />} />
