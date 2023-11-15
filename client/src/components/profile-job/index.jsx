@@ -78,9 +78,9 @@ function ProfileJob({}) {
             user_id: user_id,
             org_name: data.name, 
             position: data.subname, 
-            start_date: formateDateToString(data.start_date), 
-            end_date: formateDateToString(data.end_date), 
-        }
+            start_date: new Date(formateDateToString(data.start_date)).getTime(), 
+            end_date: new Date(formateDateToString(data.end_date)).getTime(), 
+        };
 
         console.log(params)
 
