@@ -36,17 +36,28 @@ function ProfileEducation() {
                         Authorization: `Bearer ${jwtToken}`,
                     },
                 });
-
+    
                 if (response.status === 200) {
                     console.log(response.data)
                     setCourses(response.data);
+    
+                    let _edu = response.data.filter(course => course.status === 'finished').map(course => {
+                        return {
+                            org_name: course.courseDTO.course_name, 
+                            position: course.courseDTO.type_of_study || 'Электронное обучение', 
+                            start_date: '2022-01-01', 
+                            end_date: '2022-02-01',
+                            id: course.id
+                        }
+                    });
+                    console.log(_edu)
+                    setEduRows(_edu);
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
                     console.log(response.statusText);
                 }
-
-                
+    
             } catch (error) {
                 setError(error);
                 console.error(error);
@@ -54,25 +65,7 @@ function ProfileEducation() {
         };
         
         fetchData();
-
-        console.log('f')
-        console.log(courses)
-        let _edu = courses.filter(course => course.status === 'finished').map(course => {
-
-            console.log(course)
-            return {
-                org_name: course.courseDTO.course_name, 
-                position: course.courseDTO.type_of_study || 'Электронное обучение', 
-                start_date: '2022-01-01', 
-                end_date: '2022-02-01',
-                id: course.id
-            }
-        });
-        console.log(_edu)
-        setEduRows(
-            _edu,
-        );
-
+    
     }, []);
 
     const getFile = async (id) => {
