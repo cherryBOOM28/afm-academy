@@ -15,7 +15,7 @@ function ProfileEducation() {
 
     const eduColumns = ['Курс', 'Вид курса', 'Начало курса', 'Конец курса', 'Actions'];
     const [eduRows, setEduRows] = useState([
-        { organization: 'Org1', position: 'Position1', start_date: '2022-01-01', end_date: '2022-02-01' },
+        { org_name: 'Org1', position: 'Position1', start_date: '2022-01-01', end_date: '2022-02-01' },
         // Add more data as needed
     ]);
     const eduRowsPerPage = 5;
@@ -51,12 +51,11 @@ function ProfileEducation() {
                 setError(error);
                 console.error(error);
             }
-
-            setLoading(false);
         };
         
         fetchData();
 
+        console.log('f')
         console.log(courses)
         let _edu = courses.filter(course => course.status === 'finished').map(course => {
 

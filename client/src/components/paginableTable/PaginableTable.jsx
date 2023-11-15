@@ -75,7 +75,7 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
     }
 
     useEffect(() => {
-        console.log(rows)
+        console.log(rows);
     }, [])
 
     
