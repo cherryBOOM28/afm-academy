@@ -1,8 +1,10 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, Button } from '@mui/material';
+import axios from 'axios';
 import React, { useState, useEffect, Children } from 'react';
 
 import {BiPlus, BiSave} from 'react-icons/bi';
 import {ImCancelCircle} from 'react-icons/im';
+import base_url from '../../settings/base_url';
 
 
 const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, handleOnAdd}) => {
@@ -11,6 +13,8 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
+
+    const jwtToken = localStorage.getItem('jwtToken');
 
     const [isAdding, setIsAdding] = useState(false);
 
@@ -73,6 +77,8 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
     useEffect(() => {
         console.log(rows)
     }, [])
+
+    
 
     return (
         <TableContainer component={Paper} style={{backgroundColor: 'transparent', border: 'none', boxShadow: 'none', padding: '0', boxSizing: 'border-box'}}>

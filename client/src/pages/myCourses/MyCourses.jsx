@@ -135,7 +135,7 @@ function MyCourses() {
                                     : (
                                         <div className="courses-list">
                                             {
-                                                courses.filter(course => course.status === 'process').map((course, index) => {
+                                                courses.filter(course => course.status === 'process' || course.status === 'finished').map((course, index) => {
                                                     console.log(course);
                                                     const courseDTO = course.courseDTO;
                                                     const { course_image, course_name } = courseDTO;
@@ -153,8 +153,8 @@ function MyCourses() {
                                                         <img src={course_image} alt={course_name} />
                                                         <div className="info">
                                                             <div className="course-name">{course_name}</div>
-                                                            <div className="status" style={{backgroundColor: status === 'available' ? '#CADEFC' : '#cafccf'}}>
-                                                                {status === 'available' ? 'Доступно' : 'В процессе'}
+                                                            <div className="status" style={{backgroundColor: status === 'available' ? '#CADEFC' : status === 'process' ? '#f5fcca' : '#cafccf'}}>
+                                                                {status === 'available' ? 'Доступно' : status === 'process' ? 'В процессе' : 'Завершен'}
                                                             </div>
                                                             <div className="info-row">
                                                                 <div className='langAndDuration'>

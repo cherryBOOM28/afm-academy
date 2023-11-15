@@ -53,6 +53,7 @@ import VideoWithTitleAndText from '../../components/courseTemplates/complex/Vide
 import RandomH2 from '../../components/courseTemplates/common/RandomH2';
 import axios from 'axios';
 import base_url from '../../settings/base_url';
+import TestPage from '../../components/courseTemplates/complex/Test';
 
 function Basic_course(props) {
     const [courseName, setCourseName] = useState('Базовый курс');
@@ -65,6 +66,10 @@ function Basic_course(props) {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(true);
+
+    const [quizQuestions, setQuizQuestions] = useState([])  
+
+    const [courseProgress, setCourseProgress] = useState(0);
 
     const navigate = useNavigate();
 
@@ -104,7 +109,7 @@ function Basic_course(props) {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${base_url}/api/aml/course/getCourseById/1`, {
+                const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${1}`, {
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,
                     },
@@ -114,6 +119,10 @@ function Basic_course(props) {
 
                 if (response.status === 200) {
                     setData(response.data);
+                    setCourseProgress(response.data.progress_percentage)
+                    setQuizQuestions(response.data.course.chapters[0].quiz.quizList)
+                    console.log(response.data.course.chapters[0].quiz.quizList)
+
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
@@ -133,10 +142,77 @@ function Basic_course(props) {
         fetchData();
     }, [])
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${1}`, {
+                    headers: {
+                        Authorization: `Bearer ${jwtToken}`,
+                    },
+                });
+
+                if (response.status === 200) {
+                    setCourseProgress(response.data.progress_percentage)
+                } else {
+                    // Handle other status codes if needed
+                    setError(response.statusText);
+                    console.log(response.statusText);
+                }
+
+                
+            } catch (error) {
+                setError(error);
+                console.error(error);
+            }
+        };
+        
+        fetchData();
+    }, [activeSessionId])
+
     const handleSessionClick = (id) => {
         scrollToTopAnimated();
         setActiveSessionId(id);
     }
+
+    const CheckCurrentChapter = (chapterNum) => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.post(
+                    `${base_url}/api/aml/chapter/checked/${chapterNum}`,
+                    {},
+                    {
+                        headers: {
+                            Authorization: `Bearer ${jwtToken}`,
+                        },
+                    }
+                );
+    
+                console.log(response.data);
+    
+                if (response.status === 200) {
+                    setData(response.data);
+                } else {
+                    // Handle other status codes if needed
+                    setError(response.statusText);
+                    console.log(response.statusText);
+                }
+            } catch (error) {
+                if (error.response) {
+                    setError(error.response.data.message || 'An error occurred');
+                    console.error(error.response.data);
+                } else {
+                    setError(error.message || 'An error occurred');
+                    console.error(error.message);
+                }
+            }
+        };
+    
+        console.log(jwtToken);
+        fetchData();
+        scrollToTopAnimated();
+        setActiveSessionId(activeSessionId + 1);
+    };
+    
 
     const getLesson = (id) => {
         switch (id) {
@@ -300,8 +376,7 @@ function Basic_course(props) {
 
                     <Reveal>
                         <NextLesson handleOnClick={() => {
-                            scrollToTopAnimated();
-                            setActiveSessionId(activeSessionId + 1);
+                            CheckCurrentChapter(1);
                         }}/> 
                     </Reveal>
 
@@ -577,9 +652,7 @@ function Basic_course(props) {
  
                     <Reveal>
                         <NextLesson handleOnClick={() => {
-                            scrollToTopAnimated();
-
-                            setActiveSessionId(activeSessionId + 1);
+                            CheckCurrentChapter(2);
                         }}/> 
                     </Reveal>
                 </LessonPage>)
@@ -745,9 +818,7 @@ function Basic_course(props) {
 
                     <Reveal>
                         <NextLesson handleOnClick={() => {
-                            scrollToTopAnimated();
-
-                            setActiveSessionId(activeSessionId + 1);
+                            CheckCurrentChapter(3);
                         }}/> 
                     </Reveal>
 
@@ -848,9 +919,7 @@ function Basic_course(props) {
 
                     <Reveal>
                         <NextLesson handleOnClick={() => {
-                            scrollToTopAnimated();
-                            setActiveSessionId(activeSessionId + 1);
-
+                            CheckCurrentChapter(4);
                         }}/> 
                     </Reveal>
 
@@ -1375,15 +1444,17 @@ function Basic_course(props) {
 
                     <Reveal>
                         <NextLesson handleOnClick={() => {
-                            scrollToTopAnimated();
-
-                            setActiveSessionId(activeSessionId + 1);
+                            CheckCurrentChapter(5);
                         }}/> 
                     </Reveal>
 
                     {/* ------------ */}
 
                 </LessonPage>)
+            case 6:
+                return (<TestPage name={'ТЕСТ ПОД ФТ'} questions={quizQuestions} quizId={4}>
+
+                </TestPage>)
         }
     }
 
@@ -1403,7 +1474,8 @@ function Basic_course(props) {
                             <div>
                                 <h2>{courseName}</h2>
                                 <div className='progress-bar'>
-                                    <div>22% complete</div>
+                                    <div>Прогресс {parseFloat(courseProgress).toFixed(1)}%</div>
+                                    <progress id="courseProgress" max="100" value={`${parseFloat(courseProgress).toFixed(2)}`}>{parseFloat(courseProgress).toFixed(2)}</progress>
                                 </div>
                             </div>
                         </div>
@@ -1457,6 +1529,16 @@ function Basic_course(props) {
                                 }}
                                 handleSessionClick={handleSessionClick} 
                                 isActive={5 === activeSessionId}
+                            />
+                            <Session 
+                                session={{
+                                    id: 6,
+                                    group: 'introduction',
+                                    name: 'ПОД ФТ ТЕСТ',
+                                    progress: 0,
+                                }}
+                                handleSessionClick={handleSessionClick} 
+                                isActive={6 === activeSessionId}
                             />
                         </div>
 
