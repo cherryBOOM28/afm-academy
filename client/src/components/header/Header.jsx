@@ -21,7 +21,7 @@ function Header() {
   const jwtToken = localStorage.getItem('jwtToken');
   const userEmail = localStorage.getItem('email');
 
-  const [username, setUsername] = useState(Cookies.get('email')) || ''
+  const [username, setUsername] = useState(localStorage.getItem('email'))
   
   const {
     authUser,
@@ -38,6 +38,8 @@ function Header() {
   const handleLogout = () => {
     Cookies.remove('token')
     Cookies.remove('email')
+    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('email');
     setUsername('')
   }; 
   
@@ -73,7 +75,7 @@ function Header() {
                   <input type='search' className={cl.search__input} />
                 </div>
   
-                {username != '' ? (
+                {username ? (
                   <>
                     <Link to={'/profile'} style={{color: 'inherit', textDecoration: 'inherit'}}>
                       <div className={cl.personalAccount} style={{display: 'flex', alignItems: 'center', gap: '5px', marginRight: '15px'}}>

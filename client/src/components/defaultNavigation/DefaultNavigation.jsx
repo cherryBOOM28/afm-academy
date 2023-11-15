@@ -1,10 +1,13 @@
 import React from 'react';
 import cl from './DefaultNavigation.module.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../auth/AuthContext';
 
 function DefaultNavigation() {
     // const history = useHistory();
     const navigate = useNavigate();
+
+    const {isLoggedIn} = useAuth();
 
     const scrollToNews = () => {
         const newsSection = document.getElementById('newsSection');
@@ -51,9 +54,9 @@ function DefaultNavigation() {
                             <li>
                                 <Link to="/courses/catalog" className={cl.links}>Каталог курсов</Link>
                             </li>
-                            <li>
+                            {isLoggedIn ? <li>
                                 <Link to="/courses/myCourses" className={cl.links}>Мои курсы</Link>
-                            </li>
+                            </li> : null}
                         </ul>
                     </li>
                     <li className={cl.dropdown}>

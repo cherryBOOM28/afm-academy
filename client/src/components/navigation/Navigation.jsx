@@ -1,8 +1,11 @@
 import React from 'react';
 import cl from './Navigation.module.css';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../auth/AuthContext';
 
 function Navigation() {
+    const { isLoggedIn } = useAuth();
+
     const scrollToNews = () => {
         const newsSection = document.getElementById('newsSection');
         if (newsSection) {
@@ -50,9 +53,9 @@ function Navigation() {
                             <li>
                                 <Link to="/courses/catalog" className={cl.links}>Каталог курсов</Link>
                             </li>
-                            <li>
+                            {isLoggedIn ? <li>
                                 <Link to="/courses/myCourses" className={cl.links}>Мои курсы</Link>
-                            </li>
+                            </li> : null}
                         </ul>
                     </li>
                     <li className={cl.dropdown}>
