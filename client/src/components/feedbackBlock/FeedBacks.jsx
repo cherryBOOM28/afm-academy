@@ -19,6 +19,9 @@ function FeedBacks({ feedBacks }) {
     const [maxPage, setMaxPage] = useState(1);
 
     useEffect(() => {
+        console.log("FeedBacks", feedBacks);
+
+        if (!feedBacks) return;
         let _maxPage = Math.ceil(feedBacks.length / 3);
         setMaxPage(_maxPage);
 
@@ -28,15 +31,18 @@ function FeedBacks({ feedBacks }) {
     }, [])
 
     useEffect(() => {
+        if (!feedBacks) return;
         let _showFeedBacks = [feedBacks[page * 3 - 3], feedBacks[page * 3 - 2], feedBacks[page * 3 - 1]]
 
         setShowFeedbacks(_showFeedBacks);
     }, [page])
 
+    if (!feedBacks) return null;
+
     return ( 
         <>
         <div className='feedBacks-block'>
-            {showFeedBacks.map(feedBack => {
+            {showFeedBacks ? showFeedBacks.map(feedBack => {
                 if (!feedBack) return null;
 
                 return (
@@ -48,7 +54,7 @@ function FeedBacks({ feedBacks }) {
                         <p>{feedBack.comment}</p>
                     </div>
                 )
-            })}
+            }) : null}
         </div>
         <div className='page-buttons'>
             {

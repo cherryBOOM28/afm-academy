@@ -68,9 +68,10 @@ function MyCourses() {
 
             <main className='page-content '>
                 <div style={{
-                    background: '#F2F2F2',    
-                    padding: '25px 0px',
-                    marginTop: '60px'             
+                    // background: '#F2F2F2',    
+                    // padding: 'px 0px',
+                    marginTop: '60px',
+                    marginBottom: '74px'             
                 }}>
                     <div className='container' style={{
                         display: 'flex',
@@ -79,18 +80,18 @@ function MyCourses() {
                         // justifyContent: 'center',
                         gap: '15px',
                     }}>
-                        <img src={bookIcon} alt="book icon" style={{
+                        {/* <img src={bookIcon} alt="book icon" style={{
                             height: '50px',
                             width: '50px'
-                        }} />
+                        }} /> */}
                         <h3 style={{
-                            fontFamily: 'Roboto',
-                            fontSize: '26px',
+                            fontFamily: 'Inter',
+                            fontSize: '36px',
                             fontWeight: '700',
                             lineHeight: '50px',
                             letterSpacing: '0em',
                             textAlign: 'left',
-                            paddingTop: '8px'
+                            // paddingTop: '8px'
                         }}>Мои курсы</h3>
                     </div>
                 </div>
@@ -106,7 +107,7 @@ function MyCourses() {
                         textAlign: 'left'
                         
                     }}>Обучение</h1>
-                    <p style={{
+                    {/* <p style={{
                         fontFamily: "Roboto",
                         fontSize: '16px',
                         fontWeight: '400',
@@ -117,7 +118,7 @@ function MyCourses() {
                         
                     }}>
                         Широкий спектр профессиональных курсов в Астане по самым разным направлениям
-                    </p>
+                    </p> */}
                 </div>
 
                 <div className="courses-block">
@@ -143,7 +144,7 @@ function MyCourses() {
 
                                                     return <div className='course-card' key={index} 
                                                         onClick={() => {
-                                                            if (status === 'process') {
+                                                            if (status === 'process' || status === 'finished') {
                                                                 navigate(`/courses/${course.id}/read`)
                                                             } else {
                                                                 navigate(`/courses/${course.id}`);
@@ -184,40 +185,6 @@ function MyCourses() {
             <Footer />
         </div>
     );
-}
-
-const Course = ({course}) => {
-    const navigate = useNavigate();
-    const status = course.status;
-    const statusColor = status === 'Завершен' 
-                    ? 'red' 
-                    : status === 'Не начато'
-                        ? 'green'
-                        : 'blue';
-
-    return (
-        <div onClick={() => {
-            navigate(course.route);
-        }}>
-            <img src={course.img} alt={course.title} />
-            <h3>{course.title}</h3>
-            <p style={{
-                padding: '5px 10px',
-                width: 'max-content',
-                borderRadius: '5px',
-                background: statusColor,
-                color: 'white',
-
-                }}>{status}</p>
-            <div className='characteristics'>
-                <p>{course.lang} | {course.duration}</p>
-                <div>{course.rate}</div>
-            </div>
-            <div>
-                {course.type}
-            </div>
-        </div>   
-    )        
 }
 
 export default MyCourses;

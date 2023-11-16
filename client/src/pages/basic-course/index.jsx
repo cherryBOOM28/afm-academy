@@ -23,6 +23,8 @@ import defaultImg from './../../assets/images/default.png'
 import './style.scss'
 import HeaderWithLine from '../../components/courseTemplates/common/HeaderWithLine';
 import { BiSolidObjectsHorizontalRight } from 'react-icons/bi';
+import { MdClose } from "react-icons/md";
+
 import Table_1 from '../../components/courseTemplates/common/Tables/Table-1';
 import Report_Warning from '../../components/courseTemplates/common/Warnings/Report';
 import Sizebox from '../../components/courseTemplates/common/Sizebox';
@@ -70,6 +72,15 @@ function Basic_course(props) {
     const [quizQuestions, setQuizQuestions] = useState([])  
 
     const [courseProgress, setCourseProgress] = useState(0);
+
+    const [open, setOpen] = useState(false);
+    const handleOpenModal = () => {
+        setOpen(true);
+    }
+
+    const handleCloseModal = () => {
+        setOpen(false);
+    }
 
     const navigate = useNavigate();
 
@@ -1452,7 +1463,7 @@ function Basic_course(props) {
 
                 </LessonPage>)
             case 6:
-                return (<TestPage name={'ТЕСТ ПОД ФТ'} questions={quizQuestions} quizId={4}>
+                return (<TestPage name={'ТЕСТ ПОД ФТ'} questions={quizQuestions} quizId={4} handleOpenModal={handleOpenModal}>
 
                 </TestPage>)
         }
@@ -1460,6 +1471,36 @@ function Basic_course(props) {
 
     return ( 
         <div className="basic-course">
+            {
+                open ? (
+                    <div className="modal">
+                        <div className="wrapper" onClick={(e) => {
+                            // console.log(e.target.classList.contains("wrapper"))
+                            if (e.target.classList.contains("wrapper")) {
+                                setOpen(false)
+                            }
+                        }}>
+                            <div className="body">
+                                <div className="title">
+                                    <h1>Вы прошли курс!</h1>
+                                    <MdClose className='close' size={30}  onClick={() => { setOpen(false) }}/>
+                                </div>
+
+                                <p>
+                                    Скачать сертификат можно в странице профиля
+                                </p>
+
+                                <div className="send-btn" onClick={() => { 
+                                    handleCloseModal();
+                                    navigate('/profile/sertificates');
+                                 }}>
+                                    Перейти к сертификатам
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                ) : null
+            }
             <div className="course-wrapper">
 
                 <CourseHeader 

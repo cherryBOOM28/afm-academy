@@ -1,4 +1,5 @@
 .profile-page {
+    position: relative;
     
     width: 100vw;
     height: 100vh;
@@ -125,6 +126,126 @@
             }
 
             
+            
+        }
+    }
+
+    .modal {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        // border: 1px solid red;
+        box-sizing: border-box;
+        background-color: #3a39392a;
+
+        z-index: 1;
+
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+
+            .body {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                
+                // height: 500px;
+                width: 700px;
+
+                border-radius: 10px;
+                background: #FFF;
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+                padding: 50px 40px;
+                
+                z-index: 2;
+
+                .title {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    margin-bottom: 50px;
+
+                    h1 {
+                        width: 100%;
+
+                        color: #3A3939;
+
+                        font-family: Ubuntu;
+                        font-size: 30px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 30px;
+
+                        text-align: center;
+                    }
+
+                    .close {
+                        width: max-content;
+                        cursor: pointer;
+                    }
+                }
+
+                > p {
+                    text-align: center;
+                    color: #3A3939;
+                    text-align: center;
+                    font-family: Ubuntu;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 140%;
+
+                    width: 100%;
+                    padding: 0px 30px;
+                    margin-bottom: 20px;
+
+                    box-sizing: border-box;
+                }
+
+                .stars {
+                    // border: 1px solid red;
+                    width: 60%;
+                    margin: 0 auto;
+                    padding: 16px 0px;
+
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    gap: 16px;
+
+                    margin-bottom: 28px;
+
+                    > * {
+                        cursor: pointer;
+                    }
+                }
+
+                .send-btn {
+                    border-radius: 8px;
+                    background: #1F3C88;
+                    color: #FFF;
+
+                    font-feature-settings: 'clig' off, 'liga' off;
+                    font-family: Manrope;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 24px; /* 150% */
+                    letter-spacing: 0.2px;
+
+                    // width: 100%;
+                    text-align: center;
+                    padding: 12px 120px;
+                    margin: 0 115px;
+
+                    cursor: pointer;
+                }
+            }
             
         }
     }

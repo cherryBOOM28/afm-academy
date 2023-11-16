@@ -41,6 +41,10 @@ function BasicCourse() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${id}`, {
@@ -96,7 +100,7 @@ function BasicCourse() {
                     </Collapsable>
                     <Collapsable title={'Стоимость курса'}>
                         <p>
-                            {data ? data.course_price : ''}
+                            {data ? data.course.course_price : ''}
                         </p>
                     </Collapsable>
                     <Collapsable title={'Дата ближайшего курса'}>

@@ -60,7 +60,7 @@ function PaymentPage(props) {
                             {isLoading 
                                 ? "loading" 
                                 : data !== null 
-                                    ? data.course_price
+                                    ? data.course.course_price
                                     : ""
                             }
                         </span>

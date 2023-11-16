@@ -78,6 +78,7 @@ function App() {
 
 
             <Route path="/profile" element={<PrivateRoute shouldBeLoggedIn={true} component={Profile}/>}></Route>
+            <Route path="/profile/:tabname" element={<PrivateRoute shouldBeLoggedIn={true} component={Profile}/>}></Route>
 
             <Route path="/subjects" element={<Subjects />}></Route>
             <Route path="/rules" element={<Rules />}></Route>

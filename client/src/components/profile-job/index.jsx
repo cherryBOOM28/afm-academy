@@ -36,6 +36,7 @@ function ProfileJob({}) {
                 });
 
                 console.log(response.data)
+                console.log(typeof response.data[0].end_date)
 
                 if (response.status === 200) {
                     setJobRows(response.data);

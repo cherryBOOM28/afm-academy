@@ -78,7 +78,16 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
         console.log(rows);
     }, [rows])
 
-    
+    const numberToDate = (number) => {
+        const timestamp = number;
+        const date = new Date(timestamp);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Adding 1 to month because it's zero-indexed
+        const day = String(date.getDate()).padStart(2, '0');
+
+        const formattedDate = `${year}-${month}-${day}`;
+        return formattedDate;
+    }
 
     return (
         <TableContainer component={Paper} style={{backgroundColor: 'transparent', border: 'none', boxShadow: 'none', padding: '0', boxSizing: 'border-box'}}>
@@ -128,8 +137,8 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
                         <TableRow key={index} id={row.job_ex_id}>
                             <TableCell style={{ minWidth: '200px', padding: cellPadding, font: cellFont, color: cellColor }}>{row.org_name}</TableCell>
                             <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>{row.position}</TableCell>
-                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>{row.start_date ? row.start_date : ''}</TableCell>
-                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>{row.end_date ? row.end_date : ''}</TableCell>
+                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>{row.start_date ? typeof row.start_date === 'number' ? numberToDate(row.start_date) : row.start_date : ''}</TableCell>
+                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>{row.end_date ? typeof row.end_date === 'number' ? numberToDate(row.start_date) : row.end_date : ''}</TableCell>
                             <TableCell 
                                 style={{ padding: cellPadding, font: cellFont, color: cellColor, display: 'flex', flexDirection: 'row-reverse', gap: '10px'}} 
                                 align='right'

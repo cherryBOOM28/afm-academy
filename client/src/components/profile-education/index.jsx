@@ -11,11 +11,11 @@ import axios from 'axios';
 import base_url from '../../settings/base_url';
 import { Box, Modal } from '@mui/material';
 
-function ProfileEducation() {
+function ProfileEducation({ handleOpenModal }) {
 
     const eduColumns = ['Курс', 'Вид курса', 'Начало курса', 'Конец курса', 'Actions'];
     const [eduRows, setEduRows] = useState([
-        { org_name: 'Org1', position: 'Position1', start_date: '2022-01-01', end_date: '2022-02-01' },
+        { org_name: 'загрузка...', position: 'загрузка...', start_date: 'загрузка...', end_date: 'загрузка...' },
         // Add more data as needed
     ]);
     const eduRowsPerPage = 5;
@@ -84,7 +84,7 @@ function ProfileEducation() {
                 const url = window.URL.createObjectURL(new Blob([response.data]));
                 const link = document.createElement('a');
                 link.href = url;
-                link.setAttribute('download', 'your_pdf_file.pdf');
+                link.setAttribute('download', 'Сертификат.pdf');
                 document.body.appendChild(link);
                 link.click();
                 link.parentNode.removeChild(link);
@@ -107,7 +107,7 @@ function ProfileEducation() {
             {/* <div className="title">Опыт работы</div> */}
             <div className='table'>
                 <PaginableTable columns={eduColumns} rows={eduRows} rowsPerPage={eduRowsPerPage} isExtendable={false}>
-                    <div className='edu-action' style={{order: 2}} onClick={() => {setOpen(true)}}>
+                    <div className='edu-action' style={{order: 2}} onClick={() => {handleOpenModal()}}>
                         <span>Оценить</span>
                         <AiFillStar size={23} style={{color: '#F9CB36'}}/>
                     </div>
@@ -118,50 +118,6 @@ function ProfileEducation() {
                 </PaginableTable>
             </div>
         </div>
-        <Modal
-            open={open}
-            onClose={() => setOpen(false)}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-            >
-            <Box sx={{
-                // top: '50px',
-                // left: '',
-                transform: 'translate(700px, 50%)',
-                width: '600px',
-                height: '500px',
-                backgroundColor: 'white',
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", /* Increased shadow spread */
-                border: 'none',
-                outline: 'none',
-                boxSizing: 'border-box',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '20px',
-                padding: '0px 50px 50px 50px',
-            }}>
-                <p style={{textAlign: 'center', fontFamily: 'ubuntu', lineHeight: '140%'}}>Для нас важно ваше мнение! 
-                    Мы стремимся предоставить вам наилучший опыт обучения, и ваша обратная связь помогает нам постоянно улучшать наши курсы.</p>
-                <div className="star-row" 
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        gap: '10px',
-                        color: '#F3F3F3',
-
-                        cursor: 'pointer'
-                    }}
-                >
-                    <FaStar size={50} color={color1} onClick={() => setColor1('#1F3C88')}/>
-                    <FaStar size={50} color={color2} onClick={() => setColor2('#1F3C88')}/>
-                    <FaStar size={50} color={color3} onClick={() => setColor3('#1F3C88')}/>
-                    <FaStar size={50} color={color4} onClick={() => setColor4('#1F3C88')}/>
-                    <FaStar size={50} color={color5} onClick={() => setColor5('#1F3C88')}/>
-                </div>
-            </Box>
-        </Modal>
         </>
     );
 }

@@ -191,7 +191,7 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
 
                         return <div className='course-card' key={index} 
                             onClick={() => {
-                                if (status === 'process') {
+                                if (status === 'process' || status === 'finished') {
                                     navigate(`/courses/${course.id}/read`)
                                 } else {
                                     navigate(`/courses/${course.id}`);
@@ -201,8 +201,8 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                             <img src={course_image} alt={course_name} />
                             <div className="info">
                                 <div className="course-name">{course_name}</div>
-                                <div className="status" style={{backgroundColor: status === 'available' ? '#CADEFC' : '#cafccf'}}>
-                                    {status === 'available' ? 'Доступно' : 'В процессе'}
+                                <div className="status" style={{backgroundColor: status === 'available' ? '#CADEFC' : status === 'process' ? '#f5fcca' : '#cafccf'}}>
+                                    {status === 'available' ? 'Доступно' : status === 'process' ? 'В процессе' : 'Завершен'}
                                 </div>
                                 <div className="info-row">
                                     <div className='langAndDuration'>

@@ -6,7 +6,7 @@ import { FaCheck } from "react-icons/fa6";
 import axios from 'axios';
 import base_url from '../../../../settings/base_url';
 
-function TestPage({ name, questions, quizId }) {
+function TestPage({ name, questions, quizId, handleOpenModal }) {
     const jwtToken = localStorage.getItem('jwtToken');
 
     const [currQuestion, setCurrQuestion] = useState(0)
@@ -56,6 +56,7 @@ function TestPage({ name, questions, quizId }) {
         
         console.log(jwtToken);
         fetchData();
+        handleOpenModal();
     }
 
     if (!questions) return null;
