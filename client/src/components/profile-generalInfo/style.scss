@@ -24,7 +24,7 @@
 
     .fields {
         display: grid;
-        grid-template-columns: repeat(2, auto);
+        grid-template-columns: repeat(2, 1fr);
         // gap: 20px;
         row-gap: 20px;
         column-gap: 70px;
@@ -38,6 +38,7 @@
         flex-direction: column;
         // max-width: 100%;
         width: 100%;
+        box-sizing: border-box;
         gap: 8px;
 
         > label {
@@ -74,6 +75,7 @@
         .custom-select {
             position: relative;
             display: inline-block;
+            
         }
 
         select {
@@ -82,11 +84,6 @@
             -webkit-appearance: none; /* Remove default arrow in Chrome and Safari */
             -moz-appearance: none; /* Remove default arrow in Firefox */
             appearance: none; /* Remove default arrow in other browsers */
-            // padding: 5px 30px 5px 5px; /* Adjust padding as needed */
-            // border: 1px solid #ccc;
-            // border-radius: 4px;
-            // width: 100%; /* Make the select take up the full width */
-            // cursor: pointer;
         }
 
         .dropdown-icon {
@@ -121,6 +118,8 @@
         font-style: normal;
         font-weight: 600;
         letter-spacing: 0.5px;
+
+        user-select: none;
 
         margin-bottom: 35px;
     }

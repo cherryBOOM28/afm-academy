@@ -12,7 +12,7 @@ import search_icon from '../../assets/icons/search-light.svg';
 import Button from '../UI/button/Button';
 import Navigation from '../navigation/Navigation';
 import { Link } from 'react-router-dom';
-import personalAccount from '../../assets/icons/acc.svg';
+import { FaUser } from "react-icons/fa";
 
 import { useAuth } from '../../auth/AuthContext';
 
@@ -36,11 +36,12 @@ function Header() {
   };
 
   const handleLogout = () => {
-    Cookies.remove('token')
-    Cookies.remove('email')
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('email');
+    setIsLoggedIn(false)
     setUsername('')
+
+    navigate('/login')
   }; 
   
     return (
@@ -57,16 +58,16 @@ function Header() {
             <div className={cl.menu}>
               <div className={cl.menu__utils}>
                 <div className={cl.socials}>
-                  <a href='/#' className={cl.rounde}>
+                  <a href='#' className={cl.rounde}>
                     <img src={language} alt="language" className={cl.icon} />
                   </a>
-                  <a href='/#' className={cl.rounde}>
+                  <a href='#' className={cl.rounde}>
                     <img src={igIcon} alt="instagram" className={cl.icon} />
                   </a>
-                  <a href='/#' className={cl.rounde}>
+                  <a href='#' className={cl.rounde}>
                     <img src={fbIcon} alt="facebook" className={cl.icon} />
                   </a>
-                  <a href='/#' className={cl.rounde}>
+                  <a href='#' className={cl.rounde}>
                     <img src={tgIcon} alt="telegram" className={cl.icon} />
                   </a>
                 </div>
@@ -79,14 +80,15 @@ function Header() {
                   <>
                     <Link to={'/profile'} style={{color: 'inherit', textDecoration: 'inherit'}}>
                       <div className={cl.personalAccount} style={{display: 'flex', alignItems: 'center', gap: '5px', marginRight: '15px'}}>
-                        <img src={personalAccount} alt="personal Account" />
+                        {/* <img src={personalAccount} alt="personal Account" /> */}
+                        <FaUser size={20} style={{color: 'white'}}/>
                         <p style={{fontSize: '1.1rem', fontWeight: '300', color: 'white'}}>{userEmail}</p>
                       </div>
                     </Link>
                     <div className={cl.languages}>
-                      <a href='/#' className={cl.lang}>қаз</a>
-                      <a href='/#' className={cl.lang}>РУС</a>
-                      <a href='/#' className={cl.lang}>ENG</a>
+                      <a href='#' className={cl.lang}>қаз</a>
+                      <a href='#' className={cl.lang}>РУС</a>
+                      <a href='#' className={cl.lang}>ENG</a>
                     </div>
                     <Link className={cl.personalAccountLink}>
                       <Button className={cl.personalAccountBtn} onClick={handleLogout} style={{ borderRadius: '5px' }}>Выйти</Button>
@@ -110,62 +112,3 @@ function Header() {
   }
   
   export default Header;
-  
-
-
-// function Header() {
-//     return (
-//         <div className={cl.headerWrapper}>
-//             <div className={cl.container}>
-//                 <div className={cl.header}>
-//                     <div className={cl.header__logo}>
-//                         <div className={cl.languages}>
-//                             <a href='/#' className={cl.lang}>қаз</a>
-//                             <a href='/#' className={cl.lang}>РУС</a>
-//                             <a href='/#' className={cl.lang}>ENG</a>
-//                         </div>
-//                         <Link to="/" className={cl.header__logo}>
-//                             <img src={logo} alt="logo" />
-//                             <p className={cl.logo__text}>Академия финансового мониторинга</p>
-//                         </Link>
-//                     </div>
-//                     <div className={cl.menu}>
-//                         <div className={cl.menu__utils}>
-//                             <div className={cl.socials}>
-//                                 <a href='/#' className={cl.rounde}>
-//                                     <img src={language} alt="language" className={cl.icon} />
-//                                 </a>
-//                                 <a href='/#' className={cl.rounde}>
-//                                     <img src={igIcon} alt="instagram" className={cl.icon} />
-//                                 </a>
-//                                 <a href='/#' className={cl.rounde}>
-//                                     <img src={fbIcon} alt="facebook" className={cl.icon} />
-//                                 </a>
-//                                 <a href='/#' className={cl.rounde}>
-//                                     <img src={tgIcon} alt="telegram" className={cl.icon} />
-//                                 </a>
-//                             </div>
-//                             <div className={cl.search}>
-//                                 <img src={searchIcon} alt="search" className={cl.search__icon} />
-//                                 <input type='search' className={cl.search__input} />
-//                             </div>
-
-//                             <Link to="/login"><Button>Войти</Button></Link>
-
-//                             <Link to="/" className={cl.personalAccountLink}><Button className={cl.personalAccountBtn}>Выйти</Button></Link>
-//                             <div className={cl.personalAccount}>
-//                                 <img src={personalAccount} alt="personal Account" />
-//                             </div>
-                            
-//                         </div>
-//                         <div className={cl.menu__navigation}>
-//                            <Navigation />
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }
-
-// export default Header;

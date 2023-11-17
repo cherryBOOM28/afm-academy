@@ -16,9 +16,11 @@ import personalAccount from '../../assets/icons/acc.svg';
 
 import { useAuth } from '../../auth/AuthContext';
 
+import { FaUser } from "react-icons/fa";
+
 function DefaultHeader() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState(Cookies.get('email')) || ''
+  const [username, setUsername] = useState(localStorage.getItem('email')) || ''
 
   const jwtToken = localStorage.getItem('jwtToken');
   const userEmail = localStorage.getItem('email');
@@ -35,13 +37,14 @@ function DefaultHeader() {
   };
 
   const handleLogout = () => {
-    Cookies.remove('token')
-    Cookies.remove('email')
+    localStorage.removeItem('email')
+    localStorage.removeItem('jwtToken')
     setUsername('')
+    setIsLoggedIn(false);
 
     console.log("works")
 
-    navigate('/logout')
+    navigate('/login')
   }; 
   
     return (
@@ -58,16 +61,16 @@ function DefaultHeader() {
             <div className={cl.menu}>
               <div className={cl.menu__utils}>
                 <div className={cl.socials}>
-                  <a href='/#' className={cl.rounde}>
+                  <a href='#' className={cl.rounde}>
                     <img src={language} alt="language" className={cl.icon} />
                   </a>
-                  <a href='/#' className={cl.rounde}>
+                  <a href='#' className={cl.rounde}>
                     <img src={igIcon} alt="instagram" className={cl.icon} />
                   </a>
-                  <a href='/#' className={cl.rounde}>
+                  <a href='#' className={cl.rounde}>
                     <img src={fbIcon} alt="facebook" className={cl.icon} />
                   </a>
-                  <a href='/#' className={cl.rounde}>
+                  <a href='#' className={cl.rounde}>
                     <img src={tgIcon} alt="telegram" className={cl.icon} />
                   </a>
                 </div>
@@ -79,15 +82,16 @@ function DefaultHeader() {
                 {username != '' ? (
                   <>
                     <Link to={'/profile'} style={{color: 'inherit', textDecoration: 'inherit'}}>
-                      <div className={cl.personalAccount} style={{display: 'flex', alignItems: 'center', gap: '5px', marginRight: '15px'}}>
-                        <img src={personalAccount} alt="personal Account" />
+                      <div className={cl.personalAccount} style={{display: 'flex', alignItems: 'center', gap: '7px', marginRight: '15px'}}>
+                        {/* <img src={personalAccount} alt="personal Account" /> */}
+                        <FaUser size={20} style={{color: 'black'}}/>
                         <p style={{fontSize: '1.1rem', fontWeight: '300', color: 'black'}}>{userEmail}</p>
                       </div>
                     </Link>
                     <div className={cl.languages}>
-                      <a href='/#' className={cl.lang}>қаз</a>
-                      <a href='/#' className={cl.lang}>РУС</a>
-                      <a href='/#' className={cl.lang}>ENG</a>
+                      <a href='#' className={cl.lang}>қаз</a>
+                      <a href='#' className={cl.lang}>РУС</a>
+                      <a href='#' className={cl.lang}>ENG</a>
                     </div>
                     <Link className={cl.personalAccountLink} to={'/logout'}>
                       <Button className={cl.personalAccountBtn} onClick={handleLogout}>Выйти</Button>
@@ -121,9 +125,9 @@ function DefaultHeader() {
 //                 <div className={cl.header}>
 //                     <div className={cl.header__logo}>
 //                         <div className={cl.languages}>
-//                             <a href='/#' className={cl.lang}>қаз</a>
-//                             <a href='/#' className={cl.lang}>РУС</a>
-//                             <a href='/#' className={cl.lang}>ENG</a>
+//                             <a href='#' className={cl.lang}>қаз</a>
+//                             <a href='#' className={cl.lang}>РУС</a>
+//                             <a href='#' className={cl.lang}>ENG</a>
 //                         </div>
 //                         <Link to="/" className={cl.header__logo}>
 //                             <img src={logo} alt="logo" />
@@ -133,16 +137,16 @@ function DefaultHeader() {
 //                     <div className={cl.menu}>
 //                         <div className={cl.menu__utils}>
 //                             <div className={cl.socials}>
-//                                 <a href='/#' className={cl.rounde}>
+//                                 <a href='#' className={cl.rounde}>
 //                                     <img src={language} alt="language" className={cl.icon} />
 //                                 </a>
-//                                 <a href='/#' className={cl.rounde}>
+//                                 <a href='#' className={cl.rounde}>
 //                                     <img src={igIcon} alt="instagram" className={cl.icon} />
 //                                 </a>
-//                                 <a href='/#' className={cl.rounde}>
+//                                 <a href='#' className={cl.rounde}>
 //                                     <img src={fbIcon} alt="facebook" className={cl.icon} />
 //                                 </a>
-//                                 <a href='/#' className={cl.rounde}>
+//                                 <a href='#' className={cl.rounde}>
 //                                     <img src={tgIcon} alt="telegram" className={cl.icon} />
 //                                 </a>
 //                             </div>

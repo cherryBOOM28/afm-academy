@@ -65,9 +65,9 @@ function Profile(props) {
             return <Vebinar/>
         }
         
-        if (currentTab === 3) {
-            return <ProfileJob isEdit={isEdit} />                  
-        }
+        // if (currentTab === 3) {
+        //     return <ProfileJob isEdit={isEdit} />                  
+        // }
         
         if (currentTab === 4) {
             return <ProfileEducation handleOpenModal={handleOpenModal}/>
@@ -150,9 +150,9 @@ function Profile(props) {
                             <div className={`${currentTab === 2 ? 'active' : ''}`} onClick={() => handleTabClick(2)}>
                                 <p>Вебинары</p>
                             </div>
-                            <div className={`${currentTab === 3 ? 'active' : ''}`} onClick={() => handleTabClick(3)}>
+                            {/* <div className={`${currentTab === 3 ? 'active' : ''}`} onClick={() => handleTabClick(3)}>
                                 <p>Опыт работы</p>
-                            </div>
+                            </div> */}
                             <div className={`${currentTab === 4 ? 'active' : ''}`} onClick={() => handleTabClick(4)}>
                                 <p>Сертификаты</p>
                             </div>

@@ -26,8 +26,8 @@ const Registration = () => {
         lastname: '',
         patronymic: '', 
         phone_number: '',
-        system_entity_type: '-1',
-        sfm_type: '-1',
+        member_of_the_system: 'Государственные органы-регуляторы',
+        type_of_member: '',
     });
 
     useEffect(() => {
@@ -131,15 +131,20 @@ const Registration = () => {
                             name={'member_of_the_system'} 
                             label={'Участник системы'} 
                             />
-
-                        <SelectField 
-                            formData={formData} 
-                            handleChange={handleChange} 
-                            selectItems={getItems(formData['member_of_the_system'])} 
-                            name={'type_of_member'} 
-                            label={'Вид СФМ'} 
-                            />
-
+                        
+                        {
+                            formData['member_of_the_system'] !== 'Общественное объединение'
+                            ? (
+                                <SelectField 
+                                    formData={formData} 
+                                    handleChange={handleChange} 
+                                    selectItems={getItems(formData['member_of_the_system'])} 
+                                    name={'type_of_member'} 
+                                    label={'Вид СФМ'} 
+                                    />
+                            ) 
+                            : <InputField formData={formData} handleChange={handleChange} name={'type_of_member'} label={'Вид СФМ'} hint={'Введите вид СФМ'}/>
+                        }
                     </div>
                     <div className='actions'>
                         <div className='policy'>

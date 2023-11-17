@@ -120,6 +120,13 @@
         }
     }
 
+    .error {
+        
+        h3 {
+            color: rgba(255, 0, 0, 0.623);
+        }
+    }
+
     .actions {
         display: flex;
         flex-direction: row;

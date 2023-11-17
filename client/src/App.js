@@ -35,22 +35,13 @@ import Basic_course from './pages/basic-course';
 import PrivateRoute from './auth/PrivateRoute';
 
 
-// const PrivateRoute = ({ element: Element, ...rest }) => {
-//   const { isLoggedIn } = useAuth();
-
-//   return (
-//     <Route
-//       {...rest}
-//       element={isLoggedIn ? <Element /> : <Navigate to="/login" />}
-//     />
-//   );
-// };
-
 function App() {
   const [jwtToken, setJwtToken] = useState('');
 
   useEffect(() => {
     const storedJwtToken = localStorage.getItem('jwtToken');
+
+    console.log(storedJwtToken)
     
     if (storedJwtToken) {
       setJwtToken(storedJwtToken);
@@ -75,7 +66,6 @@ function App() {
             <Route path="/structure" element={<Structure />}></Route>
             <Route path="/structure/:id" element={<DirectorPage />} />
             <Route path="/charter" element={<Charter />}></Route>
-
 
             <Route path="/profile" element={<PrivateRoute shouldBeLoggedIn={true} component={Profile}/>}></Route>
             <Route path="/profile/:tabname" element={<PrivateRoute shouldBeLoggedIn={true} component={Profile}/>}></Route>

@@ -44,17 +44,7 @@ function ProfileGeneral() {
                         Authorization: `Bearer ${jwtToken}`,
                     },
                 });
-                // const response = {
-                //     body: {
-                //         user_id: 0,
-                //         "lastname": 'Doe',
-                //         "firstname": 'John',
-                //         "patronymic": 'Snow',
-                //         "email": 'John@gmail.com',
-
-                //     }
-                // }
-
+                
                 if (response.status === 200) {
                     setData(response.data);
                 } else {
@@ -71,22 +61,18 @@ function ProfileGeneral() {
         };
         
         fetchData();
-      }, []);
+      }, [isEdit]);
 
     const [localData, setLocalData] = useState({});
-
     const [changedData, setChangedData] = useState({});
+
+    const [job, setJob] = useState('');
+    const [localJob, setLocalJob] = useState('');
 
     const handleInfoChange = (name, value) => {
         setChangedData({ ...changedData, [name]: value });
         setLocalData({ ...localData, [name]: value })
     }
-
-    useEffect(() => {
-        if (isEdit === false) {
-            handleSaveChanges();
-        }
-    }, [isEdit])
 
     const handleSaveChanges = async () => {
         console.log('changed data', changedData)
@@ -97,7 +83,7 @@ function ProfileGeneral() {
             "firstname": localData.firstname,
             "patronymic": localData.patronymic,
             "email": localData.email,
-            // "password": localData.password,
+            "password": localData.password,
             ...changedData,
         };
 
@@ -107,8 +93,6 @@ function ProfileGeneral() {
             },
         };
 
-        console.log('params to change password', params)
-
         try {
             const res = await axios.patch(`${base_url}/api/aml/auth/change_user`, params, options );
     
@@ -116,12 +100,23 @@ function ProfileGeneral() {
         } catch (error) {
             console.error(error);
         }
+
+        setJob(localJob)
+        setEdit(false);
     }
 
+    const handleCancelChanges = () => {
+        updateLocalData();
+        setEdit(false);
+    }
+
+    const updateLocalData = () => {
+        setLocalJob(job)
+        setLocalData(data);
+    }
 
     useEffect(() => {
-        console.log(data)
-        setLocalData(data);
+        updateLocalData()
     }, [isLoading]);
 
     if (isLoading) {
@@ -177,7 +172,7 @@ function ProfileGeneral() {
                 <SelectField
                     isEdit={isEdit}
                     value={localData ? localData['member_of_the_system'] : ''}
-                    name={'system_entity_type'}
+                    name={'member_of_the_system'}
                     selectItems={[
                         'Государственные органы-регуляторы',
                         'Субъект финансового мониторнга',
@@ -187,21 +182,28 @@ function ProfileGeneral() {
                     label={'Участник системы'}
                     hint={'Участник системы'}
                     handleChange={handleInfoChange}/>
-                {/* <InputField
-                    isEdit={isEdit}
-                    isPassword={true}
-                    name={'password'}
-                    label={'Изменить пароль'}
-                    hint={'Введите новый пароль'}
-                    handleChange={handleInfoChange}/> */}
                 <SelectField
                     isEdit={isEdit}
-                    name={'sfm_type'}
+                    name={'type_of_member'}
                     value={localData ? localData['type_of_member'] : ''}
                     selectItems={getItems(localData ? localData['member_of_the_system'] : '')}
                     label={'Вид СФМ'}
                     hint={'Участник системы'}
                     handleChange={handleInfoChange}/>
+                {
+                    localData && localData['member_of_the_system'] === 'Субъект финансового мониторнга'
+                    ? (
+                        <InputField
+                            value={localJob}
+                            isEdit={isEdit}
+                            name={'jobName'}
+                            label={'Занимаемая должность'}
+                            hint={'Введите занимаемую должность'}
+                            handleChange={(_, job) => {
+                                setLocalJob(job)
+                        }}/>
+                    ) : null
+                }
             </div>
             <div className="actions">
                 {
@@ -218,13 +220,13 @@ function ProfileGeneral() {
                             <>
                             <div 
                                 className={`save`} 
-                                onClick={() => setEdit(false)}
+                                onClick={() => handleSaveChanges()}
                             >
                                 Сохранить
                             </div>
                             <div 
                                 className={`cancel`} 
-                                onClick={() => setEdit(false)}
+                                onClick={() => handleCancelChanges()}
                             >
                                 Отменить
                             </div>
@@ -244,12 +246,17 @@ const SelectField = ({
     handleChange,
     isEdit
 }) => {
+    let _value = value;
 
     return (
         <div className='field'>
             <label htmlFor={name}>{label}</label>
             <div className="custom-select">
-                <select disabled={!isEdit} id={name} value={value} onChange={(e) => handleChange(name, e.target.value)}>
+                <select disabled={!isEdit} id={name} value={_value} onChange={(e) => {
+                    console.log(e.target.value);
+                    _value = e.target.value;
+                    handleChange(name, e.target.value)
+                }}>
                     {selectItems.map(item => (
                         <option key={item} value={item}>{item}</option>
                     ))}
