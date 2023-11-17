@@ -62,7 +62,7 @@ function PaymentPage(props) {
                                 : data !== null 
                                     ? data.course.course_price
                                     : ""
-                            }
+                            }тг
                         </span>
                     </p>
                     <img src={qrImg} alt="QR" />
@@ -79,7 +79,7 @@ function PaymentPage(props) {
                     <img src={instructionsImg} alt="Инструкция" className={cl.instructions_img} />
                     <div className={cl.whatsapp}>
                         <img src={whatsappIcon} alt="whatsappIcon" />
-                        <p className={cl.whatsapp_text}>Отправьте чек об оплате через приложение WhatsApp по номеру +7 701 777 77 77</p>
+                        <p className={cl.whatsapp_text}>Отправьте чек об оплате через приложение WhatsApp по номеру +7 778 65 02 728</p>
                     </div>
                 </div>
                 <div className={cl.legal_entity}>

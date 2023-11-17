@@ -20,6 +20,7 @@ function FeedBacks({ feedBacks }) {
 
     useEffect(() => {
         console.log("FeedBacks", feedBacks);
+        console.log(feedBacks === undefined || feedBacks === null || feedBacks.length === 0)
 
         if (!feedBacks) return;
         let _maxPage = Math.ceil(feedBacks.length / 3);
@@ -37,16 +38,20 @@ function FeedBacks({ feedBacks }) {
         setShowFeedbacks(_showFeedBacks);
     }, [page])
 
-    if (!feedBacks) return null;
+    if (feedBacks === undefined || feedBacks === null || feedBacks.length === 0) return (
+        <div className='feedBack-card-non'>
+            <p>{'Нет отзывов'}</p>
+        </div>
+    );
 
     return ( 
         <>
         <div className='feedBacks-block'>
-            {showFeedBacks ? showFeedBacks.map(feedBack => {
+            {showFeedBacks ? showFeedBacks.map((feedBack, index) => {
                 if (!feedBack) return null;
 
                 return (
-                    <div className='feedBack-card'>
+                    <div className='feedBack-card' key={index}>
                         <div>
                             <div className='img'>{feedBack.user ? feedBack.user.firstname.substring(0, 1) : ''}{feedBack.user ? feedBack.user.lastname.substring(0, 1) : ''}</div>
                             <div className='name'>{feedBack.user ? feedBack.user.firstname : ''} {feedBack.user ? feedBack.user.lastname : ''} {feedBack.user ? feedBack.user.patronymic : ''}</div>

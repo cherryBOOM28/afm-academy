@@ -82,32 +82,31 @@ function Home() {
                             {/* <p className={cl.aboutUs__text}>Обучение для безопасности финансов</p> */}
                             <p className={cl.aboutUs__text_small}>Наши курсы</p>
                             <div className={cl.courses_boxes}>
-                                <Link to="/courses/basic" style={{ textDecoration: 'none' }}>
+                                <Link to="/courses/8" style={{ textDecoration: 'none' }}>
                                     <div className={cl.aml_box}>
                                         <img src={basicCourse} alt="" />
                                         <p className={cl.course_box_name}>Базовый</p>
                                     </div>
                                 </Link>
-                                <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
+                                <Link to="/#" style={{ textDecoration: 'none' }}>
                                     <div className={cl.aml_box}>
                                         <img src={proCourse} alt="" />
                                         <p className={cl.course_box_name}>Профильный</p>
                                     </div>
                                 </Link>
-                                <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
+                                <Link to="/#" style={{ textDecoration: 'none' }}>
                                     <div className={cl.aml_box}>
                                         <img src={deepCourse} alt="" />
                                         <p className={cl.course_box_name}>Углубленный</p>
                                     </div>
                                 </Link>
-                                <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
+                                <Link to="/3" style={{ textDecoration: 'none' }}>
                                     <div className={cl.aml_box}>
                                         <img src={upCourse} alt="" />
                                         <p className={cl.course_box_name}>Повышение квалификации</p>
                                     </div>
                                 </Link>
                             </div>
-                            {/* <Button className={cl.button} onClick={toAbout}>Подробнее</Button> */}
                         </div>
                     </div>
                 </div>

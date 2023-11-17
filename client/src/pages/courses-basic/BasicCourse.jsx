@@ -10,6 +10,10 @@ import RoadList from '../../components/UI/roadList/RoadList';
 import Lectors from '../../components/lectors-block/Lectors';
 
 import lectorImg from './../../assets/images/avatar-img.png';
+import lector1 from './../../assets/images/Lector_1_cropped.png';
+import lector2 from './../../assets/images/Lector_2_cropped.png';
+import lector3 from './../../assets/images/Lector_3_cropped.png';
+
 import FeedBacks from '../../components/feedbackBlock/FeedBacks';
 import ModalWindow from '../../components/ModalWindow/ModalWindow';
 import axios from 'axios';
@@ -140,22 +144,31 @@ function BasicCourse() {
                 <h2>Лекторы</h2>
                 <Lectors 
                     lectors={[
-                        { img: lectorImg, name: 'Larry W.', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
-                        { img: lectorImg, name: 'Larry W.', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
+                        { img: lector1, name: 'Махметов Муратбек', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
+                        { img: lector2, name: 'Махашева Асем', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
+                        { img: lector3, name: 'Шагатаев Даурен', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
                         // { img: lectorImg, name: 'Larry W.', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
                         // { img: lectorImg, name: 'Larry W.', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
                     ]}
                 />
 
-                {data !== null && data.courseComments !== null 
+                {!isLoading 
                     ? (
                         <>
                             <h2>Отзывы</h2>
                             <FeedBacks 
-                                feedBacks={data !== null ? data.courseComments : []}
+                                feedBacks={data !== null ? data.course.courseComments : []}
                             />
-                        </> ) : null 
-                        
+                        </> ) 
+                    : <div style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                    }}>
+                        <div>
+                            Загрузка...
+                        </div>
+                    </div>
                     }
                     <div className='blue-btn'>
                         {/* <div onClick={() => setShowModal(true)}>
