@@ -12,9 +12,41 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import arrowDownIcon from './../../pages/testCoursePage/arrowDownIcon.svg';
 
 import './sessions.scss';
+import axios from 'axios';
+import base_url from '../../settings/base_url';
 
 export const Session = ({title, session, handleSessionClick, isActive}) => {
     const sessionFinished = session.progress === 100;
+    const [sessionChecked, setSessionChecked] = useState(false);
+
+    const jwtToken = localStorage.getItem('jwtToken');
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${base_url}/api/aml/chapter/getChecked`, {
+                    headers: {
+                        Authorization: `Bearer ${jwtToken}`,
+                    },
+                });
+
+                if (response.status === 200) {
+                    const _temp = response.data.filter(_session => _session.id === session.id);
+                    if (_temp.length !== 0) {
+                        setSessionChecked(_temp[0].checked)
+                    }
+                    
+                } else {
+                    // Handle other status codes if needed
+                    console.log(response.statusText);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        
+        fetchData();
+    }, [])
 
     return (
         <div 
@@ -27,7 +59,7 @@ export const Session = ({title, session, handleSessionClick, isActive}) => {
             <h6>{session.name}</h6>
             <div className="sessionProgress">
                 {
-                    sessionFinished 
+                    sessionChecked 
                         ? <AiFillCheckCircle />
                         : <ImRadioUnchecked />
                 }

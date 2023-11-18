@@ -18,14 +18,16 @@ import ProfileGeneral from '../../components/profile-generalInfo';
 import ProfileJob from '../../components/profile-job';
 import ProfileEducation from '../../components/profile-education';
 import ProfilePassword from '../../components/profile-password';
+import base_url from '../../settings/base_url';
 
 function Profile(props) {
+    const jwtToken = localStorage.getItem('jwtToken');
 
     const { tabname } = useParams();
     const [currentTab, setCurrentTab] = useState(1);
     const [isEdit, setIsEdit] = useState(false);
 
-    const [stars, setStars] = useState(0);
+    const [stars, setStars] = useState(0); 
     
     const [editedGeneralInfo, setEditedGeneralInfo] = useState({});
     
@@ -37,6 +39,8 @@ function Profile(props) {
     const handleCloseModal = () => {
         setOpen(false);
     }
+
+    
 
     const handleTabClick = (tab) => {
         setCurrentTab(tab);
@@ -65,10 +69,6 @@ function Profile(props) {
             return <Vebinar/>
         }
         
-        // if (currentTab === 3) {
-        //     return <ProfileJob isEdit={isEdit} />                  
-        // }
-        
         if (currentTab === 4) {
             return <ProfileEducation handleOpenModal={handleOpenModal}/>
         }
@@ -82,54 +82,6 @@ function Profile(props) {
 
     return (
         <div className="profile-page"> 
-            {
-                open ? (
-                    <div className="modal">
-                        <div className="wrapper" onClick={(e) => {
-                            // console.log(e.target.classList.contains("wrapper"))
-                            if (e.target.classList.contains("wrapper")) {
-                                handleCloseModal()
-                            }
-                        }}>
-                            <div className="body">
-                                <div className="title">
-                                    <h1>Обратная связь</h1>
-                                    <MdClose className='close' size={30}  onClick={() => { handleCloseModal() }}/>
-                                </div>
-
-                                <p>
-                                    Для нас важно ваше мнение! <br />
-                                    Мы стремимся предоставить вам наилучший 
-                                    опыт обучения, и ваша обратная связь помогает 
-                                    нам постоянно улучшать наши курсы.
-                                </p>
-
-                                <div className="stars">
-                                    {
-                                        [0, 0, 0, 0, 0].map((star, index) => {
-                                            const activeColor = '#1F3C88'
-                                            const nonActiveColor = '#dddddd'
-                                            const color = stars >= index+1 ? activeColor : nonActiveColor
-
-                                            return <FaStar 
-                                                size={60} 
-                                                style={{color: color}} 
-                                                onClick={() => {
-                                                    setStars(index + 1)
-                                                }}
-                                            />
-                                        })
-                                    }
-                                </div>
-
-                                <div className="send-btn" onClick={() => { handleCloseModal() }}>
-                                    Отправить
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                ) : null
-            }
             <div className="container">
                 <DefaultHeader/>
             </div>

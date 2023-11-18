@@ -18,9 +18,6 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
     ])
 
     useEffect(() => {
-
-        console.log(questions)
-
         let _checkedQustions = questions ? questions.map(question => {
             return {
                 question: question.question_id,
@@ -59,7 +56,7 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
         handleOpenModal();
     }
 
-    if (!questions) return null;
+    if (!questions || questions.length === 0 && checkedQustions != undefined) return null;
 
     return ( 
         <div className="testPage">
@@ -78,25 +75,37 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
                     <div className="question-body">
                         {
                             questions[currQuestion] ? questions[currQuestion].mcqOption.map(answer => {
-                                console.log(checkedQustions[currQuestion].answer, answer.mcq_option_id)
-                                const handleAnswerClick = () => {
-                                    const updatedQuestions = [...checkedQustions];
-                                    updatedQuestions[currQuestion].answer = answer.mcq_option_id;
-                                    setCheckedQustions(updatedQuestions);
-                                }
+                                // const handleAnswerClick = () => {
+                                    
+                                //     console.log(checkedQustions[currQuestion].answer, answer.mcq_option_id)
+                                //     const updatedQuestions = [...checkedQustions];
+                                //     updatedQuestions[currQuestion].answer = answer.mcq_option_id;
+                                //     setCheckedQustions(updatedQuestions);
+                                // } 
+
+                                const handleAnswerClick = (answerId) => {
+                                    console.log(answerId, checkedQustions[currQuestion])
+                                    setCheckedQustions(prevQuestions => {
+                                        const updatedQuestions = [...prevQuestions];
+                                        if (updatedQuestions[currQuestion]) {
+                                            updatedQuestions[currQuestion].answer = answerId;
+                                        }
+                                        return updatedQuestions;
+                                    });
+                                };
+
+                                const isChecked = checkedQustions[currQuestion] && checkedQustions[currQuestion].answer === answer.mcq_option_id;
 
                                 return (
-                                    <div className="test-answer" key={answer.mcq_option_title} onClick={() => handleAnswerClick()}>
-                                        <div className={`checkbox ${checkedQustions[currQuestion].answer === answer.mcq_option_id ? 'checked' : null}`}>
-                                            {checkedQustions[currQuestion].answer === answer.mcq_option_id ? <FaCheck /> : null}
+                                    <div className="test-answer" key={answer.mcq_option_title} onClick={() => handleAnswerClick(answer.mcq_option_id)}>
+                                        <div className={`checkbox ${isChecked ? 'checked' : null}`}>
+                                            {isChecked ? <FaCheck /> : null}
                                         </div>
                                         <div className="answer-text">
-                                            <p>
-                                                {answer.mcq_option_title}
-                                            </p>
+                                            <p>{answer.mcq_option_title}</p>
                                         </div>
                                     </div>
-                                )
+                                );
                             }) : null
                         }
                     </div>
@@ -105,7 +114,7 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
                 <div className="actions">
                     {currQuestion !== 0 ? <div className="prev"  onClick={() => { setCurrQuestion(currQuestion - 1) }}>Предыдущий вопрос</div> : null}
                     {currQuestion !== questions.length-1 ? <div className="next" onClick={() => { setCurrQuestion(currQuestion + 1) }}>Следующий вопрос</div> : null}
-                    {currQuestion === questions.length-1 ? <div className="finish" onClick={() => {finishTest()}}>Закончить тест</div> : null}
+                    {currQuestion === questions.length-1 ? <div className="finish" onClick={() => {finishTest()}}>Завершить тест</div> : null}
                 </div>
             </div>
         </div>
