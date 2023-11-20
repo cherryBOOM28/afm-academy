@@ -27,6 +27,52 @@ function Profile(props) {
     const [currentTab, setCurrentTab] = useState(1);
     const [isEdit, setIsEdit] = useState(false);
 
+    const [openFeedbackModal, setOpenFeedbackModal] = useState(false);
+    const handleOpenFeedbackModal = () => {
+        setOpenFeedbackModal(true);
+    }
+    const handleCloseFeedbackModal = () => {
+        setOpenFeedbackModal(false);
+        // handleOpenModal();
+    }
+
+    const handleSendFeedback = () => {
+        const fetchData = async () => {
+            try {
+                const data = {
+                    'comment': feedbackText,
+                    'rate': 5
+                };
+                const config = {
+                    headers: {
+                        Authorization: `Bearer ${jwtToken}`,
+                    },
+                }
+
+                console.log(`${base_url}/api/aml/course/createCourseComments/1`, data, config)
+                const response = await axios.post(
+                    `${base_url}/api/aml/course/createCourseComments/1`, 
+                    data, config
+                    
+                );
+    
+                if (response.status === 200) {
+                    console.log(response.data)
+                } else {
+                    console.log(response.statusText)
+                }
+    
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        
+        fetchData();
+        handleCloseFeedbackModal();
+    }
+    
+    const [feedbackText, setFeedbackText] = useState('');
+
     const [stars, setStars] = useState(0); 
     
     const [editedGeneralInfo, setEditedGeneralInfo] = useState({});
@@ -70,7 +116,7 @@ function Profile(props) {
         }
         
         if (currentTab === 4) {
-            return <ProfileEducation handleOpenModal={handleOpenModal}/>
+            return <ProfileEducation handleOpenModal={handleOpenFeedbackModal}/>
         }
 
         if (currentTab === 5) {
@@ -82,6 +128,43 @@ function Profile(props) {
 
     return (
         <div className="profile-page"> 
+        {
+                openFeedbackModal ? (
+                    <div className="modal">
+                        <div className="wrapper" onClick={(e) => {
+                            if (e.target.classList.contains("wrapper")) {
+                                handleCloseFeedbackModal()
+                            }
+                        }}>
+                            <div className="body">
+                                <div className="title">
+                                    <h1>Обратная связь</h1>
+                                    <MdClose className='close' size={30}  onClick={() => { handleCloseFeedbackModal() }}/>
+                                </div>
+
+                                <p>
+                                    Для нас важно Ваше мнение! <br />
+                                    Мы стремимся предоставить наилучший опыт обучения. <br/>
+                                    Обратная связь помогает постоянно улучшать наши курсы.
+                                </p>
+
+                                <div className="feedback">
+                                    <textarea 
+                                        name="feedback-text" 
+                                        id="feedback-text" 
+                                        value={feedbackText}
+                                        onChange={(e) => setFeedbackText(e.target.value)}
+                                    ></textarea>
+                                </div>
+
+                                <div className="send-btn" onClick={() => { handleSendFeedback() }}>
+                                    Отправить
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                ) : null
+            }
             <div className="container">
                 <DefaultHeader/>
             </div>

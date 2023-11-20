@@ -18,6 +18,8 @@ import image56 from './../../assets/images/Lesson_5_img_6.png'
 import image57 from './../../assets/images/Lesson_5_img_7.png'
 import image58 from './../../assets/images/Lesson_5_img_8.png'
 
+import { FaStar } from "react-icons/fa";
+
 import defaultImg from './../../assets/images/default.png'
 
 import './style.scss'
@@ -75,41 +77,42 @@ function Basic_course(props) {
     const [courseProgress, setCourseProgress] = useState(0);
 
     const handleSendFeedback = () => {
-        const fetchData = async () => {
-            try {
-                const data = {
-                    'comment': feedbackText,
-                    'rate': 5
-                };
-                const config = {
-                    headers: {
-                        Authorization: `Bearer ${jwtToken}`,
-                    },
-                }
+        // const fetchData = async () => {
+        //     try {
+        //         const data = {
+        //             'comment': feedbackText,
+        //             'rate': 5
+        //         };
+        //         const config = {
+        //             headers: {
+        //                 Authorization: `Bearer ${jwtToken}`,
+        //             },
+        //         }
 
-                console.log(`${base_url}/api/aml/course/createCourseComments/1`, data, config)
-                const response = await axios.post(
-                    `${base_url}/api/aml/course/createCourseComments/1`, 
-                    data, config
+        //         console.log(`${base_url}/api/aml/course/createCourseComments/1`, data, config)
+        //         const response = await axios.post(
+        //             `${base_url}/api/aml/course/createCourseComments/1`, 
+        //             data, config
                     
-                );
+        //         );
     
-                if (response.status === 200) {
-                    console.log(response.data)
-                } else {
-                    console.log(response.statusText)
-                }
+        //         if (response.status === 200) {
+        //             console.log(response.data)
+        //         } else {
+        //             console.log(response.statusText)
+        //         }
     
-            } catch (error) {
-                console.error(error);
-            }
-        };
+        //     } catch (error) {
+        //         console.error(error);
+        //     }
+        // };
         
-        fetchData();
+        // fetchData();
         handleCloseFeedbackModal();
     }
     
     const [feedbackText, setFeedbackText] = useState('');
+    const [stars, setStars] = useState(0);
     const [openFeedbackModal, setOpenFeedbackModal] = useState(false);
     const handleOpenFeedbackModal = () => {
         setOpenFeedbackModal(true);
@@ -1527,23 +1530,32 @@ function Basic_course(props) {
                         }}>
                             <div className="body">
                                 <div className="title">
-                                    <h1>Обратная связь</h1>
+                                    <h1>Оцените курс</h1>
                                     <MdClose className='close' size={30}  onClick={() => { handleCloseFeedbackModal() }}/>
                                 </div>
 
-                                <p>
-                                    Для нас важно Ваше мнение! <br />
-                                    Мы стремимся предоставить наилучший опыт обучения. <br/>
-                                    Обратная связь помогает постоянно улучшать наши курсы.
-                                </p>
+                                <div className="stars" style={{
+                                    display: 'flex',
+                                    width: '100%',
+                                    flexDirection: 'row',
+                                    justifyContent: 'center',
+                                    gap: '10px',
+                                    marginBottom: '20px',
+                                }}>
 
-                                <div className="feedback">
-                                    <textarea 
-                                        name="feedback-text" 
-                                        id="feedback-text" 
-                                        value={feedbackText}
-                                        onChange={(e) => setFeedbackText(e.target.value)}
-                                    ></textarea>
+                                    {
+                                        [0, 0, 0, 0, 0].map((star, index) => {
+                                            const active = '#1F3C88';
+                                            const nonActive = '#dddddd';
+                                            const _color = stars >= index ? active : nonActive;
+
+                                            const handleClick = () => {
+                                                setStars(index);
+                                            }
+
+                                            return <FaStar size={50} style={{color: _color}} onClick={handleClick}/>
+                                        })
+                                    }
                                 </div>
 
                                 <div className="send-btn" onClick={() => { handleSendFeedback() }}>

@@ -20,6 +20,8 @@ function ProfileEducation({ handleOpenModal }) {
     ]);
     const eduRowsPerPage = 5;
 
+    
+
     const [courses, setCourses] = useState([]);
     const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(true);
@@ -101,10 +103,10 @@ function ProfileEducation({ handleOpenModal }) {
             {/* <div className="title">Опыт работы</div> */}
             <div className='table'>
                 <PaginableTable columns={eduColumns} rows={eduRows} rowsPerPage={eduRowsPerPage} isExtendable={false}>
-                    {/* <div className='edu-action' style={{order: 2}} onClick={() => {handleOpenModal()}}>
-                        <span>Оценить</span>
-                        <AiFillStar size={23} style={{color: '#F9CB36'}}/>
-                    </div> */}
+                    <div className='edu-action' style={{order: 2}} onClick={() => {handleOpenModal()}}>
+                        <span>Отзыв</span>
+                        {/* <AiFillStar size={23} style={{color: '#F9CB36'}}/> */}
+                    </div>
                     <div className='edu-action' style={{order: 1}} onClick={() => {getFile(1)}}>
                         <span>Сертификат</span>
                         <BiSolidFilePdf size={23} style={{color: '#1F3C88'}}/>
