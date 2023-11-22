@@ -3,15 +3,15 @@ import React, { useState, useEffect } from 'react';
 import TextWithTitle from '../../../common/TextWithTitle'
 import NumberedDots from '../../../common/NumberedDots'
 
-const TextPlusDots_1 = (props) => {
+const TextPlusDots_1 = ({ headerTextTitle, headerText, list }) => {
     return (
         <>
             <TextWithTitle 
-                title={props.headerTextTitle} 
-                text={props.headerText}
+                title={headerTextTitle} 
+                text={headerText}
             />
             <NumberedDots 
-                list={props.list}
+                list={list}
             />
         </>
     );

@@ -14,6 +14,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const getItems = (entity_type) => {
+
+    console.log(entity_type)
     if (entity_type === 'Субъект финансового мониторнга') return sfm_types;
     if (entity_type === 'Государственные органы-регуляторы') return go_types;
     if (entity_type === 'Правоохранительные органы') return po_types;
@@ -47,6 +49,8 @@ function ProfileGeneral() {
                 
                 if (response.status === 200) {
                     setData(response.data);
+                    setJob(response.data.job_name);
+                    console.log(response.data);
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
@@ -70,6 +74,8 @@ function ProfileGeneral() {
     const [localJob, setLocalJob] = useState('');
 
     const handleInfoChange = (name, value) => {
+        console.log(name, value);
+
         setChangedData({ ...changedData, [name]: value });
         setLocalData({ ...localData, [name]: value })
     }
@@ -84,8 +90,11 @@ function ProfileGeneral() {
             "patronymic": localData.patronymic,
             "email": localData.email,
             "password": localData.password,
+            "job_name": localJob,
             ...changedData,
         };
+
+        console.log(params)
 
         const options = {
             headers: {
@@ -182,19 +191,33 @@ function ProfileGeneral() {
                     label={'Участник системы'}
                     hint={'Участник системы'}
                     handleChange={handleInfoChange}/>
-                <SelectField
-                    isEdit={isEdit}
-                    name={'type_of_member'}
-                    value={localData ? localData['type_of_member'] : ''}
-                    selectItems={getItems(localData ? localData['member_of_the_system'] : '')}
-                    label={'Вид СФМ'}
-                    hint={'Участник системы'}
-                    handleChange={handleInfoChange}/>
+                {
+                    localData && localData['member_of_the_system'] !== 'Общественное объединение'
+                    ? (
+                        <SelectField
+                            isEdit={isEdit}
+                            name={'type_of_member'}
+                            value={localData ? localData['type_of_member'] : ''}
+                            selectItems={getItems(localData ? localData['member_of_the_system'] : '')}
+                            label={'Вид СФМ'}
+                            hint={'Участник системы'}
+                            handleChange={handleInfoChange}/>
+                    ) 
+                    : (
+                        <InputField
+                            value={localData ? localData['type_of_member'] : '*****'}
+                            isEdit={isEdit}
+                            name={'type_of_member'}
+                            label={'Вид'}
+                            hint={'Введите вид'}
+                            handleChange={handleInfoChange}/>
+                    )
+                }
                 {
                     localData && localData['member_of_the_system'] === 'Субъект финансового мониторнга'
                     ? (
                         <InputField
-                            value={localJob}
+                            value={localJob ? localJob : ''}
                             isEdit={isEdit}
                             name={'jobName'}
                             label={'Занимаемая должность'}

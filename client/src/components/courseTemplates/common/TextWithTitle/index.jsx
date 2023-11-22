@@ -8,9 +8,9 @@ function TextWithTitle({ title, text, color }) {
 
     return ( 
         <div className="text-with-title">
-            <h4 style={{
-                color: _color,
-            }}>{title}</h4>
+            {title ? (<h4 style={{
+                            color: _color,
+                        }}>{title}</h4>) : null}            
             {
                 Array.isArray(text) 
                     ? (
