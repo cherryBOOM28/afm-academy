@@ -7,12 +7,29 @@ import { BsPlayFill } from 'react-icons/bs';
 
 function VideoLine({
     poster=img,
-    video
+    url
 }) {
     return ( 
         <div className="video-line">
-            <img src={poster} alt="" />
-            <BsPlayFill className='icon' size={120}/>
+            {
+                url === null || url === undefined || url === '' ? (
+                    <>
+                    <img src={poster} alt="" />
+                    <BsPlayFill className='icon' size={120}/>
+                    </>
+                ) : (
+                    <iframe 
+                        class='sproutvideo-player' 
+                        src={url} 
+                        width='100%' 
+                        frameborder='0' 
+                        allowfullscreen='true' 
+                        referrerpolicy='no-referrer-when-downgrade' 
+                        title='Video Player'>
+                    </iframe>
+                )
+            }
+            
             {/* <div className="dim"></div> */}
         </div>
     );

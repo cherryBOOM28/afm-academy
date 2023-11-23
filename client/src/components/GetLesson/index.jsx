@@ -392,7 +392,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
 
                 <Sizebox height={80} />
 
-                <VideoLine />
+                <VideoLine url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083'}/>
 
                 <Sizebox height={80} />
 

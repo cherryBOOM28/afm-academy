@@ -31,10 +31,9 @@ function VideoWithTitleAndText({
                         <iframe 
                             class='sproutvideo-player' 
                             src={url} 
-                            width='640' 
-                            height='360' 
+                            width='100%' 
                             frameborder='0' 
-                            allowfullscreen 
+                            allowfullscreen='true' 
                             referrerpolicy='no-referrer-when-downgrade' 
                             title='Video Player'>
                         </iframe>
