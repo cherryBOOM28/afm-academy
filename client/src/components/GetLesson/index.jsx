@@ -1439,6 +1439,39 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Sizebox height={80} />
 
                 <Reveal>
+                    <HeaderWithLine
+                        headerColor={'#1F3C88'}
+                    >
+                        <>
+                        Посмотрите видео ниже,
+                        чтобы узнать больше о <span className="bold">роли СФМ</span>
+                        в выявлении схем и <span className="bold">рисков</span> ОД/ФТ.
+                        </>
+                    </HeaderWithLine>
+                </Reveal>
+
+                <Sizebox height={100} />
+
+                <Reveal>
+                    <HeaderWithLine
+                        header={'Взаимодействие СФМ с АФМ в рамках выявления схем ОД/ФТ'}
+                        headerColor={'#1F3C88'}
+                    />
+                </Reveal>
+                <Sizebox height={40} />
+                <Reveal>
+                    <VideoLine />
+                </Reveal>
+                <Sizebox height={40} />
+                <Reveal>
+                    <TextWithTitle 
+                        text={['В ходе выявления схем ОД/ФТ осуществляется тесное взаимодействие между СФМ и АФМ. Основным источником информации служат сообщения, направляемые СФМ (ПО/СПО), которые выявляются в ходе исполнения требований, предусмотренные законодательством о ПОД/ФТ.']}
+                    />
+                </Reveal>
+
+                <Sizebox height={80} />
+
+                <Reveal>
                     <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
                         <>
                         Перейдем к следующему блоку обучения
