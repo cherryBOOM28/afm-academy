@@ -8,6 +8,10 @@ function VideoWithTitleAndText({
     title,
     text,
 }) {
+    useEffect(() => {
+        console.log(url);
+    }, [])
+
     return ( 
         <div className="videoWithTitleAndText">
             <div className="videoWithTitleAndText-body">
@@ -15,12 +19,27 @@ function VideoWithTitleAndText({
                     <h1>{title}</h1>
                     <p>{text}</p>
                 </div>
-                <div className="videoWithTitleAndText-video">
-                    {/* <iframe src={url} title={title} /> */}
-                    <div className="play-icon">
-                        <BsFillPlayCircleFill size={'50px'}/>
-                    </div>
-                </div>
+                {
+                    url === '' || url === undefined || url === null ? (
+                        <div className="videoWithTitleAndText-video">
+                            {/* <iframe src={url} title={title} /> */}
+                            <div className="play-icon">
+                                <BsFillPlayCircleFill size={'50px'}/>
+                            </div>
+                        </div>
+                    ) : (
+                        <iframe 
+                            class='sproutvideo-player' 
+                            src={url} 
+                            width='640' 
+                            height='360' 
+                            frameborder='0' 
+                            allowfullscreen 
+                            referrerpolicy='no-referrer-when-downgrade' 
+                            title='Video Player'>
+                        </iframe>
+                    )
+                }
             </div>
         </div>
     );
