@@ -450,6 +450,60 @@ function Basic_course(props) {
                                 }}
                                 handleSessionClick={handleSessionClick} 
                                 isActive={9 === activeSessionId}
+                            /><Session
+                                session={{
+                                    id: 10,
+                                    group: 'introduction',
+                                    name: 'Региональные группы по типу ФАТФ',
+                                    progress: 0,
+                                }}
+                                handleSessionClick={handleSessionClick}
+                                isActive={10 === activeSessionId}
+                            /><Session
+                                session={{
+                                    id: 11,
+                                    group: 'introduction',
+                                    name: 'Рекомендации ФАТФ',
+                                    progress: 0,
+                                }}
+                                handleSessionClick={handleSessionClick}
+                                isActive={11 === activeSessionId}
+                            /><Session
+                                session={{
+                                    id: 12,
+                                    group: 'introduction',
+                                    name: 'Непосредственный результат 4 «Превентивные меры»',
+                                    progress: 0,
+                                }}
+                                handleSessionClick={handleSessionClick}
+                                isActive={12 === activeSessionId}
+                            /><Session
+                                session={{
+                                    id: 13,
+                                    group: 'introduction',
+                                    name: 'Отчет о Взаимной оценке',
+                                    progress: 0,
+                                }}
+                                handleSessionClick={handleSessionClick}
+                                isActive={13 === activeSessionId}
+                            /><Session
+                                session={{
+                                    id: 14,
+                                    group: 'introduction',
+                                    name: 'Списки ФАТФ',
+                                    progress: 0,
+                                }}
+                                handleSessionClick={handleSessionClick}
+                                isActive={14 === activeSessionId}
+                            /><Session
+                                session={{
+                                    id: 15,
+                                    group: 'introduction',
+                                    name: 'ЕАГ',
+                                    progress: 0,
+                                }}
+                                handleSessionClick={handleSessionClick}
+                                isActive={15 === activeSessionId}
                             />
                         </div>
 
