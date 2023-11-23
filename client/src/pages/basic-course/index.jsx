@@ -486,24 +486,33 @@ function Basic_course(props) {
                                 }}
                                 handleSessionClick={handleSessionClick}
                                 isActive={13 === activeSessionId}
-                            /><Session
+                                /><Session
+                            session={{
+                                id: 14,
+                                group: 'introduction',
+                                name: 'Национальная оценка рисков',
+                                progress: 0,
+                            }}
+                            handleSessionClick={handleSessionClick}
+                            isActive={14 === activeSessionId}
+                          /><Session
                                 session={{
-                                    id: 14,
+                                    id: 15,
                                     group: 'introduction',
                                     name: 'Списки ФАТФ',
                                     progress: 0,
                                 }}
                                 handleSessionClick={handleSessionClick}
-                                isActive={14 === activeSessionId}
+                                isActive={15 === activeSessionId}
                             /><Session
                                 session={{
-                                    id: 15,
+                                    id: 16,
                                     group: 'introduction',
                                     name: 'ЕАГ',
                                     progress: 0,
                                 }}
                                 handleSessionClick={handleSessionClick}
-                                isActive={15 === activeSessionId}
+                                isActive={16 === activeSessionId}
                             />
                         </div>
 
