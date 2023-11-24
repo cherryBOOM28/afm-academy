@@ -1533,7 +1533,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                     </Centered>
                 </Reveal>
 
-                <Sizebox height={80} />
+                <Sizebox height={100} />
 
                 <Reveal>
                     <>
@@ -1588,8 +1588,58 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                         </RandomParapraph>
                     </Centered>
                 </Reveal>
-
                 <Sizebox height={80} />
+
+                <Reveal>
+                    <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
+                        <>
+                        Посмотрите видео ниже, 
+                        чтобы узнать больше о выявлении схем ОД 
+                        и предикатных преступлений.
+                        </>
+                    </HeaderWithLine>
+                </Reveal>
+                <Sizebox height={100} />
+                <Reveal>
+                    <VideoWithTitleAndText 
+                        url={null}
+                        title={'Схема ОД в сделках с объектами недвижимого имущества'}
+                        text={<>Преступниками при ОД часто используются схемы с использованием заключения <span className="bold">договоров купли-продажи</span> недвижимого имущества <span className="bold">с завышением стоимости объекта.</span></>}
+                    />
+                </Reveal>
+
+                <Sizebox height={40} />
+                <Reveal>
+                    <TextWithTitle 
+                        text={[
+                            <>К примеру, в представленной схеме, возможно, использования <span className="bold">услуг нотариусов и риелторов</span> при приобретении недвижимости по завышенной стоимости.</>,
+                            <>У продавца имеются <span className="bold">доходы</span>, полученные преступным путем, <span className="bold">для легализации данных средств</span>, преступнику необходимо придать <span className="bold">законность</span> и <span className="bold">основание</span> таким доходам.</>,
+                            <>Тем самым, заключается договор купли-продажи на недвижимое имущество, где покупатель <span className="bold">приобретает</span> объект недвижимости (который по рыночной стоимости значительно ниже), <span className="bold">предварительно обговорив условия</span> заключения.</>,
+                            <>Фактически, покупать передает <span className="bold">значительно меньшую сумму</span>, при этом в договоре отражается сумма, <span className="bold">с учетом размера дохода, который необходимо легализовать.</span></>,
+                        ]}
+                    />
+                </Reveal>
+
+                <Sizebox height={100} />
+                <Reveal>
+                    <Report_Warning>
+                    Для выявления СФМ таких схем, важно применение усиленных мер НПК.
+                    </Report_Warning>
+                </Reveal>
+                <Sizebox height={100} />
+
+                <Reveal>
+                    <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
+                        <>
+                        <span className="bold">Для закрепления</span> информации по схеме ОД в сделках с недвижимым имуществом
+                        (приведенной в видео-уроке),
+                        пожалуйста, расставьте карточки с <span className="bold">признаками подозрительной операции</span> 
+                        (по соответствующим полям), определенных в данной схеме.
+                        </>
+                    </HeaderWithLine>
+                </Reveal>
+
+                <Sizebox height={100} />
                 <Reveal>
                     <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
                         <>
