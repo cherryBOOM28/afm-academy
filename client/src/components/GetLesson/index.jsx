@@ -596,7 +596,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Reveal>
                     {/* <TODO text='Video'/> */}
                     <VideoWithTitleAndText 
-                        url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083'}
+                        url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerTheme=light'}
                         title={'Помещение денежных средств'} 
                         text={`Тем самым придавалось видимость активной деятельности компании. 
                         При этом, предикатным преступлением выступал доход, полученный от 
