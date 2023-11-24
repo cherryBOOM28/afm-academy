@@ -392,7 +392,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
 
                 <Sizebox height={80} />
 
-                <VideoLine url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083'}/>
+                <VideoLine url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'}/>
 
                 <Sizebox height={80} />
 
@@ -596,7 +596,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Reveal>
                     {/* <TODO text='Video'/> */}
                     <VideoWithTitleAndText 
-                        url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerTheme=light'}
+                        url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'}
                         title={'Помещение денежных средств'} 
                         text={`Тем самым придавалось видимость активной деятельности компании. 
                         При этом, предикатным преступлением выступал доход, полученный от 
