@@ -48,6 +48,7 @@ import image58 from './../../assets/images/Lesson_5_img_8.png'
 import defaultImg from './../../assets/images/default.png'
 import TextPlusDots_1 from '../courseTemplates/complex/TextPlusDots/TextPlusDots_1';
 import Header from "../header/Header";
+import DropdownGlossaryList from '../courseTemplates/complex/DropdownGlossaryList';
 
 const LessonPage = ({ children, name, lecturer }) => {
 
@@ -1885,7 +1886,39 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                     <Sizebox height={50} />
                     //дурыстау керек
                     <FileDownloader/>
-                    <Sizebox height={30}/>
+
+                    <Sizebox height={100} />
+                    <TODO text={'Warning Рекомендации ФАТФ были имплементированы в нормативных правовых актах Республики Казахстан'}/>
+                    <Sizebox height={100} />
+                    
+                    <DropdownGlossaryList 
+                        headerTextColor={'#170F49'}
+                        activeHeaderTextColor={'#1F3C88'}
+                        textColor={'#6F6C90'}
+                        tabsTextColor={'#3A3939'}
+                        tabsBackgroundColor={'#BAD6FF'}
+                        list={[
+                            {
+                                title: 'Разработаны в 1990 году',
+                                description: 'как инициатива по защите финансовых систем от лиц, отмывающих денежные средства, вырученные от продажи наркотиков'
+                            },
+                            {
+                                title: 'Пересмотрены в 1996 году',
+                                description: 'в первый раз с учетом развивающихся тенденций и способов ОД и расширения сферы их применения за пределы отмывания выручки от продажи наркотиков'
+                            },
+                            {
+                                title: 'В 2001 году расширен мандат',
+                                description: 'включены проблемы финансирования террористических актов и террористических организаций'
+                            },
+                            {
+                                title: 'Пересмотрены в 2003 году',
+                                description: 'во второй раз и признаны более чем 180 странами и являются международным стандартом по ПОД/ФТ'
+                            },
+                        ]} 
+                    />
+                    <Sizebox height={100} />
+
+
                     <TextWithTitle title={"Рекомендации ФАТФ подразделяются на основные группы"}
                     />
                     <Sizebox height={40} />

@@ -1,68 +1,33 @@
 import React, { useState, useEffect } from 'react';
 
-import './style.scss'
-import Sizebox from '../../common/Sizebox';
-
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
-function   DropDownTextWithTabs({
-    tabs,
-    tabsData,
+function DropdownGlossaryList({
+    list,
     headerTextColor,
     activeHeaderTextColor,
     textColor,
     tabsTextColor,
     tabsBackgroundColor,
 }) {
-    const [currentTab, setCurrentTab] = useState(tabs[0]);
-
     return ( 
-        <div className="dropDownTextWithTabs">
-            <div className="tabs">
-                {tabs.map((tab, index) => {
-                    const isTabCurrent = tab === currentTab;
+        <div className="dropdown-list-wrapper">
+            <div className="dropdown-list">
+                {
+                    list
+                    ? list.map((tab, index) => {
 
-                    return (
-                        <div 
+                        return <DropDownData 
                             key={index}
-                            className={!isTabCurrent? 'tab active' : 'tab'}
-                            style={{
-                                backgroundColor: !isTabCurrent? tabsBackgroundColor : 'white',
-                                color: tabsTextColor,
-                                border: `1px solid ${tabsBackgroundColor}`
-                            }}
-                            onClick={() => {
-                                if (tab === currentTab) {
-                                    return;
-                                }
+                            header={tab.title}
+                            data={tab.description}
+                            headerColor={headerTextColor}
+                            headerActiveColor={activeHeaderTextColor}
+                            dataColor={textColor}
+                        />
 
-                                setCurrentTab(tab);
-                            }}
-                        >
-                            {tab}
-                        </div>
-                    )
-                })}
-            </div>
-            <Sizebox height={36} />
-            <div className="dropdown-list-wrapper">
-                <div className="dropdown-list">
-                    {
-                        tabs !== null && tabs !== undefined 
-                            ? tabsData.filter(tab => currentTab === tab.tabName).map((tab, index) => {
-
-                                return <DropDownData 
-                                            key={index}
-                                            header={tab.header}
-                                            data={tab.data}
-                                            headerColor={headerTextColor}
-                                            headerActiveColor={activeHeaderTextColor}
-                                            dataColor={textColor}
-                                        />
-
-                            }) : null
-                    }
-                </div>
+                    }) : null
+                }
             </div>
         </div>
     );
@@ -126,4 +91,4 @@ const  DropDownData = ({ header, data, children, headerColor, headerActiveColor,
     )
 }
 
-export default DropDownTextWithTabs;
+export default DropdownGlossaryList;
