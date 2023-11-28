@@ -70,6 +70,11 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
                         </div>
                         <div className="question-text">
                             <div>{questions[currQuestion]? questions[currQuestion].question_title : null}</div>
+                            <div className="question-img">{questions[currQuestion].image
+                            ? (
+                                <img src={questions[currQuestion].image} alt={questions[currQuestion].question_title} />
+                            )
+                            : null}</div>
                         </div>
                     </div>
                     {/* MSQ Questions */}
@@ -80,14 +85,6 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
                             <div className="question-body">
                             {
                                 questions[currQuestion] ? questions[currQuestion].mcqOption.map(answer => {
-                                    // const handleAnswerClick = () => {
-                                        
-                                    //     console.log(checkedQustions[currQuestion].answer, answer.mcq_option_id)
-                                    //     const updatedQuestions = [...checkedQustions];
-                                    //     updatedQuestions[currQuestion].answer = answer.mcq_option_id;
-                                    //     setCheckedQustions(updatedQuestions);
-                                    // } 
-
                                     const handleAnswerClick = (answerId) => {
                                         console.log(answerId, checkedQustions[currQuestion])
                                         setCheckedQustions(prevQuestions => {
