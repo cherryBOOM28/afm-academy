@@ -166,6 +166,10 @@ const MatchingQuestion = ({ answers }) => {
         setRight(right)
     }, [])
 
+    useEffect(() => {
+        console.log(matched)
+    }, [matched])
+
     const updatePairs = (leftId, rightId) => {
         if (!leftId || !rightId) return;
 
