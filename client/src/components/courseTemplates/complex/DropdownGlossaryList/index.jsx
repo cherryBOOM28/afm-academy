@@ -11,7 +11,7 @@ function DropdownGlossaryList({
     tabsBackgroundColor,
 }) {
     return ( 
-        <div className="dropdown-list-wrapper">
+        <div className="dropdown-glossary-list-wrapper">
             <div className="dropdown-list">
                 {
                     list
