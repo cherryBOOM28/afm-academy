@@ -52,6 +52,7 @@ import image62 from './../../assets/images/eagg.png'
 import image63 from './../../assets/images/errror.gif'
 import image64 from './../../assets/images/ewew.png'
 import image65 from './../../assets/images/terer.jpg'
+import image66 from './../../assets/images/earth.jpg'
 import defaultImg from './../../assets/images/default.png'
 import TextPlusDots_1 from '../courseTemplates/complex/TextPlusDots/TextPlusDots_1';
 import Header from "../header/Header";
@@ -99,13 +100,20 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Sizebox height={28} />
 
                 <Reveal>
-                    <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
+                    <ImageWithText
+                        img={image66}
+                        color={'#FFFFFF'}
+                    >
                         <>
-                        Прежде чем мы углубимся в обучение и структуру данного курса, 
-                        пожалуйста, <span className='bold'>изучите основные сокращения</span>, используемые в 
-                        национальной системе ПОД/ФТ
+                            <h2 style={{color: '#FFFFFF', marginTop: 0, marginBottom: 0}}>
+                                Прежде чем мы углубимся в обучение и структуру данного курса,
+                            </h2>
+                            <Sizebox height={17} />
+                            <h3>
+                                пожалуйста, изучите основные сокращения, , используемые в национальной системе ПОД/ФТ.
+                            </h3>
                         </>
-                    </HeaderWithLine>
+                    </ImageWithText>
                 </Reveal>
 
                 <Reveal>

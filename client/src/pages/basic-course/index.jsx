@@ -47,7 +47,7 @@ import GetLesson from '../../components/GetLesson';
 function Basic_course(props) {
     const [courseName, setCourseName] = useState('Базовый курс');
     const [isNavOpen, setIsNavOpen] = useState(true);
-    const [activeSessionId, setActiveSessionId] = useState(6);
+    const [activeSessionId, setActiveSessionId] = useState(1);
 
     const jwtToken = localStorage.getItem('jwtToken');
 

@@ -125,6 +125,10 @@ const VebinarCard = (props) => {
 
     const navigate = useNavigate()
 
+    const handleVebinarEnter = () => {
+
+    }
+
     return (
         <div className="vebinar-card">
             <img src={image} alt="" />
@@ -146,6 +150,7 @@ const VebinarCard = (props) => {
                         <div 
                             className='action-btn'
                             onClick={() => {
+                                handleVebinarEnter()
                                 navigate(`/vebinars/${id}`)
                             }}
                         >Принять участие</div>
