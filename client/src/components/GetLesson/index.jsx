@@ -605,11 +605,9 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Sizebox height={50} />
 
                 <Reveal>
-                    <Centered>
-                        <RandomParapraph>
-                            Схема заключалась в <span className="bold">помещении денежных средств</span> с большим наличным оборотом, в прачечные (стиральные машины с автоматами) принимавшие монеты в виде оплаты. 
-                        </RandomParapraph>
-                    </Centered>
+                    <RandomParapraph>
+                        Схема заключалась в <span className="bold">помещении денежных средств</span> с большим наличным оборотом, в прачечные (стиральные машины с автоматами) принимавшие монеты в виде оплаты. 
+                    </RandomParapraph>
                 </Reveal>
                 
                 <Sizebox height={50} />
@@ -1351,7 +1349,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
 
             </LessonPage>)
         case 6: 
-            return (<LessonPage name={'Основные стадии отмывания денег'} lecturer={'AML Academy'}>
+            return (<LessonPage name={'Схемы отмывания денег'} lecturer={'AML Academy'}>
                 <Sizebox height={28} />
                 
                 <Reveal>
@@ -1692,8 +1690,6 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
             </LessonPage>)
         case 7: 
             return (<LessonPage name={'Основные стадии отмывания денег'} lecturer={'AML Academy'}>
-                {/* <Sizebox height={28} /> */}
-                
                 <Reveal>
                     <ImageWithText
                         img={image65}
