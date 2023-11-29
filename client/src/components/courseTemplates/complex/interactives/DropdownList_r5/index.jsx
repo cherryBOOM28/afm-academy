@@ -82,7 +82,6 @@ function DropdownList_r5({
                                 color={strokeColor}
                             />
                             <div>
-                                <img src={chat} alt="chat" />
                                 <div className="text">Call-центр</div>
                             </div>
                         </div>
@@ -129,7 +128,6 @@ function DropdownList_r5({
             <Sizebox height={32} />
             <div className="info-wrapper">
                 <div className="info">
-                    <img src={items ? items[currentOpen].img : devices} alt="image" />
                     <div className="text">{items ? items[currentOpen].text : ''}</div>
                 </div>
             </div>
