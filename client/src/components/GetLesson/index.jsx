@@ -50,6 +50,7 @@ import image60 from './../../assets/images/oonn.png'
 import image61 from './../../assets/images/fatff.png'
 import image62 from './../../assets/images/eagg.png'
 import image63 from './../../assets/images/errror.gif'
+import image64 from './../../assets/images/ewew.png'
 import defaultImg from './../../assets/images/default.png'
 import TextPlusDots_1 from '../courseTemplates/complex/TextPlusDots/TextPlusDots_1';
 import Header from "../header/Header";
@@ -2273,7 +2274,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Reveal>
                     <Sizebox height={30}/>
                     <ImageLine
-                        img={image62}
+                        img={image64}
                         color={'black'}
                     >
                     </ImageLine>
