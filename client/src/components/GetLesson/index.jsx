@@ -1646,6 +1646,10 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 </Reveal>
 
                 <Sizebox height={100} />
+
+                
+
+                <Sizebox height={100} />
                 <Reveal>
                     <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
                         <>
