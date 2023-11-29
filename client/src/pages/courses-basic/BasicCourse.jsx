@@ -146,7 +146,7 @@ function BasicCourse() {
                     lectors={[
                         { img: lector1, name: 'Махметов Муратбек', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
                         { img: lector2, name: 'Махашева Асем', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
-                        { img: lector3, name: 'Шагатаев Даурен', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу'},
+                        { img: lector3, name: 'Шагатаев Даурен', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
                         // { img: lectorImg, name: 'Larry W.', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
                         // { img: lectorImg, name: 'Larry W.', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
                     ]}
