@@ -54,6 +54,7 @@ import defaultImg from './../../assets/images/default.png'
 import TextPlusDots_1 from '../courseTemplates/complex/TextPlusDots/TextPlusDots_1';
 import Header from "../header/Header";
 import DropdownGlossaryList from '../courseTemplates/complex/DropdownGlossaryList';
+import DragAndDropTwoSide from '../courseTemplates/complex/DragAndDropTwoSide';
 
 const LessonPage = ({ children, name, lecturer }) => {
 
@@ -1644,6 +1645,18 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                         </>
                     </HeaderWithLine>
                 </Reveal>
+
+                <Sizebox height={100} />
+
+                <DragAndDropTwoSide 
+                    questions={[
+                        {answer: 'answer1', side: 'left'},
+                        {answer: 'answer2', side: 'right'},
+                        {answer: 'answer3', side: 'left'},
+                    ]}
+                    leftAnswer={'True'}
+                    rightAnswer={'False'}
+                />
 
                 <Sizebox height={100} />
                 <Reveal>
