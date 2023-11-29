@@ -21,11 +21,11 @@ function Management() {
                         <p className={cl.post}>Председатель Агентства Республики Казахстан по финансовому мониторингу, председатель 
                             Совета директоров</p>
                     </div>
-                    <div className={cl.director}>
+                    {/* <div className={cl.director}>
                         <img src={secondDirector} alt="" />
                         <p className={cl.name}>Садырбеков Габит Амангельдиевич</p>
                         <p className={cl.post}>Первый заместитель Председателя Агентства Республики Казахстан по финансовому мониторингу, член Совета директоров</p>
-                    </div>
+                    </div> */}
                     <div className={cl.director}>
                         <img src={thirdDirector} alt="" />
                         <p className={cl.name}>Мырзахметов Кайрат Жаксыкулович</p>

@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.scss'
 
 const QuestionCard = ({ answer, side }) => {
   const dragStart = (event) => {
@@ -9,12 +10,7 @@ const QuestionCard = ({ answer, side }) => {
     <div
       draggable="true"
       onDragStart={dragStart}
-      style={{
-        border: '1px solid #ccc',
-        padding: '8px',
-        marginBottom: '8px',
-        cursor: 'move',
-      }}
+      className='question-card'
     >
       {answer}
     </div>
@@ -43,46 +39,36 @@ const QuestionContainer = ({ questions, leftAnswer, rightAnswer }) => {
   const rightDrop = (event) => handleDrop(event, 'right');
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-      <div>
-        <h3>True</h3>
-        <div
-          onDrop={leftDrop}
-          onDragOver={allowDrop}
-          style={{
-            minHeight: '100px',
-            border: '1px dashed #ccc',
-            padding: '8px',
-          }}
-        >
-          {leftSide.map((card, index) => (
-            <QuestionCard key={index} answer={card.answer} side={card.side} />
-          ))}
-        </div>
-        <p>{leftAnswer}</p>
-      </div>
-      <div>
-        <h3>False</h3>
-        <div
-          onDrop={rightDrop}
-          onDragOver={allowDrop}
-          style={{
-            minHeight: '100px',
-            border: '1px dashed #ccc',
-            padding: '8px',
-          }}
-        >
-          {rightSide.map((card, index) => (
-            <QuestionCard key={index} answer={card.answer} side={card.side} />
-          ))}
-        </div>
-        <p>{rightAnswer}</p>
-      </div>
-      <div>
-        <h3>Questions</h3>
+    <div className='dnd-question-container'>
+      <div className='questions'>
         {questions.map((q, index) => (
           <QuestionCard key={index} answer={q.answer} side={q.side} />
         ))}
+      </div>
+      <div className="two-sides">
+        <div className='left'>
+          <div
+            onDrop={leftDrop}
+            onDragOver={allowDrop}
+          >
+            {/* {leftSide.map((card, index) => (
+              <QuestionCard key={index} answer={card.answer} side={card.side} />
+            ))} */}
+          </div>
+          <p>{leftAnswer}</p>
+        </div>
+        <div className='right'>
+          <div
+            onDrop={rightDrop}
+            onDragOver={allowDrop}
+            
+          >
+            {/* {rightSide.map((card, index) => (
+              <QuestionCard key={index} answer={card.answer} side={card.side} />
+            ))} */}
+          </div>
+          <p>{rightAnswer}</p>
+        </div>
       </div>
     </div>
   );
