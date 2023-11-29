@@ -52,58 +52,6 @@ function VebinarsPage() {
 
     const jwtToken = localStorage.getItem('jwtToken');
 
-    // const [vebinars, setVebinars] = useState([
-    //     {
-    //         id: '_123',
-    //         img: '',
-    //         title: '',
-    //         auditory: 'MVO',
-    //         format: 'online',
-    //         cost: 'FREE',
-    //         contingent: 'До 30 человек',
-    //         date: '2023-09-01',
-    //         lector: {
-    //             name: 'Vebin',
-    //             text: 'lorem ipsum dolor sit amet, con'
-    //         }
-    //     }
-    // ])
-
-    // useEffect(() => {
-    //     // axios to get vebinars
-    //     // and set vebinars
-    //     setVebinars([
-    //         {
-    //             id: '_123',
-    //             img: vebinarImg,
-    //             title: 'Тема: ПВК',
-    //             auditory: 'МФО',
-    //             format: 'Онлайн',
-    //             cost: 'бесплатно',
-    //             contingent: 'До 30 человек',
-    //             date: '5 августа 15:00',
-    //             lector: {
-    //                 name: 'Николаев Богдан Владимирович',
-    //                 text: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-    //             }
-    //         },
-    //         {
-    //             id: '_123',
-    //             img: vebinarImg,
-    //             title: 'Тема: ПВК',
-    //             auditory: 'МФО',
-    //             format: 'Онлайн',
-    //             cost: 'бесплатно',
-    //             contingent: 'До 30 человек',
-    //             date: '5 августа 15:00',
-    //             lector: {
-    //                 name: 'Николаев Богдан Владимирович',
-    //                 text: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-    //             }
-    //         },
-    //     ])
-    // }, [])
-
     return (
         <div className={'vebinars-page'}>
             <div>
@@ -177,6 +125,10 @@ const VebinarCard = (props) => {
 
     const navigate = useNavigate()
 
+    const handleVebinarEnter = () => {
+
+    }
+
     return (
         <div className="vebinar-card">
             <img src={image} alt="" />
@@ -198,6 +150,7 @@ const VebinarCard = (props) => {
                         <div 
                             className='action-btn'
                             onClick={() => {
+                                handleVebinarEnter()
                                 navigate(`/vebinars/${id}`)
                             }}
                         >Принять участие</div>
