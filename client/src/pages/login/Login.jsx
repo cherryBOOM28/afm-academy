@@ -60,6 +60,8 @@ const Registration = () => {
             localStorage.setItem('jwtToken', res.data.body.token);
             localStorage.setItem('email', res.data.body.user.email);
             localStorage.setItem('user_id', res.data.body.user.user_id);
+            localStorage.setItem('firstname', res.data.body.user.firstname);
+            localStorage.setItem('lastname', res.data.body.user.lastname);
 
             console.log(res.data)
 

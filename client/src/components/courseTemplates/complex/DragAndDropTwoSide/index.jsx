@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.scss'
 
 const QuestionCard = ({ answer, side }) => {
   const dragStart = (event) => {
+    console.log("Started drag")
     event.dataTransfer.setData('text/plain', JSON.stringify({ answer, side }));
   };
 
@@ -20,6 +21,8 @@ const QuestionCard = ({ answer, side }) => {
 const QuestionContainer = ({ questions, leftAnswer, rightAnswer }) => {
   const [leftSide, setLeftSide] = React.useState([]);
   const [rightSide, setRightSide] = React.useState([]);
+
+  const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const allowDrop = (event) => {
     event.preventDefault();
@@ -41,9 +44,9 @@ const QuestionContainer = ({ questions, leftAnswer, rightAnswer }) => {
   return (
     <div className='dnd-question-container'>
       <div className='questions'>
-        {questions.map((q, index) => (
-          <QuestionCard key={index} answer={q.answer} side={q.side} />
-        ))}
+        {/* {questions.map((q, index) => ( */}
+          <QuestionCard answer={questions[currentQuestion].answer} side={questions[currentQuestion].side} />
+        {/*  */}
       </div>
       <div className="two-sides">
         <div className='left'>
