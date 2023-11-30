@@ -1,3 +1,3 @@
-const base_url = 'http://localhost:8081';
+const base_url = 'https://amlacademy.kz';
 
 export default base_url;
