@@ -16,7 +16,7 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 23px; /* 143.75% */
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 
 .cardContent {
@@ -43,7 +43,7 @@
     font-size: 33px;
     font-weight: 700;
     line-height: 23px; /* 69.697% */
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     margin-left: 21px;
 }
 
@@ -52,6 +52,6 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 23px; /* 164.286% */
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     margin-left: 18px;
 }

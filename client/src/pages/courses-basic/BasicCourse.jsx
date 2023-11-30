@@ -144,9 +144,9 @@ function BasicCourse() {
                 <h2>Лекторы</h2>
                 <Lectors 
                     lectors={[
-                        { img: lector1, name: 'Махметов Муратбек', text: 'Лектор академии финансов.'},
-                        { img: lector2, name: 'Махашева Асем', text: 'Лектор академии финансов.'},
-                        { img: lector3, name: 'Шагатаев Даурен', text: 'Лектор академии финансов. Проректор академии финансов.'},
+                        { img: lector1, name: 'Махметов Муратбек', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
+                        { img: lector2, name: 'Махашева Асем', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
+                        { img: lector3, name: 'Шагатаев Даурен', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
                         // { img: lectorImg, name: 'Larry W.', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
                         // { img: lectorImg, name: 'Larry W.', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
                     ]}

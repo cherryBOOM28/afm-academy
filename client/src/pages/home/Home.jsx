@@ -97,13 +97,13 @@ function Home() {
                                 <Link to="/#" style={{ textDecoration: 'none' }}>
                                     <div className={cl.aml_box}>
                                         <img src={deepCourse} alt="" />
-                                        <p className={cl.course_box_name}>Углубленный</p>
+                                        <p className={cl.course_box_name}>Продвинутый</p>
                                     </div>
                                 </Link>
                                 <Link to="/3" style={{ textDecoration: 'none' }}>
                                     <div className={cl.aml_box}>
                                         <img src={upCourse} alt="" />
-                                        <p className={cl.course_box_name}>Повышение квалификации</p>
+                                        <p className={cl.course_box_name}>Тематические</p>
                                     </div>
                                 </Link>
                             </div>

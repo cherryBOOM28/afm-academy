@@ -7,62 +7,52 @@ import DefaultHeader from '../../components/defaultHeader/DefaultHeader';
 import Footer from '../../components/footer/Footer';
 
 import vebinarImg from './../../assets/images/vebinar-img.png';
+import axios from "axios";
+import base_url from "../../settings/base_url";
 
 function VebinarsPage() {
 
-    const [vebinars, setVebinars] = useState([
-        {
-            id: '_123',
-            img: '',
-            title: '',
-            auditory: 'MVO',
-            format: 'online',
-            cost: 'FREE',
-            contingent: 'До 30 человек',
-            date: '2023-09-01',
-            lector: {
-                name: 'Vebin',
-                text: 'lorem ipsum dolor sit amet, con'
-            }
-        }
-    ])
+    const navigate = useNavigate();
+
+    const [vebinars, setVebinars] = useState([]);
+    const [error, setError] = useState(null);
+    const [isLoading, setLoading] = useState(true);
+
+
 
     useEffect(() => {
-        // axios to get vebinars
-        // and set vebinars
-        setVebinars([
-            {
-                id: '_123',
-                img: vebinarImg,
-                title: 'Тема: ПВК',
-                auditory: 'МФО',
-                format: 'Онлайн',
-                cost: 'бесплатно',
-                contingent: 'До 30 человек',
-                date: '5 августа 15:00',
-                lector: {
-                    name: 'Николаев Богдан Владимирович',
-                    text: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-                }
-            },
-            {
-                id: '_123',
-                img: vebinarImg,
-                title: 'Тема: ПВК',
-                auditory: 'МФО',
-                format: 'Онлайн',
-                cost: 'бесплатно',
-                contingent: 'До 30 человек',
-                date: '5 августа 15:00',
-                lector: {
-                    name: 'Николаев Богдан Владимирович',
-                    text: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-                }
-            },
-        ])
-    }, [])
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${base_url}/api/aml/webinar/getWebinars`, {
+                    headers: {
+                        Authorization: `Bearer ${jwtToken}`,
+                    },
+                });
 
-    return ( 
+                if (response.status === 200) {
+                    console.log(response.data)
+                    setVebinars(response.data);
+                } else {
+                    // Handle other status codes if needed
+                    setError(response.statusText);
+                    console.log(response.statusText);
+                }
+
+
+            } catch (error) {
+                setError(error);
+                console.error(error);
+            }
+
+            setLoading(false);
+        };
+
+        fetchData();
+    }, []);
+
+    const jwtToken = localStorage.getItem('jwtToken');
+
+    return (
         <div className={'vebinars-page'}>
             <div>
                 <div className="container">
@@ -96,40 +86,71 @@ function VebinarsPage() {
 const VebinarCard = (props) => {
     const { 
         id,
-        img,
-        title,
-        auditory,
-        format,
+        image,
+        name,
+        webinar_for_member_of_the_system,
+        type,
         cost,
         contingent,
         date,
-        lector
      } = props.vebinar;
-    console.log(title)
+    console.log(webinar_for_member_of_the_system)
+
+    const datee = new Date(date);
+
+    const months = {
+        0: 'января',
+        1: 'февраля',
+        2: 'марта',
+        3: 'апреля',
+        4: 'мая',
+        5: 'июня',
+        6: 'июля',
+        7: 'августа',
+        8: 'сентября',
+        9: 'октября',
+        10: 'ноября',
+        11: 'декабря',
+    };
+
+// Get the day, month, and hour from the date
+    const day = datee.getDate();
+    const monthIndex = datee.getMonth();
+    const month = months[monthIndex];
+    const hour = datee.getHours();
+    const minutes = datee.getMinutes();
+
+// Format the date and time
+    const formattedDate = `${day} ${month} ${hour.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 
     const navigate = useNavigate()
 
+    const handleVebinarEnter = () => {
+
+    }
+
     return (
         <div className="vebinar-card">
-            <img src={img} alt="" />
+            <img src={image} alt="" />
             <div className="info-block">
-                <div className='title'>{title}</div>
+                <div className='title'>{name}</div>
                 <div>
                     <div className="vebinar-info">
-                        <p>Аудитория (для кого): {auditory}</p>
-                        <p>Формат: {format}</p>
-                        <p>Стоимость: {cost}</p>
-                        <p>Ограничения: {contingent}</p>
+                        <p>Аудитория (для кого): {webinar_for_member_of_the_system}</p>
+                        <p>Формат: {type}</p>
+                        <p>Стоимость: бесплатно</p>
+                        <p>Ограничения: До 30 человек</p>
 
-                        <div className="date">{date}</div>
+                        <div className="date">{formattedDate}</div>
                     </div>
                     <div className="lector-info">
                         <div className='lector-title'>Лектор</div>
-                        <div className='lector-name'>{lector.name}</div>
-                        <div className='lector-text'>{lector.text}</div>
+                        <div className='lector-name'>Шагатаев Даурен</div>
+                        <div className='lector-text'>Лектор по обучению и повышению квалификации по финансовому мониторингу</div>
                         <div 
                             className='action-btn'
                             onClick={() => {
+                                handleVebinarEnter()
                                 navigate(`/vebinars/${id}`)
                             }}
                         >Принять участие</div>

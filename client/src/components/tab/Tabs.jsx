@@ -3,6 +3,9 @@ import cl from './Tabs.module.css';
 import Button from '../UI/button/Button';
 // import courseImg from '../../assets/images/course.png';
 import courseImg from '../../assets/icons/course.svg';
+import courseImg2 from '../../assets/icons/image 27.svg';
+import courseImg3 from '../../assets/icons/image 28.svg';
+import courseImg4 from '../../assets/icons/image 29.svg';
 
 import { Link } from 'react-router-dom';
 
@@ -41,22 +44,22 @@ function Tabs({ text }) {
               className={activeTab === 1 ? cl.btnTab + ' ' + cl.activeTab : cl.btnTab}
               onClick={() => handleTabClick(2)}
           >
-              <img src={courseImg} alt="" />
+              <img src={courseImg2} alt="" />
               Профильный
           </div>
           <div
               className={activeTab === 1 ? cl.btnTab + ' ' + cl.activeTab : cl.btnTab}
               onClick={() => handleTabClick(3)}
           >
-              <img src={courseImg} alt="" />
-              Углубленный
+              <img src={courseImg3} alt="" />
+              Продвинутый
           </div>
           <div
               className={activeTab === 1 ? cl.btnTab + ' ' + cl.activeTab : cl.btnTab}
               onClick={() => handleTabClick(4)}
           >
-              <img src={courseImg} alt="" />
-              Повышение <br/> квалификации
+              <img src={courseImg4} alt="" />
+              Тематические
           </div>
       </div>
       <div className={cl.tabContent}>

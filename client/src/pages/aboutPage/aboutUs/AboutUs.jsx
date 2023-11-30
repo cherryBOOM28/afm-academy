@@ -5,8 +5,6 @@ import aboutUsImg from '../../../assets/images/aboutus.png';
 import aboutFounderImg from '../../../assets/images/afm.png';
 import Footer from '../../../components/footer/Footer';
 
-
-
 function AboutUs() {
     return (
         <div className={cl.AboutUsWrapper}>
@@ -29,7 +27,7 @@ function AboutUs() {
                     <div className={cl.aboutTheFounder}>
                         <img src={aboutFounderImg} alt="aboutTheFoubder" style={{height: '210px'}} />
                         <div className={cl.aboutTheFounder__text}>
-                            <p className={cl.headline}>Об Учредителе</p>
+                            <p className={cl.headline}>Об акционере</p>
                             <p className={cl.aboutTheFounder__p}>
                                 Учредителем Академии является ГУ «Агентство Республики Казахстан по финансовому мониторингу».
                                 Агентство Республики Казахстан по финансовому мониторингу является государственным органом, непосредственно подчиненным и подотчетным Президенту Республики Казахстан, осуществляющим руководство в сфере противодействия легализации (отмыванию) доходов, полученных преступным путем, и финансированию терроризма, а также по предупреждению, выявлению, пресечению, раскрытию и расследованию экономических и финансовых правонарушений, отнесенных законодательством Республики Казахстан к ведению этого органа.
