@@ -1,4 +1,4 @@
-.reportWarning {
+.reportInformation {
     margin: 0 70px;
     
     @media (min-width: 1500px) {
@@ -22,9 +22,9 @@
     gap: 12px;
 
     padding: 25px 20px;
-    background-color: rgba(202, 222, 252, 0.22);
+    background-color: rgba(243, 252, 202, 0.22);
     border-radius: 5px;
-    border: 1px solid #A7CAFF;
+    border: 1px solid #dcebbb;
 
     .icon-wrapper {
         display: flex;
@@ -33,7 +33,7 @@
     }
 
     .icon {
-        color: #CADEFC;
+        color: #c6d3a8;
 
         @media screen and (max-width: 1200px) {
             display: none;

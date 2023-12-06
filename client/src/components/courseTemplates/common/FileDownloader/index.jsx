@@ -7,6 +7,7 @@ import download from './download.png'
 
 function FileDownloader({
     file,
+    fileName,
     type,
     color
 }) {
@@ -17,6 +18,7 @@ function FileDownloader({
 
     if (_type !== 'pdf') {
         // set other file type icons to fileImg
+        
     }
 
     return ( 
@@ -24,7 +26,7 @@ function FileDownloader({
             <div className='course-file'style={{ borderColor: color || '#CADEFC' }}>
                 <img src={pdf} alt="file-icon" className='file-icon' />
                 <div>
-                    <h6>Course.pdf</h6>
+                    <h6>{fileName}</h6>
                     <p>568.9KB</p>
                 </div>
                 <img src={download} alt="download-icon" className='download' height={31}/>

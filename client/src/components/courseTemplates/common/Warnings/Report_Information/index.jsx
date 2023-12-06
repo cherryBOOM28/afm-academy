@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-import { BsFillExclamationOctagonFill } from "react-icons/bs";
+import { IoInformationCircle } from "react-icons/io5";
 
 import './style.scss'
 
-function Report_Warning({ children }) {
+function Report_Information({ children }) {
     return ( 
-        <div className="reportWarning">
+        <div className="reportInformation">
             <div className="icon-wrapper">
-                <BsFillExclamationOctagonFill className='icon' size={23}/>
+                <IoInformationCircle className='icon' size={23}/>
             </div>
             <div>
                 <p>{children}</p>
@@ -17,4 +17,4 @@ function Report_Warning({ children }) {
     );
 }
 
-export default Report_Warning;
+export default Report_Information;
