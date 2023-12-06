@@ -514,6 +514,63 @@ function Basic_course(props) {
                                 handleSessionClick={handleSessionClick}
                                 isActive={16 === activeSessionId}
                             />
+                            // 3 модуль
+                            <Session
+                                session={{
+                                    id: 17,
+                                    group: 'introduction',
+                                    name: 'Законодательство',
+                                    progress: 0,
+                                }}
+                                handleSessionClick={handleSessionClick}
+                                isActive={17 === activeSessionId}
+                            /><Session
+                                session={{
+                                    id: 18,
+                                    group: 'introduction',
+                                    name: 'Субъекты финансового мониторинга',
+                                    progress: 0,
+                                }}
+                                handleSessionClick={handleSessionClick}
+                                isActive={18 === activeSessionId}
+                            /><Session
+                                session={{
+                                    id: 19,
+                                    group: 'introduction',
+                                    name: 'Надлежащая проверка субъектами финансового мониторинга клиентов',
+                                    progress: 19,
+                                }}
+                                handleSessionClick={handleSessionClick}
+                                isActive={17 === activeSessionId}
+                            /><Session
+                                session={{
+                                    id: 17,
+                                    group: 'introduction',
+                                    name: 'Законодательство',
+                                    progress: 0,
+                                }}
+                                handleSessionClick={handleSessionClick}
+                                isActive={17 === activeSessionId}
+                            /><Session
+                                session={{
+                                    id: 17,
+                                    group: 'introduction',
+                                    name: 'Законодательство',
+                                    progress: 0,
+                                }}
+                                handleSessionClick={handleSessionClick}
+                                isActive={17 === activeSessionId}
+                            /><Session
+                                session={{
+                                    id: 17,
+                                    group: 'introduction',
+                                    name: 'Законодательство',
+                                    progress: 0,
+                                }}
+                                handleSessionClick={handleSessionClick}
+                                isActive={17 === activeSessionId}
+                            />
+
                         </div>
 
                     </div>
