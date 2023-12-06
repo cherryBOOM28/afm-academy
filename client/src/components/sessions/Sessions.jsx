@@ -8,7 +8,7 @@ import unfinishedIcon from './../../pages/testCoursePage/unfinishedIcon.svg';
 import lectureIcon from './lectureIcon.svg';
 import { AiFillFile } from "react-icons/ai";
 
-import { RiArrowDownSLine } from "react-icons/ri";
+import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 import arrowDownIcon from './../../pages/testCoursePage/arrowDownIcon.svg';
 
 import './sessions.scss';
@@ -72,16 +72,27 @@ export const Module = ({children, name, handleSessionClick, activeSession}) => {
     const [isOpen, setOpen] = useState(false);
 
     const handleOpen = (event) => {
-        if (!event.target.classList.contains("group-sessions")) return;
+        // if (!event.target.classList.contains("group-sessions")) return;
         setOpen(prev => !prev)
     }
 
     return (
-        <div className="session-group" onClick={handleOpen}>
-            <div className='group-sessions'>
-                {/* <img src={arrowDownIcon} alt="arrow down icon" className='group-sessions'/> */}
-                < RiArrowDownSLine style={{ fontSize: '20px' }} />
-                <h5 className='group-sessions'>{name}</h5>
+        <div className="session-group" >
+            <div className="group-sessions" onClick={handleOpen}>
+                <div className="icon">
+                    {isOpen ? (
+                        <RiArrowDownSLine size={30} onClick={(e) => {
+                            e.stopPropagation()
+                            handleOpen(e)
+                        }} />
+                    ) : (
+                        <RiArrowUpSLine size={30} onClick={(e) => {
+                            e.stopPropagation()
+                            handleOpen(e)
+                        }} />
+                    )}
+                </div>
+                <h5 className="group-sessions">{name}</h5>
             </div>
             <div className={`${isOpen ? 'open' : 'close'}`}>
                 {children}

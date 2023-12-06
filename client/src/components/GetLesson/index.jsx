@@ -76,7 +76,7 @@ const LessonPage = ({ children, name, lecturer }) => {
             </div>
             {children}
         </>
-    );
+    ); 
 }
 
 const TODO = ({text}) => (
