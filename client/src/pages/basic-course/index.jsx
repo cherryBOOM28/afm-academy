@@ -23,7 +23,7 @@ import NotNumberedDots from '../../components/courseTemplates/common/NotNumbered
 import TextWithTitle from './../../components/courseTemplates/common/TextWithTitle';
 
 import NextLesson from '../../components/courseTemplates/complex/NextLesson';
-import { Session } from '../../components/sessions/Sessions';
+import { Module, Session } from '../../components/sessions/Sessions';
 import RandomGlossary from '../../components/courseTemplates/common/RandomGlossary';
 import RandomParapraph from '../../components/courseTemplates/common/RandomParagraph';
 import FileDownloader from '../../components/courseTemplates/common/FileDownloader';
@@ -361,86 +361,88 @@ function Basic_course(props) {
                             </div>
                         </div>
                         <div className="nav-body">
-                            <Session 
-                                session={{
-                                    id: 1,
-                                    group: 'introduction',
-                                    name: 'Основные понятия и сокращения',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick} 
-                                isActive={1 === activeSessionId}
-                            />
-                            <Session 
-                                session={{
-                                    id: 2,
-                                    group: 'introduction',
-                                    name: 'Система ПОД/ФТ',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick} 
-                                isActive={2 === activeSessionId}
-                            />
-                            <Session 
-                                session={{
-                                    id: 3,
-                                    group: 'introduction',
-                                    name: 'История возникновения первых «схем» отмывания денег',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick} 
-                                isActive={3 === activeSessionId}
-                            />
-                            <Session 
-                                session={{
-                                    id: 4,
-                                    group: 'introduction',
-                                    name: 'Правовой фундамент понятия «легализации денег» в Республике Казахстан',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick} 
-                                isActive={4 === activeSessionId}
-                            />
-                            <Session 
-                                session={{
-                                    id: 5,
-                                    group: 'introduction',
-                                    name: 'Основные стадии отмывания денег',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick} 
-                                isActive={5 === activeSessionId}
-                            />
-                            <Session 
-                                session={{
-                                    id: 6,
-                                    group: 'introduction',
-                                    name: 'Схемы отмывания денег',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick} 
-                                isActive={6 === activeSessionId}
-                            />
-                            <Session 
-                                session={{
-                                    id: 7,
-                                    group: 'introduction',
-                                    name: 'Финансирование терроризма',
-                                    progress: 7,
-                                }}
-                                handleSessionClick={handleSessionClick} 
-                                isActive={7 === activeSessionId}
-                            />
-                            <Session 
-                                session={{
-                                    id: 8,
-                                    group: 'introduction',
-                                    name: 'ПОД ФТ ТЕСТ',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick} 
-                                isActive={8 === activeSessionId}
-                            />
+                            <Module name={'Общая характеристика национальной системы ПОД/ФТ'}>
+                                <Session 
+                                    session={{
+                                        id: 1,
+                                        group: 'introduction',
+                                        name: 'Основные понятия и сокращения',
+                                        progress: 0,
+                                    }}
+                                    handleSessionClick={handleSessionClick} 
+                                    isActive={1 === activeSessionId}
+                                />
+                                <Session 
+                                    session={{
+                                        id: 2,
+                                        group: 'introduction',
+                                        name: 'Система ПОД/ФТ',
+                                        progress: 0,
+                                    }}
+                                    handleSessionClick={handleSessionClick} 
+                                    isActive={2 === activeSessionId}
+                                />
+                                <Session 
+                                    session={{
+                                        id: 3,
+                                        group: 'introduction',
+                                        name: 'История возникновения первых «схем» отмывания денег',
+                                        progress: 0,
+                                    }}
+                                    handleSessionClick={handleSessionClick} 
+                                    isActive={3 === activeSessionId}
+                                />
+                                <Session 
+                                    session={{
+                                        id: 4,
+                                        group: 'introduction',
+                                        name: 'Правовой фундамент понятия «легализации денег» в Республике Казахстан',
+                                        progress: 0,
+                                    }}
+                                    handleSessionClick={handleSessionClick} 
+                                    isActive={4 === activeSessionId}
+                                />
+                                <Session 
+                                    session={{
+                                        id: 5,
+                                        group: 'introduction',
+                                        name: 'Основные стадии отмывания денег',
+                                        progress: 0,
+                                    }}
+                                    handleSessionClick={handleSessionClick} 
+                                    isActive={5 === activeSessionId}
+                                />
+                                <Session 
+                                    session={{
+                                        id: 6,
+                                        group: 'introduction',
+                                        name: 'Схемы отмывания денег',
+                                        progress: 0,
+                                    }}
+                                    handleSessionClick={handleSessionClick} 
+                                    isActive={6 === activeSessionId}
+                                />
+                                <Session 
+                                    session={{
+                                        id: 7,
+                                        group: 'introduction',
+                                        name: 'Финансирование терроризма',
+                                        progress: 7,
+                                    }}
+                                    handleSessionClick={handleSessionClick} 
+                                    isActive={7 === activeSessionId}
+                                />
+                                <Session 
+                                    session={{
+                                        id: 8,
+                                        group: 'introduction',
+                                        name: 'ПОД ФТ ТЕСТ',
+                                        progress: 0,
+                                    }}
+                                    handleSessionClick={handleSessionClick} 
+                                    isActive={8 === activeSessionId}
+                                />
+                            </Module>
                             <Session 
                                 session={{
                                     id: 9,

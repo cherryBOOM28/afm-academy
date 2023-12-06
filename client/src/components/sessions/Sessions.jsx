@@ -68,10 +68,8 @@ export const Session = ({title, session, handleSessionClick, isActive}) => {
     )
 }
 
-export const SessionGroup = ({title, sessions, groupName, handleSessionClick, activeSession}) => {
-    sessions = sessions.filter(session => session.group === groupName);
+export const Module = ({children, name, handleSessionClick, activeSession}) => {
     const [isOpen, setOpen] = useState(false);
-
 
     const handleOpen = (event) => {
         if (!event.target.classList.contains("group-sessions")) return;
@@ -83,17 +81,10 @@ export const SessionGroup = ({title, sessions, groupName, handleSessionClick, ac
             <div className='group-sessions'>
                 {/* <img src={arrowDownIcon} alt="arrow down icon" className='group-sessions'/> */}
                 < RiArrowDownSLine style={{ fontSize: '20px' }} />
-                <h5 className='group-sessions'>{title.toUpperCase()}</h5>
+                <h5 className='group-sessions'>{name}</h5>
             </div>
             <div className={`${isOpen ? 'open' : 'close'}`}>
-                {sessions.map(session => {
-                    const sessionFinished = session.progress === 100;
-                    const sessionId = `${session.group}-${session.name}`;
-
-                    return (
-                        <Session session={session} handleSessionClick={handleSessionClick} isActive={activeSession === session.id}/>
-                    )
-                })}
+                {children}
                 
             </div>
         </div>

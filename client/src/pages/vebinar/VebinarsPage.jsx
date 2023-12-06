@@ -9,6 +9,7 @@ import Footer from '../../components/footer/Footer';
 import vebinarImg from './../../assets/images/vebinar-img.png';
 import axios from "axios";
 import base_url from "../../settings/base_url";
+import { Box, Modal } from '@mui/material';
 
 function VebinarsPage() {
 
@@ -18,7 +19,13 @@ function VebinarsPage() {
     const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(true);
 
+    const [openModal, setOpenModal] = useState(false);
 
+    const handleVebinarEnter = () => {
+        // Выполняем регистрацию на вебинар
+
+        setOpenModal(true)
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -54,6 +61,14 @@ function VebinarsPage() {
 
     return (
         <div className={'vebinars-page'}>
+            <VebinarModal 
+                handleClose={() => {
+                    setOpenModal(false);
+                    navigate('/profile/vebinars')
+                }} 
+                open={openModal}
+            />
+
             <div>
                 <div className="container">
                     <DefaultHeader/>
@@ -69,7 +84,7 @@ function VebinarsPage() {
                     {
                         vebinars.map(vebinar => {
                             console.log(vebinar.lector)
-                            return <VebinarCard vebinar={vebinar}/>
+                            return <VebinarCard vebinar={vebinar} handleVebinarEnter={handleVebinarEnter}/>
                         }
                             
                         )
@@ -81,6 +96,93 @@ function VebinarsPage() {
             <Footer/>
         </div>
     );
+}
+
+const VebinarModal = ({ open, handleClose }) => {
+    return <Modal
+        open={open}
+        onClose={() => {
+            handleClose();
+        }}
+    >
+        <Box sx={{ 
+            width: '590px', 
+            padding: '30px 55px', 
+            boxSizing: 'border-box',
+            background: '#FFFFFF', 
+            borderRadius: '10px',
+            outline: 'none',
+            border: 'none',
+
+            position: 'absolute',
+            top: '30%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)'
+        }}>
+            <h1
+                style={{
+                    color: '#3A3939',
+                    textAlign: 'center',
+                    fontFamily: 'Ubuntu',
+                    fontSize: '22px',
+                    fontStyle: 'normal',
+                    fontWeight: '400',
+                    lineHeight: '26px',
+
+                    marginBottom: '15px'
+                }}
+            >Спасибо за ваш интерес к нашему вебинару!</h1>
+            <p style={{
+                color: '#3A3939',
+                textAlign: 'center',
+                fontFeatureSettings: `'clig' off, 'liga' off`,
+                fontFamily: 'Ubuntu',
+                fontSize: '18px',
+                fontStyle: 'normal',
+                fontWeight: '400',
+                lineHeight: '26px',
+
+                marginBottom: '15px'
+            }}>
+                Вы успешно зарегистрированы для участия. <strong style={{fontWeight: '700'}}>Ожидайте подтверждение</strong> на вашем электронном адресе.
+            </p>
+            <p style={{
+                color: '#4D4D4D',
+                textAlign: 'center',
+                fontFeatureSettings: `'clig' off, 'liga' off`,
+                fontFamily: 'Ubuntu',
+                fontSize: '16px',
+                fontStyle: 'normal',
+                fontWeight: '400',
+                lineHeight: '26px', /* 162.5% */
+
+                marginBottom: '15px'
+            }}>
+                Ссылку на вебинар можете увидеть в разделе вебинары на странице профиля.
+            </p>
+            <div 
+            onClick={() => handleClose()}
+            style={{
+                width: 'max-content',
+                margin: '0 auto',
+                borderRadius: '8px',
+                background: '#1F3C88',
+                borderRadius: '8px',
+                padding: '12px 96px',
+                color: '#FFF',
+                fontFeatureSettings: `'clig' off, 'liga' off`,
+                fontFamily: 'Manrope',
+                fontSize: '16px',
+                fontStyle: 'normal',
+                fontWeight: '700',
+                lineHeight: '24px', /* 150% */
+                letterSpacing: '0.2px',
+                cursor: 'pointer',
+            }}>
+                Окей
+            </div>
+        </Box>
+    </Modal>
 }
 
 const VebinarCard = (props) => {
@@ -126,7 +228,7 @@ const VebinarCard = (props) => {
     const navigate = useNavigate()
 
     const handleVebinarEnter = () => {
-
+        props.handleVebinarEnter();
     }
 
     return (
@@ -151,7 +253,7 @@ const VebinarCard = (props) => {
                             className='action-btn'
                             onClick={() => {
                                 handleVebinarEnter()
-                                navigate(`/vebinars/${id}`)
+                                // navigate(`/vebinars/${id}`)
                             }}
                         >Принять участие</div>
                     </div>

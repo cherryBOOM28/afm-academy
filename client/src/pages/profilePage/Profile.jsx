@@ -86,8 +86,6 @@ function Profile(props) {
         setOpen(false);
     }
 
-    
-
     const handleTabClick = (tab) => {
         setCurrentTab(tab);
     }
@@ -99,8 +97,14 @@ function Profile(props) {
     useEffect(() => {
         if (tabname) {
             
+            console.log(tabname === 'vebinars')
+
             if (tabname === 'sertificates') {
                 setCurrentTab(4);
+            }
+
+            if (tabname === 'vebinars') {
+                setCurrentTab(2);
             }
 
         }
