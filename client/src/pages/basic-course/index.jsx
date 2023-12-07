@@ -349,233 +349,13 @@ function Basic_course(props) {
                 />
                 <div className="course-body">
 
-                    <div className={isNavOpen ? "course-nav" : "course-nav hide"}>
-
-                        <div className="nav-head">
-                            <div>
-                                <h2>{courseName}</h2>
-                                <div className='progress-bar'>
-                                    <div>Прогресс {parseFloat(courseProgress).toFixed(1)}%</div>
-                                    <progress id="courseProgress" max="100" value={`${parseFloat(courseProgress).toFixed(2)}`}>{parseFloat(courseProgress).toFixed(2)}</progress>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="nav-body">
-                            <Module name={'Общая характеристика национальной системы ПОД/ФТ'}>
-                                <Session 
-                                    session={{
-                                        id: 1,
-                                        group: 'introduction',
-                                        name: 'Основные понятия и сокращения',
-                                        progress: 0,
-                                    }}
-                                    handleSessionClick={handleSessionClick} 
-                                    isActive={1 === activeSessionId}
-                                />
-                                <Session 
-                                    session={{
-                                        id: 2,
-                                        group: 'introduction',
-                                        name: 'Система ПОД/ФТ',
-                                        progress: 0,
-                                    }}
-                                    handleSessionClick={handleSessionClick} 
-                                    isActive={2 === activeSessionId}
-                                />
-                                <Session 
-                                    session={{
-                                        id: 3,
-                                        group: 'introduction',
-                                        name: 'История возникновения первых «схем» отмывания денег',
-                                        progress: 0,
-                                    }}
-                                    handleSessionClick={handleSessionClick} 
-                                    isActive={3 === activeSessionId}
-                                />
-                                <Session 
-                                    session={{
-                                        id: 4,
-                                        group: 'introduction',
-                                        name: 'Правовой фундамент понятия «легализации денег» в Республике Казахстан',
-                                        progress: 0,
-                                    }}
-                                    handleSessionClick={handleSessionClick} 
-                                    isActive={4 === activeSessionId}
-                                />
-                                <Session 
-                                    session={{
-                                        id: 5,
-                                        group: 'introduction',
-                                        name: 'Основные стадии отмывания денег',
-                                        progress: 0,
-                                    }}
-                                    handleSessionClick={handleSessionClick} 
-                                    isActive={5 === activeSessionId}
-                                />
-                                <Session 
-                                    session={{
-                                        id: 6,
-                                        group: 'introduction',
-                                        name: 'Схемы отмывания денег',
-                                        progress: 0,
-                                    }}
-                                    handleSessionClick={handleSessionClick} 
-                                    isActive={6 === activeSessionId}
-                                />
-                                <Session 
-                                    session={{
-                                        id: 7,
-                                        group: 'introduction',
-                                        name: 'Финансирование терроризма',
-                                        progress: 7,
-                                    }}
-                                    handleSessionClick={handleSessionClick} 
-                                    isActive={7 === activeSessionId}
-                                />
-                                <Session 
-                                    session={{
-                                        id: 8,
-                                        group: 'introduction',
-                                        name: 'ПОД ФТ ТЕСТ',
-                                        progress: 0,
-                                    }}
-                                    handleSessionClick={handleSessionClick} 
-                                    isActive={8 === activeSessionId}
-                                />
-                            </Module>
-                            <Session 
-                                session={{
-                                    id: 9,
-                                    group: 'introduction',
-                                    name: 'Группа разработки финансовых мер борьбы с отмыванием денег (ФАТФ)',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick} 
-                                isActive={9 === activeSessionId}
-                            /><Session
-                                session={{
-                                    id: 10,
-                                    group: 'introduction',
-                                    name: 'Региональные группы по типу ФАТФ',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick}
-                                isActive={10 === activeSessionId}
-                            /><Session
-                                session={{
-                                    id: 11,
-                                    group: 'introduction',
-                                    name: 'Рекомендации ФАТФ',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick}
-                                isActive={11 === activeSessionId}
-                            /><Session
-                                session={{
-                                    id: 12,
-                                    group: 'introduction',
-                                    name: 'Непосредственный результат 4 «Превентивные меры»',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick}
-                                isActive={12 === activeSessionId}
-                            /><Session
-                                session={{
-                                    id: 13,
-                                    group: 'introduction',
-                                    name: 'Отчет о Взаимной оценке',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick}
-                                isActive={13 === activeSessionId}
-                                /><Session
-                            session={{
-                                id: 14,
-                                group: 'introduction',
-                                name: 'Национальная оценка рисков',
-                                progress: 0,
-                            }}
-                            handleSessionClick={handleSessionClick}
-                            isActive={14 === activeSessionId}
-                          /><Session
-                                session={{
-                                    id: 15,
-                                    group: 'introduction',
-                                    name: 'Списки ФАТФ',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick}
-                                isActive={15 === activeSessionId}
-                            /><Session
-                                session={{
-                                    id: 16,
-                                    group: 'introduction',
-                                    name: 'ЕАГ',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick}
-                                isActive={16 === activeSessionId}
-                            />
-                            // 3 модуль
-                            <Session
-                                session={{
-                                    id: 17,
-                                    group: 'introduction',
-                                    name: 'Законодательство',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick}
-                                isActive={17 === activeSessionId}
-                            /><Session
-                                session={{
-                                    id: 18,
-                                    group: 'introduction',
-                                    name: 'Субъекты финансового мониторинга',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick}
-                                isActive={18 === activeSessionId}
-                            /><Session
-                                session={{
-                                    id: 19,
-                                    group: 'introduction',
-                                    name: 'Надлежащая проверка субъектами финансового мониторинга клиентов',
-                                    progress: 19,
-                                }}
-                                handleSessionClick={handleSessionClick}
-                                isActive={17 === activeSessionId}
-                            /><Session
-                                session={{
-                                    id: 17,
-                                    group: 'introduction',
-                                    name: 'Законодательство',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick}
-                                isActive={17 === activeSessionId}
-                            /><Session
-                                session={{
-                                    id: 17,
-                                    group: 'introduction',
-                                    name: 'Законодательство',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick}
-                                isActive={17 === activeSessionId}
-                            /><Session
-                                session={{
-                                    id: 17,
-                                    group: 'introduction',
-                                    name: 'Законодательство',
-                                    progress: 0,
-                                }}
-                                handleSessionClick={handleSessionClick}
-                                isActive={17 === activeSessionId}
-                            />
-
-                        </div>
-
-                    </div>
+                    <CourseNavigation 
+                        isNavOpen={isNavOpen}
+                        activeSessionId={activeSessionId}
+                        handleSessionClick={handleSessionClick}
+                        courseProgress={courseProgress}
+                        courseName={courseName}
+                    />
 
                     <div className={isNavOpen ? "course-content open" : "course-content"}>
                         <div className="content">
@@ -590,6 +370,280 @@ function Basic_course(props) {
                 </div>
         </div>
     );
+}
+
+const CourseNavigation = ({
+    isNavOpen,
+    activeSessionId,
+    handleSessionClick,
+    courseProgress,
+    courseName,
+}) => {
+    const [currentModule, setCurrentModule] = useState(1);
+
+    const handleModuleOpen = (id) => {
+        if (currentModule === id) {
+            setCurrentModule(-1);
+            return;
+        }
+        setCurrentModule(id);
+    }
+
+    return (
+        <div className={isNavOpen ? "course-nav" : "course-nav hide"}>
+
+            <div className="nav-head">
+                <div>
+                    <h2>{courseName}</h2>
+                    <div className='progress-bar'>
+                        <div>Прогресс {parseFloat(courseProgress).toFixed(1)}%</div>
+                        <progress id="courseProgress" max="100" value={`${parseFloat(courseProgress).toFixed(2)}`}>{parseFloat(courseProgress).toFixed(2)}</progress>
+                    </div>
+                </div>
+            </div>
+            <div className="nav-body">
+                <Module 
+                    moduleId={1}
+                    isOpen={currentModule === 1}
+                    handleModuleOpen={handleModuleOpen}
+                    name={'Общая характеристика национальной системы ПОД/ФТ'}
+                >
+                    <Session 
+                        session={{
+                            id: 1,
+                            group: 'introduction',
+                            name: 'Основные понятия и сокращения',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick} 
+                        isActive={1 === activeSessionId}
+                    />
+                    <Session 
+                        session={{
+                            id: 2,
+                            group: 'introduction',
+                            name: 'Система ПОД/ФТ',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick} 
+                        isActive={2 === activeSessionId}
+                    />
+                    <Session 
+                        session={{
+                            id: 3,
+                            group: 'introduction',
+                            name: 'История возникновения первых «схем» отмывания денег',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick} 
+                        isActive={3 === activeSessionId}
+                    />
+                    <Session 
+                        session={{
+                            id: 4,
+                            group: 'introduction',
+                            name: 'Правовой фундамент понятия «легализации денег» в Республике Казахстан',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick} 
+                        isActive={4 === activeSessionId}
+                    />
+                    <Session 
+                        session={{
+                            id: 5,
+                            group: 'introduction',
+                            name: 'Основные стадии отмывания денег',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick} 
+                        isActive={5 === activeSessionId}
+                    />
+                    <Session 
+                        session={{
+                            id: 6,
+                            group: 'introduction',
+                            name: 'Схемы отмывания денег',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick} 
+                        isActive={6 === activeSessionId}
+                    />
+                    <Session 
+                        session={{
+                            id: 7,
+                            group: 'introduction',
+                            name: 'Финансирование терроризма',
+                            progress: 7,
+                        }}
+                        handleSessionClick={handleSessionClick} 
+                        isActive={7 === activeSessionId}
+                    />
+                    <Session 
+                        session={{
+                            id: 8,
+                            group: 'introduction',
+                            name: 'ПОД ФТ ТЕСТ',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick} 
+                        isActive={8 === activeSessionId}
+                    />
+                </Module>
+                <Module 
+                    name={'Международная система ПОД/ФТ'}
+                    moduleId={2}
+                    isOpen={currentModule === 2}
+                    handleModuleOpen={handleModuleOpen}
+                >
+                    <Session 
+                        session={{
+                            id: 9,
+                            group: 'introduction',
+                            name: 'Группа разработки финансовых мер борьбы с отмыванием денег (ФАТФ)',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick} 
+                        isActive={9 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 10,
+                            group: 'introduction',
+                            name: 'Региональные группы по типу ФАТФ',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={10 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 11,
+                            group: 'introduction',
+                            name: 'Рекомендации ФАТФ',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={11 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 12,
+                            group: 'introduction',
+                            name: 'Непосредственный результат 4 «Превентивные меры»',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={12 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 13,
+                            group: 'introduction',
+                            name: 'Отчет о Взаимной оценке',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={13 === activeSessionId}
+                        />
+                    <Session
+                        session={{
+                            id: 14,
+                            group: 'introduction',
+                            name: 'Национальная оценка рисков',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={14 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 15,
+                            group: 'introduction',
+                            name: 'Списки ФАТФ',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={15 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 16,
+                            group: 'introduction',
+                            name: 'ЕАГ',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={16 === activeSessionId}
+                    />
+                </Module>
+                // 3 модуль
+                <Module
+                    name={'Модуль 3'}
+                    moduleId={3}
+                    isOpen={currentModule === 3}
+                    handleModuleOpen={handleModuleOpen}
+                >
+                    <Session
+                        session={{
+                            id: 17,
+                            group: 'introduction',
+                            name: 'Законодательство',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={17 === activeSessionId}
+                    /><Session
+                        session={{
+                            id: 18,
+                            group: 'introduction',
+                            name: 'Субъекты финансового мониторинга',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={18 === activeSessionId}
+                    /><Session
+                        session={{
+                            id: 19,
+                            group: 'introduction',
+                            name: 'Надлежащая проверка субъектами финансового мониторинга клиентов',
+                            progress: 19,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={17 === activeSessionId}
+                    /><Session
+                        session={{
+                            id: 17,
+                            group: 'introduction',
+                            name: 'Законодательство',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={17 === activeSessionId}
+                    /><Session
+                        session={{
+                            id: 17,
+                            group: 'introduction',
+                            name: 'Законодательство',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={17 === activeSessionId}
+                    /><Session
+                        session={{
+                            id: 17,
+                            group: 'introduction',
+                            name: 'Законодательство',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={17 === activeSessionId}
+                    />
+                </Module>
+
+            </div>
+
+        </div>
+    )
 }
 
 

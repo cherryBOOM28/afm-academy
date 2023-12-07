@@ -94,11 +94,6 @@ $sidebarHoverBackgroundColor: #182f6a;
     }
     
     > div:nth-child(2) {
-        &.open {
-        }
-
-        &.close {
-            display: none;
-        }
+        overflow: hidden;
     }
 }

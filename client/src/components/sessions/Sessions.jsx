@@ -14,6 +14,7 @@ import arrowDownIcon from './../../pages/testCoursePage/arrowDownIcon.svg';
 import './sessions.scss';
 import axios from 'axios';
 import base_url from '../../settings/base_url';
+import { useAnimation, motion } from 'framer-motion';
 
 export const Session = ({title, session, handleSessionClick, isActive}) => {
     const sessionFinished = session.progress === 100;
@@ -68,17 +69,36 @@ export const Session = ({title, session, handleSessionClick, isActive}) => {
     )
 }
 
-export const Module = ({children, name, handleSessionClick, activeSession}) => {
-    const [isOpen, setOpen] = useState(false);
+export const Module = ({children, name, isOpen, moduleId, handleModuleOpen}) => {
+    // const [isOpen, setOpen] = useState(false);
 
     const handleOpen = (event) => {
         // if (!event.target.classList.contains("group-sessions")) return;
-        setOpen(prev => !prev)
+        // setOpen(prev => !prev)
+        handleModuleOpen(moduleId)
+    }
+
+    const mainControls = useAnimation();
+
+    useEffect(() => handleAnimation(), [isOpen])
+
+    const handleAnimation = () => {
+        if (isOpen) {
+            mainControls.start('open')
+        } else {
+            mainControls.start('close')
+        }
     }
 
     return (
         <div className="session-group" >
-            <div className="group-sessions" onClick={handleOpen}>
+            <div 
+                className="group-sessions" 
+                onClick={handleOpen}
+                style={{
+                    boxShadow: isOpen ? "0px 4px 8px rgba(0, 0, 0, 0.1)" : "none",
+                }}
+            >
                 <div className="icon">
                     {isOpen ? (
                         <RiArrowDownSLine size={30} onClick={(e) => {
@@ -92,12 +112,20 @@ export const Module = ({children, name, handleSessionClick, activeSession}) => {
                         }} />
                     )}
                 </div>
-                <h5 className="group-sessions">{name}</h5>
+                <h5 className="group-sessions">{name} + {isOpen?'yes':'no'}</h5>
             </div>
-            <div className={`${isOpen ? 'open' : 'close'}`}>
+            <motion.div 
+                className={`${isOpen ? 'open' : 'close'}`}
+                variants={{
+                    close: { height: 0 },
+                    open: { height: 'max-content' }
+                }}
+                transition={{ duration: 1, ease: 'linear' }}
+                initial='close'
+                animate={mainControls}
+            >
                 {children}
-                
-            </div>
+            </motion.div>
         </div>
     )
 }
