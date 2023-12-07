@@ -38,12 +38,18 @@ function Catalog() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${base_url}/api/aml/course/getUserCourses`, {
-                    headers: {
-                        Authorization: `Bearer ${jwtToken}`,
-                    },
-                });
-
+                const url = '/api/aml/course/getUserCourses';
+                const url1 = '/api/aml/course/getUserCoursesNoPr';
+                let response = null; // Use let instead of const for response to allow reassignment
+                if (jwtToken != null) {
+                    response = await axios.get(`${base_url}${url}`, {
+                        headers: {
+                            Authorization: `Bearer ${jwtToken}`,
+                        },
+                    });
+                } else {
+                    response = await axios.get(`${base_url}${url1}`);
+                }
                 console.log(response.data)
 
                 const _coursesByCategory = {};
