@@ -8,7 +8,7 @@ import unfinishedIcon from './../../pages/testCoursePage/unfinishedIcon.svg';
 import lectureIcon from './lectureIcon.svg';
 import { AiFillFile } from "react-icons/ai";
 
-import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
+import { RiArrowDownSLine, RiArrowUpSLine, RiArrowRightSLine } from "react-icons/ri";
 import arrowDownIcon from './../../pages/testCoursePage/arrowDownIcon.svg';
 
 import './sessions.scss';
@@ -106,13 +106,13 @@ export const Module = ({children, name, isOpen, moduleId, handleModuleOpen}) => 
                             handleOpen(e)
                         }} />
                     ) : (
-                        <RiArrowUpSLine size={30} onClick={(e) => {
+                        <RiArrowRightSLine size={30} onClick={(e) => {
                             e.stopPropagation()
                             handleOpen(e)
                         }} />
                     )}
                 </div>
-                <h5 className="group-sessions">{name} + {isOpen?'yes':'no'}</h5>
+                <h5 className="group-sessions">{name}</h5>
             </div>
             <motion.div 
                 className={`${isOpen ? 'open' : 'close'}`}
