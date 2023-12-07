@@ -6,7 +6,7 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import { ImRadioUnchecked } from "react-icons/im";
 import unfinishedIcon from './../../pages/testCoursePage/unfinishedIcon.svg';
 import lectureIcon from './lectureIcon.svg';
-import { AiFillFile } from "react-icons/ai";
+import { VscListSelection } from "react-icons/vsc";
 
 import { RiArrowDownSLine, RiArrowUpSLine, RiArrowRightSLine } from "react-icons/ri";
 import arrowDownIcon from './../../pages/testCoursePage/arrowDownIcon.svg';
@@ -53,10 +53,11 @@ export const Session = ({title, session, handleSessionClick, isActive}) => {
         <div 
             className={`session ${isActive ? 'active' : ''}`} 
             key={session.name}
-            onClick={() => handleSessionClick(session.id)}>
+            onClick={() => handleSessionClick(session.id)}
+        >
 
             {/* <img src={AiFillFile} style={{color: 'white', background: 'white'}} alt="icon" /> */}
-            <AiFillFile style={{color: 'white', fontSize: '28px'}} />
+            <VscListSelection style={{color: 'white', fontSize: '28px'}} />
             <h6>{session.name}</h6>
             <div className="sessionProgress">
                 {
