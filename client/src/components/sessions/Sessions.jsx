@@ -6,9 +6,9 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import { ImRadioUnchecked } from "react-icons/im";
 import unfinishedIcon from './../../pages/testCoursePage/unfinishedIcon.svg';
 import lectureIcon from './lectureIcon.svg';
-import { AiFillFile } from "react-icons/ai";
+import { VscListSelection } from "react-icons/vsc";
 
-import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
+import { RiArrowDownSLine, RiArrowUpSLine, RiArrowRightSLine } from "react-icons/ri";
 import arrowDownIcon from './../../pages/testCoursePage/arrowDownIcon.svg';
 
 import './sessions.scss';
@@ -53,10 +53,11 @@ export const Session = ({title, session, handleSessionClick, isActive}) => {
         <div 
             className={`session ${isActive ? 'active' : ''}`} 
             key={session.name}
-            onClick={() => handleSessionClick(session.id)}>
+            onClick={() => handleSessionClick(session.id)}
+        >
 
             {/* <img src={AiFillFile} style={{color: 'white', background: 'white'}} alt="icon" /> */}
-            <AiFillFile style={{color: 'white', fontSize: '28px'}} />
+            <VscListSelection style={{color: 'white', fontSize: '28px'}} />
             <h6>{session.name}</h6>
             <div className="sessionProgress">
                 {
@@ -106,13 +107,13 @@ export const Module = ({children, name, isOpen, moduleId, handleModuleOpen}) => 
                             handleOpen(e)
                         }} />
                     ) : (
-                        <RiArrowUpSLine size={30} onClick={(e) => {
+                        <RiArrowRightSLine size={30} onClick={(e) => {
                             e.stopPropagation()
                             handleOpen(e)
                         }} />
                     )}
                 </div>
-                <h5 className="group-sessions">{name} + {isOpen?'yes':'no'}</h5>
+                <h5 className="group-sessions">{name}</h5>
             </div>
             <motion.div 
                 className={`${isOpen ? 'open' : 'close'}`}
