@@ -198,9 +198,9 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                         return <div className='course-card' key={index} 
                             onClick={() => {
                                 if (status === 'process' || status === 'finished') {
-                                    navigate(`/courses/${course.id}/read`)
+                                    navigate(`/courses/${course.courseDTO.course_id}/read`)
                                 } else {
-                                    navigate(`/courses/${course.id}`);
+                                    navigate(`/courses/${course.courseDTO.course_id}`);
                                 }
                             }}
                         >
