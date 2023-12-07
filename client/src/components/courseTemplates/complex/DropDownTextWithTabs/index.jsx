@@ -83,6 +83,7 @@ const  DropDownData = ({ header, data, children, headerColor, headerActiveColor,
         <div className="dropDownData">
             <div className="header">
                 <p
+                    onClick={handleOpen}
                     style={{
                         color: 
                             isOpen 
@@ -90,6 +91,7 @@ const  DropDownData = ({ header, data, children, headerColor, headerActiveColor,
                                 : (headerColor ? headerColor : defaultHeaderColor)
                     }}
                 >{header}</p>
+                <div className="icon">
                 {!isOpen 
                     ? <AiOutlinePlus 
                         size={20} 
@@ -114,6 +116,7 @@ const  DropDownData = ({ header, data, children, headerColor, headerActiveColor,
                         }}
                         />
                 }
+                </div>
             </div>
             <div className={`data ${!isOpen ? 'hide' : ''}`}>
                 <p

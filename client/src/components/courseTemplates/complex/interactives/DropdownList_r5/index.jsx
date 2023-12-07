@@ -69,7 +69,7 @@ function DropdownList_r5({
                                 open={currentOpen === 0}
                                 color={strokeColor}
                             />
-                            <div>
+                            <div onClick={() => handleOpen(0)}>
                                 <img src={social} alt="social" />
                                 <div className="text">Кураторство</div>
                             </div>
@@ -81,7 +81,8 @@ function DropdownList_r5({
                                 open={currentOpen === 1}
                                 color={strokeColor}
                             />
-                            <div>
+                            <div onClick={() => handleOpen(1)}>
+                                <img src={chat} alt="social" />
                                 <div className="text">Call-центр</div>
                             </div>
                         </div>
@@ -92,7 +93,7 @@ function DropdownList_r5({
                                 open={currentOpen === 2}
                                 color={strokeColor}
                             />
-                            <div>
+                            <div onClick={() => handleOpen(2)}>
                                 <img src={settings} alt="settings" />
                                 <div className="text">Совет-Комплаенс</div>
                             </div>
@@ -104,7 +105,7 @@ function DropdownList_r5({
                                 open={currentOpen === 3}
                                 color={strokeColor}
                             />
-                            <div>
+                            <div onClick={() => handleOpen(3)}>
                                 <img src={description} alt="description" />
                                 <div className="text">Оценка</div>
                             </div>
@@ -116,7 +117,7 @@ function DropdownList_r5({
                                 open={currentOpen === 4}
                                 color={strokeColor}
                             />
-                            <div>
+                            <div onClick={() => handleOpen(4)}>
                                 <img src={devices} alt="devices" />
                                 <div className="text">Единый портал</div>
                             </div>
