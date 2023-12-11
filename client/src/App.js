@@ -25,7 +25,7 @@ import SurveysPage from './pages/surveys/Surveys';
 import VebinarsPage from './pages/vebinar/VebinarsPage';
 
 import { AuthProvider, useAuth } from './auth/AuthContext';
-import TestCourse from './pages/testCoursePage/TestCourse';
+// import TestCourse from './pages/testCoursePage/TestCourse';
 import Catalog from './pages/courseCatalog/Catalog';
 import MyCourses from './pages/myCourses/MyCourses';
 import Profile from './pages/profilePage/Profile';
@@ -92,7 +92,7 @@ function App() {
             {/* <Route path='/courses/basic' element={<BasicCourse />}/> */}
             {/* <Route path='/courses/specialized' element={<SpecializedCourse />}/> */}
 
-            <Route path='/courses/testCourse' element={<TestCourse />}/>
+            {/* <Route path='/courses/testCourse' element={<TestCourse />}/> */}
 
             <Route path='/courses/:id/' element={<BasicCourse />}/>
             <Route path='/courses/:id/read' element={

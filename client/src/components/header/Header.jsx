@@ -283,7 +283,7 @@ const NavigationBar = () => {
               <a className={'menu'}>Обучение</a>
               <ul className={'dropdownSub'}>
                   <li>
-                      <a href='#' onClick={'scrollToCourses'} className={'subPages'}>Виды курсов</a>
+                      <a href='#' onClick={() => scrollToCourses()} className={'subPages'}>Виды курсов</a>
                   </li>  
                   <li>
                       <Link to="/courses/catalog" className={'subPages'}>Каталог курсов</Link>
@@ -322,7 +322,7 @@ const NavigationBar = () => {
               </ul>
           </div>
           <div className={'menuBox'}>
-              <a className={'menu'}>Новости</a>
+              <a className={'menu'} onClick={() => scrollToNews()}>Новости</a>
           </div>
           <div className={'menuBox'}>
               <a className={'menu'}>ПОД/ФТ</a>

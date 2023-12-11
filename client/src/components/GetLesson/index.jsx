@@ -138,6 +138,8 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                     />
                 </Reveal>
 
+                <Sizebox height={40}/>
+
                 <Reveal>
                     <Report_Warning>
                         Вам приведена лишь часть сокращений, которые обязательно потребуются для полного понимания курса
@@ -468,7 +470,6 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                             'Государственные органы регуляторы (Национальный банк Республики Казахстан, Агентство по регулированию и развитию финансового рынка, Министерство юстиции Республики Казахстан и др.).',
                         ]}
                         dotsColor={'#CADEFC'}
-
                     />
                 </Reveal>
 
@@ -1471,7 +1472,10 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                     <Centered>
                         <RandomParapraph>
                             <>
-                            СФМ являются <span className="bold">важным элементом</span> национальной антиотмывочной системы, осуществляя роль «<span className="bold">первой линии защиты</span>» при реализации схем ОД/ФТ.
+                            СФМ являются <span className="bold">важным элементом</span> 
+                            национальной антиотмывочной системы, осуществляя роль 
+                            «<span className="bold">первой линии защиты</span>» 
+                            при реализации схем ОД/ФТ.
                             </>
                         </RandomParapraph>
                     </Centered>
@@ -2317,9 +2321,17 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Reveal>
                     <Report_Information>
                         <>
-                        <p>В соответствии с Резолюцией СБ ООН № 1617 (2005), 40 <span className="bold">Рекомендаций ФАТФ</span> являются обязательными международными стандартами <span className="bold">для выполнения государствами – членами <span className="red">ООН+</span>.</span></p>
-                        <p className='italic'>международная организация, созданная для поддержания и укрепления международного мира и безопасности, а также развития сотрудничества между государствами</p>
-                        {/* <p>ООН была образована 24 октября 1945 года. С 2011 года членами ООН являются 193 страны, в том числе и <span className="bold">Казахстан со 2 марта 1992 года</span>, наряду с такими странами как Азербайджан, Армения, Киргизия, Таджикистан, Туркмения и Узбекистан.</p> */}
+                        <p>
+                            В соответствии с Резолюцией СБ ООН № 1617 (2005), 
+                            40 <span className="bold">Рекомендаций ФАТФ</span> являются 
+                            обязательными международными стандартами <span className="bold">для выполнения 
+                            государствами – членами <span className="red">ООН+</span>.</span>
+                        </p>
+                        <p className='italic'>
+                            международная организация, 
+                            созданная для поддержания и укрепления международного мира и 
+                            безопасности, а также развития сотрудничества между государствами
+                        </p>
                         </>
                     </Report_Information>
                 </Reveal>
@@ -2449,11 +2461,18 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 </Reveal>
 
                 <Sizebox height={50} />
-                <FileDownloader 
-                    file={null}
-                    fileName={'Рекомендации ФАТФ (для скачивания)'}
-                />
+
+                <Reveal>
+
+                    <FileDownloader 
+                        file={null}
+                        fileName={'Рекомендации ФАТФ (для скачивания)'}
+                    />
+
+                </Reveal>
+
                 <Sizebox height={100} />
+
 
                 <Reveal>
                     <Report_Warning>
@@ -2631,10 +2650,11 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
             return (<LessonPage name={'Отчет о Взаимной оценке'} lecturer={'AML Academy'}>
                 <Reveal>
                     <Sizebox height={30}/>
+                    
                     <ImageLine
                         img={image62}
-                        color={'black'}
                     >
+
                     </ImageLine>
                     <Sizebox height={30}/>
                     <TextWithTitle title={"Взаимные оценки проводятся РГТФ в рамках которых национальные системы ПОД/ФТ государств-участников проверяются на соответствие международным стандартам"}
