@@ -34,7 +34,7 @@ import Sandbox from './pages/Sandbox';
 import Basic_course from './pages/basic-course';
 import PrivateRoute from './auth/PrivateRoute';
 
-import CreateCoursePage from './pages/createCourse/createCourse';
+import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 
 function App() {
   const [jwtToken, setJwtToken] = useState('');
