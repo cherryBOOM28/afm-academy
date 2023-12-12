@@ -576,7 +576,6 @@ const CourseNavigation = ({
                         isActive={16 === activeSessionId}
                     />
                 </Module>
-                // 3 модуль
                 <Module
                     name={'Модуль 3'}
                     moduleId={3}
