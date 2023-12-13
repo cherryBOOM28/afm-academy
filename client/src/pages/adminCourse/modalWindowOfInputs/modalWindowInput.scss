@@ -1,0 +1,42 @@
+.modal {
+    z-index: 5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 40% !important;
+    height: 50% ;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(55, 71, 97, 0.15);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 9px;
+    padding: 100px;
+
+    .modal-title {
+        font-family: 'Ubuntu';
+        font-weight: 700;
+        font-size: 24px;
+        color: #374761;
+    }
+    .modal-content {
+        padding-top: 25px;
+        width: 100% !important;
+        
+        div {
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 70% !important;
+            
+        }
+        button {
+            width: 70% !important;
+            margin-top: 15px;
+        }
+    }
+
+
+}
