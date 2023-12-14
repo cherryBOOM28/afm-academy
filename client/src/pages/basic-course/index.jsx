@@ -577,7 +577,7 @@ const CourseNavigation = ({
                     />
                 </Module>
                 <Module
-                    name={'Модуль 3'}
+                    name={'Законодательство о ПОД/ФТ'}
                     moduleId={3}
                     isOpen={currentModule === 3}
                     handleModuleOpen={handleModuleOpen}
