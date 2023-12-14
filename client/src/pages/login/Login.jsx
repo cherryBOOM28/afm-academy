@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {Link} from 'react-router-dom';
-// import logo from '../../assets/images/logo.svg';
+// import logo from '../../assets/images/favicon.ico';
 import Button from '../../components/UI/button/Button';
 import axios from 'axios';
 

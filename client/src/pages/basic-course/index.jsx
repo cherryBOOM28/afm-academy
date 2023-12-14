@@ -638,6 +638,32 @@ const CourseNavigation = ({
                     isActive={22 === activeSessionId}
                 />
                 </Module>
+                <Module
+                    name={'Подразделение финансовой разведки'}
+                    moduleId={5}
+                    isOpen={currentModule === 5}
+                    handleModuleOpen={handleModuleOpen}
+                >
+                    <Session
+                        session={{
+                            id: 23,
+                            group: 'introduction',
+                            name: 'Агентство Республики Казахстан по финансовому мониторингу',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={23 === activeSessionId}
+                    /><Session
+                    session={{
+                        id: 24,
+                        group: 'introduction',
+                        name: 'Функции АФМ',
+                        progress: 0,
+                    }}
+                    handleSessionClick={handleSessionClick}
+                    isActive={24 === activeSessionId}
+                />
+                </Module>
 
             </div>
 
