@@ -21,19 +21,80 @@ import { BiSearch } from "react-icons/bi";
 import { AiFillStar } from "react-icons/ai";
 import { MdOndemandVideo } from "react-icons/md";
 
-import bookIcon from './../../assets/icons/book.svg'
 import base_url from '../../settings/base_url';
 import axios from 'axios';
 
 function Catalog() {
     const navigate = useNavigate();
 
+    const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(true);
 
     const [coursesByCategory, setCoursesByCategory] = useState(null);
 
     const jwtToken = localStorage.getItem('jwtToken');
+
+    const [categoryOpen, setCategoryOpen] = useState(false);
+    const [filterOpen, setFilterOpen] = useState(false);
+    const [categoryFilter, setCategoryFilter] = useState([
+        'Все категории'
+    ]);
+    const [searchValue, setSearchValue] = useState("");
+
+    const handleCheckCategory = (e) => {
+        const selectedCategory = e.target.value;
+        setCategoryFilter(prevFilters => {
+            if (!e.target.checked) {
+                return prevFilters.filter(filter => filter !== selectedCategory);
+            } else {
+                prevFilters = prevFilters.filter(filter => filter !== 'Все категории');
+                return [...prevFilters, selectedCategory];
+            }
+        });
+    };
+
+    const handleCheckAllCategories = (e) => {
+        if (!e.target.checked) {
+            setCategoryFilter([]);
+        } else {
+            setCategoryFilter(['Все категории']);
+        }
+    }
+
+    const handleChangeSearchValue = (e) => {
+        setSearchValue(e.target.value);
+    }
+
+    useEffect(() => {
+        if (!data) return;
+
+        if (searchValue === "") {
+            const _coursesByCategory = {};
+            data.forEach(course => {
+                const categoryName = course.courseDTO.courseCategory.category_name;
+                if (!_coursesByCategory[categoryName]) {
+                    _coursesByCategory[categoryName] = [];
+                }
+                _coursesByCategory[categoryName].push(course);
+            });
+            setCoursesByCategory(_coursesByCategory);
+        } else {
+            const _coursesByCategory = {};
+            data
+            .filter(course => course.courseDTO.course_name.toLowerCase().indexOf(searchValue.toLowerCase()) != -1 
+                    || course.courseDTO.courseCategory.category_name.toLowerCase().indexOf(searchValue.toLowerCase()) != -1)
+            .forEach(course => {
+                const categoryName = course.courseDTO.courseCategory.category_name;
+                if (!_coursesByCategory[categoryName]) {
+                    _coursesByCategory[categoryName] = [];
+                }
+                _coursesByCategory[categoryName].push(course);
+            });
+            setCoursesByCategory(_coursesByCategory);
+
+        }
+    }, [searchValue])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -51,6 +112,7 @@ function Catalog() {
                     response = await axios.get(`${base_url}${url1}`);
                 }
                 console.log(response.data)
+                setData(response.data)
 
                 const _coursesByCategory = {};
 
@@ -104,17 +166,77 @@ function Catalog() {
                         <div className='header-actions'>
                             <div className="filters">
                                 <div>
-                                    <AiFillFolder size={20} className='icon'/>
-                                    <span>Категории</span>
+                                    <div onClick={() => {
+                                        setCategoryOpen(prev => !prev);
+                                        setFilterOpen(false);
+                                    }}>
+                                        <AiFillFolder size={20} className='icon'/>
+                                        <span>Категории</span>
+                                    </div>
+                                    <div 
+                                        className="categories" 
+                                        style={{
+                                            display: categoryOpen ? 'flex' : 'none',
+                                        }}
+                                        onMouseLeave={() => {
+                                            setCategoryOpen(false);
+                                        }}
+                                    >
+                                        <div>
+                                            <input 
+                                                onChange={handleCheckAllCategories}
+                                                checked={categoryFilter.includes('Все категории')}
+                                                type="checkbox" 
+                                                value={'Все категории'}
+                                            />
+                                            <label>Все категории</label>
+                                        </div>
+                                        {
+                                            Object.keys(coursesByCategory || {}).map(category => {
+                                                const isChecked = categoryFilter.includes(category) 
+                                                            && !category.includes('Все категории');
+                                            
+                                                return (
+                                                    <div key={category}>
+                                                        <input 
+                                                            onChange={handleCheckCategory}
+                                                            checked={isChecked}
+                                                            type="checkbox" 
+                                                            value={category}
+                                                        />
+                                                        <label>{category}</label>
+                                                    </div>
+                                                );
+                                            })
+                                        }
+                                    </div>
                                 </div>
                                 <div>
-                                    <BsFilter size={20} className='icon'/>
-                                    <span>Фильтр</span>
+                                    <div onClick={() => {
+                                        setFilterOpen(prev => !prev);
+                                        setCategoryOpen(false);
+                                    }}>
+                                        <BsFilter size={20} className='icon'/>
+                                        <span>Фильтр</span>
+                                    </div>
+                                    <div 
+                                        className="filter" 
+                                        style={{
+                                            display: filterOpen ? 'flex' : 'none',
+                                        }}
+                                        onMouseLeave={() => {
+                                            setFilterOpen(false);
+                                        }}
+                                    >
+                                        <div>Category 1</div>
+                                        <div>Category 2</div>
+                                        <div>Category 3</div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="search">
                                 <BiSearch size={20} className='icon'/>
-                                <input type="text" />
+                                <input type="text" value={searchValue} onChange={handleChangeSearchValue}/>
                             </div>
                         </div>
                     </div>
@@ -137,9 +259,14 @@ function Catalog() {
                         </div>
                     ) : 
                     coursesByCategory !== null ? Object.keys(coursesByCategory).map(categoryName => {
-                        
+                        if (
+                            !categoryFilter.includes('Все категории') &&
+                            !categoryFilter.includes(categoryName)
+                        ) return;
+
                         return (
                             <CoursesBlock 
+                                key={categoryName}
                                 categoryName={categoryName} 
                                 categoryDesc={categoryName} 
                                 courses={coursesByCategory[categoryName]} /> 
@@ -155,7 +282,7 @@ function Catalog() {
 }
 
 const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
-    console.log(categoryName, courses);
+    // console.log(categoryName, courses);
 
     const navigate = useNavigate();
 
