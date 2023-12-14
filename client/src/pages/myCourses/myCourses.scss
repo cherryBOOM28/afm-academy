@@ -109,7 +109,15 @@
                     background: #FFFEFE;
                     box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
                     cursor: pointer;
+
+                    &:hover {
+                        transform: scale(102%, 102%);
+                    }
 
                     img {
                         width: 100%;
@@ -121,6 +129,9 @@
 
                     .info {
                         padding: 0px 18px;
+
+                        display: flex;
+                        flex-direction: column;
                     }
 
                     .course-name {
@@ -149,7 +160,7 @@
 
                         padding: 8px 40px;
 
-                        margin-bottom: 32px;
+                        margin-bottom: 10px;
                     }
 
                     .info-row {
@@ -188,9 +199,12 @@
                         line-height: normal;
 
                         display: flex;
-                        align-items: center;
+                        align-items: flex-end;
                         gap: 10px;
                         padding: 15px;
+
+                        position: relative;
+                        margin-top: auto;
                         
                         border-top: #E2E2E2 1px solid;
 

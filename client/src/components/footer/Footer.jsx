@@ -31,7 +31,7 @@ function Footer({ email, phoneNumber }) {
                                     <p className={cl.footer__text}>ул. Ш. Уалиханова, 11</p>
                                 </li>
                                 <li>
-                                    <a className={cl.footer__text} href={`tel:${phoneNumber}`} onClick={handlePhoneClick}>тел. +7 7172 27 80 36</a>
+                                    <a className={cl.footer__text} href={`tel:${phoneNumber}`} onClick={handlePhoneClick}>тел. +7 708 716 8416</a>
                                 </li>
                                 <li>
                                     <a className={cl.footer__text} href={`mailto:${email}`} onClick={handleEmailClick}>aml.academy2023@gmail.com</a>
