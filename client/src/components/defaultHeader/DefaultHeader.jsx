@@ -64,13 +64,10 @@ function DefaultHeader() {
                   <a href='#' className={cl.rounde}>
                     <img src={language} alt="language" className={cl.icon} />
                   </a>
-                  <a href='#' className={cl.rounde}>
+                  <a href='https://www.instagram.com/aml_academy/' className={cl.rounde}>
                     <img src={igIcon} alt="instagram" className={cl.icon} />
                   </a>
-                  <a href='#' className={cl.rounde}>
-                    <img src={fbIcon} alt="facebook" className={cl.icon} />
-                  </a>
-                  <a href='#' className={cl.rounde}>
+                  <a href='https://t.me/s/afm_rk?before=1811' className={cl.rounde}>
                     <img src={tgIcon} alt="telegram" className={cl.icon} />
                   </a>
                 </div>

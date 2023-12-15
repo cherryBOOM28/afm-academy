@@ -107,13 +107,10 @@ function Header() {
             <a href='#' className='soc-icon blue-button'>
               <img src={language} alt="language" className='icon' />
             </a>
-            <a href='#' className='soc-icon blue-button'>
+            <a href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
               <img src={igIcon} alt="instagram" className='icon' />
             </a>
-            <a href='#' className='soc-icon blue-button'>
-              <img src={fbIcon} alt="facebook" className='icon' />
-            </a>
-            <a href='#' className='soc-icon blue-button'>
+            <a href='https://t.me/s/afm_rk?before=1811' className='soc-icon blue-button'>
               <img src={tgIcon} alt="telegram" className='icon' />
             </a>
           </div>

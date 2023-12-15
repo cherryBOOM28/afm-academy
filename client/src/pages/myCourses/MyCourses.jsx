@@ -114,18 +114,7 @@ function MyCourses() {
                         textAlign: 'left'
                         
                     }}>Обучение</h1>
-                    {/* <p style={{
-                        fontFamily: "Roboto",
-                        fontSize: '16px',
-                        fontWeight: '400',
-                        lineHeight: '19px',
-                        letterSpacing: '0em',
-                        textAlign: 'left',
-                        color: '#656678'
-                        
-                    }}>
-                        Широкий спектр профессиональных курсов в Астане по самым разным направлениям
-                    </p> */}
+                   
                 </div>
 
                 <div className="courses-block">
