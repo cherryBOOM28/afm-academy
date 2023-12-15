@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react'
 import './tabBasicInfo.scss'
 import plusSign from '../images/pluc-image.svg'
 import base64Course from './course-default';
+import axios from 'axios';
+import base_url from '../../../settings/base_url';
 
 function fileToBase64(file, callback) {
     if (!file) {
@@ -23,7 +25,7 @@ const TabBasicInfo = ({ nextStep, title: initialTitle, audience: initAud, lang: 
     const [title, setTitle] = useState(initialTitle || "")
     const [audience, setAudience] = useState(initAud || "")
     const [lang, setLang] = useState(initLang || "")
-    const [category, setCategory] = useState(initCTG || "")
+    const [category, setCategory] = useState(initCTG || 0)
     const [price, setPrice] = useState(initPrice || 0)
     const [image, setImage] = useState(initImage || "")
     
@@ -36,6 +38,11 @@ const TabBasicInfo = ({ nextStep, title: initialTitle, audience: initAud, lang: 
     useEffect(() => {
         if (image) {
           setImageSource(image)
+          if (defImage) {
+
+          } else {
+            setDefImage(false)
+          }
         } else {
           setImageSource(plusSign);
         }
@@ -58,7 +65,7 @@ const TabBasicInfo = ({ nextStep, title: initialTitle, audience: initAud, lang: 
     };
     
     const saveAndNext = () => {
-        const formData = {
+        let formData = {
             title,
             audience,
             lang,
@@ -74,11 +81,27 @@ const TabBasicInfo = ({ nextStep, title: initialTitle, audience: initAud, lang: 
             // Alert the user to fill in all the fields
             alert('Для продолжения необходимо заполнить все поля');
         } else {
-            // Log the combined form data
-            console.log('Combined Form Data:', formData);
+            formData = {
+                title,
+                audience,
+                lang,
+                category,
+                price,
+                image: defImage ? '' : image,
+            };
+
+            axios
+                .post(base_url + '/api/aml/course/saveBasicInfoDraft', formData) 
+                .then((res) => {
+                    if (res.data > 0) {
+                        console.log(res.data)
+                        nextStep(res.data);
+                    } else {
+                        alert('Произошла неполадка во время создания черновика')
+                    }
+                })
         
             // Call your nextStep function or perform any other action
-            nextStep();
         }
     }
 
@@ -100,7 +123,10 @@ const TabBasicInfo = ({ nextStep, title: initialTitle, audience: initAud, lang: 
                                 setAudience(e.target.value)
                             }} name="audience" id="audience">
                                 <option value="">--Выберите тип субъекта--</option>
-                                <option value="sfm">СФМ</option>
+                                <option value="GOVERNMENT_REGULATORY_BODIES">Государственные органы-регуляторы</option>
+                                <option value="SFM">Субъект финансового мониторнга</option>
+                                <option value="LAW_ENFORCEMENT_AGENCIES">Правоохранительные органы</option>
+                                <option value="PUBLIC_ASSOCIATION">Общественное объединение</option>
                             </select>
                         </div>
                         <div className="input-lang">
@@ -120,7 +146,7 @@ const TabBasicInfo = ({ nextStep, title: initialTitle, audience: initAud, lang: 
                                 setCategory(e.target.value)
                             }} name="category" id="category">
                                 <option value="">--Выберите категорию--</option>
-                                <option value="aml">AML Academy</option>
+                                <option value={1}>AML Academy</option>
                             </select>
                         </div>
                         <div className="input-price">

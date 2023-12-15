@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import './modalWindowInput.scss'
-const Modal = ({ onClose, inputs, onSubmit }) => {
-  const [values, setValues] = useState({});
+const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
+  const [values, setValues] = useState(exValues || {});
 
   const handleChange = (name, value) => {
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
 
   const handleSubmit = () => {
-    onSubmit(values);
+    onSubmit({inputs, values});
     setValues({});
     onClose();
   };

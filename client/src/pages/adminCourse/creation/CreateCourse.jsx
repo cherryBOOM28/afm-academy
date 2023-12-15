@@ -7,16 +7,23 @@ import FAQStep from '../TabFAQ/FaqStep'
 import TabConstructor from '../tabConstructor/tabConstructor'
 
 
-const CreateCoursePage = () => {
-    
+const CreateCoursePage = ({existingId}) => {
+    const [currentID, setCurrentID] = useState(existingId || 0)
     const [currentStep, setCurrentStep] = useState("basic-info")
 
-    const toFAQ = () => {
+    const [save, setSave] = useState(false)
+
+    const toFAQ = (id) => {
+        setCurrentID(id)
         setCurrentStep("faq")
     }
 
     const toConsctrutor = () => {
         setCurrentStep("constructor")
+    }
+
+    const saveCancel = () => {
+        setSave(false)
     }
 
 
@@ -40,15 +47,16 @@ const CreateCoursePage = () => {
                             <p className='step-title'>Программа Курса</p>
                         </div>
                     </div>
-                    <div className='save-course-button'>
+                    <div onClick={() => setSave(true)} className='save-course-button'>
                         <img src={saveButton} alt="save"/>
                         <a>Сохранить изменения</a>
                     </div>
                 </div>
+                {/* <TabConstructor saveCancel={saveCancel} save={save} id={currentID} /> */}
                 {
-                    currentStep === 'basic-info' ? <TabBasicInfo nextStep={toFAQ} /> :
-                    currentStep === 'faq' ? <FAQStep nextStep={toConsctrutor} /> :
-                    currentStep === 'constructor' ? <TabConstructor /> :
+                    currentStep === 'basic-info' ? <TabBasicInfo id={currentID} nextStep={toFAQ} /> :
+                    currentStep === 'faq' ? <FAQStep id={currentID} nextStep={toConsctrutor} /> :
+                    currentStep === 'constructor' ? <TabConstructor saveCancel={saveCancel} save={save} id={currentID} /> :
                     null
                 }
             </div>
