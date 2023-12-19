@@ -243,7 +243,8 @@
             justify-content: center; /* Center horizontally */
             align-content: center;
             
-            > div {
+
+            > .course-card {
                 width: 100%;
                 border-radius: 5px;
                 background: #FFFEFE;
@@ -253,52 +254,141 @@
                 flex-direction: column;
                 justify-content: space-between;
 
-                &:hover {
-                    transform: scale(102%, 102%);
-                }
+                padding-bottom: 20px;
 
                 cursor: pointer;
+                &:hover {
+                    transform: scale(1.02);
+                }
 
-                img {
-                    width: 100%;
-                    height: 250px;
-                    object-fit: cover;
+                > .image {
+                    position: relative;
 
-                    margin-bottom: 10px;
+                    img {
+                        width: 100%;
+                        height: 250px;
+                        object-fit: cover;
+    
+                        margin-bottom: 10px;
+                    }
+
+                    .status {
+                        position: absolute;
+                        right: 10px;
+                        top: 10px;
+
+                        width: max-content;
+
+                        color: #3A3939;
+                        font-family: Ubuntu;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: normal;
+
+                        border-radius: 50px;
+                        background: #CADEFC;
+                        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+
+                        padding: 8px 40px;
+
+                        margin-bottom: 20px;
+
+                        &.available {
+                            background-color: #1F3C88;
+                            color: white;
+                        }
+
+                        &.process {
+                            background-color: #58f17eec;
+                            color: rgb(255, 255, 255);
+                        }
+
+                        &.finished {
+                            background-color: #1f3d88bb;
+                            color: white;
+                        }
+                    }
                 }
 
                 .info {
                     padding: 0px 18px;
+                    height: 100%;
+
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    gap: 10px;
+
+
+                    .course-name {
+                        color: #3A3939;
+
+                        font-family: Ubuntu;
+                        font-size: 18px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: normal;
+                    }
+
+                    .langAndDuration {
+                        color: #747474;
+
+                        font-family: Inter;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+
+                        margin-bottom: 30px;
+                    }
+
+                    .rating {
+                        display: flex;
+                        align-items: center;
+                        gap: 15px;
+
+                        color: #3A3939;
+                        font-family: Ubuntu;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: normal;
+                        
+                        > span {
+                            padding-top: 2px ;
+                        }
+
+                        .stars {
+                            display: flex;
+                            flex-direction: row;
+                            gap: 5px;
+                        }
+
+                        .star-icon {
+                            color: #FF9138;
+                        }
+                    }
+
+                    .type {
+                        color: #747474;
+                        font-family: Inter;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+    
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        > * {
+                            color: inherit;
+                        }
+                    }
                 }
 
-                .course-name {
-                    color: #3A3939;
-                    font-family: Roboto;
-                    font-size: 18px;
-                    font-style: normal;
-                    font-weight: 600;
-                    line-height: normal;
-
-                    margin-bottom: 17px;
-                }
-
-                .status {
-                    width: max-content;
-
-                    color: #3A3939;
-                    font-family: Inter;
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: normal;
-
-                    border-radius: 5px;
-                    background: #CADEFC;
-
-                    padding: 8px 40px;
-
-                    margin-bottom: 32px;
-                }
+                
 
                 .info-row {
                     display: flex;
@@ -307,45 +397,10 @@
 
                     margin-bottom: 20px;
 
-                    .langAndDuration {
-                        color: #747474;
-                        font-family: Inter;
-                        font-size: 14px;
-                        font-style: normal;
-                        font-weight: 400;
-                        line-height: normal;
-                    }
-
-                    .rating {
-                        display: flex;
-                        align-items: center;
-                        gap: 3px;
-
-                        .star-icon {
-                            color: #1F3C88;
-                        }
-                    }
-                }
-
-                .type {
-                    color: #747474;
-                    font-family: Inter;
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: normal;
-
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                    padding: 15px;
                     
-                    border-top: #E2E2E2 1px solid;
-
-                    > * {
-                        color: inherit;
-                    }
                 }
+
+                
             }
 
             margin-bottom: 73px;

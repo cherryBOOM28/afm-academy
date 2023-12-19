@@ -331,25 +331,31 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                                 }
                             }}
                         >
-                            <img src={course_image} alt={course_name} />
-                            <div className="info">
-                                <div className="course-name">{course_name}</div>
-                                <div className="status" style={{backgroundColor: status === 'available' ? '#CADEFC' : status === 'process' ? '#f5fcca' : '#cafccf'}}>
+                            <div className="image">
+                                <img src={course_image} alt={course_name} />
+                                <div className={`status ${status}`}>
                                     {status === 'available' ? 'Доступно' : status === 'process' ? 'В процессе' : 'Завершен'}
                                 </div>
-                                <div className="info-row">
-                                    <div className='langAndDuration'>
-                                        {'РУС'} | {'1ч 45мин'}
-                                    </div>
-                                    <div className="rating">
-                                        <AiFillStar className='star-icon' size={23}/>
-                                        <span>5.0</span>
-                                    </div>
-                                </div>
                             </div>
-                            <div className="type">
-                                <MdOndemandVideo size={23}/>
-                                <span>Электронное обучение</span>
+                            <div className="info">
+                                <div className="course-name">{course_name}</div>
+                                <div className='langAndDuration'>
+                                    {'РУС'} | {'1ч 45мин'}
+                                </div>
+                                <div className="rating">
+                                    <div className="stars">
+                                        <AiFillStar className='star-icon' size={23}/>
+                                        <AiFillStar className='star-icon' size={23}/>
+                                        <AiFillStar className='star-icon' size={23}/>
+                                        <AiFillStar className='star-icon' size={23}/>
+                                        <AiFillStar className='star-icon' size={23}/>
+                                    </div>
+                                    <span>5.0</span>
+                                </div>
+                                <div className="type">
+                                    <MdOndemandVideo size={23}/>
+                                    <span>Электронное обучение</span>
+                                </div> 
                             </div>
                         </div>
                     })

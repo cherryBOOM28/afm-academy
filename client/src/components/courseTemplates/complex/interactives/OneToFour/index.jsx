@@ -65,7 +65,7 @@ function OneToFour({
                                 list ? list.map((item, index) => {
 
                                     return (
-                                        <div></div>
+                                        <div>{item}</div>
                                     )
                                 }) : null
                             }
