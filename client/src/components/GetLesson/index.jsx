@@ -528,7 +528,21 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                     <OneToFour 
                         header={'Основа национальной системы ПОД/ФТ'}
                         list={[
-                            'ыва', 'выв', 'ыв', 'ыввы'
+                            <>
+                                <ul>
+                                    <li>Законы</li>
+                                    <li>Кодексы</li>
+                                    <li>Подзаконные акты</li>
+                                    <li>Рекомендации</li>
+                                    <li>Инструкции</li>
+                                    <li>Отчеты</li>
+                                    <li>Стратегические анализы</li>
+                                    <li>др.</li>
+                                </ul>
+                            </>, 
+                            'выв', 
+                            'ыв', 
+                            'ыввы'
                         ]}
                     />
                 </Reveal>
