@@ -64,7 +64,7 @@ const elements = {
             component: ImageWithText,
             icon: imageWithTextIcon,
             inputs: [
-                { name: 'img', label: 'URL Изображения', type: 'text' },
+                { name: 'img', label: 'URL Изображения', type: 'file' },
                 { name: 'imageText', label: 'Текст', type: 'text' },
                 { name: 'color', label: 'Цвет', type: 'color' },
                 { name: 'children', label: 'Children', type: 'text' },
@@ -604,9 +604,9 @@ const Constructor = ({saveCancel, save, id, title}) => {
             </div>
             <div className='tool-bar'>
                 <h3>Элементы</h3>
-                <a onClick={() => {
+                {/* <a onClick={() => {
                     console.log(componentHistory)
-                }}>sdasd</a>
+                }}>sdasd</a> */}
                 <div className='elements'>
                     {Object.entries(elements).map(([groupName, groupElements]) => (
                         <div className='element-group' key={groupName}>
