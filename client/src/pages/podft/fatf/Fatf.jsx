@@ -3,14 +3,15 @@ import cl from './Fatf.module.css';
 import fatfImg from '../../../assets/images/fatf.svg';
 import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
+import Header from '../../../components/header/Header';
 
 
 function Fatf() {
     return (
         <div className={cl.fatfWrapper}>
 
+            <Header dark={true}/>
             <div className={cl.container}>
-            <DefaultHeader />
                 <h1 className={cl.headline}>ФАТФ</h1>
                 <div className={cl.fatfContent}>
                     <img src={fatfImg} alt="fatfImg" style={{ height: "220px" }} />

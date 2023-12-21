@@ -24,6 +24,10 @@
         
             .menu {
                 color: #FFF;
+
+                &.dark {
+                    color: black;
+                }
             }
     
             .dropdownSub {
@@ -46,7 +50,7 @@
                 li {
                     width: 100%;
                     &:hover .subPages {
-                        color: rgb(214, 214, 214);
+                        opacity: 0.5;
                         transition: all 0.2s ease;
                     }
                 }
@@ -71,5 +75,11 @@
             width: 800px;
         }
 
+    }
+}
+.dark {
+    color: black;
+    * {
+        color: black;
     }
 }

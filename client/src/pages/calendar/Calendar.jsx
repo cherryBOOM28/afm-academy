@@ -10,6 +10,7 @@ import interactionPlugin from "@fullcalendar/interaction"
 import axios from 'axios';
 
 import './Calendar.scss'
+import Header from '../../components/header/Header';
 
 const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -77,8 +78,8 @@ function CalendarPage(props) {
     return ( 
         <>
             <div className='calendar-page'>
+                <Header dark={true}  />
                 <div className="container">
-                    <DefaultHeader />
                 </div>
                 <main className='page-content container'>
                     <h2>Календарь мероприятий</h2>

@@ -1,6 +1,7 @@
 import React from 'react';
 import cl from './AboutUs.module.css';
 import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
+import Header from '../../../components/header/Header';
 import aboutUsImg from '../../../assets/images/aboutus.png';
 import aboutFounderImg from '../../../assets/images/afm.png';
 import Footer from '../../../components/footer/Footer';
@@ -8,9 +9,11 @@ import Footer from '../../../components/footer/Footer';
 function AboutUs() {
     return (
         <div className={cl.AboutUsWrapper}>
-            <div className={cl.container}>
+            <Header dark={true} />
+
+            {/* <div className={cl.container}>
                 <DefaultHeader />
-            </div>
+            </div> */}
             <div className={cl.aboutUsContent}>
                 <div className={cl.academyWrapper}>
                     <div className={cl.container}>

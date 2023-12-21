@@ -23,6 +23,7 @@ import { MdOndemandVideo } from "react-icons/md";
 
 import base_url from '../../settings/base_url';
 import axios from 'axios';
+import Header from '../../components/header/Header';
 
 function Catalog() {
     const navigate = useNavigate();
@@ -151,9 +152,9 @@ function Catalog() {
 
     return ( 
         <div className="catalog-page">
+            <Header dark={true} />
             <div>
                 <div className="container">
-                    <DefaultHeader />
                 </div>
             </div>
 

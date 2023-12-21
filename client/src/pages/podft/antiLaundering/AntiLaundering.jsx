@@ -4,6 +4,7 @@ import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
 import schemeImg from '../../../assets/images/scheme.svg';
 import arrowImg from '../../../assets/images/arrow.svg';
+import Header from '../../../components/header/Header';
 
 function AntiLaundering() {
     const [activeTab, setActiveTab] = useState(1);
@@ -15,8 +16,8 @@ function AntiLaundering() {
     return (
         <div className={cl.antiLaunderingWrapper}>
 
+            <Header dark={true} />
             <div className={cl.container}>
-            <DefaultHeader />
                 <h1 className={cl.headline}>Антиотмывочная система РК</h1>
                 <img src={schemeImg} alt="schemeImg" className={cl.scheme} />
                 <p className={cl.text}>

@@ -136,8 +136,8 @@ const elements = {
             component: NotNumberedDots,
             icon: norNumberedDotsIcon,
             inputs: [
-                { name: 'list', label: 'Список', type: 'text' },
                 { name: 'header', label: 'Заголовок', type: 'text' },
+                { name: 'list', label: 'Список', type: 'list' },
                 { name: 'dotsColor', label: 'Цвет точек', type: 'color' },
                 { name: 'color', label: 'Цвет текста', type: 'color' },
             ],
@@ -146,26 +146,26 @@ const elements = {
             component: NumberedDots,
             icon: numberedDotsIcon,
             inputs: [
-                { name: 'list', label: 'Список', type: 'text' },
                 { name: 'header', label: 'Заголовок', type: 'text' },
+                { name: 'list', label: 'Список', type: 'list' },
                 { name: 'dotsColor', label: 'Цвет точек', type: 'color' },
                 { name: 'color', label: 'Цвет текста', type: 'color' },
             ],
         },
     },
-    'Табличные элекменты': {
-        'Двухколонная': {
-            component: Table_1,
-            icon: table1Icon,
-            inputs: [
-                { name: 'rows', label: 'Строки ([{first:, second:}])', type: 'text' },
-                { name: 'borderColor', label: 'Цвет границы', type: 'color' },
-                { name: 'color', label: 'Цвет текста', type: 'color' },
-            ],
+    // 'Табличные элементы': {
+    //     'Двухколонная': {
+    //         component: Table_1,
+    //         icon: table1Icon,
+    //         inputs: [
+    //             { name: 'rows', label: 'Строки ([{first:, second:}])', type: 'rows' },
+    //             { name: 'borderColor', label: 'Цвет границы', type: 'color' },
+    //             { name: 'color', label: 'Цвет текста', type: 'color' },
+    //         ],
               
-        }, // rows [{first:, second:}], borderColor, color
+    //     }, // rows [{first:, second:}], borderColor, color
     
-    },
+    // },
     'Медиа': {
         'Файл': {
             component: FileDownloader,
@@ -182,9 +182,9 @@ const elements = {
             component: ImageLine,
             icon: imageIcon,
             inputs: [
-                { name: 'img', label: 'Изображение', type: 'text' },
+                { name: 'img', label: 'Изображение', type: 'file' },
                 { name: 'color', label: 'Цвет', type: 'color' },
-                { name: 'height', label: 'Высота', type: 'text' },
+                { name: 'height', label: 'Высота', type: 'number' },
             ],
         }, //img, height, color done
         'Видео': {

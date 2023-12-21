@@ -10,6 +10,7 @@ import vebinarImg from './../../assets/images/vebinar-img.png';
 import axios from "axios";
 import base_url from "../../settings/base_url";
 import { Box, Modal } from '@mui/material';
+import Header from '../../components/header/Header';
 
 function VebinarsPage() {
 
@@ -70,8 +71,8 @@ function VebinarsPage() {
             />
 
             <div>
+                <Header dark={true} />
                 <div className="container">
-                    <DefaultHeader/>
                 </div>
             </div>
 

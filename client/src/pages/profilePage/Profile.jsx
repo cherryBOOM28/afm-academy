@@ -19,6 +19,7 @@ import ProfileJob from '../../components/profile-job';
 import ProfileEducation from '../../components/profile-education';
 import ProfilePassword from '../../components/profile-password';
 import base_url from '../../settings/base_url';
+import Header from '../../components/header/Header';
 
 function Profile(props) {
     const jwtToken = localStorage.getItem('jwtToken');
@@ -169,8 +170,8 @@ function Profile(props) {
                     </div> 
                 ) : null
             }
+            <Header dark={true}/>
             <div className="container">
-                <DefaultHeader/>
             </div>
             <div className="profile-page-wrapper">
                 <div className="container">

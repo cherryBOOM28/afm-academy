@@ -19,6 +19,7 @@ import ModalWindow from '../../components/ModalWindow/ModalWindow';
 import axios from 'axios';
 import base_url from '../../settings/base_url';
 import Sizebox from '../../components/courseTemplates/common/Sizebox';
+import Header from '../../components/header/Header';
 
 function BasicCourse() {
     const jwtToken = localStorage.getItem('jwtToken');
@@ -79,9 +80,9 @@ function BasicCourse() {
 
     return ( 
         <div className={`basic-course-page`}>
+            <Header dark={true}  />
             <div>
                 <div className="container">
-                    <DefaultHeader />
                 </div>
             </div>
 

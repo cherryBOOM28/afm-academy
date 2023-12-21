@@ -3,13 +3,14 @@ import cl from './MutualEvaluation.module.css';
 import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
 import mutualEvaluationImg from '../../../assets/images/marks.svg';
+import Header from '../../../components/header/Header';
 
 
 function MutualEvaluation() {
     return (
         <div className={cl.mutualEvaluationWrapper}>
+            <Header dark={true} />
             <div className={cl.container}>
-            <DefaultHeader />
                 <h1 className={cl.headline}>Взаимная оценка</h1>
                 <div className={cl.mutualEvaluationContent}>
                 <img src={mutualEvaluationImg} alt="mutualEvaluationImg" style={{ height: '190px' }} />

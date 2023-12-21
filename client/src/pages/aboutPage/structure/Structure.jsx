@@ -7,6 +7,7 @@ import lineL from '../../../assets/icons/lineL.svg';
 import lineR from '../../../assets/icons/lineR.svg';
 import Footer from '../../../components/footer/Footer';
 import Dropdown from '../../../components/dropdown/Dropdown';
+import Header from '../../../components/header/Header';
 
 
 function Structure() {
@@ -34,9 +35,9 @@ function Structure() {
 
   return (
     <div className={cl.charterWrapper}>
+        <Header dark={true}  />
     
         <div className={cl.container}>
-        <DefaultHeader />
             <h1 className={cl.headline}>Руководство Академии</h1>
             <div className={cl.charterContent}>
                 <div className={cl.charterGrid}>

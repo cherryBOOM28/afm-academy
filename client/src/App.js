@@ -109,7 +109,8 @@ function App() {
 
             <Route path='/createcourse' element={<CreateCoursePage />}/>
             <Route path='/manager' element={<EditCatalog />}/>
-
+            {/* <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} component={CreateCoursePage} />}/>
+            <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} component={EditCatalog} />}/> */}
           </Routes>
         </BrowserRouter>
       </AuthProvider>
