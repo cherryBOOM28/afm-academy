@@ -10,14 +10,15 @@
     .container {
         width: 80%;
         margin: 0 auto;
+
     }
 
     .page-content {
-     
+
         h1 {
             margin-top: 50px;
 
-            font-family: Roboto;
+            font-family: Ubuntu;
             font-size: 26px;
             font-weight: 700;
             line-height: 30px;
@@ -28,17 +29,20 @@
         }
 
         h2 {
-            font-family: Roboto;
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 23px;
+            font-family: 'Ubuntu';
+            font-style: normal;
+            line-height: normal;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 21px;
+            letter-spacing: 0em;
             text-align: left;
 
             margin-bottom: 45px;
         }
 
         h3 {
-            font-family: Roboto;
+            font-family: Ubuntu;
             font-size: 16px;
             font-weight: 500;
             line-height: 19px;
@@ -48,7 +52,7 @@
         }
 
         p {
-            font-family: Roboto;
+            font-family: Ubuntu;
             font-size: 16px;
             font-weight: 400;
             line-height: 23px;
