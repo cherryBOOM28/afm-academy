@@ -6,13 +6,14 @@ import customerImg from '../../../assets/images/customer.svg';
 import circleFirst from '../../../assets/images/r1.svg'
 import circleSecond from '../../../assets/images/r2.svg'
 import circleThird from '../../../assets/images/r3.svg'
+import Header from '../../../components/header/Header';
 
 
 function Rules() {
     return (
         <div className={cl.rulesWrapper}>
+            <Header dark={true}/>
             <div className={cl.container}>
-            <DefaultHeader />
                 <h1 className={cl.headline}>Правила внутреннего контроля</h1>
                 <p className={cl.text}>
                     Правила внутреннего контроля являются внутренним документом субъекта финансового мониторинга, который регламентирует организационные основы работы, направленные на ПОД/ФТ/ФРОМУ, и устанавливает порядок действий субъектов в целях ПОД/ФТ/ФРОМУ.

@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react'
 import './tabBasicInfo.scss'
 import plusSign from '../images/pluc-image.svg'
 import base64Course from './course-default';
+import axios from 'axios';
+import base_url from '../../../settings/base_url';
 
 function fileToBase64(file, callback) {
     if (!file) {
@@ -19,11 +21,11 @@ function fileToBase64(file, callback) {
     reader.readAsDataURL(file);
 }
 
-const TabBasicInfo = ({ nextStep, title: initialTitle, audience: initAud, lang: initLang, category: initCTG, price: initPrice, image: initImage }) => {
+const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, lang: initLang, category: initCTG, price: initPrice, image: initImage }) => {
     const [title, setTitle] = useState(initialTitle || "")
     const [audience, setAudience] = useState(initAud || "")
-    const [lang, setLang] = useState(initLang || "")
-    const [category, setCategory] = useState(initCTG || "")
+    const [lang, setLang] = useState(initLang || "ru")
+    const [category, setCategory] = useState(initCTG || 0)
     const [price, setPrice] = useState(initPrice || 0)
     const [image, setImage] = useState(initImage || "")
     
@@ -33,9 +35,36 @@ const TabBasicInfo = ({ nextStep, title: initialTitle, audience: initAud, lang: 
 
     const [isMounted, setIsMounted] = useState(true);
 
+    const [editingExisting, setEditingExisting] = useState(false)
+
+    useEffect(() => {
+        if (id != 0) {
+            axios
+                .get(base_url + "/api/aml/course/basicInfoCourse", {
+                    params: {
+                        id: id
+                    }
+                })
+                .then((res) => {
+                    setTitle(res.data.course_name || "")
+                    setAudience(res.data.course_for_member_of_the_system || "")
+                    setCategory(res.data.courseCategory ? res.data.courseCategory.category_id : 0)
+                    setPrice(res.data.course_price || 0)
+                    setImage(res.data.course_image || "")
+                    setEditingExisting(true)
+                })
+        }
+    }, [id])
+
+
     useEffect(() => {
         if (image) {
           setImageSource(image)
+          if (defImage) {
+
+          } else {
+            setDefImage(false)
+          }
         } else {
           setImageSource(plusSign);
         }
@@ -58,7 +87,13 @@ const TabBasicInfo = ({ nextStep, title: initialTitle, audience: initAud, lang: 
     };
     
     const saveAndNext = () => {
-        const formData = {
+
+        let urlPath = '/api/aml/course/saveBasicInfoDraft'
+
+        if (editingExisting) {
+            urlPath = '/api/aml/course/updateBasicInfo/' + id
+        }
+        let formData = {
             title,
             audience,
             lang,
@@ -74,11 +109,23 @@ const TabBasicInfo = ({ nextStep, title: initialTitle, audience: initAud, lang: 
             // Alert the user to fill in all the fields
             alert('Для продолжения необходимо заполнить все поля');
         } else {
-            // Log the combined form data
-            console.log('Combined Form Data:', formData);
+            formData = {
+                title,
+                audience,
+                lang,
+                category,
+                price,
+                image: defImage ? '' : image,
+            };
+
+            axios
+                .post(base_url + urlPath, formData) 
+                .then((res) => {
+                    console.log(res.data)
+                    nextStep(res.data);
+                })
         
             // Call your nextStep function or perform any other action
-            nextStep();
         }
     }
 
@@ -100,7 +147,10 @@ const TabBasicInfo = ({ nextStep, title: initialTitle, audience: initAud, lang: 
                                 setAudience(e.target.value)
                             }} name="audience" id="audience">
                                 <option value="">--Выберите тип субъекта--</option>
-                                <option value="sfm">СФМ</option>
+                                <option value="GOVERNMENT_REGULATORY_BODIES">Государственные органы-регуляторы</option>
+                                <option value="SFM">Субъект финансового мониторнга</option>
+                                <option value="LAW_ENFORCEMENT_AGENCIES">Правоохранительные органы</option>
+                                <option value="PUBLIC_ASSOCIATION">Общественное объединение</option>
                             </select>
                         </div>
                         <div className="input-lang">
@@ -120,7 +170,7 @@ const TabBasicInfo = ({ nextStep, title: initialTitle, audience: initAud, lang: 
                                 setCategory(e.target.value)
                             }} name="category" id="category">
                                 <option value="">--Выберите категорию--</option>
-                                <option value="aml">AML Academy</option>
+                                <option value={1}>AML Academy</option>
                             </select>
                         </div>
                         <div className="input-price">

@@ -8,6 +8,7 @@ import Footer from '../../../components/footer/Footer';
 import Comments from '../../../components/commentSection/Comments';
 
 import ModalWindow from '../../../components/ModalWindow/ModalWindow';
+import Header from '../../../components/header/Header';
 
 const findCardDataById = (id) => {
     // Replace this with your logic to find the card data based on its ID
@@ -47,8 +48,8 @@ const DirectorPage = () => {
 
   return (
     <div className={cl.directorPageWrapper}>
+        <Header dark={true} />
         <div className={cl.container}>
-        <DefaultHeader />
             <div className={cl.card}>
                 <img src={cardData.photo} alt="Director profile" className={cl.card__img} />
                 <div className={cl.card__block}>

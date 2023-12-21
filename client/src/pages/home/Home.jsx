@@ -69,7 +69,7 @@ function Home() {
 
     return (
         <div className={cl.homeWrapper}>
-            <Header />
+            <Header dark={false}/>
             <section className={cl.aboutUs}>
                 <div className={cl.container}>
                     <div className={cl.aboutUs__section}>

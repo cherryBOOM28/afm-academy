@@ -68,6 +68,7 @@ import Header from "../header/Header";
 import DropdownGlossaryList from '../courseTemplates/complex/DropdownGlossaryList';
 import DragAndDropTwoSide from '../courseTemplates/complex/DragAndDropTwoSide';
 import Report_Information from '../courseTemplates/common/Warnings/Report_Information';
+import StageDropDown from '../courseTemplates/complex/StageDropDown';
 
 const LessonPage = ({ children, name, lecturer }) => {
 
@@ -528,7 +529,56 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                     <OneToFour 
                         header={'Основа национальной системы ПОД/ФТ'}
                         list={[
-                            'ыва', 'выв', 'ыв', 'ыввы'
+                            <>
+                                <h4>Национальные акты</h4>
+                                <ul>
+                                    <li>Законы</li>
+                                    <li>Кодексы</li>
+                                    <li>Подзаконные акты</li>
+                                    <li>Рекомендации</li>
+                                    <li>Инструкции</li>
+                                    <li>Отчеты</li>
+                                    <li>Стратегические анализы</li>
+                                    <li>др.</li>
+                                </ul>
+                            </>, 
+                            <>
+                                <h4>Международные акты</h4>
+                                <ul>
+                                    <li>Конвенции</li>
+                                    <li>Резолюция</li>
+                                    <li>Договора</li>
+                                    <li>Стандарты</li>
+                                    <li>Инструкции</li>
+                                    <li>Отчеты</li>
+                                    <li>Стратегические анализы</li>
+                                    <li>др.</li>
+                                </ul>
+                            </>, 
+                            <>
+                                <ul>
+                                    <li>Закон о ПОД/ФТ</li>
+                                    <li>КоАП</li>
+                                    <li>Приказ АФМ</li>
+                                    <li>НОР, СОР</li>
+                                    <li>др.</li>
+                                </ul>
+                            </>, 
+                            <>
+                            <ul>
+                                <li>Конвенция ООН о борьбе противозаконного оборота наркотических средств и психотропных веществ (1938 г.)</li>
+                                <li>Конвенция ООН против транснациональной организованной преступности (2000 г.)</li>
+                                <li>Конвенция ООН против коррупции (2003 г.)</li>
+                                <li>Конвенция Совета Европы об отмывании, выявлении, изъятии и конфискации доходов от преступной деятельности (1990 г.)</li>
+                                <li>Конвенция ООН о борьбе с финансированием терроризма (1999 г.)</li>
+                                <li>Резолюции СБ ООН 1267, 1269, 1373, 1390, 1452, 1455, 1526, 1566 и т.д.</li>
+                                <li>Шанхайская конвенция о борьбе с терроризмом, сепаратизмом и экстремизмом (2001 г.)</li>
+                                <li>Договор о сотрудничестве государств-участников СНГ о борьбе с терроризмом (1999 г.)</li>
+                                <li>Конвенция Совета Европы об отмывании, выявлении, изъятии, конфискации доходов от преступной деятельности и о финансировнии терроризма (2005 г.)</li>
+                                <li>Международные стандарты в сфере ПОД/ФТ/ФРОМУ (2012 г.) и Методологии оценки технического соответсвтия Рекомендациям ФАТФ и эффективности систем ПОД/ФТ (2013 г.)</li>
+                                <li>Инструкции принципы и методологии международных организаций, комитетов, ассоциаций участвующих в деятельности ПОД/ФТ</li>
+ы                            </ul>
+                        </>
                         ]}
                     />
                 </Reveal>
@@ -753,7 +803,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Sizebox height={80} />
 
                 <Reveal>
-                    <TODO text={'Interactive idk'} />
+                    <StageDropDown />
                 </Reveal>
 
                 <Sizebox height={80} />

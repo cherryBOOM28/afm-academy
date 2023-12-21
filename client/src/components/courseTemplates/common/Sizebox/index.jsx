@@ -3,7 +3,7 @@ function Sizebox({ height, width }) {
         <div className="sizebox"
             style={{
                 height: `${height || 0}px`,
-                width: `${width || 0}px`,
+                width: `${width || 2}px`,
             }}
         ></div>
     );

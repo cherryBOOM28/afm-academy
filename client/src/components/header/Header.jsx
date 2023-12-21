@@ -21,7 +21,7 @@ import { useAuth } from '../../auth/AuthContext';
 import { Email } from '@mui/icons-material';
 
 
-function Header() {
+function Header(props) {
   const navigate = useNavigate();
   const jwtToken = localStorage.getItem('jwtToken');
   const userEmail = localStorage.getItem('email');
@@ -41,6 +41,7 @@ function Header() {
   const userToggleRef = useRef(null);
 
   useEffect(() => {
+    console.log(username)
     const handleClickOutside = (event) => {
       // Check if the clicked element is a descendant of the .user-icon button
       if (
@@ -90,7 +91,7 @@ function Header() {
   }
 
   return (
-    <div className='navbar'>
+    <div className={`navbar ${props.dark? 'dark' : ''}`}>
       <Link to="/" className='logo'>
         <img src={logo} alt="logo" style={{ borderRadius: '50%' }} />
       </Link>
@@ -107,19 +108,16 @@ function Header() {
             <a href='#' className='soc-icon blue-button'>
               <img src={language} alt="language" className='icon' />
             </a>
-            <a href='#' className='soc-icon blue-button'>
+            <a href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
               <img src={igIcon} alt="instagram" className='icon' />
             </a>
-            <a href='#' className='soc-icon blue-button'>
-              <img src={fbIcon} alt="facebook" className='icon' />
-            </a>
-            <a href='#' className='soc-icon blue-button'>
+            <a href='https://t.me/s/afm_rk?before=1811' className='soc-icon blue-button'>
               <img src={tgIcon} alt="telegram" className='icon' />
             </a>
           </div>
           <div className='search-box'>
             <SearchIcon sx={{ color: 'white' }}/>
-            <input type='search' className='search-input' />
+            <input type='search' className={`search-input ${props.dark? 'dark' : ''}`} />
           </div>
           {isLoggedIn ? 
             <div className='user-actions'>
@@ -140,6 +138,11 @@ function Header() {
                   </div>
                   <a className='user-toggle-links'>{name}</a>
                 </div>
+                {username == 'derzeet@gmail.com' ? 
+                <div onClick={() => navigate('/manager')} className='person-menu-item menu-item underline-item'>
+                  <a className='user-toggle-links'>Админ панель</a>
+                </div> : null
+                }
                 <div onClick={handleLogout} className='menu-item'>
                   <a className='user-toggle-links'>Выйти</a>
                 </div>
@@ -158,89 +161,15 @@ function Header() {
           </div>
         </div>
         <div className={`navigation-container ${isMenuOpen ? 'menu-open' : ''}`}>
-          <NavigationBar/>
+          <NavigationBar dark={props.dark}/>
         </div>
       </div>
     </div>
   )
 
-
-    // return (
-    //   <div className={cl.headerWrapper}>
-    //     <div className={cl.container}>
-    //       <div className={cl.header}>
-    //         <div className={cl.header__logo}>              
-    //           <Link to="/" className={cl.header__logo}>
-    //             <img src={logo} alt="logo" style={{ borderRadius: '50%', width: "140px" }} />
-    //             {/* <p className={cl.logo__text}>Академия финансового мониторинга</p> */}
-    //           </Link>
-    //         </div>
-    //         <div className={cl.menu}>
-    //           <div className={cl.menu__utils}>
-    //             <div className={cl.socials}>
-    //               <a href='#' className={cl.rounde}>
-    //                 <img src={language} alt="language" className={cl.icon} />
-    //               </a>
-    //               <a href='#' className={cl.rounde}>
-    //                 <img src={igIcon} alt="instagram" className={cl.icon} />
-    //               </a>
-    //               <a href='#' className={cl.rounde}>
-    //                 <img src={fbIcon} alt="facebook" className={cl.icon} />
-    //               </a>
-    //               <a href='#' className={cl.rounde}>
-    //                 <img src={tgIcon} alt="telegram" className={cl.icon} />
-    //               </a>
-    //             </div>
-    //             <div className={cl.search}>
-    //               <img src={search_icon} alt="search" className={cl.search__icon} />
-    //               <input type='search' className={cl.search__input} />
-    //             </div>
-
-    //             {username ? (
-    //               <>
-    //                 <Link to={'/profile'} style={{color: 'inherit', textDecoration: 'inherit'}}>
-    //                   <div className={cl.personalAccount} style={{display: 'flex', alignItems: 'center', gap: '5px', marginRight: '15px'}}>
-    //                     {/* <img src={personalAccount} alt="personal Account" /> */}
-    //                     <FaUser className={cl.userLogo} size={20} style={{color: 'white'}}/>
-    //                     <p style={{fontSize: '1.1rem', fontWeight: '300', color: 'white'}}>{userEmail}</p>
-    //                     {/* <div className="profile-img">
-    //                         <span>{(localData ? localData['firstname'] : '*****').substring(0, 1)}</span>
-    //                         <span>{(localData ? localData['lastname'] : '*****').substring(0, 1)}</span>
-    //                     </div> */}
-    //                   </div>
-    //                 </Link>
-    //                 <div className={cl.languages}>
-    //                   <a href='#' className={cl.lang}>қаз</a>
-    //                   <a href='#' className={cl.lang}>РУС</a>
-    //                   <a href='#' className={cl.lang}>ENG</a>
-    //                 </div>
-    //                 <div class={cl.hamburger_menu} onclick="toggleMenu()">
-    //                   <div class={cl.hm_bar}></div>
-    //                   <div class={cl.hm_bar}></div>
-    //                   <div class={cl.hm_bar}></div>
-    //                 </div>
-    //                 <Link className={cl.personalAccountLink}>
-    //                   <Button className={cl.personalAccountBtn} onClick={handleLogout} style={{ borderRadius: '5px' }}>Выйти</Button>
-    //                 </Link>
-    //               </>
-    //             ) : (
-    //               <Link to="/login">
-    //                 <Button onClick={handleLogin} style={{ borderRadius: '5px' }}>Войти</Button>
-    //               </Link>
-    //             )}
-
-    //           </div>
-    //           <div className={cl.menu__navigation}>
-    //             <Navigation />
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // );
 }
 
-const NavigationBar = () => {
+const NavigationBar = (props) => {
   const { isLoggedIn } = useAuth();
 
   const scrollToNews = () => {
@@ -258,9 +187,9 @@ const NavigationBar = () => {
   };
 
   return (
-      <div className='navbarBoxes'>
-          <div className={'menuBox'}>
-              <a className={'menu'}>О нас</a>
+      <div className={`navbarBoxes`}>
+          <div className={`menuBox`}>
+              <a className={`menu ${props.dark? 'dark' : ''}`}>О нас</a>
               <ul className={'dropdownSub'}>
                   <li>
                       <Link to="/about" className={'subPages'}>Об Академии </Link>
@@ -280,7 +209,7 @@ const NavigationBar = () => {
               </ul>
           </div>
           <div className={'menuBox'}>
-              <a className={'menu'}>Обучение</a>
+              <a className={`menu ${props.dark ? 'dark' : ''}`}>Обучение</a>
               <ul className={'dropdownSub'}>
                   <li>
                       <a href='#' onClick={() => scrollToCourses()} className={'subPages'}>Виды курсов</a>
@@ -294,7 +223,7 @@ const NavigationBar = () => {
               </ul>
           </div>
           <div className={'menuBox'}>
-              <a className={'menu'}>Библиотека</a>
+              <a className={`menu ${props.dark? 'dark' : ''}`}>Библиотека</a>
               <ul className={'dropdownSub'}>
                   <li>
                       <Link to="/services/service1" className={'subPages'}>НПА</Link>
@@ -308,7 +237,7 @@ const NavigationBar = () => {
               </ul>
           </div>
           <div className={'menuBox'}>
-              <a className={'menu'}>Вебинары</a>
+              <a className={`menu ${props.dark? 'dark' : ''}`}>Вебинары</a>
               <ul className={'dropdownSub'}>
                   <li>
                       <Link to="/vebinars" className={'subPages'}>Все вебинары</Link>
@@ -322,10 +251,10 @@ const NavigationBar = () => {
               </ul>
           </div>
           <div className={'menuBox'}>
-              <a className={'menu'} onClick={() => scrollToNews()}>Новости</a>
+              <a className={`menu ${props.dark? 'dark' : ''}`} onClick={() => scrollToNews()}>Новости</a>
           </div>
           <div className={'menuBox'}>
-              <a className={'menu'}>ПОД/ФТ</a>
+              <a className={`menu ${props.dark? 'dark' : ''}`}>ПОД/ФТ</a>
               <ul className={'dropdownSub'}>
                   <li>
                       <Link to="/anti-laundering" className={'subPages'}>Антиотмывочная система РК</Link>
@@ -342,7 +271,7 @@ const NavigationBar = () => {
               </ul>
           </div>
           <div className={'menuBox'}>
-              <a className={'menu'}>СФМ</a>
+              <a className={`menu ${props.dark? 'dark' : ''}`}>СФМ</a>
               <ul className={'dropdownSub'}>
                   <li>
                       <Link to="/subjects" className={'subPages'}>Виды субъектов финансового мониторинга</Link>
@@ -356,7 +285,7 @@ const NavigationBar = () => {
               </ul>
           </div>
           <div className={'menuBox'}>
-              <a className={'menu'}>Эксперты</a>
+              <a className={`menu ${props.dark? 'dark' : ''}`}>Эксперты</a>
               <ul className={'dropdownSub'}>
                   <li>
                       <Link to="/services/service1" className={'subPages'}>Пул экспертов Академии</Link>

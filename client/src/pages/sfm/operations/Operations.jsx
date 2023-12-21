@@ -6,13 +6,14 @@ import graphIcon from '../../../assets/icons/graph.svg';
 import groupIcon from '../../../assets/icons/group.svg';
 import timeIcon from '../../../assets/icons/time.svg';
 import worldIcon from '../../../assets/icons/earth.svg';
+import Header from '../../../components/header/Header';
 
 
 function Operations() {
     return (
         <div className={cl.OperationsWrapper}>
+            <Header dark={true} />
             <div className={cl.container}>
-            <DefaultHeader />
                 <h1 className={cl.headline}>Операции, подлежащие финансовому мониторингу</h1>
                 <div className={cl.blocksContent}>
                     <div className={cl.block}>

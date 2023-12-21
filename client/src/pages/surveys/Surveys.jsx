@@ -6,6 +6,7 @@ import Footer from '../../components/footer/Footer';
 import './Surveys.scss'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../auth/AuthContext';
+import Header from '../../components/header/Header';
 
 function SurveysPage() {
     const [isSurvey, setSurvey] = useState(true);
@@ -48,9 +49,9 @@ function SurveysPage() {
 
     return ( 
         <div className='surveys-page'>
+            <Header dark={true}  />
             <div>
                 <div className="container">
-                    <DefaultHeader />
                 </div>
             </div>
 

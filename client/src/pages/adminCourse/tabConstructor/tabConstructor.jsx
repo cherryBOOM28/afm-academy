@@ -40,6 +40,12 @@ import videoLineIcon from '../images/videoLine-icon.svg'
 import centeredIcon from '../images/centered-icon.svg'
 import sizeBoxIcon from '../images/sizeBox-icon.svg'
 import Reveal from '../../../components/Reveal'
+import saveButton from '../images/save-button.svg'
+import saveDark from '../images/save-dark.svg'
+import axios from 'axios'
+
+import base_url from '../../../settings/base_url'
+
 
 
 const elements = {
@@ -58,7 +64,7 @@ const elements = {
             component: ImageWithText,
             icon: imageWithTextIcon,
             inputs: [
-                { name: 'img', label: 'URL Изображения', type: 'text' },
+                { name: 'img', label: 'URL Изображения', type: 'file' },
                 { name: 'imageText', label: 'Текст', type: 'text' },
                 { name: 'color', label: 'Цвет', type: 'color' },
                 { name: 'children', label: 'Children', type: 'text' },
@@ -130,8 +136,8 @@ const elements = {
             component: NotNumberedDots,
             icon: norNumberedDotsIcon,
             inputs: [
-                { name: 'list', label: 'Список', type: 'text' },
                 { name: 'header', label: 'Заголовок', type: 'text' },
+                { name: 'list', label: 'Список', type: 'list' },
                 { name: 'dotsColor', label: 'Цвет точек', type: 'color' },
                 { name: 'color', label: 'Цвет текста', type: 'color' },
             ],
@@ -140,26 +146,26 @@ const elements = {
             component: NumberedDots,
             icon: numberedDotsIcon,
             inputs: [
-                { name: 'list', label: 'Список', type: 'text' },
                 { name: 'header', label: 'Заголовок', type: 'text' },
+                { name: 'list', label: 'Список', type: 'list' },
                 { name: 'dotsColor', label: 'Цвет точек', type: 'color' },
                 { name: 'color', label: 'Цвет текста', type: 'color' },
             ],
         },
     },
-    'Табличные элекменты': {
-        'Двухколонная': {
-            component: Table_1,
-            icon: table1Icon,
-            inputs: [
-                { name: 'rows', label: 'Строки ([{first:, second:}])', type: 'text' },
-                { name: 'borderColor', label: 'Цвет границы', type: 'color' },
-                { name: 'color', label: 'Цвет текста', type: 'color' },
-            ],
+    // 'Табличные элементы': {
+    //     'Двухколонная': {
+    //         component: Table_1,
+    //         icon: table1Icon,
+    //         inputs: [
+    //             { name: 'rows', label: 'Строки ([{first:, second:}])', type: 'rows' },
+    //             { name: 'borderColor', label: 'Цвет границы', type: 'color' },
+    //             { name: 'color', label: 'Цвет текста', type: 'color' },
+    //         ],
               
-        }, // rows [{first:, second:}], borderColor, color
+    //     }, // rows [{first:, second:}], borderColor, color
     
-    },
+    // },
     'Медиа': {
         'Файл': {
             component: FileDownloader,
@@ -176,9 +182,9 @@ const elements = {
             component: ImageLine,
             icon: imageIcon,
             inputs: [
-                { name: 'img', label: 'Изображение', type: 'text' },
+                { name: 'img', label: 'Изображение', type: 'file' },
                 { name: 'color', label: 'Цвет', type: 'color' },
-                { name: 'height', label: 'Высота', type: 'text' },
+                { name: 'height', label: 'Высота', type: 'number' },
             ],
         }, //img, height, color done
         'Видео': {
@@ -206,21 +212,106 @@ const elements = {
     },
 }
 
-const TabConstructor = () => {
+const componentMap = {
+    HeaderWithLine,
+    ImageWithText,
+    ImageLine,
+    RandomGlossary,
+    RandomH2,
+    RandomParapraph,
+    TextWithBackground,
+    TextWithTitle,
+    Report_Warning,
+    Report_Information,
+    NotNumberedDots,
+    NumberedDots,
+    Table_1,
+    FileDownloader,
+    VideoLine,
+    // Add other components here
+};
+
+function generateUniqueId() {
+    const timestamp = new Date().getTime();
+    const random = Math.floor(Math.random() * 10000);
+    return `${timestamp}-${random}`;
+}
+  
+
+const TabConstructor = ({saveCancel, save, id}) => {
     const [stepConstructor, setStepConstructor] = useState('structure')
+    const [currentModules, setCurrentModules] = useState([])
+    const [addingNewModule, setAddingNewModule] = useState(false)
+    const [newModuleName, setNewModuleName] = useState("Модуль №" + (currentModules.length + 1))
     const [lesson, setLesson] = useState(0)
     const [title, setTitle] = useState("")
     const [previous, setPrevious] = useState("structure")
+
     
-    const lessonsById = (id) => {
+    // Try to fetch data of Course using Id propery 
+    // if not set modules as empty list and after PRESSING BUTTON of entering into different step
+    // execute post method into the API and send current modules into DB
+    useEffect(() => {
+        axios  
+            .get(base_url + '/api/aml/chapter/modulesOfCourse', {
+                params: {
+                    id: id
+                }
+            })
+            .then((res) => {
+                setCurrentModules(res.data)
+            })
+            .catch(function (error) {
+                // alert(error)
+            })
+    }, [id])
+
+    const addModule = ( ) => {
+        if (newModuleName != '') {
+            axios
+                .post(base_url + '/api/aml/chapter/addModule', {id, newModuleName})
+                .then((res) => {
+                    console.log(res.data)
+                    setAddingNewModule(false)
+                    setCurrentModules(res.data)
+                    setNewModuleName("Модуль №" + (res.data.length + 1))
+                })
+                .catch(function (error) {
+                    // alert(error)
+                })
+            
+        } else {
+            alert('Пожалуйста введите название модуля')
+        }
+    };
+
+    const deleteModule = (moduleId) => {
+        axios
+            .post(base_url + '/api/aml/chapter/deleteModule', null, {
+                params: {
+                    id: moduleId
+                }
+            })
+            .then((res) => {
+                setCurrentModules(res.data)
+                setNewModuleName("Модуль №" + (res.data.length + 1))
+            })
+            .catch(function (error) {
+                // alert(error)
+            })
+    };
+
+
+
+    const lessonsById = (x) => {
         setPrevious("structure")
-        setStepConstructor(id)
+        setStepConstructor(x.module_id)
     }
 
-    const lessonById = (id) => {
+    const lessonById = (x) => {
         setPrevious(stepConstructor)
         setStepConstructor('constructor')
-        setLesson(id)
+        setLesson(x)
     }
 
     const setLessonTitle = (title) => {
@@ -252,7 +343,7 @@ const TabConstructor = () => {
             <div className="base">
                 <a className="title">Структура</a>
                 <div className="list-of-modules">
-                    {modules.map((x) => {
+                    {currentModules.map((x) => {
                         return (
                             <div className="module-line">
                                 <div className='name-icon'> 
@@ -261,20 +352,20 @@ const TabConstructor = () => {
                                         <path d="M19 11.2743V17.3184C19 19.204 19 20.1468 18.4142 20.7326C17.8284 21.3184 16.8856 21.3184 15 21.3184H3.79003C2.24914 21.3184 1 20.0692 1 18.5283V18.5283C1 16.9874 2.24914 15.7383 3.79003 15.7383H15C16.8856 15.7383 17.8284 15.7383 18.4142 15.1525C19 14.5667 19 13.6239 19 11.7383V5.23016C19 3.34454 19 2.40174 18.4142 1.81595C17.8284 1.23016 16.8856 1.23016 15 1.23016H5C3.11438 1.23016 2.17157 1.23016 1.58579 1.81595C1 2.40174 1 3.34455 1 5.23016V18.5283" stroke="#374761" stroke-width="1.2"/>
                                         <path d="M6.625 6.81021L13.375 6.81021" stroke="#374761" stroke-width="1.2" stroke-linecap="round"/>
                                     </svg>
-                                    <a><span>{x.title}</span>: {x.number_of_lessons} Уроков</a>
+                                    <a><span>{x.name}</span>: {x.lessons != null ? x.lessons.length : 0} Уроков</a>
                                 </div>
 
                                 <div className='icons'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                    {/* <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
                                         <circle cx="15" cy="15" r="4.4" stroke="#374761" stroke-width="1.2"/>
                                         <path d="M25.4469 13.9287C25.8314 14.4088 26.0237 14.6489 26.0237 15C26.0237 15.3511 25.8314 15.5912 25.4469 16.0713C23.7871 18.1438 19.7352 22.5 15 22.5C10.2648 22.5 6.21291 18.1438 4.55311 16.0713C4.16856 15.5912 3.97629 15.3511 3.97629 15C3.97629 14.6489 4.16856 14.4088 4.55311 13.9287C6.21291 11.8562 10.2648 7.5 15 7.5C19.7352 7.5 23.7871 11.8562 25.4469 13.9287Z" stroke="#7E869E" stroke-opacity="0.25" stroke-width="1.2"/>
-                                    </svg>
-                                    <svg onClick={() => lessonsById(x.id)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                    </svg> */}
+                                    <svg onClick={() => lessonsById(x)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
                                         <path d="M15.625 9.375L7.30319 17.6968C7.09066 17.9093 6.98439 18.0156 6.91453 18.1462C6.84466 18.2767 6.81519 18.4241 6.75624 18.7188L5.77209 23.6396C5.70556 23.9722 5.6723 24.1385 5.76691 24.2331C5.86152 24.3277 6.02783 24.2944 6.36044 24.2279L11.2812 23.2438C11.5759 23.1848 11.7233 23.1553 11.8538 23.0855C11.9844 23.0156 12.0907 22.9093 12.3032 22.6968L20.625 14.375L15.625 9.375Z" fill="#374761"/>
                                         <path d="M7.20397 24.13L7.05845 23.5479L7.20397 24.13L10.8581 23.2164C10.8743 23.2124 10.8904 23.2084 10.9065 23.2044C11.1253 23.15 11.3356 23.0978 11.5271 22.9894C11.7185 22.881 11.8715 22.7275 12.0307 22.5679C12.0424 22.5561 12.0542 22.5444 12.066 22.5326L21.5101 13.0885L21.5101 13.0885L21.5335 13.065L21.5369 13.0617C21.8472 12.7514 22.1215 12.4772 22.3128 12.2264C22.5202 11.9546 22.6858 11.641 22.6858 11.25C22.6858 10.859 22.5202 10.5454 22.3128 10.2736C22.1215 10.0228 21.8472 9.74864 21.5369 9.43835L21.51 9.41152L20.5885 8.48995L20.5617 8.46314C20.2514 8.1528 19.9772 7.87853 19.7264 7.6872C19.4546 7.47981 19.141 7.31421 18.75 7.31421C18.359 7.31421 18.0454 7.47981 17.7736 7.6872C17.5229 7.87853 17.2486 8.15278 16.9384 8.46311L16.9115 8.48995L7.46745 17.934C7.45565 17.9458 7.44386 17.9576 7.43211 17.9693C7.27249 18.1285 7.11904 18.2815 7.01064 18.4729C6.90225 18.6644 6.84999 18.8747 6.79562 19.0935C6.79162 19.1096 6.78761 19.1257 6.78356 19.1419L5.87003 22.796C5.86762 22.8057 5.86518 22.8154 5.86272 22.8252C5.82411 22.9793 5.78044 23.1535 5.76593 23.3018C5.74978 23.4669 5.75127 23.7662 5.99255 24.0074L6.39257 23.6074L5.99255 24.0075C6.23384 24.2487 6.53307 24.2502 6.6982 24.2341C6.84647 24.2196 7.02075 24.1759 7.17483 24.1373C7.18463 24.1348 7.19435 24.1324 7.20397 24.13Z" stroke="#374761" stroke-width="1.2"/>
                                         <path d="M15.625 9.375L20.625 14.375" stroke="#374761" stroke-width="1.2"/>
                                     </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                    <svg onClick={() => deleteModule(x.module_id)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
                                         <path d="M22.5 7.53308L7.5 22.5992" stroke="#374761" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M7.5 7.53308L22.5 22.5992" stroke="#374761" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
@@ -283,14 +374,46 @@ const TabConstructor = () => {
                         )
                     })
                     }
-                    <div className='add-line'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <circle cx="10" cy="10" r="9.4" stroke="#7E869E" stroke-opacity="0.25" stroke-width="1.2"/>
-                            <path d="M10 13.3333L10 6.66666" stroke="#374761" stroke-width="1.2" stroke-linecap="square"/>
-                            <path d="M13.3333 10L6.66659 10" stroke="#374761" stroke-width="1.2" stroke-linecap="square"/>
-                        </svg>
-                        <a>Добавить модуль</a>
-                    </div>
+                    {addingNewModule ? 
+                        <div className="module-line">
+                            <div className='name-icon'> 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">
+                                    <path d="M15 15.7383H5.94816C4.41663 15.7383 3.65086 15.7383 3.0037 16.0721C2.93764 16.1062 2.87286 16.1427 2.80951 16.1816C2.18893 16.5626 1.79262 17.2179 1 18.5283V5.23016C1 3.34455 1 2.40174 1.58579 1.81595C2.17157 1.23016 3.11438 1.23016 5 1.23016H15C16.8856 1.23016 17.8284 1.23016 18.4142 1.81595C19 2.40174 19 3.34454 19 5.23016V11.7383C19 13.6239 19 14.5667 18.4142 15.1525C17.8284 15.7383 16.8856 15.7383 15 15.7383Z" fill="#7E869E" fill-opacity="0.25"/>
+                                    <path d="M19 11.2743V17.3184C19 19.204 19 20.1468 18.4142 20.7326C17.8284 21.3184 16.8856 21.3184 15 21.3184H3.79003C2.24914 21.3184 1 20.0692 1 18.5283V18.5283C1 16.9874 2.24914 15.7383 3.79003 15.7383H15C16.8856 15.7383 17.8284 15.7383 18.4142 15.1525C19 14.5667 19 13.6239 19 11.7383V5.23016C19 3.34454 19 2.40174 18.4142 1.81595C17.8284 1.23016 16.8856 1.23016 15 1.23016H5C3.11438 1.23016 2.17157 1.23016 1.58579 1.81595C1 2.40174 1 3.34455 1 5.23016V18.5283" stroke="#374761" stroke-width="1.2"/>
+                                    <path d="M6.625 6.81021L13.375 6.81021" stroke="#374761" stroke-width="1.2" stroke-linecap="round"/>
+                                </svg>
+                                {/* <a><span>{x.chapter_name}</span>: {x.number_of_lessons} Уроков</a> */}
+                                <a><input className="new-module-name" type="text" value={newModuleName} onChange={(e) => setNewModuleName(e.target.value)}/></a>
+                            </div>
+
+                            <div className='icons'>
+                                <div className='save-module' onClick={addModule}>
+                                    <img src={saveButton} alt="save"/>
+                                    <a>Сохранить</a>
+                                </div>
+                                <div className='save-module-cancel' onClick={() => {
+                                    setNewModuleName("Модуль №" + (currentModules.length + 1))
+                                    setAddingNewModule(false)
+                                }}>
+                                    <a>Отменить</a>
+                                </div>
+                            </div>
+                        </div> 
+                        : ""
+                    }
+                    {!addingNewModule ? 
+                        <div className='add-line' onClick={() => {
+                            setAddingNewModule(true)
+                        }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <circle cx="10" cy="10" r="9.4" stroke="#7E869E" stroke-opacity="0.25" stroke-width="1.2"/>
+                                <path d="M10 13.3333L10 6.66666" stroke="#374761" stroke-width="1.2" stroke-linecap="square"/>
+                                <path d="M13.3333 10L6.66659 10" stroke="#374761" stroke-width="1.2" stroke-linecap="square"/>
+                            </svg>
+                            <a>Добавить модуль</a>
+                        </div>
+                        : ""
+                    }
                 </div>
                 <div className='annotations'>
                     <div>
@@ -310,13 +433,13 @@ const TabConstructor = () => {
                             </svg>
                             <a>Редактировать модуль</a>    
                         </div>
-                        <div>
+                        {/* <div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <circle cx="12" cy="12" r="3.4" stroke="#374761" stroke-opacity="0.75" stroke-width="1.2"/>
                                 <path d="M20.188 10.9343C20.5762 11.4056 20.7703 11.6412 20.7703 12C20.7703 12.3588 20.5762 12.5944 20.188 13.0657C18.7679 14.7899 15.6357 18 12 18C8.36427 18 5.23206 14.7899 3.81197 13.0657C3.42381 12.5944 3.22973 12.3588 3.22973 12C3.22973 11.6412 3.42381 11.4056 3.81197 10.9343C5.23206 9.21014 8.36427 6 12 6C15.6357 6 18.7679 9.21014 20.188 10.9343Z" stroke="#7E869E" stroke-opacity="0.25" stroke-width="1.2"/>
                             </svg>
                             <a>Скрыть модуль</a>    
-                        </div>
+                        </div> */}
                         <div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <g opacity="0.75">
@@ -333,61 +456,157 @@ const TabConstructor = () => {
             : 
             stepConstructor != 'constructor' ? <ModuleStructure id={stepConstructor} setLessonTitle={setLessonTitle} lessonById={lessonById}/>
             :
-            <Constructor title={title}/>
+            <Constructor saveCancel={saveCancel} save={save} id={lesson} title={title} />
             }
-
-            
         </div>
     )
 }
-
 //Takes id of lesson
-const Constructor = ({id, title}) => {
+const Constructor = ({saveCancel, save, id, title}) => {
     const [selectedComponent, setSelectedComponent] = useState(null);
-    const [submittedValues, setSubmittedValues] = useState({});
     const [componentHistory, setComponentHistory] = useState([]);
 
-    const handleElementClick = ({ ElementComponent, InputsOfElement }) => {
-        const newComponent = { component: ElementComponent, inputs: InputsOfElement, values: {} };
-        setSelectedComponent(newComponent);
-        setComponentHistory((prevHistory) => [...prevHistory, newComponent]);
-    }
+    useEffect(() => {
+        axios
+            .get(base_url + '/api/aml/chapter/getComponents', {params: {id}})
+            .then((res) => {
+                console.log("USEEFFECT")
+                console.log(res.data)
+                let newComponents = res.data.map(item => ({
+                    component_entry_id: item.component_entry_id,
+                    componentName: item.componentName,
+                    values: item.values.values,
+                    // Add other properties as needed
+                }));
+                setComponentHistory(newComponents)
+            })
+    }, [])
+    
+    useEffect(() => {
+        if (save) {
+            axios  
+                .post(base_url + '/api/aml/chapter/saveComponents/'+id,
+                    componentHistory, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then((res) => {
+                    console.log(res)
+                    saveCancel()
+                })
+                .catch(function (error) {
+                    // alert(error)
+                })
+        }
+    }, [save])
 
+    const handleElementClick = ({ ElementComponent, InputsOfElement }) => {
+        // const newComponent = { componentName: ElementComponent.name, inputs: InputsOfElement, values: {} };
+        // setSelectedComponent(newComponent);
+        const newComponent = {
+            component_entry_id: generateUniqueId(),
+            componentName: ElementComponent.name,
+            inputs: InputsOfElement || [],
+            values: {},
+        };
+        
+        // Check if the clicked element is an existing component from componentHistory
+        const existingComponentIndex = componentHistory.findIndex(
+            (item) => item.component_entry_id === newComponent.component_entry_id
+        );
+    
+        if (existingComponentIndex !== -1) {
+            // If it's an existing component, trigger editing
+            handleEditComponent(existingComponentIndex);
+        } else {
+            // If it's a new element, set as selected component
+            setSelectedComponent(newComponent);
+        }
+    };
+    const handleEditComponent = (index) => {
+        const editedComponent = componentHistory[index];
+        console.log(editedComponent)
+        setSelectedComponent(editedComponent);
+        // Open the modal for editing
+    };
+    
     const handleCloseModal = () => {
         setSelectedComponent(null);
     };
 
-    const handleModalSubmit = (values) => {
-        setSubmittedValues(values);
-        handleCloseModal();
-        setComponentHistory((prevHistory) =>
-            prevHistory.map((item) => (item === selectedComponent ? { ...item, values } : item))
+    const handleModalSubmit = ({inputs, values}) => {
+        const existingComponentIndex = componentHistory.findIndex(
+            (item) => item.component_entry_id === selectedComponent.component_entry_id
         );
+        if (existingComponentIndex !== -1) {
+            // If it's an existing component, update the values
+            setComponentHistory((prevHistory) => [
+                ...prevHistory.slice(0, existingComponentIndex),
+                { ...prevHistory[existingComponentIndex], values },
+                ...prevHistory.slice(existingComponentIndex + 1),
+            ]);
+        } else {
+            // If it's a new element, add it to componentHistory
+            setComponentHistory((prevHistory) => [
+                ...prevHistory,
+                { component_entry_id: generateUniqueId(), componentName: selectedComponent.componentName, inputs, values },
+            ]);
+        }
+    
+        handleCloseModal();
+        // setComponentHistory((prevHistory) => [
+        //     ...prevHistory,
+        //     { componentName: selectedComponent.componentName, inputs, values },
+        // ]);
+    };
+    const handleDeleteComponent = (index) => {
+        const updatedHistory = [...componentHistory];
+        
+        updatedHistory.splice(index, 1);
+        
+        setComponentHistory(updatedHistory);
     };
     
     return (
         <div className='constructor'>
             <div className='display'>
-            <div className='components'>        
+            <div className='components'>
                 {componentHistory.map((item, index) => (
-                    <Reveal key={index}>
-                        <item.component {...item.values} />
-                    </Reveal>
+                    <div className='component-display' key={index}>
+                        <div className='component-edit'>
+                            <svg onClick={() => handleDeleteComponent(index)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M1 1L15 15M1.00003 15L8.00003 8L15 1" stroke="#2D264B" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            <svg onClick={() => handleEditComponent(index)} xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 18" fill="none">
+                                <path d="M6.53118 16.0199L6.25825 15.3213L6.53118 16.0199ZM2.47478 16.7988L2.09978 17.4483L2.09978 17.4483L2.47478 16.7988ZM1.12116 12.8964L0.379715 13.0093L1.12116 12.8964ZM1.61146 10.2941L2.26098 10.6691L1.61146 10.2941ZM1.02731 11.5314L0.290281 11.3925H0.290281L1.02731 11.5314ZM8.53967 14.2941L9.18918 14.6691L8.53967 14.2941ZM7.76024 15.4186L8.24902 15.9875H8.24902L7.76024 15.4186ZM5.4099 3.71503L4.76038 3.34003L5.4099 3.71503ZM11.6886 7.34003L7.89015 13.9191L9.18918 14.6691L12.9876 8.09003L11.6886 7.34003ZM2.26098 10.6691L6.05942 4.09003L4.76038 3.34003L0.961943 9.91912L2.26098 10.6691ZM6.25825 15.3213C5.16178 15.7497 4.41502 16.0394 3.83854 16.1741C3.28167 16.3042 3.02898 16.2527 2.84978 16.1493L2.09978 17.4483C2.75305 17.8255 3.45392 17.8044 4.17981 17.6348C4.88609 17.4698 5.75129 17.1298 6.80411 16.7184L6.25825 15.3213ZM0.379715 13.0093C0.549904 14.1267 0.688048 15.046 0.898285 15.7402C1.11436 16.4536 1.44651 17.0712 2.09978 17.4483L2.84978 16.1493C2.67059 16.0458 2.49965 15.8527 2.33389 15.3054C2.16229 14.7388 2.03986 13.9472 1.86261 12.7835L0.379715 13.0093ZM0.961943 9.91912C0.640122 10.4765 0.382457 10.9033 0.290281 11.3925L1.76434 11.6702C1.7983 11.49 1.88802 11.3151 2.26098 10.6691L0.961943 9.91912ZM1.86261 12.7835C1.7503 12.046 1.73039 11.8505 1.76434 11.6702L0.290281 11.3925C0.198105 11.8817 0.282803 12.373 0.379715 13.0093L1.86261 12.7835ZM7.89015 13.9191C7.51719 14.5651 7.41055 14.7303 7.27146 14.8498L8.24902 15.9875C8.62661 15.6631 8.86736 15.2265 9.18918 14.6691L7.89015 13.9191ZM6.80411 16.7184C7.40362 16.4842 7.87142 16.3119 8.24902 15.9875L7.27146 14.8498C7.13237 14.9693 6.95303 15.0498 6.25825 15.3213L6.80411 16.7184ZM10.499 2.90045C11.3339 3.38245 11.8939 3.70761 12.2797 4.00537C12.6483 4.28983 12.7658 4.48144 12.8135 4.65945L14.2623 4.27123C14.0956 3.64904 13.6976 3.20485 13.1961 2.81785C12.7119 2.44416 12.0471 2.06221 11.249 1.60141L10.499 2.90045ZM12.9876 8.09003C13.4484 7.29189 13.8331 6.62875 14.0657 6.06299C14.3065 5.47711 14.4291 4.89341 14.2623 4.27123L12.8135 4.65945C12.8612 4.83747 12.8553 5.06212 12.6783 5.49278C12.493 5.94357 12.1706 6.50517 11.6886 7.34003L12.9876 8.09003ZM11.249 1.60141C10.4509 1.1406 9.78772 0.755898 9.22197 0.523373C8.63608 0.282573 8.05238 0.159968 7.4302 0.326681L7.81843 1.77557C7.99644 1.72787 8.22109 1.73376 8.65175 1.91076C9.10254 2.09604 9.66414 2.41844 10.499 2.90045L11.249 1.60141ZM6.05942 4.09003C6.54142 3.25517 6.86658 2.69516 7.16434 2.30931C7.4488 1.9407 7.64041 1.82327 7.81843 1.77557L7.4302 0.326681C6.80801 0.493395 6.36382 0.891423 5.97683 1.39291C5.60313 1.87716 5.22118 2.54189 4.76038 3.34003L6.05942 4.09003ZM12.7131 7.06551L5.7849 3.06551L5.0349 4.36455L11.9631 8.36455L12.7131 7.06551Z" fill="#2D264B"/>
+                            </svg>
+                        </div>
+                        <Reveal>
+                            {componentMap[item.componentName] && (
+                                React.createElement(componentMap[item.componentName], item.values)
+                            )}
+                        </Reveal>
+                    </div>
                 ))}
             </div>
+
             {selectedComponent && (
                 <div className='modal-window'>
                     <Modal
-                    onClose={handleCloseModal}
-                    inputs={selectedComponent.inputs}
-                    onSubmit={handleModalSubmit}
-                    />
-                    <selectedComponent.component {...submittedValues} />
+                        onClose={handleCloseModal}
+                        inputs={selectedComponent.inputs}
+                        exValues={selectedComponent.values || {}}
+                        onSubmit={handleModalSubmit}
+                        />
                 </div>
             )}
             </div>
             <div className='tool-bar'>
                 <h3>Элементы</h3>
+                {/* <a onClick={() => {
+                    console.log(componentHistory)
+                }}>sdasd</a> */}
                 <div className='elements'>
                     {Object.entries(elements).map(([groupName, groupElements]) => (
                         <div className='element-group' key={groupName}>
@@ -410,20 +629,82 @@ const Constructor = ({id, title}) => {
 }
 
 const ModuleStructure = ({id, lessonById, setLessonTitle }) => {
-    const [module, setModule] = useState({})
+    const [module, setModule] = useState({
+        title: '',
+        number_of_lessons: 0
+    })
+    const [currentLessons, setCurrentLessons] = useState([])
+
+    //creation of newLesson
+    const [newLessonName, setNewLessonName] = useState("Урок №" + (currentLessons.length + 1))
+    const [addingNewLesson, setAddingNewLesson] = useState(false)
+
+
     useEffect(() => {
-        axiosModule(id)
-    }) 
-    const axiosModule = (idOfM) => {
-        let x = modules.find((x) => x.id == idOfM)
-        setModule(x)
-    }
+        console.log("id", id)
+        axios  
+            .get(base_url + '/api/aml/chapter/lessonsByModuleId', {
+                params: {
+                    id
+                }
+            })
+            .then((res) => {
+                console.log(res.data)
+                setModule({
+                    title: res.data.name || "",
+                    number_of_lessons: res.data.lessons.length || 0
+                })
+                setNewLessonName("Урок №" + (res.data.lessons.length + 1))
+                setCurrentLessons(res.data.lessons || [])
+            })
+            .catch(function (error) {
+                alert(error)
+            })
+    }, [id])
+
+    const addLesson = ( ) => {
+        console.log("ADDLESSON")
+        if (newLessonName != '') {
+            axios
+                .post(base_url + '/api/aml/chapter/addLesson', {id, newLessonName})
+                .then((res) => {
+                    console.log(res.data)
+                    setAddingNewLesson(false)
+                    setCurrentLessons(res.data)
+                    setNewLessonName("Урок №" + (res.data.length + 1))
+                })
+                .catch(function (error) {
+                        console.log(error)
+                        // alert(error)
+                })
+        } else {
+            alert('Пожалуйста введите название урока')
+        }
+    };
+
+    const deleteLesson = (lessonId) => {
+        axios
+            .post(base_url + '/api/aml/chapter/deleteLesson', null, {
+                params: {
+                    id: lessonId
+                }
+            })
+            .then((res) => {
+                console.log(res.data)
+                setCurrentLessons(res.data)
+                setNewLessonName("Урок №" + (res.data.length + 1))
+            })
+            .catch(function (error) {
+                // alert(error)
+            })
+    };
+    
 
     return (
         <div className="base">
                 <a className="title">{module.title}<span>: {module.number_of_lessons} Уроков</span></a>
                 <div className="list-of-modules">
-                    {lessons.map((x) => {
+                    {currentLessons.map((x) => {
                         return (
                             <div className="module-line">
                                 <div className='name-icon'> 
@@ -431,25 +712,27 @@ const ModuleStructure = ({id, lessonById, setLessonTitle }) => {
                                         <path d="M19 11.2743V17.3184C19 19.204 19 20.1468 18.4142 20.7326C17.8284 21.3184 16.8856 21.3184 15 21.3184H3.79003C2.24914 21.3184 1 20.0692 1 18.5283V18.5283C1 16.9874 2.24914 15.7383 3.79003 15.7383H15C16.8856 15.7383 17.8284 15.7383 18.4142 15.1525C19 14.5667 19 13.6239 19 11.7383V5.23016C19 3.34454 19 2.40174 18.4142 1.81595C17.8284 1.23016 16.8856 1.23016 15 1.23016H5C3.11438 1.23016 2.17157 1.23016 1.58579 1.81595C1 2.40174 1 3.34455 1 5.23016V18.5283" stroke="#374761" stroke-width="1.2"/>
                                         <path d="M6.625 6.81021L13.375 6.81021" stroke="#374761" stroke-width="1.2" stroke-linecap="round"/>
                                     </svg>
-                                    <a><span>{x.title}</span></a>
+                                    <a><span>{x.topic}</span></a>
                                 </div>
 
                                 <div className='icons'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                    {/* <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
                                         <circle cx="15" cy="15" r="4.4" stroke="#374761" stroke-width="1.2"/>
                                         <path d="M25.4469 13.9287C25.8314 14.4088 26.0237 14.6489 26.0237 15C26.0237 15.3511 25.8314 15.5912 25.4469 16.0713C23.7871 18.1438 19.7352 22.5 15 22.5C10.2648 22.5 6.21291 18.1438 4.55311 16.0713C4.16856 15.5912 3.97629 15.3511 3.97629 15C3.97629 14.6489 4.16856 14.4088 4.55311 13.9287C6.21291 11.8562 10.2648 7.5 15 7.5C19.7352 7.5 23.7871 11.8562 25.4469 13.9287Z" stroke="#7E869E" stroke-opacity="0.25" stroke-width="1.2"/>
-                                    </svg>
+                                    </svg> */}
                                     <svg onClick={() => 
                                             {
-                                                setLessonTitle(x.title)
-                                                lessonById(x.id)
+                                                setLessonTitle(x.topic)
+                                                lessonById(x.lesson_id)
                                             }
                                         } xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
                                         <path d="M15.625 9.375L7.30319 17.6968C7.09066 17.9093 6.98439 18.0156 6.91453 18.1462C6.84466 18.2767 6.81519 18.4241 6.75624 18.7188L5.77209 23.6396C5.70556 23.9722 5.6723 24.1385 5.76691 24.2331C5.86152 24.3277 6.02783 24.2944 6.36044 24.2279L11.2812 23.2438C11.5759 23.1848 11.7233 23.1553 11.8538 23.0855C11.9844 23.0156 12.0907 22.9093 12.3032 22.6968L20.625 14.375L15.625 9.375Z" fill="#374761"/>
                                         <path d="M7.20397 24.13L7.05845 23.5479L7.20397 24.13L10.8581 23.2164C10.8743 23.2124 10.8904 23.2084 10.9065 23.2044C11.1253 23.15 11.3356 23.0978 11.5271 22.9894C11.7185 22.881 11.8715 22.7275 12.0307 22.5679C12.0424 22.5561 12.0542 22.5444 12.066 22.5326L21.5101 13.0885L21.5101 13.0885L21.5335 13.065L21.5369 13.0617C21.8472 12.7514 22.1215 12.4772 22.3128 12.2264C22.5202 11.9546 22.6858 11.641 22.6858 11.25C22.6858 10.859 22.5202 10.5454 22.3128 10.2736C22.1215 10.0228 21.8472 9.74864 21.5369 9.43835L21.51 9.41152L20.5885 8.48995L20.5617 8.46314C20.2514 8.1528 19.9772 7.87853 19.7264 7.6872C19.4546 7.47981 19.141 7.31421 18.75 7.31421C18.359 7.31421 18.0454 7.47981 17.7736 7.6872C17.5229 7.87853 17.2486 8.15278 16.9384 8.46311L16.9115 8.48995L7.46745 17.934C7.45565 17.9458 7.44386 17.9576 7.43211 17.9693C7.27249 18.1285 7.11904 18.2815 7.01064 18.4729C6.90225 18.6644 6.84999 18.8747 6.79562 19.0935C6.79162 19.1096 6.78761 19.1257 6.78356 19.1419L5.87003 22.796C5.86762 22.8057 5.86518 22.8154 5.86272 22.8252C5.82411 22.9793 5.78044 23.1535 5.76593 23.3018C5.74978 23.4669 5.75127 23.7662 5.99255 24.0074L6.39257 23.6074L5.99255 24.0075C6.23384 24.2487 6.53307 24.2502 6.6982 24.2341C6.84647 24.2196 7.02075 24.1759 7.17483 24.1373C7.18463 24.1348 7.19435 24.1324 7.20397 24.13Z" stroke="#374761" stroke-width="1.2"/>
                                         <path d="M15.625 9.375L20.625 14.375" stroke="#374761" stroke-width="1.2"/>
                                     </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                    <svg onClick={() => {
+                                        deleteLesson(x.lesson_id)
+                                    }} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
                                         <path d="M22.5 7.53308L7.5 22.5992" stroke="#374761" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M7.5 7.53308L22.5 22.5992" stroke="#374761" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
@@ -458,14 +741,46 @@ const ModuleStructure = ({id, lessonById, setLessonTitle }) => {
                         )
                     })
                     }
-                    <div className='add-line'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <circle cx="10" cy="10" r="9.4" stroke="#7E869E" stroke-opacity="0.25" stroke-width="1.2"/>
-                            <path d="M10 13.3333L10 6.66666" stroke="#374761" stroke-width="1.2" stroke-linecap="square"/>
-                            <path d="M13.3333 10L6.66659 10" stroke="#374761" stroke-width="1.2" stroke-linecap="square"/>
-                        </svg>
-                        <a>Добавить урок</a>
-                    </div>
+                    {addingNewLesson ? 
+                        <div className="module-line">
+                            <div className='name-icon'> 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">
+                                    <path d="M15 15.7383H5.94816C4.41663 15.7383 3.65086 15.7383 3.0037 16.0721C2.93764 16.1062 2.87286 16.1427 2.80951 16.1816C2.18893 16.5626 1.79262 17.2179 1 18.5283V5.23016C1 3.34455 1 2.40174 1.58579 1.81595C2.17157 1.23016 3.11438 1.23016 5 1.23016H15C16.8856 1.23016 17.8284 1.23016 18.4142 1.81595C19 2.40174 19 3.34454 19 5.23016V11.7383C19 13.6239 19 14.5667 18.4142 15.1525C17.8284 15.7383 16.8856 15.7383 15 15.7383Z" fill="#7E869E" fill-opacity="0.25"/>
+                                    <path d="M19 11.2743V17.3184C19 19.204 19 20.1468 18.4142 20.7326C17.8284 21.3184 16.8856 21.3184 15 21.3184H3.79003C2.24914 21.3184 1 20.0692 1 18.5283V18.5283C1 16.9874 2.24914 15.7383 3.79003 15.7383H15C16.8856 15.7383 17.8284 15.7383 18.4142 15.1525C19 14.5667 19 13.6239 19 11.7383V5.23016C19 3.34454 19 2.40174 18.4142 1.81595C17.8284 1.23016 16.8856 1.23016 15 1.23016H5C3.11438 1.23016 2.17157 1.23016 1.58579 1.81595C1 2.40174 1 3.34455 1 5.23016V18.5283" stroke="#374761" stroke-width="1.2"/>
+                                    <path d="M6.625 6.81021L13.375 6.81021" stroke="#374761" stroke-width="1.2" stroke-linecap="round"/>
+                                </svg>
+                                {/* <a><span>{x.chapter_name}</span>: {x.number_of_lessons} Уроков</a> */}
+                                <a><input className="new-module-name" type="text" value={newLessonName} onChange={(e) => setNewLessonName(e.target.value)}/></a>
+                            </div>
+
+                            <div className='icons'>
+                                <div className='save-module' onClick={addLesson}>
+                                    <img src={saveButton} alt="save"/>
+                                    <a>Сохранить</a>
+                                </div>
+                                <div className='save-module-cancel' onClick={() => {
+                                    setNewLessonName("Урок №" + (currentLessons.length + 1))
+                                    setAddingNewLesson(false)
+                                }}>
+                                    <a>Отменить</a>
+                                </div>
+                            </div>
+                        </div> 
+                        : ""
+                    }
+                    {!addingNewLesson ? 
+                        <div className='add-line' onClick={() => {
+                            setAddingNewLesson(true)
+                        }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <circle cx="10" cy="10" r="9.4" stroke="#7E869E" stroke-opacity="0.25" stroke-width="1.2"/>
+                                <path d="M10 13.3333L10 6.66666" stroke="#374761" stroke-width="1.2" stroke-linecap="square"/>
+                                <path d="M13.3333 10L6.66659 10" stroke="#374761" stroke-width="1.2" stroke-linecap="square"/>
+                            </svg>
+                            <a>Добавить урок</a>
+                        </div>
+                        : ""
+                    }
                 </div>
                 <div className='annotations'>
                     <div>
@@ -485,13 +800,13 @@ const ModuleStructure = ({id, lessonById, setLessonTitle }) => {
                             </svg>
                             <a>Редактировать урок</a>    
                         </div>
-                        <div>
+                        {/* <div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <circle cx="12" cy="12" r="3.4" stroke="#374761" stroke-opacity="0.75" stroke-width="1.2"/>
                                 <path d="M20.188 10.9343C20.5762 11.4056 20.7703 11.6412 20.7703 12C20.7703 12.3588 20.5762 12.5944 20.188 13.0657C18.7679 14.7899 15.6357 18 12 18C8.36427 18 5.23206 14.7899 3.81197 13.0657C3.42381 12.5944 3.22973 12.3588 3.22973 12C3.22973 11.6412 3.42381 11.4056 3.81197 10.9343C5.23206 9.21014 8.36427 6 12 6C15.6357 6 18.7679 9.21014 20.188 10.9343Z" stroke="#7E869E" stroke-opacity="0.25" stroke-width="1.2"/>
                             </svg>
                             <a>Скрыть урок</a>    
-                        </div>
+                        </div> */}
                         <div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <g opacity="0.75">
@@ -527,20 +842,20 @@ const lessons = [
 ]
 const modules = [
     {
-        "id": 1,
-        "title": 'First Module',
+        "chapter_id": 1,
+        "chapter_name": 'First Module',
         "number_of_lessons": 0,
         "hidden": false 
     },
     {
-        "id": 2,
-        "title": 'Second Module',
+        "chapter_id": 2,
+        "chapter_name": 'Second Module',
         "number_of_lessons": 3,
         "hidden": false 
     },
     {
-        "id": 3,
-        "title": 'Third Module',
+        "chapter_id": 3,
+        "chapter_name": 'Third Module',
         "number_of_lessons": 2,
         "hidden": false
     },

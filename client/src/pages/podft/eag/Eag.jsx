@@ -4,14 +4,15 @@ import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
 import eagImg from '../../../assets/images/eag.svg';
 import eagGroup from '../../../assets/images/eagGroup.svg';
+import Header from '../../../components/header/Header';
 
 
 function Eag() {
     return (
         <div className={cl.eagWrapper}>
   
+            <Header dark={true} />
             <div className={cl.container}>
-            <DefaultHeader />
                 <h1 className={cl.headline}>ЕАГ</h1>
                 <div className={cl.eagImgContent}>
                     <img src={eagImg} alt="eagImg" />

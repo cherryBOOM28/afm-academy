@@ -17,6 +17,7 @@ import base_url from '../../settings/base_url';
 
 import { AiFillStar } from "react-icons/ai";
 import { MdOndemandVideo } from "react-icons/md";
+import Header from '../../components/header/Header';
 
 
 function MyCourses() {
@@ -67,9 +68,9 @@ function MyCourses() {
 
     return ( 
         <div className="my-courses-page">
+            <Header dark={true} />
             <div>
                 <div className="container">
-                    <DefaultHeader />
                 </div>
             </div>
 
