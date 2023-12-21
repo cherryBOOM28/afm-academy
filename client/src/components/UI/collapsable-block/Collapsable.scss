@@ -18,9 +18,11 @@
         cursor: pointer;
 
         .title {
-            font-family: Roboto;
+            font-family: Ubuntu;
+            font-style: normal;
+            line-height: normal;
             font-size: 18px;
-            font-weight: 500;
+            font-weight: 420;
             line-height: 21px;
             letter-spacing: 0em;
             text-align: left;
@@ -30,12 +32,34 @@
     .collapsed-content {
         > div {
             padding-left: 10px;
+
         }
         
     }
 
     .open {
         display: block;
+        p {
+            font-family: Ubuntu;
+            font-style: normal;
+            line-height: normal;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 21px;
+            letter-spacing: 0em;
+            text-align: left;
+        }
+    }
+
+    .ffff {
+        font-family: Ubuntu;
+        font-style: normal;
+        line-height: normal;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 21px;
+        letter-spacing: 0em;
+        text-align: left;
     }
 
     .close {
