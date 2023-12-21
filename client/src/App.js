@@ -35,6 +35,7 @@ import Basic_course from './pages/basic-course';
 import PrivateRoute from './auth/PrivateRoute';
 
 import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
+import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
 
 function App() {
   const [jwtToken, setJwtToken] = useState('');
@@ -107,6 +108,7 @@ function App() {
             <Route path='/sandbox' element={<Sandbox />}/>'
 
             <Route path='/createcourse' element={<CreateCoursePage />}/>
+            <Route path='/manager' element={<EditCatalog />}/>
 
           </Routes>
         </BrowserRouter>
