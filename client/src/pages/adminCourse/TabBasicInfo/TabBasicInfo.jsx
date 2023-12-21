@@ -21,10 +21,10 @@ function fileToBase64(file, callback) {
     reader.readAsDataURL(file);
 }
 
-const TabBasicInfo = ({ nextStep, title: initialTitle, audience: initAud, lang: initLang, category: initCTG, price: initPrice, image: initImage }) => {
+const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, lang: initLang, category: initCTG, price: initPrice, image: initImage }) => {
     const [title, setTitle] = useState(initialTitle || "")
     const [audience, setAudience] = useState(initAud || "")
-    const [lang, setLang] = useState(initLang || "")
+    const [lang, setLang] = useState(initLang || "ru")
     const [category, setCategory] = useState(initCTG || 0)
     const [price, setPrice] = useState(initPrice || 0)
     const [image, setImage] = useState(initImage || "")
@@ -34,6 +34,28 @@ const TabBasicInfo = ({ nextStep, title: initialTitle, audience: initAud, lang: 
     const [defImage, setDefImage] = useState(true)
 
     const [isMounted, setIsMounted] = useState(true);
+
+    const [editingExisting, setEditingExisting] = useState(false)
+
+    useEffect(() => {
+        if (id != 0) {
+            axios
+                .get(base_url + "/api/aml/course/basicInfoCourse", {
+                    params: {
+                        id: id
+                    }
+                })
+                .then((res) => {
+                    setTitle(res.data.course_name || "")
+                    setAudience(res.data.course_for_member_of_the_system || "")
+                    setCategory(res.data.courseCategory ? res.data.courseCategory.category_id : 0)
+                    setPrice(res.data.course_price || 0)
+                    setImage(res.data.course_image || "")
+                    setEditingExisting(true)
+                })
+        }
+    }, [id])
+
 
     useEffect(() => {
         if (image) {
@@ -65,6 +87,12 @@ const TabBasicInfo = ({ nextStep, title: initialTitle, audience: initAud, lang: 
     };
     
     const saveAndNext = () => {
+
+        let urlPath = '/api/aml/course/saveBasicInfoDraft'
+
+        if (editingExisting) {
+            urlPath = '/api/aml/course/updateBasicInfo/' + id
+        }
         let formData = {
             title,
             audience,
@@ -91,14 +119,10 @@ const TabBasicInfo = ({ nextStep, title: initialTitle, audience: initAud, lang: 
             };
 
             axios
-                .post(base_url + '/api/aml/course/saveBasicInfoDraft', formData) 
+                .post(base_url + urlPath, formData) 
                 .then((res) => {
-                    if (res.data > 0) {
-                        console.log(res.data)
-                        nextStep(res.data);
-                    } else {
-                        alert('Произошла неполадка во время создания черновика')
-                    }
+                    console.log(res.data)
+                    nextStep(res.data);
                 })
         
             // Call your nextStep function or perform any other action

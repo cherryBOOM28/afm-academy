@@ -189,10 +189,12 @@
                 padding-left: -80px;
                 .component-display {
                     transition: all 0.2s ease;
+                    z-index: 4;
+
                     .component-edit {
-                        z-index: 1;
                         display: none;
                         svg {
+                            z-index: 4;
                             cursor: pointer;
                         }
                     }
@@ -201,7 +203,7 @@
                         border-radius: 9px;
                         transition: all 0.2s ease;
                         .component-edit {
-                            position: absolute;
+                            // position: absolute;
                             display: block;
                             svg {
                                 padding-left: 10px;
