@@ -60,11 +60,6 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
     useEffect(() => {
         if (image) {
           setImageSource(image)
-          if (defImage) {
-
-          } else {
-            setDefImage(false)
-          }
         } else {
           setImageSource(plusSign);
         }
@@ -83,6 +78,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
       
         fileToBase64(selectedFile, (base64String) => {
             setImage(base64String)
+            setDefImage(false)
         });
     };
     
@@ -203,7 +199,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
                         <input onChange={handleFileChange} type="file" id="photo" name="photo" accept="image/png, image/jpeg" />
                     </div>
                     <div className={` ${defImage ? 'checked' : 'unchecked'}`} >
-                        <input checked={defImage} onChange={(e) => setDefImage(e.target.checked)} type="checkbox" id="default" name="default" value="default" />
+                        <input checked={defImage} onChange={(e) => setDefImage(!defImage)} type="checkbox" id="default" name="default" value="default" />
                         <label htmlFor="default">Использовать обложку по умолчанию</label>
                     </div>
                 </div>
