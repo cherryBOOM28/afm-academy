@@ -7,12 +7,13 @@ import thirdDirector from '../../../assets/images/3.svg';
 import forthDirector from '../../../assets/images/4.svg';
 import fifthDirector from '../../../assets/images/5.svg';
 import Footer from '../../../components/footer/Footer';
+import Header from '../../../components/header/Header';
 
 function Management() {
     return (
         <div className={cl.managementWrapper}>
+            <Header dark={true} />
             <div className={cl.container}>
-                <DefaultHeader />
                 <h1 className={cl.headline}>Совет директоров</h1>
                 <div className={cl.boardOfDirectors}>
                     <div className={cl.director}>

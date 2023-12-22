@@ -12,6 +12,7 @@ import img1 from './../../assets/images/image 21.png'
 import webIcon from './../../assets/icons/web-icon.png';
 import folderIcon from './../../assets/icons/folder-icon.png';
 import pinIcon from './../../assets/icons/pin-icon.png';
+import Header from '../../components/header/Header';
 
 function InfoPage() {
     const [currActiveElement, setCurrActiveElement] = useState(null);
@@ -27,9 +28,9 @@ function InfoPage() {
 
     return ( 
         <div className="course-info-page">
+            <Header dark={true}  />
             <div>
                 <div className="container">
-                    <DefaultHeader />
                 </div>
             </div>
 

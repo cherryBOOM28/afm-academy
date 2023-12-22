@@ -27,6 +27,7 @@ const EditCatalog = () => {
         axios
             .get(base_url + "/api/aml/course/editcatalog")
             .then((res) => {
+                console.log(res.data)
                 setCourses(res.data)
             })
     }, [])
@@ -54,6 +55,23 @@ const EditCatalog = () => {
         setSelectedCourse({course_id, course_name})
     }
 
+    const publishCourse = (course_id) => {
+        axios
+            .post(base_url + '/api/aml/course/publishCourse', null, {
+                params: {
+                    id: course_id
+                }
+            })
+            .then((res) => {
+                console.log(res.data)
+                // axios
+                //     .get(base_url + "/api/aml/course/editcatalog")
+                //     .then((res) => {
+                //         setCourses(res.data)
+                //     })
+            })
+    }
+
     return (
         <div>
             <BuilderNavbar/>
@@ -76,7 +94,7 @@ const EditCatalog = () => {
                                 <a>Курсы</a>
                             </div>
                         </div>
-                        <div className='create-course-button'>
+                        <div onClick={() => {navigate('/createcourse')}} className='create-course-button'>
                             <a>Создать курс</a>
                         </div>
                     </div>
@@ -87,7 +105,7 @@ const EditCatalog = () => {
                             <h1>{draftPage ? "Архив курсов" : "Курсы"}</h1>
                             <div className="course-grid">
 
-                            {courses.filter((x) => x._draft == draftPage).map((x) => {
+                            {courses.filter((x) => x.draft == draftPage).map((x) => {
                                 return (
                                     <div className="course-card">
                                         <div className="img-course">
@@ -105,10 +123,11 @@ const EditCatalog = () => {
                                                 }}className="delete">
                                                 <img src={deletIcon} alt="del"></img>
                                             </div>
-                                            <div className="edit">
+                                            <div onClick={() => {navigate('/createcourse/?id=' + x.course_id)}} className="edit">
                                                 <img src={editIcon} alt="edit"></img>
                                             </div>
-                                            <a className="publish">Опубликовать</a>
+                                            {/* onClick={publishCourse(x.course_id)}  */}
+                                            <a onClick={() => publishCourse(x.course_id)} className="publish">Опубликовать</a>
                                         </div>
                                     </div>
                                 )

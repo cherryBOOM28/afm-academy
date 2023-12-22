@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { useLocation } from 'react-router'
 import './creation.scss'
 import {BuilderNavbar} from '../builderNavbar/BuilderNavbar'
 import saveButton from '../images/save-button.svg'
@@ -7,8 +8,10 @@ import FAQStep from '../TabFAQ/FaqStep'
 import TabConstructor from '../tabConstructor/tabConstructor'
 
 
-const CreateCoursePage = ({existingId}) => {
-    const [currentID, setCurrentID] = useState(existingId || 0)
+const CreateCoursePage = () => {
+    const location = useLocation();
+    const axId = new URLSearchParams(location.search).get('id');
+    const [currentID, setCurrentID] = useState(axId || 0)
     const [currentStep, setCurrentStep] = useState("basic-info")
 
     const [save, setSave] = useState(false)

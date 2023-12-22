@@ -2,14 +2,15 @@ import React from 'react';
 import cl from './Subjects.module.css';
 import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
+import Header from '../../../components/header/Header';
 
 const data = require('../../../components/data/subjectsData.json');
 
 function Subjects() {
     return (
         <div className={cl.subjectsWrapper}>
+            <Header dark={true}  />
             <div className={cl.container}>
-            <DefaultHeader />
                 <h1 className={cl.headline}>Виды субъектов финансового мониторинга</h1>
                 <p className={cl.subjectsText}>Согласно п.1 ст.3 Закона «О противодействии легализации (отмыванию) доходов, добытых преступным путем, и финансированию терроризма» к субъектам финансового мониторинга относятся:</p>
                 <div className={cl.cardContent}>
