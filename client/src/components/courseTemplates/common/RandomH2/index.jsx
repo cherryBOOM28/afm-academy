@@ -1,8 +1,10 @@
 import './style.scss'
 
-function RandomH2({children}) {
+function RandomH2({children, style}) {
     return ( 
-        <div className="random-h2">
+        <div className="random-h2"
+            style={style}
+        >
             {children}
         </div>
     );
