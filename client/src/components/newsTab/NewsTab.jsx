@@ -11,7 +11,7 @@ import base_url from "../../settings/base_url";
 import {unstable_ClassNameGenerator} from "@mui/material";
 
 const NewsTab = () => {
-  const [activeTab, setActiveTab] = useState('events');
+  const [activeTab, setActiveTab] = useState('news');
   const [data, setData] = useState(null);
   const [type, setType] = useState(null);
   const [error, setError] = useState(null);
@@ -22,17 +22,12 @@ const NewsTab = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${base_url}/api/aml/course/getAllNews`, {
-          headers: {
-            Authorization: `Bearer ${jwtToken}`,
-          },
+          params: {
+            type: activeTab
+          }
         });
-        if (response.status === 200) {
-          console.log(response.data.body)
-          setData(response.data.body);
-        } else {
-          // Handle other status codes if needed
-          setError(response.statusText);
-        }
+        console.log(response.data)
+        setData(response.data);
       } catch (error) {
         setError(error);
         console.error(error);
@@ -41,7 +36,7 @@ const NewsTab = () => {
       setLoading(false);
     };
     fetchData();
-  }, [])
+  }, [activeTab])
 
   const settings = {
     dots: true,
@@ -145,13 +140,17 @@ const NewsTab = () => {
             </div>
 
             <div className={cl.sliderContainer}>
-            <Slider {...settings}>
-              {data && data.map((item) => (
-                  <div className={cl.cardContainer} key={item.id}>
-                    {renderCardContent(item)}
-                  </div>
-              ))}
-            </Slider>
+              {data.length > 0 ? 
+                <Slider {...settings}>
+                  {data.map((item) => (
+                    <div className={cl.cardContainer} key={item.id}>
+                      {renderCardContent(item)}
+                    </div>
+                  ))}
+                </Slider> 
+              :
+                <div style={{width: '100%', textAlign: 'center', paddingTop: '20px'}}><a style={{fontSize: '24px', fontWeight: '600', opacity: '0.3'}}>Нет недавних новостей</a></div>
+              }
           </div>
         </div>
     );

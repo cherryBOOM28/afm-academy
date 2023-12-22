@@ -99,7 +99,7 @@ function Footer({ email, phoneNumber }) {
                         </nav>
                         
                     </div>
-                    <div className={cl.footer__block}>
+                    {/* <div className={cl.footer__block}>
                         <p className={cl.footer__headline}>Библиотека</p>
                         <nav className={cl.footer__content}>
                             <ul>
@@ -115,7 +115,7 @@ function Footer({ email, phoneNumber }) {
                             </ul>
                         </nav>
                         
-                    </div>
+                    </div> */}
                     <div className={cl.socials}>
                         <a href='https://www.instagram.com/aml_academy/' className={cl.rounde}>
                             <img src={igIcon} alt="instagram" className={cl.icon} />
@@ -143,7 +143,7 @@ function Footer({ email, phoneNumber }) {
                             </ul>
                         </nav>
                     </div>
-                    <div className={cl.footer__block__middle}>
+                    {/* <div className={cl.footer__block__middle}>
                         <p className={cl.footer__headline}>Эксперты</p>
                         <nav className={cl.footer__content}>
                             <ul>
@@ -161,7 +161,7 @@ function Footer({ email, phoneNumber }) {
                                 </li>
                             </ul>
                         </nav>
-                    </div>
+                    </div> */}
                     <Map />
                     
 

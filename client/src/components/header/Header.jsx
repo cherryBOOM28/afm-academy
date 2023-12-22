@@ -119,7 +119,7 @@ function Header(props) {
             <SearchIcon sx={{ color: 'white' }}/>
             <input type='search' className={`search-input ${props.dark? 'dark' : ''}`} />
           </div>
-          {isLoggedIn ? 
+          {jwtToken ? 
             <div className='user-actions'>
               <div onClick={toggleMenu} className='user-icon toggle-user-button'>
                 <a className='toggle-user-button'>{pfp.toUpperCase()}</a>
@@ -170,6 +170,7 @@ function Header(props) {
 }
 
 const NavigationBar = (props) => {
+  const navigate = useNavigate()
   const { isLoggedIn } = useAuth();
 
   const scrollToNews = () => {
@@ -180,6 +181,8 @@ const NavigationBar = (props) => {
   };
 
   const scrollToCourses = () => {
+    // history.push('/');
+      navigate('/#coursesSection');
       const coursesSection = document.getElementById('coursesSection');
       if (coursesSection) {
           coursesSection.scrollIntoView({ behavior: 'smooth' });
@@ -212,7 +215,7 @@ const NavigationBar = (props) => {
               <a className={`menu ${props.dark ? 'dark' : ''}`}>Обучение</a>
               <ul className={'dropdownSub'}>
                   <li>
-                      <a href='#' onClick={() => scrollToCourses()} className={'subPages'}>Виды курсов</a>
+                      <a onClick={scrollToCourses} className={'subPages'}>Виды курсов</a>
                   </li>  
                   <li>
                       <Link to="/courses/catalog" className={'subPages'}>Каталог курсов</Link>
@@ -222,7 +225,7 @@ const NavigationBar = (props) => {
                   </li> : null}
               </ul>
           </div>
-          <div className={'menuBox'}>
+          {/* <div className={'menuBox'}>
               <a className={`menu ${props.dark? 'dark' : ''}`}>Библиотека</a>
               <ul className={'dropdownSub'}>
                   <li>
@@ -235,7 +238,7 @@ const NavigationBar = (props) => {
                       <Link to="/services/service2" className={'subPages'}>Иное </Link>
                   </li>
               </ul>
-          </div>
+          </div> */}
           <div className={'menuBox'}>
               <a className={`menu ${props.dark? 'dark' : ''}`}>Вебинары</a>
               <ul className={'dropdownSub'}>
@@ -284,7 +287,7 @@ const NavigationBar = (props) => {
                   </li>
               </ul>
           </div>
-          <div className={'menuBox'}>
+          {/* <div className={'menuBox'}>
               <a className={`menu ${props.dark? 'dark' : ''}`}>Эксперты</a>
               <ul className={'dropdownSub'}>
                   <li>
@@ -297,7 +300,7 @@ const NavigationBar = (props) => {
                       <Link to="/services/service2" className={'subPages'}>Вакансии</Link>
                   </li>
               </ul>
-          </div>
+          </div> */}
       </div>
   )
 }

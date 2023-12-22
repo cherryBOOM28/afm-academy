@@ -154,7 +154,7 @@ function Home() {
                 </div>
                 <NewsTab />
             </section>
-            <section className={cl.partnersWrapper}>
+            {/* <section className={cl.partnersWrapper}>
                 <div className={cl.container}>
                     <h1 className={cl.courses__headline}>Партнеры</h1>
                     <div className={cl.partners}>
@@ -163,7 +163,7 @@ function Home() {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section> */}
             {/* <Dropdown /> */}
             <Footer />
         </div>
