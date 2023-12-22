@@ -69,6 +69,7 @@ import DropdownGlossaryList from '../courseTemplates/complex/DropdownGlossaryLis
 import DragAndDropTwoSide from '../courseTemplates/complex/DragAndDropTwoSide';
 import Report_Information from '../courseTemplates/common/Warnings/Report_Information';
 import StageDropDown from '../courseTemplates/complex/StageDropDown';
+import InteractivePhases from '../courseTemplates/complex/interactives/InteractivePhases';
 
 const LessonPage = ({ children, name, lecturer }) => {
 
@@ -1007,7 +1008,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Sizebox height={100} />
                 
                 <Reveal>
-                    <TODO text={'Interactive phases'} />
+                    <InteractivePhases />
                 </Reveal>
 
                 <Sizebox height={100} />
