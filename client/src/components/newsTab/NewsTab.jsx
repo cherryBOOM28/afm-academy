@@ -140,7 +140,7 @@ const NewsTab = () => {
             </div>
 
             <div className={cl.sliderContainer}>
-              {data.length > 0 ? 
+              {data && data.length > 0 ? 
                 <Slider {...settings}>
                   {data.map((item) => (
                     <div className={cl.cardContainer} key={item.id}>
