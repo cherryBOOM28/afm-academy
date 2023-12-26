@@ -40,7 +40,7 @@ function FeedBacks({ feedBacks }) {
 
     if (feedBacks === undefined || feedBacks === null || feedBacks.length === 0) return (
         <div className='feedBack-card-non'>
-            <p>{'Нет отзывов'}</p>
+            <p className='section-header'>{'Нет отзывов'}</p>
         </div>
     );
 

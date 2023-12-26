@@ -17,6 +17,7 @@
 
     .logo {
         img {
+            pointer-events: none;
             width: 140px;
 
         }
@@ -139,6 +140,9 @@
             background-color: #1F3C88;
             border-radius: 5px;
             padding: 10px 20px 10px 20px;
+            &.dark {
+                color: white;
+            }
         }
 
         .blue-button:hover {

@@ -3,11 +3,6 @@ import './modalWindowInput.scss'
 const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
   const [values, setValues] = useState(exValues || {});
 
-  const [image, setImage] = useState(null)
-  const [list, setList] = useState([''])
-  const [newValue, setNewValue] = useState("")
-
-
   useEffect(() => {
     const hasListInput = inputs.some((x) => x.name === 'list');
 
@@ -15,47 +10,42 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
       // Update the 'list' property in the values state to an empty string
       setValues((prevValues) => ({
         ...prevValues,
-        list: '',
+        list: exValues?.list || [],
       }));
     }
-    console.log(inputs)
   }, [inputs])
+
   const handleAddToList = (name) => {
-    // Assuming values[input.name] is a string
-    const newValue = 'Элемент';
-  
-    // Update values[input.name] by adding the new element
+    // Add a new element to the list array
     setValues((prevValues) => ({
       ...prevValues,
-      [name]: prevValues[name] ? `${prevValues[name]}@${newValue}` : newValue,
+      [name]: [...prevValues[name], 'Новый элемент'],
     }));
   };
   
   const handleInputChange = (index, newValue, name) => {
-    // Split the current string into an array
-    const valuesArray = values[name].split('@');
-  
-    // Update the value at the specified index
-    valuesArray[index] = newValue;
-  
-    // Join the array back into a string and update values[input.name]
+    // Update the value at the specified index in the list array
+    const updatedList = [...values[name]];
+    updatedList[index] = newValue;
+
     setValues((prevValues) => ({
       ...prevValues,
-      [name]: valuesArray.join('@'),
+      [name]: updatedList,
     }));
   };
+
   
   const handleChange = (name, value, type) => {
     if (type == "file") {
       console.log("image")
       if (value) {
         const reader = new FileReader();
-  
+        
         reader.onload = (event) => {
           const base64Image = event.target.result;
           setValues((prevValues) => ({ ...prevValues, [name]: base64Image }));
         };
-  
+        
         // Read the file as a data URL, triggering the onload event
         reader.readAsDataURL(value);
       } else {
@@ -79,10 +69,8 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
 
   const handleSubmit = () => {
     const updatedValues = { ...values };
-  
-    if (inputs.some((input) => input.name === 'list')) {
-      updatedValues['list'] = updatedValues['list'].split('@');
-    }
+
+    console.log({ inputs, values: updatedValues })
     onSubmit({ inputs, values: updatedValues });    
     setValues({});
     onClose();
@@ -98,7 +86,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
                     <label>{input.label}</label>
                     <input
                         type={input.type}
-                        value={image}
+                        value={values[input.name] || ''}
                         onChange={(e) => handleChange(input.name, e.target.files[0], input.type)}
                     />
                 </div>
@@ -111,10 +99,10 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
                         onChange={(e) => handleChange(input.name, e.target.value, input.type)}
                     />
                 </div>
-              : input.type == 'list' ? 
+              : input.type == 'list' && values[input.name] ? 
               <div key={input.name}>
                   <label>{input.label}</label>
-                    {values[input.name] ? values[input.name].split('@').map((x, index) => {
+                    {values[input.name].map((x, index) => {
                       return (
                         <div key={index}>
                           <input
@@ -124,7 +112,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
                           />
                         </div>
                       )
-                    }) : null}
+                    })}
                       <button onClick={() => handleAddToList(input.name)}>Add</button>
                 </div>
               :

@@ -29,7 +29,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
     const [price, setPrice] = useState(initPrice || 0)
     const [image, setImage] = useState(initImage || "")
     
-    const [imageSource, setImageSource] = useState('default-image-source');
+    const [imageSource, setImageSource] = useState('');
 
     const [defImage, setDefImage] = useState(true)
 
@@ -57,21 +57,23 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
     }, [id])
 
 
-    useEffect(() => {
-        if (image) {
-          setImageSource(image)
-        } else {
-          setImageSource(plusSign);
-        }
-    }, [image]);
+    // useEffect(() => {
+    //     if (image) {
+    //       setImageSource(image)
+    //     } else {
+    //       setImageSource(plusSign);
+    //     }
+    // }, [image]);
 
-    useEffect(() => {
-        if (defImage) {
-            setImage(base64Course)
-        } else {
-            setImage("")
-        }
-    }, [defImage]);
+    // useEffect(() => {
+    //     if (defImage) {
+    //         setImage(base64Course)
+    //         setImageSource(base64Course)
+    //     } else {
+    //         setImage(base64Course)
+    //         setImageSource(plusSign)
+    //     }
+    // }, [defImage]);
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
@@ -111,7 +113,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
                 lang,
                 category,
                 price,
-                image: defImage ? '' : image,
+                image: image,
             };
 
             axios
@@ -184,13 +186,12 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
 
                         {image == "" ?
                             <label htmlFor="photo">
-                                <img className="plus-sign" src={imageSource} alt="+"></img>
+                                <img className="plus-sign" src={plusSign} alt="+"></img>
                             </label>
                             :
                             <label htmlFor="photo">
-                                <img className="image-album" src={imageSource} alt="+"></img>
+                                <img className="image-album" src={image} alt="+"></img>
                             </label>
-
                         }
                         <input onChange={handleFileChange} className="input-image" type="file" id="photo" name="photo" accept="image/png, image/jpeg, image/jpg" />
                     
@@ -199,7 +200,16 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
                         <input onChange={handleFileChange} type="file" id="photo" name="photo" accept="image/png, image/jpeg" />
                     </div>
                     <div className={` ${defImage ? 'checked' : 'unchecked'}`} >
-                        <input checked={defImage} onChange={(e) => setDefImage(!defImage)} type="checkbox" id="default" name="default" value="default" />
+                        <input checked={defImage} onChange={(e) => {
+                            if (defImage) {
+                                setImage("")
+                                setDefImage(!defImage)
+                            } else {
+                                setImage(base64Course)
+                                setImageSource(plusSign)
+                                setDefImage(!defImage)
+                            }
+                            }} type="checkbox" id="default" name="default" value="default" />
                         <label htmlFor="default">Использовать обложку по умолчанию</label>
                     </div>
                 </div>

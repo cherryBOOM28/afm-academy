@@ -177,7 +177,7 @@ function Profile(props) {
                 <div className="container">
                     <Link to='/courses/catalog' className='nav-back'>
                         <IoIosArrowBack/>
-                        <div>Назад к главной</div>
+                        <div><a>Назад к главной</a></div>
                     </Link>
 
                     {/* <ProfileHeader handleRedact={handleRedact}/> */}

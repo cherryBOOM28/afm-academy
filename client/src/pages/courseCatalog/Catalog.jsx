@@ -172,7 +172,7 @@ function Catalog() {
                                         setFilterOpen(false);
                                     }}>
                                         <AiFillFolder size={20} className='icon'/>
-                                        <span>Категории</span>
+                                        <span className='inline-text'>Категории</span>
                                     </div>
                                     <div 
                                         className="categories" 
@@ -190,7 +190,7 @@ function Catalog() {
                                                 type="checkbox" 
                                                 value={'Все категории'}
                                             />
-                                            <label>Все категории</label>
+                                            <label className='inline-text'>Все категории</label>
                                         </div>
                                         {
                                             Object.keys(coursesByCategory || {}).map(category => {
@@ -212,13 +212,13 @@ function Catalog() {
                                         }
                                     </div>
                                 </div>
-                                <div>
+                                {/* <div>
                                     <div onClick={() => {
                                         setFilterOpen(prev => !prev);
                                         setCategoryOpen(false);
                                     }}>
                                         <BsFilter size={20} className='icon'/>
-                                        <span>Фильтр</span>
+                                        <span className='inline-text'>Фильтр</span>
                                     </div>
                                     <div 
                                         className="filter" 
@@ -233,7 +233,7 @@ function Catalog() {
                                         <div>Category 2</div>
                                         <div>Category 3</div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="search">
                                 <BiSearch size={20} className='icon'/>
@@ -254,8 +254,8 @@ function Catalog() {
                                 <div>загружаем</div>
                                 <div>загружаем</div>
                                 <div>загружаем</div>
-                                <div>загружаем</div>
-                                <div>загружаем</div>
+                                {/* <div>загружаем</div>
+                                <div>загружаем</div> */}
                             </div>
                         </div>
                     ) : 
@@ -296,16 +296,16 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
     return (
         <>
             <div className='container'>
-                <h1 style={{
-                    fontFamily: 'Roboto',
+                <h1 className='inline-text' style={{
+                    fontFamily: 'Ubuntu',
                     fontSize: '20px',
                     fontWeight: '500',
                     lineHeight: '23px',
                     letterSpacing: '0em',
                     textAlign: 'left'
                 }}>{categoryName}</h1>
-                <p style={{
-                    fontFamily: "Roboto",
+                <p className='inline-text' style={{
+                    fontFamily: "Ubuntu",
                     fontSize: '16px',
                     fontWeight: '400',
                     lineHeight: '19px',
@@ -318,10 +318,13 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
             </div>
             <div className="courses-block container">
                 {
-                    filteredCourses.map((course, index) => {
+                    filteredCourses.sort((a, b) => a.shortStatus - b.shortStatus).map((course, index) => {
                         const courseDTO = course.courseDTO;
                         const { course_image, course_name } = courseDTO;
-                        const { status } = course;
+                        const { paymentInfo } = course;
+
+                        const status = paymentInfo === null ? 'available' 
+                                : paymentInfo.status;
 
                         return <div className='course-card' key={index} 
                             onClick={() => {

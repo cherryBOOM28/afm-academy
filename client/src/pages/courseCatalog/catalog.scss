@@ -58,107 +58,105 @@
             margin-bottom: 15px;
         }
 
+        
         .catalog-header {
             width: 100%;
-
+            
             .container {
                 width: 100%;
                 height: 100%;
-
+                
                 display: flex;
                 flex-direction: column;
-
+                
                 box-sizing: border-box;
-
+                
             }
             
             .header-title {
-
+                
                 h3 {
                     color: #3A3939;
-
+                    
                     font-family: Inter;
                     font-size: 36px;
                     font-style: normal;
                     font-weight: 700;
                     line-height: normal;
                 }
-
+                
                 padding: 0;
                 margin-top: 50px;
                 margin-bottom: 74px;
             }
-
+            
             .header-actions {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
-
+                
                 margin-bottom: 41px;
-
+                
                 padding: 15px 10px 10px 10px;
                 border-radius: 5px;
                 background: #FFF;
                 box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
+                
                 .filters {
                     display: flex;
                     flex-direction: row;
                     align-items: center;
                     gap: 32px;
-
+                    
                     color: #3A3939;
                     font-family: 'Roboto';
                     font-size: 16px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: normal;
-
+                    
                     > div {
                         position: relative;
-
-                        span {
-                            font-family: Roboto, 'sans-serif';
+                        
+                        .inline-text {
+                            font-size: 'Ubuntu';
                         }
-
-                        label {
-                            font-family: Roboto;
-                        }
-
+                        
+                        
                         > div:nth-child(1) {
                             display: flex;
                             flex-direction: row;
                             align-items: center;
                             gap: 8px;
                             cursor: pointer;
-
-                            font-family: 'Roboto';
+                            
+                            font-family: 'Ubuntu';
                             user-select: none;
                         }
-
+                        
                         .categories, 
                         .filter {
                             position: absolute;
-
+                            
                             min-width: max-content;
                             width: 200px;
                             padding: 32px 32px 32px 32px;
-
+                            
                             background-color: white;
                             border: 1px solid rgb(223, 223, 223);
                             border-radius: 5px;
-
+                            
                             // display: none;
                             flex-direction: column;
                             gap: 15px;
-
+                            
                             z-index: 2;
-
+                            
                             * {
-                                font-family: Roboto;
+                                font-family: 'Ubuntu';
                             }
-
+                            
                             > div {
                                 display: flex;
                                 flex-direction: row;
@@ -167,15 +165,15 @@
                         }
                     }
                 }
-
+                
                 .search {
                     width: 270px;
                     position: relative;
-
+                    
                     display: flex;
                     flex-direction: row;
                     align-items: center;
-
+                    
                     input {
                         border-radius: 5px;
                         border: 1px solid #FFF;
@@ -194,7 +192,7 @@
                         transform: scale(102%, 102%);
                     }
                     
-
+                    
                     .icon {
                         position: absolute;
                         left: 9px;
@@ -204,7 +202,7 @@
                     }
                 }
             }
-
+            
         }
 
         .loading {
@@ -220,7 +218,7 @@
             background: linear-gradient(90deg, #f0f0f0, #f8f8f8, #f0f0f0); /* Lighter gradient for the loading effect */
             box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
             animation: loadingAnimation 2s infinite linear; /* Animation applied to the div */
-
+            
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -244,7 +242,7 @@
                 background-position: 200% 0; /* Moves completely to the right */
             }
         }
-
+        
         .courses-block {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Change the minimum width as needed */
@@ -253,106 +251,108 @@
             justify-content: center; /* Center horizontally */
             align-content: center;
             
-
+            
             > .course-card {
                 width: 100%;
                 border-radius: 5px;
                 background: #FFFEFE;
                 box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
+                
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-
+                
                 padding-bottom: 20px;
-
+                
                 cursor: pointer;
                 &:hover {
                     transform: scale(1.02);
                 }
-
+                
                 > .image {
                     position: relative;
-
+                    
                     img {
+                        border-radius: 5px 5px 0px 0px;
+
                         width: 100%;
                         height: 250px;
                         object-fit: cover;
-    
+                        
                         margin-bottom: 10px;
                     }
-
+                    
                     .status {
                         position: absolute;
                         right: 10px;
                         top: 10px;
-
+                        
                         width: max-content;
-
+                        
                         color: #3A3939;
                         font-family: Ubuntu;
                         font-size: 14px;
                         font-style: normal;
                         font-weight: 500;
                         line-height: normal;
-
+                        
                         border-radius: 50px;
                         background: #CADEFC;
                         box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
-
+                        
                         padding: 8px 40px;
-
+                        
                         margin-bottom: 20px;
-
+                        
                         &.available {
                             background-color: #1F3C88;
                             color: white;
                         }
-
+                        
                         &.process {
                             background-color: #58f17eec;
                             color: rgb(255, 255, 255);
                         }
-
+                        
                         &.finished {
                             background-color: #1f3d88bb;
                             color: white;
                         }
                     }
                 }
-
+                
                 .info {
                     padding: 0px 18px;
                     height: 100%;
-
+                    
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
                     gap: 10px;
-
-
+                    
+                    
                     .course-name {
                         color: #3A3939;
-
+                        
                         font-family: Ubuntu;
                         font-size: 18px;
                         font-style: normal;
                         font-weight: 500;
                         line-height: normal;
                     }
-
+                    
                     .langAndDuration {
                         color: #747474;
-
+                        
                         font-family: Inter;
                         font-size: 14px;
                         font-style: normal;
                         font-weight: 400;
                         line-height: normal;
-
+                        
                         margin-bottom: 30px;
                     }
-
+                    
                     .rating {
                         display: flex;
                         align-items: center;
@@ -368,18 +368,18 @@
                         > span {
                             padding-top: 2px ;
                         }
-
+                        
                         .stars {
                             display: flex;
                             flex-direction: row;
                             gap: 5px;
                         }
-
+                        
                         .star-icon {
                             color: #FF9138;
                         }
                     }
-
+                    
                     .type {
                         color: #747474;
                         font-family: Inter;
@@ -387,33 +387,39 @@
                         font-style: normal;
                         font-weight: 400;
                         line-height: normal;
-    
+                        
                         display: flex;
                         align-items: center;
                         gap: 10px;
-
+                        
                         > * {
                             color: inherit;
                         }
                     }
                 }
-
                 
-
+                
+                
                 .info-row {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-
+                    
                     margin-bottom: 20px;
-
+                    
                     
                 }
-
+                
                 
             }
-
+            
             margin-bottom: 73px;
+        }
+
+        .container {
+            * {
+                font-family: 'Ubuntu';
+            }
         }
     }
 }

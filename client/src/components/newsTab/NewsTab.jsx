@@ -12,7 +12,7 @@ import {unstable_ClassNameGenerator} from "@mui/material";
 
 const NewsTab = () => {
   const [activeTab, setActiveTab] = useState('news');
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [type, setType] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);

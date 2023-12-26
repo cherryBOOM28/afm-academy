@@ -49,7 +49,7 @@ import base_url from '../../../settings/base_url'
 
 
 const elements = {
-    'Текстовые элекменты': {
+    'Текстовые элементы': {
         'Заголовок с полосой': {
             component: HeaderWithLine,
             icon: headerWithLineIcon,
@@ -271,7 +271,6 @@ const TabConstructor = ({saveCancel, save, id}) => {
             axios
                 .post(base_url + '/api/aml/chapter/addModule', {id, newModuleName})
                 .then((res) => {
-                    console.log(res.data)
                     setAddingNewModule(false)
                     setCurrentModules(res.data)
                     setNewModuleName("Модуль №" + (res.data.length + 1))
@@ -470,36 +469,61 @@ const Constructor = ({saveCancel, save, id, title}) => {
         axios
             .get(base_url + '/api/aml/chapter/getComponents', {params: {id}})
             .then((res) => {
-                console.log("USEEFFECT")
-                console.log(res.data)
-                let newComponents = res.data.map(item => ({
-                    component_entry_id: item.component_entry_id,
-                    componentName: item.componentName,
-                    values: item.values.values,
-                    // Add other properties as needed
-                }));
+                let newComponents = res.data.map(item => {
+                    // Find the category and component that matches the componentName
+                    let inputs = null;
+                    for (const category in elements) {
+                        console.log(category)
+                        for (const element in elements[category]) {
+                            console.log(elements[category][element].component.name)
+
+                            if (elements[category][element].component.name == item.componentName) {
+                                inputs = elements[category][element].inputs;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    let values = item.values.values;
+                    if (values.list && typeof values.list === 'string') {
+                        values.list = values.list.split('@#');
+                    }
+    
+                    return {
+                        component_entry_id: item.component_entry_id,
+                        componentName: item.componentName,
+                        values: values,
+                        inputs: inputs,
+                    };
+                });
                 setComponentHistory(newComponents)
             })
     }, [])
     
     useEffect(() => {
         if (save) {
+            // Clone the componentHistory to avoid direct state mutation
+            let modifiedHistory = JSON.parse(JSON.stringify(componentHistory));
+            modifiedHistory.forEach(item => {
+                if (Array.isArray(item.values.list)) {
+                    item.values.list = item.values.list.join('@#');
+                }
+            });
             axios  
                 .post(base_url + '/api/aml/chapter/saveComponents/'+id,
-                    componentHistory, {
+                    modifiedHistory, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
                 })
                 .then((res) => {
-                    console.log(res)
                     saveCancel()
                 })
                 .catch(function (error) {
-                    // alert(error)
+                    console.error(error); // Handle error
                 })
         }
-    }, [save])
+    }, [save, componentHistory, id, saveCancel])
 
     const handleElementClick = ({ ElementComponent, InputsOfElement }) => {
         // const newComponent = { componentName: ElementComponent.name, inputs: InputsOfElement, values: {} };
@@ -508,7 +532,7 @@ const Constructor = ({saveCancel, save, id, title}) => {
             component_entry_id: generateUniqueId(),
             componentName: ElementComponent.name,
             inputs: InputsOfElement || [],
-            values: {},
+            values: {},  
         };
         
         // Check if the clicked element is an existing component from componentHistory
@@ -526,7 +550,6 @@ const Constructor = ({saveCancel, save, id, title}) => {
     };
     const handleEditComponent = (index) => {
         const editedComponent = componentHistory[index];
-        console.log(editedComponent)
         setSelectedComponent(editedComponent);
         // Open the modal for editing
     };
@@ -548,10 +571,12 @@ const Constructor = ({saveCancel, save, id, title}) => {
             ]);
         } else {
             // If it's a new element, add it to componentHistory
-            setComponentHistory((prevHistory) => [
-                ...prevHistory,
-                { component_entry_id: generateUniqueId(), componentName: selectedComponent.componentName, inputs, values },
-            ]);
+            setComponentHistory((prevHistory) => {
+                return [
+                    ...prevHistory,
+                    { component_entry_id: generateUniqueId(), componentName: selectedComponent.componentName, inputs, values },
+                ]
+            });
         }
     
         handleCloseModal();
@@ -572,23 +597,29 @@ const Constructor = ({saveCancel, save, id, title}) => {
         <div className='constructor'>
             <div className='display'>
             <div className='components'>
-                {componentHistory.map((item, index) => (
-                    <div className='component-display' key={index}>
-                        <div className='component-edit'>
-                            <svg onClick={() => handleDeleteComponent(index)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                <path d="M1 1L15 15M1.00003 15L8.00003 8L15 1" stroke="#2D264B" stroke-width="1.5" stroke-linecap="round"/>
-                            </svg>
-                            <svg onClick={() => handleEditComponent(index)} xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 18" fill="none">
-                                <path d="M6.53118 16.0199L6.25825 15.3213L6.53118 16.0199ZM2.47478 16.7988L2.09978 17.4483L2.09978 17.4483L2.47478 16.7988ZM1.12116 12.8964L0.379715 13.0093L1.12116 12.8964ZM1.61146 10.2941L2.26098 10.6691L1.61146 10.2941ZM1.02731 11.5314L0.290281 11.3925H0.290281L1.02731 11.5314ZM8.53967 14.2941L9.18918 14.6691L8.53967 14.2941ZM7.76024 15.4186L8.24902 15.9875H8.24902L7.76024 15.4186ZM5.4099 3.71503L4.76038 3.34003L5.4099 3.71503ZM11.6886 7.34003L7.89015 13.9191L9.18918 14.6691L12.9876 8.09003L11.6886 7.34003ZM2.26098 10.6691L6.05942 4.09003L4.76038 3.34003L0.961943 9.91912L2.26098 10.6691ZM6.25825 15.3213C5.16178 15.7497 4.41502 16.0394 3.83854 16.1741C3.28167 16.3042 3.02898 16.2527 2.84978 16.1493L2.09978 17.4483C2.75305 17.8255 3.45392 17.8044 4.17981 17.6348C4.88609 17.4698 5.75129 17.1298 6.80411 16.7184L6.25825 15.3213ZM0.379715 13.0093C0.549904 14.1267 0.688048 15.046 0.898285 15.7402C1.11436 16.4536 1.44651 17.0712 2.09978 17.4483L2.84978 16.1493C2.67059 16.0458 2.49965 15.8527 2.33389 15.3054C2.16229 14.7388 2.03986 13.9472 1.86261 12.7835L0.379715 13.0093ZM0.961943 9.91912C0.640122 10.4765 0.382457 10.9033 0.290281 11.3925L1.76434 11.6702C1.7983 11.49 1.88802 11.3151 2.26098 10.6691L0.961943 9.91912ZM1.86261 12.7835C1.7503 12.046 1.73039 11.8505 1.76434 11.6702L0.290281 11.3925C0.198105 11.8817 0.282803 12.373 0.379715 13.0093L1.86261 12.7835ZM7.89015 13.9191C7.51719 14.5651 7.41055 14.7303 7.27146 14.8498L8.24902 15.9875C8.62661 15.6631 8.86736 15.2265 9.18918 14.6691L7.89015 13.9191ZM6.80411 16.7184C7.40362 16.4842 7.87142 16.3119 8.24902 15.9875L7.27146 14.8498C7.13237 14.9693 6.95303 15.0498 6.25825 15.3213L6.80411 16.7184ZM10.499 2.90045C11.3339 3.38245 11.8939 3.70761 12.2797 4.00537C12.6483 4.28983 12.7658 4.48144 12.8135 4.65945L14.2623 4.27123C14.0956 3.64904 13.6976 3.20485 13.1961 2.81785C12.7119 2.44416 12.0471 2.06221 11.249 1.60141L10.499 2.90045ZM12.9876 8.09003C13.4484 7.29189 13.8331 6.62875 14.0657 6.06299C14.3065 5.47711 14.4291 4.89341 14.2623 4.27123L12.8135 4.65945C12.8612 4.83747 12.8553 5.06212 12.6783 5.49278C12.493 5.94357 12.1706 6.50517 11.6886 7.34003L12.9876 8.09003ZM11.249 1.60141C10.4509 1.1406 9.78772 0.755898 9.22197 0.523373C8.63608 0.282573 8.05238 0.159968 7.4302 0.326681L7.81843 1.77557C7.99644 1.72787 8.22109 1.73376 8.65175 1.91076C9.10254 2.09604 9.66414 2.41844 10.499 2.90045L11.249 1.60141ZM6.05942 4.09003C6.54142 3.25517 6.86658 2.69516 7.16434 2.30931C7.4488 1.9407 7.64041 1.82327 7.81843 1.77557L7.4302 0.326681C6.80801 0.493395 6.36382 0.891423 5.97683 1.39291C5.60313 1.87716 5.22118 2.54189 4.76038 3.34003L6.05942 4.09003ZM12.7131 7.06551L5.7849 3.06551L5.0349 4.36455L11.9631 8.36455L12.7131 7.06551Z" fill="#2D264B"/>
-                            </svg>
+                {componentHistory.map((item, index) => {
+
+                    return (
+
+                        <div className='component-display' key={index}>
+                            <div className='component-edit'>
+                                <svg onClick={() => handleDeleteComponent(index)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M1 1L15 15M1.00003 15L8.00003 8L15 1" stroke="#2D264B" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                                <svg onClick={() => handleEditComponent(index)} xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 18" fill="none">
+                                    <path d="M6.53118 16.0199L6.25825 15.3213L6.53118 16.0199ZM2.47478 16.7988L2.09978 17.4483L2.09978 17.4483L2.47478 16.7988ZM1.12116 12.8964L0.379715 13.0093L1.12116 12.8964ZM1.61146 10.2941L2.26098 10.6691L1.61146 10.2941ZM1.02731 11.5314L0.290281 11.3925H0.290281L1.02731 11.5314ZM8.53967 14.2941L9.18918 14.6691L8.53967 14.2941ZM7.76024 15.4186L8.24902 15.9875H8.24902L7.76024 15.4186ZM5.4099 3.71503L4.76038 3.34003L5.4099 3.71503ZM11.6886 7.34003L7.89015 13.9191L9.18918 14.6691L12.9876 8.09003L11.6886 7.34003ZM2.26098 10.6691L6.05942 4.09003L4.76038 3.34003L0.961943 9.91912L2.26098 10.6691ZM6.25825 15.3213C5.16178 15.7497 4.41502 16.0394 3.83854 16.1741C3.28167 16.3042 3.02898 16.2527 2.84978 16.1493L2.09978 17.4483C2.75305 17.8255 3.45392 17.8044 4.17981 17.6348C4.88609 17.4698 5.75129 17.1298 6.80411 16.7184L6.25825 15.3213ZM0.379715 13.0093C0.549904 14.1267 0.688048 15.046 0.898285 15.7402C1.11436 16.4536 1.44651 17.0712 2.09978 17.4483L2.84978 16.1493C2.67059 16.0458 2.49965 15.8527 2.33389 15.3054C2.16229 14.7388 2.03986 13.9472 1.86261 12.7835L0.379715 13.0093ZM0.961943 9.91912C0.640122 10.4765 0.382457 10.9033 0.290281 11.3925L1.76434 11.6702C1.7983 11.49 1.88802 11.3151 2.26098 10.6691L0.961943 9.91912ZM1.86261 12.7835C1.7503 12.046 1.73039 11.8505 1.76434 11.6702L0.290281 11.3925C0.198105 11.8817 0.282803 12.373 0.379715 13.0093L1.86261 12.7835ZM7.89015 13.9191C7.51719 14.5651 7.41055 14.7303 7.27146 14.8498L8.24902 15.9875C8.62661 15.6631 8.86736 15.2265 9.18918 14.6691L7.89015 13.9191ZM6.80411 16.7184C7.40362 16.4842 7.87142 16.3119 8.24902 15.9875L7.27146 14.8498C7.13237 14.9693 6.95303 15.0498 6.25825 15.3213L6.80411 16.7184ZM10.499 2.90045C11.3339 3.38245 11.8939 3.70761 12.2797 4.00537C12.6483 4.28983 12.7658 4.48144 12.8135 4.65945L14.2623 4.27123C14.0956 3.64904 13.6976 3.20485 13.1961 2.81785C12.7119 2.44416 12.0471 2.06221 11.249 1.60141L10.499 2.90045ZM12.9876 8.09003C13.4484 7.29189 13.8331 6.62875 14.0657 6.06299C14.3065 5.47711 14.4291 4.89341 14.2623 4.27123L12.8135 4.65945C12.8612 4.83747 12.8553 5.06212 12.6783 5.49278C12.493 5.94357 12.1706 6.50517 11.6886 7.34003L12.9876 8.09003ZM11.249 1.60141C10.4509 1.1406 9.78772 0.755898 9.22197 0.523373C8.63608 0.282573 8.05238 0.159968 7.4302 0.326681L7.81843 1.77557C7.99644 1.72787 8.22109 1.73376 8.65175 1.91076C9.10254 2.09604 9.66414 2.41844 10.499 2.90045L11.249 1.60141ZM6.05942 4.09003C6.54142 3.25517 6.86658 2.69516 7.16434 2.30931C7.4488 1.9407 7.64041 1.82327 7.81843 1.77557L7.4302 0.326681C6.80801 0.493395 6.36382 0.891423 5.97683 1.39291C5.60313 1.87716 5.22118 2.54189 4.76038 3.34003L6.05942 4.09003ZM12.7131 7.06551L5.7849 3.06551L5.0349 4.36455L11.9631 8.36455L12.7131 7.06551Z" fill="#2D264B"/>
+                                </svg>
+                            </div>
+                            <Reveal>
+                                {componentMap[item.componentName] && item.componentName != 'Sizebox' ? (
+                                    React.createElement(componentMap[item.componentName], item.values)
+                                ) : item.componentName == 'Sizebox' ? 
+                                    <Sizebox height={item.values.height} /> : null
+                                }
+                            </Reveal>
                         </div>
-                        <Reveal>
-                            {componentMap[item.componentName] && (
-                                React.createElement(componentMap[item.componentName], item.values)
-                            )}
-                        </Reveal>
-                    </div>
-                ))}
+                    )
+                })}
             </div>
 
             {selectedComponent && (
@@ -603,10 +634,20 @@ const Constructor = ({saveCancel, save, id, title}) => {
             )}
             </div>
             <div className='tool-bar'>
+                
                 <h3>Элементы</h3>
-                {/* <a onClick={() => {
+                <a onClick={() => {
                     console.log(componentHistory)
-                }}>sdasd</a> */}
+                    // let f = componentHistory.forEach(component => {
+                    //     // Find the object inside inputs with name property equal to "list"
+                    //     const inputItem = component.inputs.find(input => input.name === 'list');
+
+                    //     if (inputItem)
+                    //         component.values['list'] = component.values['list'].join('@#')
+
+                    // });
+                    // console.log(f)
+                }}>CONSOLE.LOG</a>
                 <div className='elements'>
                     {Object.entries(elements).map(([groupName, groupElements]) => (
                         <div className='element-group' key={groupName}>
@@ -641,7 +682,6 @@ const ModuleStructure = ({id, lessonById, setLessonTitle }) => {
 
 
     useEffect(() => {
-        console.log("id", id)
         axios  
             .get(base_url + '/api/aml/chapter/lessonsByModuleId', {
                 params: {
@@ -649,7 +689,6 @@ const ModuleStructure = ({id, lessonById, setLessonTitle }) => {
                 }
             })
             .then((res) => {
-                console.log(res.data)
                 setModule({
                     title: res.data.name || "",
                     number_of_lessons: res.data.lessons.length || 0
@@ -663,12 +702,10 @@ const ModuleStructure = ({id, lessonById, setLessonTitle }) => {
     }, [id])
 
     const addLesson = ( ) => {
-        console.log("ADDLESSON")
         if (newLessonName != '') {
             axios
                 .post(base_url + '/api/aml/chapter/addLesson', {id, newLessonName})
                 .then((res) => {
-                    console.log(res.data)
                     setAddingNewLesson(false)
                     setCurrentLessons(res.data)
                     setNewLessonName("Урок №" + (res.data.length + 1))
@@ -690,7 +727,6 @@ const ModuleStructure = ({id, lessonById, setLessonTitle }) => {
                 }
             })
             .then((res) => {
-                console.log(res.data)
                 setCurrentLessons(res.data)
                 setNewLessonName("Урок №" + (res.data.length + 1))
             })
