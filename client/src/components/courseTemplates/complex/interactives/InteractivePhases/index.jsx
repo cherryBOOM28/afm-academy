@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import './style.scss'
 import Centered from '../../../common/Centered';
@@ -12,20 +12,12 @@ import { IoClose } from 'react-icons/io5';
 function InteractivePhases() {
     const [activeItem, setActiveItem] = useState(0);
 
-    const calculateTranslateX = () => {
-        return `translateX(${-70 * activeItem + 14}vw)`;
-    };
-
     return ( 
         <div className="interactive-phases">
             <div className="wrapper">
-                <motion.div 
+                <div 
                     className="body"
-                    style={{
-                        transform: calculateTranslateX(),
-                    }}
                 >
-
                     {
                         [
                             <Phases 
@@ -58,7 +50,8 @@ function InteractivePhases() {
                             return (
                                 <div 
                                     key={index}
-                                    className={`item ${activeItem === index ? 'active' : ''}`}
+                                    // ref={el => itemRefs.current[index] = el}
+                                    className={`item active`}
                                     onClick={() => setActiveItem(index)}
                                 >
                                     { item }
@@ -67,7 +60,7 @@ function InteractivePhases() {
                         })
                     }
 
-                </motion.div>
+                </div>
             </div>
         </div>
     );

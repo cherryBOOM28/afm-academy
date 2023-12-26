@@ -70,6 +70,7 @@ import DragAndDropTwoSide from '../courseTemplates/complex/DragAndDropTwoSide';
 import Report_Information from '../courseTemplates/common/Warnings/Report_Information';
 import StageDropDown from '../courseTemplates/complex/StageDropDown';
 import InteractivePhases from '../courseTemplates/complex/interactives/InteractivePhases';
+import Component52 from '../courseTemplates/complex/Component52';
 
 const LessonPage = ({ children, name, lecturer }) => {
 
@@ -1280,8 +1281,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Sizebox height={80} />
 
                 <Reveal>
-                    <TODO text={'Interactive game, drag to group'}/>
-
+                    <Component52 />
                 </Reveal>
 
                 <Sizebox height={80} />

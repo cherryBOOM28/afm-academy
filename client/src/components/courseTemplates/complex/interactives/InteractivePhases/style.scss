@@ -1,21 +1,41 @@
 .interactive-phases {
     // overflow: scroll;
     padding-bottom: 10px;
+    width: 100%;
+    overflow-x: auto; /* Change as per your design requirement */
+    padding-bottom: 10px;
+    width: 100%;
 
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .wrapper {
+        width: 100%;
+    }
     
     .body {
-        width: max-content;
         display: flex;
         flex-direction: row;
+        justify-content: flex-start; /* Center items */
         gap: 50px;
-
-        transform: translateX(15vw);
         transition: transform 0.4s ease-in-out;
+        min-width: max-content;
+        width: auto;
+        padding: 0px 70px;
+
+        cursor: grab;
+
+        &:active {
+            cursor: grabbing;
+        }
     }
 
     .item {
-        width: 70vw;
+        width: auto;
         // height: 300px;
+        display: flex;
+        flex-direction: column;
 
         background: #cfcfcf;
         transition: background 0.4s ease-in-out;
