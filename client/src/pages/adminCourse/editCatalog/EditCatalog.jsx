@@ -27,7 +27,7 @@ const EditCatalog = () => {
         axios
             .get(base_url + "/api/aml/course/editcatalog")
             .then((res) => {
-                console.log(res.data)
+                // console.log(res.data)
                 setCourses(res.data)
             })
     }, [])
@@ -63,7 +63,7 @@ const EditCatalog = () => {
                 }
             })
             .then((res) => {
-                console.log(res.data)
+                // console.log(res.data)
                 // axios
                 //     .get(base_url + "/api/aml/course/editcatalog")
                 //     .then((res) => {

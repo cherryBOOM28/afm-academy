@@ -43,7 +43,7 @@ function App() {
   useEffect(() => {
     const storedJwtToken = localStorage.getItem('jwtToken');
 
-    console.log(storedJwtToken)
+    // console.log(storedJwtToken)
     
     if (storedJwtToken) {
       setJwtToken(storedJwtToken);

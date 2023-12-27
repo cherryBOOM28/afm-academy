@@ -119,7 +119,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
             axios
                 .post(base_url + urlPath, formData) 
                 .then((res) => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     nextStep(res.data);
                 })
         

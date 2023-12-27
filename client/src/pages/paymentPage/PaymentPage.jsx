@@ -32,7 +32,7 @@ function PaymentPage(props) {
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
             } catch (error) {
                 setError(error);

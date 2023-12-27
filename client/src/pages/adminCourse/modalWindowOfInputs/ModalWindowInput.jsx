@@ -37,7 +37,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
   
   const handleChange = (name, value, type) => {
     if (type == "file") {
-      console.log("image")
+      // console.log("image")
       if (value) {
         const reader = new FileReader();
         
@@ -70,7 +70,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
   const handleSubmit = () => {
     const updatedValues = { ...values };
 
-    console.log({ inputs, values: updatedValues })
+    // console.log({ inputs, values: updatedValues })
     onSubmit({ inputs, values: updatedValues });    
     setValues({});
     onClose();

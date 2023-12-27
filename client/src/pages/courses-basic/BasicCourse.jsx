@@ -61,7 +61,7 @@ function BasicCourse() {
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
             } catch (error) {
                 setError(error);
@@ -114,7 +114,7 @@ function BasicCourse() {
                         {
                             data.modules.map((module, index) => {
 
-                                console.log(module)
+                                // console.log(module)
                                 return <>{index+1}. {module.chapter_description}<br /></>
 
                             })

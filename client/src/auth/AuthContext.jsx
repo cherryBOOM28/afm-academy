@@ -12,7 +12,7 @@ export const AuthProvider = (props) => {
 
     useEffect(() => {
         const token = localStorage.getItem('jwtToken');
-        console.log(token)
+        // console.log(token)
         if (token) {
             setIsLoggedIn(true);
         } else {

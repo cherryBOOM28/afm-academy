@@ -25,13 +25,13 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
             }
         }) : null;
 
-        console.log(_checkedQustions)
+        // console.log(_checkedQustions)
 
         setCheckedQustions(_checkedQustions)
     }, [])
 
     const finishTest = () => {
-        console.log(checkedQustions)
+        // console.log(checkedQustions)
 
         const fetchData = async () => {
             try {
@@ -42,16 +42,16 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
                 });
 
                 if (response.status === 200) {
-                    console.log(response.data)
+                    // console.log(response.data)
                 } else {
-                    console.log(response.data)
+                    // console.log(response.data)
                 }
             } catch (error) {
-                console.log(error)
+                // console.log(error)
             }
         };
         
-        console.log(jwtToken);
+        // console.log(jwtToken);
         fetchData();
         handleOpenModal();
     }
@@ -86,7 +86,7 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
                             {
                                 questions[currQuestion] ? questions[currQuestion].mcqOption.map(answer => {
                                     const handleAnswerClick = (answerId) => {
-                                        console.log(answerId, checkedQustions[currQuestion])
+                                        // console.log(answerId, checkedQustions[currQuestion])
                                         setCheckedQustions(prevQuestions => {
                                             const updatedQuestions = [...prevQuestions];
                                             if (updatedQuestions[currQuestion]) {
@@ -150,7 +150,7 @@ const MatchingQuestion = ({ answers }) => {
                 text
             }
         })
-        console.log("init left", left)
+        // console.log("init left", left)
         setLeft(left)
 
         const right = answers.map(answer => {
@@ -161,13 +161,13 @@ const MatchingQuestion = ({ answers }) => {
                 text
             }
         })
-        console.log("init right", right)
+        // console.log("init right", right)
 
         setRight(right)
     }, [])
 
     useEffect(() => {
-        console.log(matched)
+        // console.log(matched)
     }, [matched])
 
     const updatePairs = (leftId, rightId) => {
@@ -207,7 +207,7 @@ const MatchingQuestion = ({ answers }) => {
     }
 
     const leftPairClick = (id) => {
-        console.log(id)
+        // console.log(id)
 
         if (currLeft === id) {
             setCurrLeft(null);
@@ -219,7 +219,7 @@ const MatchingQuestion = ({ answers }) => {
     }
 
     const rightPairClick = (id) => {
-        console.log(id)
+        // console.log(id)
 
         if (currRight === id) {
             setCurrRight(null);
@@ -259,7 +259,7 @@ const MatchingQuestion = ({ answers }) => {
                     _answers.map(answer => {
                         const id = answer.matching_pair_id;
                         
-                        console.log(left.find(v => v.id === answer.matching_pair_id))
+                        // console.log(left.find(v => v.id === answer.matching_pair_id))
 
                         const leftText = left.find(v => v.id === id)?.text;
                         const rightText = right.find(v => v.id === id)?.text;

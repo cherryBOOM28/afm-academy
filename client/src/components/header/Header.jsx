@@ -41,7 +41,7 @@ function Header(props) {
   const userToggleRef = useRef(null);
 
   useEffect(() => {
-    console.log(username)
+    // console.log(username)
     const handleClickOutside = (event) => {
       // Check if the clicked element is a descendant of the .user-icon button
       if (

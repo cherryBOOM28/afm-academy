@@ -211,7 +211,9 @@ const elements = {
         }, //
     },
 }
-
+function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+}
 const componentMap = {
     HeaderWithLine,
     ImageWithText,
@@ -470,19 +472,16 @@ const Constructor = ({saveCancel, save, id, title}) => {
         axios
             .get(base_url + '/api/aml/chapter/getComponents', {params: {id}})
             .then((res) => {
-                console.log(res.data)
-                console.log('componentMap', componentMap)
+                // console.log(res.data)
                 
                 Object.keys(componentMap).forEach(key => {
-                    console.log(key + " component[key].name", componentMap[key].name);
+                    // console.log(componentMap[key].name);
                 });
                 let newComponents = res.data.map(item => {
                     // Find the category and component that matches the componentName
                     let inputs = null;
                     for (const category in elements) {
-                        console.log(category)
                         for (const element in elements[category]) {
-                            console.log(elements[category][element].component.name)
 
                             if (elements[category][element].component.name == item.componentName) {
                                 inputs = elements[category][element].inputs;
@@ -516,7 +515,7 @@ const Constructor = ({saveCancel, save, id, title}) => {
                     item.values.list = item.values.list.join('@#');
                 }
             });
-            console.log("MODU", modifiedHistory)
+            // console.log("MODU", modifiedHistory)
             axios  
                 .post(base_url + '/api/aml/chapter/saveComponents/'+id,
                     modifiedHistory, {
@@ -536,9 +535,10 @@ const Constructor = ({saveCancel, save, id, title}) => {
     const handleElementClick = ({ ElementComponent, InputsOfElement }) => {
         // const newComponent = { componentName: ElementComponent.name, inputs: InputsOfElement, values: {} };
         // setSelectedComponent(newComponent);
+        let key = getKeyByValue(componentMap, ElementComponent);
         const newComponent = {
             component_entry_id: generateUniqueId(),
-            componentName: ElementComponent.name,
+            componentName: key,
             inputs: InputsOfElement || [],
             values: {},  
         };
@@ -619,8 +619,6 @@ const Constructor = ({saveCancel, save, id, title}) => {
                                 </svg>
                             </div>
                             <Reveal>
-                                {console.log("componentMap", componentMap)}
-                                {console.log("item.componentName", item.componentName)}
                                 {componentMap[item.componentName] && item.componentName != 'Sizebox' ? (
                                     React.createElement(componentMap[item.componentName], item.values)
                                 ) : item.componentName == 'Sizebox' ? 

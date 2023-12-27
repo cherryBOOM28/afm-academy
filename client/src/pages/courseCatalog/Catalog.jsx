@@ -112,7 +112,7 @@ function Catalog() {
                 } else {
                     response = await axios.get(`${base_url}${url1}`);
                 }
-                console.log(response.data)
+                // console.log(response.data)
                 setData(response.data)
 
                 const _coursesByCategory = {};
@@ -126,13 +126,13 @@ function Catalog() {
                         _coursesByCategory[categoryName].push(course);
                     });
     
-                    console.log(_coursesByCategory)
+                    // console.log(_coursesByCategory)
                     setCoursesByCategory(_coursesByCategory);
                     // setData(response.data);
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
 
                 // Iterate through the courses and categorize them

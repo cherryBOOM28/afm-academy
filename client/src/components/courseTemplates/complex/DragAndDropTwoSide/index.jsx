@@ -28,7 +28,7 @@ const QuestionContainer = ({ questions, leftAnswer, rightAnswer }) => {
   const handleOnDragOver = (e) => {
     e.preventDefault(); // Prevent default behavior to enable dropping
     
-    console.log('Dragging over the target');
+    // console.log('Dragging over the target');
     e.target.style.cursor = 'pointer';
     e.target.style.transform = 'scale(105%, 105%)';
     mainControls.start('hover');
@@ -37,7 +37,7 @@ const QuestionContainer = ({ questions, leftAnswer, rightAnswer }) => {
   const handleOnDragLeave = (e) => {
     e.preventDefault(); // Prevent default behavior
     
-    console.log('Drag left the target');
+    // console.log('Drag left the target');
     setInitialStyle(e);
   };
 
@@ -47,7 +47,7 @@ const QuestionContainer = ({ questions, leftAnswer, rightAnswer }) => {
     const data = e.dataTransfer.getData('text/plain');
     const { answer, side } = JSON.parse(data);
 
-    console.log(side, answer, dropSide);
+    // console.log(side, answer, dropSide);
 
     if (dropSide === side) {
       setCorrectStyle(e);

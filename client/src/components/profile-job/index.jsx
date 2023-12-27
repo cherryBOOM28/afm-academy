@@ -35,15 +35,15 @@ function ProfileJob({}) {
                     },
                 });
 
-                console.log(response.data)
-                console.log(typeof response.data[0].end_date)
+                // console.log(response.data)
+                // console.log(typeof response.data[0].end_date)
 
                 if (response.status === 200) {
                     setJobRows(response.data);
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
             } catch (error) {
                 setError(error);
@@ -57,8 +57,8 @@ function ProfileJob({}) {
       }, [updateData]);
 
     const handleOnAdd = (data) => {
-        console.log("handleOnAdd called");
-        console.log(data)
+        // console.log("handleOnAdd called");
+        // console.log(data)
         const user_id = localStorage.getItem('user_id');
 
         const options = {
@@ -83,7 +83,7 @@ function ProfileJob({}) {
             end_date: new Date(formateDateToString(data.end_date)).getTime(), 
         };
 
-        console.log(params)
+        // console.log(params)
 
         const fetchData = async () => {
             setLoading(true);
@@ -97,7 +97,7 @@ function ProfileJob({}) {
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
             } catch (error) {
                 setError(error);
@@ -120,7 +120,7 @@ function ProfileJob({}) {
                 },
             }
 
-            console.log(id)
+            // console.log(id)
 
             try {
                 const response = await axios.delete(`${base_url}/api/aml/auth/deleteJob/${id}`, options);
@@ -129,7 +129,7 @@ function ProfileJob({}) {
                 if (response.status === 200) {
                 } else {
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
             } catch (error) {
                 setError(error);
@@ -157,7 +157,7 @@ function ProfileJob({}) {
 
                                     const job_ex_id = e.target.parentElement.parentElement.id;
 
-                                    console.log(job_ex_id)
+                                    // console.log(job_ex_id)
 
                                     handleJobDelete(job_ex_id);
 

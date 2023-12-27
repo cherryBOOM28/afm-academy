@@ -47,12 +47,12 @@ function MyCourses() {
                 // }
 
                 if (response.status == 200) {
-                    console.log(response.data)
+                    // console.log(response.data)
                     setCourses(response.data);
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
 
                 
@@ -133,7 +133,7 @@ function MyCourses() {
                                         <div className="courses-list">
                                             {
                                                 courses.map((course, index) => {
-                                                    console.log(course);
+                                                    // console.log(course);
                                                     const courseDTO = course.courseDTO;
                                                     const { course_image, course_name } = courseDTO;
                                                     const { paymentInfo } = course;

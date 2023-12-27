@@ -7,7 +7,7 @@ const PrivateRoute = ({ component: Component, shouldBeLoggedIn, redirect, mustBe
     const { isLoggedIn } = useAuth();
 
     useEffect(() => {
-        console.log(isLoggedIn, shouldBeLoggedIn)
+        // console.log(isLoggedIn, shouldBeLoggedIn)
     }, [])
 
     if (!mustBeAdmin && ( Component.name == 'CreateCoursePage' || Component.name == 'EditCatalog' )) {

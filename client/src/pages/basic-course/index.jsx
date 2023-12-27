@@ -160,18 +160,18 @@ function Basic_course(props) {
                     },
                 });
 
-                console.log(response.data)
+                // console.log(response.data)
 
                 if (response.status === 200) {
                     setData(response.data);
                     setCourseProgress(response.data.progress_percentage)
                     setQuizQuestions(response.data.course.chapters[0].quiz.quizList)
-                    console.log(response.data.course.chapters[0].quiz.quizList)
+                    // console.log(response.data.course.chapters[0].quiz.quizList)
 
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
 
 
@@ -183,7 +183,7 @@ function Basic_course(props) {
             setLoading(false);
         };
 
-        console.log(jwtToken);
+        // console.log(jwtToken);
         fetchData();
     }, [])
 
@@ -201,7 +201,7 @@ function Basic_course(props) {
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
 
 
@@ -234,11 +234,11 @@ function Basic_course(props) {
 
 
                 if (response.status === 200) {
-                    console.log(response.data);
+                    // console.log(response.data);
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
             } catch (error) {
                 if (error.response) {
@@ -251,7 +251,7 @@ function Basic_course(props) {
             }
         };
 
-        console.log(jwtToken);
+        // console.log(jwtToken);
         fetchData();
         scrollToTopAnimated();
         setActiveSessionId(activeSessionId + 1);
@@ -259,7 +259,7 @@ function Basic_course(props) {
 
 
     const getLesson = (id) => {
-        console.log('getLesson', quizQuestions)
+        // console.log('getLesson', quizQuestions)
         return GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackModal})
     }
 

@@ -54,7 +54,7 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
     }
 
     const _handleSave = () => {
-        console.log(addData)
+        // console.log(addData)
         handleOnAdd({
             ...addData,
             start_date: new Date(addData.start_date),
@@ -75,7 +75,7 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
     }
 
     useEffect(() => {
-        console.log(rows);
+        // console.log(rows);
     }, [rows])
 
     const numberToDate = (number) => {
