@@ -71,6 +71,8 @@ import Report_Information from '../courseTemplates/common/Warnings/Report_Inform
 import StageDropDown from '../courseTemplates/complex/StageDropDown';
 import InteractivePhases from '../courseTemplates/complex/interactives/InteractivePhases';
 import Component52 from '../courseTemplates/complex/Component52';
+import DataChain from '../courseTemplates/complex/DataChain';
+import SimpleTable from '../courseTemplates/common/SimpleTable';
 
 const LessonPage = ({ children, name, lecturer }) => {
 
@@ -1736,12 +1738,13 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Reveal>
                     <DragAndDropTwoSide 
                         questions={[
-                            {answer: 'answer1', side: 'left'},
-                            {answer: 'answer2', side: 'right'},
-                            {answer: 'answer3', side: 'left'},
+                            {answer: 'Значительное увеличение стоимости объекта, которое не объясняется текущей ситуацией на рынке недвижимости', side: 'В схеме выявлен признак'},
+                            {answer: 'Совершение операций (сделки) лицом, включенным в перечень организаций и лиц, связанных с финансированием терроризма и экстремизма', side: 'В схеме не выявлен признак'},
+                            {answer: 'Явное несоответствие договорной и рыночной стоимости предмета сделки', side: 'В схеме выявлен признак'},
+                            {answer: 'Предоставление финансового займа нерезиденту на срок свыше семисот двадцати дней без выплаты вознаграждения', side: 'В схеме не выявлен признак'},
                         ]}
-                        leftAnswer={'True'}
-                        rightAnswer={'False'}
+                        leftAnswer={'В схеме выявлен признак'}
+                        rightAnswer={'В схеме не выявлен признак'}
                     />
                 </Reveal>
 
@@ -1821,12 +1824,13 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
 
                 <DragAndDropTwoSide 
                     questions={[
-                        {answer: 'answer1', side: 'left'},
-                        {answer: 'answer2', side: 'right'},
-                        {answer: 'answer3', side: 'left'},
+                        {answer: 'Поступление на счет клиента крупной суммы денег и последующее обналичивание полученных средств, при этом получатель имел незначительные обороты по операциям', side: 'В схеме выявлен признак'},
+                        {answer: 'Совершение клиентом систематических операций на крупную сумму с неликвидными ценными бумагами', side: 'В схеме не выявлен признак'},
+                        {answer: 'Явное несоответствие договорной и рыночной стоимости предмета сделки', side: 'В схеме не выявлен признак'},
+                        {answer: 'Зачисление на счет клиента и списание со счета примерно в одном и том же объеме денег', side: 'В схеме выявлен признак'},
                     ]}
-                    leftAnswer={'True'}
-                    rightAnswer={'False'}
+                    leftAnswer={'В схеме выявлен признак'}
+                    rightAnswer={'В схеме не выявлен признак'}
                 />
 
                 <Sizebox height={100} />
@@ -2609,10 +2613,15 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Sizebox height={100} />
 
                 <Reveal>
-                    <TODO text={'Техническое соответствие ...'} />
+                    <DataChain 
+                        data={[
+                            { title: 'Техническое соответствие', description: 'Предусматривает выполнение конкретных требований Рекомендаций ФАТФ, включая систему законов и обязательных для исполнения мер; а также наличие, полномочия и процедуры компетентных органов.' },
+                            { title: 'Эффективность ', description: 'Результативность принятых законов и других нормативных правовых актов, которые демонстрируют эффективность этих принятых нормативных документов.' },
+                        ]}
+                    />
                 </Reveal>
 
-                <Sizebox height={50} />
+                <Sizebox height={100} />
                 <Reveal>
                     <Report_Warning>
                         По каждой Рекомендации эксперты должны вынести заключение о степени соответствия (или несоответствия) страны стандарту.
@@ -2669,7 +2678,35 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                         </>
                     </HeaderWithLine>
                 </Reveal>
-                <Sizebox height={40} />
+                <Sizebox height={80} />
+
+                <SimpleTable 
+                    data={[
+                        ['НР1\n Р.1, Р.2, Р.33, Р.34', 'Оценка рисков, координация и определение политики'],
+                        ['НР2\n Р.36–40', 'Международное сотрудничество'],
+                        ['НР3\n Р.26–28, 34, 35', 'Надзор'],
+                        ['НР4\n Р.9–23', 'Превентивные меры'],
+                        ['НР5\n Р.24, 25', 'Прозрачность и бенефициарная собственность'],
+                        ['НР6, НР7, НР8\n Р. 1, 3, 4, 29–32', 'Финансовая разведка, расследования ОД, судебные преследования и конфискация'],
+                        ['НР9, НР10, НР11\n Р. 1, 4, 5–8, 30, 31, 39', 'ФТ и ФРОМУ'],
+                    ]}
+                    columns={[
+                        'НР и Рекомендации входящие в состав',
+                        'Оцениваемая область',
+                    ]}
+                />
+
+                <Sizebox height={100} />
+
+                <Reveal>
+                    <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
+                        <>
+                        Перейдем к следующему блоку обучения
+                        </>
+                    </HeaderWithLine>
+                </Reveal>
+
+                <Sizebox height={50}/>
 
                 <Reveal>
                     <NextLesson handleOnClick={() => {
