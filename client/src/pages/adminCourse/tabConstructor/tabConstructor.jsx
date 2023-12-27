@@ -230,6 +230,7 @@ const componentMap = {
     Table_1,
     FileDownloader,
     VideoLine,
+    Sizebox
     // Add other components here
 };
 
@@ -542,6 +543,8 @@ const Constructor = ({saveCancel, save, id, title}) => {
             inputs: InputsOfElement || [],
             values: {},  
         };
+
+        console.log(newComponent)
         
         // Check if the clicked element is an existing component from componentHistory
         const existingComponentIndex = componentHistory.findIndex(
@@ -619,11 +622,9 @@ const Constructor = ({saveCancel, save, id, title}) => {
                                 </svg>
                             </div>
                             <Reveal>
-                                {componentMap[item.componentName] && item.componentName != 'Sizebox' ? (
+                                {componentMap[item.componentName] && (
                                     React.createElement(componentMap[item.componentName], item.values)
-                                ) : item.componentName == 'Sizebox' ? 
-                                    <Sizebox height={item.values.height} /> : null
-                                }
+                                ) }
                             </Reveal>
                         </div>
                     )
