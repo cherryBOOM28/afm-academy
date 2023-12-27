@@ -471,7 +471,14 @@ const Constructor = ({saveCancel, save, id, title}) => {
             .get(base_url + '/api/aml/chapter/getComponents', {params: {id}})
             .then((res) => {
                 console.log(res.data)
-                console.log('componentMsp', componentMap)
+                console.log('componentMap', componentMap)
+                componentHistory.map((item, index) => {
+
+                    
+                                {console.log("item.componentName", item.componentName)}
+                                
+                    
+                })
                 let newComponents = res.data.map(item => {
                     // Find the category and component that matches the componentName
                     let inputs = null;
