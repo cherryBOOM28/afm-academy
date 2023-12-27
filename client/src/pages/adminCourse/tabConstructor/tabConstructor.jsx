@@ -473,7 +473,7 @@ const Constructor = ({saveCancel, save, id, title}) => {
                 console.log(res.data)
                 console.log('componentMap', componentMap)
                 componentMap.map((item, index) => {
-                    {console.log("item.componentName", item.name)}
+                    console.log("item.componentName", item.name)
                 })
                 let newComponents = res.data.map(item => {
                     // Find the category and component that matches the componentName
