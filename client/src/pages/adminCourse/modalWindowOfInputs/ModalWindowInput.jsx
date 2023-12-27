@@ -6,11 +6,18 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
   useEffect(() => {
     const hasListInput = inputs.some((x) => x.name === 'list');
 
+    const hasTableInput = inputs.some((x) => x.name === 'rows');
+
     if (hasListInput) {
       // Update the 'list' property in the values state to an empty string
       setValues((prevValues) => ({
         ...prevValues,
         list: exValues?.list || [],
+      }));
+    } else if (hasTableInput) {
+      setValues((prevValues) => ({
+        ...prevValues,
+        rows: exValues?.rows || [],
       }));
     }
   }, [inputs])
@@ -20,6 +27,14 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
     setValues((prevValues) => ({
       ...prevValues,
       [name]: [...prevValues[name], 'Новый элемент'],
+    }));
+  };
+
+  const handleAddToTable = (name) => {
+    // Add a new element to the list array
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: [...prevValues[name], {"first": '1', "second": 'Значение'}],
     }));
   };
   
@@ -33,7 +48,20 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
       [name]: updatedList,
     }));
   };
+  const handleInputChangeTable1 = (index, newValue, name) => {
+    // Update the value at the specified index in the list array
+    const updatedList = [...values.rows];
+    if (name == 'first') {
+      updatedList[index].first = newValue;
+    } else {
+      updatedList[index].second = newValue;
+    }
 
+    setValues((prevValues) => ({
+      ...prevValues,
+      'rows': updatedList,
+    }));
+  };
   
   const handleChange = (name, value, type) => {
     if (type == "file") {
@@ -115,7 +143,33 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
                     })}
                       <button onClick={() => handleAddToList(input.name)}>Add</button>
                 </div>
-              :
+              : input.type == 'rows' && values[input.name] ? 
+              <div key={input.name}>
+                  <label>{input.label}</label>
+                    {values[input.name].map((x, index) => {
+                      return (
+                        <div key={index} className='table-rows-input'>
+                          <div className='first-column'>
+                            <input
+                              type="text"
+                              value={x.first || ''}
+                              onChange={(e) => handleInputChangeTable1(index, e.target.value, 'first')}
+                            />
+                          </div>
+                          <div className='second-column'>
+                            <input
+                              type="text"
+                              value={x.second || ''}
+                              onChange={(e) => handleInputChangeTable1(index, e.target.value, 'second')}
+                            />
+                          </div>
+                        </div>
+                        
+                      )
+                    })}
+                      <button onClick={() => handleAddToTable(input.name)}>Add</button>
+                </div> 
+                :
                 <div key={input.name}>
                     <label>{input.label}</label>
                     <input

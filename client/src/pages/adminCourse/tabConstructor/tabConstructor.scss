@@ -148,6 +148,7 @@
             position: absolute;
             right: 130px;
 
+
             color: rgba(55, 71, 97, 0.75);
             font-family: Ubuntu;
             font-size: 14px;
@@ -181,16 +182,29 @@
 
     .constructor {
         display: flex;
-        
         .display {
             .components {
                 padding-bottom: 250px;
-                width: 1000px;
-                padding-left: -80px;
+                
+                width: calc(100vw - 900px);
+                // padding-left: -80px;
+                // border: 1px solid rgb(0, 60, 255);
                 .component-display {
+                    
+                    width: 99%;
+                    
                     transition: all 0.2s ease;
                     z-index: 4;
+                    // border: 1px solid rgb(255, 0, 0);
+                    
+                    overflow: visible;
 
+                    div.reveal {
+                        > * {
+                            padding-left: 0px;
+                            padding-right: 0px;
+                        }
+                    }
                     .component-edit {
                         display: none;
                         svg {
@@ -215,16 +229,6 @@
                             }
                         }
                     }
-                }
-                
-                * {
-                }
-                 div {
-                    div {
-                        padding-left: 20px;
-                        padding-right: 20px;
-                    }
-                    
                 }
             }
 
