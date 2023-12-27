@@ -460,7 +460,8 @@ const TabConstructor = ({saveCancel, save, id}) => {
         </div>
     )
 }
-//Takes id of lesson
+
+
 const Constructor = ({saveCancel, save, id, title}) => {
     const [selectedComponent, setSelectedComponent] = useState(null);
     const [componentHistory, setComponentHistory] = useState([]);
@@ -470,6 +471,7 @@ const Constructor = ({saveCancel, save, id, title}) => {
             .get(base_url + '/api/aml/chapter/getComponents', {params: {id}})
             .then((res) => {
                 console.log(res.data)
+                console.log('componentMsp', componentMap)
                 let newComponents = res.data.map(item => {
                     // Find the category and component that matches the componentName
                     let inputs = null;
