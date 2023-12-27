@@ -42,7 +42,6 @@ function HeaderWithLine({ children, header, headerColor, lineColor }) {
     );
 }
 
-HeaderWithLine.name = 'HeaderWithLine';
 
 
 export default HeaderWithLine;
