@@ -43,7 +43,7 @@ function App() {
   useEffect(() => {
     const storedJwtToken = localStorage.getItem('jwtToken');
 
-    console.log(storedJwtToken)
+    // console.log(storedJwtToken)
     
     if (storedJwtToken) {
       setJwtToken(storedJwtToken);
@@ -107,8 +107,8 @@ function App() {
 
             <Route path='/sandbox' element={<Sandbox />}/>'
 
-            <Route path='/createcourse' element={<CreateCoursePage />}/>
-            <Route path='/manager' element={<EditCatalog />}/>
+            <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={CreateCoursePage} />}/>
+            <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={EditCatalog} />}/>
             {/* <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} component={CreateCoursePage} />}/>
             <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} component={EditCatalog} />}/> */}
           </Routes>

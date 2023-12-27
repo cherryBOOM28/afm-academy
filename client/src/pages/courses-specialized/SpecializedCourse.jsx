@@ -28,7 +28,7 @@ function SpecializedCourse() {
     }
 
     useEffect(() => {
-        console.log(request)
+        // console.log(request)
     }, [request])
 
     return ( 

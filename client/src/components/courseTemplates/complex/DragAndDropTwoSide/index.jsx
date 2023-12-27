@@ -83,6 +83,12 @@ const Side = ({
         }
     }
 
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+
+  const handleOnDragStart = (e, side, answer) => {
+    e.dataTransfer.setData('text/plain', JSON.stringify({ answer, side }));
+  };
+
     const handleOnDragOver = (e) => {
         e.preventDefault(); // Prevent default behavior to enable dropping
         

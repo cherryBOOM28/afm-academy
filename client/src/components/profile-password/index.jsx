@@ -29,7 +29,7 @@ function ProfilePassword(props) {
                 if (response.status === 200) {
                     setData(response.data);
                 } else {
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
             } catch (error) {
                 console.error(error);
@@ -65,7 +65,7 @@ function ProfilePassword(props) {
         try {
             const res = await axios.patch(`${base_url}/api/aml/auth/change_user`, params, options );
     
-            console.log('changed password response ', res);
+            // console.log('changed password response ', res);
         } catch (error) {
             console.error(error);
         }

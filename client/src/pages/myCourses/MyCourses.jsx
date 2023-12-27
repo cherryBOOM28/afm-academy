@@ -32,8 +32,8 @@ function MyCourses() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const url = '/api/aml/course/getUserCourses';
-                const url1 = '/api/aml/course/getUserCoursesNoPr';
+                const url = '/api/aml/course/getUserUsingCourses';
+                // const url1 = '/api/aml/course/getUserCoursesNoPr';
                 let response = null; // Use let instead of const for response to allow reassignment
                 if (jwtToken != null) {
                     response = await axios.get(`${base_url}${url}`, {
@@ -41,17 +41,18 @@ function MyCourses() {
                             Authorization: `Bearer ${jwtToken}`,
                         },
                     });
-                } else {
-                    response = await axios.get(`${base_url}${url1}`);
-                }
+                } 
+                // else {
+                //     response = await axios.get(`${base_url}${url1}`);
+                // }
 
-                if (response.status === 200) {
-                    console.log(response.data)
+                if (response.status == 200) {
+                    // console.log(response.data)
                     setCourses(response.data);
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
 
                 
@@ -107,7 +108,7 @@ function MyCourses() {
 
                 <div className='container'>
                     <h1 style={{
-                        fontFamily: 'Roboto',
+                        fontFamily: 'Ubuntu',
                         fontSize: '20px',
                         fontWeight: '500',
                         lineHeight: '23px',
@@ -127,17 +128,18 @@ function MyCourses() {
                                         <div>загружаем</div>
                                         <div>загружаем</div>
                                         <div>загружаем</div>
-                                        <div>загружаем</div>
-                                        <div>загружаем</div>
                                     </div>)
                                     : (
                                         <div className="courses-list">
                                             {
-                                                courses.filter(course => course.status === 'process' || course.status === 'finished').map((course, index) => {
-                                                    console.log(course);
+                                                courses.map((course, index) => {
+                                                    // console.log(course);
                                                     const courseDTO = course.courseDTO;
                                                     const { course_image, course_name } = courseDTO;
-                                                    const { status } = course;
+                                                    const { paymentInfo } = course;
+
+                                                    const status = paymentInfo === null ? 'available' 
+                                                            : paymentInfo.status;
 
                                                     return <div className='course-card' key={index} 
                                                         onClick={() => {

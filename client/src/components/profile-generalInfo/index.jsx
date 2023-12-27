@@ -15,7 +15,7 @@ import axios from 'axios';
 
 const getItems = (entity_type) => {
 
-    console.log(entity_type)
+    // console.log(entity_type)
     if (entity_type === 'Субъект финансового мониторнга') return sfm_types;
     if (entity_type === 'Государственные органы-регуляторы') return go_types;
     if (entity_type === 'Правоохранительные органы') return po_types;
@@ -50,11 +50,11 @@ function ProfileGeneral() {
                 if (response.status === 200) {
                     setData(response.data);
                     setJob(response.data.job_name);
-                    console.log(response.data);
+                    // console.log(response.data);
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
             } catch (error) {
                 setError(error);
@@ -74,14 +74,14 @@ function ProfileGeneral() {
     const [localJob, setLocalJob] = useState('');
 
     const handleInfoChange = (name, value) => {
-        console.log(name, value);
+        // console.log(name, value);
 
         setChangedData({ ...changedData, [name]: value });
         setLocalData({ ...localData, [name]: value })
     }
 
     const handleSaveChanges = async () => {
-        console.log('changed data', changedData)
+        // console.log('changed data', changedData)
 
         const params = {
             "user_id": localData.user_id,
@@ -94,7 +94,7 @@ function ProfileGeneral() {
             ...changedData,
         };
 
-        console.log(params)
+        // console.log(params)
 
         const options = {
             headers: {
@@ -105,7 +105,7 @@ function ProfileGeneral() {
         try {
             const res = await axios.patch(`${base_url}/api/aml/auth/change_user`, params, options );
     
-            console.log('changed password response ', res);
+            // console.log('changed password response ', res);
         } catch (error) {
             console.error(error);
         }
@@ -276,7 +276,7 @@ const SelectField = ({
             <label htmlFor={name}>{label}</label>
             <div className="custom-select">
                 <select disabled={!isEdit} id={name} value={_value} onChange={(e) => {
-                    console.log(e.target.value);
+                    // console.log(e.target.value);
                     _value = e.target.value;
                     handleChange(name, e.target.value)
                 }}>

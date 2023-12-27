@@ -40,7 +40,7 @@ function ProfileEducation({ handleOpenModal }) {
                 });
     
                 if (response.status === 200) {
-                    console.log(response.data)
+                    // console.log(response.data)
                     setCourses(response.data);
     
                     let _edu = response.data.filter(course => course.status === 'finished').map(course => {
@@ -52,12 +52,12 @@ function ProfileEducation({ handleOpenModal }) {
                             id: course.id
                         }
                     });
-                    console.log(_edu)
+                    // console.log(_edu)
                     setEduRows(_edu);
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
     
             } catch (error) {

@@ -38,12 +38,12 @@ function VebinarsPage() {
                 });
 
                 if (response.status === 200) {
-                    console.log(response.data)
+                    // console.log(response.data)
                     setVebinars(response.data);
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
 
 
@@ -81,10 +81,10 @@ function VebinarsPage() {
                 <h1>Вебинары</h1>
 
                 <div className="vebinar-list-block">
-                {console.log(vebinars)}
+                {/* {console.log(vebinars)} */}
                     {
                         vebinars.map(vebinar => {
-                            console.log(vebinar.lector)
+                            // console.log(vebinar.lector)
                             return <VebinarCard vebinar={vebinar} handleVebinarEnter={handleVebinarEnter}/>
                         }
                             
@@ -197,7 +197,7 @@ const VebinarCard = (props) => {
         contingent,
         date,
      } = props.vebinar;
-    console.log(webinar_for_member_of_the_system)
+    // console.log(webinar_for_member_of_the_system)
 
     const datee = new Date(date);
 
