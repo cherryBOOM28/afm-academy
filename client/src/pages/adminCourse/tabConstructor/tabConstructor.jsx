@@ -469,6 +469,7 @@ const Constructor = ({saveCancel, save, id, title}) => {
         axios
             .get(base_url + '/api/aml/chapter/getComponents', {params: {id}})
             .then((res) => {
+                console.log(res.data)
                 let newComponents = res.data.map(item => {
                     // Find the category and component that matches the componentName
                     let inputs = null;
@@ -509,6 +510,7 @@ const Constructor = ({saveCancel, save, id, title}) => {
                     item.values.list = item.values.list.join('@#');
                 }
             });
+            console.log("MODU", modifiedHistory)
             axios  
                 .post(base_url + '/api/aml/chapter/saveComponents/'+id,
                     modifiedHistory, {

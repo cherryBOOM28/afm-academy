@@ -42,4 +42,7 @@ function HeaderWithLine({ children, header, headerColor, lineColor }) {
     );
 }
 
+HeaderWithLine.displayName = 'HeaderWithLine';
+
+
 export default HeaderWithLine;
