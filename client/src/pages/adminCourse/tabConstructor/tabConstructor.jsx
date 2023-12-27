@@ -615,6 +615,8 @@ const Constructor = ({saveCancel, save, id, title}) => {
                                 </svg>
                             </div>
                             <Reveal>
+                                {console.log("componentMap", componentMap)}
+                                {console.log("item.componentName", item.componentName)}
                                 {componentMap[item.componentName] && item.componentName != 'Sizebox' ? (
                                     React.createElement(componentMap[item.componentName], item.values)
                                 ) : item.componentName == 'Sizebox' ? 
