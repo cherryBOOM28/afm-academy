@@ -62,6 +62,9 @@ import image72 from './../../assets/images/pfr.png'
 import image73 from './../../assets/images/mvrg.png'
 import image74 from './../../assets/images/mvs.png'
 import image75 from './../../assets/images/troika2.png'
+import ArrowRightIcon from '../courseTemplates/common_v2/FlexRow/Arrow-right.svg'; 
+import HackerIcon from '../courseTemplates/common_v2/FlexRow/Hacker.svg'; 
+import PaymentIcon from '../courseTemplates/common_v2/FlexRow/Payment.svg'; 
 import defaultImg from './../../assets/images/default.png'
 import TextPlusDots_1 from '../courseTemplates/complex/TextPlusDots/TextPlusDots_1';
 import Header from "../header/Header";
@@ -73,6 +76,9 @@ import InteractivePhases from '../courseTemplates/complex/interactives/Interacti
 import Component52 from '../courseTemplates/complex/Component52';
 import DataChain from '../courseTemplates/complex/DataChain';
 import SimpleTable from '../courseTemplates/common/SimpleTable';
+import FancyList from '../courseTemplates/common_v2/FancyList';
+import FlexBoxes from '../courseTemplates/common_v2/FlexBoxes';
+import FlexRow from '../courseTemplates/common_v2/FlexRow';
 
 const LessonPage = ({ children, name, lecturer }) => {
 
@@ -3177,6 +3183,35 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
             </LessonPage>)
         case 17:
             return (<LessonPage name={'Законодательство'} lecturer={'AML Academy'}>
+                <FancyList 
+                    list={[
+                        'ЧТО ТАКОЕ КРИПТОВАЛЮТА?',
+                        'ЧТО ТАКОЕ КРИПТОВАЛЮТА?',
+                        'ЧТО ТАКОЕ КРИПТОВАЛЮТА?',
+                        'ЧТО ТАКОЕ КРИПТОВАЛЮТА?',
+                    ]}
+                />
+
+                <FlexBoxes 
+                    data={[
+                        `Цифровая форма наличных денег. С её помощью можно рапоряжаться как с деньгами, которые мы привыкли видеть`,
+                        'Не принадлежит какой-либо организации, является децентрализованной',
+                        `Для использования достаточно иметь мобильное приложение`,
+                        `Для использования достаточно иметь мобильное приложение`,
+                        `Для использования достаточно иметь мобильное приложение`,
+                    ]}
+                />
+
+                <Sizebox height={40} />
+
+                <FlexRow 
+                    data={[
+                        { icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAgVBMVEX///8AAAAwMDClpaX5+fn8/Pzs7Ozd3d03Nzf6+vq9vb3v7+/19fUODg7n5+eDg4NhYWFpaWnLy8sjIyOxsbFmZmZSUlI8PDzT09NZWVmbm5sbGxupqamNjY3GxsZLS0tycnJ8fHwgICAWFhaAgIApKSmKioqWlpa1tbVFRUVNTU39c+xuAAAEV0lEQVR4nO2d6XKjQAyEZ2wwmMvgE2OMjeP7/R9wk01qQ/Mbaqp6+3sCqRykkdRSjBFCCCGEEEIIIYQQQgghhBBCCCGE+B9JmsC1CePiR+GmdG3EqJQ7a7eN79qM8chO9pPd2nNtyFh4e/uX24PVxcL+kBaJa1tG4W5/2cWurRmB0gKMWeOILj5d2zMC0Qe4eHRtzwh8pcMOBeHHmOVp18Ut4cc4u666Lr4avsyYVGHXxXDNlxm956vr4u0xc23R4PjLfdfFtM1cWzQ8wRlCKmM9lR0hpL4j1wYNT7KGXzGcujZoePwl/IqH1rVBI5Bd4GfcEhb+CYRUuyMMqfM7uLhqXBs0Ak9w0Vau7RmB5QRcXPC9Uk2wBRfPhB9j1kJZnJd8MXX2uHVdPEV8f6leDfXUpOarp0z07rqYEtZTptxAvGkJmxsBJv986dqg4YlrcPG1dm3Q8PgRPuEerg0agRJCatryZQ0T5PAzbgjfN7MFuPgm7N94U3BxQti/MRFW/pT11AlcvBMOb4ICXDwTvm9mC6in9oTvm3kF9VQY8ZWMZg3Dm5Sxnmow+R8Jk3/Q8sebB7i4J2ymJjWE1B1lPQXKjVtFWGyUEG8+FoT9mwzjTUEYbxJUip0I3zdmCpPUC2M91aBSbEoYbwKcpDLGmxjFKTlhvDH3Q9fFkLB/Y6Y4SWWspyKcpNaEzY0Smxt3wnoqw2ZqQfgxxhWIb9+E9ZS3huTPuFzkN5D8bw/CeIPN1AOj+HZ+7Fb+6f7nfTPhIcS5hp18h1TLTETvoX347B7aImH30BbsHp5Kcg+/FA2ubRiTwyLhjqXhdyd8SkNdb3Db5kn3+m72XQ/zJVs7I6mhfuKbKsYgmE7vdJ3T7NytKw5Tuul+AFrpC19HcQldmhXdJ2hwYXFClyRMCw7mrs0ZHA863imfQjoAffSNbkrqNbg2RNfsTupuEE03dEE0g/bhZUHXIcXjBJOKrcvtL0Ez9HqyPdS8J4i+t3S1koeHXvhiTNKCPoEvxmQoo+GrlXDPy/Jdk3xCw4nwfB1KEkO2LGh8VOqf564NGpoMV7srNgf9Jd4Ce7LFGG8NErYTnWomrrppPuU7A4bSrsOVLkuUUCutKrqmdgQPtQmfqmsKY5cXXYyZo9SZT80do0L2Slcrlb1aie4limtqlu+SEqp/L3Rp3qCC+0QXY7LeCSW6NF/25kps/Rg/wrlS7dqgoemtM7/oBmcZrqTznfjqnRXgO9PWOw3Btz2xxtteNVs/Zl5Bz3dHF2N6Z71yuodab5uQrx/T2wjlO+fZjzFstZJfwTuG7+xcfIW/UD4BUO9CQkH3CeKJ8pTuRLmHZ1hvdCLDGE9b8p1+6m3U850LTDDNF3Q9XzMDmeiCrlb6pPkdTFCeJjOdf9jxohvO/+D/xFK+hax/fB8n4+vHdMjO1vItZAFBThpjfvFoP0EhhBBCCCGEEEIIIYQQQgghhBBCCCGEEELQ8Ac8Xj6nD3B4AwAAAABJRU5ErkJggg==', title: 'Свобода от ограничении', desc: 'Вы можете использовать криптовалюту беспрепятственно. Централизованные платежные сервисы в свою очередь могут замораживать учетные записи или препятствовать совершению транзакций.' },
+                        { icon: HackerIcon, title: 'Устойчива к взлому', desc: 'Устройство сети делает ее устойчивой к атакам хакеров и других злоумышленников' },
+                        { icon: PaymentIcon, title: 'Дешевый и быстрый способ оплаты', desc: 'Человек на другом конце света может получить от вас средства в считанные секунды. Комиссия за транзакцию значительно меньше, чем комиссия за международный денежный перевод.' },
+                    ]}
+                />
+
                 <Reveal>
                     <Sizebox height={30}/>
                     <ImageLine
