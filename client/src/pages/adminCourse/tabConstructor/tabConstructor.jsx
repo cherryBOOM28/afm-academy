@@ -22,6 +22,7 @@ import TextWithTitle from '../../../components/courseTemplates/common/TextWithTi
 import VideoLine from '../../../components/courseTemplates/common/VideoLine'
 import Report_Warning from '../../../components/courseTemplates/common/Warnings/Report'
 import Report_Information from '../../../components/courseTemplates/common/Warnings/Report_Information'
+import TabsGlossary from '../../../components/courseTemplates/complex/TabsGlossary'
 
 import headerWithLineIcon from '../images/header-icon.svg'
 import imageWithTextIcon from '../images/textWithBackground-icon.svg'
@@ -42,6 +43,7 @@ import sizeBoxIcon from '../images/sizeBox-icon.svg'
 import Reveal from '../../../components/Reveal'
 import saveButton from '../images/save-button.svg'
 import saveDark from '../images/save-dark.svg'
+import tabsGlossaryIcon from '../images/tabs-glossary-icon.svg'
 import axios from 'axios'
 
 import base_url from '../../../settings/base_url'
@@ -130,6 +132,20 @@ const elements = {
                 { name: 'children', label: 'Children', type: 'text' },
             ],
         }, //children
+        'Разделы с текстами': {
+            component: TabsGlossary,
+            icon: tabsGlossaryIcon, // Replace with the actual icon reference
+            inputs: [
+                { name: 'tabs', label: 'Названия', type: 'tabs'},
+                { name: 'tabsGlossary', label: 'Тексты', type: 'tabsContent'},
+                { name: 'color', label: 'Цвет', type: 'color' },
+                { name: 'tabsBackgroundColor', label: 'Цвет фона названии разделов', type: 'color' },
+                { name: 'tabsActiveBackgroundColor', label: 'Фон активного названия раздела', type: 'color' },
+                { name: 'glossaryBackgroundColor', label: 'Фон раздела', type: 'color' }
+                // Add more inputs as needed based on the TabsGlossary component's props
+            ],
+        }
+        
     },
     'Списковые элементы': {
         'Точечный': {
@@ -153,19 +169,19 @@ const elements = {
             ],
         },
     },
-    // 'Табличные элементы': {
-    //     'Двухколонная': {
-    //         component: Table_1,
-    //         icon: table1Icon,
-    //         inputs: [
-    //             { name: 'rows', label: 'Строки ([{first:, second:}])', type: 'rows' },
-    //             { name: 'borderColor', label: 'Цвет границы', type: 'color' },
-    //             { name: 'color', label: 'Цвет текста', type: 'color' },
-    //         ],
+    'Табличные элементы': {
+        'Двухколонная': {
+            component: Table_1,
+            icon: table1Icon,
+            inputs: [
+                { name: 'rows', label: 'Строки', type: 'rows' },
+                { name: 'borderColor', label: 'Цвет границы', type: 'color' },
+                { name: 'color', label: 'Цвет текста', type: 'color' },
+            ],
               
-    //     }, // rows [{first:, second:}], borderColor, color
+        }, // rows [{first:, second:}], borderColor, color
     
-    // },
+    },
     'Медиа': {
         'Файл': {
             component: FileDownloader,
@@ -492,9 +508,16 @@ const Constructor = ({saveCancel, save, id, title}) => {
                     }
                     
                     let values = item.values.values;
-                    if (values.list && typeof values.list === 'string') {
-                        values.list = values.list.split('@#');
-                    }
+                    // Reverse the stringification for each value
+                    Object.keys(values).forEach(key => {
+                        try {
+                            // Attempt to parse each value; if it's not JSON, it'll throw an error and just use the original value
+                            values[key] = JSON.parse(values[key]);
+                        } catch (e) {
+                            // If parsing fails, keep the original value
+                            values[key] = values[key];
+                        }
+                    });
     
                     return {
                         component_entry_id: item.component_entry_id,
@@ -512,10 +535,14 @@ const Constructor = ({saveCancel, save, id, title}) => {
             // Clone the componentHistory to avoid direct state mutation
             let modifiedHistory = JSON.parse(JSON.stringify(componentHistory));
             modifiedHistory.forEach(item => {
-                if (Array.isArray(item.values.list)) {
-                    item.values.list = item.values.list.join('@#');
-                }
+                Object.keys(item.values).forEach(key => {
+                    // Stringify every value, regardless of its type
+                    if (item.values[key] !== undefined) {
+                        item.values[key] = JSON.stringify(item.values[key]);
+                    }
+                });
             });
+
             // console.log("MODU", modifiedHistory)
             axios  
                 .post(base_url + '/api/aml/chapter/saveComponents/'+id,
@@ -581,7 +608,7 @@ const Constructor = ({saveCancel, save, id, title}) => {
                 ...prevHistory.slice(existingComponentIndex + 1),
             ]);
         } else {
-            // If it's a new element, add it to componentHistory
+            
             setComponentHistory((prevHistory) => {
                 return [
                     ...prevHistory,
@@ -622,9 +649,11 @@ const Constructor = ({saveCancel, save, id, title}) => {
                                 </svg>
                             </div>
                             <Reveal>
-                                {componentMap[item.componentName] && (
-                                    React.createElement(componentMap[item.componentName], item.values)
-                                ) }
+                                {
+                                    componentMap[item.componentName] && (
+                                        React.createElement(componentMap[item.componentName], item.values)
+                                    ) 
+                                }
                             </Reveal>
                         </div>
                     )
@@ -647,16 +676,7 @@ const Constructor = ({saveCancel, save, id, title}) => {
                 <h3>Элементы</h3>
                 <a onClick={() => {
                     console.log(componentHistory)
-                    // let f = componentHistory.forEach(component => {
-                    //     // Find the object inside inputs with name property equal to "list"
-                    //     const inputItem = component.inputs.find(input => input.name === 'list');
-
-                    //     if (inputItem)
-                    //         component.values['list'] = component.values['list'].join('@#')
-
-                    // });
-                    // console.log(f)
-                }}>CONSOLE.LOG</a>
+                }} style={{color: 'white', cursor: 'default'}}>CONSOLE.LOG</a>
                 <div className='elements'>
                     {Object.entries(elements).map(([groupName, groupElements]) => (
                         <div className='element-group' key={groupName}>

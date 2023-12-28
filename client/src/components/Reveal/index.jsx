@@ -23,6 +23,7 @@ function Reveal({ children }) {
                 transition={{ duration: 0.7, ease: 'easeInOut', delay: 0.25 }}
                 initial='hidden'
                 animate={mainControls}
+                className='reveal'
             >{children}</motion.div>
         </div>
     );

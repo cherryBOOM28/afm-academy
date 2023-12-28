@@ -20,6 +20,7 @@
         font-size: 24px;
         color: #374761;
     }
+    overflow: scroll;
     .modal-content {
         padding-top: 25px;
         width: 100% !important;
@@ -29,13 +30,38 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
-            width: 70% !important;
+            width: 100% !important;
+
+            input[type=text] {
+                border-radius: 5px;
+                border: none;
+                background-color: rgba(0, 0, 0, 0.137);
+                padding: 3px;
+
+                :focus {
+                    border: none;
+                }
+            }
+
+            .table-rows-input {
+                padding-top: 0px;
+                display: flex;
+                flex-direction: row;
+                .first-column {
+                    width: 20%;
+                    
+                }
+                .second-column {
+                    flex-shrink: 1;
+                }
+            }
             
         }
         button {
-            width: 70% !important;
+            width: 100% !important;
             margin-top: 15px;
         }
+
     }
 
 
