@@ -26,7 +26,7 @@ const Comments = ({ commentsUrl, currentUserId, postId }) => {
         },
       })
       const backendComments = response.data.questions;
-      console.log(backendComments)
+      // console.log(backendComments)
   
       return response.data.questions;
     } catch (error) {

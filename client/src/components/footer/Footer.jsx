@@ -28,13 +28,13 @@ function Footer({ email, phoneNumber }) {
                                     <p className={cl.footer__text}>Астана, Казахстан</p>
                                 </li>
                                 <li>
-                                    <p className={cl.footer__text}>Ул. Мангилик Ел C1.4</p>
+                                    <p className={cl.footer__text}>ул. Ш. Уалиханова, 11</p>
                                 </li>
                                 <li>
-                                    <a className={cl.footer__text} href={`tel:${phoneNumber}`} onClick={handlePhoneClick}>7777 777 77 77</a>
+                                    <a className={cl.footer__text} href={`tel:${phoneNumber}`} onClick={handlePhoneClick}>тел. +7 708 716 8416</a>
                                 </li>
                                 <li>
-                                    <a className={cl.footer__text} href={`mailto:${email}`} onClick={handleEmailClick}>afm@gmail.com</a>
+                                    <a className={cl.footer__text} href={`mailto:${email}`} onClick={handleEmailClick}>aml.academy2023@gmail.com</a>
                                 </li>
                             </ul>
                         </nav>
@@ -99,7 +99,7 @@ function Footer({ email, phoneNumber }) {
                         </nav>
                         
                     </div>
-                    <div className={cl.footer__block}>
+                    {/* <div className={cl.footer__block}>
                         <p className={cl.footer__headline}>Библиотека</p>
                         <nav className={cl.footer__content}>
                             <ul>
@@ -115,15 +115,15 @@ function Footer({ email, phoneNumber }) {
                             </ul>
                         </nav>
                         
-                    </div>
+                    </div> */}
                     <div className={cl.socials}>
-                        <a href='/#' className={cl.rounde}>
+                        <a href='https://www.instagram.com/aml_academy/' className={cl.rounde}>
                             <img src={igIcon} alt="instagram" className={cl.icon} />
                         </a>
-                        <a href='/#' className={cl.rounde}>
+                        <a href='https://www.facebook.com/' className={cl.rounde}>
                             <img src={fbIcon} alt="facebook" className={cl.icon} />
                         </a>
-                        <a href='/#' className={cl.rounde}>
+                        <a href='https://www.instagram.com/aml_academy/' className={cl.rounde}>
                             <img src={tgIcon} alt="telegram" className={cl.icon} />
                         </a>
                     </div>
@@ -143,7 +143,7 @@ function Footer({ email, phoneNumber }) {
                             </ul>
                         </nav>
                     </div>
-                    <div className={cl.footer__block__middle}>
+                    {/* <div className={cl.footer__block__middle}>
                         <p className={cl.footer__headline}>Эксперты</p>
                         <nav className={cl.footer__content}>
                             <ul>
@@ -161,7 +161,7 @@ function Footer({ email, phoneNumber }) {
                                 </li>
                             </ul>
                         </nav>
-                    </div>
+                    </div> */}
                     <Map />
                     
 

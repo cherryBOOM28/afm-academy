@@ -10,6 +10,7 @@ import interactionPlugin from "@fullcalendar/interaction"
 import axios from 'axios';
 
 import './Calendar.scss'
+import Header from '../../components/header/Header';
 
 const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -37,10 +38,10 @@ function CalendarPage(props) {
     });
 
     useEffect(() => {
-        console.log('Fetching events...');
+        // console.log('Fetching events...');
         axios.get('http://localhost:1415/events/all')
             .then(res => {
-                console.log('Events response:', res.data);
+                // console.log('Events response:', res.data);
 
                 const formattedEvents = res.data.map(event => ({
                     ...event,
@@ -62,8 +63,8 @@ function CalendarPage(props) {
     }
 
     const handleEventClick = (arg) => {
-        console.log(arg)
-        console.log(arg.event.extendedProps);
+        // console.log(arg)
+        // console.log(arg.event.extendedProps);
 
         // let id = arg.event.id - 0
 
@@ -77,8 +78,8 @@ function CalendarPage(props) {
     return ( 
         <>
             <div className='calendar-page'>
+                <Header dark={true}  />
                 <div className="container">
-                    <DefaultHeader />
                 </div>
                 <main className='page-content container'>
                     <h2>Календарь мероприятий</h2>
@@ -154,7 +155,7 @@ const EventCard = ({event}) => {
 }
 
 const renderEventContent = (eventInfo) => {
-    console.log("event", eventInfo);
+    // console.log("event", eventInfo);
 
     return (
       <>

@@ -69,7 +69,7 @@ function Home() {
 
     return (
         <div className={cl.homeWrapper}>
-            <Header />
+            <Header dark={false}/>
             <section className={cl.aboutUs}>
                 <div className={cl.container}>
                     <div className={cl.aboutUs__section}>
@@ -97,13 +97,13 @@ function Home() {
                                 <Link to="/#" style={{ textDecoration: 'none' }}>
                                     <div className={cl.aml_box}>
                                         <img src={deepCourse} alt="" />
-                                        <p className={cl.course_box_name}>Углубленный</p>
+                                        <p className={cl.course_box_name}>Продвинутый</p>
                                     </div>
                                 </Link>
                                 <Link to="/3" style={{ textDecoration: 'none' }}>
                                     <div className={cl.aml_box}>
                                         <img src={upCourse} alt="" />
-                                        <p className={cl.course_box_name}>Повышение квалификации</p>
+                                        <p className={cl.course_box_name}>Тематические</p>
                                     </div>
                                 </Link>
                             </div>
@@ -154,7 +154,7 @@ function Home() {
                 </div>
                 <NewsTab />
             </section>
-            <section className={cl.partnersWrapper}>
+            {/* <section className={cl.partnersWrapper}>
                 <div className={cl.container}>
                     <h1 className={cl.courses__headline}>Партнеры</h1>
                     <div className={cl.partners}>
@@ -163,7 +163,7 @@ function Home() {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section> */}
             {/* <Dropdown /> */}
             <Footer />
         </div>

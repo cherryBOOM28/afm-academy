@@ -20,7 +20,7 @@
         width: 100%;
         font-size: 18px;
         font-weight: 400;
-
+        line-height: 120%;
     }
 
     .sessionProgress {
@@ -48,6 +48,7 @@ $sidebarHoverBackgroundColor: #182f6a;
 .session-group {
     display: flex;
     flex-direction: column;
+    user-select: none;
 
     > div:nth-child(1) {
         display: flex;
@@ -62,22 +63,37 @@ $sidebarHoverBackgroundColor: #182f6a;
         h5 {
             width: 100%;
             font-size: 15px;
-            font-weight: 500;
+            font-weight: 600;
+            line-height: 140%;
         }
 
-        img {
-            height: 20px;
-            width: auto;
+        .icon {
+            background-color: #f2f2f200;
+            border-radius: 50%;
+            padding: 2px;
+            box-sizing: border-box;
+            height: max-content;
+            width: max-content;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                background: #f2f2f2;
+                transition: background 200ms ease-in-out;
+
+                > * {
+                    color: black;
+                }
+            }
+
+
         }
     }
     
     > div:nth-child(2) {
-        &.open {
-        }
-
-        &.close {
-            display: none;
-            
-        }
+        overflow: hidden;
     }
 }

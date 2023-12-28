@@ -19,6 +19,7 @@ import ModalWindow from '../../components/ModalWindow/ModalWindow';
 import axios from 'axios';
 import base_url from '../../settings/base_url';
 import Sizebox from '../../components/courseTemplates/common/Sizebox';
+import Header from '../../components/header/Header';
 
 function BasicCourse() {
     const jwtToken = localStorage.getItem('jwtToken');
@@ -51,20 +52,16 @@ function BasicCourse() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${id}`, {
-                    headers: {
-                        Authorization: `Bearer ${jwtToken}`,
-                    },
-                });
+                const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${id}`);
 
-                console.log(response.data);
+                // console.log(response.data);
 
                 if (response.status === 200) {
                     setData(response.data);
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
             } catch (error) {
                 setError(error);
@@ -79,9 +76,9 @@ function BasicCourse() {
 
     return ( 
         <div className={`basic-course-page`}>
+            <Header dark={true}  />
             <div>
                 <div className="container">
-                    <DefaultHeader />
                 </div>
             </div>
 
@@ -104,7 +101,7 @@ function BasicCourse() {
                     </Collapsable>
                     <Collapsable title={'Стоимость курса'}>
                         <p>
-                            {data ? data.course.course_price : ''}
+                            {data ? data.course_price : ''} тенге
                         </p>
                     </Collapsable>
                     <Collapsable title={'Дата ближайшего курса'}>
@@ -112,18 +109,18 @@ function BasicCourse() {
                             21.10.2023
                         </p>
                     </Collapsable>
-                    <Collapsable title={'Программа курса'}>
+                    { data && data.modules && data.modules.length != 0 ? <Collapsable title={'Программа курса'}>
                         <p style={{lineHeight: '23px'}}>
                         {
-                            data && data.chapters ? data.chapters.map((chapter, index) => {
+                            data.modules.map((module, index) => {
 
-                                console.log(chapter)
-                                return <>{index+1}. {chapter.chapter_description}<br /></>
+                                // console.log(module)
+                                return <>{index+1}. {module.chapter_description}<br /></>
 
-                            }) : null
+                            })
                         }
                         </p>
-                    </Collapsable>
+                    </Collapsable> : null }
                     <Collapsable title={'Дата ближайшего курса'}>
                         <p>
                             Доступ к просмотру записи лекции на 3 месяца, раздаточный материал, а также материалы лекции в личном кабинете
@@ -131,7 +128,7 @@ function BasicCourse() {
                     </Collapsable>
                 </div>
 
-                <h2>Процесс обучения</h2>
+                <h2 className='section-header'>Процесс обучения</h2>
                 <RoadList items={[
                     'Подача заявки',
                     'Оплата',
@@ -141,12 +138,12 @@ function BasicCourse() {
                     'Выдача сертификатов'
                 ]}/>
 
-                <h2>Лекторы</h2>
+                <h2 className='section-header'>Лекторы</h2>
                 <Lectors 
                     lectors={[
-                        { img: lector1, name: 'Махметов Муратбек', text: 'Лектор академии финансов.'},
-                        { img: lector2, name: 'Махашева Асем', text: 'Лектор академии финансов.'},
-                        { img: lector3, name: 'Шагатаев Даурен', text: 'Лектор академии финансов. Проректор академии финансов.'},
+                        { img: lector1, name: 'Махметов Муратбек', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
+                        { img: lector2, name: 'Махашева Асем', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
+                        { img: lector3, name: 'Шагатаев Даурен', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
                         // { img: lectorImg, name: 'Larry W.', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
                         // { img: lectorImg, name: 'Larry W.', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
                     ]}
@@ -155,9 +152,9 @@ function BasicCourse() {
                 {!isLoading 
                     ? (
                         <>
-                            <h2>Отзывы</h2>
+                            <h2 className='section-header'>Отзывы</h2>
                             <FeedBacks 
-                                feedBacks={data !== null ? data.course.courseComments : []}
+                                feedBacks={data !== null ? data.courseComments : []}
                             />
                         </> ) 
                     : <div style={{
@@ -176,9 +173,18 @@ function BasicCourse() {
                         </div> */}
                     
                         <div>
-                            <Link to={`/payment/${id}`} style={{ color: 'white', textDecoration: 'none' }}>
-                                Приобрести курс
-                            </Link>
+                            {
+                                jwtToken != null
+                                ? (
+                                    <Link to={`/payment/${id}`} style={{ color: 'white', textDecoration: 'none' }}>
+                                        Приобрести курс
+                                    </Link>
+                                ) : (
+                                    <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
+                                        Приобрести курс
+                                    </Link>
+                                )
+                            }
                         </div>
                 
                     </div>

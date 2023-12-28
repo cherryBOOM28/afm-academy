@@ -6,14 +6,15 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import { ImRadioUnchecked } from "react-icons/im";
 import unfinishedIcon from './../../pages/testCoursePage/unfinishedIcon.svg';
 import lectureIcon from './lectureIcon.svg';
-import { AiFillFile } from "react-icons/ai";
+import { VscListSelection } from "react-icons/vsc";
 
-import { RiArrowDownSLine } from "react-icons/ri";
+import { RiArrowDownSLine, RiArrowUpSLine, RiArrowRightSLine } from "react-icons/ri";
 import arrowDownIcon from './../../pages/testCoursePage/arrowDownIcon.svg';
 
 import './sessions.scss';
 import axios from 'axios';
 import base_url from '../../settings/base_url';
+import { useAnimation, motion } from 'framer-motion';
 
 export const Session = ({title, session, handleSessionClick, isActive}) => {
     const sessionFinished = session.progress === 100;
@@ -38,7 +39,7 @@ export const Session = ({title, session, handleSessionClick, isActive}) => {
                     
                 } else {
                     // Handle other status codes if needed
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
             } catch (error) {
                 console.error(error);
@@ -52,10 +53,11 @@ export const Session = ({title, session, handleSessionClick, isActive}) => {
         <div 
             className={`session ${isActive ? 'active' : ''}`} 
             key={session.name}
-            onClick={() => handleSessionClick(session.id)}>
+            onClick={() => handleSessionClick(session.id)}
+        >
 
             {/* <img src={AiFillFile} style={{color: 'white', background: 'white'}} alt="icon" /> */}
-            <AiFillFile style={{color: 'white', fontSize: '28px'}} />
+            <VscListSelection style={{color: 'white', fontSize: '28px'}} />
             <h6>{session.name}</h6>
             <div className="sessionProgress">
                 {
@@ -68,34 +70,63 @@ export const Session = ({title, session, handleSessionClick, isActive}) => {
     )
 }
 
-export const SessionGroup = ({title, sessions, groupName, handleSessionClick, activeSession}) => {
-    sessions = sessions.filter(session => session.group === groupName);
-    const [isOpen, setOpen] = useState(false);
-
+export const Module = ({children, name, isOpen, moduleId, handleModuleOpen}) => {
+    // const [isOpen, setOpen] = useState(false);
 
     const handleOpen = (event) => {
-        if (!event.target.classList.contains("group-sessions")) return;
-        setOpen(prev => !prev)
+        // if (!event.target.classList.contains("group-sessions")) return;
+        // setOpen(prev => !prev)
+        handleModuleOpen(moduleId)
+    }
+
+    const mainControls = useAnimation();
+
+    useEffect(() => handleAnimation(), [isOpen])
+
+    const handleAnimation = () => {
+        if (isOpen) {
+            mainControls.start('open')
+        } else {
+            mainControls.start('close')
+        }
     }
 
     return (
-        <div className="session-group" onClick={handleOpen}>
-            <div className='group-sessions'>
-                {/* <img src={arrowDownIcon} alt="arrow down icon" className='group-sessions'/> */}
-                < RiArrowDownSLine style={{ fontSize: '20px' }} />
-                <h5 className='group-sessions'>{title.toUpperCase()}</h5>
+        <div className="session-group" >
+            <div 
+                className="group-sessions" 
+                onClick={handleOpen}
+                style={{
+                    boxShadow: isOpen ? "0px 4px 8px rgba(0, 0, 0, 0.1)" : "none",
+                }}
+            >
+                <div className="icon">
+                    {isOpen ? (
+                        <RiArrowDownSLine size={30} onClick={(e) => {
+                            e.stopPropagation()
+                            handleOpen(e)
+                        }} />
+                    ) : (
+                        <RiArrowRightSLine size={30} onClick={(e) => {
+                            e.stopPropagation()
+                            handleOpen(e)
+                        }} />
+                    )}
+                </div>
+                <h5 className="group-sessions">{name}</h5>
             </div>
-            <div className={`${isOpen ? 'open' : 'close'}`}>
-                {sessions.map(session => {
-                    const sessionFinished = session.progress === 100;
-                    const sessionId = `${session.group}-${session.name}`;
-
-                    return (
-                        <Session session={session} handleSessionClick={handleSessionClick} isActive={activeSession === session.id}/>
-                    )
-                })}
-                
-            </div>
+            <motion.div 
+                className={`${isOpen ? 'open' : 'close'}`}
+                variants={{
+                    close: { height: 0 },
+                    open: { height: 'max-content' }
+                }}
+                transition={{ duration: 1, ease: 'linear' }}
+                initial='close'
+                animate={mainControls}
+            >
+                {children}
+            </motion.div>
         </div>
     )
 }

@@ -26,6 +26,16 @@
     border-radius: 5px;
     border: 1px solid #A7CAFF;
 
+    .bold {
+        font-weight: 600;
+    }
+
+    .icon-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
     .icon {
         color: #CADEFC;
 
@@ -46,7 +56,11 @@
         font-family: Ubuntu;
         font-size: 18px;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 400;
         line-height: 140%; /* 25.2px */
+
+        > p+p {
+            margin-top: 10px;
+        }
     }
 }

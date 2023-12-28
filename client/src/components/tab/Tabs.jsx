@@ -3,6 +3,9 @@ import cl from './Tabs.module.css';
 import Button from '../UI/button/Button';
 // import courseImg from '../../assets/images/course.png';
 import courseImg from '../../assets/icons/course.svg';
+import courseImg2 from '../../assets/icons/image 27.svg';
+import courseImg3 from '../../assets/icons/image 28.svg';
+import courseImg4 from '../../assets/icons/image 29.svg';
 
 import { Link } from 'react-router-dom';
 
@@ -21,9 +24,9 @@ function Tabs({ text }) {
     const maxLines = 3;
 
     if (container.scrollHeight > container.clientHeight) {
-      while (container.scrollHeight > container.clientHeight && content.clientHeight > maxLines * content.offsetHeight) {
-        content.textContent = content.textContent.replace(/\W*\s(\S)*$/, '...');
-      }
+        while (container.scrollHeight > container.clientHeight && content.clientHeight > maxLines * content.offsetHeight) {
+            content.textContent = content.textContent.replace(/\W*\s(\S)*$/, '...');
+        }
     }
   }, [text]);
 
@@ -41,22 +44,22 @@ function Tabs({ text }) {
               className={activeTab === 1 ? cl.btnTab + ' ' + cl.activeTab : cl.btnTab}
               onClick={() => handleTabClick(2)}
           >
-              <img src={courseImg} alt="" />
+              <img src={courseImg2} alt="" />
               Профильный
           </div>
           <div
               className={activeTab === 1 ? cl.btnTab + ' ' + cl.activeTab : cl.btnTab}
               onClick={() => handleTabClick(3)}
           >
-              <img src={courseImg} alt="" />
-              Углубленный
+              <img src={courseImg3} alt="" />
+              Продвинутый
           </div>
           <div
               className={activeTab === 1 ? cl.btnTab + ' ' + cl.activeTab : cl.btnTab}
               onClick={() => handleTabClick(4)}
           >
-              <img src={courseImg} alt="" />
-              Повышение <br/> квалификации
+              <img src={courseImg4} alt="" />
+              Тематические
           </div>
       </div>
       <div className={cl.tabContent}>
@@ -64,22 +67,39 @@ function Tabs({ text }) {
               activeTab === 1 && 
 
               <div className={cl.courses__info} ref={containerRef} style={{ maxHeight: 'fit-content' }}>
-                  <p className={cl.course__headline}>Описание базового курса</p>
-                  <p className={cl.course__text} style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 6, WebkitBoxOrient: 'vertical' }}>Курсы AML ACADEMY составлены специалистами в области ПОД/ФТ с многолетним опытом работы в данной сфере, в том числе в уполномоченном государственном органе. При создании программы курсов большое значение придавалось специфике каждой сферы деятельности субъектов финансового мониторинга для более четкого понимания ими своих обязанностей, и с учетом различий по требованиям законодательства для каждого вида субъекта. Возможность выбора наиболее удобного формата обучения позволяет пройти обучение из любой точки мира, в наиболее удобное для вас время. Ценовая политика Академии также ориентирована на всех видов потребителей, от физических лиц до больших корпораций.</p>
-                  <Link to="/courses/basic" style={{ textDecoration: 'none' }}>
-                    <Button className={cl.more}>Подробнее</Button>
-                  </Link>
+                    <p className={cl.course__headline}>Описание базового курса</p>
+                    <p className={cl.course__text} style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 6, WebkitBoxOrient: 'vertical' }}>
+                        Базовый курс представляет из себя теоретический 
+                        минимум по основам системы ПОД/ФТ и национальной 
+                        антиотмывочной системе Республики Казахстан. Курс 
+                        предназначен для тех слушателей, которые еще не 
+                        знакомы со сферой ПОД/ФТ и хотели бы изучить 
+                        соответствующие требования законодательства. 
+                        Курс подойдет для всех видов субъектов финансового 
+                        мониторинга, а также для всех желающих познакомиться 
+                        с системой ПОД/ФТ.    
+                    </p>
+                    <Link to="/courses/basic" style={{ textDecoration: 'none' }}>
+                        <Button className={cl.more}>Подробнее</Button>
+                    </Link>
               </div>
           }
           {
               activeTab === 2 &&
 
               <div className={cl.courses__info}>
-                  <p className={cl.course__headline}>Описание профильного курса</p>
-                  <p className={cl.course__text}>Наш профильный курс представляет собой глубокое погружение в мир противодействия легализации (отмыванию) доходов и финансированию терроризма (ПОД/ФТ). Мы разработали этот курс, чтобы помочь вам стать истинным экспертом в данной области и освоить не только базовые, но и продвинутые навыки, необходимые для эффективного выполнения обязанностей субъектов финансового мониторинга.</p>
-                  <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
-                    <Button className={cl.more}>Подробнее</Button>
-                  </Link>
+                    <p className={cl.course__headline}>Описание профильного курса</p>
+                    <p className={cl.course__text}>
+                        Данный курс предлагает более развернутое изучение 
+                        системы ПОД/ФТ, заточенное под каждый вид субъекта 
+                        финансового мониторинга. Слушатели смогут ознакомиться 
+                        с требованиями законодательства конкретно для их вида 
+                        субъекта, а также узнать особенности ведения деятельности  
+                        в сфере ПОД/ФТ для данного вида СФМ.
+                    </p>
+                    <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
+                        <Button className={cl.more}>Подробнее</Button>
+                    </Link>
               </div>
           }
           {
@@ -87,25 +107,34 @@ function Tabs({ text }) {
               activeTab === 3 &&
 
               <div className={cl.courses__info}>
-                  <p className={cl.course__headline}>Описание углубленного курса</p>
-                  <p className={cl.course__text}>
-                    Наш углубленный курс предназначен для тех, кто стремится стать истинным экспертом в области противодействия легализации (отмыванию) доходов и финансированию терроризма (ПОД/ФТ). Этот курс представляет собой продвинутый уровень обучения, разработанный специально для тех, кто уже имеет опыт в сфере финансового мониторинга и хочет углубить свои знания и навыки.
-                  </p>
-                  <Link to="/courses/basic" style={{ textDecoration: 'none' }}>
-                    <Button className={cl.more}>Подробнее</Button>
-                  </Link>
+                    <p className={cl.course__headline}>Описание продвинутого курса</p>
+                    <p className={cl.course__text}>
+                        Курс могут пройти субъекты, уже имеющие опыт в сфере ПОД/ФТ 
+                        и желающие более глубоко изучить ее для применения в своей 
+                        деятельности. Продвинутый курс сфокусирован на практических 
+                        аспектах соблюдения требований законодательства в сфере ПОД/ФТ, 
+                        и включает изучение реальных схем и способов отмывания доходов 
+                        и финансирования терроризма.
+                    </p>
+                    <Link to="/courses/basic" style={{ textDecoration: 'none' }}>
+                        <Button className={cl.more}>Подробнее</Button>
+                    </Link>
               </div>
           } 
           {
               activeTab === 4 &&
 
               <div className={cl.courses__info}>
-                  <p className={cl.course__headline}>Описание курса по повышению квалификации</p>
-                  <p className={cl.course__text}>Наш курс по повышению квалификации разработан для профессионалов, уже работающих в сфере противодействия легализации (отмыванию) доходов и финансированию терроризма (ПОД/ФТ). Если вы стремитесь усовершенствовать свои навыки и знания, чтобы быть на передовой в этой динамичной области, то этот курс - ваш идеальный выбор.
-                  </p>
-                  <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
-                    <Button className={cl.more}>Подробнее</Button>
-                  </Link>
+                    <p className={cl.course__headline}>Описание курса по повышению квалификации</p>
+                    <p className={cl.course__text}>
+                        В рамках повышения квалификации субъектов финансового мониторинга 
+                        и сотрудников государственных органов Академией разработаны разовые 
+                        тематические тренинги в сфере ПОД/ФТ. Также, свои предложения по 
+                        тематикам тренингов вы можете направить через опросник для СФМ.
+                    </p>
+                    <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
+                        <Button className={cl.more}>Подробнее</Button>
+                    </Link>
               </div>
           }
       </div>

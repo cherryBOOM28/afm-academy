@@ -1,8 +1,21 @@
 import './style.scss'
 
-function RandomH2({children}) {
+function RandomH2({children, style, text}) {
+    
+    if (text) {
+        return (
+            <div className="random-h2"
+                style={style}
+            >
+                {text}
+            </div>
+        )
+    }
+    
     return ( 
-        <div className="random-h2">
+        <div className="random-h2"
+            style={style}
+        >
             {children}
         </div>
     );

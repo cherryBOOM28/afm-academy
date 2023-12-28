@@ -19,6 +19,7 @@ import ProfileJob from '../../components/profile-job';
 import ProfileEducation from '../../components/profile-education';
 import ProfilePassword from '../../components/profile-password';
 import base_url from '../../settings/base_url';
+import Header from '../../components/header/Header';
 
 function Profile(props) {
     const jwtToken = localStorage.getItem('jwtToken');
@@ -49,7 +50,7 @@ function Profile(props) {
                     },
                 }
 
-                console.log(`${base_url}/api/aml/course/createCourseComments/1`, data, config)
+                // console.log(`${base_url}/api/aml/course/createCourseComments/1`, data, config)
                 const response = await axios.post(
                     `${base_url}/api/aml/course/createCourseComments/1`, 
                     data, config
@@ -57,9 +58,9 @@ function Profile(props) {
                 );
     
                 if (response.status === 200) {
-                    console.log(response.data)
+                    // console.log(response.data)
                 } else {
-                    console.log(response.statusText)
+                    // console.log(response.statusText)
                 }
     
             } catch (error) {
@@ -86,8 +87,6 @@ function Profile(props) {
         setOpen(false);
     }
 
-    
-
     const handleTabClick = (tab) => {
         setCurrentTab(tab);
     }
@@ -99,8 +98,14 @@ function Profile(props) {
     useEffect(() => {
         if (tabname) {
             
+            // console.log(tabname === 'vebinars')
+
             if (tabname === 'sertificates') {
                 setCurrentTab(4);
+            }
+
+            if (tabname === 'vebinars') {
+                setCurrentTab(2);
             }
 
         }
@@ -165,14 +170,14 @@ function Profile(props) {
                     </div> 
                 ) : null
             }
+            <Header dark={true}/>
             <div className="container">
-                <DefaultHeader/>
             </div>
             <div className="profile-page-wrapper">
                 <div className="container">
                     <Link to='/courses/catalog' className='nav-back'>
                         <IoIosArrowBack/>
-                        <div>Назад к главной</div>
+                        <div><a>Назад к главной</a></div>
                     </Link>
 
                     {/* <ProfileHeader handleRedact={handleRedact}/> */}

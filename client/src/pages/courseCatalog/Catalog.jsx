@@ -21,13 +21,14 @@ import { BiSearch } from "react-icons/bi";
 import { AiFillStar } from "react-icons/ai";
 import { MdOndemandVideo } from "react-icons/md";
 
-import bookIcon from './../../assets/icons/book.svg'
 import base_url from '../../settings/base_url';
 import axios from 'axios';
+import Header from '../../components/header/Header';
 
 function Catalog() {
     const navigate = useNavigate();
 
+    const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(true);
 
@@ -35,16 +36,84 @@ function Catalog() {
 
     const jwtToken = localStorage.getItem('jwtToken');
 
+    const [categoryOpen, setCategoryOpen] = useState(false);
+    const [filterOpen, setFilterOpen] = useState(false);
+    const [categoryFilter, setCategoryFilter] = useState([
+        'Все категории'
+    ]);
+    const [searchValue, setSearchValue] = useState("");
+
+    const handleCheckCategory = (e) => {
+        const selectedCategory = e.target.value;
+        setCategoryFilter(prevFilters => {
+            if (!e.target.checked) {
+                return prevFilters.filter(filter => filter !== selectedCategory);
+            } else {
+                prevFilters = prevFilters.filter(filter => filter !== 'Все категории');
+                return [...prevFilters, selectedCategory];
+            }
+        });
+    };
+
+    const handleCheckAllCategories = (e) => {
+        if (!e.target.checked) {
+            setCategoryFilter([]);
+        } else {
+            setCategoryFilter(['Все категории']);
+        }
+    }
+
+    const handleChangeSearchValue = (e) => {
+        setSearchValue(e.target.value);
+    }
+
+    useEffect(() => {
+        if (!data) return;
+
+        if (searchValue === "") {
+            const _coursesByCategory = {};
+            data.forEach(course => {
+                const categoryName = course.courseDTO.courseCategory.category_name;
+                if (!_coursesByCategory[categoryName]) {
+                    _coursesByCategory[categoryName] = [];
+                }
+                _coursesByCategory[categoryName].push(course);
+            });
+            setCoursesByCategory(_coursesByCategory);
+        } else {
+            const _coursesByCategory = {};
+            data
+            .filter(course => course.courseDTO.course_name.toLowerCase().indexOf(searchValue.toLowerCase()) != -1 
+                    || course.courseDTO.courseCategory.category_name.toLowerCase().indexOf(searchValue.toLowerCase()) != -1)
+            .forEach(course => {
+                const categoryName = course.courseDTO.courseCategory.category_name;
+                if (!_coursesByCategory[categoryName]) {
+                    _coursesByCategory[categoryName] = [];
+                }
+                _coursesByCategory[categoryName].push(course);
+            });
+            setCoursesByCategory(_coursesByCategory);
+
+        }
+    }, [searchValue])
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${base_url}/api/aml/course/getUserCourses`, {
-                    headers: {
-                        Authorization: `Bearer ${jwtToken}`,
-                    },
-                });
-
-                console.log(response.data)
+                const url = '/api/aml/course/getUserCourses';
+                const url1 = '/api/aml/course/getUserCoursesNoPr';
+                let response = null; // Use let instead of const for response to allow reassignment
+                if (jwtToken != null) {
+                    response = await axios.get(`${base_url}${url}`, {
+                        headers: {
+                            Authorization: `Bearer ${jwtToken}`,
+                        },
+                    });
+                } else {
+                    response = await axios.get(`${base_url}${url1}`);
+                }
+                // console.log(response.data)
+                setData(response.data)
 
                 const _coursesByCategory = {};
 
@@ -57,13 +126,13 @@ function Catalog() {
                         _coursesByCategory[categoryName].push(course);
                     });
     
-                    console.log(_coursesByCategory)
+                    // console.log(_coursesByCategory)
                     setCoursesByCategory(_coursesByCategory);
                     // setData(response.data);
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
 
                 // Iterate through the courses and categorize them
@@ -83,9 +152,9 @@ function Catalog() {
 
     return ( 
         <div className="catalog-page">
+            <Header dark={true} />
             <div>
                 <div className="container">
-                    <DefaultHeader />
                 </div>
             </div>
 
@@ -98,17 +167,77 @@ function Catalog() {
                         <div className='header-actions'>
                             <div className="filters">
                                 <div>
-                                    <AiFillFolder size={20} className='icon'/>
-                                    <span>Категории</span>
+                                    <div onClick={() => {
+                                        setCategoryOpen(prev => !prev);
+                                        setFilterOpen(false);
+                                    }}>
+                                        <AiFillFolder size={20} className='icon'/>
+                                        <span className='inline-text'>Категории</span>
+                                    </div>
+                                    <div 
+                                        className="categories" 
+                                        style={{
+                                            display: categoryOpen ? 'flex' : 'none',
+                                        }}
+                                        onMouseLeave={() => {
+                                            setCategoryOpen(false);
+                                        }}
+                                    >
+                                        <div>
+                                            <input 
+                                                onChange={handleCheckAllCategories}
+                                                checked={categoryFilter.includes('Все категории')}
+                                                type="checkbox" 
+                                                value={'Все категории'}
+                                            />
+                                            <label className='inline-text'>Все категории</label>
+                                        </div>
+                                        {
+                                            Object.keys(coursesByCategory || {}).map(category => {
+                                                const isChecked = categoryFilter.includes(category) 
+                                                            && !category.includes('Все категории');
+                                            
+                                                return (
+                                                    <div key={category}>
+                                                        <input 
+                                                            onChange={handleCheckCategory}
+                                                            checked={isChecked}
+                                                            type="checkbox" 
+                                                            value={category}
+                                                        />
+                                                        <label>{category}</label>
+                                                    </div>
+                                                );
+                                            })
+                                        }
+                                    </div>
                                 </div>
-                                <div>
-                                    <BsFilter size={20} className='icon'/>
-                                    <span>Фильтр</span>
-                                </div>
+                                {/* <div>
+                                    <div onClick={() => {
+                                        setFilterOpen(prev => !prev);
+                                        setCategoryOpen(false);
+                                    }}>
+                                        <BsFilter size={20} className='icon'/>
+                                        <span className='inline-text'>Фильтр</span>
+                                    </div>
+                                    <div 
+                                        className="filter" 
+                                        style={{
+                                            display: filterOpen ? 'flex' : 'none',
+                                        }}
+                                        onMouseLeave={() => {
+                                            setFilterOpen(false);
+                                        }}
+                                    >
+                                        <div>Category 1</div>
+                                        <div>Category 2</div>
+                                        <div>Category 3</div>
+                                    </div>
+                                </div> */}
                             </div>
                             <div className="search">
                                 <BiSearch size={20} className='icon'/>
-                                <input type="text" />
+                                <input type="text" value={searchValue} onChange={handleChangeSearchValue}/>
                             </div>
                         </div>
                     </div>
@@ -125,15 +254,20 @@ function Catalog() {
                                 <div>загружаем</div>
                                 <div>загружаем</div>
                                 <div>загружаем</div>
-                                <div>загружаем</div>
-                                <div>загружаем</div>
+                                {/* <div>загружаем</div>
+                                <div>загружаем</div> */}
                             </div>
                         </div>
                     ) : 
                     coursesByCategory !== null ? Object.keys(coursesByCategory).map(categoryName => {
-                        
+                        if (
+                            !categoryFilter.includes('Все категории') &&
+                            !categoryFilter.includes(categoryName)
+                        ) return;
+
                         return (
                             <CoursesBlock 
+                                key={categoryName}
                                 categoryName={categoryName} 
                                 categoryDesc={categoryName} 
                                 courses={coursesByCategory[categoryName]} /> 
@@ -149,7 +283,7 @@ function Catalog() {
 }
 
 const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
-    console.log(categoryName, courses);
+    // console.log(categoryName, courses);
 
     const navigate = useNavigate();
 
@@ -162,16 +296,16 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
     return (
         <>
             <div className='container'>
-                <h1 style={{
-                    fontFamily: 'Roboto',
+                <h1 className='inline-text' style={{
+                    fontFamily: 'Ubuntu',
                     fontSize: '20px',
                     fontWeight: '500',
                     lineHeight: '23px',
                     letterSpacing: '0em',
                     textAlign: 'left'
                 }}>{categoryName}</h1>
-                <p style={{
-                    fontFamily: "Roboto",
+                <p className='inline-text' style={{
+                    fontFamily: "Ubuntu",
                     fontSize: '16px',
                     fontWeight: '400',
                     lineHeight: '19px',
@@ -184,39 +318,48 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
             </div>
             <div className="courses-block container">
                 {
-                    filteredCourses.map((course, index) => {
+                    filteredCourses.sort((a, b) => a.shortStatus - b.shortStatus).map((course, index) => {
                         const courseDTO = course.courseDTO;
                         const { course_image, course_name } = courseDTO;
-                        const { status } = course;
+                        const { paymentInfo } = course;
+
+                        const status = paymentInfo === null ? 'available' 
+                                : paymentInfo.status;
 
                         return <div className='course-card' key={index} 
                             onClick={() => {
                                 if (status === 'process' || status === 'finished') {
-                                    navigate(`/courses/${course.id}/read`)
+                                    navigate(`/courses/${course.courseDTO.course_id}/read`)
                                 } else {
-                                    navigate(`/courses/${course.id}`);
+                                    navigate(`/courses/${course.courseDTO.course_id}`);
                                 }
                             }}
                         >
-                            <img src={course_image} alt={course_name} />
-                            <div className="info">
-                                <div className="course-name">{course_name}</div>
-                                <div className="status" style={{backgroundColor: status === 'available' ? '#CADEFC' : status === 'process' ? '#f5fcca' : '#cafccf'}}>
+                            <div className="image">
+                                <img src={course_image} alt={course_name} />
+                                <div className={`status ${status}`}>
                                     {status === 'available' ? 'Доступно' : status === 'process' ? 'В процессе' : 'Завершен'}
                                 </div>
-                                <div className="info-row">
-                                    <div className='langAndDuration'>
-                                        {'РУС'} | {'1ч 45мин'}
-                                    </div>
-                                    <div className="rating">
-                                        <AiFillStar className='star-icon' size={23}/>
-                                        <span>5.0</span>
-                                    </div>
-                                </div>
                             </div>
-                            <div className="type">
-                                <MdOndemandVideo size={23}/>
-                                <span>Электронное обучение</span>
+                            <div className="info">
+                                <div className="course-name">{course_name}</div>
+                                <div className='langAndDuration'>
+                                    {'РУС'} | {'1ч 45мин'}
+                                </div>
+                                <div className="rating">
+                                    <div className="stars">
+                                        <AiFillStar className='star-icon' size={23}/>
+                                        <AiFillStar className='star-icon' size={23}/>
+                                        <AiFillStar className='star-icon' size={23}/>
+                                        <AiFillStar className='star-icon' size={23}/>
+                                        <AiFillStar className='star-icon' size={23}/>
+                                    </div>
+                                    <span>5.0</span>
+                                </div>
+                                <div className="type">
+                                    <MdOndemandVideo size={23}/>
+                                    <span>Электронное обучение</span>
+                                </div> 
                             </div>
                         </div>
                     })

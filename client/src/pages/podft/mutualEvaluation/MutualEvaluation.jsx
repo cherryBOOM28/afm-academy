@@ -3,13 +3,14 @@ import cl from './MutualEvaluation.module.css';
 import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
 import mutualEvaluationImg from '../../../assets/images/marks.svg';
+import Header from '../../../components/header/Header';
 
 
 function MutualEvaluation() {
     return (
         <div className={cl.mutualEvaluationWrapper}>
+            <Header dark={true} />
             <div className={cl.container}>
-            <DefaultHeader />
                 <h1 className={cl.headline}>Взаимная оценка</h1>
                 <div className={cl.mutualEvaluationContent}>
                 <img src={mutualEvaluationImg} alt="mutualEvaluationImg" style={{ height: '190px' }} />
@@ -21,7 +22,7 @@ function MutualEvaluation() {
                 </div>
                 <div className={cl.mutualEvaluationBlock}>
                     <p className={cl.text}>
-                    Система взаимных оценок основывается на специальной Методологии ФАТФ, которая была принята в 2004 г. И затем изменена и дополнена в 2009 г. Методология воспроизводит основные принципы, заложенные в 40 Рекомендациях ФАТФ, а также учитывает обобщенный международный опыт в сфере ПОД/ФТ.
+                    Система взаимных оценок основывается на специальной Методологии ФАТФ, которая была принята в 2004 г. и затем изменена и дополнена в 2009 г. Методология воспроизводит основные принципы, заложенные в 40 Рекомендациях ФАТФ, а также учитывает обобщенный международный опыт в сфере ПОД/ФТ.
                     <br></br>
                     <br></br>
                     В 2010-2011 годах Республика Казахстан проходила процедуру оценки соответствия национальной системы ПОД/ФТ на соответствие международным стандартам ФАТФ в рамках первого раунда взаимных оценок ЕАГ. По результатам данной процедуры страна была включена в список государств, находящихся под усиленным мониторингом ЕАГ.

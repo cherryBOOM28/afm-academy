@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import './style.scss'
 
 function DropdownGlossaryList({
     list,

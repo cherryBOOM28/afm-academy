@@ -4,7 +4,8 @@
 }
 
 .container {
-    max-width: 1240px;
+    /* max-width: 1240px; */
+    padding: 0px 120px;
     margin: 0 auto;
 }
 
@@ -41,6 +42,7 @@
     font-weight: 400;
     text-decoration: none;
     margin-bottom: 15px;
+    word-wrap: break-word;
 }
 
 .footer__text:hover {

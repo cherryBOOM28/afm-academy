@@ -233,6 +233,8 @@
                 padding: 20px 0px;
                 color: white;
                 width: 100%;
+
+                transition: height 1000ms linear;
             }
         }
 
@@ -256,9 +258,7 @@
             &.open {
                 width: calc(100% - 300px);
                 // padding: 0px;
-                transition: width 0.5s ease-in-out
-                // , padding 0.5s ease-in-out
-                ;
+                transition: width 0.5s ease-in-out;
             }
 
             height: 100%;
@@ -311,6 +311,14 @@
 
                 .bold {
                     font-weight: 600;
+                }
+
+                .italic {
+                    font-style: italic;
+                }
+
+                .red {
+                    color: red;
                 }
             }
         }

@@ -17,6 +17,7 @@ import base_url from '../../settings/base_url';
 
 import { AiFillStar } from "react-icons/ai";
 import { MdOndemandVideo } from "react-icons/md";
+import Header from '../../components/header/Header';
 
 
 function MyCourses() {
@@ -31,19 +32,27 @@ function MyCourses() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${base_url}/api/aml/course/getUserCourses`, {
-                    headers: {
-                        Authorization: `Bearer ${jwtToken}`,
-                    },
-                });
+                const url = '/api/aml/course/getUserUsingCourses';
+                // const url1 = '/api/aml/course/getUserCoursesNoPr';
+                let response = null; // Use let instead of const for response to allow reassignment
+                if (jwtToken != null) {
+                    response = await axios.get(`${base_url}${url}`, {
+                        headers: {
+                            Authorization: `Bearer ${jwtToken}`,
+                        },
+                    });
+                } 
+                // else {
+                //     response = await axios.get(`${base_url}${url1}`);
+                // }
 
-                if (response.status === 200) {
-                    console.log(response.data)
+                if (response.status == 200) {
+                    // console.log(response.data)
                     setCourses(response.data);
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
 
                 
@@ -60,9 +69,9 @@ function MyCourses() {
 
     return ( 
         <div className="my-courses-page">
+            <Header dark={true} />
             <div>
                 <div className="container">
-                    <DefaultHeader />
                 </div>
             </div>
 
@@ -99,7 +108,7 @@ function MyCourses() {
 
                 <div className='container'>
                     <h1 style={{
-                        fontFamily: 'Roboto',
+                        fontFamily: 'Ubuntu',
                         fontSize: '20px',
                         fontWeight: '500',
                         lineHeight: '23px',
@@ -107,18 +116,7 @@ function MyCourses() {
                         textAlign: 'left'
                         
                     }}>Обучение</h1>
-                    {/* <p style={{
-                        fontFamily: "Roboto",
-                        fontSize: '16px',
-                        fontWeight: '400',
-                        lineHeight: '19px',
-                        letterSpacing: '0em',
-                        textAlign: 'left',
-                        color: '#656678'
-                        
-                    }}>
-                        Широкий спектр профессиональных курсов в Астане по самым разным направлениям
-                    </p> */}
+                   
                 </div>
 
                 <div className="courses-block">
@@ -130,24 +128,25 @@ function MyCourses() {
                                         <div>загружаем</div>
                                         <div>загружаем</div>
                                         <div>загружаем</div>
-                                        <div>загружаем</div>
-                                        <div>загружаем</div>
                                     </div>)
                                     : (
                                         <div className="courses-list">
                                             {
-                                                courses.filter(course => course.status === 'process' || course.status === 'finished').map((course, index) => {
-                                                    console.log(course);
+                                                courses.map((course, index) => {
+                                                    // console.log(course);
                                                     const courseDTO = course.courseDTO;
                                                     const { course_image, course_name } = courseDTO;
-                                                    const { status } = course;
+                                                    const { paymentInfo } = course;
+
+                                                    const status = paymentInfo === null ? 'available' 
+                                                            : paymentInfo.status;
 
                                                     return <div className='course-card' key={index} 
                                                         onClick={() => {
                                                             if (status === 'process' || status === 'finished') {
-                                                                navigate(`/courses/${course.id}/read`)
+                                                                navigate(`/courses/${course.courseDTO.course_id}/read`)
                                                             } else {
-                                                                navigate(`/courses/${course.id}`);
+                                                                navigate(`/courses/${course.courseDTO.course_id}`);
                                                             }
                                                         }}
                                                     >

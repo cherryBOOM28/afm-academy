@@ -5,8 +5,45 @@ import {BiPlus} from 'react-icons/bi';
 import img from './../../assets/images/vebinar-img.png'
 
 import './vebinarTable.scss'
+import axios from "axios";
+import base_url from "../../settings/base_url";
 
 const VebinarTable = () => {
+
+    const [vebinars, setVebinars] = useState([]);
+    const [error, setError] = useState(null);
+    const [isLoading, setLoading] = useState(true);
+    const jwtToken = localStorage.getItem('jwtToken');
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${base_url}/api/aml/webinar/getWebinars`, {
+                    headers: {
+                        Authorization: `Bearer ${jwtToken}`,
+                    },
+                });
+
+                if (response.status === 200) {
+                    // console.log(response.data)
+                    setVebinars(response.data);
+                } else {
+                    // Handle other status codes if needed
+                    setError(response.statusText);
+                    // console.log(response.statusText);
+                }
+
+
+            } catch (error) {
+                setError(error);
+                console.error(error);
+            }
+
+            setLoading(false);
+        };
+
+        fetchData();
+    }, []);
 
     const columns = [
         'Тема',
@@ -58,7 +95,7 @@ const VebinarTable = () => {
         <>
         <TableContainer className='vebinar-table-container' component={Paper} style={{backgroundColor: 'transparent', border: 'none', boxShadow: 'none', padding: '0', boxSizing: 'border-box'}}>
             <Table className='vebinar-table' style={{ borderSpacing: '8px' }}>
-                <TableHead> 
+                <TableHead>
                     <TableRow style={{border: 'none'}} className='table-row'>
                         {columns.map((column, index) => {
                             let last = index === columns.length - 1;
@@ -76,43 +113,71 @@ const VebinarTable = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.slice(page * rowsPerPage, (page + 1) * rowsPerPage).map((row, index) => (
-                        <TableRow key={index} className='table-row'>
-                            <TableCell className='title'>
-                                <div>
-                                    <img src={row.img} alt={row.title} />
-                                    <span>{row.title}</span>
-                                </div>
-                            </TableCell>
-                            <TableCell className={'time'} >
-                                <div>{row.time}</div>
-                            </TableCell>
-                            <TableCell className={'auditory'} >
-                                <div>{row.auditory}</div>
-                            </TableCell>
-                            <TableCell className={'lector'} >
-                                <div>{row.lector}</div>
-                            </TableCell>
-                            <TableCell className={'format'} >
-                                <div>{row.format}</div>
-                            </TableCell>
-                            <TableCell className={'contingent'} >
-                                <div>{row.contingent}</div>
-                            </TableCell>
-                            <TableCell 
-                                align={'right'} 
-                                className={'actions'} 
+
+                    {vebinars.slice(page * rowsPerPage, (page + 1) * rowsPerPage).map((row, index) => {
+                        const datee = new Date(row.date);
+
+                        const months = {
+                            0: 'января',
+                            1: 'февраля',
+                            2: 'марта',
+                            3: 'апреля',
+                            4: 'мая',
+                            5: 'июня',
+                            6: 'июля',
+                            7: 'августа',
+                            8: 'сентября',
+                            9: 'октября',
+                            10: 'ноября',
+                            11: 'декабря',
+                        };
+
+// Get the day, month, and hour from the date
+                        const day = datee.getDate();
+                        const monthIndex = datee.getMonth();
+                        const month = months[monthIndex];
+                        const hour = datee.getHours();
+                        const minutes = datee.getMinutes();
+
+// Format the date and time
+                        const formattedDate = `${day} ${month} ${hour.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+                        return (<TableRow key={index} className='table-row'>
+                                <TableCell className='title'>
+                                    <div>
+                                        <img src={row.image} alt={row.title}/>
+                                        <span>{row.name}</span>
+                                    </div>
+                                </TableCell>
+                                <TableCell className={'time'}>
+                                    <div>{formattedDate}</div>
+                                </TableCell>
+                                <TableCell className={'auditory'}>
+                                    <div>{row.description}</div>
+                                </TableCell>
+                                <TableCell className={'lector'}>
+                                    <div>{row.description}</div>
+                                </TableCell>
+                                <TableCell className={'format'}>
+                                    <div>{row.type}</div>
+                                </TableCell>
+                                <TableCell className={'contingent'}>
+                                    <div>{row.webinar_for_member_of_the_system}</div>
+                                </TableCell>
+                                <TableCell
+                                    align={'right'}
+                                    className={'actions'}
                                 >
-                                <div>
-                                    <div>Ссылка на вебинар</div>
-                                    <div>Отменить участие</div>
-                                </div>
-                            </TableCell>
-                        </TableRow>
-                    ))}
+                                    <div>
+                                        <div>Ссылка на вебинар</div>
+                                        <div>Отменить участие</div>
+                                    </div>
+                                </TableCell>
+                            </TableRow>
+                        );
+                    })}
                 </TableBody>
             </Table>
-            
+
         </TableContainer>
         <TablePagination
             component="div"

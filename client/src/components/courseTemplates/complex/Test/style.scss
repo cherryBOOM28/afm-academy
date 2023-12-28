@@ -90,6 +90,8 @@
                 width: 100%;
 
                 > img {
+                    user-select: none;
+
                     max-width: 800px;
                     width: 100%;
                 }
@@ -155,9 +157,6 @@
                     }
                 }
             }
-
-            
-
         }
 
         .matching-question-body {
@@ -175,9 +174,9 @@
             .non-matched .row {
                 display: flex;
                 flex-direction: row;
-                gap: 300px;
+                gap: 200px;
 
-                .pair {
+                .pair { 
                     cursor: pointer;
                     user-select: none;
 

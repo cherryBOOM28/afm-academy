@@ -4,14 +4,15 @@ import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
 import eagImg from '../../../assets/images/eag.svg';
 import eagGroup from '../../../assets/images/eagGroup.svg';
+import Header from '../../../components/header/Header';
 
 
 function Eag() {
     return (
         <div className={cl.eagWrapper}>
   
+            <Header dark={true} />
             <div className={cl.container}>
-            <DefaultHeader />
                 <h1 className={cl.headline}>ЕАГ</h1>
                 <div className={cl.eagImgContent}>
                     <img src={eagImg} alt="eagImg" />
@@ -21,14 +22,14 @@ function Eag() {
                 </div>
                 <div className={cl.block}>
                         <p className={cl.text}>
-                        ФАТФ уделяет значительное внимание сотрудничеству с такими международными организациями, как МВФ, Всемирный банк, Управление ООН по наркотикам и преступности. Данные структуры реализуют свои программы, нацеленные на противодействие отмыванию денег и финансированию терроризма. Одним из основных инструментов реализации рекомендаций ФАТФ на национальном уровне являются Подразделения финансовой разведки (ПФР), отвечающие за сбор и анализ финансовой информации в пределах каждой конкретной страны с целью выявления потоков финансовых средств, добытых незаконным путём.
+                        ЕАГ была создана в 2004 году для стран Евразийского региона, не включенных в существующие региональные группы по типу ФАТФ, и призвана играть важную роль в снижении угрозы международного терроризма и обеспечении прозрачности, надежности и безопасности финансовых систем государств и их дальнейшей интеграции в международную инфраструктуру борьбы с ОД/ФТ.
                         </p>
                 </div>
             </div>
             <div className={cl.groupWrapper}>
                 <div className={cl.container}>
                 <div className={cl.eagImgContent}>
-                    <img src={eagGroup} alt="eagGroup" style={{ height: '210px' }} />
+                    <img src={eagGroup} alt="eagGroup" />
                     <div className={cl.eagImgText}>
                         <span>Основные задачи ЕАГ:</span>
                         <br></br>

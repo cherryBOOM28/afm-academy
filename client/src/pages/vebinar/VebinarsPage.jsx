@@ -7,66 +7,72 @@ import DefaultHeader from '../../components/defaultHeader/DefaultHeader';
 import Footer from '../../components/footer/Footer';
 
 import vebinarImg from './../../assets/images/vebinar-img.png';
+import axios from "axios";
+import base_url from "../../settings/base_url";
+import { Box, Modal } from '@mui/material';
+import Header from '../../components/header/Header';
 
 function VebinarsPage() {
 
-    const [vebinars, setVebinars] = useState([
-        {
-            id: '_123',
-            img: '',
-            title: '',
-            auditory: 'MVO',
-            format: 'online',
-            cost: 'FREE',
-            contingent: 'До 30 человек',
-            date: '2023-09-01',
-            lector: {
-                name: 'Vebin',
-                text: 'lorem ipsum dolor sit amet, con'
-            }
-        }
-    ])
+    const navigate = useNavigate();
+
+    const [vebinars, setVebinars] = useState([]);
+    const [error, setError] = useState(null);
+    const [isLoading, setLoading] = useState(true);
+
+    const [openModal, setOpenModal] = useState(false);
+
+    const handleVebinarEnter = () => {
+        // Выполняем регистрацию на вебинар
+
+        setOpenModal(true)
+    }
 
     useEffect(() => {
-        // axios to get vebinars
-        // and set vebinars
-        setVebinars([
-            {
-                id: '_123',
-                img: vebinarImg,
-                title: 'Тема: ПВК',
-                auditory: 'МФО',
-                format: 'Онлайн',
-                cost: 'бесплатно',
-                contingent: 'До 30 человек',
-                date: '5 августа 15:00',
-                lector: {
-                    name: 'Николаев Богдан Владимирович',
-                    text: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-                }
-            },
-            {
-                id: '_123',
-                img: vebinarImg,
-                title: 'Тема: ПВК',
-                auditory: 'МФО',
-                format: 'Онлайн',
-                cost: 'бесплатно',
-                contingent: 'До 30 человек',
-                date: '5 августа 15:00',
-                lector: {
-                    name: 'Николаев Богдан Владимирович',
-                    text: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-                }
-            },
-        ])
-    }, [])
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${base_url}/api/aml/webinar/getWebinars`, {
+                    headers: {
+                        Authorization: `Bearer ${jwtToken}`,
+                    },
+                });
 
-    return ( 
+                if (response.status === 200) {
+                    // console.log(response.data)
+                    setVebinars(response.data);
+                } else {
+                    // Handle other status codes if needed
+                    setError(response.statusText);
+                    // console.log(response.statusText);
+                }
+
+
+            } catch (error) {
+                setError(error);
+                console.error(error);
+            }
+
+            setLoading(false);
+        };
+
+        fetchData();
+    }, []);
+
+    const jwtToken = localStorage.getItem('jwtToken');
+
+    return (
         <div className={'vebinars-page'}>
+            <VebinarModal 
+                handleClose={() => {
+                    setOpenModal(false);
+                    navigate('/profile/vebinars')
+                }} 
+                open={openModal}
+            />
+
             <div>
+                <Header dark={true} />
                 <div className="container">
-                    <DefaultHeader/>
                 </div>
             </div>
 
@@ -75,11 +81,11 @@ function VebinarsPage() {
                 <h1>Вебинары</h1>
 
                 <div className="vebinar-list-block">
-                {console.log(vebinars)}
+                {/* {console.log(vebinars)} */}
                     {
                         vebinars.map(vebinar => {
-                            console.log(vebinar.lector)
-                            return <VebinarCard vebinar={vebinar}/>
+                            // console.log(vebinar.lector)
+                            return <VebinarCard vebinar={vebinar} handleVebinarEnter={handleVebinarEnter}/>
                         }
                             
                         )
@@ -93,44 +99,162 @@ function VebinarsPage() {
     );
 }
 
+const VebinarModal = ({ open, handleClose }) => {
+    return <Modal
+        open={open}
+        onClose={() => {
+            handleClose();
+        }}
+    >
+        <Box sx={{ 
+            width: '590px', 
+            padding: '30px 55px', 
+            boxSizing: 'border-box',
+            background: '#FFFFFF', 
+            borderRadius: '10px',
+            outline: 'none',
+            border: 'none',
+
+            position: 'absolute',
+            top: '30%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)'
+        }}>
+            <h1
+                style={{
+                    color: '#3A3939',
+                    textAlign: 'center',
+                    fontFamily: 'Ubuntu',
+                    fontSize: '22px',
+                    fontStyle: 'normal',
+                    fontWeight: '400',
+                    lineHeight: '26px',
+
+                    marginBottom: '15px'
+                }}
+            >Спасибо за ваш интерес к нашему вебинару!</h1>
+            <p style={{
+                color: '#3A3939',
+                textAlign: 'center',
+                fontFeatureSettings: `'clig' off, 'liga' off`,
+                fontFamily: 'Ubuntu',
+                fontSize: '18px',
+                fontStyle: 'normal',
+                fontWeight: '400',
+                lineHeight: '26px',
+
+                marginBottom: '15px'
+            }}>
+                Вы успешно зарегистрированы для участия. <strong style={{fontWeight: '700'}}>Ожидайте подтверждение</strong> на вашем электронном адресе.
+            </p>
+            <p style={{
+                color: '#4D4D4D',
+                textAlign: 'center',
+                fontFeatureSettings: `'clig' off, 'liga' off`,
+                fontFamily: 'Ubuntu',
+                fontSize: '16px',
+                fontStyle: 'normal',
+                fontWeight: '400',
+                lineHeight: '26px', /* 162.5% */
+
+                marginBottom: '15px'
+            }}>
+                Ссылку на вебинар можете увидеть в разделе вебинары на странице профиля.
+            </p>
+            <div 
+            onClick={() => handleClose()}
+            style={{
+                width: 'max-content',
+                margin: '0 auto',
+                borderRadius: '8px',
+                background: '#1F3C88',
+                borderRadius: '8px',
+                padding: '12px 96px',
+                color: '#FFF',
+                fontFeatureSettings: `'clig' off, 'liga' off`,
+                fontFamily: 'Manrope',
+                fontSize: '16px',
+                fontStyle: 'normal',
+                fontWeight: '700',
+                lineHeight: '24px', /* 150% */
+                letterSpacing: '0.2px',
+                cursor: 'pointer',
+            }}>
+                Окей
+            </div>
+        </Box>
+    </Modal>
+}
+
 const VebinarCard = (props) => {
     const { 
         id,
-        img,
-        title,
-        auditory,
-        format,
+        image,
+        name,
+        webinar_for_member_of_the_system,
+        type,
         cost,
         contingent,
         date,
-        lector
      } = props.vebinar;
-    console.log(title)
+    // console.log(webinar_for_member_of_the_system)
+
+    const datee = new Date(date);
+
+    const months = {
+        0: 'января',
+        1: 'февраля',
+        2: 'марта',
+        3: 'апреля',
+        4: 'мая',
+        5: 'июня',
+        6: 'июля',
+        7: 'августа',
+        8: 'сентября',
+        9: 'октября',
+        10: 'ноября',
+        11: 'декабря',
+    };
+
+// Get the day, month, and hour from the date
+    const day = datee.getDate();
+    const monthIndex = datee.getMonth();
+    const month = months[monthIndex];
+    const hour = datee.getHours();
+    const minutes = datee.getMinutes();
+
+// Format the date and time
+    const formattedDate = `${day} ${month} ${hour.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 
     const navigate = useNavigate()
 
+    const handleVebinarEnter = () => {
+        props.handleVebinarEnter();
+    }
+
     return (
         <div className="vebinar-card">
-            <img src={img} alt="" />
+            <img src={image} alt="" />
             <div className="info-block">
-                <div className='title'>{title}</div>
+                <div className='title'>{name}</div>
                 <div>
                     <div className="vebinar-info">
-                        <p>Аудитория (для кого): {auditory}</p>
-                        <p>Формат: {format}</p>
-                        <p>Стоимость: {cost}</p>
-                        <p>Ограничения: {contingent}</p>
+                        <p>Аудитория (для кого): {webinar_for_member_of_the_system}</p>
+                        <p>Формат: {type}</p>
+                        <p>Стоимость: бесплатно</p>
+                        <p>Ограничения: До 30 человек</p>
 
-                        <div className="date">{date}</div>
+                        <div className="date">{formattedDate}</div>
                     </div>
                     <div className="lector-info">
                         <div className='lector-title'>Лектор</div>
-                        <div className='lector-name'>{lector.name}</div>
-                        <div className='lector-text'>{lector.text}</div>
+                        <div className='lector-name'>Шагатаев Даурен</div>
+                        <div className='lector-text'>Лектор по обучению и повышению квалификации по финансовому мониторингу</div>
                         <div 
                             className='action-btn'
                             onClick={() => {
-                                navigate(`/vebinars/${id}`)
+                                handleVebinarEnter()
+                                // navigate(`/vebinars/${id}`)
                             }}
                         >Принять участие</div>
                     </div>

@@ -25,7 +25,7 @@ import SurveysPage from './pages/surveys/Surveys';
 import VebinarsPage from './pages/vebinar/VebinarsPage';
 
 import { AuthProvider, useAuth } from './auth/AuthContext';
-import TestCourse from './pages/testCoursePage/TestCourse';
+// import TestCourse from './pages/testCoursePage/TestCourse';
 import Catalog from './pages/courseCatalog/Catalog';
 import MyCourses from './pages/myCourses/MyCourses';
 import Profile from './pages/profilePage/Profile';
@@ -34,6 +34,9 @@ import Sandbox from './pages/Sandbox';
 import Basic_course from './pages/basic-course';
 import PrivateRoute from './auth/PrivateRoute';
 
+import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
+import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
+import CryptoCourse from './pages/ReadCourses/CryptoCourse';
 
 function App() {
   const [jwtToken, setJwtToken] = useState('');
@@ -41,7 +44,7 @@ function App() {
   useEffect(() => {
     const storedJwtToken = localStorage.getItem('jwtToken');
 
-    console.log(storedJwtToken)
+    // console.log(storedJwtToken)
     
     if (storedJwtToken) {
       setJwtToken(storedJwtToken);
@@ -91,7 +94,7 @@ function App() {
             {/* <Route path='/courses/basic' element={<BasicCourse />}/> */}
             {/* <Route path='/courses/specialized' element={<SpecializedCourse />}/> */}
 
-            <Route path='/courses/testCourse' element={<TestCourse />}/>
+            {/* <Route path='/courses/testCourse' element={<TestCourse />}/> */}
 
             <Route path='/courses/:id/' element={<BasicCourse />}/>
             <Route path='/courses/:id/read' element={
@@ -100,12 +103,17 @@ function App() {
               // } redirect={'/courses/catalog'}/>
             }/>
 
+            <Route path='/courses/100/read' element={<CryptoCourse />}/>
+
             {/* <Route path='/payment' element={<PaymentPage />}/> */}
             <Route path='/payment/:id' element={<PaymentPage />} />
 
             <Route path='/sandbox' element={<Sandbox />}/>'
 
-
+            <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={CreateCoursePage} />}/>
+            <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={EditCatalog} />}/>
+            {/* <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} component={CreateCoursePage} />}/>
+            <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} component={EditCatalog} />}/> */}
           </Routes>
         </BrowserRouter>
       </AuthProvider>

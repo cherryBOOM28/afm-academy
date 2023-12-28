@@ -47,7 +47,7 @@ const Registration = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log(formData['password'], formData['confirm_password'])
+        // console.log(formData['password'], formData['confirm_password'])
 
         if (formData['password'] === formData['confirm_password']) {
             axios
@@ -64,7 +64,7 @@ const Registration = () => {
                 }
             )
                 .then(res => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     setOpenModal(true);
                     // navigate('/login');
                 })
@@ -72,13 +72,13 @@ const Registration = () => {
                     // console.error('Registration failed:', error);
                     if (error.response) {
                         setErrorMessage(error.response.data.error)
-                        // console.log('Server Error:', error.response.data);
+                        // // console.log('Server Error:', error.response.data);
                     } else if (error.request) {
                         setErrorMessage(error.request.error)
-                        // console.log('Request Error:', error.request);
+                        // // console.log('Request Error:', error.request);
                     } else {
                         setErrorMessage(error.message.error)
-                        // console.log('Error:', error.message);
+                        // // console.log('Error:', error.message);
                     }
                 })
         } else {

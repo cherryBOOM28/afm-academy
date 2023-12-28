@@ -28,7 +28,7 @@ function SpecializedCourse() {
     }
 
     useEffect(() => {
-        console.log(request)
+        // console.log(request)
     }, [request])
 
     return ( 
@@ -85,7 +85,7 @@ function SpecializedCourse() {
                     </Collapsable>
                 </div>
 
-                <h2>Процесс обучения</h2>
+                <h2 >Процесс обучения</h2>
                 <RoadList items={[
                     'Подача заявки',
                     'Оплата',
