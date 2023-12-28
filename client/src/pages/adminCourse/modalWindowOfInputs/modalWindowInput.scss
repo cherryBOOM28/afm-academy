@@ -24,42 +24,165 @@
     .modal-content {
         padding-top: 25px;
         width: 100% !important;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 10px;
+
+        .columns {
+            width: 100%;
+            display: flex;
+            gap: 5px;
+            .first-column {
+                > div {
+                    padding-top: 5px;
+                }
         
-        div {
-            padding-top: 10px;
+            }
+            .second-column {
+                width: 100%;
+                
+                > div {
+                    padding-top: 5px;
+                    > input {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        input {
+            box-sizing: border-box;
+            // border: 3px solid #ccc;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            outline: none;
+        }
+
+        input[type=text] {
+            border-radius: 5px;
+            border: 1px solid grey;
+            
+            padding: 5px;
+            
+            font-family: 'Ubuntu';
+            &:focus {
+                border: 1px solid black;
+            }
+        }
+
+
+        input[type=color] {
+            // -webkit-appearance: none;
+            // -moz-appearance: none;
+            // appearance: none;
+            width: 100px;
+            height: 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .add-button-div {
+            padding-top: 5px;
+            display: flex;
+            justify-content: center; // Centers the button horizontally
+            align-items: center; // Centers the button vertically
+            height: 100%; 
+            .add-button {
+                
+                background-color: #6390d8;
+                border: none;
+                padding: 10px;
+                
+                border-radius: 5px;
+                
+                color: rgb(255, 255, 255);
+                font-weight: 700;
+                
+                cursor: pointer;
+                transition: all 0.2s ease;
+                &:hover {
+                    background-color: #8eb3ee;
+                    transition: all 0.2s ease;
+                }
+            }
+        }
+
+
+        .default-input {
             display: flex;
             flex-direction: column;
             gap: 5px;
-            width: 100% !important;
 
-            input[type=text] {
-                border-radius: 5px;
-                border: none;
-                background-color: rgba(0, 0, 0, 0.137);
-                padding: 3px;
+        }
 
-                :focus {
-                    border: none;
-                }
+        .file-input {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .number-input {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+
+            > label {
+                padding: 5px;
             }
 
-            .table-rows-input {
-                padding-top: 0px;
-                display: flex;
-                flex-direction: row;
-                .first-column {
-                    width: 20%;
-                    
+            > input {
+                border: none;
+                border-bottom: 1px solid grey;
+                padding: 5px;
+                
+                &:focus {
+                    border-bottom: 1px solid black
                 }
-                .second-column {
-                    flex-shrink: 1;
+            }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 5px;
+            justify-content: flex-end;
+
+            .close-button {
+                background-color: rgb(214, 214, 214);
+                border: none;
+                padding: 10px;
+                
+                border-radius: 5px;
+                
+                color: rgba(0, 0, 0, 0.342);
+                font-weight: 700;
+                transition: all 0.2s ease;
+                
+                cursor: pointer;
+                &:hover {
+                    background-color: rgb(233, 233, 233);
+                    transition: all 0.2s ease;
                 }
             }
             
-        }
-        button {
-            width: 100% !important;
-            margin-top: 15px;
+            .save-button {
+                background-color: #6390d8;
+                border: none;
+                padding: 10px;
+                
+                border-radius: 5px;
+                
+                color: rgb(255, 255, 255);
+                font-weight: 700;
+                
+                cursor: pointer;
+                transition: all 0.2s ease;
+                &:hover {
+                    background-color: #8eb3ee;
+                    transition: all 0.2s ease;
+                }
+            }
         }
 
     }
