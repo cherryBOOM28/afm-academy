@@ -373,12 +373,13 @@ function Basic_course(props) {
 }
 
 const CourseNavigation = ({
-                              isNavOpen,
-                              activeSessionId,
-                              handleSessionClick,
-                              courseProgress,
-                              courseName,
-                          }) => {
+    isNavOpen,
+    activeSessionId,
+    handleSessionClick,
+    courseProgress,
+    courseName,
+}) => {
+
     const [currentModule, setCurrentModule] = useState(1);
 
     const handleModuleOpen = (id) => {

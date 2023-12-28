@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import './style.scss'
 
-function TextAndLink({ children, text, link, linkText, textColor, linkColor, linkBackgroundColor }) {
+function TextAndLink({ children, text='Ссылка', link, linkText, textColor, linkColor, linkBackgroundColor }) {
     return (
         <div className="textAndLink">
             <div className="text"

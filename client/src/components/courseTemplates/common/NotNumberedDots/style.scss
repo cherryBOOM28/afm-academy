@@ -44,6 +44,8 @@
         gap: 20px;
 
         > span {
+            margin-top: 5px;
+
             width: 10px;
             height: 10px;
             padding: 5px;
@@ -74,8 +76,11 @@
             font-family: Inter;
             font-size: 16px;
             font-style: normal;
-            font-weight: 500;
             line-height: 140%; /* 22.4px */
+
+            * {
+                padding: 0px;
+            }
         }
     }
 }
