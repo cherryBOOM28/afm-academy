@@ -66,10 +66,10 @@ const elements = {
             component: ImageWithText,
             icon: imageWithTextIcon,
             inputs: [
-                { name: 'img', label: 'URL Изображения', type: 'file' },
+                { name: 'img', label: 'Изображение', type: 'file' },
                 { name: 'imageText', label: 'Текст', type: 'text' },
-                { name: 'color', label: 'Цвет', type: 'color' },
                 { name: 'children', label: 'Children', type: 'text' },
+                { name: 'color', label: 'Цвет', type: 'color' },
               ],
         }, //img, imageText or children, color
         'Текст': {
@@ -137,7 +137,7 @@ const elements = {
             icon: tabsGlossaryIcon, // Replace with the actual icon reference
             inputs: [
                 { name: 'tabs', label: 'Названия', type: 'tabs'},
-                { name: 'tabsGlossary', label: 'Тексты', type: 'tabsContent'},
+                { name: 'tabsGlossary', label: 'Тексты', type: 'tabsGlossary'},
                 { name: 'color', label: 'Цвет', type: 'color' },
                 { name: 'tabsBackgroundColor', label: 'Цвет фона названии разделов', type: 'color' },
                 { name: 'tabsActiveBackgroundColor', label: 'Фон активного названия раздела', type: 'color' },
@@ -246,7 +246,8 @@ const componentMap = {
     Table_1,
     FileDownloader,
     VideoLine,
-    Sizebox
+    Sizebox,
+    TabsGlossary
     // Add other components here
 };
 

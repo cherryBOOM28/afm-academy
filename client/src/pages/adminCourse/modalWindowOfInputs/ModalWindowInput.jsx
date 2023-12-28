@@ -1,10 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import './modalWindowInput.scss'
+
+function fileToBase64(file, callback) {
+  if (!file) {
+    console.error("No file provided for conversion.");
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onloadend = () => {
+    if (reader.readyState === FileReader.DONE) { // Ensures the read is complete
+      if (typeof callback === 'function') {
+        callback(reader.result);
+      }
+    }
+  };
+
+  reader.onerror = (error) => {
+    console.error("Error reading file:", error);
+  };
+
+  reader.readAsDataURL(file);
+}
+
 const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
   const [values, setValues] = useState(exValues || {});
 
   useEffect(() => {
     const hasListInput = inputs.some((x) => x.name === 'list');
+    const hasTabsInput = inputs.some((x) => x.name === 'tabs');
 
     const hasTableInput = inputs.some((x) => x.name === 'rows');
 
@@ -19,15 +44,36 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
         ...prevValues,
         rows: exValues?.rows || [],
       }));
+    } else if (hasTabsInput) {
+      // Check if exValues.tabsGlossary is an object
+      const isTabsGlossaryObject = exValues?.tabsGlossary && typeof exValues.tabsGlossary === 'object' && !Array.isArray(exValues.tabsGlossary);
+
+      const newTabsGlossary = isTabsGlossaryObject
+          ? exValues.tabs.map(tab => exValues.tabsGlossary[tab] || '') // Map each tab to its corresponding value in the tabsGlossary object
+          : exValues?.tabsGlossary || [];
+
+      setValues((prevValues) => ({
+          ...prevValues,
+          tabs: exValues?.tabs || [],
+          tabsGlossary: newTabsGlossary,
+      }));
     }
   }, [inputs])
 
   const handleAddToList = (name) => {
     // Add a new element to the list array
-    setValues((prevValues) => ({
-      ...prevValues,
-      [name]: [...prevValues[name], 'Новый элемент'],
-    }));
+    if (name == 'tabs') {
+      setValues((prevValues) => ({
+        ...prevValues,
+        [name]: [...prevValues[name], 'Новый раздел'],
+        'tabsGlossary': [...prevValues['tabsGlossary'], 'Новый раздел']
+      }));
+    } else {
+      setValues((prevValues) => ({
+        ...prevValues,
+        [name]: [...prevValues[name], 'Новый элемент'],
+      }));
+    }
   };
 
   const handleAddToTable = (name) => {
@@ -48,6 +94,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
       [name]: updatedList,
     }));
   };
+
   const handleInputChangeTable1 = (index, newValue, name) => {
     // Update the value at the specified index in the list array
     const updatedList = [...values.rows];
@@ -65,17 +112,17 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
   
   const handleChange = (name, value, type) => {
     if (type == "file") {
-      // console.log("image")
       if (value) {
-        const reader = new FileReader();
+        console.log(value)
+        const selectedFile = value;
+      
+        fileToBase64(selectedFile, (base64String) => {
+          console.log(selectedFile)
+          console.log(base64String)
+          console.log(name)
+          setValues((prevValues) => ({ ...prevValues, [name]: base64String }));
+        });
         
-        reader.onload = (event) => {
-          const base64Image = event.target.result;
-          setValues((prevValues) => ({ ...prevValues, [name]: base64Image }));
-        };
-        
-        // Read the file as a data URL, triggering the onload event
-        reader.readAsDataURL(value);
       } else {
         console.error("Invalid file type");
       }
@@ -98,6 +145,21 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
   const handleSubmit = () => {
     const updatedValues = { ...values };
 
+    if (updatedValues.tabsGlossary && updatedValues.tabs) {
+      // Transform 'tabsGlossary' array into an object
+      const tabsGlossaryObject = updatedValues.tabsGlossary.reduce((obj, glossaryValue, index) => {
+          const tabKey = updatedValues.tabs[index]; // Get corresponding element from 'tabs'
+          obj[tabKey] = glossaryValue; // Assign it as a key-value pair
+          return obj;
+      }, {});
+
+      // Replace 'tabsGlossary' array with the newly formed object
+      updatedValues.tabsGlossary = tabsGlossaryObject;
+    }
+
+
+    console.log({ inputs, values: updatedValues })
+
     // console.log({ inputs, values: updatedValues })
     onSubmit({ inputs, values: updatedValues });    
     setValues({});
@@ -110,16 +172,16 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
         <div className="modal-content">
             {inputs.map((input) => (
               input.type == "file" ?
-                <div key={input.name}>
+                <div key={input.name} className='file-input'>
                     <label>{input.label}</label>
                     <input
                         type={input.type}
-                        value={values[input.name] || ''}
+                        src={values[input.name]}
                         onChange={(e) => handleChange(input.name, e.target.files[0], input.type)}
                     />
                 </div>
               : input.type == "number" ?
-                <div key={input.name}>
+                <div key={input.name} className='number-input'>
                     <label>{input.label}</label>
                     <input
                         type={input.type}
@@ -141,22 +203,24 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
                         </div>
                       )
                     })}
-                      <button onClick={() => handleAddToList(input.name)}>Add</button>
+                    <div className='add-button-div'>
+                      <button className='add-button' onClick={() => handleAddToList(input.name)}>Добавить</button>
+                    </div>
                 </div>
               : input.type == 'rows' && values[input.name] ? 
-              <div key={input.name}>
+                <div key={input.name}>
                   <label>{input.label}</label>
                     {values[input.name].map((x, index) => {
                       return (
-                        <div key={index} className='table-rows-input'>
-                          <div className='first-column'>
+                        <div key={index} >
+                          <div >
                             <input
                               type="text"
                               value={x.first || ''}
                               onChange={(e) => handleInputChangeTable1(index, e.target.value, 'first')}
                             />
                           </div>
-                          <div className='second-column'>
+                          <div>
                             <input
                               type="text"
                               value={x.second || ''}
@@ -167,10 +231,50 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
                         
                       )
                     })}
-                      <button onClick={() => handleAddToTable(input.name)}>Add</button>
+                    <div className='add-button-div'>
+                      <button className='add-button' onClick={() => handleAddToTable(input.name)}>Добавить</button>
+                    </div>
                 </div> 
                 :
+                input.type == 'tabs' && values.tabs && values.tabsGlossary ? 
                 <div key={input.name}>
+                    <label>Разделы</label>
+                    <div className='columns'>
+                      <div className='first-column'>
+                      {values.tabs.map((x, index) => {
+                        return (
+                          <div key={index}>
+                            <input
+                              type="text"
+                              value={x || ''}
+                              onChange={(e) => handleInputChange(index, e.target.value, 'tabs')}
+                              />
+                          </div>
+                        )
+                      })}
+                      </div>
+                      <div className='second-column'>
+                      {values.tabsGlossary.map((x, index) => {
+                        return (
+                          <div key={index}>
+                            <input
+                              type="text"
+                              value={x || ''}
+                              onChange={(e) => handleInputChange(index, e.target.value, 'tabsGlossary')}
+                              />
+                          </div>
+                        )
+                      })}
+                      </div>
+                    </div>
+                    <div className='add-button-div'>
+                      <button className='add-button' onClick={() => handleAddToList(input.name)}>Добавить</button>
+                    </div>
+                </div> 
+                : input.type == 'tabsGlossary'? 
+                null
+                :
+                <div key={input.name} className='default-input'>
                     <label>{input.label}</label>
                     <input
                         type={input.type}
@@ -179,8 +283,10 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
                     />
                 </div>
             ))}
-            <button onClick={onClose}>Закрыть</button>
-            <button onClick={handleSubmit}>Сохранить</button>
+            <div className='buttons'>
+              <button className="close-button" onClick={onClose}>Закрыть</button>
+              <button className="save-button" onClick={handleSubmit}>Сохранить</button>
+            </div>
         </div>
     </div>
   );
