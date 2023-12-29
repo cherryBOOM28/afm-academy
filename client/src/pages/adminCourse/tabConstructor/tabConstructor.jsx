@@ -44,9 +44,11 @@ import Reveal from '../../../components/Reveal'
 import saveButton from '../images/save-button.svg'
 import saveDark from '../images/save-dark.svg'
 import tabsGlossaryIcon from '../images/tabs-glossary-icon.svg'
+import dropDownTableIcon from '../images/dropdropwithtext-icon.svg'
 import axios from 'axios'
 
 import base_url from '../../../settings/base_url'
+import DropDownTextWithTabs from '../../../components/courseTemplates/complex/DropDownTextWithTabs'
 
 
 
@@ -132,11 +134,11 @@ const elements = {
                 { name: 'children', label: 'Children', type: 'text' },
             ],
         }, //children
-        'Разделы с текстами': {
+        'Вкладки с текстами': {
             component: TabsGlossary,
             icon: tabsGlossaryIcon, // Replace with the actual icon reference
             inputs: [
-                { name: 'tabs', label: 'Названия', type: 'tabs'},
+                { name: 'tabs', label: 'Вкладки', type: 'tabs'},
                 { name: 'tabsGlossary', label: 'Тексты', type: 'tabsGlossary'},
                 { name: 'color', label: 'Цвет', type: 'color' },
                 { name: 'tabsBackgroundColor', label: 'Цвет фона названии разделов', type: 'color' },
@@ -144,6 +146,19 @@ const elements = {
                 { name: 'glossaryBackgroundColor', label: 'Фон раздела', type: 'color' }
                 // Add more inputs as needed based on the TabsGlossary component's props
             ],
+        },
+        'Вкладки с разделами': {
+            component: DropDownTextWithTabs,
+            icon: dropDownTableIcon,
+            inputs: [
+                { name: 'tabs', label: 'Вкладки', type: 'dropd'},
+                { name: 'tabsData', label: 'Данные Вкладок', type: 'tabsData'},
+                { name: 'headerTextColor', label: 'Цвет Текста Заголовка', type: 'color'},
+                { name: 'activeHeaderTextColor', label: 'Цвет Активного Текста Заголовка', type: 'color'},
+                { name: 'textColor', label: 'Цвет Текста', type: 'color'},
+                { name: 'tabsTextColor', label: 'Цвет Текста Вкладок', type: 'color'},
+                { name: 'tabsBackgroundColor', label: 'Цвет Фона Вкладок', type: 'color'},
+            ]
         }
         
     },
@@ -247,7 +262,8 @@ const componentMap = {
     FileDownloader,
     VideoLine,
     Sizebox,
-    TabsGlossary
+    TabsGlossary,
+    DropDownTextWithTabs
     // Add other components here
 };
 
@@ -572,7 +588,7 @@ const Constructor = ({saveCancel, save, id, title}) => {
             values: {},  
         };
 
-        console.log(newComponent)
+        // console.log(newComponent)
         
         // Check if the clicked element is an existing component from componentHistory
         const existingComponentIndex = componentHistory.findIndex(

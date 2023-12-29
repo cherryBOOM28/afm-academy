@@ -52,6 +52,83 @@
             }
         }
 
+
+        .dropdown-columns {
+            padding-top: 5px;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 5px;
+
+
+
+            .dropdown-rows {
+                width: 20%;
+                input {
+                    width: 100%;
+                    background-color: #37476128;
+                    border: 1px solid #37476128;
+                    
+                }
+            }
+
+            .dropd-content {
+                display: flex;
+                flex-direction: row; // Stack first-column and second-column vertically
+                gap: 4px;
+                width: 80%;
+                .first-column {
+                    width: 20%;
+                    >div {
+                        padding-bottom: 2px;
+                        input {
+                            width: 100%;
+                        }
+                    }
+                }
+                .second-column {
+                    width: 80%;
+                    
+                    > div {
+                        padding-bottom: 2px;
+                        input {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+            .add-drop {
+                padding: 4px 0px 2px 2px;
+                .add-drop-button {
+
+                    cursor: pointer;
+
+                    &:hover {
+                        opacity: 0.7;
+                    }
+                }
+            }
+        }
+
+        .list-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            .list-column {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+
+                width: 100%;
+
+                > div {
+                    input {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
         input {
             box-sizing: border-box;
             // border: 3px solid #ccc;
