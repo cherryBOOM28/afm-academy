@@ -36,6 +36,7 @@ import PrivateRoute from './auth/PrivateRoute';
 
 import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
+import CryptoCourse from './pages/ReadCourses/CryptoCourse';
 
 function App() {
   const [jwtToken, setJwtToken] = useState('');
@@ -101,6 +102,8 @@ function App() {
                 <Basic_course />
               // } redirect={'/courses/catalog'}/>
             }/>
+
+            <Route path='/courses/100/read' element={<CryptoCourse />}/>
 
             {/* <Route path='/payment' element={<PaymentPage />}/> */}
             <Route path='/payment/:id' element={<PaymentPage />} />

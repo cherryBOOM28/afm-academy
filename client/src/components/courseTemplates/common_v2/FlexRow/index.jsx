@@ -10,14 +10,20 @@ function FlexRow({
         { icon: ArrowRightIcon, title: 'Свобода от ограничении', desc: 'Вы можете использовать криптовалюту беспрепятственно. Централизованные платежные сервисы в свою очередь могут замораживать учетные записи или препятствовать совершению транзакций.' },
         { icon: HackerIcon, title: 'Устойчива к взлому', desc: 'Устройство сети делает ее устойчивой к атакам хакеров и других злоумышленников' },
         { icon: PaymentIcon, title: 'Дешевый и быстрый способ оплаты', desc: 'Человек на другом конце света может получить от вас средства в считанные секунды. Комиссия за транзакцию значительно меньше, чем комиссия за международный денежный перевод.' },
-    ]
+    ],
+    textColor
 }) {
     return ( 
         <div className="flex-row">
             {
                 data.map(({ icon, title, desc }, index) => {
                     
-                    return <div className="item">
+                    return <div className="item"
+                        key={index}
+                        style={{
+                            color: textColor
+                        }}
+                    >
 
                         <div className="icon">
                             <img src={icon} alt="Icon" />
