@@ -237,6 +237,7 @@
         }
         .tool-bar {
             // height: calc(100vh - 210px);
+            overflow: scroll;
             height: calc(100% - 209px);
             width: 300px;
             position: absolute;

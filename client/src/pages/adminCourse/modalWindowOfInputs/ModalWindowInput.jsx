@@ -32,6 +32,10 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
     const hasTabsInput = inputs.some((x) => x.name == 'tabs');
     const hasTabsGlossaryInput = inputs.some((x) => x.name == 'tabsGlossary');
     const hasTabsDataInput = inputs.some((x) => x.name == 'tabsData');
+    const hasItems_text = inputs.some((x) => x.type == 'items_text');
+    const hasLeftAnswer = inputs.some((x) => x.name == 'leftAnswer')
+    const hasRightAnswer = inputs.some((x) => x.name == 'rightAnswer')
+    const hasQuestions = inputs.some((x) => x.name == 'questions')
 
     const hasTableInput = inputs.some((x) => x.name === 'rows');
 
@@ -86,6 +90,30 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
           tabs: newTabs,
           tabsData: newTabsData,
       }));
+    } else if (hasLeftAnswer && hasRightAnswer && hasQuestions) {
+      const originalQuestionsList = exValues?.questions?.map(question => {
+        // Determine the original 'side' value based on the comparison
+        let originalSide;
+        if (question.side === exValues?.leftAnswer) {
+            originalSide = 0;
+        } else if (question.side === exValues?.rightAnswer) {
+            originalSide = 1;
+        }
+    
+        // Return a new object with the original 'side' value
+        return { ...question, side: originalSide };
+      });
+      setValues((prevValues) => ({
+        ...prevValues,
+        questions: originalQuestionsList,
+      }));
+    }
+
+    if (hasItems_text) {
+      setValues((prevValues) => ({
+        ...prevValues,
+        'items': exValues?.items || [{'text': 'Элемент'}],
+      }));
     }
   }, [inputs])
 
@@ -116,6 +144,28 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
             'tabsData': [...prevValues['tabsData'], {'id': newId, 'header': 'Заголовок вкладки', 'data': 'Данные вкладки', 'tabsIndex': args[0] }]
           }
         });
+      } else if (args[0] == 'listNameDescroptionItems') {
+        setValues((prevValues) => ({
+          ...prevValues,
+          'list': [...prevValues['list'], 
+          {
+            name: 'Вкладка', 
+            description: 'Описание вкладки', 
+            items: [
+              'Элемент списка',
+            ]
+          }],
+        }));
+      } else if (args[0] == 'items_text') {
+        setValues((prevValues) => ({
+          ...prevValues,
+          items: [...prevValues['items'], {text: 'Элемент'}],
+        }));
+      } else if (args[0] == 'dnd_questions') {
+        setValues((prevValues) => ({
+          ...prevValues,
+          ['questions']: [...prevValues['questions'] || [], {answer: 'Новый вопрос', side: 0}],
+        }));
       } else {
         setValues((prevValues) => ({
           ...prevValues,
@@ -124,14 +174,23 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
       }
     } else if (args.length == 2) {
       if (args[0] == 'tabsData') {
-        // console.log(args[1])
-        // console.log(values)
         setValues((prevValues) => {
           const newId = Date.now() + '-' + prevValues.tabsData.length;
           return {
             ...prevValues,
             'tabsData': [...prevValues['tabsData'], {'id': newId, 'header': 'Заголовок вкладки', 'data': 'Данные вкладки', 'tabsIndex': args[1] }]
           }
+        });
+      } else if (args[0] == 'dropDownListItems') {
+        const updatedList = [...values.list];
+        if (args[1] >= 0 && args[1] < updatedList.length) {
+          updatedList[args[1]].items = [...updatedList[args[1]].items, 'Элемент списка']; // Assuming you're adding an empty object
+        }
+        setValues((prevValues) => {
+          return {
+              ...prevValues,
+              'list': updatedList
+          };
         });
       }
     }
@@ -218,6 +277,85 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
             tabsGlossary: updatedTabsGlossary
         };
       });
+    } else if (name == 'listDescription') {
+      const updatedList = [...values['list']];
+      updatedList[idOrIndex].description = newValue;
+      
+      if (updatedList[idOrIndex].name.trim(' ') == '' 
+        && updatedList[idOrIndex].description.trim(' ') == '' 
+        && updatedList[idOrIndex].items.length == 0) {
+        updatedList.splice(idOrIndex, 1)
+      } else if (updatedList[idOrIndex].name.trim(' ') == '' 
+        && updatedList[idOrIndex].description.trim(' ') == '' 
+        && updatedList[idOrIndex].items.length != 0) {
+        updatedList[idOrIndex].name = 'Вкладка';
+        updatedList[idOrIndex].description = 'Описание вкладки';
+          
+      }
+      setValues((prevValues) => ({
+        ...prevValues,
+        'list': updatedList,
+      }));
+    } else if (name == 'listName') {
+      const updatedList = [...values['list']];
+      updatedList[idOrIndex].name = newValue;
+      
+      if (updatedList[idOrIndex].name.trim(' ') == '' 
+        && updatedList[idOrIndex].description.trim(' ') == '' 
+        && updatedList[idOrIndex].items.length == 0) {
+        updatedList.splice(idOrIndex, 1)
+      } else if (updatedList[idOrIndex].name.trim(' ') == '' 
+        && updatedList[idOrIndex].description.trim(' ') == '' 
+        && updatedList[idOrIndex].items.length != 0) {
+        updatedList[idOrIndex].name = 'Вкладка';
+        updatedList[idOrIndex].description = 'Описание вкладки';
+          
+      }
+      setValues((prevValues) => ({
+        ...prevValues,
+        'list': updatedList,
+      }));
+    } else if (name == 'items_text') {
+      setValues((prevValues) => {
+        const updatedItems = [...prevValues.items];
+
+        if (newValue.trim() === '') {
+          updatedItems.splice(idOrIndex, 1);
+        } else {
+          updatedItems[idOrIndex].text = newValue;
+        }
+
+        return {
+            ...prevValues,
+            items: updatedItems,
+        };
+      });
+    } else if (name == 'dnd_questions') {
+      setValues((prevValues) => {
+        const updatedQuestions = [...prevValues.questions];
+
+        if (newValue.trim() === '') {
+          updatedQuestions.splice(idOrIndex, 1);
+        } else {
+          updatedQuestions[idOrIndex].answer = newValue;
+        }
+
+        return {
+            ...prevValues,
+            questions: updatedQuestions,
+        };
+      });
+    } else if (name == 'select_dnd') {
+      setValues((prevValues) => {
+        const updatedQuestions = [...prevValues.questions];
+
+        updatedQuestions[idOrIndex].side = newValue;
+
+        return {
+            ...prevValues,
+            questions: updatedQuestions,
+        };
+      });
     } else {
       const updatedList = [...values[name]];
       updatedList[idOrIndex] = newValue;
@@ -228,20 +366,53 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
       }));
     }
   };
+
+  const handleInputChangeArrayInObject = (index, newValue, parentIndex, name) => {
+    if (name == 'listItems') {
+      const updatedList = [...values.list];
+      const updatedItems = [...updatedList[parentIndex].items];
+
+      updatedItems[index] = newValue;
+      // Update the value at the specified index
+      if (updatedItems[index].trim() === '') {
+          // Remove the object from the array if the new value is an empty string
+          updatedItems.splice(index, 1);
+      } 
+      setValues((prevValues) => {
+
+        // Assign the updated items array back to the corresponding parent object
+        updatedList[parentIndex].items = updatedItems;
+
+        return {
+            ...prevValues,
+            list: updatedList,
+        };
+      });
+    }
+  }
   //For [{firts: , second: }] List
   const handleInputChangeTable1 = (index, newValue, name) => {
-    // Update the value at the specified index in the list array
-    const updatedList = [...values.rows];
-    if (name == 'first') {
-      updatedList[index].first = newValue;
-    } else {
-      updatedList[index].second = newValue;
-    }
+    setValues((prevValues) => {
+      const updatedRows = [...prevValues.rows];
 
-    setValues((prevValues) => ({
-      ...prevValues,
-      'rows': updatedList,
-    }));
+      // Update the value at the specified index
+      if (name === 'first') {
+          updatedRows[index].first = newValue;
+      } else if (name === 'second') {
+          updatedRows[index].second = newValue;
+      }
+
+      // Check if both 'first' and 'second' are empty strings
+      if (updatedRows[index].first.trim() === '' && updatedRows[index].second.trim() === '') {
+          // Remove the object from the array
+          updatedRows.splice(index, 1);
+      }
+
+      return {
+          ...prevValues,
+          'rows': updatedRows,
+      };
+    });
   };
   //For default inputs (singular, simple types)
   const handleChange = (name, value, type) => {
@@ -295,12 +466,30 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
       });
 
       updatedValues.tabsData = updatedTabsData;
+    } else if (updatedValues.questions && updatedValues.leftAnswer && updatedValues.rightAnswer) {
+      const questionsList = updatedValues.questions.reduce((accumulator, currentElement) => {
+        // Check the value of 'side' and assign the corresponding value from updatedValues
+        const valueOfSide = currentElement.side === 0 ? updatedValues.leftAnswer : updatedValues.rightAnswer;
+        // Push the modified element onto the accumulator
+        accumulator.push({ ...currentElement, side: valueOfSide });
+        return accumulator;
+      }, []);
+    
+
+      updatedValues.questions = questionsList;
     }
     // console.log({ inputs, values: updatedValues })
 
     onSubmit({ inputs, values: updatedValues });    
     setValues({});
     onClose();
+  };
+
+
+
+  const adjustTextAreaHeight = (e) => {
+    e.target.style.height = 'auto';
+    e.target.style.height = e.target.scrollHeight + 'px';
   };
 
   return (
@@ -347,32 +536,31 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
                     </div>
                 </div>
               : input.type == 'rows' && values[input.name] ? 
-                <div key={input.name}>
+                <div key={input.name} className='rows-inputs'>
                   <label>{input.label}</label>
-                    {values[input.name].map((x, index) => {
-                      return (
-                        <div key={index} >
-                          <div >
-                            <input
-                              type="text"
-                              value={x.first || ''}
-                              onChange={(e) => handleInputChangeTable1(index, e.target.value, 'first')}
-                            />
-                          </div>
-                          <div>
-                            <input
-                              type="text"
-                              value={x.second || ''}
-                              onChange={(e) => handleInputChangeTable1(index, e.target.value, 'second')}
-                            />
-                          </div>
+                  {values[input.name].map((x, index) => {
+                    return (
+                      <div key={index} className='two-columns'>
+                        <div className='first-column'>
+                          <input
+                            type="text"
+                            value={x.first || ''}
+                            onChange={(e) => handleInputChangeTable1(index, e.target.value, 'first')}
+                          />
                         </div>
-                        
-                      )
-                    })}
-                    <div className='add-button-div'>
-                      <button className='add-button' onClick={() => handleAddToTable(input.name)}>Добавить</button>
-                    </div>
+                        <div className='second-column'>
+                          <input
+                            type="text"
+                            value={x.second || ''}
+                            onChange={(e) => handleInputChangeTable1(index, e.target.value, 'second')}
+                          />
+                        </div>
+                      </div>
+                    )
+                  })}
+                  <div className='add-button-div'>
+                    <button className='add-button' onClick={() => handleAddToTable(input.name)}>Добавить</button>
+                  </div>
                 </div> 
                 :
                 input.type == 'tabs' && values.tabs && Array.isArray(values.tabsGlossary) ? 
@@ -470,14 +658,123 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
                 </div> 
                 : input.type == 'tabsData'? 
                 null 
+                : input.type == 'listNameDescroptionItems' && values.list ? 
+                <div key={input.name} className='dropd-name-desx-items'>
+                  <label>{input.label}</label>
+                  {values.list.map((x, index) => {
+                    return (
+                      <div className='columns'>
+                        <div className='name-desx'>
+                          <div key={index} className='name-input'>
+                            <input
+                              type="text"
+                              value={x.name || ''}
+                              onChange={(e) => handleInputChange(index, e.target.value, 'listName')}
+                              />
+                          </div>
+                          <div key={values.list.length + 1} className='desx-input'>
+                            <textarea
+                              type="text"
+                              value={x.description || ''}
+                              onChange={(e) => handleInputChange(index, e.target.value, 'listDescription')}
+                              />
+                          </div>
+                        </div>
+                        <div className='list'>
+                          <div className='list-list'>
+                          {x.items.map((item, itemIndex) => {
+                            return (
+                              <div key={itemIndex} className='list-rows'>
+                                <input
+                                  type="text"
+                                  value={item || ''}
+                                  onChange={(e) => handleInputChangeArrayInObject(itemIndex, e.target.value, index, 'listItems')}
+                                  />
+                              </div>
+                            )
+                          })}
+                          </div>
+                          <div className='add-drop'>
+                            <svg className='add-drop-button' onClick={() => handleAddToList('dropDownListItems', index)} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                              <circle cx="10" cy="10" r="9.4" stroke="#7E869E" stroke-opacity="0.25" stroke-width="1.2"/>
+                              <path d="M10 13.3333L10 6.66666" stroke="#374761" stroke-width="1.2" stroke-linecap="square"/>
+                              <path d="M13.3333 10L6.66659 10" stroke="#374761" stroke-width="1.2" stroke-linecap="square"/>
+                            </svg>
+                            {/* <button className='add-drop-button' onClick={() => handleAddToList(tabIndex)}>+</button> */}
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                  <div className='add-button-div'>
+                      <button className='add-button' onClick={() => handleAddToList(input.type)}>Добавить</button>
+                  </div>
+                </div>
+                : input.type == 'items_text' && values.items ? 
+                <div key={input.name} className='list-inputs'>
+                  <label>{input.label}</label>
+                    <div className='list-column'>
+                    {values.items.map((x, index) => {
+                      return (
+                        <div key={index}>
+                          <input
+                            type="text"
+                            value={x.text || ''}
+                            onChange={(e) => handleInputChange(index, e.target.value, 'items_text')}
+                            />
+                        </div>
+                      )
+                    })}
+                    </div>
+                    <div className='add-button-div'>
+                      <button className='add-button' onClick={() => handleAddToList('items_text')}>Добавить</button>
+                    </div>
+                </div>
+                : input.type == 'textarea' ?
+                <div key={input.name} className='textarea-input'>
+                  <label>{input.label}</label>
+                  <textarea
+                      value={values[input.name] || ''}
+                      onChange={(e) => {
+                        handleChange(input.name, e.target.value, input.type)
+                        adjustTextAreaHeight(e)
+                      }}
+                  />
+                </div>
+                : input.type == 'dnd_questions' ? 
+                <div key={input.name} className='dnd_questions'>
+                  <label>{input.label}</label>
+                  {values?.questions?.map((x, index) => {
+                    return (
+                      <div className='dnd-question-answer'>
+                        <div className='first-column'>
+                          <input
+                              type={'text'}
+                              value={x.answer || ''}
+                              onChange={(e) => handleInputChange(index, e.target.value, input.type)}
+                          />
+                        </div>
+                        <div className='second-column'>
+                          <select className='select' value={x.side} onChange={(e) => handleInputChange(index, e.target.value, 'select_dnd')}>
+                            <option value={0}><a>{values.leftAnswer}</a></option>
+                            <option value={1}><a>{values.rightAnswer}</a></option>
+                          </select>
+                        </div>
+                      </div>
+                    )
+                  })}
+                  <div className='add-button-div'>
+                    <button className='add-button' onClick={() => handleAddToList('dnd_questions')}>Добавить</button>
+                  </div>
+                </div>
                 :
                 <div key={input.name} className='default-input'>
-                    <label>{input.label}</label>
-                    <input
-                        type={input.type}
-                        value={values[input.name] || ''}
-                        onChange={(e) => handleChange(input.name, e.target.value, input.type)}
-                    />
+                  <label>{input.label}</label>
+                  <input
+                      type={input.type}
+                      value={values[input.name] || ''}
+                      onChange={(e) => handleChange(input.name, e.target.value, input.type)}
+                  />
                 </div>
             ))}
             <div className='buttons'>

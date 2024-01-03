@@ -129,7 +129,118 @@
             }
         }
 
-        input {
+        .rows-inputs {
+            .two-columns {
+                padding: 2px;
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                gap: 5px;
+                .first-column {
+                    width: 50%;
+                    > input {
+                        width: 100%;
+                    }
+                }
+                .second-column {
+                    width: 50%;
+                    > input {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        .dropd-name-desx-items {
+            .columns {
+                margin-top: 10px;
+                display: flex;
+                .name-desx {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+
+                    .name-input {
+                        height: 28px;
+                        > input {
+                            height: 100%;
+                            // width: 100%;
+                            background-color: #37476128;
+                            border: 1px solid #37476128;
+                        }
+                    }
+                    .desx-input {
+                        height: calc(100% - 29px);
+                        > textarea {
+                            height: 100%;
+                            background-color: #37476128;
+                            border: 1px solid #37476128;
+                        };
+                    }
+                }
+
+                .list {
+                    display: flex;
+                    gap: 5px;
+                    width: 100%;
+                    .list-list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+                        width: 95%;
+
+
+                        .list-rows {
+                            width: 100%; 
+                            > input {
+                                width: 100%;
+                            }
+                        }
+                    }
+                    .add-drop {
+                        width: 5%;
+                        padding: 4px 0px 2px 2px;
+                        .add-drop-button {
+        
+                            cursor: pointer;
+        
+                            &:hover {
+                                opacity: 0.7;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+        
+        .dnd_questions {
+
+            .dnd-question-answer {
+                padding-top: 5px;
+                display: flex;
+                gap: 5px;
+
+                width: 100%;
+
+                .first-column {
+                    width: 70%;
+
+                    > input {
+                        width: 100%;
+                    }
+                }
+                .second-column {
+                    width: 30%;
+
+                    > select {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        input, textarea {
             box-sizing: border-box;
             // border: 3px solid #ccc;
             -webkit-transition: 0.5s;
@@ -137,13 +248,29 @@
             outline: none;
         }
 
-        input[type=text] {
+
+        input[type=text], textarea{
+            resize: none;
+            font-size: 13px;
             border-radius: 5px;
             border: 1px solid grey;
             
             padding: 5px;
             
             font-family: 'Ubuntu';
+            &:focus {
+                border: 1px solid black;
+            }
+        }
+        
+        select {
+            resize: none;
+            font-size: 13px;
+            border-radius: 5px;
+            border: 1px solid grey;
+            
+            padding: 5px;
+            
             &:focus {
                 border: 1px solid black;
             }
@@ -193,6 +320,20 @@
             flex-direction: column;
             gap: 5px;
 
+        }
+
+        .textarea-input {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            height: auto;
+
+            > textarea {
+                height: auto;
+                // resize: vertical; /* Allows the textarea to be resized vertically */
+                overflow: hidden; /* Prevents scrollbars from appearing */
+                min-height: 50px;
+            }
         }
 
         .file-input {

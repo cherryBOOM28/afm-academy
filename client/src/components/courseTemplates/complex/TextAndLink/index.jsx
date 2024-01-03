@@ -16,7 +16,7 @@ function TextAndLink({ children, text='Ссылка', link, linkText, textColor,
                      color: linkColor ? linkColor : '#3A3939'
                  }}
             >
-                <Link to={link}>
+                <Link to={link} target="_blank" rel="noopener noreferrer">
                     <p>{linkText !== undefined ? linkText : 'Ссылка'}</p>
                 </Link>
             </div>

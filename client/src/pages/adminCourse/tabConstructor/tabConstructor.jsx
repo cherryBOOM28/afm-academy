@@ -23,6 +23,12 @@ import VideoLine from '../../../components/courseTemplates/common/VideoLine'
 import Report_Warning from '../../../components/courseTemplates/common/Warnings/Report'
 import Report_Information from '../../../components/courseTemplates/common/Warnings/Report_Information'
 import TabsGlossary from '../../../components/courseTemplates/complex/TabsGlossary'
+import VideoWithTitleAndText from '../../../components/courseTemplates/complex/Video/VideoWithTitleAndText'
+import TextAndLink from '../../../components/courseTemplates/complex/TextAndLink'
+import DropdownList from '../../../components/courseTemplates/complex/interactives/DropdownList'
+import DropdownList_r5 from '../../../components/courseTemplates/complex/interactives/DropdownList_r5'
+import ShortBiography from '../../../components/courseTemplates/complex/images/ShortBiography'
+import DragAndDropTwoSide from '../../../components/courseTemplates/complex/DragAndDropTwoSide'
 
 import headerWithLineIcon from '../images/header-icon.svg'
 import imageWithTextIcon from '../images/textWithBackground-icon.svg'
@@ -45,6 +51,11 @@ import saveButton from '../images/save-button.svg'
 import saveDark from '../images/save-dark.svg'
 import tabsGlossaryIcon from '../images/tabs-glossary-icon.svg'
 import dropDownTableIcon from '../images/dropdropwithtext-icon.svg'
+import textContentIcon from '../images/text-content-icon.svg'
+import dropDownListIcon from '../images/drop-down-list-icon.svg'
+import biographyIcon from '../images/biography-icon.svg'
+import dndTwoSideIcon from '../images/two-side-icon.svg'
+
 import axios from 'axios'
 
 import base_url from '../../../settings/base_url'
@@ -64,16 +75,6 @@ const elements = {
                 { name: 'lineColor', label: 'Цвет полосы', type: 'color' },
             ],
         }, //children (span for bold), header (for usual text), headerColor, lineColor
-        'Текст с фоном': {
-            component: ImageWithText,
-            icon: imageWithTextIcon,
-            inputs: [
-                { name: 'img', label: 'Изображение', type: 'file' },
-                { name: 'imageText', label: 'Текст', type: 'text' },
-                { name: 'children', label: 'Children', type: 'text' },
-                { name: 'color', label: 'Цвет', type: 'color' },
-              ],
-        }, //img, imageText or children, color
         'Текст': {
             component: RandomGlossary,
             icon: randomGlossaryIcon,
@@ -183,6 +184,22 @@ const elements = {
                 { name: 'color', label: 'Цвет текста', type: 'color' },
             ],
         },
+        'Выпадающий список с описанием': {
+            component: DropdownList,
+            icon: dropDownListIcon,
+            inputs: [
+                { name: 'list', label: 'Список', type: 'listNameDescroptionItems' },
+            ],
+        },
+        // Done but needs to be generic
+        // 'Выпадающий список': {
+        //     component: DropdownList_r5,
+        //     icon: dropDownListIcon,
+        //     inputs: [
+        //         { name: 'title', label: 'Заголовок', type: 'text' },
+        //         { name: 'items', label: 'Список', type: 'items_text' },
+        //     ]
+        // }
     },
     'Табличные элементы': {
         'Двухколонная': {
@@ -198,17 +215,16 @@ const elements = {
     
     },
     'Медиа': {
-        'Файл': {
-            component: FileDownloader,
-            icon: fileDIcon,
+        'Текст с изображением': {
+            component: ImageWithText,
+            icon: imageWithTextIcon,
             inputs: [
-                { name: 'file', label: 'Файл', type: 'file' },
-                { name: 'fileName', label: 'Имя файла', type: 'text' },
-                { name: 'type', label: 'Тип', type: 'text' },
+                { name: 'img', label: 'Изображение', type: 'file' },
+                { name: 'imageText', label: 'Текст', type: 'text' },
+                { name: 'children', label: 'Children', type: 'text' },
                 { name: 'color', label: 'Цвет', type: 'color' },
-            ],
-              
-        }, //file, fileName 
+              ],
+        }, //img, imageText or children, color
         'Изображение': {
             component: ImageLine,
             icon: imageIcon,
@@ -222,10 +238,19 @@ const elements = {
             component: VideoLine,
             icon: videoLineIcon,
             inputs: [
-                { name: 'poster', label: 'Постер', type: 'text' },
-                { name: 'url', label: 'URL', type: 'text' },
+                // { name: 'poster', label: 'Постер', type: 'text' },
+                { name: 'url', label: 'Ссылка', type: 'text' },
             ],
-              
+        }, // url , poster done
+        'Видео с текстом': {
+            component: VideoWithTitleAndText,
+            icon: textContentIcon,
+            inputs: [
+                // { name: 'poster', label: 'Постер', type: 'text' },
+                { name: 'url', label: 'Ссылка', type: 'text' },
+                { name: 'title', label: 'Заголовок', type: 'text' },
+                { name: 'text', label: 'Текст', type: 'text' },
+            ],
         }, // url , poster done
     },
     'Элементы вида': {
@@ -241,6 +266,56 @@ const elements = {
             ]
         }, //
     },
+    'Ссылки и файлы': {
+        'Файл': {
+            component: FileDownloader,
+            icon: fileDIcon,
+            inputs: [
+                { name: 'file', label: 'Файл', type: 'file' },
+                { name: 'fileName', label: 'Имя файла', type: 'text' },
+                { name: 'type', label: 'Тип', type: 'text' },
+                { name: 'color', label: 'Цвет', type: 'color' },
+            ],
+              
+        }, //file, fileName 
+        'Ссылка': {
+            component: TextAndLink,
+            icon: fileDIcon,
+            inputs: [
+                { name: 'text', label: 'Название', type: 'text' },
+                { name: 'link', label: 'Ссылка', type: 'text' },
+                { name: 'linkText', label: 'Текст ссылки', type: 'text' },
+                { name: 'textColor', label: 'Цвет Названия', type: 'color' },
+                { name: 'linkColor', label: 'Цвет Ссылки', type: 'color' },
+                { name: 'linkBackgroundColor', label: 'Цвет заднего фона ссылки', type: 'color' },
+            ],
+              
+        }, //file, fileName 
+    },
+    'Другие': {
+        'Биография': {
+            component: ShortBiography,
+            icon: biographyIcon,
+            inputs: [
+                { name: 'img', label: 'Фото', type: 'file'},
+                { name: 'name', label: 'ФИО', type: 'text'},
+                { name: 'birthdate', label: 'Дата рождения', type: 'text'},
+                { name: 'deathdate', label: 'Дата смерти', type: 'text'},
+                { name: 'biography', label: 'Биография', type: 'textarea'},
+            ]
+        }
+    },
+    'Интерактивные': {
+        'Двух вариантный': {
+            component: DragAndDropTwoSide,
+            icon: dndTwoSideIcon,
+            inputs: [
+                { name: 'leftAnswer', label: 'Первый вариант', type: 'text'},
+                { name: 'rightAnswer', label: 'Второй вариант', type: 'text'},
+                { name: 'questions', label: 'Вопросы', type: 'dnd_questions'},
+            ]
+        }
+    }
 }
 function getKeyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
@@ -263,7 +338,13 @@ const componentMap = {
     VideoLine,
     Sizebox,
     TabsGlossary,
-    DropDownTextWithTabs
+    DropDownTextWithTabs,
+    VideoWithTitleAndText,
+    TextAndLink,
+    DropdownList,
+    DropdownList_r5,
+    ShortBiography,
+    DragAndDropTwoSide
     // Add other components here
 };
 
