@@ -42,7 +42,7 @@ function DefaultHeader() {
     setUsername('')
     setIsLoggedIn(false);
 
-    console.log("works")
+    // console.log("works")
 
     navigate('/login')
   }; 

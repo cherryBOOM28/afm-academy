@@ -38,10 +38,10 @@ function CalendarPage(props) {
     });
 
     useEffect(() => {
-        console.log('Fetching events...');
+        // console.log('Fetching events...');
         axios.get('http://localhost:1415/events/all')
             .then(res => {
-                console.log('Events response:', res.data);
+                // console.log('Events response:', res.data);
 
                 const formattedEvents = res.data.map(event => ({
                     ...event,
@@ -63,8 +63,8 @@ function CalendarPage(props) {
     }
 
     const handleEventClick = (arg) => {
-        console.log(arg)
-        console.log(arg.event.extendedProps);
+        // console.log(arg)
+        // console.log(arg.event.extendedProps);
 
         // let id = arg.event.id - 0
 
@@ -155,7 +155,7 @@ const EventCard = ({event}) => {
 }
 
 const renderEventContent = (eventInfo) => {
-    console.log("event", eventInfo);
+    // console.log("event", eventInfo);
 
     return (
       <>

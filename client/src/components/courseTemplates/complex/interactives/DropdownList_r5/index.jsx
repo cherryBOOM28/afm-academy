@@ -28,7 +28,7 @@ function DropdownList_r5({
 
     const [currentOpen, setCurrentOpen] = useState(0);
     const handleOpen = (id) => {
-        console.log(id)
+        // console.log(id)
 
         setCurrentOpen(id);
     }

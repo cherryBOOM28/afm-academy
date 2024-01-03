@@ -41,7 +41,7 @@ function Header(props) {
   const userToggleRef = useRef(null);
 
   useEffect(() => {
-    console.log(username)
+    // console.log(username)
     const handleClickOutside = (event) => {
       // Check if the clicked element is a descendant of the .user-icon button
       if (
@@ -93,7 +93,7 @@ function Header(props) {
   return (
     <div className={`navbar ${props.dark? 'dark' : ''}`}>
       <Link to="/" className='logo'>
-        <img src={logo} alt="logo" style={{ borderRadius: '50%' }} />
+        <img src={logo} alt="logo" style={{pointerEvents: 'none', userSelect: 'none',  borderRadius: '50%' }} />
       </Link>
       <div className='tool-navigation-container'>
         <div className='language-container'>
@@ -151,7 +151,7 @@ function Header(props) {
             : 
             <div className='user-actions'>
               <a href='/registration' className='text-button'>Регистрация</a>
-              <a href='/login' className='contained-button blue-button'>Войти</a>
+              <a href='/login' className={`contained-button blue-button ${props.dark? 'dark' : ''}`}>Войти</a>
             </div>
           }
           <div className='hamburger-navigation'>

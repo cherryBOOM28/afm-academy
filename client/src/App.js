@@ -36,6 +36,7 @@ import PrivateRoute from './auth/PrivateRoute';
 
 import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
+import CryptoCourse from './pages/ReadCourses/CryptoCourse';
 
 function App() {
   const [jwtToken, setJwtToken] = useState('');
@@ -43,7 +44,7 @@ function App() {
   useEffect(() => {
     const storedJwtToken = localStorage.getItem('jwtToken');
 
-    console.log(storedJwtToken)
+    // console.log(storedJwtToken)
     
     if (storedJwtToken) {
       setJwtToken(storedJwtToken);
@@ -102,13 +103,15 @@ function App() {
               // } redirect={'/courses/catalog'}/>
             }/>
 
+            <Route path='/courses/100/read' element={<CryptoCourse />}/>
+
             {/* <Route path='/payment' element={<PaymentPage />}/> */}
             <Route path='/payment/:id' element={<PaymentPage />} />
 
             <Route path='/sandbox' element={<Sandbox />}/>'
 
-            <Route path='/createcourse' element={<CreateCoursePage />}/>
-            <Route path='/manager' element={<EditCatalog />}/>
+            <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={CreateCoursePage} />}/>
+            <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={EditCatalog} />}/>
             {/* <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} component={CreateCoursePage} />}/>
             <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} component={EditCatalog} />}/> */}
           </Routes>

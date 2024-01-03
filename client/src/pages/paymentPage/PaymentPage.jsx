@@ -25,14 +25,14 @@ function PaymentPage(props) {
                     },
                 });
 
-                console.log(response.data);
+                // console.log(response.data);
 
                 if (response.status === 200) {
                     setData(response.data);
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
             } catch (error) {
                 setError(error);
@@ -52,6 +52,10 @@ function PaymentPage(props) {
                     <p className={cl.headline_text}>Халықаралык экономика және қаржы академиясы қызмет ақысын қалай төлейді</p>
                     <div className={cl.line}></div>
                     <p className={cl.headline_text}>Как оплатить услугу в Международная академия экономики и финансов</p>
+                    {data !== null ? 
+                        <p className={cl.headline_text}>{data.course_name}</p>
+                        : null
+                    }
                 </div>
                 <div className={cl.qr}>
                     <p className={cl.price}>
@@ -60,12 +64,12 @@ function PaymentPage(props) {
                             {isLoading 
                                 ? "loading" 
                                 : data !== null 
-                                    ? data.course.course_price
+                                    ? data.course_price
                                     : ""
                             }тг
                         </span>
                     </p>
-                    <img src={qrImg} alt="QR" />
+                    <img style={{pointerEvents: 'none', userSelect: 'none'}} src={qrImg} alt="QR" />
                     <p className={cl.qr_text}>Отсканируйте QR-код в мобильном  приложении банка Kaspi.kz</p>
                 </div>
             </div>
@@ -79,8 +83,13 @@ function PaymentPage(props) {
                     <img src={instructionsImg} alt="Инструкция" className={cl.instructions_img} />
                     <div className={cl.whatsapp}>
                         <img src={whatsappIcon} alt="whatsappIcon" />
-                        <p className={cl.whatsapp_text}>Отправьте чек об оплате через приложение WhatsApp по номеру +7 778 65 02 728</p>
+                        <p className={cl.whatsapp_text}>Отправьте чек об оплате через приложение WhatsApp по номеру +7 778 650 27 28</p>
+
                     </div>
+                    <div className={cl.whatsapp_button}>
+                        <a href='https://wa.me/77786502728' target="_blank" className={cl.whatsapp_link}>Открыть Whatsapp</a>
+                    </div>
+                    
                 </div>
                 <div className={cl.legal_entity}>
                     <div className={cl.headline_block}>

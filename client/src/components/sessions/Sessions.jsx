@@ -39,7 +39,7 @@ export const Session = ({title, session, handleSessionClick, isActive}) => {
                     
                 } else {
                     // Handle other status codes if needed
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
             } catch (error) {
                 console.error(error);

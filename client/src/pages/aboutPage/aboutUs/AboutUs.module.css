@@ -1,3 +1,5 @@
+
+
 .container {
     width: 80%;
     margin: 0 auto;
@@ -28,6 +30,7 @@
 }
 
 .academy__p {
+    font-family: 'Inter';
     margin-top: 23px;
     /* width: 507px; */
     width: 95%;
@@ -38,6 +41,7 @@
 }
 
 .aboutTheFounder {
+    font-family: 'Inter';
     margin: 73px 0 73px;
     display: flex;
     align-items: center;
@@ -49,7 +53,7 @@
     /* width: 833px; */
     width: 100%;
     color: #000;
-    font-family: Roboto;
+    font-family: 'Inter';
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -57,10 +61,14 @@
 }
 
 .purposeOfAcademy {
+    font-family: 'Inter';
+
     margin-bottom: 73px;
 }
 
 .purposeOfAcademy__text {
+    font-family: 'Inter';
+
     margin-top: 27px;
     color: #000;
     font-size: 16px;
@@ -69,6 +77,8 @@
 }
 
 .subtitle {
+    font-family: 'Inter';
+
     margin-top: 46px;
     color: #000;
     font-size: 18px;
@@ -77,12 +87,15 @@
 }
 
 .mainTasks {
+    font-family: 'Inter';
+
     margin-top: 39px;
     display: flex;
     flex-direction: column;
 }
 
 .MainTask {
+    
     display: flex;
     gap: 26px;
 }

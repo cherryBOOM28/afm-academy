@@ -19,8 +19,8 @@ function FeedBacks({ feedBacks }) {
     const [maxPage, setMaxPage] = useState(1);
 
     useEffect(() => {
-        console.log("FeedBacks", feedBacks);
-        console.log(feedBacks === undefined || feedBacks === null || feedBacks.length === 0)
+        // console.log("FeedBacks", feedBacks);
+        // console.log(feedBacks === undefined || feedBacks === null || feedBacks.length === 0)
 
         if (!feedBacks) return;
         let _maxPage = Math.ceil(feedBacks.length / 3);
@@ -40,7 +40,7 @@ function FeedBacks({ feedBacks }) {
 
     if (feedBacks === undefined || feedBacks === null || feedBacks.length === 0) return (
         <div className='feedBack-card-non'>
-            <p>{'Нет отзывов'}</p>
+            <p className='section-header'>{'Нет отзывов'}</p>
         </div>
     );
 

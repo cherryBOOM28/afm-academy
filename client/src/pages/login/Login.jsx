@@ -46,7 +46,7 @@ const Registration = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log(formData)
+        // console.log(formData)
 
         axios
             .post(`${base_url}/api/aml/auth/authenticate`, 
@@ -55,7 +55,7 @@ const Registration = () => {
                 "password": formData['password'],
             }
         ).then(res => {
-            console.log(res.data)
+            // console.log(res.data)
         
             localStorage.setItem('jwtToken', res.data.body.token);
             localStorage.setItem('email', res.data.body.user.email);
@@ -63,7 +63,7 @@ const Registration = () => {
             localStorage.setItem('firstname', res.data.body.user.firstname);
             localStorage.setItem('lastname', res.data.body.user.lastname);
 
-            console.log(res.data)
+            // console.log(res.data)
 
             setIsLoggedIn(true);
             setAuthUser(res.data.body.user);
@@ -83,7 +83,7 @@ const Registration = () => {
                 // console.log('Error:', error.message);
             }
 
-            console.log(error)
+            // console.log(error)
         })
     };
       

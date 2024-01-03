@@ -29,14 +29,14 @@ function ProfileHeader({ handleRedact }) {
                     },
                 });
 
-                console.log(response);
+                // console.log(response);
 
                 if (response.status === 200) {
                     setData(response.data);
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
-                    console.log(response.statusText);
+                    // console.log(response.statusText);
                 }
             } catch (error) {
                 setError(error);
@@ -51,7 +51,7 @@ function ProfileHeader({ handleRedact }) {
 
     const _handleRedact = () => {
         setIsEdit(prev => !prev)
-        console.log(isEdit)
+        // console.log(isEdit)
         handleRedact();
     }
 

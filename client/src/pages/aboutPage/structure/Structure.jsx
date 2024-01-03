@@ -29,7 +29,7 @@ function Structure() {
   }
 
   const handleClick = (cardData) => {
-    console.log("User Information:", cardData);
+    // console.log("User Information:", cardData);
   };
   
 

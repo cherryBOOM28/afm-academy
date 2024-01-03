@@ -1,5 +1,5 @@
 .basic-course-page {
-    background-color: rgb(249, 249, 249);
+    background-color: rgb(255, 255, 255);
     position: relative;
 
     > div:first-child {
@@ -25,6 +25,10 @@
             color: #343434;
 
             margin-bottom: 33px;
+        }
+
+        .section-header {
+            font-family: 'Ubuntu';
         }
 
         h2 {

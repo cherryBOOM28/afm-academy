@@ -12,7 +12,7 @@ import {unstable_ClassNameGenerator} from "@mui/material";
 
 const NewsTab = () => {
   const [activeTab, setActiveTab] = useState('news');
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [type, setType] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
@@ -26,7 +26,7 @@ const NewsTab = () => {
             type: activeTab
           }
         });
-        console.log(response.data)
+        // console.log(response.data)
         setData(response.data);
       } catch (error) {
         setError(error);
@@ -55,7 +55,7 @@ const NewsTab = () => {
   const renderCardContent = (item) => {
     const datee = new Date(item.date);
     const type = item.type;
-    console.log(type)
+    // console.log(type)
     const months = {
       0: 'января',
       1: 'февраля',
@@ -97,7 +97,7 @@ const NewsTab = () => {
           </div>
       );
     } else {
-      console.log(item)
+      // console.log(item)
       return (
           <div className={cl.cardContainer}>
             <div className={cl.cardContent}>

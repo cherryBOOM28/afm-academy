@@ -26,6 +26,10 @@
     border-radius: 5px;
     border: 1px solid #A7CAFF;
 
+    .bold {
+        font-weight: 600;
+    }
+
     .icon-wrapper {
         display: flex;
         flex-direction: column;

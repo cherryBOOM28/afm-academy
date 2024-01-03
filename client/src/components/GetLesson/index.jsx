@@ -62,6 +62,9 @@ import image72 from './../../assets/images/pfr.png'
 import image73 from './../../assets/images/mvrg.png'
 import image74 from './../../assets/images/mvs.png'
 import image75 from './../../assets/images/troika2.png'
+import ArrowRightIcon from '../courseTemplates/common_v2/FlexRow/Arrow-right.svg'; 
+import HackerIcon from '../courseTemplates/common_v2/FlexRow/Hacker.svg'; 
+import PaymentIcon from '../courseTemplates/common_v2/FlexRow/Payment.svg'; 
 import defaultImg from './../../assets/images/default.png'
 import TextPlusDots_1 from '../courseTemplates/complex/TextPlusDots/TextPlusDots_1';
 import Header from "../header/Header";
@@ -70,6 +73,13 @@ import DragAndDropTwoSide from '../courseTemplates/complex/DragAndDropTwoSide';
 import Report_Information from '../courseTemplates/common/Warnings/Report_Information';
 import StageDropDown from '../courseTemplates/complex/StageDropDown';
 import InteractivePhases from '../courseTemplates/complex/interactives/InteractivePhases';
+import Component52 from '../courseTemplates/complex/Component52';
+import DataChain from '../courseTemplates/complex/DataChain';
+import SimpleTable from '../courseTemplates/common/SimpleTable';
+import FancyList from '../courseTemplates/common_v2/FancyList';
+import FlexBoxes from '../courseTemplates/common_v2/FlexBoxes';
+import FlexRow from '../courseTemplates/common_v2/FlexRow';
+import DotsOnRoad from '../courseTemplates/common_v2/DotsOnRoad';
 
 const LessonPage = ({ children, name, lecturer }) => {
 
@@ -1280,8 +1290,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Sizebox height={80} />
 
                 <Reveal>
-                    <TODO text={'Interactive game, drag to group'}/>
-
+                    <Component52 />
                 </Reveal>
 
                 <Sizebox height={80} />
@@ -1736,12 +1745,13 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Reveal>
                     <DragAndDropTwoSide 
                         questions={[
-                            {answer: 'answer1', side: 'left'},
-                            {answer: 'answer2', side: 'right'},
-                            {answer: 'answer3', side: 'left'},
+                            {answer: 'Значительное увеличение стоимости объекта, которое не объясняется текущей ситуацией на рынке недвижимости', side: 'В схеме выявлен признак'},
+                            {answer: 'Совершение операций (сделки) лицом, включенным в перечень организаций и лиц, связанных с финансированием терроризма и экстремизма', side: 'В схеме не выявлен признак'},
+                            {answer: 'Явное несоответствие договорной и рыночной стоимости предмета сделки', side: 'В схеме выявлен признак'},
+                            {answer: 'Предоставление финансового займа нерезиденту на срок свыше семисот двадцати дней без выплаты вознаграждения', side: 'В схеме не выявлен признак'},
                         ]}
-                        leftAnswer={'True'}
-                        rightAnswer={'False'}
+                        leftAnswer={'В схеме выявлен признак'}
+                        rightAnswer={'В схеме не выявлен признак'}
                     />
                 </Reveal>
 
@@ -1821,12 +1831,13 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
 
                 <DragAndDropTwoSide 
                     questions={[
-                        {answer: 'answer1', side: 'left'},
-                        {answer: 'answer2', side: 'right'},
-                        {answer: 'answer3', side: 'left'},
+                        {answer: 'Поступление на счет клиента крупной суммы денег и последующее обналичивание полученных средств, при этом получатель имел незначительные обороты по операциям', side: 'В схеме выявлен признак'},
+                        {answer: 'Совершение клиентом систематических операций на крупную сумму с неликвидными ценными бумагами', side: 'В схеме не выявлен признак'},
+                        {answer: 'Явное несоответствие договорной и рыночной стоимости предмета сделки', side: 'В схеме не выявлен признак'},
+                        {answer: 'Зачисление на счет клиента и списание со счета примерно в одном и том же объеме денег', side: 'В схеме выявлен признак'},
                     ]}
-                    leftAnswer={'True'}
-                    rightAnswer={'False'}
+                    leftAnswer={'В схеме выявлен признак'}
+                    rightAnswer={'В схеме не выявлен признак'}
                 />
 
                 <Sizebox height={100} />
@@ -2609,10 +2620,15 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Sizebox height={100} />
 
                 <Reveal>
-                    <TODO text={'Техническое соответствие ...'} />
+                    <DataChain 
+                        data={[
+                            { title: 'Техническое соответствие', description: 'Предусматривает выполнение конкретных требований Рекомендаций ФАТФ, включая систему законов и обязательных для исполнения мер; а также наличие, полномочия и процедуры компетентных органов.' },
+                            { title: 'Эффективность ', description: 'Результативность принятых законов и других нормативных правовых актов, которые демонстрируют эффективность этих принятых нормативных документов.' },
+                        ]}
+                    />
                 </Reveal>
 
-                <Sizebox height={50} />
+                <Sizebox height={100} />
                 <Reveal>
                     <Report_Warning>
                         По каждой Рекомендации эксперты должны вынести заключение о степени соответствия (или несоответствия) страны стандарту.
@@ -2669,7 +2685,35 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                         </>
                     </HeaderWithLine>
                 </Reveal>
-                <Sizebox height={40} />
+                <Sizebox height={80} />
+
+                <SimpleTable 
+                    data={[
+                        ['НР1\n Р.1, Р.2, Р.33, Р.34', 'Оценка рисков, координация и определение политики'],
+                        ['НР2\n Р.36–40', 'Международное сотрудничество'],
+                        ['НР3\n Р.26–28, 34, 35', 'Надзор'],
+                        ['НР4\n Р.9–23', 'Превентивные меры'],
+                        ['НР5\n Р.24, 25', 'Прозрачность и бенефициарная собственность'],
+                        ['НР6, НР7, НР8\n Р. 1, 3, 4, 29–32', 'Финансовая разведка, расследования ОД, судебные преследования и конфискация'],
+                        ['НР9, НР10, НР11\n Р. 1, 4, 5–8, 30, 31, 39', 'ФТ и ФРОМУ'],
+                    ]}
+                    columns={[
+                        'НР и Рекомендации входящие в состав',
+                        'Оцениваемая область',
+                    ]}
+                />
+
+                <Sizebox height={100} />
+
+                <Reveal>
+                    <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
+                        <>
+                        Перейдем к следующему блоку обучения
+                        </>
+                    </HeaderWithLine>
+                </Reveal>
+
+                <Sizebox height={50}/>
 
                 <Reveal>
                     <NextLesson handleOnClick={() => {
@@ -3140,6 +3184,46 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
             </LessonPage>)
         case 17:
             return (<LessonPage name={'Законодательство'} lecturer={'AML Academy'}>
+                <FancyList 
+                    list={[
+                        'ЧТО ТАКОЕ КРИПТОВАЛЮТА?',
+                        'ЧТО ТАКОЕ КРИПТОВАЛЮТА?',
+                        'ЧТО ТАКОЕ КРИПТОВАЛЮТА?',
+                        'ЧТО ТАКОЕ КРИПТОВАЛЮТА?',
+                    ]}
+                />
+
+                <FlexBoxes 
+                    data={[
+                        `Цифровая форма наличных денег. С её помощью можно рапоряжаться как с деньгами, которые мы привыкли видеть`,
+                        'Не принадлежит какой-либо организации, является децентрализованной',
+                        `Для использования достаточно иметь мобильное приложение`,
+                        `Для использования достаточно иметь мобильное приложение`,
+                        `Для использования достаточно иметь мобильное приложение`,
+                    ]}
+                />
+
+                <Sizebox height={40} />
+
+                <FlexRow 
+                    data={[
+                        { icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAgVBMVEX///8AAAAwMDClpaX5+fn8/Pzs7Ozd3d03Nzf6+vq9vb3v7+/19fUODg7n5+eDg4NhYWFpaWnLy8sjIyOxsbFmZmZSUlI8PDzT09NZWVmbm5sbGxupqamNjY3GxsZLS0tycnJ8fHwgICAWFhaAgIApKSmKioqWlpa1tbVFRUVNTU39c+xuAAAEV0lEQVR4nO2d6XKjQAyEZ2wwmMvgE2OMjeP7/R9wk01qQ/Mbaqp6+3sCqRykkdRSjBFCCCGEEEIIIYQQQgghhBBCCCGE+B9JmsC1CePiR+GmdG3EqJQ7a7eN79qM8chO9pPd2nNtyFh4e/uX24PVxcL+kBaJa1tG4W5/2cWurRmB0gKMWeOILj5d2zMC0Qe4eHRtzwh8pcMOBeHHmOVp18Ut4cc4u666Lr4avsyYVGHXxXDNlxm956vr4u0xc23R4PjLfdfFtM1cWzQ8wRlCKmM9lR0hpL4j1wYNT7KGXzGcujZoePwl/IqH1rVBI5Bd4GfcEhb+CYRUuyMMqfM7uLhqXBs0Ak9w0Vau7RmB5QRcXPC9Uk2wBRfPhB9j1kJZnJd8MXX2uHVdPEV8f6leDfXUpOarp0z07rqYEtZTptxAvGkJmxsBJv986dqg4YlrcPG1dm3Q8PgRPuEerg0agRJCatryZQ0T5PAzbgjfN7MFuPgm7N94U3BxQti/MRFW/pT11AlcvBMOb4ICXDwTvm9mC6in9oTvm3kF9VQY8ZWMZg3Dm5Sxnmow+R8Jk3/Q8sebB7i4J2ymJjWE1B1lPQXKjVtFWGyUEG8+FoT9mwzjTUEYbxJUip0I3zdmCpPUC2M91aBSbEoYbwKcpDLGmxjFKTlhvDH3Q9fFkLB/Y6Y4SWWspyKcpNaEzY0Smxt3wnoqw2ZqQfgxxhWIb9+E9ZS3huTPuFzkN5D8bw/CeIPN1AOj+HZ+7Fb+6f7nfTPhIcS5hp18h1TLTETvoX347B7aImH30BbsHp5Kcg+/FA2ubRiTwyLhjqXhdyd8SkNdb3Db5kn3+m72XQ/zJVs7I6mhfuKbKsYgmE7vdJ3T7NytKw5Tuul+AFrpC19HcQldmhXdJ2hwYXFClyRMCw7mrs0ZHA863imfQjoAffSNbkrqNbg2RNfsTupuEE03dEE0g/bhZUHXIcXjBJOKrcvtL0Ez9HqyPdS8J4i+t3S1koeHXvhiTNKCPoEvxmQoo+GrlXDPy/Jdk3xCw4nwfB1KEkO2LGh8VOqf564NGpoMV7srNgf9Jd4Ce7LFGG8NErYTnWomrrppPuU7A4bSrsOVLkuUUCutKrqmdgQPtQmfqmsKY5cXXYyZo9SZT80do0L2Slcrlb1aie4limtqlu+SEqp/L3Rp3qCC+0QXY7LeCSW6NF/25kps/Rg/wrlS7dqgoemtM7/oBmcZrqTznfjqnRXgO9PWOw3Btz2xxtteNVs/Zl5Bz3dHF2N6Z71yuodab5uQrx/T2wjlO+fZjzFstZJfwTuG7+xcfIW/UD4BUO9CQkH3CeKJ8pTuRLmHZ1hvdCLDGE9b8p1+6m3U850LTDDNF3Q9XzMDmeiCrlb6pPkdTFCeJjOdf9jxohvO/+D/xFK+hax/fB8n4+vHdMjO1vItZAFBThpjfvFoP0EhhBBCCCGEEEIIIYQQQgghhBBCCCGEEELQ8Ac8Xj6nD3B4AwAAAABJRU5ErkJggg==', title: 'Свобода от ограничении', desc: 'Вы можете использовать криптовалюту беспрепятственно. Централизованные платежные сервисы в свою очередь могут замораживать учетные записи или препятствовать совершению транзакций.' },
+                        { icon: HackerIcon, title: 'Устойчива к взлому', desc: 'Устройство сети делает ее устойчивой к атакам хакеров и других злоумышленников' },
+                        { icon: PaymentIcon, title: 'Дешевый и быстрый способ оплаты', desc: 'Человек на другом конце света может получить от вас средства в считанные секунды. Комиссия за транзакцию значительно меньше, чем комиссия за международный денежный перевод.' },
+                    ]}
+                />
+
+                <Report_Warning text={`Text ashfgiagaOgjao \n faishgiahgihagi <span className="bold">bold text</span>`} />
+
+                <DotsOnRoad
+                    data={[
+                        { title: 'Seed-фраза из 12-24  слов английского языка', desc: 'abort bird cat fly estimate came eight city map study agency space' },
+                        { title: 'Приватный ключ', desc: '5JPeWYZx922hXi49Lg2RIPWLIqcmDGS9YegMNgANvx8cJa6kNK8' },
+                        { title: 'Публичный ключ', desc: '03D7A51212E4EEFE40C72B201E74AA3557DEFD940ACESC3E107687577CD45FF962' },
+                        { title: 'Адрес кошелька', desc: '1DcEeFRGc4mfRLXWiVZySpmmXk7SsVLfNO' },
+                    ]}
+                />
+
                 <Reveal>
                     <Sizebox height={30}/>
                     <ImageLine
