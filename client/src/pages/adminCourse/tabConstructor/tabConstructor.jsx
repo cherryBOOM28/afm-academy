@@ -63,6 +63,9 @@ import dropDownListIcon from '../images/drop-down-list-icon.svg'
 import biographyIcon from '../images/biography-icon.svg'
 import dndTwoSideIcon from '../images/two-side-icon.svg'
 import listIcon from '../images/list-icon.png'
+import squareIcon from '../images/square-icon.svg'
+import blockIcon from '../images/blocks-icon.svg'
+import block2Icon from '../images/blocks-2-icon.svg'
 
 import axios from 'axios'
 
@@ -166,7 +169,7 @@ const elements = {
         },
         'Список квадратный': {
             component: FancyList,
-            icon: norNumberedDotsIcon,
+            icon: squareIcon,
             inputs: [
                 { name: 'list', label: 'Список', type: 'list' },
                 { name: 'textColor', label: 'Цвет текста', type: 'color' },
@@ -317,7 +320,7 @@ const elements = {
         }, //file, fileName 
         'Ссылка': {
             component: TextAndLink,
-            icon: fileDIcon,
+            icon: randomGlossaryIcon,
             inputs: [
                 { name: 'text', label: 'Название', type: 'text' },
                 { name: 'link', label: 'Ссылка', type: 'text' },
@@ -350,7 +353,7 @@ const elements = {
         },
         'Блоки': {
             component: FlexBoxes,
-            icon: norNumberedDotsIcon,
+            icon: block2Icon,
             inputs: [
                 { name: 'list', label: 'Список', type: 'list' },
                 { name: 'color', label: 'Цвет текста', type: 'color' },
@@ -359,7 +362,7 @@ const elements = {
         }, 
         'Блоки 2': {
             component: FlexRow,
-            icon: norNumberedDotsIcon,
+            icon: blockIcon,
             inputs: [
                 { name: 'icons', label: 'Картинки', type: 'icons_title_desx_list' },
                 { name: 'data', label: 'Список', type: 'title_desx_of_icons' },
