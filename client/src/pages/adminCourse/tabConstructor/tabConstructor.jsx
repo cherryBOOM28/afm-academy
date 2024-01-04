@@ -17,6 +17,9 @@ import SmallNotNuberedDots from '../../../components/courseTemplates/common/Smal
 
 import Table_1 from '../../../components/courseTemplates/common/Tables/Table-1'
 
+import FlexRow from '../../../components/courseTemplates/common_v2/FlexRow'
+import FlexBoxes from '../../../components/courseTemplates/common_v2/FlexBoxes'
+import FancyList from '../../../components/courseTemplates/common_v2/FancyList'
 import TextWithBackground from '../../../components/courseTemplates/common/TextWithBackground'
 import TextWithTitle from '../../../components/courseTemplates/common/TextWithTitle'
 import VideoLine from '../../../components/courseTemplates/common/VideoLine'
@@ -29,6 +32,10 @@ import DropdownList from '../../../components/courseTemplates/complex/interactiv
 import DropdownList_r5 from '../../../components/courseTemplates/complex/interactives/DropdownList_r5'
 import ShortBiography from '../../../components/courseTemplates/complex/images/ShortBiography'
 import DragAndDropTwoSide from '../../../components/courseTemplates/complex/DragAndDropTwoSide'
+import DropdownGlossaryList from '../../../components/courseTemplates/complex/DropdownGlossaryList'
+import DataChain from '../../../components/courseTemplates/complex/DataChain'
+import SimpleTable from '../../../components/courseTemplates/common/SimpleTable'
+
 
 import headerWithLineIcon from '../images/header-icon.svg'
 import imageWithTextIcon from '../images/textWithBackground-icon.svg'
@@ -55,13 +62,12 @@ import textContentIcon from '../images/text-content-icon.svg'
 import dropDownListIcon from '../images/drop-down-list-icon.svg'
 import biographyIcon from '../images/biography-icon.svg'
 import dndTwoSideIcon from '../images/two-side-icon.svg'
+import listIcon from '../images/list-icon.png'
 
 import axios from 'axios'
 
 import base_url from '../../../settings/base_url'
 import DropDownTextWithTabs from '../../../components/courseTemplates/complex/DropDownTextWithTabs'
-
-
 
 const elements = {
     'Текстовые элементы': {
@@ -135,6 +141,67 @@ const elements = {
                 { name: 'children', label: 'Children', type: 'text' },
             ],
         }, //children
+        
+    },
+    'Списковые элементы': {
+        'Точечный': {
+            component: NotNumberedDots,
+            icon: norNumberedDotsIcon,
+            inputs: [
+                { name: 'header', label: 'Заголовок', type: 'text' },
+                { name: 'list', label: 'Список', type: 'list' },
+                { name: 'dotsColor', label: 'Цвет точек', type: 'color' },
+                { name: 'color', label: 'Цвет текста', type: 'color' },
+            ],
+        }, 
+        'Нумированный': {
+            component: NumberedDots,
+            icon: numberedDotsIcon,
+            inputs: [
+                { name: 'header', label: 'Заголовок', type: 'text' },
+                { name: 'list', label: 'Список', type: 'list' },
+                { name: 'dotsColor', label: 'Цвет точек', type: 'color' },
+                { name: 'color', label: 'Цвет текста', type: 'color' },
+            ],
+        },
+        'Список квадратный': {
+            component: FancyList,
+            icon: norNumberedDotsIcon,
+            inputs: [
+                { name: 'list', label: 'Список', type: 'list' },
+                { name: 'textColor', label: 'Цвет текста', type: 'color' },
+                { name: 'numberColor', label: 'Цвет номеров', type: 'color' },
+                { name: 'listColor', label: 'Цвет квадратов', type: 'color' },
+            ],
+        }, 
+        'Выпадающий список с описанием': {
+            component: DropdownList,
+            icon: dropDownListIcon,
+            inputs: [
+                { name: 'list', label: 'Список', type: 'listNameDescroptionItems' },
+            ],
+        },
+        // Done but needs to be generic
+        // 'Выпадающий список': {
+        //     component: DropdownList_r5,
+        //     icon: dropDownListIcon,
+        //     inputs: [
+        //         { name: 'title', label: 'Заголовок', type: 'text' },
+        //         { name: 'items', label: 'Список', type: 'items_text' },
+        //     ]
+        // },
+        'Раскрывающийся список': {
+            component: DropdownGlossaryList,
+            icon: listIcon,
+            inputs: [
+                { name: 'list', label: 'Список', type: 'title_desx_list'},
+                { name: 'headerTextColor', label: 'Цвет заголовков', type: 'color'},
+                { name: 'activeHeaderTextColor', label: 'Цвет активного заголовка', type: 'color'},
+                { name: 'textColor', label: 'Цвет текста', type: 'color'},
+                { name: 'tabsTextColor', label: 'Цвет текста вкладок', type: 'color'},
+                { name: 'tabsBackgroundColor', label: 'Цвет вкладок', type: 'color'},
+            ]
+        },
         'Вкладки с текстами': {
             component: TabsGlossary,
             icon: tabsGlossaryIcon, // Replace with the actual icon reference
@@ -161,45 +228,6 @@ const elements = {
                 { name: 'tabsBackgroundColor', label: 'Цвет Фона Вкладок', type: 'color'},
             ]
         }
-        
-    },
-    'Списковые элементы': {
-        'Точечный': {
-            component: NotNumberedDots,
-            icon: norNumberedDotsIcon,
-            inputs: [
-                { name: 'header', label: 'Заголовок', type: 'text' },
-                { name: 'list', label: 'Список', type: 'list' },
-                { name: 'dotsColor', label: 'Цвет точек', type: 'color' },
-                { name: 'color', label: 'Цвет текста', type: 'color' },
-            ],
-        }, //list, header?, dotsColor, color
-        'Нумированный': {
-            component: NumberedDots,
-            icon: numberedDotsIcon,
-            inputs: [
-                { name: 'header', label: 'Заголовок', type: 'text' },
-                { name: 'list', label: 'Список', type: 'list' },
-                { name: 'dotsColor', label: 'Цвет точек', type: 'color' },
-                { name: 'color', label: 'Цвет текста', type: 'color' },
-            ],
-        },
-        'Выпадающий список с описанием': {
-            component: DropdownList,
-            icon: dropDownListIcon,
-            inputs: [
-                { name: 'list', label: 'Список', type: 'listNameDescroptionItems' },
-            ],
-        },
-        // Done but needs to be generic
-        // 'Выпадающий список': {
-        //     component: DropdownList_r5,
-        //     icon: dropDownListIcon,
-        //     inputs: [
-        //         { name: 'title', label: 'Заголовок', type: 'text' },
-        //         { name: 'items', label: 'Список', type: 'items_text' },
-        //     ]
-        // }
     },
     'Табличные элементы': {
         'Двухколонная': {
@@ -212,6 +240,15 @@ const elements = {
             ],
               
         }, // rows [{first:, second:}], borderColor, color
+        'Видовой': {
+            component: SimpleTable,
+            icon: table1Icon,
+            inputs: [
+                { name: 'columns', label: 'Колонны', type: 'table_headers' },
+                { name: 'data', label: 'Строки', type: 'table_rows' },
+            ],
+              
+        }, 
     
     },
     'Медиа': {
@@ -303,7 +340,32 @@ const elements = {
                 { name: 'deathdate', label: 'Дата смерти', type: 'text'},
                 { name: 'biography', label: 'Биография', type: 'textarea'},
             ]
-        }
+        },
+        'Цепь с текстами': {
+            component: DataChain,
+            icon: listIcon,
+            inputs: [
+                { name: 'data', label: 'Список', type: 'title_desx_list'},
+            ]
+        },
+        'Блоки': {
+            component: FlexBoxes,
+            icon: norNumberedDotsIcon,
+            inputs: [
+                { name: 'list', label: 'Список', type: 'list' },
+                { name: 'color', label: 'Цвет текста', type: 'color' },
+                { name: 'backgroundColor', label: 'Цвет фона', type: 'color' },
+            ],
+        }, 
+        'Блоки 2': {
+            component: FlexRow,
+            icon: norNumberedDotsIcon,
+            inputs: [
+                { name: 'icons', label: 'Картинки', type: 'icons_title_desx_list' },
+                { name: 'data', label: 'Список', type: 'title_desx_of_icons' },
+                { name: 'textColor', label: 'Цвет текста', type: 'color' },
+            ],
+        }, 
     },
     'Интерактивные': {
         'Двух вариантный': {
@@ -314,12 +376,14 @@ const elements = {
                 { name: 'rightAnswer', label: 'Второй вариант', type: 'text'},
                 { name: 'questions', label: 'Вопросы', type: 'dnd_questions'},
             ]
-        }
+        },
     }
 }
+
 function getKeyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
 }
+
 const componentMap = {
     HeaderWithLine,
     ImageWithText,
@@ -344,7 +408,13 @@ const componentMap = {
     DropdownList,
     DropdownList_r5,
     ShortBiography,
-    DragAndDropTwoSide
+    DragAndDropTwoSide,
+    DropdownGlossaryList,
+    DataChain,
+    SimpleTable,
+    FancyList,
+    FlexBoxes,
+    FlexRow
     // Add other components here
 };
 
@@ -354,7 +424,6 @@ function generateUniqueId() {
     return `${timestamp}-${random}`;
 }
   
-
 const TabConstructor = ({saveCancel, save, id}) => {
     const [stepConstructor, setStepConstructor] = useState('structure')
     const [currentModules, setCurrentModules] = useState([])
@@ -577,7 +646,6 @@ const TabConstructor = ({saveCancel, save, id}) => {
         </div>
     )
 }
-
 
 const Constructor = ({saveCancel, save, id, title}) => {
     const [selectedComponent, setSelectedComponent] = useState(null);
@@ -1003,6 +1071,7 @@ const lessons = [
         "hidden": false
     },
 ]
+
 const modules = [
     {
         "chapter_id": 1,
@@ -1023,6 +1092,5 @@ const modules = [
         "hidden": false
     },
 ]
-
 
 export default TabConstructor

@@ -240,6 +240,69 @@
             }
         }
 
+        .dropd-title-desx {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            > .dtd-columns {
+                display: flex;
+                gap: 5px;
+
+                .first-column {
+                    width: 30%;
+
+                    > input {
+                        width: 100%;
+                    }
+                }
+
+                .second-column {
+                    width: 70%;
+
+                    > input {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        .icons-title-desx {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            
+            .ictide-columns {
+                display: flex;
+                flex-direction: row;
+                gap: 5px;
+
+                .first-column {
+                    width: 30%;
+
+                    > input {
+                        width: 100%;
+                    }
+                }
+                .second-column {
+                    width: 60%;
+
+                    > input {
+                        width: 100%;
+                    }
+                }
+                .third-column {
+                    width: 10%;
+
+                    > input {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        
+
         input, textarea {
             box-sizing: border-box;
             // border: 3px solid #ccc;
@@ -402,6 +465,55 @@
                 }
             }
         }
+
+        .generic-table {
+            width: 100%;
+            overflow-x: auto;
+            position: relative;
+            overflow:visible;
+        
+            table {
+                width: 100%;
+                border-collapse: collapse;
+        
+                th, td {
+                    padding: 8px;
+                    border: 1px solid #ccc;
+                    text-align: left;
+        
+                    input {
+                        width: 100%;
+                        padding: 8px;
+                        border: none;
+                        border-radius: 4px;
+                        background-color: #37476100;
+        
+                        &:focus {
+                            // border-color: #007bff;
+                            border: none;
+                        }
+                    }
+                }
+
+                .header {
+                    background-color: #37476111;
+                }
+                .extra-column {
+                    position: absolute;
+                    top: 5px;
+                    border: none;
+                }
+        
+                .add-drop-button {
+                    cursor: pointer;
+                }
+            }
+        }
+        
+        
+        
+        
+        
 
     }
 
