@@ -367,11 +367,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
 
                 <Sizebox height={100} />
                     
-                <Reveal>
-                    <RandomH2 
-                        text={'Участники системы ПОД/ФТ'}
-                    />
-                </Reveal>
+                
                 <Reveal>
                     <DropdownList list={[
                         { 
@@ -3344,7 +3340,12 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 </Reveal>
                 <Sizebox height={40} />
 
-                
+                <Reveal>
+                    <RandomH2 
+                        text={'Участники системы ПОД/ФТ'}
+                    />
+                </Reveal>
+                <Sizebox height={40} />
                 <GroupList />
 
                 
