@@ -614,7 +614,7 @@ const CourseNavigation = ({
                     session={{
                         id: 20,
                         group: 'introduction',
-                        name: 'Законодательство',
+                        name: 'Операции с деньгами и (или) иным имуществом, подлежащие финансовому мониторингу\n',
                         progress: 0,
                     }}
                     handleSessionClick={handleSessionClick}
@@ -623,7 +623,7 @@ const CourseNavigation = ({
                     session={{
                         id: 21,
                         group: 'introduction',
-                        name: 'Законодательство',
+                        name: 'Сбор сведений и информации об операциях, подлежащих финансовому мониторингу',
                         progress: 0,
                     }}
                     handleSessionClick={handleSessionClick}
@@ -632,11 +632,20 @@ const CourseNavigation = ({
                     session={{
                         id: 22,
                         group: 'introduction',
-                        name: 'Законодательство',
+                        name: 'Целевые финансовые санкции, относящиеся к предупреждению и предотвращению терроризма и финансирования терроризма',
                         progress: 0,
                     }}
                     handleSessionClick={handleSessionClick}
                     isActive={22 === activeSessionId}
+                /><Session
+                    session={{
+                        id: 23,
+                        group: 'introduction',
+                        name: 'Отказ от проведения и приостановление ',
+                        progress: 0,
+                    }}
+                    handleSessionClick={handleSessionClick}
+                    isActive={23 === activeSessionId}
                 />
                 </Module>
                 <Module
@@ -647,22 +656,22 @@ const CourseNavigation = ({
                 >
                     <Session
                         session={{
-                            id: 23,
+                            id: 24,
                             group: 'introduction',
                             name: 'Агентство Республики Казахстан по финансовому мониторингу',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={23 === activeSessionId}
+                        isActive={24 === activeSessionId}
                     /><Session
                     session={{
-                        id: 24,
+                        id: 25,
                         group: 'introduction',
                         name: 'Функции АФМ',
                         progress: 0,
                     }}
                     handleSessionClick={handleSessionClick}
-                    isActive={24 === activeSessionId}
+                    isActive={25 === activeSessionId}
                 />
                 </Module>
                 <Module
@@ -673,13 +682,13 @@ const CourseNavigation = ({
                 >
                     <Session
                         session={{
-                            id: 25,
+                            id: 26,
                             group: 'introduction',
                             name: 'УРОК 1',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={25 === activeSessionId}
+                        isActive={26 === activeSessionId}
                     />
                 </Module>
             </div>
