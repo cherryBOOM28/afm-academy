@@ -27,6 +27,8 @@ import NumberedDots from '../../../components/courseTemplates/common/NumberedDot
 import ImageWithText from '../../../components/courseTemplates/common/ImageWithText';
 import TextAndLink from '../../../components/courseTemplates/complex/TextAndLink';
 import FlexRow from '../../../components/courseTemplates/common_v2/FlexRow';
+import VideoWithTitleAndText from '../../../components/courseTemplates/complex/Video/VideoWithTitleAndText';
+import VideoLine from '../../../components/courseTemplates/common/VideoLine';
 
 function CryptoCourse() {
     const [courseName, setCourseName] = useState('Учебный курс по навыкам работы с виртуальными активами');
@@ -211,7 +213,7 @@ function CryptoCourse() {
 
                     <Sizebox height={40} />
 */}
-                    <FlexRow
+                    {/* <FlexRow
                         icons={[
                             'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAgVBMVEX///8AAAAwMDClpaX5+fn8/Pzs7Ozd3d03Nzf6+vq9vb3v7+/19fUODg7n5+eDg4NhYWFpaWnLy8sjIyOxsbFmZmZSUlI8PDzT09NZWVmbm5sbGxupqamNjY3GxsZLS0tycnJ8fHwgICAWFhaAgIApKSmKioqWlpa1tbVFRUVNTU39c+xuAAAEV0lEQVR4nO2d6XKjQAyEZ2wwmMvgE2OMjeP7/R9wk01qQ/Mbaqp6+3sCqRykkdRSjBFCCCGEEEIIIYQQQgghhBBCCCGE+B9JmsC1CePiR+GmdG3EqJQ7a7eN79qM8chO9pPd2nNtyFh4e/uX24PVxcL+kBaJa1tG4W5/2cWurRmB0gKMWeOILj5d2zMC0Qe4eHRtzwh8pcMOBeHHmOVp18Ut4cc4u666Lr4avsyYVGHXxXDNlxm956vr4u0xc23R4PjLfdfFtM1cWzQ8wRlCKmM9lR0hpL4j1wYNT7KGXzGcujZoePwl/IqH1rVBI5Bd4GfcEhb+CYRUuyMMqfM7uLhqXBs0Ak9w0Vau7RmB5QRcXPC9Uk2wBRfPhB9j1kJZnJd8MXX2uHVdPEV8f6leDfXUpOarp0z07rqYEtZTptxAvGkJmxsBJv986dqg4YlrcPG1dm3Q8PgRPuEerg0agRJCatryZQ0T5PAzbgjfN7MFuPgm7N94U3BxQti/MRFW/pT11AlcvBMOb4ICXDwTvm9mC6in9oTvm3kF9VQY8ZWMZg3Dm5Sxnmow+R8Jk3/Q8sebB7i4J2ymJjWE1B1lPQXKjVtFWGyUEG8+FoT9mwzjTUEYbxJUip0I3zdmCpPUC2M91aBSbEoYbwKcpDLGmxjFKTlhvDH3Q9fFkLB/Y6Y4SWWspyKcpNaEzY0Smxt3wnoqw2ZqQfgxxhWIb9+E9ZS3huTPuFzkN5D8bw/CeIPN1AOj+HZ+7Fb+6f7nfTPhIcS5hp18h1TLTETvoX347B7aImH30BbsHp5Kcg+/FA2ubRiTwyLhjqXhdyd8SkNdb3Db5kn3+m72XQ/zJVs7I6mhfuKbKsYgmE7vdJ3T7NytKw5Tuul+AFrpC19HcQldmhXdJ2hwYXFClyRMCw7mrs0ZHA863imfQjoAffSNbkrqNbg2RNfsTupuEE03dEE0g/bhZUHXIcXjBJOKrcvtL0Ez9HqyPdS8J4i+t3S1koeHXvhiTNKCPoEvxmQoo+GrlXDPy/Jdk3xCw4nwfB1KEkO2LGh8VOqf564NGpoMV7srNgf9Jd4Ce7LFGG8NErYTnWomrrppPuU7A4bSrsOVLkuUUCutKrqmdgQPtQmfqmsKY5cXXYyZo9SZT80do0L2Slcrlb1aie4limtqlu+SEqp/L3Rp3qCC+0QXY7LeCSW6NF/25kps/Rg/wrlS7dqgoemtM7/oBmcZrqTznfjqnRXgO9PWOw3Btz2xxtteNVs/Zl5Bz3dHF2N6Z71yuodab5uQrx/T2wjlO+fZjzFstZJfwTuG7+xcfIW/UD4BUO9CQkH3CeKJ8pTuRLmHZ1hvdCLDGE9b8p1+6m3U850LTDDNF3Q9XzMDmeiCrlb6pPkdTFCeJjOdf9jxohvO/+D/xFK+hax/fB8n4+vHdMjO1vItZAFBThpjfvFoP0EhhBBCCCGEEEIIIYQQQgghhBBCCCGEEELQ8Ac8Xj6nD3B4AwAAAABJRU5ErkJggg==',
                             'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAgVBMVEX///8AAAAwMDClpaX5+fn8/Pzs7Ozd3d03Nzf6+vq9vb3v7+/19fUODg7n5+eDg4NhYWFpaWnLy8sjIyOxsbFmZmZSUlI8PDzT09NZWVmbm5sbGxupqamNjY3GxsZLS0tycnJ8fHwgICAWFhaAgIApKSmKioqWlpa1tbVFRUVNTU39c+xuAAAEV0lEQVR4nO2d6XKjQAyEZ2wwmMvgE2OMjeP7/R9wk01qQ/Mbaqp6+3sCqRykkdRSjBFCCCGEEEIIIYQQQgghhBBCCCGE+B9JmsC1CePiR+GmdG3EqJQ7a7eN79qM8chO9pPd2nNtyFh4e/uX24PVxcL+kBaJa1tG4W5/2cWurRmB0gKMWeOILj5d2zMC0Qe4eHRtzwh8pcMOBeHHmOVp18Ut4cc4u666Lr4avsyYVGHXxXDNlxm956vr4u0xc23R4PjLfdfFtM1cWzQ8wRlCKmM9lR0hpL4j1wYNT7KGXzGcujZoePwl/IqH1rVBI5Bd4GfcEhb+CYRUuyMMqfM7uLhqXBs0Ak9w0Vau7RmB5QRcXPC9Uk2wBRfPhB9j1kJZnJd8MXX2uHVdPEV8f6leDfXUpOarp0z07rqYEtZTptxAvGkJmxsBJv986dqg4YlrcPG1dm3Q8PgRPuEerg0agRJCatryZQ0T5PAzbgjfN7MFuPgm7N94U3BxQti/MRFW/pT11AlcvBMOb4ICXDwTvm9mC6in9oTvm3kF9VQY8ZWMZg3Dm5Sxnmow+R8Jk3/Q8sebB7i4J2ymJjWE1B1lPQXKjVtFWGyUEG8+FoT9mwzjTUEYbxJUip0I3zdmCpPUC2M91aBSbEoYbwKcpDLGmxjFKTlhvDH3Q9fFkLB/Y6Y4SWWspyKcpNaEzY0Smxt3wnoqw2ZqQfgxxhWIb9+E9ZS3huTPuFzkN5D8bw/CeIPN1AOj+HZ+7Fb+6f7nfTPhIcS5hp18h1TLTETvoX347B7aImH30BbsHp5Kcg+/FA2ubRiTwyLhjqXhdyd8SkNdb3Db5kn3+m72XQ/zJVs7I6mhfuKbKsYgmE7vdJ3T7NytKw5Tuul+AFrpC19HcQldmhXdJ2hwYXFClyRMCw7mrs0ZHA863imfQjoAffSNbkrqNbg2RNfsTupuEE03dEE0g/bhZUHXIcXjBJOKrcvtL0Ez9HqyPdS8J4i+t3S1koeHXvhiTNKCPoEvxmQoo+GrlXDPy/Jdk3xCw4nwfB1KEkO2LGh8VOqf564NGpoMV7srNgf9Jd4Ce7LFGG8NErYTnWomrrppPuU7A4bSrsOVLkuUUCutKrqmdgQPtQmfqmsKY5cXXYyZo9SZT80do0L2Slcrlb1aie4limtqlu+SEqp/L3Rp3qCC+0QXY7LeCSW6NF/25kps/Rg/wrlS7dqgoemtM7/oBmcZrqTznfjqnRXgO9PWOw3Btz2xxtteNVs/Zl5Bz3dHF2N6Z71yuodab5uQrx/T2wjlO+fZjzFstZJfwTuG7+xcfIW/UD4BUO9CQkH3CeKJ8pTuRLmHZ1hvdCLDGE9b8p1+6m3U850LTDDNF3Q9XzMDmeiCrlb6pPkdTFCeJjOdf9jxohvO/+D/xFK+hax/fB8n4+vHdMjO1vItZAFBThpjfvFoP0EhhBBCCCGEEEIIIYQQQgghhBBCCCGEEELQ8Ac8Xj6nD3B4AwAAAABJRU5ErkJggg==',
@@ -222,7 +224,7 @@ function CryptoCourse() {
                             { icon: null, title: 'Устойчива к взлому', desc: 'Устройство сети делает ее устойчивой к атакам хакеров и других злоумышленников' },
                             { icon: null, title: 'Дешевый и быстрый способ оплаты', desc: 'Человек на другом конце света может получить от вас средства в считанные секунды. Комиссия за транзакцию значительно меньше, чем комиссия за международный денежный перевод.' },
                         ]}
-                    />
+                    /> */}
 {/*
                     <DotsOnRoad
                         data={[
@@ -624,6 +626,13 @@ function CryptoCourse() {
                         />
                     </Reveal>
 
+                    <Sizebox height={100} />
+
+                    <Reveal>
+                        <VideoLine
+                            url={'https://videos.sproutvideo.com/embed/7090d1b31716e5c4f9/3cc8a905da62dcd7?playerColor=1496e0'}
+                        />
+                    </Reveal>
                     <Sizebox height={100} />
                     
                     <Reveal>

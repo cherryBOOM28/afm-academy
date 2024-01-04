@@ -70,6 +70,8 @@ import ArrowRightIcon from '../courseTemplates/common_v2/FlexRow/Arrow-right.svg
 import HackerIcon from '../courseTemplates/common_v2/FlexRow/Hacker.svg'; 
 import PaymentIcon from '../courseTemplates/common_v2/FlexRow/Payment.svg'; 
 import defaultImg from './../../assets/images/default.png'
+import image3m1 from './../../assets/images/module-3-img-1.png'
+
 import TextPlusDots_1 from '../courseTemplates/complex/TextPlusDots/TextPlusDots_1';
 import Header from "../header/Header";
 import DropdownGlossaryList from '../courseTemplates/complex/DropdownGlossaryList';
@@ -85,6 +87,7 @@ import FlexBoxes from '../courseTemplates/common_v2/FlexBoxes';
 import FlexRow from '../courseTemplates/common_v2/FlexRow';
 import DotsOnRoad from '../courseTemplates/common_v2/DotsOnRoad';
 import GroupList from '../courseTemplates/complex/interactives/GroupLists';
+import ImageWithPoints from '../courseTemplates/complex/interactives/ImageWithPoints';
 
 const LessonPage = ({ children, name, lecturer }) => {
 
@@ -3346,8 +3349,13 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                     />
                 </Reveal>
                 <Sizebox height={40} />
-                <GroupList />
 
+                <ImageWithPoints 
+                    image={image3m1}
+                />
+                
+                <Sizebox height={40} />
+                <GroupList />
                 
                 <Sizebox height={80} />
 
@@ -3964,50 +3972,6 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
 
                             Теперь, когда Вы прошли модуль <span class="bold">«Нормы Закона Республики Казахстан от «О противодействии легализации (отмыванию) доходов, полученных преступным путем, и финансированию терроризма»,</span> перейдем к тестовым вопросам для проверки усвоенных материалов.                     </></HeaderWithLine>
                 </Reveal>
-                <Reveal>
-                    <Sizebox height={40} />
-                    <TextWithTitle title={"В каких случая операция не подлежит заморозке?"}
-                    />
-
-                    <Sizebox height={40} />
-                    <NumberedDots
-                        dotsColor={'#CADEFC'}
-                        list={[
-                            'получение в виде оплаты трудового отпуска или заработной платы в размере, не превышающем минимального размера заработной платы, установленного на соответствующий финансовый год законом о республиканском бюджете, в течение календарного месяца из расчета на каждого члена семьи;',
-                            'получение в виде пенсии, расходов на служебные командировки, стипендии, пособия, иной социальной выплаты в соответствии с законодательством Казахстана, уплата налогов, коммунальных и социальных платежей, других обязательных платежей в бюджет, пеней и штрафов;',
-                            'обращение физлица, включенного в Перечень ФРОМУ в АФМ с письменным мотивированным заявлением о частичной или полной отмене применяемых мер по замораживанию операций с деньгами и (или) иным имуществом в целях обеспечения своей жизнедеятельности и членов семьи, не имеющих самостоятельных источников дохода;',
-                            'в случае, если хотя бы одна из сторон операций является лицом, включенным в Перечень ФРОМУ, и операции осуществляются в рамках договоров, заключенных до включения таких лиц в этот перечень;',
-                        ]}
-                    />
-                    <Sizebox height={40} />
-                </Reveal>
-                <Sizebox height={40} />
-                <Reveal>
-                    <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
-                        <>
-                            По каким фатам субъекты финансового мониторинга также предоставляют информацию в АФМ?
-                        </>
-                    </HeaderWithLine>
-                </Reveal>
-
-                <Sizebox height={80} />
-
-                <VideoLine url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'}/>
-
-                <Sizebox height={80} />
-
-                <Reveal/>
-                <Reveal>
-                    <Report_Information>
-                        Отказ от проведения, приостановление операций с деньгами и (или) иным имуществом, а также отказ от установления деловых отношений или прекращение деловых отношений в соответствии с Законом о ПОД/ФТ не являются основаниями для гражданско-правовой ответственности субъектов финансового мониторинга за нарушение условий соответствующих договоров (обязательств).</Report_Information>
-                    <Sizebox height={60} />
-                </Reveal>
-                <Reveal>
-                    <Report_Information>
-                        Приостановление и замораживание операций с деньгами и (или) иным имуществом не являются основаниями для возникновения гражданско-правовой или иной ответственности государственных органов за ущерб, в том числе упущенную выгоду, возникший вследствие такого приостановления и замораживания.</Report_Information>
-                    <Sizebox height={40} />
-                </Reveal>
-                <Sizebox height={40} />
                 <NextLesson handleOnClick={() => {
                     CheckCurrentChapter(id);
                 }}/>
