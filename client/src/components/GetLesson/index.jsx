@@ -65,6 +65,7 @@ import image75 from './../../assets/images/troika2.png'
 import image76 from './../../assets/images/dola.png'
 import image77 from './../../assets/images/terrari.png'
 import image78 from './../../assets/images/websfm.png'
+import image79 from './../../assets/images/erorrr.png'
 import ArrowRightIcon from '../courseTemplates/common_v2/FlexRow/Arrow-right.svg';
 import HackerIcon from '../courseTemplates/common_v2/FlexRow/Hacker.svg'; 
 import PaymentIcon from '../courseTemplates/common_v2/FlexRow/Payment.svg'; 
@@ -3885,6 +3886,23 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
 
                             Теперь, когда Вы знаете, что такое целевые финансовые санкции и в каких целях они применяются, перейдем к изучению темы <span class="bold">отказ от проведения и приостановление операций с деньгами и (или) иным имуществом</span>                        </>  </HeaderWithLine>
                     <Sizebox height={40} />
+                </Reveal>
+                <NextLesson handleOnClick={() => {
+                    CheckCurrentChapter(id);
+                }}/>
+            </LessonPage>)
+        case 23:
+            return (<LessonPage name={'Отказ от проведения и приостановление'} lecturer={'AML Academy'}>
+                <Sizebox height={80} />
+                <Reveal>
+                    <ImageLine img={image79} height={600}></ImageLine>
+                </Reveal>
+                <Sizebox height={80} />
+                <Reveal>
+                    <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
+                        <>
+
+                            Теперь, когда Вы прошли модуль <span class="bold">«Нормы Закона Республики Казахстан от «О противодействии легализации (отмыванию) доходов, полученных преступным путем, и финансированию терроризма»,</span> перейдем к тестовым вопросам для проверки усвоенных материалов.                     </></HeaderWithLine>
                 </Reveal>
                 <NextLesson handleOnClick={() => {
                     CheckCurrentChapter(id);
