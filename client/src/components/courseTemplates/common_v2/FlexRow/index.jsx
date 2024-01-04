@@ -6,6 +6,7 @@ import HackerIcon from './Hacker.svg';
 import PaymentIcon from './Payment.svg'; 
 
 function FlexRow({
+    icons=[ArrowRightIcon, HackerIcon, PaymentIcon],
     data = [
         { icon: ArrowRightIcon, title: 'Свобода от ограничении', desc: 'Вы можете использовать криптовалюту беспрепятственно. Централизованные платежные сервисы в свою очередь могут замораживать учетные записи или препятствовать совершению транзакций.' },
         { icon: HackerIcon, title: 'Устойчива к взлому', desc: 'Устройство сети делает ее устойчивой к атакам хакеров и других злоумышленников' },
@@ -26,7 +27,7 @@ function FlexRow({
                     >
 
                         <div className="icon">
-                            <img src={icon} alt="Icon" />
+                            <img src={icons[index]} alt="Icon" />
                         </div>
 
                         <div className="title">{ title }</div>
