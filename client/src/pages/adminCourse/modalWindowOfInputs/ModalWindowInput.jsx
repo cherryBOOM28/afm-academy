@@ -36,6 +36,9 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
     const hasLeftAnswer = inputs.some((x) => x.name == 'leftAnswer')
     const hasRightAnswer = inputs.some((x) => x.name == 'rightAnswer')
     const hasQuestions = inputs.some((x) => x.name == 'questions')
+    const hasColumnsInput = inputs.some((x) => x.name == 'columns')
+    const hasDataInput = inputs.some((x) => x.name == 'data')
+    const hasIconInput = inputs.some((x) => x.name == 'icons')
 
     const hasTableInput = inputs.some((x) => x.name === 'rows');
 
@@ -107,6 +110,18 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
         ...prevValues,
         questions: originalQuestionsList,
       }));
+    } else if (hasColumnsInput && hasDataInput) {
+      setValues((prevValues) => ({
+        ...prevValues,
+        'columns': exValues?.columns || ['Первая колонна', 'Вторая колонна'],
+        'data': exValues?.data || [['Значение', 'Значение']],
+      }));
+    } else if (hasIconInput && hasDataInput) {
+      setValues((prevValues) => ({
+        ...prevValues,
+        'icons': exValues?.icons || [''],
+        'data': exValues?.data || [{title: 'Заголовок', description: 'Текст'}],
+      }));
     }
 
     if (hasItems_text) {
@@ -166,6 +181,12 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
           ...prevValues,
           ['questions']: [...prevValues['questions'] || [], {answer: 'Новый вопрос', side: 0}],
         }));
+      } else if (args[0] == 'icons-title-desx') {
+        setValues((prevValues) => ({
+          ...prevValues,
+          ['data']: [...prevValues['data'] || [], {title: 'Заголовок', description: 'Текст'}],
+          ['icons']: [...prevValues['icons'] || [], ''],
+        }));
       } else {
         setValues((prevValues) => ({
           ...prevValues,
@@ -192,6 +213,18 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
               'list': updatedList
           };
         });
+      } else if (args[0] == 'title_desx_list') {
+        if (args[1] == 'data') {
+          setValues((prevValues) => ({
+            ...prevValues,
+            ['data']: [...prevValues['data'] || [], {title: 'Заголовок', description: 'Описание'}],
+          }));
+        } else {
+          setValues((prevValues) => ({
+            ...prevValues,
+            ['list']: [...prevValues['list'] || [], {title: 'Заголовок', description: 'Описание'}],
+          }));
+        }
       }
     }
   };
@@ -202,10 +235,21 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
         ...prevValues,
         [name]: [...prevValues[name], {"first": '1', "second": 'Значение'}],
       }));
+    } else if (name == 'data') {
+      setValues(prevValues => {
+        // Create a new row with the same number of elements as there are columns
+        const newRow = new Array(prevValues.columns.length).fill('Значение');
+
+        // Add the new row to the existing data
+        return {
+            ...prevValues,
+            [name]: [...prevValues[name], newRow]
+        };
+      });
     }
     // Add a new element to the list array
   };
-  // For lists
+  //For lists
   const handleInputChange = (idOrIndex, newValue, name) => {
     if (name === 'tabsDataHeader' || name === 'tabsDataData') {
       setValues((prevValues) => {
@@ -233,7 +277,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
           tabsData: filteredTabsData,
         };
       });
-    } else if (name === 'tabs') {
+    } else if (name == 'tabs') {
       setValues((prevValues) => {
           const updatedTabs = prevValues[name].map(tab => 
               tab.id === idOrIndex ? { ...tab, tab: newValue } : tab
@@ -356,6 +400,85 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
             questions: updatedQuestions,
         };
       });
+    } else if (name == 'title') {
+      const isDropDown = inputs.some((x) => x.name == 'list')
+      if (isDropDown) {
+        setValues((prevValues) => {
+          const updatedList = [...prevValues.list];
+          updatedList[idOrIndex].title = newValue;
+          
+          if (updatedList[idOrIndex].title.trim(' ') === '' && updatedList[idOrIndex].description.trim(' ') === '') {
+            updatedList.splice(idOrIndex, 1)
+          }
+          
+          return {
+              ...prevValues,
+              list: updatedList,
+          };
+        });
+      } else {
+        setValues((prevValues) => {
+          const updatedList = [...prevValues.data];
+          updatedList[idOrIndex].title = newValue;
+          
+          if (updatedList[idOrIndex].title.trim(' ') === '' && updatedList[idOrIndex].description.trim(' ') === '') {
+            updatedList.splice(idOrIndex, 1)
+          }
+          
+          return {
+              ...prevValues,
+              data: updatedList,
+          };
+        });
+      }
+    } else if (name == 'description') {
+      const isDropDown = inputs.some((x) => x.name == 'list')
+      if (isDropDown) {
+        setValues((prevValues) => {
+          const updatedList = [...prevValues.list];
+          updatedList[idOrIndex].description = newValue;
+          
+          if (updatedList[idOrIndex].title.trim(' ') === '' && updatedList[idOrIndex].description.trim(' ') === '') {
+            updatedList.splice(idOrIndex, 1)
+          }
+          
+          return {
+              ...prevValues,
+              list: updatedList,
+          };
+        });
+      } else {
+        setValues((prevValues) => {
+          const updatedList = [...prevValues.data];
+          updatedList[idOrIndex].description = newValue;
+          
+          if (updatedList[idOrIndex].title.trim(' ') === '' && updatedList[idOrIndex].description.trim(' ') === '') {
+            updatedList.splice(idOrIndex, 1)
+          }
+          
+          return {
+              ...prevValues,
+              data: updatedList,
+          };
+        });
+      }
+    } else if (name == 'icons') {
+      if (newValue) {
+        const selectedFile = newValue;
+      
+        fileToBase64(selectedFile, (base64String) => {
+          setValues((prevValues) => {
+              const updatedIcons = [...prevValues.icons];
+              updatedIcons[idOrIndex] = base64String;
+              
+              return { ...prevValues, icons: updatedIcons }
+            }
+          )
+        });
+        
+      } else {
+        console.error("Invalid file type");
+      }
     } else {
       const updatedList = [...values[name]];
       updatedList[idOrIndex] = newValue;
@@ -386,6 +509,25 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
         return {
             ...prevValues,
             list: updatedList,
+        };
+      });
+    } else if (name == 'simpleTable') {
+      setValues(prevValues => {
+        // Clone the entire data array
+        const updatedData = [...prevValues.data];
+
+        // Clone the row that needs to be updated
+        const updatedRow = [...updatedData[parentIndex]];
+
+        // Update the specific cell in the row
+        updatedRow[index] = newValue;
+
+        // Assign the updated row back to the data
+        updatedData[parentIndex] = updatedRow;
+
+        return {
+            ...prevValues,
+            data: updatedData
         };
       });
     }
@@ -441,6 +583,55 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
     }
   };
 
+  //For Generic Table
+  const handleHeaderChange = (index, newValue) => {
+    if (newValue.trim() === '') {
+        // If the new column name is an empty string, remove the column and corresponding data in each row
+        setValues(prevValues => {
+            const updatedColumns = prevValues.columns.filter((_, colIndex) => colIndex !== index);
+            const updatedData = prevValues.data.map(row => row.filter((_, cellIndex) => cellIndex !== index));
+
+            return {
+                ...prevValues,
+                columns: updatedColumns,
+                data: updatedData
+            };
+        });
+    } else {
+        // If the new column name is not empty, simply update the column name
+        setValues(prevValues => {
+            const updatedColumns = [...prevValues.columns];
+            updatedColumns[index] = newValue;
+
+            return {
+                ...prevValues,
+                columns: updatedColumns
+            };
+        });
+    }
+  };
+
+
+  const handleAddColumn = () => {
+    setValues(prevValues => {
+        // Create a new array for columns with an added empty string for the new column
+        const updatedColumns = [...prevValues.columns, 'Колонна'];
+
+        // Update each row in the data array, adding a new element to it
+        const updatedData = prevValues.data.map(row => {
+            // Add an empty string (or default value) to each row for the new column
+            return [...row, 'Значение'];
+        });
+
+        return {
+            ...prevValues,
+            columns: updatedColumns,
+            data: updatedData
+        };
+    });
+  };
+
+
   const handleSubmit = () => {
     const updatedValues = { ...values };
 
@@ -485,7 +676,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
     onClose();
   };
 
-
+    
 
   const adjustTextAreaHeight = (e) => {
     e.target.style.height = 'auto';
@@ -767,6 +958,118 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
                     <button className='add-button' onClick={() => handleAddToList('dnd_questions')}>Добавить</button>
                   </div>
                 </div>
+                : input.type == 'title_desx_list' ?
+                <div key={input.name} className='dropd-title-desx'>
+                  <label>{input.label}</label>
+                  {values?.[input.name]?.map((x, index) => {
+                    return (
+                      <div className='dtd-columns'>
+                        <div className='first-column'>
+                          <input
+                              type={'text'}
+                              value={x.title || ''}
+                              onChange={(e) => handleInputChange(index, e.target.value, 'title')}
+                          />
+                        </div>
+                        <div className='second-column'>
+                          <input
+                              type={'text'}
+                              value={x.description || ''}
+                              onChange={(e) => handleInputChange(index, e.target.value, 'description')}
+                          />
+                        </div>
+                      </div>
+                    )
+                  })}
+                  <div className='add-button-div'>
+                    <button className='add-button' onClick={() => handleAddToList('title_desx_list', input.name)}>Добавить</button>
+                  </div>
+                </div>
+                : input.type == 'table_headers' && values.columns ? 
+                <div key={input.name} className='generic-table'>
+                  <div key={input.name} className='generic-table'>
+                    <table>
+                      <thead>
+                        <tr>
+                          {values.columns.map((column, index) => (
+                              <th className='header' key={index}>
+                                  <input
+                                      type="text"
+                                      value={column}
+                                      onChange={(e) => handleHeaderChange(index, e.target.value)}
+                                  />
+                              </th>
+                          ))}
+                          <th className='extra-column'>
+                            <svg className='add-drop-button' onClick={() => handleAddColumn()} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                              <circle cx="10" cy="10" r="9.4" stroke="#7E869E" stroke-opacity="0.25" stroke-width="1.2"/>
+                              <path d="M10 13.3333L10 6.66666" stroke="#374761" stroke-width="1.2" stroke-linecap="square"/>
+                              <path d="M13.3333 10L6.66659 10" stroke="#374761" stroke-width="1.2" stroke-linecap="square"/>
+                            </svg>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {values.data.map((row, rowIndex) => (
+                              <tr key={rowIndex}>
+                                  {row.map((cell, cellIndex) => (
+                                      <td key={cellIndex}>
+                                          <input
+                                              type="text"
+                                              value={cell}
+                                              onChange={(e) => handleInputChangeArrayInObject(cellIndex, e.target.value, rowIndex, 'simpleTable')}
+                                          />
+                                      </td>
+                                  ))}
+                              </tr>
+                          ))}
+                      </tbody>
+                    </table>
+                    <div className='add-button-div'>
+                      <button className='add-button' onClick={() => handleAddToTable('data')}>Добавить</button>
+                    </div> 
+                  </div>
+                </div>
+                : input.type == 'table_rows' ? null
+                : input.type == 'icons_title_desx_list' && values.icons ? 
+                <div key={input.name} className='icons-title-desx'>
+                  <label>Блоки</label>
+                  {values?.data?.map((x, index) => {
+                    return (
+                      <div className='ictide-columns'>
+                        <div className='first-column'>
+                          <input
+                              type={'text'}
+                              value={x.title || ''}
+                              onChange={(e) => handleInputChange(index, e.target.value, 'title')}
+                          />
+                        </div>
+                        <div className='second-column'>
+                          <input
+                              type={'text'}
+                              value={x.description || ''}
+                              onChange={(e) => handleInputChange(index, e.target.value, 'description')}
+                          />
+                        </div>
+                        <div className='third-column'>
+                          {/* <label for="file-upload" class="custom-file-upload">
+                              Иконка
+                          </label> */}
+                          <input 
+                              id = 'file-upload'
+                              type={'file'}
+                              value={values.icons[index] || ''}
+                              onChange={(e) => handleInputChange(input.name, e.target.files[0], 'icons')}
+                          />
+                        </div>
+                      </div>
+                    )
+                  })}
+                  <div className='add-button-div'>
+                    <button className='add-button' onClick={() => handleAddToList('icons-title-desx')}>Добавить</button>
+                  </div>
+                </div>
+                : input.type == 'title_desx_of_icons' ? null
                 :
                 <div key={input.name} className='default-input'>
                   <label>{input.label}</label>
