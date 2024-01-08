@@ -156,7 +156,7 @@ function Basic_course(props) {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${1}`, {
+                const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${8}`, {
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,
                     },
@@ -167,7 +167,7 @@ function Basic_course(props) {
                 if (response.status === 200) {
                     setData(response.data);
                     setCourseProgress(response.data.progress_percentage)
-                    setQuizQuestions(response.data.course.chapters[0].quiz.quizList)
+                    setQuizQuestions(response.data.course.modules[0].quiz.quizList)
                     // console.log(response.data.course.chapters[0].quiz.quizList)
 
                 } else {
@@ -192,7 +192,7 @@ function Basic_course(props) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${1}`, {
+                const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${8}`, {
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,
                     },
