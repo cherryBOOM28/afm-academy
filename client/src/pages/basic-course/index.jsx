@@ -61,6 +61,8 @@ function Basic_course(props) {
 
     const [courseProgress, setCourseProgress] = useState(0);
 
+    const [courseContent, setCourseContent] = useState(null);
+
     const handleSendFeedback = () => {
         // const fetchData = async () => {
         //     try {
@@ -260,7 +262,7 @@ function Basic_course(props) {
 
     const getLesson = (id) => {
         // console.log('getLesson', quizQuestions)
-        return GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackModal})
+        return <GetLesson id={id} CheckCurrentChapter={CheckCurrentChapter} quizQuestions={quizQuestions} handleOpenFeedbackModal={handleOpenFeedbackModal} />
     }
 
     return (

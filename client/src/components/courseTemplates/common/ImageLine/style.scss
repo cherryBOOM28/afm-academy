@@ -4,7 +4,16 @@
 
     img {
         width: 100%;
-        height: 100%;
+        max-height: 500px; // max-height applies to the img element
         object-fit: cover;
+        object-position: center center; // This centers the image within its content box if it's larger than the box
+    }
+
+    &.not-crop {
+
+        img {
+            max-height: 100%;
+        }
+
     }
 }

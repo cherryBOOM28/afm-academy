@@ -47,6 +47,10 @@
         width: 55%;
         height: 100%;
 
+        @media (max-width: 1000px) {
+            width: 100%;
+        }
+
         h1 {
             color: #3A3939;
             margin: 0;

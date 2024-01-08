@@ -16,11 +16,15 @@ function SimpleTable({ columns, data }) {
         <div className="simpleTable">
             <div className="wrapper">
                 <table>
-                    <thead>
-                        <tr>
-                            {columns.map((column, index) => <th key={index}>{column}</th>)}
-                        </tr>
-                    </thead>
+                    {
+                        columns ? (
+                            <thead>
+                                <tr>
+                                    {columns.map((column, index) => <th key={index}>{column}</th>)}
+                                </tr>
+                            </thead>
+                        ) : null
+                    }
                     <tbody>
                         {data.map((row, rowIndex) => (
                             <tr key={rowIndex}>
