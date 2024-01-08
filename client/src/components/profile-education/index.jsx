@@ -40,16 +40,16 @@ function ProfileEducation({ handleOpenModal }) {
                 });
     
                 if (response.status === 200) {
-                    // console.log(response.data)
+                    console.log(response.data)
                     setCourses(response.data);
     
-                    let _edu = response.data.filter(course => course.status === 'finished').map(course => {
+                    let _edu = response.data.filter(course => course.paymentInfo && course.paymentInfo.status === 'finished').map(course => {
                         return {
-                            org_name: course.courseDTO.course_name, 
-                            position: course.courseDTO.type_of_study || 'Электронное обучение', 
+                            org_name: course.courseDTO.course_name,
+                            position: course.courseDTO.course_name.type_of_study || 'Электронное обучение',
                             start_date: '2022-01-01', 
                             end_date: '2022-02-01',
-                            id: course.id
+                            id: course.courseDTO.course_id
                         }
                     });
                     // console.log(_edu)
