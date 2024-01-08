@@ -1579,6 +1579,82 @@ const CourseNavigation = ({
                         isActive={4 === activeSessionId}
                     />
                 </Module>
+                <Module
+                    moduleId={2}
+                    isOpen={currentModule === 2}
+                    handleModuleOpen={handleModuleOpen}
+                    name={'Второй модуль'}
+                >
+                    
+                    <Session
+                        session={{
+                            id: 5,
+                            group: 'Введение',
+                            name: 'Применение криптовалют в преступной деятельности',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={5 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 6,
+                            group: 'Введение',
+                            name: 'Отслеживание криптовалютных транзакций',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={6 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 7,
+                            group: 'Введение',
+                            name: 'Конфискация и изъятие криптовалют',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={7 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 8,
+                            group: 'Введение',
+                            name: 'Сотрудничество с криптовалютными платформами',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={8 === activeSessionId}
+                    />
+                </Module>
+                <Module
+                    moduleId={3}
+                    isOpen={currentModule === 3}
+                    handleModuleOpen={handleModuleOpen}
+                    name={'Третий модуль'}
+                >
+                    <Session
+                        session={{
+                            id: 9,
+                            group: 'Введение',
+                            name: 'Практические упражнения и кейсы',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={9 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 10,
+                            group: 'Введение',
+                            name: 'Практические упражнения и кейсы',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={10 === activeSessionId}
+                    />
+                </Module>
+
             </div>
 
         </div>

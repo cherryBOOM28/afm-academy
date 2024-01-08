@@ -25,9 +25,12 @@ import deepCourse from '../../assets/icons/simple-icons_progress.svg';
 import upCourse from '../../assets/icons/ep_menu.svg';
 import Navigation from '../../components/navigation/Navigation';
 
-
+import { useTranslation } from 'react-i18next';
 
 function Home() {
+
+    const { t } = useTranslation();
+
     const navigate = useNavigate()
     const imageList = [
         { src: FirstPartner, alt: 'Image 1' },
@@ -61,6 +64,8 @@ function Home() {
         } else if (location.hash === '#newsSection') {
             scrollToNews();
         }
+
+        console.log(t)
     }, [])
 
     const toAbout = () => {
@@ -80,7 +85,7 @@ function Home() {
                         <div className={cl.aboutUs__content}> 
                             <p className={cl.aboutUs__headline}>AML ACADEMY</p>
                             {/* <p className={cl.aboutUs__text}>Обучение для безопасности финансов</p> */}
-                            <p className={cl.aboutUs__text_small}>Наши курсы</p>
+                            <p className={cl.aboutUs__text_small}>{t('our courses')}</p>
                             <div className={cl.courses_boxes}>
                                 <Link to="/courses/8" style={{ textDecoration: 'none' }}>
                                     <div className={cl.aml_box}>
@@ -113,7 +118,7 @@ function Home() {
             </section>
             <section className={cl.educationWrappwer}>
                 <div className={cl.container}>
-                    <p className={cl.headline}>Качество обучения</p>
+                    <p className={cl.headline}>{t('quality')}</p>
                     <p className={cl.subtitle}>Преимущества Академии</p>
                     <div className={cl.education}>
                         <div className={cl.advantages}>
