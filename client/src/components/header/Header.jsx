@@ -19,6 +19,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useAuth } from '../../auth/AuthContext';
 
 import { Email } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 
 
 function Header(props) {
@@ -90,6 +91,12 @@ function Header(props) {
     navigate('/profile')
   }
 
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language);
+  };
+
   return (
     <div className={`navbar ${props.dark? 'dark' : ''}`}>
       <Link to="/" className='logo'>
@@ -98,9 +105,9 @@ function Header(props) {
       <div className='tool-navigation-container'>
         <div className='language-container'>
           <div className='lg-sm'>
-            <a className='language'>ҚАЗ</a>
-            <a className='language'>РУС</a>
-            <a className='language'>ENG</a>
+            <a className='language' onClick={() => changeLanguage('kz')}>ҚАЗ</a>
+            <a className='language' onClick={() => changeLanguage('ru')}>РУС</a>
+            <a className='language' onClick={() => changeLanguage('eng')}>ENG</a>
           </div>
         </div>
         <div className='tool-container'>

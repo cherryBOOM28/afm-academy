@@ -38,6 +38,8 @@ import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
 import CryptoCourse from './pages/ReadCourses/CryptoCourse';
 
+import './settings/i18n.js';
+
 function App() {
   const [jwtToken, setJwtToken] = useState('');
 

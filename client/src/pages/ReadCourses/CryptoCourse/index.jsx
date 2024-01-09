@@ -27,6 +27,18 @@ import NumberedDots from '../../../components/courseTemplates/common/NumberedDot
 import ImageWithText from '../../../components/courseTemplates/common/ImageWithText';
 import TextAndLink from '../../../components/courseTemplates/complex/TextAndLink';
 import FlexRow from '../../../components/courseTemplates/common_v2/FlexRow';
+import VideoWithTitleAndText from '../../../components/courseTemplates/complex/Video/VideoWithTitleAndText';
+import VideoLine from '../../../components/courseTemplates/common/VideoLine';
+import SimpleTable from '../../../components/courseTemplates/common/SimpleTable';
+import FancyList from '../../../components/courseTemplates/common_v2/FancyList';
+import FlexBoxes from '../../../components/courseTemplates/common_v2/FlexBoxes';
+import ImageLine from '../../../components/courseTemplates/common/ImageLine';
+import DotsOnRoad from '../../../components/courseTemplates/common_v2/DotsOnRoad';
+
+import blockchainTransactions from '../../../assets/images/blockchain-transactions.png';
+import blockchainTransactions2 from '../../../assets/images/blockchain-transactions2.png';
+import AFM_logo from '../../../assets/images/crypto_AFM.png';
+import AML_logo from '../../../assets/images/crypto_AML.png';
 
 function CryptoCourse() {
     const [courseName, setCourseName] = useState('Учебный курс по навыкам работы с виртуальными активами');
@@ -187,8 +199,150 @@ function CryptoCourse() {
     const getLesson = (id) => {
         // console.log('getLesson', quizQuestions)
         switch (id) {
-            case 1: 
-                return (<LessonPage name={'Введение в криптовалюты'} lecturer={'Оразбек Рашид'}>
+            case 1:
+                return (<LessonPage name={'О курсе'}>
+                    <Sizebox height={30}/>
+
+                    <Reveal>
+
+                        <div 
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                gap: '10px',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                padding: '0px 210px',
+                                width: '100%',
+                                boxSizing: 'border-box',
+                            }}
+                        >
+                            <img 
+                                src={AFM_logo} 
+                                style={{
+                                    height: '100px'
+                                }}    
+                            />
+                            <img 
+                                src={'https://gurk.kz/uploads/images/b2/d9/b5/b20d97b5ba0a593e567752302b279da7.jpg'} 
+                                style={{
+                                    height: '100px'
+                                }}        
+                            />
+
+                        </div>
+
+                    </Reveal>
+
+
+                    <Sizebox height={30}/>
+
+                    <Reveal>
+                        <Centered>
+                            <RandomH2>
+                                Авторы учебного курса
+                            </RandomH2>
+                        </Centered>
+                    </Reveal>
+                    <Sizebox height={20}/>
+                    <Reveal>
+                        <SimpleTable 
+                            data={[
+                                [
+                                    'ОРАЗБЕК Рашид', 'руководитель Управления «Криптон» АФМ'
+                                ],
+                                ['АККИСЕВ Санжар Серикказыевич', 'заместитель руководителя Управления «Криптон»'],
+                                ['АЙБАТОВ Эрнест Айбатович', 'оперуполномоченный Управления «Криптон»'],
+                                ['ОРЫНГАЛИЕВ Нурали Аскарулы', 'оперуполномоченный Управления «Криптон»'],
+                                ['ПЕРНЕБАЕВ Санжар Серикулы', 'оперуполномоченный Управления «Криптон»'], 
+                                ['БАЕТОВ  Канат Жамалханович', 'помощник Ректора AML ACADEMY']
+                            ]}
+                        />
+                    </Reveal>
+
+                    <Sizebox height={100}/>
+
+                    <Reveal>
+                        <Centered>
+                            <RandomH2>
+                                Содержание курса
+                            </RandomH2>
+                        </Centered>
+                    </Reveal>
+                    <Sizebox height={30}/>
+
+                    <NumberedDots 
+                        dotsColor={'white'}
+                        list={[
+                            'Введение в криптовалюты',
+                            'Как использовать криптовалюты',
+                            'Юридический статус криптовалют'
+                        ]}
+                        header={'ПЕРВЫЙ МОДУЛЬ:'}
+                    />
+
+                    <Sizebox height={50}/>
+
+                    <Reveal>
+                        <NumberedDots 
+                            dotsColor={'white'}
+                            list={[
+                                'Применение криптовалют в преступной деятельности',
+                                'Отслеживание криптовалютных транзакций',
+                                'Конфискация и изъятие криптовалют',
+                                'Сотрудничество с криптовалютными платформами'
+                            ]}
+                            header={'ВТОРОЙ МОДУЛЬ:'}
+                        />
+                    </Reveal>
+
+                    <Sizebox height={50}/>
+
+                    <Reveal>
+                        <NumberedDots 
+                            dotsColor={'white'}
+                            list={[
+                                'Практические упражнения и кейсы',
+                                'Видео-уроки',
+                            ]}
+                            header={'ТРЕТИЙ МОДУЛЬ:'}
+                        />
+                    </Reveal>
+                    
+                    <Sizebox height={100}/>
+
+                    <Reveal>
+                        <Centered>
+                            <RandomH2>
+                                НА ЭТОМ КУРСЕ ВЫ УЗНАЕТЕ
+                            </RandomH2>
+                        </Centered>
+                    </Reveal>
+                    <Sizebox height={30}/>
+                    <Reveal>
+                        <FancyList 
+                            listColor='#ccc'
+                            list={[
+                                'ЧТО ТАКОЕ КРИПТОВАЛЮТА?',
+                                'РИСКИ: ОТМЫВАНИЕ ДОХОДОВ, НАРКОТИКИ, КОРРУПЦИЯ',
+                                'ОТСЛЕЖИВАНИЕ КРИПТОВАЛЮТ',
+                                'ОСОБЕННОСТИ ПРОВЕДЕНИЯ ОПЕРАТИВНО-СЛЕДСТВЕННЫХ МЕРОПРИЯТИЙ',
+                                'РЕГУЛИРОВАНИЕ'
+                            ]}
+                        />
+                    </Reveal>
+
+                    <Sizebox height={100}/>
+
+                    <Reveal>
+                        <NextLesson handleOnClick={() => {
+                            CheckCurrentChapter(1);
+                        }}/>
+                    </Reveal>
+
+                </LessonPage>)
+            case 2: 
+                return (<LessonPage name={'Введение в криптовалюты'}>
 
                     {/* <FancyList 
                         list={[
@@ -211,7 +365,7 @@ function CryptoCourse() {
 
                     <Sizebox height={40} />
 */}
-                    <FlexRow
+                    {/* <FlexRow
                         icons={[
                             'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAgVBMVEX///8AAAAwMDClpaX5+fn8/Pzs7Ozd3d03Nzf6+vq9vb3v7+/19fUODg7n5+eDg4NhYWFpaWnLy8sjIyOxsbFmZmZSUlI8PDzT09NZWVmbm5sbGxupqamNjY3GxsZLS0tycnJ8fHwgICAWFhaAgIApKSmKioqWlpa1tbVFRUVNTU39c+xuAAAEV0lEQVR4nO2d6XKjQAyEZ2wwmMvgE2OMjeP7/R9wk01qQ/Mbaqp6+3sCqRykkdRSjBFCCCGEEEIIIYQQQgghhBBCCCGE+B9JmsC1CePiR+GmdG3EqJQ7a7eN79qM8chO9pPd2nNtyFh4e/uX24PVxcL+kBaJa1tG4W5/2cWurRmB0gKMWeOILj5d2zMC0Qe4eHRtzwh8pcMOBeHHmOVp18Ut4cc4u666Lr4avsyYVGHXxXDNlxm956vr4u0xc23R4PjLfdfFtM1cWzQ8wRlCKmM9lR0hpL4j1wYNT7KGXzGcujZoePwl/IqH1rVBI5Bd4GfcEhb+CYRUuyMMqfM7uLhqXBs0Ak9w0Vau7RmB5QRcXPC9Uk2wBRfPhB9j1kJZnJd8MXX2uHVdPEV8f6leDfXUpOarp0z07rqYEtZTptxAvGkJmxsBJv986dqg4YlrcPG1dm3Q8PgRPuEerg0agRJCatryZQ0T5PAzbgjfN7MFuPgm7N94U3BxQti/MRFW/pT11AlcvBMOb4ICXDwTvm9mC6in9oTvm3kF9VQY8ZWMZg3Dm5Sxnmow+R8Jk3/Q8sebB7i4J2ymJjWE1B1lPQXKjVtFWGyUEG8+FoT9mwzjTUEYbxJUip0I3zdmCpPUC2M91aBSbEoYbwKcpDLGmxjFKTlhvDH3Q9fFkLB/Y6Y4SWWspyKcpNaEzY0Smxt3wnoqw2ZqQfgxxhWIb9+E9ZS3huTPuFzkN5D8bw/CeIPN1AOj+HZ+7Fb+6f7nfTPhIcS5hp18h1TLTETvoX347B7aImH30BbsHp5Kcg+/FA2ubRiTwyLhjqXhdyd8SkNdb3Db5kn3+m72XQ/zJVs7I6mhfuKbKsYgmE7vdJ3T7NytKw5Tuul+AFrpC19HcQldmhXdJ2hwYXFClyRMCw7mrs0ZHA863imfQjoAffSNbkrqNbg2RNfsTupuEE03dEE0g/bhZUHXIcXjBJOKrcvtL0Ez9HqyPdS8J4i+t3S1koeHXvhiTNKCPoEvxmQoo+GrlXDPy/Jdk3xCw4nwfB1KEkO2LGh8VOqf564NGpoMV7srNgf9Jd4Ce7LFGG8NErYTnWomrrppPuU7A4bSrsOVLkuUUCutKrqmdgQPtQmfqmsKY5cXXYyZo9SZT80do0L2Slcrlb1aie4limtqlu+SEqp/L3Rp3qCC+0QXY7LeCSW6NF/25kps/Rg/wrlS7dqgoemtM7/oBmcZrqTznfjqnRXgO9PWOw3Btz2xxtteNVs/Zl5Bz3dHF2N6Z71yuodab5uQrx/T2wjlO+fZjzFstZJfwTuG7+xcfIW/UD4BUO9CQkH3CeKJ8pTuRLmHZ1hvdCLDGE9b8p1+6m3U850LTDDNF3Q9XzMDmeiCrlb6pPkdTFCeJjOdf9jxohvO/+D/xFK+hax/fB8n4+vHdMjO1vItZAFBThpjfvFoP0EhhBBCCCGEEEIIIYQQQgghhBBCCCGEEELQ8Ac8Xj6nD3B4AwAAAABJRU5ErkJggg==',
                             'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAgVBMVEX///8AAAAwMDClpaX5+fn8/Pzs7Ozd3d03Nzf6+vq9vb3v7+/19fUODg7n5+eDg4NhYWFpaWnLy8sjIyOxsbFmZmZSUlI8PDzT09NZWVmbm5sbGxupqamNjY3GxsZLS0tycnJ8fHwgICAWFhaAgIApKSmKioqWlpa1tbVFRUVNTU39c+xuAAAEV0lEQVR4nO2d6XKjQAyEZ2wwmMvgE2OMjeP7/R9wk01qQ/Mbaqp6+3sCqRykkdRSjBFCCCGEEEIIIYQQQgghhBBCCCGE+B9JmsC1CePiR+GmdG3EqJQ7a7eN79qM8chO9pPd2nNtyFh4e/uX24PVxcL+kBaJa1tG4W5/2cWurRmB0gKMWeOILj5d2zMC0Qe4eHRtzwh8pcMOBeHHmOVp18Ut4cc4u666Lr4avsyYVGHXxXDNlxm956vr4u0xc23R4PjLfdfFtM1cWzQ8wRlCKmM9lR0hpL4j1wYNT7KGXzGcujZoePwl/IqH1rVBI5Bd4GfcEhb+CYRUuyMMqfM7uLhqXBs0Ak9w0Vau7RmB5QRcXPC9Uk2wBRfPhB9j1kJZnJd8MXX2uHVdPEV8f6leDfXUpOarp0z07rqYEtZTptxAvGkJmxsBJv986dqg4YlrcPG1dm3Q8PgRPuEerg0agRJCatryZQ0T5PAzbgjfN7MFuPgm7N94U3BxQti/MRFW/pT11AlcvBMOb4ICXDwTvm9mC6in9oTvm3kF9VQY8ZWMZg3Dm5Sxnmow+R8Jk3/Q8sebB7i4J2ymJjWE1B1lPQXKjVtFWGyUEG8+FoT9mwzjTUEYbxJUip0I3zdmCpPUC2M91aBSbEoYbwKcpDLGmxjFKTlhvDH3Q9fFkLB/Y6Y4SWWspyKcpNaEzY0Smxt3wnoqw2ZqQfgxxhWIb9+E9ZS3huTPuFzkN5D8bw/CeIPN1AOj+HZ+7Fb+6f7nfTPhIcS5hp18h1TLTETvoX347B7aImH30BbsHp5Kcg+/FA2ubRiTwyLhjqXhdyd8SkNdb3Db5kn3+m72XQ/zJVs7I6mhfuKbKsYgmE7vdJ3T7NytKw5Tuul+AFrpC19HcQldmhXdJ2hwYXFClyRMCw7mrs0ZHA863imfQjoAffSNbkrqNbg2RNfsTupuEE03dEE0g/bhZUHXIcXjBJOKrcvtL0Ez9HqyPdS8J4i+t3S1koeHXvhiTNKCPoEvxmQoo+GrlXDPy/Jdk3xCw4nwfB1KEkO2LGh8VOqf564NGpoMV7srNgf9Jd4Ce7LFGG8NErYTnWomrrppPuU7A4bSrsOVLkuUUCutKrqmdgQPtQmfqmsKY5cXXYyZo9SZT80do0L2Slcrlb1aie4limtqlu+SEqp/L3Rp3qCC+0QXY7LeCSW6NF/25kps/Rg/wrlS7dqgoemtM7/oBmcZrqTznfjqnRXgO9PWOw3Btz2xxtteNVs/Zl5Bz3dHF2N6Z71yuodab5uQrx/T2wjlO+fZjzFstZJfwTuG7+xcfIW/UD4BUO9CQkH3CeKJ8pTuRLmHZ1hvdCLDGE9b8p1+6m3U850LTDDNF3Q9XzMDmeiCrlb6pPkdTFCeJjOdf9jxohvO/+D/xFK+hax/fB8n4+vHdMjO1vItZAFBThpjfvFoP0EhhBBCCCGEEEIIIYQQQgghhBBCCCGEEELQ8Ac8Xj6nD3B4AwAAAABJRU5ErkJggg==',
@@ -222,7 +376,7 @@ function CryptoCourse() {
                             { icon: null, title: 'Устойчива к взлому', desc: 'Устройство сети делает ее устойчивой к атакам хакеров и других злоумышленников' },
                             { icon: null, title: 'Дешевый и быстрый способ оплаты', desc: 'Человек на другом конце света может получить от вас средства в считанные секунды. Комиссия за транзакцию значительно меньше, чем комиссия за международный денежный перевод.' },
                         ]}
-                    />
+                    /> */}
 {/*
                     <DotsOnRoad
                         data={[
@@ -238,6 +392,20 @@ function CryptoCourse() {
                     <Reveal>
                         <HeaderWithLine header="Что такое криптовалюты и как они работают?" />
                     </Reveal>
+                    <Sizebox height={60} />
+
+                    <ImageLine img={'https://content.fortune.com/wp-content/uploads/2016/08/510368092.jpg'} />
+
+                    <Sizebox height={30} />
+
+                    <FlexBoxes
+                        list={[
+                            `Цифровая форма наличных денег. С её помощью можно рапоряжаться как с деньгами, которые мы привыкли видеть`,
+                            'Не принадлежит какой-либо организации, является децентрализованной',
+                            `Для использования достаточно иметь мобильное приложение`,
+                        ]}
+                    />
+
                     <Sizebox height={60} />
 
                     <Reveal>
@@ -522,8 +690,8 @@ function CryptoCourse() {
                     </Reveal>
     
                 </LessonPage>)
-            case 2: 
-                return (<LessonPage name={'Как использовать криптовалюты?'} lecturer={'Оразбек Рашид'}>
+            case 3: 
+                return (<LessonPage name={'Как использовать криптовалюты?'}>
                     <Sizebox height={28} />
 
                     <Reveal>
@@ -551,13 +719,28 @@ function CryptoCourse() {
                     <Reveal>
                         <TextWithTitle 
                             text={[
-                                <><span className="bold">NB!</span> (Nota bene – обратите внимание)</>,
+                                <><span className="red bold">NB! (Nota bene – обратите внимание)</span></>,
                                 <>Прежде чем начать использовать криптовалюты, вам понадобится специальное место для их хранения – <span className="bold">криптовалютный кошелек.</span></>,
                                 <>Существует несколько видов кошельков, каждый из которых имеет свои особенности и уровни безопасности:</>
                             ]}
                         />
                     </Reveal>
                     <Sizebox height={30} />
+
+                    <Reveal>
+                        <div>
+                            <img 
+                                src="https://www.forbes.com/advisor/wp-content/uploads/2022/10/best_crypto_wallets.jpg" 
+                                style={{
+                                    height: '300px',
+                                    padding: '0px 210px'
+                                }}
+                            />
+                        </div>
+                    </Reveal>
+
+                    <Sizebox height={30} />
+
 
                     <Reveal>
                         <NumberedDots 
@@ -583,6 +766,15 @@ function CryptoCourse() {
                                 </>,
                                 <>
                                     <TextWithTitle text={[
+                                        <>
+                                            <img 
+                                                src="https://i.ytimg.com/vi/cOgoSy6sMCo/maxresdefault.jpg" 
+                                                style={{
+                                                    height: '300px',
+                                                    padding: '0px 210px'
+                                                }}
+                                            />
+                                        </>,
                                         <><span className="bold">Бумажные кошельки</span>: это записи в бумажном виде, на которых написаны ваш публичный и приватный ключи.</>,
                                         <>Они практически не подвержены взлому, но могут быть потеряны или повреждены.</>
                                     ]}/>
@@ -596,7 +788,7 @@ function CryptoCourse() {
                     <Reveal>
                         <TextWithTitle 
                             text={[
-                                <><span className="bold">PS</span> (Post scriptum - послесловие).</>,
+                                <><span className="bold red">PS (Post scriptum - послесловие).</span></>,
                                 <>Для создания кошелька:</>,
                             ]}
                         />
@@ -615,8 +807,19 @@ function CryptoCourse() {
 
                         />
                     </Reveal>
-                    
-                    <Sizebox height={40} />
+
+                    <Sizebox height={50} />
+
+                    <DotsOnRoad
+                        data={[
+                            { title: 'Seed-фраза из 12-24  слов английского языка', desc: 'abort bird cat fly estimate came eight city map study agency space' },
+                            { title: 'Приватный ключ', desc: '5JPeWYZx922hXi49Lg2RIPWLIqcmDGS9YegMNgANvx8cJa6kNK8' },
+                            { title: 'Публичный ключ', desc: '03D7A51212E4EEFE40C72B201E74AA3557DEFD940ACESC3E107687577CD45FF962' },
+                            { title: 'Адрес кошелька', desc: '1DcEeFRGc4mfRLXWiVZySpmmXk7SsVLfNO' },
+                        ]}
+                    />
+
+                    <Sizebox height={60} />
                     <Reveal>
                         <TextAndLink 
                             text='Генератор Биткоин кошельков на стороне клиента с открытым исходным кодом'
@@ -625,6 +828,94 @@ function CryptoCourse() {
                     </Reveal>
 
                     <Sizebox height={100} />
+                    <Reveal>
+                        <Centered>
+                            <RandomH2>
+                                КРИПТОКОШЕЛЬКИ
+                            </RandomH2>
+                        </Centered>
+                    </Reveal>
+                    <Sizebox height={40} />
+                    <Reveal>
+                        <div className='two-columns' 
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                gap: '50px',
+                                padding: '0px 210px'
+                            }}
+                        >
+                            <div style={{
+                                    backgroundColor: '#34d3eb',
+                                    padding: '20px'
+                                }}> 
+                                <div 
+                                    className="title" 
+                                    style={{
+                                        fontSize: '1.3rem',
+                                        fontWeight: '600',
+                                        marginBottom: '20px',
+                                        fontFamily: 'Ubuntu',
+
+                                    }}
+                                >
+                                    Контролируемые
+                                </div>
+                                <ul
+                                    style={{
+                                        listStyle: 'disc',
+                                        listStylePosition: 'inside',
+                                        fontSize: '1.2rem',
+                                    }}
+                                >
+                                    <li style={{marginBottom: '10px'}}>Адреса, контролируемые организациями (крипто биржи)</li>
+                                    <li style={{marginBottom: '10px'}}>Управлять активами может 3-е лицо (криптовалютная биржа)</li>
+                                    <li style={{marginBottom: '10px'}}>Как правило, криптокошельки создаются на криптовалютных биржах</li>
+                                </ul>
+                            </div>
+                            <div 
+                                style={{
+                                    backgroundColor: '#ebdb34',
+                                    padding: '20px'
+                                }}
+                            >
+                                <div 
+                                    className="title"
+                                    style={{
+                                        fontSize: '1.3rem',
+                                        fontFamily: 'Ubuntu',
+                                        fontWeight: '600',
+                                        marginBottom: '20px',
+                                        fontFamily: 'Ubuntu',
+
+                                    }}
+                                >
+                                    Не контролируемые
+                                </div>
+                                <ul
+                                    style={{
+                                        listStyle: 'disc',
+                                        listStylePosition: 'inside',
+                                        fontSize: '1.2rem',
+                                        gap: '0.5rem',
+                                    }}
+                                >
+                                    <li style={{marginBottom: '10px'}}>Приватные адреса, контролируемые личностями</li>
+                                    <li style={{marginBottom: '10px'}}>Управление активами полностью лежит на владельце</li>
+                                    <li style={{marginBottom: '10px'}}>Как правило, криптокошельки создаются на децентрализованных приложениях</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </Reveal>
+
+                    <Sizebox height={100} />
+
+                    {/* <Reveal>
+                        <VideoLine
+                            url={'https://videos.sproutvideo.com/embed/7090d1b31716e5c4f9/3cc8a905da62dcd7?playerColor=1496e0'}
+                        />
+                    </Reveal>
+                    <Sizebox height={100} /> */}
                     
                     <Reveal>
                         <Centered>
@@ -654,7 +945,69 @@ function CryptoCourse() {
                             ]}
                         />
                     </Reveal>
+                    
+                    <Sizebox height={60} />
+
+                    <Reveal>
+                        <Centered>
+                            <RandomH2>
+                                Валидация блоков на примере биткойна
+                            </RandomH2>
+                        </Centered>
+                    </Reveal>
+                    <Sizebox height={20} />
+                    <Reveal>
+                        <div
+                            style={{
+                                padding: '0px 210px'
+                            }}
+                        >
+                            <img 
+                                src={blockchainTransactions2} 
+                                style={{
+                                    height: '600px'
+                                }}    
+                            />
+                        </div>
+                    </Reveal>
+                    <Sizebox height={60} />
+
+                    <Reveal>
+                        <Centered>
+                            <RandomH2>
+                                Блоки и Транзакции
+                            </RandomH2>
+                        </Centered>
+                    </Reveal>
+                    <Sizebox height={20} />
+                    <Reveal>
+                        <NotNumberedDots 
+                            dotsColor={'black'}
+                            list={[
+                                'Когда транзакция добавляется в блок, она проверяется сетью.',
+                                'После проверки блок "запечатывается" и добавляется в цепочку.',
+                                'Каждый блок содержит уникальный код, называемый хешем, который связывает его с предыдущим блоком.'
+                            ]}
+                        />
+                    </Reveal>
                     <Sizebox height={40} />
+                    <Reveal>
+                        <div
+                            style={{
+                                padding: '0px 210px'
+                            }}
+                        >
+                            <img 
+                                src={blockchainTransactions} 
+                                style={{
+                                    height: '600px'
+                                }}    
+                            />
+                        </div>
+                    </Reveal>
+                    <Sizebox height={40} />
+
+
                     <Reveal>
                         <TextWithTitle 
                             text={[
@@ -698,26 +1051,29 @@ function CryptoCourse() {
                     </Reveal>
     
                 </LessonPage>)
-            case 3: 
-                return (<LessonPage name={'Юридический статус криптовалют'} lecturer={'Оразбек Рашид'}>
+            case 4: 
+                return (<LessonPage name={'Юридический статус криптовалют'}>
                     <Sizebox height={28} />
 
                     <Reveal>
                         <HeaderWithLine 
-                            header={'В настоящее время криптовалюты стали значимой частью глобальной экономической системы и вызвали интерес у правительств и регуляторов по всему миру.'}
+                            header={<>
+                                В настоящее время криптовалюты стали значимой частью глобальной экономической системы и вызвали интерес у правительств и регуляторов по всему миру. <br/>
+                                Однако <span className="bold">юридический статус криптовалют</span> до сих пор остается сложным и многогранным вопросом. <br />
+                                В разных странах существуют разные подходы к регулированию и классификации криптовалют, что создает смешанный набор правил и норм.
+                            </>}    
                         />
                     </Reveal>
                     <Sizebox height={40} />
+                    
                     <Reveal>
-                        <TextWithTitle 
-                            text={[
-                                <>Однако <span className="bold">юридический статус криптовалют</span> до сих пор остается сложным и многогранным вопросом. </>,
-                                'В разных странах существуют разные подходы к регулированию и классификации криптовалют, что создает смешанный набор правил и норм.'
-                            ]}
+                        <ImageLine 
+                            img={'https://assets-global.website-files.com/5fc4e8e30f3f81037c021859/6000b933299ec36e7557c64c_AdobeStock_185020169-scaled.jpeg'}
                         />
                     </Reveal>
-                    <Sizebox height={100} />
-                    
+
+                    <Sizebox height={40} />
+
                     <Reveal>
                         <HeaderWithLine 
                             header={'Закон «О цифровых активах»'}
@@ -870,18 +1226,67 @@ function CryptoCourse() {
                     </Reveal>
                     <Sizebox height={40} />
                     <Reveal>
-                        <NumberedDots 
-                            dotsColor={'white'}
-                            list={[
-                                <>
-                                    <span className="bold">обеспеченный цифровой актив</span> – цифровой актив, зарегистрированный посредством цифровой платформы по хранению и обмену обеспеченными цифровыми активами, который удостоверяет права на материальные, интеллектуальные услуги и активы, за исключением денег и ценных бумаг;
-                                </>,
-                                <>
-                                    <span className="bold">необеспеченный цифровой актив</span> – цифровой актив, полученный в информационной системе в виде вознаграждения за участие в поддержании консенсуса в блокчейне и не выражающий чьи-либо денежные обязательства, которыми можно торговать в цифровой форме на бирже цифровых активов.
-                                </>,
-                            ]}
+                        <div className='two-columns' 
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                gap: '50px',
+                                padding: '0px 210px'
+                            }}
+                        >
+                            <div style={{
+                                    backgroundColor: '#34d3eb',
+                                    padding: '20px'
+                                }}> 
+                                <div 
+                                    className="title" 
+                                    style={{
+                                        fontSize: '1.3rem',
+                                        fontWeight: '600',
+                                        marginBottom: '20px',
+                                        fontFamily: 'Ubuntu',
 
-                        />
+                                    }}
+                                >
+                                    обеспеченный цифровой актив
+                                </div>
+                                <div
+                                    style={{
+                                        fontSize: '1.2rem',
+                                    }}
+                                >
+                                    цифровой актив, зарегистрированный посредством цифровой платформы по хранению и обмену обеспеченными цифровыми активами, который удостоверяет права на материальные, интеллектуальные услуги и активы, за исключением денег и ценных бумаг;
+                                </div>
+                            </div>
+                            <div 
+                                style={{
+                                    backgroundColor: '#ebdb34',
+                                    padding: '20px'
+                                }}
+                            >
+                                <div 
+                                    className="title"
+                                    style={{
+                                        fontSize: '1.3rem',
+                                        fontFamily: 'Ubuntu',
+                                        fontWeight: '600',
+                                        marginBottom: '20px',
+                                        fontFamily: 'Ubuntu',
+
+                                    }}
+                                >
+                                    необеспеченный цифровой актив
+                                </div>
+                                <ulv
+                                    style={{
+                                        fontSize: '1.2rem',
+                                        gap: '0.5rem',
+                                    }}
+                                >
+                                    цифровой актив, полученный в информационной системе в виде вознаграждения за участие в поддержании консенсуса в блокчейне и не выражающий чьи-либо денежные обязательства, которыми можно торговать в цифровой форме на бирже цифровых активов.
+                                </ulv>
+                            </div>
+                        </div>
                     </Reveal>
 
                     <Sizebox height={100} />
@@ -890,11 +1295,25 @@ function CryptoCourse() {
                             header={'РИСКИ И ПРОБЛЕМЫ, СВЯЗАННЫЕ С ОТСУТСТВИЕМ ЕДИНОГО ЮРИДИЧЕСКОГО СТАТУСА:'}
                         />
                     </Reveal>
+
+                    <Sizebox height={40} />
+
+                    <Reveal>
+                        <div 
+                        style={{
+                            padding: '0px 210px'
+                        }}
+                        >
+                            <img src='https://t3.ftcdn.net/jpg/04/55/01/76/360_F_455017644_Ro7CZfHj3vSU7sMqQRAqsVN8p3dCpjIW.jpg' />
+                        </div> 
+                    </Reveal>
+
+
                     <Sizebox height={60} />
                     <Reveal>
                         <NumberedDots 
                             dotsColor={'white'}
-                            header={<><span className="bold">Отсутствие единого юридического статуса криптовалют</span> создает ряд рисков и проблем:</>}
+                            header={<><span className="bold">Отсутствие единого юридического статуса криптовалют</span> создает ряд <span className="red">рисков и проблем:</span></>}
                             list={[
                                 <><span className="bold">Правовая неопределенность:</span> отсутствие четких и ясных норм и правил может привести к правовой неопределенности, что затрудняет понимание и соблюдение правил.</>,
                                 <><span className="bold">Несогласованность:</span> разные юрисдикции могут иметь различные определения и правила для криптовалют, что затрудняет международную деятельность и сотрудничество.</>,
@@ -904,6 +1323,12 @@ function CryptoCourse() {
                     </Reveal>
 
                     <Sizebox height={100} />
+
+                    <ImageLine 
+                        notCrop={true}
+                        img={'https://www.sygna.io/wp-content/uploads/2019/11/Graphic_Nov.20_twitter-1-scaled.png'}
+                    />
+
                     <Reveal>
                         <HeaderWithLine 
                             header={'РОЛЬ ФАТФ ПРИ РАБОТЕ С ВИРТУАЛЬНЫМИ АКТИВАМИ'}
@@ -1022,7 +1447,7 @@ function CryptoCourse() {
                     <Reveal>
                         <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
                             <>
-                            Перейдем к следующему блоку обучения
+                            Завершение первого модуля
                             </>
                         </HeaderWithLine>
                     </Reveal>
@@ -1106,27 +1531,28 @@ const CourseNavigation = ({
                 </div>
             </div>
             <div className="nav-body">
+                <Session
+                    session={{
+                        id: 1,
+                        group: 'О курсе',
+                        name: 'О курсе',
+                        progress: 0,
+                    }}
+                    handleSessionClick={handleSessionClick}
+                    isActive={1 === activeSessionId}
+                />
                 <Module
                     moduleId={1}
                     isOpen={currentModule === 1}
                     handleModuleOpen={handleModuleOpen}
-                    name={'Общая характеристика национальной системы ПОД/ФТ'}
+                    name={'Первый модуль'}
                 >
-                    <Session
-                        session={{
-                            id: 1,
-                            group: 'Введение',
-                            name: 'Введение в криптовалюты',
-                            progress: 0,
-                        }}
-                        handleSessionClick={handleSessionClick}
-                        isActive={1 === activeSessionId}
-                    />
+                    
                     <Session
                         session={{
                             id: 2,
                             group: 'Введение',
-                            name: 'Как использовать криптовалюты?',
+                            name: 'Введение в криптовалюты',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
@@ -1136,13 +1562,99 @@ const CourseNavigation = ({
                         session={{
                             id: 3,
                             group: 'Введение',
-                            name: 'Юридический статус криптовалют',
+                            name: 'Как использовать криптовалюты?',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
                         isActive={3 === activeSessionId}
                     />
+                    <Session
+                        session={{
+                            id: 4,
+                            group: 'Введение',
+                            name: 'Юридический статус криптовалют',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={4 === activeSessionId}
+                    />
                 </Module>
+                <Module
+                    moduleId={2}
+                    isOpen={currentModule === 2}
+                    handleModuleOpen={handleModuleOpen}
+                    name={'Второй модуль'}
+                >
+                    
+                    <Session
+                        session={{
+                            id: 5,
+                            group: 'Введение',
+                            name: 'Применение криптовалют в преступной деятельности',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={5 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 6,
+                            group: 'Введение',
+                            name: 'Отслеживание криптовалютных транзакций',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={6 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 7,
+                            group: 'Введение',
+                            name: 'Конфискация и изъятие криптовалют',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={7 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 8,
+                            group: 'Введение',
+                            name: 'Сотрудничество с криптовалютными платформами',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={8 === activeSessionId}
+                    />
+                </Module>
+                <Module
+                    moduleId={3}
+                    isOpen={currentModule === 3}
+                    handleModuleOpen={handleModuleOpen}
+                    name={'Третий модуль'}
+                >
+                    <Session
+                        session={{
+                            id: 9,
+                            group: 'Введение',
+                            name: 'Практические упражнения и кейсы',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={9 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 10,
+                            group: 'Введение',
+                            name: 'Практические упражнения и кейсы',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={10 === activeSessionId}
+                    />
+                </Module>
+
             </div>
 
         </div>
@@ -1155,10 +1667,15 @@ const LessonPage = ({ children, name, lecturer }) => {
         <>
             <div className="content-header">
                 <h1>{name}</h1>
-                <div className='lector'>
-                    <img src={lectorImage} alt="lector-name" />
-                    <p>{lecturer}</p>
-                </div>
+                {
+                    lecturer ? 
+                    (
+                        <div className='lector'>
+                            <img src={lectorImage} alt="lector-name" />
+                            <p>{lecturer}</p>
+                        </div>
+                    ) : null
+                }                
             </div>
             {children}
         </>
