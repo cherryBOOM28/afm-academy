@@ -21,15 +21,33 @@ function FileDownloader({
         
     }
 
+    const initiateDownload = async () => {
+        try {
+            const response = await fetch(file);
+            const blob = await response.blob();
+            const downloadUrl = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.URL.revokeObjectURL(downloadUrl);
+        } catch (error) {
+            console.error('Error downloading the file: ', error);
+        }
+    };
+
     return ( 
         <div className="file-downloader-wrapper">
             <div className='course-file'style={{ borderColor: color || '#CADEFC' }}>
                 <img src={pdf} alt="file-icon" className='file-icon' />
                 <div>
                     <h6>{fileName}</h6>
-                    <p>568.9KB</p>
                 </div>
-                <img src={download} alt="download-icon" className='download' height={31}/>
+                <img src={download} 
+                    onClick={initiateDownload}
+                alt="download-icon" className='download' height={31}/>
             </div>
         </div>
      );
