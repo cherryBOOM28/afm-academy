@@ -28,6 +28,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
   const [values, setValues] = useState(exValues || {});
   
   useEffect(() => {
+    console.log(inputs)
     const hasListInput = inputs.some((x) => x.name == 'list');
     const hasTabsInput = inputs.some((x) => x.name == 'tabs');
     const hasTabsGlossaryInput = inputs.some((x) => x.name == 'tabsGlossary');
@@ -80,6 +81,8 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
         tab: tab
       })) || [];
 
+      console.log(exValues)
+
       // Remove tabName from tabsData and adjust tabsIndex to match newTabs ids
       const newTabsData = exValues?.tabsData?.map(tabData => {
           const tabNameIndex = newTabs.findIndex(tab => tab.tab === tabData.tabName);
@@ -87,6 +90,9 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
           const { tabName, ...rest } = tabData;
           return { ...rest, tabsIndex: newTabsIndex };
       }) || [];
+
+      console.log(newTabs)
+      console.log(newTabsData)
 
       setValues((prevValues) => ({
           ...prevValues,
@@ -145,6 +151,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
         setValues((prevValues) => {
           const newTabsId = Date.now() + '-' + prevValues.tabs.length;
           const newId = Date.now() + '-' + prevValues.tabsData.length;
+          console.log(newTabsId)
           return {
             ...prevValues,
             'tabs': [...prevValues['tabs'], {'id': newTabsId, 'tab': 'Вкладка ' + (values.tabs.length + 1)}],
@@ -195,6 +202,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
       }
     } else if (args.length == 2) {
       if (args[0] == 'tabsData') {
+        console.log(args[1])
         setValues((prevValues) => {
           const newId = Date.now() + '-' + prevValues.tabsData.length;
           return {
@@ -635,6 +643,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
   const handleSubmit = () => {
     const updatedValues = { ...values };
 
+
     if (updatedValues.tabsGlossary && updatedValues.tabs) {
       const tabsGlossaryObject = updatedValues.tabsGlossary.reduce((obj, glossaryValue, index) => {
           const tabKey = updatedValues.tabs[index]; // Get corresponding element from 'tabs'
@@ -644,17 +653,20 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
 
       updatedValues.tabsGlossary = tabsGlossaryObject;
     } else if (updatedValues.tabs && updatedValues.tabsData) {
-      // Transform 'tabs' into an array of tab names (strings)
-      updatedValues.tabs = updatedValues.tabs.map(tab => tab.tab);
+      console.log({ inputs, values: updatedValues })
 
+      // Transform 'tabs' into an array of tab names (strings)
+      
       // Map through 'tabsData' to add 'tabName' and remove 'id' and 'tabsIndex'
       const updatedTabsData = updatedValues.tabsData.map(tabData => {
-          // Find the corresponding tab using tabsIndex
-          const correspondingTabIndex = updatedValues.tabs.findIndex(tab => tab === tabData.tabName);
-          // Add tabName to tabData and remove 'id' and 'tabsIndex'
-          const { id, tabsIndex, ...rest } = tabData;
-          return { ...rest, tabName: correspondingTabIndex !== -1 ? updatedValues.tabs[correspondingTabIndex] : '' };
+        // Find the corresponding tab using tabsIndex
+        const correspondingTabIndex = updatedValues.tabs.findIndex(tab => tab.id === tabData.tabsIndex);
+        // Add tabName to tabData and remove 'id' and 'tabsIndex'
+        const { id, tabsIndex, ...rest } = tabData;
+        return { ...rest, tabName: correspondingTabIndex !== -1 ? updatedValues.tabs[correspondingTabIndex].tab : '' };
       });
+      
+      updatedValues.tabs = updatedValues.tabs.map(tab => tab.tab);
 
       updatedValues.tabsData = updatedTabsData;
     } else if (updatedValues.questions && updatedValues.leftAnswer && updatedValues.rightAnswer) {
@@ -669,7 +681,6 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
 
       updatedValues.questions = questionsList;
     }
-    // console.log({ inputs, values: updatedValues })
 
     onSubmit({ inputs, values: updatedValues });    
     setValues({});

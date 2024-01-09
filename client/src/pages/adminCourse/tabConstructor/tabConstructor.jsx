@@ -67,6 +67,8 @@ import squareIcon from '../images/square-icon.svg'
 import blockIcon from '../images/blocks-icon.svg'
 import block2Icon from '../images/blocks-2-icon.svg'
 
+import hatIcon from '../images/hat-light-icon.svg'
+
 import axios from 'axios'
 
 import base_url from '../../../settings/base_url'
@@ -1016,6 +1018,16 @@ const ModuleStructure = ({id, lessonById, setLessonTitle }) => {
                         : ""
                     }
                 </div>
+
+
+                <div className='add-questionare'>
+                    <a>Заполнить вопросы для тестирования</a>
+                    <div className='add-questionare-button'>
+                        <img src={hatIcon} alt="save"/>
+                        <a>Перейти</a>
+                    </div>
+                </div>
+
                 <div className='annotations'>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="41" viewBox="0 0 40 41" fill="none">

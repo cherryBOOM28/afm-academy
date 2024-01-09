@@ -50,10 +50,12 @@ const CreateCoursePage = () => {
                             <p className='step-title'>Программа Курса</p>
                         </div>
                     </div>
-                    <div onClick={() => setSave(true)} className='save-course-button'>
-                        <img src={saveButton} alt="save"/>
-                        <a>Сохранить изменения</a>
-                    </div>
+                    {currentStep == 'constructor' ? 
+                        <div onClick={() => setSave(true)} className='save-course-button'>
+                            <img src={saveButton} alt="save"/>
+                            <a>Сохранить изменения</a>
+                        </div> : ''
+                    }
                 </div>
                 {/* <TabConstructor saveCancel={saveCancel} save={save} id={currentID} /> */}
                 {
