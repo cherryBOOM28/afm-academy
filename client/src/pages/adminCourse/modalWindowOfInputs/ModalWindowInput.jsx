@@ -81,7 +81,6 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
         tab: tab
       })) || [];
 
-      console.log(exValues)
 
       // Remove tabName from tabsData and adjust tabsIndex to match newTabs ids
       const newTabsData = exValues?.tabsData?.map(tabData => {
@@ -91,8 +90,6 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
           return { ...rest, tabsIndex: newTabsIndex };
       }) || [];
 
-      console.log(newTabs)
-      console.log(newTabsData)
 
       setValues((prevValues) => ({
           ...prevValues,
@@ -151,7 +148,6 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
         setValues((prevValues) => {
           const newTabsId = Date.now() + '-' + prevValues.tabs.length;
           const newId = Date.now() + '-' + prevValues.tabsData.length;
-          console.log(newTabsId)
           return {
             ...prevValues,
             'tabs': [...prevValues['tabs'], {'id': newTabsId, 'tab': 'Вкладка ' + (values.tabs.length + 1)}],
@@ -202,7 +198,6 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
       }
     } else if (args.length == 2) {
       if (args[0] == 'tabsData') {
-        console.log(args[1])
         setValues((prevValues) => {
           const newId = Date.now() + '-' + prevValues.tabsData.length;
           return {
@@ -653,7 +648,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
 
       updatedValues.tabsGlossary = tabsGlossaryObject;
     } else if (updatedValues.tabs && updatedValues.tabsData) {
-      console.log({ inputs, values: updatedValues })
+      // console.log({ inputs, values: updatedValues })
 
       // Transform 'tabs' into an array of tab names (strings)
       
