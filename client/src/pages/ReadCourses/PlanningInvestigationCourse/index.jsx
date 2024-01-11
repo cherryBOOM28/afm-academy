@@ -5,6 +5,8 @@ import file1 from './Порядок.docx';
 import file2 from './planning_slides.pdf';
 import file3 from './образец 1 хронология событий.docx';
 import file4 from './образец 2 Таблица доказательств.docx';
+import file5 from './порядок планирования.xlsx';
+import file6 from './Ситуационнные задачи.docx';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { m, useMotionValueEvent, useScroll } from 'framer-motion';
@@ -42,6 +44,13 @@ import TwoColumnsDivider from '../../../components/courseTemplates/common_v2/Two
 import Image from '../../../components/courseTemplates/common_v2/Image';
 import TextWithBackground from '../../../components/courseTemplates/common/TextWithBackground';
 import FileDownloader from '../../../components/courseTemplates/common/FileDownloader';
+import Quote from '../../../components/courseTemplates/common_v2/Quote';
+import IconDots from '../../../components/courseTemplates/common_v2/IconDots';
+import ImageSequence from '../../../components/courseTemplates/common_v2/ImageSequence';
+import ThreeColumnsDivider from '../../../components/courseTemplates/common_v2/ThreeColumnsDivider';
+import InTextFileDownloader from '../../../components/courseTemplates/common_v2/InTextFileDownloader';
+import ShortBiography from '../../../components/courseTemplates/complex/images/ShortBiography';
+
 
 import AFM_logo from '../../../assets/images/crypto_AFM.png';
 import icon1 from '../../../assets/icons/planning1.png';
@@ -61,17 +70,19 @@ import icon14 from '../../../assets/icons/planning14.png';
 import icon15 from '../../../assets/icons/planning15.png';
 import icon16 from '../../../assets/icons/planning16.png';
 import icon17 from '../../../assets/icons/planning17.png';
+import icon18 from '../../../assets/icons/planning18.png';
+import icon19 from '../../../assets/icons/planning19.png';
+import fourFingers from '../../../assets/icons/four-fingers.png'
+import fiveFingers from '../../../assets/icons/five-fingers.png'
+import paretto from '../../../assets/images/paretto.png'
+
 import slide5 from '../../../assets/icons/planning_slide5.png';
 import slide61 from '../../../assets/icons/planning_slide61.png';
 import slide62 from '../../../assets/icons/planning_slide62.png';
 import slide7 from '../../../assets/icons/planning_slide7.png';
-import ShortBiography from '../../../components/courseTemplates/complex/images/ShortBiography';
-import Quote from '../../../components/courseTemplates/common_v2/Quote';
-import IconDots from '../../../components/courseTemplates/common_v2/IconDots';
-import ImageSequence from '../../../components/courseTemplates/common_v2/ImageSequence';
-import ThreeColumnsDivider from '../../../components/courseTemplates/common_v2/ThreeColumnsDivider';
-import InTextFileDownloader from '../../../components/courseTemplates/common_v2/InTextFileDownloader';
-
+import TestPage from '../../../components/courseTemplates/complex/Test';
+import axios from 'axios';
+import base_url from '../../../settings/base_url';
 
 function PlanningInvestigationCourse() {
     const [courseName, setCourseName] = useState('Общий порядок планирования досудебного расследования');
@@ -86,6 +97,7 @@ function PlanningInvestigationCourse() {
     const [isLoading, setLoading] = useState(true);
 
     const [courseProgress, setCourseProgress] = useState(0);
+    const [quizQuestions, setQuizQuestions] = useState([])
 
     const navigate = useNavigate();
 
@@ -123,39 +135,40 @@ function PlanningInvestigationCourse() {
         handleWindowResolution();
         window.addEventListener('resize', handleWindowResolution);
 
-        // const fetchData = async () => {
-        //     try {
-        //         const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${1}`, {
-        //             headers: {
-        //                 Authorization: `Bearer ${jwtToken}`,
-        //             },
-        //         });
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${101}`, {
+                    headers: {
+                        Authorization: `Bearer ${jwtToken}`,
+                    },
+                });
 
-        //         // console.log(response.data)
+                // console.log(response.data)
 
-        //         if (response.status === 200) {
-        //             setData(response.data);
-        //             setCourseProgress(response.data.progress_percentage)
-        //             setQuizQuestions(response.data.course.chapters[0].quiz.quizList)
-        //             // console.log(response.data.course.chapters[0].quiz.quizList)
+                if (response.status === 200) {
+                    setData(response.data);
+                    setCourseProgress(response.data.progress_percentage)
+                    setQuizQuestions(response.data.course.modules[0].quiz.quizList)
+                    console.log(response.data)
+                    // console.log(response.data.course.chapters[0].quiz.quizList)
 
-        //         } else {
-        //             // Handle other status codes if needed
-        //             setError(response.statusText);
-        //             // console.log(response.statusText);
-        //         }
+                } else {
+                    // Handle other status codes if needed
+                    setError(response.statusText);
+                    // console.log(response.statusText);
+                }
 
 
-        //     } catch (error) {
-        //         setError(error);
-        //         console.error(error);
-        //     }
+            } catch (error) {
+                setError(error);
+                console.error(error);
+            }
 
-        //     setLoading(false);
-        // };
+            setLoading(false);
+        };
 
-        // // console.log(jwtToken);
-        // fetchData();
+        // console.log(jwtToken);
+        fetchData();
     }, [])
 
     // useEffect(() => {
@@ -472,7 +485,7 @@ function PlanningInvestigationCourse() {
                         <Sizebox height={40}/>
                         <Reveal>
                             <IconDots 
-                                header={'Порядок  составления  плана  расследования'}
+                                header={'Порядок  составления  Плана  расследования'}
                                 gap={40}
                                 dotsColor={'white'}
                                 list={[
@@ -489,7 +502,17 @@ function PlanningInvestigationCourse() {
                                         />
                                     </>,
                                     'План  расследования  составляется  по  утвержденному  образцу',
-                                    'Составляется  с  учетом  требований  норм  уголовно-процессуального  законодательства',
+                                    <>
+                                        Составляется  с  учетом  требований  норм  <InTextFileDownloader 
+                                            text={'уголовно-процессуального  законодательства'} 
+                                            file={file5}
+                                            style={{
+                                                color: 'blue',
+                                                textDecoration: 'underline',
+                                                cursor: 'pointer'
+                                            }}
+                                        />
+                                    </>,
                                 ]}
                                 icons={[
                                     icon1,
@@ -860,6 +883,301 @@ function PlanningInvestigationCourse() {
                             }}/>
                         </Reveal>
                     </LessonPage>
+                case 4:
+                    return <LessonPage name={'Некоторые методы и формы планирования досудебного расследования'} >
+                        <Sizebox height={30} />
+
+                        <Reveal>
+                            <RandomParapraph
+                                fontSize={23}
+                            >
+                                <span className="bold red">План расследования - программа деятельности следователя.</span>
+                            </RandomParapraph>                            
+                        </Reveal>
+                        <Sizebox height={10} />
+                        <Reveal>
+                            <IconDots 
+                                height='60px'
+                                width='60px'
+                                icons={[
+                                    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Emoji_u261d.svg/2048px-Emoji_u261d.svg.png',
+                                    'https://i.pinimg.com/originals/cf/d7/ca/cfd7caaa52fae7b61cee67d7a14b5770.png',
+                                    'https://cdn3d.iconscout.com/3d/premium/thumb/three-fingers-hand-gesture-3209116-2680653.png?f=webp',
+                                    fourFingers,
+                                    fiveFingers
+                                ]}
+                                header={'Наиболее распространенной формой Плана расследования является план, состоящий из следующих элементов:'}
+                                list={[
+                                    'следственные версии;',
+                                    'обстоятельства, подлежащие выяснению;',
+                                    'действия, которые необходимо выполнить для проверки версии;',
+                                    'исполнители;',
+                                    'сроки.',
+                                ]}
+                            />
+                        </Reveal>
+                        <Sizebox height={40} />
+                        <Reveal>
+                            <RandomParapraph>
+                            Процесс расследования разделяется обычно <span className="bold">на три этапа:</span>
+                            </RandomParapraph>                            
+                        </Reveal>
+                        <Sizebox height={20} />
+                        <Reveal>
+                            <NotNumberedDots 
+                                dotsColor={'black'}
+                                list={[
+                                    <span className='bold'>первоначальный;</span>,
+                                    <span className='bold'>последующий;</span>,
+                                    <span className='bold'>завершающий.</span>
+                                ]}
+                            />
+                        </Reveal>
+                        <Sizebox height={40} />
+                        <Reveal>
+                            <TextWithTitle 
+                                text={[
+                                    <>Следовательно, уместно и в планировании различать те же этапы, что и в самом расследовании. Для планирования <span className="bold">на начальном этапе</span> расследования преступлений, совершаемых путем мошенничества <span className="bold">с финансовыми ресурсами</span>, характерна информационная неопределенность. Фрагментарный и проблематичный характер первоначальной информации о преступном событии, личности преступника, формы вины и другие существенные обстоятельства мешают разработке плана по делу.</>,
+                                    <>Дефицит информации в первоначальных данных часто вынуждает следователя удовлетворяться в начале этого этапа лишь типичными версиями. На этом этапе важно определить круг таких следственных действий, которые способны устранить информационную неопределенность, расширить доказательную базу. План расследования на начальном этапе должен быть ориентирован на проверку достоверности, уточнение фактических данных, которые послужили основой для возбуждения уголовного дела, сбора новых фактических данных и предупреждения возможных попыток заинтересованных лиц скрыть следы преступления.</>,
+                                    <><span className="bold">Планируя следственные действия на первоначальном этапе расследования, стоит учитывать их взаимодействие с ОРМ, которые проводятся одновременно.</span></>,
+                                    <><span className="bold">Действия следователя и оперативных подразделений Служб экономических расследований должны быть согласованы по времени и цели.</span></>,
+                                    <>При планировании <span className="bold">на последующем этапе</span> планируются не только действия, что помогают собрать доказательства, но и те, посредством которых осуществляется проверка имеющейся доказательной информации, систематизация собранного материала, устраняются возможные противоречия.</>,
+                                    <>С учетом собранной информации на данном этапе корректируются версии и выдвигаются новые. На этом этапе планируется <span className="bold">назначение и проведение необходимых экспертиз</span> (судебно-экономических, почерковедческих, технико-криминалистических экспертиз документов и т.п.), проведение обысков, выемок, очных ставок, дополнительных и повторных допросов. </>,
+                                    <><span className="bold">На завершающем этапе</span> расследования планируются предусмотренные уголовно-процессуальным законом: процессуальные действия по ознакомлению участников с материалами уголовного дела; процессуальные и иные действия, связанные с удовлетворением заявленных ходатайств; дополнительные следственные действия, на которые указывает <span className="bold">прокурор</span> или <span className="bold">начальник следственного подразделения</span>; дополнительные действия, проведенные по инициативе самого следователя в результате оценки собранных доказательств перед составлением обвинительного заключения.</>,
+                                    <><span className="bold">Расследование преступлений, совершаемых путем мошенничества с кредитными и другими финансовыми ресурсами, представляет сложность в силу того, что большинство уголовных дел являются многоэпизодными.</span></>,
+                                    <><span className="bold">Для расследования такой категории преступлений целесообразно создавать следственно-оперативную группу.</span></>,
+                                    <>Так, согласно ст. 194 УПК РК, в случае расследования особенно сложного дела создается группа из нескольких следователей. При создании следственной группы один из следователей назначается старшим, он принимает дело в свое производство и непосредственно руководит действиями других следователей.</>,
+                                    <>В процессе расследования преступлений, совершаемых путем мошенничества с кредитными и другими финансовыми ресурсами, обычно приходится работать с большим количеством финансово-бухгалтерской документации, готовить материалы и назначать различные судебные экспертизы. Поэтому желательно включать в СОГ включаются опытные следователи.</>,
+                                    <>Планирование расследования, проводимое СОГ отличается от планирования работы одного следователя и осуществляется обычно в два этапа.</>,
+                                
+                                ]}
+                            />
+                        </Reveal>
+                        <Sizebox height={20} />
+                        <Reveal>
+                            <NumberedDots 
+                                dotsColor={'#ede56d'}
+                                header={<><span className="bold">На первом этапе</span> руководитель группы изучает дело и составляет общий план расследования. <span className="bold">Особенное внимание уделяется основным направлениям будущего расследования. В общем плане находит отображение распределение обязанностей. Распределение обязанностей возможно по нескольким направлениям:</span></>}
+                                list={[
+                                    <>по эпизодам, когда следователю или нескольким следователям поручается ведение расследования по отдельным эпизодам;</>,
+                                    <>по обвиняемым (подозреваемым), когда следователю или следователям поручается ведение расследования всего того, что относится к определенному лицу;</>,
+                                    <>по организациям, предприятиям, учреждениям, когда следователь отрабатывает все то, что имеет отношение к указанному объекту;</>,
+                                    <>по территориальному признаку, когда событие преступления или его существенные обстоятельства происходили в разных местах. В таких случаях следователь закрепляется за определенным местом, где и осуществляется вся работа по делу.</>,
+                                ]}
+                            />
+                        </Reveal>
+                        <Sizebox height={40} />
+                        <Reveal>
+                            <TextWithTitle 
+                                text={[
+                                    <><span className="bold">На втором этапе</span> планирования следователи составляют план расследования по порученным им направлениям. Такие планы незначительно отличаются от обычных планов расследования. Важным требованием планирования выступает координация действий следователей относительно выполнения индивидуальных планов, которая способствует выявлению «узких мест» первоначального этапа расследования, конкретизация заданий каждому члену группы или бригады.</>,
+                                    <>Обеспечивая контроль за выполнением индивидуальных планов, <span className="bold">руководитель следственной группы</span> одновременно концентрирует собранные данные в виде детальных схем преступных связей лиц, проходящих по делу; графиков отработки версий и эпизодов, что облегчают взаимное информирование следователей, которыми он руководит. </>,
+                                ]}
+                            />
+                        </Reveal>
+                        <Sizebox height={60} />
+                        
+                        <Reveal>
+                            <Image src={'https://bainews.kz/wp-content/uploads/2023/08/dd7e1eb2b0f047468e41b1180c45ce8b.jpeg'} />
+                        </Reveal>
+                        <Sizebox height={40} />
+                        <Reveal>
+                            <TextWithTitle 
+                                text={[
+                                    <>Вместе с тем, при планировании расследования уголовных дел важное значение имеет изучение судебно-следственной практики по обвинительным актам и приговорам (в том числе оправдательным), которые имеются в открытом доступе на сайте Верховного Суда РК «www.office.sud.kz».</>,
+                                    <>Данный метод поможет устранить лишнюю работу, определить рамки расследования и объем следственных действий, чтобы добиться успешных результатов не в ущерб полноте и всесторонности следствия.</>,
+                                    <>При применении судебно-следственной практики также необходимо руководствоваться методиками расследования отдельных видов преступлений, таких как хищение, выписка фиктивных счет-фактур, деятельность финансовых пирамид и т.д.</>
+                                ]}
+                            />
+                        </Reveal>
+
+                        <Sizebox height={60} />
+                        <Reveal>
+                            <HeaderWithLine 
+                                headerColor={'#3A3939'} lineColor={'#CADEFC'}
+                            >
+                                Изучение судебно-следственной практики
+                            </HeaderWithLine>
+                        </Reveal>
+                        <Sizebox height={40} />
+                        <Reveal>
+                            <IconDots 
+                                height={'40px'}
+                                width={'40px'}
+                                icons={[
+                                    icon18,
+                                    icon19,
+                                ]}
+                                gap={40}
+                                list={[
+                                    <>
+                                        <TextWithTitle 
+                                            text={[
+                                                <>РЕКОМЕНДУЕТСЯ   БРАТЬ   ЗА   ОСНОВУ   ОБВИНИТЕЛЬНЫЕ   АКТЫ   ЛИБО  ПРИГОВОРЫ    ПО   АНАЛОГИЧНЫМ   ПРЕСТУПЛЕНИЯМ   ДЛЯ  ПРИМЕНЕНИЯ   ТАКТИЧЕСКИХ   ПРИЕМОВ  В   ПЛАНИРОВАНИИ</>
+                                            ]}  
+                                        />
+                                    </>,
+                                    <>
+                                        <TextWithTitle 
+                                            text={[
+                                                <>ЭТО ПОМОЖЕТ   ОПРЕДЕЛИТЬ:</>
+                                            ]}  
+                                        />
+                                        <Sizebox height={10} />
+                                        <NumberedDots 
+                                            dotsColor={'#ede56d'}
+                                            list={[
+                                                <>ОБЪЕМ   ОБСТОЯТЕЛЬСТВ,   ПОДЛЕЖАЩИХ   ДОКАЗЫВАНИЮ</>,
+                                                <>РАЦИОНАЛЬНОЕ   ИСПОЛЬЗОВАНИЕ   СИЛ   И   СРЕДСТВ</>,
+                                                <>СОКРАТИТЬ  СРОКИ   РАССЛЕДОВАНИЯ</>,
+                                            ]}
+                                        />
+                                    </>
+                                ]}
+                            />
+                        </Reveal>
+                        <Sizebox height={100}/>
+                        <Reveal>
+                            <Centered>
+                                <RandomH2>
+                                    «ПРИНЦИП ПАРЕТТО»
+                                </RandomH2>
+                            </Centered>
+                        </Reveal>
+                        <Sizebox height={20}/>
+                        <Reveal>
+                            <TextWithTitle 
+                                text={[
+                                    <>Необходимо отметить важность использования современных методов при планировании расследования уголовного дела, которые способствуют эффективному использованию ресурсов и времени.</>,
+                                    <>При    правильном  и  качественном     планировании 20 %     следственных     действий должны дать    80 %    доказательств</>,
+                                    <><span className="red bold">Одним из таких методов является <span className="bold">«Принцип Паретто»</span>, который гласит: <span className="italic">«20 % усилий дают 80 % результата, а остальные 80 % – лишь 20 % результата».</span></span></>,
+                                    <>Применительно к расследованию уголовного дела данный метод означает, что при правильном и качественном планировании 20 % следственных действий должны дать 80 % доказательств.</>,
+                                ]}
+                            />
+                        </Reveal>
+                        <Sizebox height={20}/>
+                        <TextWithBackground 
+
+                            text={[
+                                <>К примеру, в рамках расследования уголовного дела о хищении дизельного топлива в АО «КТЖ ГП», следователем, вместо изъятия и изучения документов учета ГСМ и назначения соответствующих экспертиз, первые два месяца расследования потрачены на допросы 273 машинистов тепловозов и их помощников, показания которых доказательственного значения не имели.</>,
+                                <>Спустя пять месяцев с момента начала расследования, после изъятия и изучения документации о порядке учета топлива, четверть из них пришлось допрашивать повторно ввиду установления новых обстоятельств.</>,
+                                <>Повторный вызов на допросы свидетелей и длительное расследование дела повлекли обоснованные жалобы на действия следователя, в том числе в надзорные и судебные органы.</>,
+                                <><span className="red">Несвоевременное изъятие документов</span> также повлекло назначение соответствующих экспертиз по истечении пяти месяцев расследования.</>,
+                                <>Поэтому необходимо регулярно анализировать процесс и текущие результаты. Применение этого принципа позволит своевременно определить, на чем именно в первую очередь нужно сосредоточиться, чтобы достичь эффективного расследования.</>
+                            ]}
+                        />
+                        <Sizebox height={20} />
+                        <Reveal>    
+                            <Image 
+                                src={paretto}
+                                style={{
+                                    width: '600px'
+                                }}
+                            />                                
+                        </Reveal>
+
+                        <Sizebox height={100}/>
+                        <Reveal>
+                            <Centered>
+                                <RandomH2>
+                                    «МОЗГОВОЙ ШТУРМ»
+                                </RandomH2>
+                            </Centered>
+                        </Reveal>
+                        <Sizebox height={20}/>
+                        <Reveal>
+                            <TextWithTitle 
+                                text={[
+                                    <>Метод «Мозговой штурм» широко распространен в современном мире и предусматривает решение задач таким образом, когда участники обсуждения предлагают максимальное количество идей, из которых выбираются лучшие решения.</>,
+                                    <>Такой метод может быть применим при расследовании уголовного дела следственно-оперативной группой.</>,
+                                    <>В результате коллективного обсуждения различных выдвинутых версий и способов закрепления доказательств выбираются наиболее эффективные и включаются в <span className="bold">План расследования.</span></>,
+                                    <><span className="red bold">Следует отметить, что вышеперечисленные методы планирования не являются исчерпывающими, а приведены в качестве примеров.</span></>,
+                                ]}
+                            />
+                        </Reveal>
+                        <Sizebox height={20}/>
+                        <Reveal>    
+                            <Image 
+                                src={'https://metro.co.uk/wp-content/uploads/2015/03/office-441179.jpg?quality=90&strip=all'}
+                                style={{
+                                    width: '600px'
+                                }}
+                            />                                
+                        </Reveal>
+
+                        <Sizebox height={100}/>
+
+                        <Reveal>
+                            <NextLesson handleOnClick={() => {
+                                CheckCurrentChapter(1);
+                            }}/>
+                        </Reveal>
+                    </LessonPage> 
+                case 5:
+                    return <LessonPage name={'Ситационные задачи'}>
+                        <Sizebox height={30} />
+                        <Reveal>
+                            <RandomParapraph>
+                                Для закрепления теоретических знаний предлагаем решить следующие ситуационные задачи:
+                            </RandomParapraph>
+                            <Sizebox height={60} />
+                            <FileDownloader 
+                                file={file6}
+                                fileName={'Ситуационные задачи'}
+                                type={'doc'}
+                            />
+                        </Reveal>
+
+                    </LessonPage>
+                case 6:
+                    return <TestPage 
+                    
+                        name={'Тест'}
+                        questions={quizQuestions}
+                        quizId={5}
+                        handleOpenModal={() => { 
+
+                        }}
+                    />
+                case 7: 
+                    return (<LessonPage name={'ПОСЛЕСЛОВИЕ'}>
+                        <Sizebox height={28} />
+
+                        <TextWithTitle 
+                            text={[
+                                'В заключении данного Учебного курса подведем некоторые итоги и обратим внимание на ключевые моменты.',
+                                'Вы изучили наглядные примеры того, как не должны планироваться следственные действия, ознакомились с наиболее действенными методами планирования расследования для эффективного использования сил и средств.',
+                                'Убедились как важно анализировать собранные доказательства и давать им оценку по завершении каждого пункта плана.',
+                                'Полагаем, что Учебный курс стал полезным и поможет улучшить навыки в планировании расследования для достижения положительных результатов.',
+                                'Суммируя изложенное, также нужно сделать вывод о том, что для эффективного расследования преступлений в целом, и совершаемых путем мошенничества с финансовыми ресурсами в частности, необходимо своевременно разработать согласованный план мероприятий для организации расследования, что даст возможность наладить взаимодействие между следователем, оперативными работниками, специалистами; обеспечить квалифицированное руководство СОГ; наладить систематический обмен информацией и отчетностью о результатах работы следственной группы и каждого следователя; обеспечить необходимые условия работы следователя для собирания, исследования и оценки доказательств.',
+                                'Дальнейших Вам профессиональных успехов и процветания!'
+                            ]}
+                        />
+                        <Sizebox height={40} />
+                        <Reveal>
+                            <ImageLine 
+                                img={'https://corporate.waterlogic.com/fileadmin/_processed_/f/4/csm_banner-hands-shaking-3_c621f2a33f.jpg'} 
+                                style={{
+                                    width: '500px'
+                                }}
+                            />
+                        </Reveal>
+
+                        <Sizebox height={100} />
+                        <Reveal>
+                            <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
+                                Завершение Учебного курса
+                            </HeaderWithLine>
+                        </Reveal>
+        
+                        <Sizebox height={50}/>
+                        <Reveal>
+                            <NextLesson handleOnClick={() => {
+                                CheckCurrentChapter(1);
+                            }}/>
+                        </Reveal>
+        
+                    </LessonPage>)
 
         }
     }
@@ -968,11 +1286,41 @@ const CourseNavigation = ({
                         session={{
                             id: 4,
                             group: 'Введение',
-                            name: 'Некоторые методы планирования досудебного расследования',
+                            name: 'Некоторые методы и формы планирования досудебного расследования',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
                         isActive={4 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 5,
+                            group: 'Введение',
+                            name: 'Ситуационные задачи',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={5 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 6,
+                            group: 'Введение',
+                            name: 'Тесты',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={6 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 7,
+                            group: 'Введение',
+                            name: 'Послесловие',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={7 === activeSessionId}
                     />
                 </Module>
             </div>

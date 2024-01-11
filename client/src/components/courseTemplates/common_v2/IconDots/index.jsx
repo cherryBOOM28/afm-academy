@@ -38,11 +38,7 @@ const IconDots = ({ list, color, header, gap=20, icons, height='40px', width='40
                                     <img src={icons ? icons[index] ? icons[index] : defaultIcon : defaultIcon} />
                                 </span>
                                 <div>
-                                    <p
-                                        style={{
-                                            color: color ? color : defaultColor,
-                                        }}      
-                                    >{item}</p>
+                                    {item}
                                 </div>
                             </div>
                         )

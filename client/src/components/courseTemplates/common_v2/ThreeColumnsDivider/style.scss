@@ -15,6 +15,10 @@
         padding: 0px 250px;
     }
 
+    @media (min-width: 2100px) {
+        padding: 0px 350px;
+    }
+
     width: 100%;
     box-sizing: border-box;
 
@@ -28,6 +32,7 @@
         row-gap: 10px;
 
         box-sizing: border-box;
+        width: 100%;
 
         @media (max-width: 750px) {
             grid-template-columns: 1fr;
@@ -40,6 +45,10 @@
             > * {
                 box-sizing: border-box;
 
+                @media (min-width: 750px) {
+                    padding: 0px;
+
+                }        
                 padding: 0px;
             }
 
