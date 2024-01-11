@@ -89,7 +89,7 @@ function CalendarPage(props) {
 
                         <div className="calendar-body">
                             <FullCalendar
-                                locale={'ru-RU'}
+                                locale={'kz-KZ'}
                                 buttonText={{
                                     today: "Сегодня",
                                     month: "Месяц",

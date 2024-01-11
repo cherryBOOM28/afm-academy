@@ -106,7 +106,7 @@ function App() {
               // } redirect={'/courses/catalog'}/>
             }/>
 
-            {/* <Route path='/courses/100/read' element={<CryptoCourse />}/> */}
+            <Route path='/courses/100/read' element={<CryptoCourse />}/>
             <Route path='/courses/101/read' element={<PlanningInvestigationCourse />}/>
 
             {/* <Route path='/payment' element={<PaymentPage />}/> */}
