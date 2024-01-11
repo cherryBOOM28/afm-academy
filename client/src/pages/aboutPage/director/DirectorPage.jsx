@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import cl from './DirectorPage.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import jsonData from '../structure/structureData.json'
+import data_ru from '../structure/structureData ru.json'
+import data_kz from '../structure/structureData kz.json'
+import data_eng from '../structure/structureData eng.json'
 import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Button from '../../../components/UI/button/Button';
 import Footer from '../../../components/footer/Footer';
@@ -10,12 +12,26 @@ import Comments from '../../../components/commentSection/Comments';
 import ModalWindow from '../../../components/ModalWindow/ModalWindow';
 import Header from '../../../components/header/Header';
 
-const findCardDataById = (id) => {
-    // Replace this with your logic to find the card data based on its ID
-    return jsonData.cards.find((card) => card.id === id);
-};
+import { useTranslation } from 'react-i18next';
 
-const DirectorPage = () => {    
+
+const DirectorPage = () => {   
+    const { t } = useTranslation();
+    const { i18n } = useTranslation();
+    const currentLanguage = i18n.language;
+
+    const dataFile =
+    currentLanguage === 'ru'
+      ? require('../structure/structureData ru.json')
+      : currentLanguage === 'kz'
+      ? require('../structure/structureData kz.json')
+      : require('../structure/structureData eng.json');
+
+  const findCardDataById = (id) => {
+    // Replace this with your logic to find the card data based on its ID
+    return dataFile.cards.find((card) => card.id === id);
+  };
+     
     const navigate = useNavigate();
     const { id } = useParams();
     const cardData = findCardDataById(id);

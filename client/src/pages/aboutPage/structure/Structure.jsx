@@ -1,22 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import cl from './Structure.module.css';
-import jsonData from './structureData.json';
+import data_ru from './structureData ru.json';
+import data_kz from './structureData kz.json';
+import data_eng from './structureData eng.json';
 import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import lineL from '../../../assets/icons/lineL.svg';
 import lineR from '../../../assets/icons/lineR.svg';
 import Footer from '../../../components/footer/Footer';
 import Dropdown from '../../../components/dropdown/Dropdown';
 import Header from '../../../components/header/Header';
+import { useTranslation } from 'react-i18next';
+
 
 
 function Structure() {
-  const [cardsData, setCardsData] = useState([]);
-
-  useEffect(() => {
-    // Access JSON data from imported file
-    setCardsData(jsonData.cards);
-  }, []);
+    const { t } = useTranslation();
+    const { i18n } = useTranslation();
+    const currentLanguage = i18n.language;
+    const cardsData = (
+        currentLanguage === 'ru'
+          ? data_ru
+          : currentLanguage === 'kz'
+          ? data_kz
+          : data_eng
+      ).cards;
 
    if (!cardsData || cardsData.length === 0) {
     return <p>No cards data available.</p>;
@@ -38,7 +46,7 @@ function Structure() {
         <Header dark={true}  />
     
         <div className={cl.container}>
-            <h1 className={cl.headline}>Руководство Академии</h1>
+            <h1 className={cl.headline}>{t('leadership of the Academy')}</h1>
             <div className={cl.charterContent}>
                 <div className={cl.charterGrid}>
                     {/* Display the first card */}
@@ -51,6 +59,7 @@ function Structure() {
                     to={`/structure/${firstCard.id}`}
                     onClick={() => handleClick(firstCard)}
                     >
+                        
                     <div className={cl.card}>
                         <p className={cl.card__title}>{firstCard.title}</p>
                         <img src={firstCard.photo} alt={firstCard.caption} className={cl.card__img} />
@@ -84,53 +93,53 @@ function Structure() {
                     </div>
                 </div>
             </div>
-            <h1 className={cl.headline}>Подразделения</h1>
+            <h1 className={cl.headline}>{t('divisions')}</h1>
             <div className={cl.accordion}>
                 <Dropdown
-                    title="Центр обучения и повышения квалификации по финансовому мониторингу"
+                    title={t('titleFirstDiv')}
                     content={<div>
-                        Направление деятельности - повышение кадрового потенциала с последующей сертификацией на системной основе всех участников нпоациональной системы ПОД/ФТ:
+                        {t('contentFirstDiv')}
                         <div className={cl.accordionContent}>
                             <ul style={{listStyleType: 'disc'}}>
                                 <li>
-                                    Субъектов финансового мониторинга, как первой линии фронта ПОД/ФТ (СФМ) – сотрудников высшего менеджмента, комплаенс служб, фронт офисов БВУ, финансовых учреждений и нефинансовых организаций (УНФПП);
+                                {t('contentFirstPointOneDiv')}
                                 </li>
                                 <li>
-                                    Государственных органов, осуществляющих контроль и надзор за соблюдением СФМ требований законодательства о ПОД/ФТ, с учетом стандартов ФАТФ и международного опыта;
+                                {t('contentFirstPointTwoDiv')}
                                 </li>
                                 <li>
-                                    Правоохранительных/Специальных госорганов – по линии ПОД/ФТ.
+                                {t('contentFirstPointThreeDiv')}
                                 </li>
                             </ul>
                         </div>
                     </div>}
                 />
                 <Dropdown
-                    title="Научный центр IT технологий"
+                    title={t('titleSecondDiv')}
                     content={<div>
-                       Основные направления деятельности:
+                       {t('contentSecondDiv')}  
                         <div className={cl.accordionContent}>
                             <ul style={{listStyleType: 'disc'}}>
-                                <li>разработка программных продуктов;</li>
-                                <li> внедрение RPA технологий (цифровой сотрудник);</li>
-                                <li>разработка инструментов кибергигиены;</li>
-                                <li>оцифровка бизнес-процессов;</li>
-                                <li>техническая поддержка информационных ресурсов.</li>
+                                <li>{t('contentSecondPointOneDiv')}</li>
+                                <li>{t('contentSecondPointTwoDiv')}</li>
+                                <li>{t('contentSecondPointThreeDiv')}</li>
+                                <li>{t('contentsecondPointFourDiv')}</li>
+                                <li>{t('contentSecondPointFiveDiv')}</li>
                             </ul>
                         </div>
                     </div>}
                 />
                 <Dropdown
-                    title="Научно-исследовательский институт"
+                    title={t('titleThirdDiv')}
                     content={<div>
-                            Основными задачами научно-исследовательской деятельности будут являться:  
+                            {t('contentThirdDiv')}  
                         <div className={cl.accordionContent}>
                             <ul className={cl.marked}>
-                                <li>изучение передовых практик и методов работ участников международной системы ПОД/ФТ;</li>
-                                <li>приоритетное развитие фундаментальных знаний посредством организации и проведения научно-исследовательских работ и аналитических исследований в целях повышения рейтинга соответствия Республики Казахстан международным стандартам в сфере ПОД/ФТ;</li>
-                                <li>прогнозирование, профилактика и предупреждение рисков, угроз и уязвимостей в сфере ПОД/ФТ;</li>
-                                <li> формирование научной базы и единого научного пространства для национальных антиотмывочных систем;</li>
-                                <li> разработка и актуализация научно-методических и учебно-методических материалов для формирования образовательных программ и реализации мероприятий в рамках дополнительного профессионального образования, а также учебных курсов, семинаров, круглых столов, конференций и др.</li>
+                                <li>{t('contentThirdPointOneDiv')}</li>
+                                <li>{t('contentThirdPointTwoDiv')}</li>
+                                <li>{t('contentThirdPointThreeDiv')}</li>
+                                <li>{t('contentThirdPointFourDiv')}</li>
+                                <li>{t('contentThirdPointFiveDiv')}</li>
                             </ul> 
                         </div>                      
                     </div>}

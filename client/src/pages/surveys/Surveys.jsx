@@ -7,8 +7,13 @@ import './Surveys.scss'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../auth/AuthContext';
 import Header from '../../components/header/Header';
+import { useTranslation } from 'react-i18next';
+
 
 function SurveysPage() {
+
+        const { t } = useTranslation();
+
     const [isSurvey, setSurvey] = useState(true);
 
     const [surveyList, setSurveyList] = useState([]);
@@ -27,21 +32,21 @@ function SurveysPage() {
                 id: '_123',
                 date_open: '2023-08-24',
                 date_close: '2023-08-24',
-                name: 'Анкета',
+                name: t('anketa'),
                 status: 'active',
             },
             {
                 id: '_123',
                 date_open: '2023-08-24',
                 date_close: '2023-08-24',
-                name: 'Анкета',
+                name: t('anketa'),
                 status: '-',
             },
             {
                 id: '_123',
                 date_open: '2023-08-24',
                 date_close: '2023-08-24',
-                name: 'Анкета',
+                name: t('anketa'),
                 status: 'active',
             },
         ]);
@@ -56,7 +61,7 @@ function SurveysPage() {
             </div>
 
             <main className='page-content container'>
-                <h1>Опрос по темам для обучения</h1>
+                <h1>{t('survey on topics for training')}</h1>
                 <div className="surveys-list-block">
                     <div className='toggles'>
                         <div 
@@ -64,14 +69,14 @@ function SurveysPage() {
                                 setSurvey(true);
                             }} 
                             className={`${isSurvey ? 'active' : ''}`}>
-                                Опросы
+                                {t('surveys')}
                         </div>
                         <div
                             onClick={() => {
                                 setSurvey(false);
                             }}
                             className={`${!isSurvey ? 'active' : ''}`}>
-                            Тестирование
+                                {t('testing')}
                         </div>
                     </div>
 
@@ -81,9 +86,9 @@ function SurveysPage() {
                             <thead>
                                 <tr>
                                     <td>№</td>
-                                    <td>Дата публикации</td>
-                                    <td>Название</td>
-                                    <td>Статус</td>
+                                    <td>{t('date of publication')}</td>
+                                    <td>{t('title')}</td>
+                                    <td>{t('status')}</td>
                                 </tr>
                             </thead>
                             <div style={{height: '20px'}}></div>
@@ -92,7 +97,7 @@ function SurveysPage() {
                                     (isSurvey ? surveyList : testList).length !== 0 ? 
                                         (isSurvey ? surveyList : testList).map(({ date_open, date_close, name, status, id }, index) => {
                                             
-                                            let _status = status === 'active' ? 'Открыто' : 'Закрыто';
+                                            let _status = status === 'active' ? t('open') : t('closed');
 
                                             return (
                                                 <tr onClick={() => {
@@ -111,7 +116,7 @@ function SurveysPage() {
                                         })
                                     : (
                                         <tr>
-                                            <td colspan="4" style={{textAlign: 'center'}}>Нет доступных {isSurvey ? 'опросов' : 'тестов'}</td>
+                                            <td colspan="4" style={{textAlign: 'center'}}>{t('no available')} {isSurvey ? t('survey') : t('tests')}</td>
                                         </tr>
                                     )
                                 }

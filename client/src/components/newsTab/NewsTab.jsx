@@ -10,7 +10,11 @@ import axios from "axios";
 import base_url from "../../settings/base_url";
 import {unstable_ClassNameGenerator} from "@mui/material";
 
+import { useTranslation } from 'react-i18next';
+
 const NewsTab = () => {
+
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('news');
   const [data, setData] = useState([]);
   const [type, setType] = useState(null);
@@ -108,7 +112,7 @@ const NewsTab = () => {
                   <img src={calendarIcon} alt="calendar"/>
                   <p className={cl.dateTime}>{formattedDate}</p>
                 </div>
-                <Button className={cl.cardBtn}>Подробнее</Button>
+                <Button className={cl.cardBtn}>{t('read more')}</Button>
               </div>
             </div>
           </div>
@@ -123,19 +127,19 @@ const NewsTab = () => {
                   className={activeTab === 'events' ? cl.active : ''}
                   onClick={() => handleTabChange('events')}
               >
-                Мероприятия /
+                {t('events')} /
               </button>
               <button
                   className={activeTab === 'news' ? cl.active : ''}
                   onClick={() => handleTabChange('news')}
               >
-                Новости /
+                {t('news')} /
               </button>
               <button
                   className={activeTab === 'videos' ? cl.active : ''}
                   onClick={() => handleTabChange('videos')}
               >
-                Видео
+                {t('video')}
               </button>
             </div>
 

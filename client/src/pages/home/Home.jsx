@@ -90,25 +90,25 @@ function Home() {
                                 <Link to="/courses/8" style={{ textDecoration: 'none' }}>
                                     <div className={cl.aml_box}>
                                         <img src={basicCourse} alt="" />
-                                        <p className={cl.course_box_name}>Базовый</p>
+                                        <p className={cl.course_box_name}>{t('core')}</p>
                                     </div>
                                 </Link>
                                 <Link to="/#" style={{ textDecoration: 'none' }}>
                                     <div className={cl.aml_box}>
                                         <img src={proCourse} alt="" />
-                                        <p className={cl.course_box_name}>Профильный</p>
+                                        <p className={cl.course_box_name}>{t('specialized')}</p>
                                     </div>
                                 </Link>
                                 <Link to="/#" style={{ textDecoration: 'none' }}>
                                     <div className={cl.aml_box}>
                                         <img src={deepCourse} alt="" />
-                                        <p className={cl.course_box_name}>Продвинутый</p>
+                                        <p className={cl.course_box_name}>{t('advanced')}</p>
                                     </div>
                                 </Link>
                                 <Link to="/3" style={{ textDecoration: 'none' }}>
                                     <div className={cl.aml_box}>
                                         <img src={upCourse} alt="" />
-                                        <p className={cl.course_box_name}>Тематические</p>
+                                        <p className={cl.course_box_name}>{t('thematic')}</p>
                                     </div>
                                 </Link>
                             </div>
@@ -119,26 +119,24 @@ function Home() {
             <section className={cl.educationWrappwer}>
                 <div className={cl.container}>
                     <p className={cl.headline}>{t('quality')}</p>
-                    <p className={cl.subtitle}>Преимущества Академии</p>
+                    <p className={cl.subtitle}>{t('advantages of academy')}</p>
                     <div className={cl.education}>
                         <div className={cl.advantages}>
                             <div className={cl.advantages_box}>
                                 <img src={accIcon} alt="acc" />
-                                <p className={cl.advantages__text}>Квалифицированные эксперты с опытом работы в сфере ПОД/ФТ</p>
+                                <p className={cl.advantages__text}>{t('qualified experts')}</p>
                             </div>
                             <div className={cl.advantages_box}>
                                 <img src={bookIcon} alt="acc" />
-                                <p className={cl.advantages__text}>Удобный формат обучения</p>
+                                <p className={cl.advantages__text}>{t('convenient learning format')}</p>
                             </div>
                             <div className={cl.advantages_box}>
                                 <img src={realtionIcon} alt="acc" />
-                                <p className={cl.advantages__text}>Тесное взаимодействие с АФМ</p>
+                                <p className={cl.advantages__text}>{t('close cooperation with AFM')}</p>
                             </div>
                             <div className={cl.advantages_box}>
                                 <img src={laptopIcon} alt="acc" />
-                                <p className={cl.advantages__text__last}>Программы, разработанные
-                                в соответствии с требованиями
-                                законодательства о ПОД/ФТ</p>
+                                <p className={cl.advantages__text__last}>{t('programs')}</p>
                             </div>
                         </div>
                         <VideoPlayer />
@@ -148,14 +146,14 @@ function Home() {
             
             <section className={cl.coursesWrapper} id='coursesSection'>
                 <div className={cl.container}>
-                    <h1 className={cl.courses__headline}>Курсы в сфере ПОД/ФТ</h1>
+                    <h1 className={cl.courses__headline}>{t('Courses in the field of')}</h1>
                     <Tabs />                       
                 </div>    
             </section>
 
             <section className={cl.newsWrapper} id='news'>
                 <div className={cl.container}>
-                    <p className={cl.news__headline}>Новости</p>
+                    <p className={cl.news__headline}>{t('news')}</p>
                 </div>
                 <NewsTab />
             </section>

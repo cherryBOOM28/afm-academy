@@ -38,13 +38,18 @@
             width: 150px;
             display: flex;
             justify-content: space-between;
+            background: linear-gradient(to right, #021753, #049af8);
+            // background-color: #1F3C88;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         
             .language {
                 cursor: pointer;
                 color: white;
 
                 &:hover {
-                    color: rgb(182, 182, 182);
+                    color: #F0DE7E;
                 }
             }
         }

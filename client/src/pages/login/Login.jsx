@@ -20,7 +20,13 @@ import base_url from '../../settings/base_url';
 import { Box, Modal } from '@mui/material';
 import { useAuth } from '../../auth/AuthContext';
 
+import { useTranslation } from 'react-i18next';
+
+
 const Registration = () => {
+
+    const { t } = useTranslation();
+
     const { setIsLoggedIn, setAuthUser } = useAuth();
     const [formData, setFormData] = useState({
         email: '', 
@@ -98,7 +104,7 @@ const Registration = () => {
             <div className='form-container'>
 
                 <img className='logo' src={logo} alt="academy logo"/>
-                <h1>Добро пожаловать!</h1>
+                <h1>{t('welcome')}</h1>
 
                 <div className="form-body">
                     <div className='fields'>
@@ -106,15 +112,15 @@ const Registration = () => {
                             formData={formData} 
                             handleChange={handleChange} 
                             name={'email'} 
-                            label={'Почта'} 
-                            hint={'Введите почту'}
+                            label={t('email')} 
+                            hint={t('hintEmail')}
                             />
                         <InputField 
                             formData={formData} 
                             handleChange={handleChange} 
                             name={'password'} 
-                            label={'Пароль'} 
-                            hint={'Введите пароль'}
+                            label={t('password')} 
+                            hint={t('hintPassword1')}
                             isPassword={true}
                             />
                     </div>
@@ -130,8 +136,8 @@ const Registration = () => {
                                 Забыли пароль?
                             </div>
                         </div> */}
-                        <div className='reg-btn' onClick={(event) => handleSubmit(event)}>Логин</div>
-                        <div className='have-account'>У вас нет аккаунта? <Link to={'/registration'}><span>Зарегистрируйтесь</span></Link></div>
+                        <div className='reg-btn' onClick={(event) => handleSubmit(event)}>{t('login')}</div>
+                        <div className='have-account'><Link to={'/registration'}><span>{t('newaccount')}</span></Link></div>
                     </div>
                 </div>
             </div>

@@ -9,15 +9,30 @@ import backgroundVideo from '../../assets/video/bg.mp4'
 import logo from '../../assets/images/logo.svg'
 import './registration.scss'
 import sfm_types from './../../components/data/sfm_types'
+import sfm_typesKz from './../../components/data/sfm_typesKz'
+import sfm_typesEng from './../../components/data/sfm_typesEng'
 import go_types from './../../components/data/go_types'
+import go_typesKz from './../../components/data/go_typesKz'
+import go_typesEng  from './../../components/data/go_typesEng'
 import po_types from '../../components/data/po_types';
+import po_typesKz from '../../components/data/po_typesKz';
+import po_typesEng from '../../components/data/po_typesEng';
 
 import {AiFillEye, AiFillEyeInvisible} from 'react-icons/ai';
 
 import base_url from '../../settings/base_url';
 import { Box, Modal } from '@mui/material';
 
+import { useTranslation } from 'react-i18next';
+
+
 const Registration = () => {
+
+    const { t } = useTranslation();
+    const { i18n } = useTranslation();
+    const currentLanguage = i18n.language;
+
+
     const [formData, setFormData] = useState({
         email: '', 
         password: '', 
@@ -87,12 +102,49 @@ const Registration = () => {
     };
 
     const getItems = (entity_type) => {
-        if (entity_type === 'Субъект финансового мониторнга') return sfm_types;
-        if (entity_type === 'Государственные органы-регуляторы') return go_types;
-        if (entity_type === 'Правоохранительные органы') return po_types;
-        else return ['Выберите']
+        if (entity_type === (i18n.language === 'ru'
+            ? 'Субъект финансового мониторнга'
+            : i18n.language === 'kz'
+            ? 'Қаржы мониторингі субъектісі'
+            : 'The subject of financial monitoring' )) {
 
-    }
+            return (
+                i18n.language === 'ru'
+                    ? sfm_types
+                    : i18n.language === 'kz'
+                    ? sfm_typesKz
+                    : sfm_typesEng
+            );;
+        }
+        if (entity_type === (i18n.language === 'ru'
+        ? 'Государственные органы-регуляторы'
+        : i18n.language === 'kz'
+        ? 'Мемлекеттік реттеуші органдар'
+        : 'Government regulatory agencies' )) {
+            return (
+                i18n.language === 'ru'
+                    ? go_types
+                    : i18n.language === 'kz'
+                    ? go_typesKz
+                    : go_typesEng
+            );
+        }
+        if (entity_type === (i18n.language === 'ru'
+        ? 'Правоохранительные органы'
+        : i18n.language === 'kz'
+        ? 'Құқық қорғау органдары'
+        : 'Law enforcement agencies' )) {
+            return (
+                i18n.language === 'ru'
+                    ? po_types
+                    : i18n.language === 'kz'
+                    ? po_typesKz
+                    : po_typesEng
+            );
+        } else {
+            return [t('choice')];
+        }
+    };
 
     return (
         <div className='register-page'>
@@ -108,28 +160,28 @@ const Registration = () => {
             <div className='form-container'>
 
                 <img className='logo' src={logo} alt="academy logo"/>
-                <h1>Добро пожаловать!</h1>
+                <h1>{t('welcome')}</h1>
 
                 <div className="form-body">
                     <div className='fields'>
-                        <InputField formData={formData} handleChange={handleChange} name={'firstname'} label={'Имя'} hint={'Введите имя'}/>
-                        <InputField formData={formData} handleChange={handleChange} name={'lastname'} label={'Фамилия'} hint={'Введите фамилию'}/>
-                        <InputField formData={formData} handleChange={handleChange} name={'patronymic'} label={'Отчество'} hint={'Введите отчество'}/>
-                        <InputField formData={formData} handleChange={handleChange} isPassword={true} name={'password'} label={'Пароль'} hint={'Придумайте пароль'}/>
-                        <InputField formData={formData} handleChange={handleChange} isPassword={true} name={'confirm_password'} label={'Подтверждение пароля'} hint={'Подтвердите пароль'}/>
-                        <InputField formData={formData} handleChange={handleChange} name={'email'} label={'Почта'} hint={'Введите почту'}/>
-                        <InputField formData={formData} handleChange={handleChange} name={'phone_number'} label={'Номер телефона'} hint={'Введите номер телефона'}/>
+                        <InputField formData={formData} handleChange={handleChange} name={'firstname'} label={t('firstname')} hint={t('hintFirstname')}/>
+                        <InputField formData={formData} handleChange={handleChange} name={'lastname'} label={t('lastname')} hint={t('hintLastname')}/>
+                        <InputField formData={formData} handleChange={handleChange} name={'patronymic'} label={t('patronymic')} hint={t('hintPatronymic')}/>
+                        <InputField formData={formData} handleChange={handleChange} isPassword={true} name={'password'} label={t('password')} hint={t('hintPassword')}/>
+                        <InputField formData={formData} handleChange={handleChange} isPassword={true} name={'confirm_password'} label={t('confirm_password')} hint={t('hintConfirm_password')}/>
+                        <InputField formData={formData} handleChange={handleChange} name={'email'} label={t('email')} hint={t('hintEmail')}/>
+                        <InputField formData={formData} handleChange={handleChange} name={'phone_number'} label={t('phone_number')} hint={t('phone_number')}/>
                         <SelectField 
                             formData={formData} 
                             handleChange={handleChange} 
                             selectItems={[
-                                'Государственные органы-регуляторы',
-                                'Субъект финансового мониторнга',
-                                'Правоохранительные органы',
-                                'Общественное объединение'
+                                t('member1'),
+                                t('member2'),
+                                t('member3'),
+                                t('member4')
                             ]} 
                             name={'member_of_the_system'} 
-                            label={'Участник системы'} 
+                            label={t('member of the system')} 
                             />
                         
                         {
@@ -140,10 +192,10 @@ const Registration = () => {
                                     handleChange={handleChange} 
                                     selectItems={getItems(formData['member_of_the_system'])} 
                                     name={'type_of_member'} 
-                                    label={'Вид СФМ'} 
+                                    label={t('sfmType')} 
                                     />
                             ) 
-                            : <InputField formData={formData} handleChange={handleChange} name={'type_of_member'} label={'Вид СФМ'} hint={'Введите вид СФМ'}/>
+                            : <InputField formData={formData} handleChange={handleChange} name={'type_of_member'} label={t('sfmType')} hint={t('hintSfm')}/>
                         }
                     </div>
                     <div className='actions'>
@@ -152,12 +204,12 @@ const Registration = () => {
                                 <input type="checkbox" onChange={(e) => {
                                     setPolicyChecked(e.target.checked);
                                 }}/>
-                                <p>Даю согласие на обработку <a href="#politics">персональных данных</a></p> 
+                                <p>{t('consent1')} <a href="#politics">{t('consent2')}</a></p> 
                             </div>
                             {false ? <p className='policy-error'>Даю согласие на обработку</p>: null}
                         </div>
-                        <div className='reg-btn' onClick={handleSubmit}>Регистрация</div>
-                        <div className='have-account'>Уже есть аккаунт? <Link to={'/login'}><span>Войдите</span></Link></div>
+                        <div className='reg-btn' onClick={handleSubmit}>{t('regestration')}</div>
+                        <div className='have-account'>{t('already')} <Link to={'/login'}><span>{t('enters')}</span></Link></div>
                     </div>
                 </div>
             </div>
