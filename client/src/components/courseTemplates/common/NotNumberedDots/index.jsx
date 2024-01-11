@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './style.scss'
 import Sizebox from '../Sizebox';
 
-const NotNumberedDots = ({ list, header, dotsColor, color }) => {
+const NotNumberedDots = ({ list, header, dotsColor, color, gap='27px' }) => {
 
     const defaultDotsColor = '#F9CB36';
     const defaultColor = '#3A3939';
@@ -28,7 +28,7 @@ const NotNumberedDots = ({ list, header, dotsColor, color }) => {
                     </>
                 ) : null
             }
-            <div className='not-numbered-dots'>
+            <div className='not-numbered-dots' style={{ gap: gap }}>
                 {
                     list.map((item, index) => {
                         return (
