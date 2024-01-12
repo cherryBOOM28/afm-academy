@@ -6,8 +6,12 @@ import fbIcon from '../../assets/icons/fb.svg';
 import tgIcon from '../../assets/icons/tg.svg';
 import Map from '../UI/map/Map';
 
+import { useTranslation } from 'react-i18next';
 
 function Footer({ email, phoneNumber }) {
+
+    const { t } = useTranslation();
+
     const handleEmailClick = () => {
         window.location.href = `mailto:${email}`;
     };
@@ -21,14 +25,14 @@ function Footer({ email, phoneNumber }) {
             <div className={cl.container}>
                 <div className={cl.footer}>
                     <div className={cl.footer__block}>
-                        <p className={cl.footer__headline}>Контакты</p>
+                        <p className={cl.footer__headline}>{t('contacts')}</p>
                         <nav className={cl.footer__content}>
                             <ul>
                                 <li>
-                                    <p className={cl.footer__text}>Астана, Казахстан</p>
+                                    <p className={cl.footer__text}>{t('city')}</p>
                                 </li>
                                 <li>
-                                    <p className={cl.footer__text}>ул. Ш. Уалиханова, 11</p>
+                                    <p className={cl.footer__text}>{t('address')}</p>
                                 </li>
                                 <li>
                                     <a className={cl.footer__text} href={`tel:${phoneNumber}`} onClick={handlePhoneClick}>тел. +7 708 716 8416</a>
@@ -40,60 +44,60 @@ function Footer({ email, phoneNumber }) {
                         </nav>
                     </div>
                     <div className={cl.footer__block}>
-                        <p className={cl.footer__headline}>О нас</p>
+                        <p className={cl.footer__headline}>{t('about us')}</p>
                         <nav className={cl.footer__content}>
                             <ul>
                                 <li>
-                                    <Link to="/about" className={cl.footer__text}>Об Академии</Link>
+                                    <Link to="/about" className={cl.footer__text}>{t('about the academy')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/management" className={cl.footer__text}>Совет директоров</Link>
+                                    <Link to="/management" className={cl.footer__text}>{t('board of directors')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/structure" className={cl.footer__text}>Структура</Link>
+                                    <Link to="/structure" className={cl.footer__text}>{t('structure')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/charter" className={cl.footer__text}>Устав</Link>
+                                    <Link to="/charter" className={cl.footer__text}>{t('regulation')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/roadmap" className={cl.footer__text}>План развития</Link>
+                                    <Link to="/roadmap" className={cl.footer__text}>{t('development plan')}</Link>
                                 </li>
                             </ul>
                         </nav>
                         
                     </div>
                     <div className={cl.footer__block}>
-                        <p className={cl.footer__headline}>ПОД/ФТ</p>
+                        <p className={cl.footer__headline}>{t('aml/ft')}</p>
                         <nav className={cl.footer__content}>
                             <ul>
                                 <li>
-                                    <Link to="/anti-laundering" className={cl.footer__text}>Антиотмывочная система РК</Link>
+                                    <Link to="/anti-laundering" className={cl.footer__text}>{t('anti-washing system of the RK')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/fatf" className={cl.footer__text}>ФАТФ</Link>
+                                    <Link to="/fatf" className={cl.footer__text}>{t('fatf')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/eag" className={cl.footer__text}>ЕАГ</Link>
+                                    <Link to="/eag" className={cl.footer__text}>{t('eag')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/mutual-evaluation" className={cl.footer__text}>Взаимная оценка</Link>
+                                    <Link to="/mutual-evaluation" className={cl.footer__text}>{t('mutual assessment')}</Link>
                                 </li>
                             </ul>
                         </nav>
                         
                     </div>
                     <div className={cl.footer__block}>
-                        <p className={cl.footer__headline}>Обучение</p>
+                        <p className={cl.footer__headline}>{t('training')}</p>
                         <nav className={cl.footer__content}>
                             <ul>
                                 <li>
-                                    <Link to="/courses" className={cl.footer__text}>Виды курсов</Link>
+                                    <Link to="/courses" className={cl.footer__text}>{t('types of courses')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/courses/catalog" className={cl.footer__text}>Каталог курсов</Link>
+                                    <Link to="/courses/catalog" className={cl.footer__text}>{t('course catalog')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/courses/myCourses" className={cl.footer__text}>Мои курсы</Link>
+                                    <Link to="/courses/myCourses" className={cl.footer__text}>{t('my courses')}</Link>
                                 </li>
                             </ul>
                         </nav>
@@ -128,17 +132,17 @@ function Footer({ email, phoneNumber }) {
                         </a>
                     </div>
                     <div className={cl.footer__block__big}>
-                        <p className={cl.footer__headline}>СФМ</p>
+                        <p className={cl.footer__headline}>{t('sfm')}</p>
                         <nav className={cl.footer__content}>
                             <ul>
                                 <li>
-                                    <Link to="/subjects" className={cl.footer__text}>Виды субъектов финансового мониторинга</Link>
+                                    <Link to="/subjects" className={cl.footer__text}>{t('types of subjects of financial monitoring')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/rules" className={cl.footer__text}>Правила внутреннего контроля</Link>
+                                    <Link to="/rules" className={cl.footer__text}>{t('internal control rules')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/operations" className={cl.footer__text}>Операции, подлежащие финансовому мониторингу</Link>
+                                    <Link to="/operations" className={cl.footer__text}>{t('transactions subject to financial monitoring')}</Link>
                                 </li>
                             </ul>
                         </nav>

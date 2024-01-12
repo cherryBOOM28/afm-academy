@@ -6,6 +6,8 @@ import Footer from '../../components/footer/Footer';
 
 import './catalog.scss';
 
+import base64Course from './course-default';
+
 import course1 from './../../assets/images/courses-1.png';
 import course2 from './../../assets/images/courses-2.png';
 import course3 from './../../assets/images/courses-3.png';
@@ -25,7 +27,14 @@ import base_url from '../../settings/base_url';
 import axios from 'axios';
 import Header from '../../components/header/Header';
 
+
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
+
+
 function Catalog() {
+    const { t } = useTranslation();
+
     const navigate = useNavigate();
 
     const [data, setData] = useState(null);
@@ -172,64 +181,124 @@ function Catalog() {
                 //     "shortStatus": 0
                 // }])
 
-                // let courses = [...response.data, {
-                //     "id": 0,
-                //     "courseDTO": {
-                //         "course_id": 100,
-                //         "course_name": "Учебный курс по навыкам работы с виртуальными активами",
-                //         "course_price": 29000,
-                //         "course_image": "https://amlacademy.kz/aml/AMLCOURSEdefault%20%281%29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20240103%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240103T142301Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=9cbd540cc988a33b916bca982368fa1e363141c57c6f090b3ea6593c9fce66bd",
-                //         "course_for_member_of_the_system": "СФМ",
-                //         "duration": null,
-                //         "rating": 5,
-                //         "type_of_study": null,
-                //         "courseCategory": {
-                //             "category_id": 1,
-                //             "category_image": "https://amlacademy.kz/aml/Screenshot%202023-11-04%20at%2023.43.20.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20231213%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231213T142301Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=af8aa065e5cc9cd3d9a7c1a290e84412ae4656c70b38f00e3e9b1a579ecc2c3c",
-                //             "minio_image_name": "Screenshot 2023-11-04 at 23.43.20.png",
-                //             "category_name": "AML ACADEMY"
-                //         },
-                //         "courseComments": [
-                //             {
-                //                 "course_comment_id": 27,
-                //                 "comment": "Очень интересный курс",
-                //                 "rate": 5,
-                //                 "user": {
-                //                     "user_id": 30,
-                //                     "firstname": "Дамир",
-                //                     "lastname": "Бегенов",
-                //                     "patronymic": "Арманович",
-                //                     "email": "damir_ps@mail.ru",
-                //                     "phone_number": "87707707581",
-                //                     "password": "$2a$10$ztyuWcAYW6eMvxDX1AfWU.py/EeNqA2gAWQGjD7zPQ7q1ZblqpSI.",
-                //                     "member_of_the_system": null,
-                //                     "type_of_member": null,
-                //                     "job_name": null,
-                //                     "verificationCode": "c25d302b-59fb-4416-aa25-947c9129c7e7",
-                //                     "enabled": true,
-                //                     "accountNonExpired": true,
-                //                     "accountNonLocked": true,
-                //                     "credentialsNonExpired": true,
-                //                     "username": "damir_ps@mail.ru",
-                //                     "authorities": [
-                //                         {
-                //                             "authority": "ROLE_STUDENT"
-                //                         }
-                //                     ],
-                //                     "_active": true
-                //                 }
-                //             }
-                //         ]
-                //     },
-                //     "paymentInfo": {
-                //         "progress_percentage": 0,
-                //         "payment_type": "KASPI.KZ",
-                //         "payment_date": null,
-                //         "status": "process"
-                //     },
-                //     "shortStatus": 0
-                // }];
-                let courses = response.data
+                let courses = [
+                    ...response.data, 
+                    {
+                        "id": 0,
+                        "courseDTO": {
+                            "course_id": 100,
+                            "course_name": "Учебный курс по навыкам работы с виртуальными активами",
+                            "course_price": 29000,
+                            "course_image": base64Course,
+                            "course_for_member_of_the_system": "СФМ",
+                            "duration": null,
+                            "rating": 5,
+                            "type_of_study": null,
+                            "courseCategory": {
+                                "category_id": 1,
+                                "category_image": base64Course,
+                                "minio_image_name": "Screenshot 2023-11-04 at 23.43.20.png",
+                                "category_name": "AML ACADEMY"
+                            },
+                            "courseComments": [
+                                {
+                                    "course_comment_id": 27,
+                                    "comment": "Очень интересный курс",
+                                    "rate": 5,
+                                    "user": {
+                                        "user_id": 30,
+                                        "firstname": "Дамир",
+                                        "lastname": "Бегенов",
+                                        "patronymic": "Арманович",
+                                        "email": "damir_ps@mail.ru",
+                                        "phone_number": "87707707581",
+                                        "password": "$2a$10$ztyuWcAYW6eMvxDX1AfWU.py/EeNqA2gAWQGjD7zPQ7q1ZblqpSI.",
+                                        "member_of_the_system": null,
+                                        "type_of_member": null,
+                                        "job_name": null,
+                                        "verificationCode": "c25d302b-59fb-4416-aa25-947c9129c7e7",
+                                        "enabled": true,
+                                        "accountNonExpired": true,
+                                        "accountNonLocked": true,
+                                        "credentialsNonExpired": true,
+                                        "username": "damir_ps@mail.ru",
+                                        "authorities": [
+                                            {
+                                                "authority": "ROLE_STUDENT"
+                                            }
+                                        ],
+                                        "_active": true
+                                    }
+                                }
+                            ]
+                        },
+                        "paymentInfo": {
+                            "progress_percentage": 0,
+                            "payment_type": "KASPI.KZ",
+                            "payment_date": null,
+                            "status": "process"
+                        },
+                        "shortStatus": 0
+                    },
+                    {
+                        "id": 0,
+                        "courseDTO": {
+                            "course_id": 101,
+                            "course_name": "Общий порядок планирования досудебного расследования",
+                            "course_price": 29000,
+                            "course_image": base64Course,
+                            "course_for_member_of_the_system": "СФМ",
+                            "duration": null,
+                            "rating": 5,
+                            "type_of_study": null,
+                            "courseCategory": {
+                                "category_id": 1,
+                                "category_image": base64Course,
+                                "minio_image_name": "Screenshot 2023-11-04 at 23.43.20.png",
+                                "category_name": "AML ACADEMY"
+                            },
+                            "courseComments": [
+                                {
+                                    "course_comment_id": 27,
+                                    "comment": "Очень интересный курс",
+                                    "rate": 5,
+                                    "user": {
+                                        "user_id": 30,
+                                        "firstname": "Дамир",
+                                        "lastname": "Бегенов",
+                                        "patronymic": "Арманович",
+                                        "email": "damir_ps@mail.ru",
+                                        "phone_number": "87707707581",
+                                        "password": "$2a$10$ztyuWcAYW6eMvxDX1AfWU.py/EeNqA2gAWQGjD7zPQ7q1ZblqpSI.",
+                                        "member_of_the_system": null,
+                                        "type_of_member": null,
+                                        "job_name": null,
+                                        "verificationCode": "c25d302b-59fb-4416-aa25-947c9129c7e7",
+                                        "enabled": true,
+                                        "accountNonExpired": true,
+                                        "accountNonLocked": true,
+                                        "credentialsNonExpired": true,
+                                        "username": "damir_ps@mail.ru",
+                                        "authorities": [
+                                            {
+                                                "authority": "ROLE_STUDENT"
+                                            }
+                                        ],
+                                        "_active": true
+                                    }
+                                }
+                            ]
+                        },
+                        "paymentInfo": {
+                            "progress_percentage": 0,
+                            "payment_type": "KASPI.KZ",
+                            "payment_date": null,
+                            "status": "process"
+                        },
+                        "shortStatus": 0
+                    }
+                ];
+                // courses = response.data
 
                 const _coursesByCategory = {};
 
@@ -288,7 +357,7 @@ function Catalog() {
                                         setFilterOpen(false);
                                     }}>
                                         <AiFillFolder size={20} className='icon'/>
-                                        <span className='inline-text'>Категории</span>
+                                        <span className='inline-text'>{t('categories')}</span>
                                     </div>
                                     <div 
                                         className="categories" 
@@ -306,7 +375,7 @@ function Catalog() {
                                                 type="checkbox" 
                                                 value={'Все категории'}
                                             />
-                                            <label className='inline-text'>Все категории</label>
+                                            <label className='inline-text'>{t('all categories')}</label>
                                         </div>
                                         {
                                             Object.keys(coursesByCategory || {}).map(category => {

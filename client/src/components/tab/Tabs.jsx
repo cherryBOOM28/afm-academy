@@ -9,7 +9,12 @@ import courseImg4 from '../../assets/icons/image 29.svg';
 
 import { Link } from 'react-router-dom';
 
+import { useTranslation } from 'react-i18next';
+
 function Tabs({ text }) {
+
+  const { t } = useTranslation();
+
   const [activeTab, setActiveTab] = useState(1);
     
   const handleTabClick = (index) => {
@@ -38,28 +43,28 @@ function Tabs({ text }) {
               onClick={() => handleTabClick(1)}
           >
               <img src={courseImg} alt="" />
-              Базовый
+              {t('core')}
           </div>
           <div
               className={activeTab === 1 ? cl.btnTab + ' ' + cl.activeTab : cl.btnTab}
               onClick={() => handleTabClick(2)}
           >
               <img src={courseImg2} alt="" />
-              Профильный
+              {t('specialized')}
           </div>
           <div
               className={activeTab === 1 ? cl.btnTab + ' ' + cl.activeTab : cl.btnTab}
               onClick={() => handleTabClick(3)}
           >
               <img src={courseImg3} alt="" />
-              Продвинутый
+              {t('advanced')}
           </div>
           <div
               className={activeTab === 1 ? cl.btnTab + ' ' + cl.activeTab : cl.btnTab}
               onClick={() => handleTabClick(4)}
           >
               <img src={courseImg4} alt="" />
-              Тематические
+              {t('thematic')}
           </div>
       </div>
       <div className={cl.tabContent}>
@@ -67,20 +72,11 @@ function Tabs({ text }) {
               activeTab === 1 && 
 
               <div className={cl.courses__info} ref={containerRef} style={{ maxHeight: 'fit-content' }}>
-                    <p className={cl.course__headline}>Описание базового курса</p>
-                    <p className={cl.course__text} style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 6, WebkitBoxOrient: 'vertical' }}>
-                        Базовый курс представляет из себя теоретический 
-                        минимум по основам системы ПОД/ФТ и национальной 
-                        антиотмывочной системе Республики Казахстан. Курс 
-                        предназначен для тех слушателей, которые еще не 
-                        знакомы со сферой ПОД/ФТ и хотели бы изучить 
-                        соответствующие требования законодательства. 
-                        Курс подойдет для всех видов субъектов финансового 
-                        мониторинга, а также для всех желающих познакомиться 
-                        с системой ПОД/ФТ.    
+                    <p className={cl.course__headline}>{t('description of the basic course')}</p>
+                    <p className={cl.course__text} style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 6, WebkitBoxOrient: 'vertical' }}> {t('descBasic')}   
                     </p>
                     <Link to="/courses/basic" style={{ textDecoration: 'none' }}>
-                        <Button className={cl.more}>Подробнее</Button>
+                        <Button className={cl.more}>{t('read more')}</Button>
                     </Link>
               </div>
           }
@@ -88,17 +84,12 @@ function Tabs({ text }) {
               activeTab === 2 &&
 
               <div className={cl.courses__info}>
-                    <p className={cl.course__headline}>Описание профильного курса</p>
+                    <p className={cl.course__headline}>{t('description of the specialized course')}</p>
                     <p className={cl.course__text}>
-                        Данный курс предлагает более развернутое изучение 
-                        системы ПОД/ФТ, заточенное под каждый вид субъекта 
-                        финансового мониторинга. Слушатели смогут ознакомиться 
-                        с требованиями законодательства конкретно для их вида 
-                        субъекта, а также узнать особенности ведения деятельности  
-                        в сфере ПОД/ФТ для данного вида СФМ.
+                    {t('descSpec')}
                     </p>
                     <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
-                        <Button className={cl.more}>Подробнее</Button>
+                        <Button className={cl.more}>{t('read more')}</Button>
                     </Link>
               </div>
           }
@@ -107,17 +98,12 @@ function Tabs({ text }) {
               activeTab === 3 &&
 
               <div className={cl.courses__info}>
-                    <p className={cl.course__headline}>Описание продвинутого курса</p>
+                    <p className={cl.course__headline}>{t('description of the advanced course')}</p>
                     <p className={cl.course__text}>
-                        Курс могут пройти субъекты, уже имеющие опыт в сфере ПОД/ФТ 
-                        и желающие более глубоко изучить ее для применения в своей 
-                        деятельности. Продвинутый курс сфокусирован на практических 
-                        аспектах соблюдения требований законодательства в сфере ПОД/ФТ, 
-                        и включает изучение реальных схем и способов отмывания доходов 
-                        и финансирования терроризма.
+                        {t('descAdv')}
                     </p>
                     <Link to="/courses/basic" style={{ textDecoration: 'none' }}>
-                        <Button className={cl.more}>Подробнее</Button>
+                        <Button className={cl.more}>{t('read more')}</Button>
                     </Link>
               </div>
           } 
@@ -125,15 +111,12 @@ function Tabs({ text }) {
               activeTab === 4 &&
 
               <div className={cl.courses__info}>
-                    <p className={cl.course__headline}>Описание курса по повышению квалификации</p>
+                    <p className={cl.course__headline}>{t('description of the thematic course')}</p>
                     <p className={cl.course__text}>
-                        В рамках повышения квалификации субъектов финансового мониторинга 
-                        и сотрудников государственных органов Академией разработаны разовые 
-                        тематические тренинги в сфере ПОД/ФТ. Также, свои предложения по 
-                        тематикам тренингов вы можете направить через опросник для СФМ.
+                        {t('descThe')}
                     </p>
                     <Link to="/courses/specialized" style={{ textDecoration: 'none' }}>
-                        <Button className={cl.more}>Подробнее</Button>
+                        <Button className={cl.more}>{t('read more')}</Button>
                     </Link>
               </div>
           }

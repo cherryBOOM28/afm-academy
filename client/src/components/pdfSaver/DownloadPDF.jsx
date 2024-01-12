@@ -1,8 +1,13 @@
 import React from 'react';
 import Button from '../UI/button/Button';
 
+import { useTranslation } from 'react-i18next';
+
+
 
 const DownloadPDF = () => {
+  const { t } = useTranslation();
+
   const handleDownload = () => {
     const fileUrl = '../data/peach.pdf';
     const link = document.createElement('a');
@@ -15,7 +20,7 @@ const DownloadPDF = () => {
 
   return (
     <Button onClick={handleDownload}>
-      Скачать
+      {t('download')}
     </Button>
   );
 };

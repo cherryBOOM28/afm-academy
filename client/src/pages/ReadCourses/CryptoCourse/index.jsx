@@ -36,6 +36,9 @@ import FlexBoxes from '../../../components/courseTemplates/common_v2/FlexBoxes';
 import ImageLine from '../../../components/courseTemplates/common/ImageLine';
 import DotsOnRoad from '../../../components/courseTemplates/common_v2/DotsOnRoad';
 import TwoColumnsDivider from '../../../components/courseTemplates/common_v2/TwoColumnsDivider';
+import Image from '../../../components/courseTemplates/common_v2/Image';
+import TextWithBackground from '../../../components/courseTemplates/common/TextWithBackground';
+import FileDownloader from '../../../components/courseTemplates/common/FileDownloader';
 
 import blockchainTransactions from '../../../assets/images/blockchain-transactions.png';
 import blockchainTransactions2 from '../../../assets/images/blockchain-transactions2.png';
@@ -55,9 +58,6 @@ import crypto211 from '../../../assets/images/cryptocurrentcy211.png';
 import crypto212 from '../../../assets/images/cryptocurrentcy212.png';
 import telegramSell1 from '../../../assets/images/telegramSell1.png';
 import telegramSell2 from '../../../assets/images/telegramSell2.png';
-import Image from '../../../components/courseTemplates/common_v2/Image';
-import TextWithBackground from '../../../components/courseTemplates/common/TextWithBackground';
-import FileDownloader from '../../../components/courseTemplates/common/FileDownloader';
 
 
 function CryptoCourse() {

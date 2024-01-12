@@ -39,6 +39,7 @@ import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
 import CryptoCourse from './pages/ReadCourses/CryptoCourse';
 
 import './settings/i18n.js';
+import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigationCourse/index.jsx';
 
 function App() {
   const [jwtToken, setJwtToken] = useState('');
@@ -105,7 +106,8 @@ function App() {
               // } redirect={'/courses/catalog'}/>
             }/>
 
-            {/* <Route path='/courses/100/read' element={<CryptoCourse />}/> */}
+            <Route path='/courses/100/read' element={<CryptoCourse />}/>
+            <Route path='/courses/101/read' element={<PlanningInvestigationCourse />}/>
 
             {/* <Route path='/payment' element={<PaymentPage />}/> */}
             <Route path='/payment/:id' element={<PaymentPage />} />

@@ -26,6 +26,7 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
         }) : null;
 
         // console.log(_checkedQustions)
+        console.log(questions)
 
         setCheckedQustions(_checkedQustions)
     }, [])
@@ -34,12 +35,15 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
         // console.log(checkedQustions)
 
         const fetchData = async () => {
+            console.log(checkedQustions)
             try {
                 const response = await axios.post(`${base_url}/api/aml/quiz/checkQuiz/${quizId}`, checkedQustions, {
                     headers: {
                         Authorization: `Bearer ${jwtToken}`,
                     },
                 });
+
+                console.log(response)
 
                 if (response.status === 200) {
                     // console.log(response.data)
