@@ -5,7 +5,7 @@ import Footer from '../../../components/footer/Footer';
 import Header from '../../../components/header/Header';
 
 import data_ru from '../../../components/data/subjectsData ru.json';
-import data_kz from '../../../components/data/subjectsData ru.json';
+import data_kz from '../../../components/data/subjectsData kz.json';
 import data_eng from '../../../components/data/subjectsData eng.json';
 
 import { useTranslation } from 'react-i18next';
