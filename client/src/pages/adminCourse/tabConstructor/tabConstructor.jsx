@@ -1,6 +1,9 @@
 import './tabConstructor.scss'
 import React, {useState, useEffect} from 'react'
 import Modal from '../modalWindowOfInputs/ModalWindowInput'
+
+import QuestionnaireForm from '../fillQuestionnaire/Questionnaire'
+
 //Components
 import Centered from '../../../components/courseTemplates/common/Centered'
 import FileDownloader from '../../../components/courseTemplates/common/FileDownloader'
@@ -73,6 +76,7 @@ import axios from 'axios'
 
 import base_url from '../../../settings/base_url'
 import DropDownTextWithTabs from '../../../components/courseTemplates/complex/DropDownTextWithTabs'
+import { useNavigate } from 'react-router'
 
 const elements = {
     'Текстовые элементы': {
@@ -508,11 +512,23 @@ const TabConstructor = ({saveCancel, save, id}) => {
         setTitle(title)
     }
 
+    const toQuestionnaire = () => {
+        setPrevious(stepConstructor)
+        setStepConstructor('questionnaire')
+    }
+
 
     return (
         <div className="tab-container">
             {stepConstructor == 'structure' ? 
             <h1>Программа курса - конструктор</h1>
+            : stepConstructor == 'questionnaire' ?
+            <div className='button-title'>
+                <svg onClick={() => setStepConstructor(previous)} xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
+                    <path d="M5.6665 14.1667L4.9594 14.8738L4.25229 14.1667L4.9594 13.4596L5.6665 14.1667ZM29.3332 25.5C29.3332 26.0523 28.8855 26.5 28.3332 26.5C27.7809 26.5 27.3332 26.0523 27.3332 25.5L29.3332 25.5ZM12.0427 21.9571L4.9594 14.8738L6.37361 13.4596L13.4569 20.5429L12.0427 21.9571ZM4.9594 13.4596L12.0427 6.37623L13.4569 7.79044L6.37361 14.8738L4.9594 13.4596ZM5.6665 13.1667L22.3332 13.1667L22.3332 15.1667L5.6665 15.1667L5.6665 13.1667ZM29.3332 20.1667L29.3332 25.5L27.3332 25.5L27.3332 20.1667L29.3332 20.1667ZM22.3332 13.1667C26.1992 13.1667 29.3332 16.3007 29.3332 20.1667L27.3332 20.1667C27.3332 17.4052 25.0946 15.1667 22.3332 15.1667L22.3332 13.1667Z" fill="#374761"/>
+                </svg>
+                <h1>Тестирование модуля</h1>
+            </div>
             : 
             stepConstructor != 'constructor' ? 
             <div className='button-title'>
@@ -521,7 +537,7 @@ const TabConstructor = ({saveCancel, save, id}) => {
                 </svg>
                 <h1>Структура модуля</h1>
             </div>
-            : 
+            :
             <div className='button-title'>
                 <svg onClick={() => setStepConstructor(previous)} xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
                     <path d="M5.6665 14.1667L4.9594 14.8738L4.25229 14.1667L4.9594 13.4596L5.6665 14.1667ZM29.3332 25.5C29.3332 26.0523 28.8855 26.5 28.3332 26.5C27.7809 26.5 27.3332 26.0523 27.3332 25.5L29.3332 25.5ZM12.0427 21.9571L4.9594 14.8738L6.37361 13.4596L13.4569 20.5429L12.0427 21.9571ZM4.9594 13.4596L12.0427 6.37623L13.4569 7.79044L6.37361 14.8738L4.9594 13.4596ZM5.6665 13.1667L22.3332 13.1667L22.3332 15.1667L5.6665 15.1667L5.6665 13.1667ZM29.3332 20.1667L29.3332 25.5L27.3332 25.5L27.3332 20.1667L29.3332 20.1667ZM22.3332 13.1667C26.1992 13.1667 29.3332 16.3007 29.3332 20.1667L27.3332 20.1667C27.3332 17.4052 25.0946 15.1667 22.3332 15.1667L22.3332 13.1667Z" fill="#374761"/>
@@ -643,8 +659,11 @@ const TabConstructor = ({saveCancel, save, id}) => {
                 </div>
                 
             </div>
+            : stepConstructor == 'questionnaire' ? 
+            <QuestionnaireForm id={previous} saveCancel={saveCancel} save={save}/>
             : 
-            stepConstructor != 'constructor' ? <ModuleStructure id={stepConstructor} setLessonTitle={setLessonTitle} lessonById={lessonById}/>
+            stepConstructor != 'constructor' ? <ModuleStructure id={stepConstructor} toQuestionnaire={toQuestionnaire} setLessonTitle={setLessonTitle} lessonById={lessonById}/>
+            
             :
             <Constructor saveCancel={saveCancel} save={save} id={lesson} title={title} />
             }
@@ -869,7 +888,8 @@ const Constructor = ({saveCancel, save, id, title}) => {
     )
 }
 
-const ModuleStructure = ({id, lessonById, setLessonTitle }) => {
+const ModuleStructure = ({id, toQuestionnaire, lessonById, setLessonTitle }) => {
+    const navigate = useNavigate()
     const [module, setModule] = useState({
         title: '',
         number_of_lessons: 0
@@ -1022,7 +1042,7 @@ const ModuleStructure = ({id, lessonById, setLessonTitle }) => {
 
                 <div className='add-questionare'>
                     <a>Заполнить вопросы для тестирования</a>
-                    <div className='add-questionare-button'>
+                    <div className='add-questionare-button' onClick={toQuestionnaire}>
                         <img src={hatIcon} alt="save"/>
                         <a>Перейти</a>
                     </div>
