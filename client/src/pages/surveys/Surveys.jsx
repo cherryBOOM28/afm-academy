@@ -92,7 +92,7 @@ function SurveysPage() {
                                     (isSurvey ? surveyList : testList).length !== 0 ? 
                                         (isSurvey ? surveyList : testList).map(({ date_open, date_close, name, status, id }, index) => {
                                             
-                                            let _status = status === 'active' ? 'Открыто' : 'Закрыто';
+                                            let _status = status === 'active' ? 'Откsрыто' : 'Закрыто';
 
                                             return (
                                                 <tr onClick={() => {
