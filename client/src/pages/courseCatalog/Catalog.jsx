@@ -27,7 +27,14 @@ import base_url from '../../settings/base_url';
 import axios from 'axios';
 import Header from '../../components/header/Header';
 
+
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
+
+
 function Catalog() {
+    const { t } = useTranslation();
+
     const navigate = useNavigate();
 
     const [data, setData] = useState(null);
@@ -350,7 +357,7 @@ function Catalog() {
                                         setFilterOpen(false);
                                     }}>
                                         <AiFillFolder size={20} className='icon'/>
-                                        <span className='inline-text'>Категории</span>
+                                        <span className='inline-text'>{t('categories')}</span>
                                     </div>
                                     <div 
                                         className="categories" 
@@ -368,7 +375,7 @@ function Catalog() {
                                                 type="checkbox" 
                                                 value={'Все категории'}
                                             />
-                                            <label className='inline-text'>Все категории</label>
+                                            <label className='inline-text'>{t('all categories')}</label>
                                         </div>
                                         {
                                             Object.keys(coursesByCategory || {}).map(category => {

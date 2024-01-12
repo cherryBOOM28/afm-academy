@@ -12,7 +12,13 @@ import base_url from "../../settings/base_url";
 import { Box, Modal } from '@mui/material';
 import Header from '../../components/header/Header';
 
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
+
+
+
 function VebinarsPage() {
+    const { t } = useTranslation();
 
     const navigate = useNavigate();
 
@@ -78,7 +84,7 @@ function VebinarsPage() {
 
             <div className="page-content container">
 
-                <h1>Вебинары</h1>
+                <h1>{t('webinars')}</h1>
 
                 <div className="vebinar-list-block">
                 {/* {console.log(vebinars)} */}

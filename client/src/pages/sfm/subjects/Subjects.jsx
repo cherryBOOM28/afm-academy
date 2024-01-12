@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect }, { useEffect } from 'react';
 import cl from './Subjects.module.css';
 import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
@@ -22,8 +22,8 @@ function Subjects() {
         <div className={cl.subjectsWrapper}>
             <Header dark={true}  />
             <div className={cl.container}>
-                <h1 className={cl.headline}>Виды субъектов финансового мониторинга</h1>
-                <p className={cl.subjectsText}>Согласно п.1 ст.3 Закона «О противодействии легализации (отмыванию) доходов, добытых преступным путем, и финансированию терроризма» к субъектам финансового мониторинга относятся:</p>
+                <h1 className={cl.headline}>{t('types of subjects of financial monitoring')}</h1>
+                <p className={cl.subjectsText}>{t('descSub1')}</p>
                 <div className={cl.cardContent}>
                     {(
                         i18n.language === 'ru' 

@@ -9,18 +9,22 @@ import fifthDirector from '../../../assets/images/5.svg';
 import Footer from '../../../components/footer/Footer';
 import Header from '../../../components/header/Header';
 
+import { useTranslation } from 'react-i18next';
+
+
 function Management() {
+    const { t } = useTranslation();
+
     return (
         <div className={cl.managementWrapper}>
             <Header dark={true} />
             <div className={cl.container}>
-                <h1 className={cl.headline}>Совет директоров</h1>
+                <h1 className={cl.headline}>{t('board of directors')}</h1>
                 <div className={cl.boardOfDirectors}>
                     <div className={cl.director}>
                         <img src={firstDirector} alt="" />
-                        <p className={cl.name}>Элиманов Жанат Калдыбекович</p>
-                        <p className={cl.post}>Председатель Агентства Республики Казахстан по финансовому мониторингу, председатель 
-                            Совета директоров</p>
+                        <p className={cl.name}>{t('firstDirector')}</p>
+                        <p className={cl.post}>{t('descFirstDir')}</p>
                     </div>
                     {/* <div className={cl.director}>
                         <img src={secondDirector} alt="" />
@@ -29,18 +33,18 @@ function Management() {
                     </div> */}
                     <div className={cl.director}>
                         <img src={thirdDirector} alt="" />
-                        <p className={cl.name}>Мырзахметов Кайрат Жаксыкулович</p>
-                        <p className={cl.post}>Заместитель председателя Комитета государственного имущества и приватизации Министерства финансов Республики Казахстан, член Совета директоров от уполномоченного органа по государственному имуществу</p>
+                        <p className={cl.name}>{t('secondDirector')}</p>
+                        <p className={cl.post}>{t('descSecondDir')}</p>
                     </div>
                     <div className={cl.director}>
                         <img src={forthDirector} alt="" />
-                        <p className={cl.name}>Кушимов Нурхат Манасович</p>
-                        <p className={cl.post}>Генеральный директор Комитета МФЦА по регулированию финансовых услуг, независимый директор</p>
+                        <p className={cl.name}>{t('therdDirector')}</p>
+                        <p className={cl.post}>{t('descTherdDir')}</p>
                     </div>
                     <div className={cl.director}>
                         <img src={fifthDirector} alt="" />
-                        <p className={cl.name}>Хусаинов Галим Абильжанович</p>
-                        <p className={cl.post}>Член Совета директоров, независимый директор АО «Bereke Bank», независимый директор.</p>
+                        <p className={cl.name}>{t('fourthDirector')}</p>
+                        <p className={cl.post}>{t('descFourthDir')}</p>
                     </div>
                 </div>                
             </div>

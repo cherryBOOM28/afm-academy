@@ -20,9 +20,13 @@ import { useAuth } from '../../auth/AuthContext';
 
 import { Email } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
+
 
 
 function Header(props) {
+
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const jwtToken = localStorage.getItem('jwtToken');
   const userEmail = localStorage.getItem('email');
@@ -157,8 +161,8 @@ function Header(props) {
             </div> 
             : 
             <div className='user-actions'>
-              <a href='/registration' className='text-button'>Регистрация</a>
-              <a href='/login' className={`contained-button blue-button ${props.dark? 'dark' : ''}`}>Войти</a>
+              <a href='/registration' className='text-button'>{t('regestration')}</a>
+              <a href='/login' className={`contained-button blue-button ${props.dark? 'dark' : ''}`}>{t('signin')}</a>
             </div>
           }
           <div className='hamburger-navigation'>
@@ -199,36 +203,36 @@ const NavigationBar = (props) => {
   return (
       <div className={`navbarBoxes`}>
           <div className={`menuBox`}>
-              <a className={`menu ${props.dark? 'dark' : ''}`}>О нас</a>
+              <a className={`menu ${props.dark? 'dark' : ''}`}>{t('about us')}</a>
               <ul className={'dropdownSub'}>
                   <li>
-                      <Link to="/about" className={'subPages'}>Об Академии </Link>
+                      <Link to="/about" className={'subPages'}>{t('about the academy')} </Link>
                   </li>
                   <li>
-                      <Link to="/management" className={'subPages'}>Совет директоров</Link>
+                      <Link to="/management" className={'subPages'}>{t('board of directors')}</Link>
                   </li>
                   <li>
-                      <Link to="/structure" className={'subPages'}>Структура</Link>
+                      <Link to="/structure" className={'subPages'}>{t('structure')}</Link>
                   </li>
                   <li>
-                      <Link to="/charter" className={'subPages'}>Устав</Link>
+                      <Link to="/charter" className={'subPages'}>{t('regulation')}</Link>
                   </li>
                   <li>
-                      <Link to="/roadmap" className={'subPages'}>План развития</Link>
+                      <Link to="/roadmap" className={'subPages'}>{t('development plan')}</Link>
                   </li>
               </ul>
           </div>
           <div className={'menuBox'}>
-              <a className={`menu ${props.dark ? 'dark' : ''}`}>Обучение</a>
+              <a className={`menu ${props.dark ? 'dark' : ''}`}>{t('training')}</a>
               <ul className={'dropdownSub'}>
                   <li>
-                      <a onClick={scrollToCourses} className={'subPages'}>Виды курсов</a>
+                      <a onClick={scrollToCourses} className={'subPages'}>{t('types of courses')}</a>
                   </li>  
                   <li>
-                      <Link to="/courses/catalog" className={'subPages'}>Каталог курсов</Link>
+                      <Link to="/courses/catalog" className={'subPages'}>{t('course catalog')}</Link>
                   </li>
                   {isLoggedIn ? <li>
-                      <Link to="/courses/myCourses" className={'subPages'}>Мои курсы</Link>
+                      <Link to="/courses/myCourses" className={'subPages'}>{t('my courses')}</Link>
                   </li> : null}
               </ul>
           </div>
@@ -247,50 +251,50 @@ const NavigationBar = (props) => {
               </ul>
           </div> */}
           <div className={'menuBox'}>
-              <a className={`menu ${props.dark? 'dark' : ''}`}>Вебинары</a>
+              <a className={`menu ${props.dark? 'dark' : ''}`}>{t('webinars')}</a>
               <ul className={'dropdownSub'}>
                   <li>
-                      <Link to="/vebinars" className={'subPages'}>Все вебинары</Link>
+                      <Link to="/vebinars" className={'subPages'}>{t('all webinars')}</Link>
                   </li>
                   <li>
-                      <Link to="/vebinars/calendar" className={'subPages'}>Календарь мероприятий</Link>
+                      <Link to="/vebinars/calendar" className={'subPages'}>{t('calendar of events')}</Link>
                   </li>
                   <li>
-                      <Link to="/vebinars/surveys" className={'subPages'}>Опросы</Link>
+                      <Link to="/vebinars/surveys" className={'subPages'}>{t('surveys')}</Link>
                   </li>
               </ul>
           </div>
           <div className={'menuBox'}>
-              <a className={`menu ${props.dark? 'dark' : ''}`} onClick={() => scrollToNews()}>Новости</a>
+              <a className={`menu ${props.dark? 'dark' : ''}`} onClick={() => scrollToNews()}>{t('news')}</a>
           </div>
           <div className={'menuBox'}>
-              <a className={`menu ${props.dark? 'dark' : ''}`}>ПОД/ФТ</a>
+              <a className={`menu ${props.dark? 'dark' : ''}`}>{t('aml/ft')}</a>
               <ul className={'dropdownSub'}>
                   <li>
-                      <Link to="/anti-laundering" className={'subPages'}>Антиотмывочная система РК</Link>
+                      <Link to="/anti-laundering" className={'subPages'}>{t('anti-washing system of the RK')}</Link>
                   </li>
                   <li>
-                      <Link to="/fatf" className={'subPages'}>ФАТФ</Link>
+                      <Link to="/fatf" className={'subPages'}>{t('fatf')}</Link>
                   </li>
                   <li>
-                      <Link to="/eag" className={'subPages'}>ЕАГ</Link>
+                      <Link to="/eag" className={'subPages'}>{t('eag')}</Link>
                   </li>
                   <li>
-                      <Link to="/mutual-evaluation" className={'subPages'}>Взаимная оценка</Link>
+                      <Link to="/mutual-evaluation" className={'subPages'}>{t('mutual assessment')}</Link>
                   </li>
               </ul>
           </div>
           <div className={'menuBox'}>
-              <a className={`menu ${props.dark? 'dark' : ''}`}>СФМ</a>
+              <a className={`menu ${props.dark? 'dark' : ''}`}>{t('sfm')}</a>
               <ul className={'dropdownSub'}>
                   <li>
-                      <Link to="/subjects" className={'subPages'}>Виды субъектов финансового мониторинга</Link>
+                      <Link to="/subjects" className={'subPages'}>{t('types of subjects of financial monitoring')}</Link>
                   </li>
                   <li>
-                      <Link to="/rules" className={'subPages'}>Правила внутреннего контроля</Link>
+                      <Link to="/rules" className={'subPages'}>{t('internal control rules')}</Link>
                   </li>
                   <li>
-                      <Link to="/operations" className={'subPages'}>Операции, подлежащие финансовому мониторингу</Link>
+                      <Link to="/operations" className={'subPages'}>{t('transactions subject to financial monitoring')}</Link>
                   </li>
               </ul>
           </div>

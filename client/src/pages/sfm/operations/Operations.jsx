@@ -8,78 +8,78 @@ import timeIcon from '../../../assets/icons/time.svg';
 import worldIcon from '../../../assets/icons/earth.svg';
 import Header from '../../../components/header/Header';
 
+import { useTranslation } from 'react-i18next';
+
 
 function Operations() {
+
+    const { t } = useTranslation();
+
     return (
         <div className={cl.OperationsWrapper}>
             <Header dark={true} />
             <div className={cl.container}>
-                <h1 className={cl.headline}>Операции, подлежащие финансовому мониторингу</h1>
+                <h1 className={cl.headline}>{t('transactions subject to financial monitoring')}</h1>
                 <div className={cl.blocksContent}>
                     <div className={cl.block}>
                         <img src={graphIcon} alt="graphIcon" className={cl.blockImg} />
-                        <p className={cl.blockHeadline}>Пороговые</p>
-                        <p className={cl.blockText}>Пороговая ОПЕРАЦИЯ
-                            От 1 до 100 млн. тенге, в зависимости от вида операции
+                        <p className={cl.blockHeadline}>{t('descOperastions1')}</p>
+                        <p className={cl.blockText}>{t('descOperastions2')}
                         </p>
                     </div>
                     <div className={cl.block}>
                         <img src={timeIcon} alt="timeIcon" className={cl.blockImg} />
-                        <p className={cl.blockHeadline}>Подозрение</p>
+                        <p className={cl.blockHeadline}>{t('descOperastions3')}</p>
                         <p className={cl.blockText}>
-                            Подозрительная ОПЕРАЦИЯ в рамках утвержденных признаков подозрительной операции
-                        </p>
+                        {t('descOperastions4')}                        </p>
                     </div>
                     <div className={cl.block}>
                         <img src={groupIcon} alt="groupIcon" className={cl.blockImg} />
-                        <p className={cl.blockHeadline}>ПВК</p>
+                        <p className={cl.blockHeadline}>{t('descOperastions5')}</p>
                         <p className={cl.blockText}>
-                            Внутренее ИЗУЧЕНИЕ
-                            имеются основания
-                            полагать, что операции клиента связаны с ОД/ФТ
+                        {t('descOperastions6')}
                         </p>
                     </div>
                     <div className={cl.block}>
                         <img src={worldIcon} alt="worldIcon" className={cl.blockImg} />
-                        <p className={cl.blockHeadline}>Пороговые</p>
+                        <p className={cl.blockHeadline}>{t('descOperastions7')}</p>
                         <p className={cl.blockText}>
-                            Схемы и способы операции клиента, имеющие характеристики, соответствующие типологиям, 
-                            схемам ОД/фТ
+                        {t('descOperastions8')}
                         </p>
                     </div>
                 </div>
                 <p className={cl.text}>
-                    В соответствии с п.8) ст.1 Закона «О противодействии легализации (отмыванию) доходов, добытых преступным путем, и финансированию терроризма» операции, подлежащие финансовому мониторингу, – операции клиента субъекта финансового мониторинга с деньгами и (или) иным имуществом, в отношении которых в соответствии с настоящим Законом установлен финансовый мониторинг.
+                {t('descOperastions9')}                
                 </p>
                 <div className={cl.rule}>
                     <p className={cl.ruleText}>
-                    Согласно ст. 4 Закона, финансовому мониторингу подлежат операции в соответствии с пороговыми суммами и видами операций, указанными в п. 1 ст.4 Закона, а также подозрительные операции, признанные таковыми в соответствии с программами реализации правил внутреннего контроля субъекта финансового мониторинга или в результате изучения операций по основаниям, указанным в пункте 4 настоящей статьи, у субъекта финансового мониторинга имеются основания полагать, что операции клиента связаны с легализацией (отмыванием) доходов, полученных преступным путем, и (или) финансированием терроризма.
+                    {t('descOperastions10')}                    
                     </p>
                 </div>
                 <div className={cl.rule}>
                     <p className={cl.ruleText}>
-                    Согласно п.4 ст. 4 Закона, обязательными основаниями для изучения субъектом финансового мониторинга совершаемых клиентом операций и фиксирования результатов такого изучения в соответствии со статьей 5 настоящего Закона являются:
+                    {t('descOperastions11')}                    
                     </p>
                 </div>
                 <div className={cl.numberBlocks}>
                     <div className={cl.smallBlocks}>
                         <div className={cl.innerBlock}>
-                            <p className={cl.numberBlocksText}>1) совершение клиентом сложной, необычно крупной либо не имеющей очевидного экономического смысла или видимой законной цели операции с деньгами и (или) иным имуществом;</p>
+                            <p className={cl.numberBlocksText}>{t('descOperastions12')}</p>
                         </div>
                         <div className={cl.innerBlock}>
-                            <p className={cl.numberBlocksText}>2) совершение клиентом действий, направленных на уклонение от надлежащей проверки и (или) финансового мониторинга, предусмотренных настоящим Законом;</p>
+                            <p className={cl.numberBlocksText}>{t('descOperastions13')}</p>
                         </div>
                         <div className={cl.innerBlock}>
-                            <p className={cl.numberBlocksText}>3) совершение клиентом операции с деньгами и (или) иным имуществом, по которой имеются основания полагать, что она направлена на обналичивание денег, полученных преступным путем;</p>
+                            <p className={cl.numberBlocksText}>{t('descOperastions14')}</p>
                         </div>
                     </div>
                     <div className={cl.bigBlock}>
-                        <p className={cl.numberBlocksText}>4) совершение операции с деньгами и (или) иным имуществом, участником которой является лицо, зарегистрированное (проживающее) в государстве (на территории), которое не выполняет и (или) недостаточно выполняет рекомендации Группы разработки финансовых мер борьбы с отмыванием денег (ФАТФ), а равно с использованием счета в банке, зарегистрированном в таком государстве (территории).</p>
+                        <p className={cl.numberBlocksText}>{t('descOperastions15')}</p>
                     </div>
                 </div>
-                <p className={cl.text}>Перечень государств (территорий), которые не выполняют и (или) недостаточно выполняют рекомендации Группы разработки финансовых мер борьбы с отмыванием денег (ФАТФ), составляется уполномоченным органом с учетом документов, издаваемых Группой разработки финансовых мер борьбы с отмыванием денег (ФАТФ), который размещается на своем интернет-ресурсе.</p>
-                <p className={cl.text}>В соответствии с п.5 ст.4 Закона, финансовому мониторингу подлежат операции клиента, имеющие характеристики, соответствующие типологиям, схемам и способам легализации (отмывания) преступных доходов и финансирования терроризма.</p>
-                <p className={cl.text__last}>Типологии, схемы и способы легализации (отмывания) преступных доходов и финансирования терроризма утверждаются уполномоченным органом и доводятся до субъектов финансового мониторинга путем размещения на своем интернет-ресурсе.</p>
+                <p className={cl.text}>{t('descOperastions16')}</p>
+                <p className={cl.text}>{t('descOperastions17')}</p>
+                <p className={cl.text__last}>{t('descOperastions18')}</p>
 
             </div>
             <Footer />
