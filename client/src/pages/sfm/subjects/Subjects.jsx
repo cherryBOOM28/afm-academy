@@ -1,4 +1,4 @@
-import React, { useEffect }, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import cl from './Subjects.module.css';
 import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
@@ -11,7 +11,7 @@ import data_eng from '../../../components/data/subjectsData eng.json';
 import { useTranslation } from 'react-i18next';
 
 function Subjects() {
-    const { i18n } = useTranslation();
+    const { i18n, t } = useTranslation();
     const currentLanguage = i18n.language;
 
     useEffect(() => {
