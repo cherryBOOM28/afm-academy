@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './style.scss'
 import Sizebox from '../../common/Sizebox';
 
-const IconDots = ({ list, color, header, gap=20, icons, height='40px', width='40px' }) => {
+const IconDots = ({ list, color, header, gap=20, icons, height='40px', width='40px', fontSize='16px' }) => {
     const defaultColor = '#3A3939';
     const defaultIcon = 'https://static.thenounproject.com/png/4084271-200.png';
 
@@ -37,7 +37,7 @@ const IconDots = ({ list, color, header, gap=20, icons, height='40px', width='40
                                 >
                                     <img src={icons ? icons[index] ? icons[index] : defaultIcon : defaultIcon} />
                                 </span>
-                                <div>
+                                <div style={{ fontSize: fontSize }}>
                                     {item}
                                 </div>
                             </div>
