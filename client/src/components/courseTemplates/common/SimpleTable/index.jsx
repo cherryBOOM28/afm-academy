@@ -4,6 +4,9 @@ import './style.scss';
 function SimpleTable({ columns, data }) {
     // Function to handle newlines in table cell text
     const renderTextWithLineBreaks = (text) => {
+
+        if (typeof text !== 'string') return text;
+
         return text.split('\n').map((line, index, array) => (
             <React.Fragment key={index}>
                 {line}

@@ -39,6 +39,7 @@ import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
 import CryptoCourse from './pages/ReadCourses/CryptoCourse';
 
 import './settings/i18n.js';
+import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigationCourse/index.jsx';
 
 function App() {
   const [jwtToken, setJwtToken] = useState('');
@@ -106,16 +107,17 @@ function App() {
             }/>
 
             <Route path='/courses/100/read' element={<CryptoCourse />}/>
+            <Route path='/courses/101/read' element={<PlanningInvestigationCourse />}/>
 
             {/* <Route path='/payment' element={<PaymentPage />}/> */}
             <Route path='/payment/:id' element={<PaymentPage />} />
 
             <Route path='/sandbox' element={<Sandbox />}/>'
 
-            <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={CreateCoursePage} />}/>
-            <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={EditCatalog} />}/>
-            {/* <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} component={CreateCoursePage} />}/>
-            <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} component={EditCatalog} />}/> */}
+            {/* <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={CreateCoursePage} />}/> */}
+            {/* <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={EditCatalog} />}/> */}
+            <Route path='/createcourse' element={<CreateCoursePage/>}/>
+            <Route path='/manager' element={<EditCatalog/>} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

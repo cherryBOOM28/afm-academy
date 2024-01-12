@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect }, { useEffect } from 'react';
 import cl from './Subjects.module.css';
 import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
 import Header from '../../../components/header/Header';
 
-import data_kz from '../../../components/data/subjectsData kz.json';
 import data_ru from '../../../components/data/subjectsData ru.json';
+import data_kz from '../../../components/data/subjectsData ru.json';
 import data_eng from '../../../components/data/subjectsData eng.json';
 
 import { useTranslation } from 'react-i18next';
 
 function Subjects() {
-    const { t } = useTranslation();
     const { i18n } = useTranslation();
     const currentLanguage = i18n.language;
 

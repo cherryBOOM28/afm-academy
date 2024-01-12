@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './style.scss'
 import Sizebox from '../Sizebox';
 
-const NumberedDots = ({ list, dotsColor, color, header }) => {
+const NumberedDots = ({ list, dotsColor, color, header, gap=20 }) => {
     const defaultDotsColor = '#F9CB36';
     const defaultColor = '#3A3939';
 
@@ -23,13 +23,13 @@ const NumberedDots = ({ list, dotsColor, color, header }) => {
                 </>
                 : null
             }
-            <div className='numbered-dots'>
+            <div className='numbered-dots' style={{ gap: `${gap}px` }}>
                 {
                     list !== undefined ? list.map((item, index) => {
                         let i = index + 1;
 
                         return (
-                            <div key={index}>
+                            <div key={index} >
                                 <span 
                                     style={{
                                         backgroundColor: 

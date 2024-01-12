@@ -144,9 +144,43 @@
 
         }
 
+        .add-questionare {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            > a {
+                font-size: 18px;
+                color: #374761;
+            }
+            .add-questionare-button {
+                cursor: pointer;
+
+                display: flex;
+                align-items: center;
+                gap: 7px;
+                // width: 130px;
+                width: min-content;
+                padding: 8px 14px 8px 8px;
+    
+                border-radius: 5px;
+                background: #374761;
+                
+                a {
+                    color: #fff;
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+                &:hover {
+                    background: #374761a9;
+                }
+            }
+        }
+
         .annotations {
             position: absolute;
             right: 130px;
+            z-index: -1;
 
 
             color: rgba(55, 71, 97, 0.75);

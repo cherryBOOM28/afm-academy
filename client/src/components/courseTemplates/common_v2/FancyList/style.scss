@@ -21,6 +21,8 @@
         flex-direction: row;
         gap: 30px;
 
+        box-sizing: border-box;
+
         .num {
             width: 70px;
             height: 70px;
@@ -34,6 +36,7 @@
             font-size: 1.3rem;
             font-weight: 600;
             font-family: Ubuntu;
+            box-sizing: border-box;
         }
 
         .text {
@@ -41,11 +44,14 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: center;
 
             font-size: 1.2rem;
             font-weight: 600;
             font-family: Ubuntu;
+
+            width: 100%;
+
+            box-sizing: border-box;
         }
     }
 }

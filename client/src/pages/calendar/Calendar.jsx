@@ -12,23 +12,12 @@ import axios from 'axios';
 import './Calendar.scss'
 import Header from '../../components/header/Header';
 
-import { t } from 'i18next';
-import { useTranslation } from 'react-i18next';
-
-
 const formatDate = (dateString) => {
     const date = new Date(dateString);
     const formattedDate = date.toISOString().split('T')[0]; // Extract date part
     return formattedDate;
 };
-
-
 function CalendarPage(props) {
-
-    const { t } = useTranslation();
-    const { i18n } = useTranslation();
-    const currentLanguage = i18n.language;
-
     const [ events, setEvents ] = useState([
         {
             '_id': 0,
@@ -93,27 +82,20 @@ function CalendarPage(props) {
                 <div className="container">
                 </div>
                 <main className='page-content container'>
-                    <h2>{t('calendar of events')}</h2>
+                    <h2>Календарь мероприятий</h2>
 
                     <div className="calendar-wrapper">
                         {/* <h3>{today}</h3> */}
 
                         <div className="calendar-body">
                             <FullCalendar
-                               locale={
-                                i18n.language === 'ru'
-                                    ? 'ru-RU'
-                                    : i18n.language === 'kz'
-                                    ? 'ru-RU'
-                                    : 'en-EN'
-                            }
-                                // locale={'ru-RU'}
+                                locale={'kz-KZ'}
                                 buttonText={{
-                                    today: t('today'),
-                                    month: t('month'),
-                                    week: t('week'),
-                                    day: t('day'),
-                                    list: t('list')
+                                    today: "Сегодня",
+                                    month: "Месяц",
+                                    week: "Неделя",
+                                    day: "День",
+                                    list: "Список"
                                 }}
                                 headerToolbar={{
                                     left: "title",
@@ -151,7 +133,7 @@ function CalendarPage(props) {
 }
 
 const EventCard = ({event}) => {
-    const monthes = [t('month1'), t('month2'), t('month3'), t('month4'), t('month5'), t('month6'), t('month7'), t('month8'), t('month9'), t('month10'), t('month11'), t('month12')];
+    const monthes = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 
     let day = event.date.substring(8);
     let month = event.date.substring(5, 7);

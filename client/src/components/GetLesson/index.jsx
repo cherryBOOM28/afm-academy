@@ -270,7 +270,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Sizebox height={50}/>
                 <Reveal>
                     <VideoWithTitleAndText
-                        url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'}
+                        url={'https://videos.sproutvideo.com/embed/a790d1b1191ae7c52e/df314522dc6212d3?playerColor=1f71a1'}
                         title={'Более подробнее об основных понятиях вы можете ознакомиться в представленном ниже видео'}
                         text={`В сфере ПОД/ФТ большое количество различных понятий и значений, однако в данном видео вы можете ознакомиться с понятиями и их функциональностью, которые часто встречаются при осуществлении СФМ финансового мониторинга.
 `}/>
@@ -469,7 +469,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
 
                 <Sizebox height={80} />
 
-                <VideoLine url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'}/>
+                <VideoLine url={'https://videos.sproutvideo.com/embed/d390d1b1191ae7c15a/1deb0d91facdef1d?playerColor=1f71a1'}/>
 
                 <Sizebox height={80} />
 
@@ -719,7 +719,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Reveal>
                     {/* <TODO text='Video'/> */}
                     <VideoWithTitleAndText 
-                        url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'}
+                        url={'https://videos.sproutvideo.com/embed/4490d1b1191ae6cbcd/ec95a4d260da3f5e?playerColor=1f71a1'}
                         title={'Помещение денежных средств'} 
                         text={`Тем самым придавалось видимость активной деятельности компании. 
                         При этом, предикатным преступлением выступал доход, полученный от 
@@ -3315,7 +3315,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 </Reveal>
                 <Sizebox height={80} />
                 <Reveal>
-                    <VideoLine url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'} />
+                    <VideoLine url={'https://videos.sproutvideo.com/embed/0690d1b1191ae8cf8f/2c6b243940e7d2a5?playerColor=1f71a1'} />
                 </Reveal>
                 <Sizebox height={150} />
 
@@ -3611,7 +3611,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Sizebox height={40} />
                 <Reveal>
                     <VideoLine
-                        url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'}
+                        url={'https://videos.sproutvideo.com/embed/7090d1b1191ae8c9f9/d34472230c8d2891?playerColor=1f71a1'}
                         title={''}
                     />
                 </Reveal>
@@ -3730,9 +3730,10 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                         </HeaderWithLine>
                     </Reveal>
 
+
                     <Sizebox height={80} />
 
-                    <VideoLine url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'}/>
+                    <VideoLine url={'https://videos.sproutvideo.com/embed/1190d1b1191ae8c498/b8caa50df4b0d67b?playerColor=1f71a1'}/>
                     <Sizebox height={40} />
                     <Reveal>
                     <TextWithTitle title={"Надлежащая проверка субъектами финансового мониторинга своих клиентов (их представителей) и бенефициарных собственников включает осуществление следующих мер:"}
@@ -3791,7 +3792,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
 
                     <Sizebox height={80} />
 
-                    <VideoLine url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'}/>
+                    <VideoLine url={'https://videos.sproutvideo.com/embed/d390d1b1191ae9cf5a/88959ceba82653c0?playerColor=1f71a1'}/>
                     <Sizebox height={40} />
                     <Reveal>
                         <TextWithTitle title={"Субъекты в рамках НПК обязаны применять в отношении лиц, имеющих регистрацию, место жительства или место нахождения в государстве (территории), которые не выполняют и (или) недостаточно выполняют рекомендации ФАТФ, дополнительные меры по:"}
@@ -4040,7 +4041,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
 
                 <Sizebox height={80} />
 
-                <VideoLine url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'}/>
+                <VideoLine url={'https://videos.sproutvideo.com/embed/7090d1b1191ae9c8f9/fecda4e3e1f59b44?playerColor=1f71a1'}/>
 
                 <Sizebox height={80} />
 

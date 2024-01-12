@@ -5,7 +5,12 @@ import { BsFillExclamationOctagonFill } from "react-icons/bs";
 
 import './style.scss'
 
-function Report_Warning({ children, text }) {
+function Report_Warning({ 
+    children, text,
+    backgroundColor='rgba(202, 222, 252, 0.22)',
+    borderColor='#A7CAFF',
+
+ }) {
 
     if (text) {
         // Replace newline characters with HTML line breaks
@@ -25,9 +30,14 @@ function Report_Warning({ children, text }) {
     }
 
     return ( 
-        <div className="reportWarning">
+        <div className="reportWarning"
+            style={{
+                borderColor: borderColor,
+                backgroundColor: backgroundColor
+            }}
+        >
             <div className="icon-wrapper">
-                <BsFillExclamationOctagonFill className='icon' size={23}/>
+                <BsFillExclamationOctagonFill className='icon' size={23} style={{color: borderColor}}/>
             </div>
             <div>
                 <p>{children}</p>
