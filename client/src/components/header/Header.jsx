@@ -29,6 +29,7 @@ function Header(props) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const jwtToken = localStorage.getItem('jwtToken');
+  const role = localStorage.getItem('role');
   const userEmail = localStorage.getItem('email');
   const name = localStorage.getItem('firstname') + " " + localStorage.getItem('lastname')
   const pfp = name.split(' ')[0][0] + name.split(' ')[1][0]
@@ -149,7 +150,7 @@ function Header(props) {
                   </div>
                   <a className='user-toggle-links'>{name}</a>
                 </div>
-                {username == 'derzeet@gmail.com' ? 
+                {role == 'ROLE_ADMIN' ? 
                 <div onClick={() => navigate('/manager')} className='person-menu-item menu-item underline-item'>
                   <a className='user-toggle-links'>Админ панель</a>
                 </div> : null
