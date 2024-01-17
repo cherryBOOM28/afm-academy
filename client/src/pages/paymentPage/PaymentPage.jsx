@@ -19,11 +19,7 @@ function PaymentPage(props) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${id}`, {
-                    headers: {
-                        Authorization: `Bearer ${jwtToken}`,
-                    },
-                });
+                const response = await axios.get(`${base_url}/api/aml/course/justGetCourseById/${id}`);
 
                 // console.log(response.data);
 
@@ -53,7 +49,7 @@ function PaymentPage(props) {
                     <div className={cl.line}></div>
                     <p className={cl.headline_text}>Как оплатить услугу в Международная академия экономики и финансов</p>
                     {data !== null ? 
-                        <p className={cl.headline_text}>{data.course_name}</p>
+                        <p className={cl.headline_text}>{data.body.course_name}</p>
                         : null
                     }
                 </div>
@@ -64,7 +60,7 @@ function PaymentPage(props) {
                             {isLoading 
                                 ? "loading" 
                                 : data !== null 
-                                    ? data.course_price
+                                    ? data.body.course_price
                                     : ""
                             }тг
                         </span>
@@ -83,11 +79,11 @@ function PaymentPage(props) {
                     <img src={instructionsImg} alt="Инструкция" className={cl.instructions_img} />
                     <div className={cl.whatsapp}>
                         <img src={whatsappIcon} alt="whatsappIcon" />
-                        <p className={cl.whatsapp_text}>Отправьте чек об оплате через приложение WhatsApp по номеру +7 778 650 27 28</p>
+                        <p className={cl.whatsapp_text}>Отправьте чек об оплате через приложение WhatsApp по номеру +7 708 716 8416</p>
 
                     </div>
                     <div className={cl.whatsapp_button}>
-                        <a href='https://wa.me/77786502728' target="_blank" className={cl.whatsapp_link}>Открыть Whatsapp</a>
+                        <a href='https://wa.me/77087168416' target="_blank" className={cl.whatsapp_link}>Открыть Whatsapp</a>
                     </div>
                     
                 </div>
