@@ -52,7 +52,7 @@ function BasicCourse() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${id}`);
+                const response = await axios.get(`${base_url}/api/aml/course/justGetCourseById/${id}`);
 
                 // console.log(response.data);
 
@@ -101,7 +101,7 @@ function BasicCourse() {
                     </Collapsable>
                     <Collapsable title={'Стоимость курса'}>
                         <p>
-                            {data ? data.course_price : ''} тенге
+                            {data ? data.body.course_price : ''} тенге
                         </p>
                     </Collapsable>
                     <Collapsable title={'Дата ближайшего курса'}>
@@ -109,10 +109,10 @@ function BasicCourse() {
                             21.10.2023
                         </p>
                     </Collapsable>
-                    { data && data.modules && data.modules.length != 0 ? <Collapsable title={'Программа курса'}>
+                    { data && data.body.modules && data.body.modules.length != 0 ? <Collapsable title={'Программа курса'}>
                         <p style={{lineHeight: '23px'}}>
                         {
-                            data.modules.map((module, index) => {
+                            data.body.modules.map((module, index) => {
 
                                 // console.log(module)
                                 return <>{index+1}. {module.chapter_description}<br /></>
@@ -154,7 +154,7 @@ function BasicCourse() {
                         <>
                             <h2 className='section-header'>Отзывы</h2>
                             <FeedBacks 
-                                feedBacks={data !== null ? data.courseComments : []}
+                                feedBacks={data.body !== null ? data.body.courseComments : []}
                             />
                         </> ) 
                     : <div style={{
