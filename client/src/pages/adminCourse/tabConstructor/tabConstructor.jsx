@@ -911,7 +911,7 @@ const ModuleStructure = ({id, toQuestionnaire, lessonById, setLessonTitle }) => 
             .then((res) => {
                 setModule({
                     title: res.data.name || "",
-                    number_of_lessons: res.data.lessons.length || 0
+                    number_of_lessons: res.data.lessons.filter(x => x._active == true).length || 0
                 })
                 setNewLessonName("Урок №" + (res.data.lessons.length + 1))
                 setCurrentLessons(res.data.lessons || [])
@@ -919,6 +919,9 @@ const ModuleStructure = ({id, toQuestionnaire, lessonById, setLessonTitle }) => 
             .catch(function (error) {
                 alert(error)
             })
+
+        console.log("asdas", currentLessons)
+
     }, [id])
 
     const addLesson = ( ) => {
@@ -960,7 +963,7 @@ const ModuleStructure = ({id, toQuestionnaire, lessonById, setLessonTitle }) => 
         <div className="base">
                 <a className="title">{module.title}<span>: {module.number_of_lessons} Уроков</span></a>
                 <div className="list-of-modules">
-                    {currentLessons.map((x) => {
+                    {currentLessons.filter(x => x._active == true).map((x) => {
                         return (
                             <div className="module-line">
                                 <div className='name-icon'> 
