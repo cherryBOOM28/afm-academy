@@ -4,18 +4,41 @@
     margin: 0 auto;
 }
 
-.headline {
+.headline-fatf {
     color: #343434;
     font-size: 26px;
     font-weight: 700;
     margin-top: 116px;
+    text-align: left;
 }
-
 .fatfContent {
     margin-top: 24px;
-    display: flex;
-    gap: 10px;
+    display: flex; /* Adjust this as needed */
+    justify-content: space-between;
 }
+
+.fatfImage {
+    width: 50%;
+}
+
+.fatfContentInner {
+    width: 50%; /* Adjust this if you need to */
+}
+
+
+// .fatfContent {
+//     margin-top: 24px;
+//     display: flex;
+//     gap: 10px;
+
+//     * {
+//         border: 1px solid red;
+//     }
+
+//     > .fatfImage { 
+//         height: 100%;
+//     }
+// }
 
 .fatfContentInner {
     display: flex;
@@ -34,7 +57,7 @@
     color: #000;
     font-size: 16px;
     font-weight: 400;
-    line-height: 19px;
+    line-height: 22px;
 }
 
 .fatfText {

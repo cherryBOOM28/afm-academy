@@ -1,5 +1,5 @@
 const textStyle = {
-    fontFamily: 'Roboto',
+    fontFamily: 'Inter',
     fontSize: '16px',
     fontWeight: '400',
     lineHeight: '23px',

@@ -10,7 +10,9 @@
 }
 .navbar {
     padding-top: 20px;
-    width: 80%;
+    // width: 80%;
+    max-width: 1240px;
+
     margin: 0 auto;
     display: flex;
     justify-content: space-between;

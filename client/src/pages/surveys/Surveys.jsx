@@ -63,7 +63,7 @@ function SurveysPage() {
             <main className='page-content container'>
                 <h1>{t('survey on topics for training')}</h1>
                 <div className="surveys-list-block">
-                    <div className='toggles'>
+                    {/* <div className='toggles'>
                         <div 
                             onClick={() => {
                                 setSurvey(true);
@@ -78,7 +78,7 @@ function SurveysPage() {
                             className={`${!isSurvey ? 'active' : ''}`}>
                                 {t('testing')}
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="survey-list">
                         <table>

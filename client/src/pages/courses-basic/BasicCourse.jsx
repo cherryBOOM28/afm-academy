@@ -219,7 +219,7 @@ function BasicCourse() {
 
 const FormInput = ({title, field, onChange}) => {
     const labelStyle = {
-        'fontFamily': 'Roboto',
+        'fontFamily': 'Inter',
         'fontSize': '1.2rem',
         paddingLeft: '10px',
     }
