@@ -8,6 +8,9 @@ import Map from '../UI/map/Map';
 
 import { useTranslation } from 'react-i18next';
 
+import VisualModal from '../../components/VisualModal/VisualModal';
+
+
 function Footer({ email, phoneNumber }) {
 
     const { t } = useTranslation();
@@ -21,83 +24,83 @@ function Footer({ email, phoneNumber }) {
       };
 
     return (
-        <div className={cl.footerWrapper}>
+        <div className={`${cl.footerWrapper} text-content`}>
             <div className={cl.container}>
                 <div className={cl.footer}>
                     <div className={cl.footer__block}>
-                        <p className={cl.footer__headline}>{t('contacts')}</p>
+                        <p className={`${cl.footer__headline} text-content`}>{t('contacts')}</p>
                         <nav className={cl.footer__content}>
                             <ul>
                                 <li>
-                                    <p className={cl.footer__text}>{t('city')}</p>
+                                    <p className={`${cl.footer__text} text-content`}>{t('city')}</p>
                                 </li>
                                 <li>
-                                    <p className={cl.footer__text}>{t('address')}</p>
+                                    <p className={`${cl.footer__text} text-content`}>{t('address')}</p>
                                 </li>
                                 <li>
-                                    <a className={cl.footer__text} href={`tel:${phoneNumber}`} onClick={handlePhoneClick}>тел. +7 708 716 8416</a>
+                                    <a className={`${cl.footer__text} text-content`} href={`tel:${phoneNumber}`} onClick={handlePhoneClick}>тел. +7 708 716 8416</a>
                                 </li>
                                 <li>
-                                    <a className={cl.footer__text} href={`mailto:${email}`} onClick={handleEmailClick}>aml.academy2023@gmail.com</a>
+                                    <a className={`${cl.footer__text} text-content`} href={`mailto:${email}`} onClick={handleEmailClick}>aml.academy2023@gmail.com</a>
                                 </li>
                             </ul>
                         </nav>
                     </div>
                     <div className={cl.footer__block}>
-                        <p className={cl.footer__headline}>{t('about us')}</p>
+                        <p className={`${cl.footer__headline} text-content`}>{t('about us')}</p>
                         <nav className={cl.footer__content}>
                             <ul>
                                 <li>
-                                    <Link to="/about" className={cl.footer__text}>{t('about the academy')}</Link>
+                                    <Link to="/about" className={`${cl.footer__text} text-content`}>{t('about the academy')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/management" className={cl.footer__text}>{t('board of directors')}</Link>
+                                    <Link to="/management" className={`${cl.footer__text} text-content`}>{t('board of directors')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/structure" className={cl.footer__text}>{t('structure')}</Link>
+                                    <Link to="/structure" className={`${cl.footer__text} text-content`}>{t('structure')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/charter" className={cl.footer__text}>{t('regulation')}</Link>
+                                    <Link to="/charter" className={`${cl.footer__text} text-content`}>{t('regulation')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/roadmap" className={cl.footer__text}>{t('development plan')}</Link>
-                                </li>
-                            </ul>
-                        </nav>
-                        
-                    </div>
-                    <div className={cl.footer__block}>
-                        <p className={cl.footer__headline}>{t('aml/ft')}</p>
-                        <nav className={cl.footer__content}>
-                            <ul>
-                                <li>
-                                    <Link to="/anti-laundering" className={cl.footer__text}>{t('anti-washing system of the RK')}</Link>
-                                </li>
-                                <li>
-                                    <Link to="/fatf" className={cl.footer__text}>{t('fatf')}</Link>
-                                </li>
-                                <li>
-                                    <Link to="/eag" className={cl.footer__text}>{t('eag')}</Link>
-                                </li>
-                                <li>
-                                    <Link to="/mutual-evaluation" className={cl.footer__text}>{t('mutual assessment')}</Link>
+                                    <Link to="/roadmap" className={`${cl.footer__text} text-content`}>{t('development plan')}</Link>
                                 </li>
                             </ul>
                         </nav>
                         
                     </div>
                     <div className={cl.footer__block}>
-                        <p className={cl.footer__headline}>{t('training')}</p>
+                        <p className={`${cl.footer__headline} text-content`}>{t('aml/ft')}</p>
                         <nav className={cl.footer__content}>
                             <ul>
                                 <li>
-                                    <Link to="/courses" className={cl.footer__text}>{t('types of courses')}</Link>
+                                    <Link to="/anti-laundering" className={`${cl.footer__text} text-content`}>{t('anti-washing system of the RK')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/courses/catalog" className={cl.footer__text}>{t('course catalog')}</Link>
+                                    <Link to="/fatf" className={`${cl.footer__text} text-content`}>{t('fatf')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/courses/myCourses" className={cl.footer__text}>{t('my courses')}</Link>
+                                    <Link to="/eag" className={`${cl.footer__text} text-content`}>{t('eag')}</Link>
+                                </li>
+                                <li>
+                                    <Link to="/mutual-evaluation" className={`${cl.footer__text} text-content`}>{t('mutual assessment')}</Link>
+                                </li>
+                            </ul>
+                        </nav>
+                        
+                    </div>
+                    <div className={cl.footer__block}>
+                        <p className={`${cl.footer__headline} text-content`}>{t('training')}</p>
+                        <nav className={cl.footer__content}>
+                            <ul>
+                                <li>
+                                    <Link to="/courses" className={`${cl.footer__text} text-content`}>{t('types of courses')}</Link>
+                                </li>
+                                <li>
+                                    <Link to="/courses/catalog" className={`${cl.footer__text} text-content`}>{t('course catalog')}</Link>
+                                </li>
+                                <li>
+                                    <Link to="/courses/myCourses" className={`${cl.footer__text} text-content`}>{t('my courses')}</Link>
                                 </li>
                             </ul>
                         </nav>
@@ -132,17 +135,17 @@ function Footer({ email, phoneNumber }) {
                         </a>
                     </div>
                     <div className={cl.footer__block__big}>
-                        <p className={cl.footer__headline}>{t('sfm')}</p>
+                        <p className={`${cl.footer__headline} text-content`}>{t('sfm')}</p>
                         <nav className={cl.footer__content}>
                             <ul>
                                 <li>
-                                    <Link to="/subjects" className={cl.footer__text}>{t('types of subjects of financial monitoring')}</Link>
+                                    <Link to="/subjects" className={`${cl.footer__text} text-content`}>{t('types of subjects of financial monitoring')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/rules" className={cl.footer__text}>{t('internal control rules')}</Link>
+                                    <Link to="/rules" className={`${cl.footer__text} text-content`}>{t('internal control rules')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/operations" className={cl.footer__text}>{t('transactions subject to financial monitoring')}</Link>
+                                    <Link to="/operations" className={`${cl.footer__text} text-content`}>{t('transactions subject to financial monitoring')}</Link>
                                 </li>
                             </ul>
                         </nav>

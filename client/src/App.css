@@ -4,3 +4,12 @@
 .App {
     font-family: 'Inter', sans-serif;
 }
+
+.timesNewRoman {
+    font-family: 'Times New Roman', serif;
+  }
+  
+  /* Define your default font style, if it's different from the browser default */
+  .defaultFont {
+    font-family: 'Inter', sans-serif;
+  }

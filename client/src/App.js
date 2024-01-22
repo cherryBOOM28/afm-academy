@@ -38,9 +38,13 @@ import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
 import CryptoCourse from './pages/ReadCourses/CryptoCourse';
 
+import VisualModal from './/components/VisualModal/VisualModal.jsx'
+import { StyleProvider } from './/components/VisualModal/StyleContext.jsx';
+
 import './settings/i18n.js';
 
 function App() {
+  const [fontStyle, setFontStyle] = useState('defaultFont'); // Default font style
   const [jwtToken, setJwtToken] = useState('');
 
   useEffect(() => {
@@ -52,74 +56,90 @@ function App() {
       setJwtToken(storedJwtToken);
     }
   }, []);
+  const handleOpenVisualModal = () => {
+    // Logic to handle opening the visual modal
+    console.log("Visual Modal Opened");
+  };
+  const [fontSize, setFontSize] = useState('medium');
+
+  
 
   return (
-    <div className="App">
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/login" element={<PrivateRoute shouldBeLoggedIn={false} component={Login} redirect={'/profile'}/>} />
-            <Route path="/registration" element={<PrivateRoute shouldBeLoggedIn={false} component={Registration} redirect={'/profile'}/>} />
+    // <div className={fontStyle}>
+    // <VisualModal setFontStyle={setFontStyle} />
+    <>
+      {/* <VisualModal open={true} /> */}
+      <div className="App">
+      <StyleProvider>
+      <VisualModal />
+        <AuthProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/login" element={<PrivateRoute shouldBeLoggedIn={false} component={Login} redirect={'/profile'}/>} />
+              <Route path="/registration" element={<PrivateRoute shouldBeLoggedIn={false} component={Registration} redirect={'/profile'}/>} />
 
-            <Route path="/logout" element={<Login />} />
+              <Route path="/logout" element={<Login />} />
 
 
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/:scroll" element={<Home />}></Route>
-            <Route path="/about" element={<AboutUs />}></Route>
-            <Route path="/management" element={<Management />}></Route>
-            <Route path="/structure" element={<Structure />}></Route>
-            <Route path="/structure/:id" element={<DirectorPage />} />
-            <Route path="/charter" element={<Charter />}></Route>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/:scroll" element={<Home />}></Route>
+              <Route path="/about" element={<AboutUs />}></Route>
+              <Route path="/management" element={<Management />}></Route>
+              <Route path="/structure" element={<Structure />}></Route>
+              <Route path="/structure/:id" element={<DirectorPage />} />
+              <Route path="/charter" element={<Charter />}></Route>
 
-            <Route path="/profile" element={<PrivateRoute shouldBeLoggedIn={true} component={Profile}/>}></Route>
-            <Route path="/profile/:tabname" element={<PrivateRoute shouldBeLoggedIn={true} component={Profile}/>}></Route>
+              <Route path="/profile" element={<PrivateRoute shouldBeLoggedIn={true} component={Profile}/>}></Route>
+              <Route path="/profile/:tabname" element={<PrivateRoute shouldBeLoggedIn={true} component={Profile}/>}></Route>
 
-            <Route path="/subjects" element={<Subjects />}></Route>
-            <Route path="/rules" element={<Rules />}></Route>
-            <Route path="/operations" element={<Operations />}></Route>
+              <Route path="/subjects" element={<Subjects />}></Route>
+              <Route path="/rules" element={<Rules />}></Route>
+              <Route path="/operations" element={<Operations />}></Route>
 
-            <Route path="/anti-laundering" element={<AntiLaundering />}></Route>
-            <Route path="/fatf" element={<Fatf />}></Route>
-            <Route path="/eag" element={<Eag />}></Route>
-            <Route path="/mutual-evaluation" element={<MutualEvaluation />}></Route>
+              <Route path="/anti-laundering" element={<AntiLaundering />}></Route>
+              <Route path="/fatf" element={<Fatf />}></Route>
+              <Route path="/eag" element={<Eag />}></Route>
+              <Route path="/mutual-evaluation" element={<MutualEvaluation />}></Route>
 
-            <Route path="/vebinars" element={<VebinarsPage />}/>
-            <Route path="/vebinars/calendar" element={<CalendarPage />}/>
-            <Route path="/vebinars/surveys" element={<SurveysPage />} />
-            <Route path="/vebinars/:id" element={<></>} />
+              <Route path="/vebinars" element={<VebinarsPage />}/>
+              <Route path="/vebinars/calendar" element={<CalendarPage />}/>
+              <Route path="/vebinars/surveys" element={<SurveysPage />} />
+              <Route path="/vebinars/:id" element={<></>} />
 
-            {/* <Route path='/courses' element={<CoursesPage />}/> */}
-            <Route path="/courses/catalog" element={<Catalog />}/>
-            <Route path="/courses/myCourses" element={<PrivateRoute shouldBeLoggedIn={true} component={MyCourses}/>}/>
-            <Route path="/courses/info" element={<InfoPage />}/>
-            {/* <Route path='/courses/basic' element={<BasicCourse />}/> */}
-            {/* <Route path='/courses/specialized' element={<SpecializedCourse />}/> */}
+              {/* <Route path='/courses' element={<CoursesPage />}/> */}
+              <Route path="/courses/catalog" element={<Catalog />}/>
+              <Route path="/courses/myCourses" element={<PrivateRoute shouldBeLoggedIn={true} component={MyCourses}/>}/>
+              <Route path="/courses/info" element={<InfoPage />}/>
+              {/* <Route path='/courses/basic' element={<BasicCourse />}/> */}
+              {/* <Route path='/courses/specialized' element={<SpecializedCourse />}/> */}
 
-            {/* <Route path='/courses/testCourse' element={<TestCourse />}/> */}
+              {/* <Route path='/courses/testCourse' element={<TestCourse />}/> */}
 
-            <Route path='/courses/:id/' element={<BasicCourse />}/>
-            <Route path='/courses/:id/read' element={
-              // <PrivateRoute shouldBeLoggedIn={true} component={
-                <Basic_course />
-              // } redirect={'/courses/catalog'}/>
-            }/>
+              <Route path='/courses/:id/' element={<BasicCourse />}/>
+              <Route path='/courses/:id/read' element={
+                // <PrivateRoute shouldBeLoggedIn={true} component={
+                  <Basic_course />
+                // } redirect={'/courses/catalog'}/>
+              }/>
 
-            <Route path='/courses/100/read' element={<CryptoCourse />}/>
+              <Route path='/courses/100/read' element={<CryptoCourse />}/>
 
-            {/* <Route path='/payment' element={<PaymentPage />}/> */}
-            <Route path='/payment/:id' element={<PaymentPage />} />
+              {/* <Route path='/payment' element={<PaymentPage />}/> */}
+              <Route path='/payment/:id' element={<PaymentPage />} />
 
-            <Route path='/sandbox' element={<Sandbox />}/>'
+              <Route path='/sandbox' element={<Sandbox />}/>'
 
-            <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={CreateCoursePage} />}/>
-            <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={EditCatalog} />}/>
-            {/* <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} component={CreateCoursePage} />}/>
-            <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} component={EditCatalog} />}/> */}
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
-    </div>
+              <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={CreateCoursePage} />}/>
+              <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={EditCatalog} />}/>
+              {/* <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} component={CreateCoursePage} />}/>
+              <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} component={EditCatalog} />}/> */}
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
+        </StyleProvider>
+      {/* </div> */}
+      </div>
+    </>
   );
 }
 

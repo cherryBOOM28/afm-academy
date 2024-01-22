@@ -11,8 +11,14 @@ import base_url from "../../settings/base_url";
 import {unstable_ClassNameGenerator} from "@mui/material";
 
 import { useTranslation } from 'react-i18next';
+import { useStyle } from "../../components/VisualModal/StyleContext";
+import VisualModal from "../../components/VisualModal/VisualModal";
 
 const NewsTab = () => {
+
+  const { styles } = useStyle();
+  const [imagesHidden, setImagesHidden] = useState(false);
+
 
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('news');
@@ -21,6 +27,29 @@ const NewsTab = () => {
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const jwtToken = localStorage.getItem('jwtToken');
+  useEffect(() => {
+    const textContentElement = document.querySelectorAll(".text-content");
+    const size = styles.fontSize;
+    setImagesHidden(!styles.showImage);
+
+    if (textContentElement) {
+      textContentElement.forEach((item) => {
+        switch (size) {
+          case "small":
+            item.style.fontSize = "15px";
+            break;
+          case "standard":
+            item.style.fontSize = "20px";
+            break;
+          case "large":
+            item.style.fontSize = "24px";
+            break;
+          default:
+            break;
+        }
+      });
+    }
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +69,8 @@ const NewsTab = () => {
       setLoading(false);
     };
     fetchData();
+    setImagesHidden(!styles.showImage);
+
   }, [activeTab])
 
   const settings = {
@@ -84,9 +115,23 @@ const NewsTab = () => {
 
 // Format the date and time
     const formattedDate = `${day} ${month} ${hour.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+    const handleRemoveImages = () => {
+      console.log("Images hidden");
+  
+      setImagesHidden(true);
+    };
+  
+    const handleShowImages = () => {
+      setImagesHidden(false);
+    };
+   
     if (item.type === 'video') {
       return (
           <div className={cl.cardContent}>
+             <VisualModal
+        onRemoveImages={handleRemoveImages}
+        onShowImages={handleShowImages}
+      />
             <iframe
                 className={cl.video}
                 width="256"
@@ -105,11 +150,15 @@ const NewsTab = () => {
       return (
           <div className={cl.cardContainer}>
             <div className={cl.cardContent}>
+            {!imagesHidden && (
               <img src={item.image} alt="" className={cl.newsImg}/>
+            )}
               <p className={cl.cardTitle}>{item.name}</p>
               <div className={cl.dateContent}>
                 <div className={cl.date}>
+                {!imagesHidden && (
                   <img src={calendarIcon} alt="calendar"/>
+                )}
                   <p className={cl.dateTime}>{formattedDate}</p>
                 </div>
                 <Button className={cl.cardBtn}>{t('read more')}</Button>

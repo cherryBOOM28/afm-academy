@@ -22,13 +22,31 @@ import { Email } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { t } from 'i18next';
 
+import VisualModal from '../../components/VisualModal/VisualModal';
+import { useStyle } from '../VisualModal/StyleContext';
+
 
 
 function Header(props) {
 
   const { t } = useTranslation();
+
   const navigate = useNavigate();
+  const [selectedVoiceName, setSelectedVoiceName] = useState(""); 
+
   const jwtToken = localStorage.getItem('jwtToken');
+  const speak = (text, voiceName) => {
+    const synthesis = window.speechSynthesis;
+    setTimeout(() => {
+      synthesis.cancel();
+      const voices = synthesis.getVoices();
+      const selectedVoice = voices.find((voice) => voice.name === voiceName);
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.voice = selectedVoice;
+      synthesis.speak(utterance);
+    }, 100);
+  };
+
   const userEmail = localStorage.getItem('email');
   const name = localStorage.getItem('firstname') + " " + localStorage.getItem('lastname')
   const pfp = name.split(' ')[0][0] + name.split(' ')[1][0]
@@ -69,12 +87,13 @@ function Header(props) {
     };
   }, []);
 
+  
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const handleLogin = () => {
-    // Logic for handling the login process (setIsLoggedIn to true).
     navigate('/login');
   };
 
@@ -95,6 +114,12 @@ function Header(props) {
     navigate('/profile')
   }
 
+  const openVisualModal = () => {
+    props.handleOpenVisualModal();
+    speak("Версия сайта для слабо видящих", selectedVoiceName);
+
+  }
+
   const { i18n } = useTranslation();
 
   const changeLanguage = (language) => {
@@ -102,7 +127,7 @@ function Header(props) {
   };
 
   return (
-    <div className={`navbar ${props.dark? 'dark' : ''}`}>
+    <div className={`navbar ${props.dark? 'dark' : ''} text-content`}>
       <Link to="/" className='logo'>
         <img src={logo} alt="logo" style={{pointerEvents: 'none', userSelect: 'none',  borderRadius: '50%' }} />
       </Link>
@@ -116,7 +141,7 @@ function Header(props) {
         </div>
         <div className='tool-container'>
           <div className='social-icons'>
-            <a href='#' className='soc-icon blue-button'>
+            <a href='#' className='soc-icon blue-button' onClick={openVisualModal}>
               <img src={language} alt="language" className='icon' />
             </a>
             <a href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
@@ -161,7 +186,7 @@ function Header(props) {
             </div> 
             : 
             <div className='user-actions'>
-              <a href='/registration' className='text-button'>{t('regestration')}</a>
+              <a href='/registration' className='text-button text-content'>{t('regestration')}</a>
               <a href='/login' className={`contained-button blue-button ${props.dark? 'dark' : ''}`}>{t('signin')}</a>
             </div>
           }
@@ -200,24 +225,60 @@ const NavigationBar = (props) => {
       }
   };
 
+  const { styles } = useStyle(); 
+  useEffect(() => {
+    
+  }, [])
+
+  const getLetterSpacing = (interval) => {
+    switch (interval) {
+      case "medium":
+        return "2px";
+      case "large":
+        return "4px";
+      default:
+        return "1px";
+    }
+  };
+
+  const getFontSize = (size) => {
+    switch (size) {
+      case "small":
+        return "15px";
+        break;
+      case "standard":
+        return "20px";
+        break;
+      case "large":
+        return "24px";
+        break;
+      default:
+        return "20px";
+        break;
+    }
+  }
+
+
+
+
   return (
       <div className={`navbarBoxes`}>
           <div className={`menuBox`}>
               <a className={`menu ${props.dark? 'dark' : ''}`}>{t('about us')}</a>
               <ul className={'dropdownSub'}>
-                  <li>
-                      <Link to="/about" className={'subPages'}>{t('about the academy')} </Link>
+                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
+                      <Link to="/about" className={'subPages text-content'}>{t('about the academy')} </Link>
                   </li>
-                  <li>
+                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
                       <Link to="/management" className={'subPages'}>{t('board of directors')}</Link>
                   </li>
-                  <li>
+                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
                       <Link to="/structure" className={'subPages'}>{t('structure')}</Link>
                   </li>
-                  <li>
+                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
                       <Link to="/charter" className={'subPages'}>{t('regulation')}</Link>
                   </li>
-                  <li>
+                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
                       <Link to="/roadmap" className={'subPages'}>{t('development plan')}</Link>
                   </li>
               </ul>
@@ -225,13 +286,13 @@ const NavigationBar = (props) => {
           <div className={'menuBox'}>
               <a className={`menu ${props.dark ? 'dark' : ''}`}>{t('training')}</a>
               <ul className={'dropdownSub'}>
-                  <li>
+                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
                       <a onClick={scrollToCourses} className={'subPages'}>{t('types of courses')}</a>
                   </li>  
-                  <li>
+                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
                       <Link to="/courses/catalog" className={'subPages'}>{t('course catalog')}</Link>
                   </li>
-                  {isLoggedIn ? <li>
+                  {isLoggedIn ? <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
                       <Link to="/courses/myCourses" className={'subPages'}>{t('my courses')}</Link>
                   </li> : null}
               </ul>
