@@ -24,6 +24,14 @@
     justify-items: center; 
 }
 
+.linesGrid {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 332px; 
+    justify-items: center; 
+}
+
 .card__link {
     text-decoration: none;
 }

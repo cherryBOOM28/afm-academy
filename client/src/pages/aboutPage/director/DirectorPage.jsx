@@ -75,7 +75,7 @@ const DirectorPage = () => {
                         <p className={cl.card__text}>{cardData.text}</p>
                     </div>
                     <div style={{display: 'flex', gap: '10px'}}>
-                        <Button onClick={() => setShowModal(true)} className={cl.btn}>Обратиться</Button>
+                        {/* <Button onClick={() => setShowModal(true)} className={cl.btn}>Обратиться</Button> */}
                         <Button onClick={handleGoBack} className={cl.btn}>Назад</Button>
                     </div>
                 </div>

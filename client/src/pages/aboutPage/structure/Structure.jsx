@@ -66,8 +66,12 @@ function Structure() {
                         <p className={cl.card__text}>{firstCard.name}</p>
                     </div>
                     </Link>
-                    <img src={lineL} alt="line" />
-                    <img src={lineR} alt="line" />        
+                
+                    <div className={cl.linesGrid}>
+                        <img src={lineL} alt="line" />
+                        <img src={lineR} alt="line" />        
+
+                    </div>
                     <div className={cl.bottomCardsGrid}>
                         {cardsData.slice(1).map((card, index) => (
                             // Check if the card exists and has the 'id' property

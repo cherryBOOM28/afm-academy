@@ -49,7 +49,7 @@ function PaymentPage(props) {
                     <div className={cl.line}></div>
                     <p className={cl.headline_text}>Как оплатить услугу в Международная академия экономики и финансов</p>
                     {data !== null ? 
-                        <p className={cl.headline_text}>{data.body.course_name}</p>
+                        <p className={cl.headline_text}>{data.course_name}</p>
                         : null
                     }
                 </div>
@@ -60,7 +60,7 @@ function PaymentPage(props) {
                             {isLoading 
                                 ? "loading" 
                                 : data !== null 
-                                    ? data.body.course_price
+                                    ? data.course_price
                                     : ""
                             }тг
                         </span>
@@ -79,7 +79,7 @@ function PaymentPage(props) {
                     <img src={instructionsImg} alt="Инструкция" className={cl.instructions_img} />
                     <div className={cl.whatsapp}>
                         <img src={whatsappIcon} alt="whatsappIcon" />
-                        <p className={cl.whatsapp_text}>Отправьте чек об оплате через приложение WhatsApp по номеру +7 708 716 8416</p>
+                        <p className={cl.whatsapp_text}>Отправьте платежное поручение через WhatsApp по номеру +7 708 716 8416</p>
 
                     </div>
                     <div className={cl.whatsapp_button}>

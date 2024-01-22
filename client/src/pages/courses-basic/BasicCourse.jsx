@@ -54,7 +54,6 @@ function BasicCourse() {
             try {
                 const response = await axios.get(`${base_url}/api/aml/course/justGetCourseById/${id}`);
 
-                // console.log(response.data);
 
                 if (response.status === 200) {
                     setData(response.data);
@@ -82,9 +81,11 @@ function BasicCourse() {
                 </div>
             </div>
 
-            <div className="page-content container">
 
-                <Sizebox height={40}/>
+            <div className="page-content container">
+                <h1>{data ? data.course_name : "Загрузка..."}</h1>
+
+                <Sizebox height={20}/>
                 <div className="collapsable-blocks">
                     <Collapsable title={'Что из себя представляет данный курс?'}>
                         <p>Базовый курс включает в себя теоретический минимум, необходимый для всех видов СФМ.</p>
@@ -101,7 +102,7 @@ function BasicCourse() {
                     </Collapsable>
                     <Collapsable title={'Стоимость курса'}>
                         <p>
-                            {data ? data.body.course_price : ''} тенге
+                            {data ? data.course_price : ''} тенге
                         </p>
                     </Collapsable>
                     <Collapsable title={'Дата ближайшего курса'}>
@@ -109,10 +110,10 @@ function BasicCourse() {
                             21.10.2023
                         </p>
                     </Collapsable>
-                    { data && data.body.modules && data.body.modules.length != 0 ? <Collapsable title={'Программа курса'}>
+                    { data && data.modules && data.modules.length != 0 ? <Collapsable title={'Программа курса'}>
                         <p style={{lineHeight: '23px'}}>
                         {
-                            data.body.modules.map((module, index) => {
+                            data.modules.map((module, index) => {
 
                                 // console.log(module)
                                 return <>{index+1}. {module.chapter_description}<br /></>
@@ -121,7 +122,7 @@ function BasicCourse() {
                         }
                         </p>
                     </Collapsable> : null }
-                    <Collapsable title={'Дата ближайшего курса'}>
+                    <Collapsable title={'Что вы получите?'}>
                         <p>
                             Доступ к просмотру записи лекции на 3 месяца, раздаточный материал, а также материалы лекции в личном кабинете
                         </p>
@@ -133,7 +134,7 @@ function BasicCourse() {
                     'Подача заявки',
                     'Оплата',
                     'Предоставление доступа к Личному кабинету',
-                    'Добавление в закрытый чат с лектором',
+                    // 'Добавление в закрытый чат с лектором',
                     'Обучение',
                     'Выдача сертификатов'
                 ]}/>
@@ -154,7 +155,7 @@ function BasicCourse() {
                         <>
                             <h2 className='section-header'>Отзывы</h2>
                             <FeedBacks 
-                                feedBacks={data.body !== null ? data.body.courseComments : []}
+                                feedBacks={data !== null ? data.courseComments : []}
                             />
                         </> ) 
                     : <div style={{

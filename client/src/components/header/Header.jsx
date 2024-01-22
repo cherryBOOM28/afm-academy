@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 import logo from '../../assets/images/logo.svg';
 import language from '../../assets/icons/lang.svg';
 import igIcon from '../../assets/icons/ig.svg';
+import waIcon from '../../assets/icons/waIcon.svg';
 import fbIcon from '../../assets/icons/fb.svg';
 import tgIcon from '../../assets/icons/tg.svg';
 // import searchIcon from '../../assets/icons/search.svg';
@@ -120,11 +121,14 @@ function Header(props) {
             <a href='#' className='soc-icon blue-button'>
               <img src={language} alt="language" className='icon' />
             </a>
-            <a href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
+            <a target='_blank' href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
               <img src={igIcon} alt="instagram" className='icon' />
             </a>
-            <a href='https://t.me/s/afm_rk?before=1811' className='soc-icon blue-button'>
+            <a target='_blank' href='https://t.me/s/afm_rk?before=1811' className='soc-icon blue-button'>
               <img src={tgIcon} alt="telegram" className='icon' />
+            </a>
+            <a target='_blank' href='https://wa.me/77087168416' className='soc-icon blue-button'>
+              <img src={waIcon} style={{width: '20px'}} alt="telegram" className='icon' />
             </a>
           </div>
           <div className='search-box'>
