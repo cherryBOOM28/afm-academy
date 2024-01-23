@@ -90,7 +90,7 @@ function SpecializedCourse() {
                     'Подача заявки',
                     'Оплата',
                     'Предоставление доступа к Личному кабинету',
-                    'Добавление в закрытый чат с лектором',
+                    // 'Добавление в закрытый чат с лектором',
                     'Обучение',
                     'Выдача сертификатов'
                 ]}/>
@@ -151,7 +151,7 @@ function SpecializedCourse() {
 
 const FormInput = ({title, field, onChange}) => {
     const labelStyle = {
-        'fontFamily': 'Roboto',
+        'fontFamily': 'Inter',
         'fontSize': '1.2rem',
         paddingLeft: '10px',
     }

@@ -1,5 +1,7 @@
 .container {
-    width: 80%;
+    /* width: 80%; */
+    max-width: 1240px;
+
     margin: 0 auto;
 }
 
@@ -30,7 +32,7 @@
 
 .line {
     width: 8px;
-    height: 139px;
+    height: 120px;
     background: #C4C4C4;
     margin-right: 16px;
 }

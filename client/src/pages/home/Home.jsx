@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import cl from './Home.module.css';
+
+import './home.scss'
 
 import aboutUsPic from '../../assets/images/main.svg'
 import accIcon from '../../assets/icons/pacc.svg';
@@ -73,42 +74,42 @@ function Home() {
     }
 
     return (
-        <div className={cl.homeWrapper}>
+        <div className={'homeWrapper'}>
             <Header dark={false}/>
-            <section className={cl.aboutUs}>
-                <div className={cl.container}>
-                    <div className={cl.aboutUs__section}>
-                        <video autoPlay loop muted className={cl.videoBackground}>
+            <section className={'aboutUs'}>
+                <div className={'container'}>
+                    <div className={'aboutUs__section'}>
+                        <video autoPlay loop muted className={'videoBackground'}>
                             <source src={backgroundVideo} type="video/mp4" />
                         </video>
                         {/* <img src={aboutUsPic} alt="About us" /> */}
-                        <div className={cl.aboutUs__content}> 
-                            <p className={cl.aboutUs__headline}>AML ACADEMY</p>
-                            {/* <p className={cl.aboutUs__text}>Обучение для безопасности финансов</p> */}
-                            <p className={cl.aboutUs__text_small}>{t('our courses')}</p>
-                            <div className={cl.courses_boxes}>
+                        <div className={'aboutUs__content'}> 
+                            <p className={'aboutUs__headline'}>AML ACADEMY</p>
+                            {/* <p className={aboutUs__text}>Обучение для безопасности финансов</p> */}
+                            <p className={'aboutUs__text_small'}>{t('our courses')}</p>
+                            <div className={'courses_boxes'}>
                                 <Link to="/courses/8" style={{ textDecoration: 'none' }}>
-                                    <div className={cl.aml_box}>
+                                    <div className={'aml_box'}>
                                         <img src={basicCourse} alt="" />
-                                        <p className={cl.course_box_name}>{t('core')}</p>
+                                        <p className={'course_box_name'}>{t('core')}</p>
                                     </div>
                                 </Link>
                                 <Link to="/#" style={{ textDecoration: 'none' }}>
-                                    <div className={cl.aml_box}>
+                                    <div className={'aml_box'}>
                                         <img src={proCourse} alt="" />
-                                        <p className={cl.course_box_name}>{t('specialized')}</p>
+                                        <p className={'course_box_name'}>{t('specialized')}</p>
                                     </div>
                                 </Link>
                                 <Link to="/#" style={{ textDecoration: 'none' }}>
-                                    <div className={cl.aml_box}>
+                                    <div className={'aml_box'}>
                                         <img src={deepCourse} alt="" />
-                                        <p className={cl.course_box_name}>{t('advanced')}</p>
+                                        <p className={'course_box_name'}>{t('advanced')}</p>
                                     </div>
                                 </Link>
                                 <Link to="/3" style={{ textDecoration: 'none' }}>
-                                    <div className={cl.aml_box}>
+                                    <div className={'aml_box'}>
                                         <img src={upCourse} alt="" />
-                                        <p className={cl.course_box_name}>{t('thematic')}</p>
+                                        <p className={'course_box_name'}>{t('thematic')}</p>
                                     </div>
                                 </Link>
                             </div>
@@ -116,27 +117,27 @@ function Home() {
                     </div>
                 </div>
             </section>
-            <section className={cl.educationWrappwer}>
-                <div className={cl.container}>
-                    <p className={cl.headline}>{t('quality')}</p>
-                    <p className={cl.subtitle}>{t('advantages of academy')}</p>
-                    <div className={cl.education}>
-                        <div className={cl.advantages}>
-                            <div className={cl.advantages_box}>
+            <section className={'educationWrappwer'}>
+                <div className={'container'}>
+                    <p className={'headline'}>{t('quality')}</p>
+                    <p className={'subtitle'}>{t('advantages of academy')}</p>
+                    <div className={'education'}>
+                        <div className={'advantages'}>
+                            <div className={'advantages_box'}>
                                 <img src={accIcon} alt="acc" />
-                                <p className={cl.advantages__text}>{t('qualified experts')}</p>
+                                <p className={'advantages__text'}>{t('qualified experts')}</p>
                             </div>
-                            <div className={cl.advantages_box}>
+                            <div className={'advantages_box'}>
                                 <img src={bookIcon} alt="acc" />
-                                <p className={cl.advantages__text}>{t('convenient learning format')}</p>
+                                <p className={'advantages__text'}>{t('convenient learning format')}</p>
                             </div>
-                            <div className={cl.advantages_box}>
+                            <div className={'advantages_box'}>
                                 <img src={realtionIcon} alt="acc" />
-                                <p className={cl.advantages__text}>{t('close cooperation with AFM')}</p>
+                                <p className={'advantages__text'}>{t('close cooperation with AFM')}</p>
                             </div>
-                            <div className={cl.advantages_box}>
+                            <div className={'advantages_box'}>
                                 <img src={laptopIcon} alt="acc" />
-                                <p className={cl.advantages__text__last}>{t('programs')}</p>
+                                <p className={'advantages__text__last'}>{t('programs')}</p>
                             </div>
                         </div>
                         <VideoPlayer />
@@ -144,23 +145,24 @@ function Home() {
                 </div>
             </section>
             
-            <section className={cl.coursesWrapper} id='coursesSection'>
-                <div className={cl.container}>
-                    <h1 className={cl.courses__headline}>{t('Courses in the field of')}</h1>
+            <section className={'coursesWrapper'} id='coursesSection'>
+                <div className={'container'}>
+                    <h1 className={'courses__headline'}>{t('Courses in the field of')}</h1>
+                    <p className={'courses__underline'}>{t('Courses in the field of content')}</p>
                     <Tabs />                       
                 </div>    
             </section>
 
-            <section className={cl.newsWrapper} id='news'>
-                <div className={cl.container}>
-                    <p className={cl.news__headline}>{t('news')}</p>
+            <section className={'newsWrapper'} id='news'>
+                <div className={'container'}>
+                    <p className={'news__headline'}>{t('news')}</p>
                 </div>
                 <NewsTab />
             </section>
-            {/* <section className={cl.partnersWrapper}>
-                <div className={cl.container}>
-                    <h1 className={cl.courses__headline}>Партнеры</h1>
-                    <div className={cl.partners}>
+            {/* <section className={partnersWrapper}>
+                <div className={container}>
+                    <h1 className={courses__headline}>Партнеры</h1>
+                    <div className={partners}>
                         {imageList.map((image, index) => (
                             <img key={index} src={image.src} alt={image.alt} />
                         ))}

@@ -52,9 +52,8 @@ function BasicCourse() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${id}`);
+                const response = await axios.get(`${base_url}/api/aml/course/justGetCourseById/${id}`);
 
-                // console.log(response.data);
 
                 if (response.status === 200) {
                     setData(response.data);
@@ -82,9 +81,11 @@ function BasicCourse() {
                 </div>
             </div>
 
-            <div className="page-content container">
 
-                <Sizebox height={40}/>
+            <div className="page-content container">
+                <h1>{data ? data.course_name : "Загрузка..."}</h1>
+
+                <Sizebox height={20}/>
                 <div className="collapsable-blocks">
                     <Collapsable title={'Что из себя представляет данный курс?'}>
                         <p>Базовый курс включает в себя теоретический минимум, необходимый для всех видов СФМ.</p>
@@ -121,7 +122,7 @@ function BasicCourse() {
                         }
                         </p>
                     </Collapsable> : null }
-                    <Collapsable title={'Дата ближайшего курса'}>
+                    <Collapsable title={'Что вы получите?'}>
                         <p>
                             Доступ к просмотру записи лекции на 3 месяца, раздаточный материал, а также материалы лекции в личном кабинете
                         </p>
@@ -133,7 +134,7 @@ function BasicCourse() {
                     'Подача заявки',
                     'Оплата',
                     'Предоставление доступа к Личному кабинету',
-                    'Добавление в закрытый чат с лектором',
+                    // 'Добавление в закрытый чат с лектором',
                     'Обучение',
                     'Выдача сертификатов'
                 ]}/>
@@ -219,7 +220,7 @@ function BasicCourse() {
 
 const FormInput = ({title, field, onChange}) => {
     const labelStyle = {
-        'fontFamily': 'Roboto',
+        'fontFamily': 'Inter',
         'fontSize': '1.2rem',
         paddingLeft: '10px',
     }

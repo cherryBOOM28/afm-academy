@@ -33,6 +33,7 @@ import PaymentPage from './pages/paymentPage/PaymentPage';
 import Sandbox from './pages/Sandbox';
 import Basic_course from './pages/basic-course';
 import PrivateRoute from './auth/PrivateRoute';
+import MustBeAdmin from './auth/AdminRoute.jsx';
 
 import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
@@ -114,10 +115,10 @@ function App() {
 
             <Route path='/sandbox' element={<Sandbox />}/>'
 
-            {/* <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={CreateCoursePage} />}/> */}
-            {/* <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={EditCatalog} />}/> */}
-            <Route path='/createcourse' element={<CreateCoursePage/>}/>
-            <Route path='/manager' element={<EditCatalog/>} />
+            <Route path='/createcourse' element={<MustBeAdmin component={CreateCoursePage} />}/>
+            <Route path='/manager' element={<MustBeAdmin component={EditCatalog} />}/>
+            {/* <Route path='/createcourse' element={<CreateCoursePage/>}/> */}
+            {/* <Route path='/manager' element={<EditCatalog/>} /> */}
           </Routes>
         </BrowserRouter>
       </AuthProvider>
