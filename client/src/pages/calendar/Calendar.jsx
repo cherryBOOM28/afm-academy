@@ -175,7 +175,7 @@ const EventCard = ({event}) => {
 const renderEventContent = (eventInfo) => {
     // console.log("event", eventInfo);
 
-    return (
+    return ( 
       <>
         <div style={{cursor: 'pointer', background: '#F9CB36', border: 'none', padding: '8px'}}>
             <i style={{color: 'black'}}>{eventInfo.event.title}</i>

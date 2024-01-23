@@ -102,6 +102,7 @@ import carousel_19 from './../../assets/images/Carousel_19.png'
 import carousel_110 from './../../assets/images/Carousel_110.png'
 import carousel_111 from './../../assets/images/Carousel_111.png'
 import imageAndColumns_1 from './../../assets/images/columnsImage_1.png'
+import DropDownMSQ from '../courseTemplates/common_v2/DropDownMSQ';
 
 
 const LessonPage = ({ children, name, lecturer }) => {
@@ -3634,7 +3635,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
             </LessonPage>)
         case 19:
             return (<LessonPage name={'Надлежащая проверка субъектами финансового мониторинга клиентов'} lecturer={'AML Academy'}>
-                    <Sizebox height={80}/>
+                    <Sizebox height={80} />
                     <Reveal>
                         <RandomParapraph>
                             <span className="bold">Субъекты финансового мониторинга должны принимать меры по надлежащей проверке своих клиентов</span> 
@@ -3687,6 +3688,10 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                     />
 
                     <Sizebox height={100} />
+
+                    <DropDownMSQ />
+
+                    <Sizebox height={100} />
                     <Reveal>
                         <>
                             <Centered>
@@ -3733,23 +3738,27 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
 
                     <Sizebox height={80} />
 
-                    <VideoLine url={'https://videos.sproutvideo.com/embed/1190d1b1191ae8c498/b8caa50df4b0d67b?playerColor=1f71a1'}/>
-                    <Sizebox height={40} />
                     <Reveal>
-                    <TextWithTitle title={"Надлежащая проверка субъектами финансового мониторинга своих клиентов (их представителей) и бенефициарных собственников включает осуществление следующих мер:"}
-                    />
+                        <VideoLine url={'https://videos.sproutvideo.com/embed/1190d1b1191ae8c498/b8caa50df4b0d67b?playerColor=1f71a1'}/>
+                    </Reveal>
 
                     <Sizebox height={40} />
-                    <NotNumberedDots
-                        dotsColor={'#CADEFC'}
-                        list={[
-                            'установление предполагаемой цели и характера деловых отношений;',
-                            'проведение на постоянной основе проверки деловых отношений и изучения операций, осуществляемых клиентом через данный субъект финансового мониторинга, включая при необходимости получение и фиксирование сведений об источнике финансирования совершаемых операций;',
-                            'проверка достоверности сведений, необходимых для идентификации клиента (его представителя), бенефициарного собственника, и обновление сведений о клиенте (его представителе) и бенефициарном собственнике;',
-                        ]}
-                    />
-                    <Sizebox height={40} />
+                    <Reveal>
+                        <TextWithTitle title={"Надлежащая проверка субъектами финансового мониторинга своих клиентов (их представителей) и бенефициарных собственников включает осуществление следующих мер:"}
+                        />
+
+                        <Sizebox height={40} />
+                        <NotNumberedDots
+                            dotsColor={'#CADEFC'}
+                            list={[
+                                'установление предполагаемой цели и характера деловых отношений;',
+                                'проведение на постоянной основе проверки деловых отношений и изучения операций, осуществляемых клиентом через данный субъект финансового мониторинга, включая при необходимости получение и фиксирование сведений об источнике финансирования совершаемых операций;',
+                                'проверка достоверности сведений, необходимых для идентификации клиента (его представителя), бенефициарного собственника, и обновление сведений о клиенте (его представителе) и бенефициарном собственнике;',
+                            ]}
+                        />
+                        <Sizebox height={40} />
                     </Reveal>
+
                     <Reveal>
                         <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
                             <>
@@ -3758,7 +3767,8 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                     </Reveal>
                     <Sizebox height={80} />
                     <Reveal>
-                        <TextWithTitle title={"Субъекты финансового мониторинга в рамках дистанционно установленных деловых отношений с клиентом вправе совершать операции, за исключением трансграничных платежей, без принятия мер по проверке достоверности сведений, необходимых для идентификации клиента (его представителя), бенефициарного собственника, в случаях:"}
+                        <TextWithTitle 
+                            title={"Субъекты финансового мониторинга в рамках дистанционно установленных деловых отношений с клиентом вправе совершать операции, за исключением трансграничных платежей, без принятия мер по проверке достоверности сведений, необходимых для идентификации клиента (его представителя), бенефициарного собственника, в случаях:"}
                         />
 
                         <Sizebox height={40} />
@@ -3772,9 +3782,9 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                         <Sizebox height={40} />
                     </Reveal>
                     <Reveal>
-                    <Report_Information>
-                        Сведения о бенефициарных собственниках представляются клиентами (их представителями) по запросу субъекта финансового мониторинга в порядке, определенном уполномоченным органом.
-                    </Report_Information>
+                        <Report_Information>
+                            Сведения о бенефициарных собственниках представляются клиентами (их представителями) по запросу субъекта финансового мониторинга в порядке, определенном уполномоченным органом.
+                        </Report_Information>
                     </Reveal>
                     <Reveal>
                         <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>

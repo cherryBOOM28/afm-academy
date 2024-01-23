@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import cl from './Subjects.module.css';
 import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
 import Footer from '../../../components/footer/Footer';
@@ -9,6 +9,7 @@ import data_kz from '../../../components/data/subjectsData kz.json';
 import data_eng from '../../../components/data/subjectsData eng.json';
 
 import { useTranslation } from 'react-i18next';
+import VisualModal from '../../../components/VisualModal';
 
 function Subjects() {
     const { i18n, t } = useTranslation();
@@ -18,9 +19,17 @@ function Subjects() {
         console.log(currentLanguage)
     }, [])
 
+    const handleOpenVisualModal = () => {
+        console.log("OPEN")
+        setOpenVisualModal(prev => !prev)
+    }
+
+    const [openVisualModal, setOpenVisualModal] = useState(false);
+
     return (
         <div className={cl.subjectsWrapper}>
-            <Header dark={true}  />
+            <Header dark={true} handleOpenVisualModal={handleOpenVisualModal} />
+            <VisualModal open={openVisualModal} />
             <div className={cl.container}>
                 <h1 className={cl.headline}>{t('types of subjects of financial monitoring')}</h1>
                 <p className={cl.subjectsText}>{t('descSub1')}</p>

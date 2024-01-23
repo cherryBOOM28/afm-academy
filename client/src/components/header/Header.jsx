@@ -74,7 +74,6 @@ function Header(props) {
     setIsMenuOpen(!isMenuOpen);
   };
   const handleLogin = () => {
-    // Logic for handling the login process (setIsLoggedIn to true).
     navigate('/login');
   };
 
@@ -93,6 +92,10 @@ function Header(props) {
 
   const profilePageLink = () => {
     navigate('/profile')
+  }
+
+  const openVisualModal = () => {
+    props.handleOpenVisualModal();
   }
 
   const { i18n } = useTranslation();
@@ -116,7 +119,7 @@ function Header(props) {
         </div>
         <div className='tool-container'>
           <div className='social-icons'>
-            <a href='#' className='soc-icon blue-button'>
+            <a href='#' className='soc-icon blue-button' onClick={openVisualModal}>
               <img src={language} alt="language" className='icon' />
             </a>
             <a href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
