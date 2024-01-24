@@ -908,7 +908,6 @@ function CryptoCourse() {
                                         fontFamily: 'Ubuntu',
                                         fontWeight: '600',
                                         marginBottom: '20px',
-                                        fontFamily: 'Ubuntu',
 
                                     }}
                                 >
@@ -1293,7 +1292,6 @@ function CryptoCourse() {
                                         fontFamily: 'Ubuntu',
                                         fontWeight: '600',
                                         marginBottom: '20px',
-                                        fontFamily: 'Ubuntu',
 
                                     }}
                                 >
