@@ -57,9 +57,9 @@ function MyCourses() {
                             "course_price": 29000,
                             "course_image": base64Course,
                             "course_for_member_of_the_system": "СФМ",
-                            "duration": null,
+                            "duration": "19ч 45мин",
                             "rating": 5,
-                            "type_of_study": null,
+                            "type_of_study": "Электронное обучение",
                             "courseCategory": {
                                 "category_id": 1,
                                 "category_image": base64Course,
@@ -215,17 +215,17 @@ function MyCourses() {
                                                             </div>
                                                             <div className="info-row">
                                                                 <div className='langAndDuration'>
-                                                                    {'РУС'} | {'1ч 45мин'}
+                                                                    {'РУС'} | {course.courseDTO.duration}
                                                                 </div>
                                                                 <div className="rating">
                                                                     <AiFillStar className='star-icon' size={23}/>
-                                                                    <span>5.0</span>
+                                                                    <span>{course.courseDTO.rating}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div className="type">
                                                             <MdOndemandVideo size={23}/>
-                                                            <span>Электронное обучение</span>
+                                                            <span>{course.courseDTO.type_of_study}</span>
                                                         </div>
                                                     </div>
                                                 })
