@@ -296,7 +296,7 @@ function VisualModal({
 
             <span>Синтетическая речь</span>
             <button
-              onClick={handleEnableSpeech}
+              onClick={() => handleEnableSpeech()}
               disabled={!isSpeechEnabled}
               className={`speech-button ${
                 speechButtonActive ? "active clicked" : ""
@@ -305,7 +305,7 @@ function VisualModal({
               Вкл.
             </button>
             <button
-              onClick={handleDisableSpeech}
+              onClick={() => handleDisableSpeech()}
               disabled={!isSpeechEnabled}
               className={`speech-button ${
                 !speechButtonActive ? "active clicked" : ""

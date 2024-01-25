@@ -35,6 +35,8 @@ function Header(props) {
   const navigate = useNavigate();
   const [selectedVoiceName, setSelectedVoiceName] = useState(""); 
   const [letterInterval, setLetterInterval] = useState("standard");
+  const role = localStorage.getItem('role')
+
 
 
   const jwtToken = localStorage.getItem('jwtToken');
@@ -222,7 +224,7 @@ function Header(props) {
                   <a className='user-toggle-links'>Админ панель</a>
                 </div> : null
                 }
-                <div onClick={handleLogout} className='menu-item'>
+                <div onClick={() => handleLogout} className='menu-item'>
                   <a className='user-toggle-links'>Выйти</a>
                 </div>
               </div> 

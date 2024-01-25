@@ -237,8 +237,9 @@ function Structure() {
                 />
                 <Dropdown
                     title={t('titleThirdDiv')}
-                    content={<div>
-                            {t('contentThirdDiv')}  
+                    content={
+                    <div>
+                           <a> {t('contentThirdDiv')} </a> 
                         <div className={cl.accordionContent}>
                             <ul className={cl.marked}>
                                 <li>{t('contentThirdPointOneDiv')}</li>
@@ -250,12 +251,9 @@ function Structure() {
                         </div>                      
                     </div>}
                 />
-                </div>
-              }
-            />
-          </div>
-        </div>
-      </div>
+              </div>
+              
+            </div>
       <Footer />
     </div>
   );

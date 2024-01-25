@@ -13,34 +13,42 @@ import VisualModal from "../../../components/VisualModal/VisualModal";
 import { useStyle } from "../../../components/VisualModal/StyleContext";
 
 function Subjects() {
+  const { styles, open, setOpen } = useStyle();
+
     const { t } = useTranslation();
     const { i18n } = useTranslation();
     const currentLanguage = i18n.language;
+    const [imagesHidden, setImagesHidden] = useState(false);
+    const [letterInterval, setLetterInterval] = useState("standard");
 
-  useEffect(() => {
-    console.log(currentLanguage);
 
-    const textContentElement = document.querySelectorAll(".text-content");
-    const size = styles.fontSize;
-    if (textContentElement) {
-      textContentElement.forEach((item) => {
-        switch (size) {
-          case "small":
-            item.style.fontSize = "15px";
-            break;
-          case "standard":
-            item.style.fontSize = "20px";
-            break;
-          case "large":
-            item.style.fontSize = "24px";
-            break;
-          default:
-            break;
-        }
-      });
-    }
-    handleColorModeChange();
-  }, []);
+    useEffect(() => {
+      setImagesHidden(!styles.showImage);
+
+      const textContentElement = document.querySelectorAll(".text-content");
+      const size = styles.fontSize;
+    
+      if (textContentElement) {
+        textContentElement.forEach((item) => {
+          switch (size) {
+            case "small":
+              item.style.fontSize = "15px";
+              break;
+            case "standard":
+              item.style.fontSize = "20px";
+              break;
+            case "large":
+              item.style.fontSize = "24px";
+              break;
+            default:
+              break;
+          }
+        });
+      }
+
+      handleColorModeChange();
+    }, [currentLanguage, styles.fontSize, styles.showImage]);
+
   const handleColorModeChange = (mode) => {
     // Remove previous color mode classes
     const containerElement = document.querySelector(".text-content");
@@ -59,6 +67,8 @@ function Subjects() {
       containerElement.classList.add(colorMode + "-mode");
     }
   };
+
+  
   useEffect(() => {
     const textContentElement = document.querySelector(".text-content");
     const family = styles.fontFamily;
@@ -67,11 +77,13 @@ function Subjects() {
       textContentElement.style.fontFamily = family;
     }
   }, []);
+
   const handleOpenVisualModal = () => {
     console.log("OPEN");
     setOpenVisualModal((prev) => !prev);
     setOpen((prev) => !prev);
   };
+
   const [openVisualModal, setOpenVisualModal] = useState(open);
   const handleRemoveImages = () => {
     console.log("Images hidden");
@@ -135,9 +147,11 @@ function Subjects() {
 
           >{t("descSub1")}</p>
           <div className={`${cl.cardContent} text-content`}
-          style={{
-            background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f9f9f9" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
-          }}
+            style={{
+              background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f9f9f9" : styles.colorMode === "blue" ? "#9dd1ff" : "#000",
+              display: styles.showImage ? 'block' : 'none', // Add this line
+              color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+            }}
           >
             {(i18n.language === "ru"
               ? data_ru
