@@ -1,3 +1,7 @@
+
+.directorPageWrapper {
+    background: inherit;
+}
 .container {
     /* width: 80%; */
     max-width: 1240px;

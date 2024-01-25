@@ -1,9 +1,9 @@
 .accordion__item {
   margin-bottom: 21px;
-  background: #fff;
+  background: inherit;
   padding: 22px;
   border-radius: 5px;
-  background: #FFF;
+  background: inherit;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -13,8 +13,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fff;
-  color: #000;
+  background: inherit;
+  color: inherit;
   font-size: 18px;
   font-weight: 500;
 }

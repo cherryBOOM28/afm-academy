@@ -1,6 +1,15 @@
 .footerWrapper {
-    background: #1F3C88;
+    /* background: #1F3C88; */
     padding: 63px 0 134px;
+}
+
+.footerWrapper.light-mode {
+    background: #1F3C88;
+    border: 1px solid red;
+}
+
+.footerWrapper.dark-mode {
+    background: #000;
 }
 
 .container {
