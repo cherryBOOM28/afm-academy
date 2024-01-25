@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import cl from "./Eag.module.css";
 import DefaultHeader from "../../../components/defaultHeader/DefaultHeader";
 import Footer from "../../../components/footer/Footer";
-import eagImg from "../../../assets/images/eag.svg";
+import eagImg from "../../../assets/images/eag1.png";
 import eagGroup from "../../../assets/images/eagGroup.svg";
 import Header from "../../../components/header/Header";
 import VisualModal from "../../../components/VisualModal/VisualModal";
@@ -52,21 +52,24 @@ function Eag() {
       });
     }
     handleColorModeChange();
-
   }, []);
   const handleColorModeChange = (mode) => {
     // Remove previous color mode classes
     const containerElement = document.querySelector(".text-content");
     if (containerElement) {
-      containerElement.classList.remove("light-mode", "dark-mode", "inverted-mode");
+      containerElement.classList.remove(
+        "light-mode",
+        "dark-mode",
+        "inverted-mode",
+        "blue-mode"
+      );
     }
 
-    const {colorMode} = styles;
+    const { colorMode } = styles;
 
     if (containerElement) {
       containerElement.classList.add(colorMode + "-mode");
     }
-
   };
 
   useEffect(() => {
@@ -85,7 +88,6 @@ function Eag() {
     console.log("OPEN");
     setOpenVisualModal((prev) => !prev);
     setOpen((prev) => !prev);
-
   };
   const [openVisualModal, setOpenVisualModal] = useState(open);
   const handleCloseVisualModal = () => {
@@ -111,7 +113,11 @@ function Eag() {
   };
 
   return (
-    <div className={`${cl.eagWrapper} text-content`}>
+    <div className={`${cl.eagWrapper} text-content`}
+    style={{
+      background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#fff" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+    }}
+    >
       <VisualModal
         open={openVisualModal}
         onIntervalChange={() => {}}
@@ -120,54 +126,130 @@ function Eag() {
         onShowImages={handleShowImages}
       />
 
-<Header dark={true} handleOpenVisualModal={handleOpenVisualModal} />            
+      <Header
+        dark={styles.colorMode == "dark" ? false : true}
+        handleOpenVisualModal={handleOpenVisualModal}
+      />
       <div className={cl.container}>
         <div
           className="interval"
           style={{ letterSpacing: getLetterSpacing(letterInterval) }}
         >
-          <h1 className={`${cl.headline} text-content`}>{t("eag")}</h1>
+          <h1
+            className={`${cl.headline} text-content`}
+            style={{
+              color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+            }}
+          >
+            {t("eag")}
+          </h1>
           <div className={`${cl.eagImgContent} text-content`}>
             {!imagesHidden ? <img src={eagImg} alt="eagImg" /> : null}
-            <p className={`${cl.eagImgTextFirst} text-content`}>
+            <p
+              className={`${cl.eagImgTextFirst} text-content`}
+              style={{
+                color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",              }}
+            >
               {t("descEag1")}
             </p>
           </div>
-          <div className={`${cl.block} text-content`}>
-            <p className={`${cl.text} text-content`}>{t("descEag2")}</p>
+          <div
+            className={`${cl.block} text-content`}
+            style={{
+              background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f2f2f2" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+            }}
+          >
+            <p
+              className={`${cl.text} text-content`}
+              style={{
+                color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",              }}
+            >
+              {t("descEag2")}
+            </p>
           </div>
         </div>
-        <div className={`${cl.groupWrapper} text-content`}>
+        <div
+          className={`${cl.groupWrapper} text-content`}
+          style={{
+            background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f2f2f2" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+          }}
+        >
           <div className={`${cl.container} text-content`}>
             <div className={`${cl.eagImgContent} text-content`}>
-            {!imagesHidden ?<img src={eagGroup} alt="eagGroup" />: null}
+              {!imagesHidden ? <img src={eagGroup} alt="eagGroup" /> : null}
               <div className={`${cl.eagImgText} text-content`}>
-                <span>{t("descEag3")}</span>
+                <span
+                  style={{
+                    color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                  }}
+                >
+                  {t("descEag3")}
+                </span>
                 <br></br>
                 <ul className={`${cl.eagDisc} text-content`}>
-                  <li className={`text-content`}>{t("descEag4")}</li>
-                  <li className={`text-content`}>{t("descEag5")}</li>
-                  <li className={`text-content`}>{t("descEag6")}</li>
+                  <li
+                    className={`text-content`}
+                    style={{
+                      color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                    }}
+                  >
+                    {t("descEag4")}
+                  </li>
+                  <li
+                    className={`text-content`}
+                    style={{
+                      color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                    }}
+                  >
+                    {t("descEag5")}
+                  </li>
+                  <li
+                    className={`text-content`}
+                    style={{
+                      color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                    }}
+                  >
+                    {t("descEag6")}
+                  </li>
                 </ul>
               </div>
             </div>
             <div className={`${cl.eagLastText} text-content`}>
               <ul className={`${cl.eagDisc} text-content`}>
-                <li className={`text-content`}>{t("descEag7")}</li>
-                <li className={`text-content`}>{t("descEag4")}</li>
+                <li
+                  className={`text-content`}
+                  style={{
+                    color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                  }}
+                >
+                  {t("descEag7")}
+                </li>
+                <li
+                  className={`text-content`}
+                  style={{
+                    color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                  }}
+                >
+                  {t("descEag4")}
+                </li>
               </ul>
             </div>
             <div style={{ marginBottom: "100px" }}>
-              <a href="https://eurasiangroup.org/ru" style={{ color: "black" }}>
+              <a
+                href="https://eurasiangroup.org/ru"
+                style={{
+                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                }}
+              >
                 {t("linkEag")}
               </a>
             </div>
           </div>
         </div>
-        </div>
-
-        <Footer />
       </div>
+
+      <Footer />
+    </div>
   );
 }
 

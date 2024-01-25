@@ -6,6 +6,7 @@
     /* max-width: 1240px; */
     width: 80%;
     margin: 0 auto;
+    overflow: hidden;
 }
 
 .aboutUs__section {
@@ -109,10 +110,11 @@
 }
 
 .educationWrappwer {
-    margin-top: 24px;
+    margin-top: 0;
     background: #1A2751;
     width: 100%;
     padding: 60px 0 105px;
+    box-sizing: border-box;
 }
 
 .education {
@@ -144,7 +146,10 @@
 }
 
 .advantages_box {
-    width: 240px;
+    
+    min-width: 240px;
+    width: max-content;
+    max-width: 300px;
     min-height: 105px;
     height: max-content;
     border-radius: 10px;
@@ -169,8 +174,7 @@
 }
 
 .coursesWrapper {
-    margin: 73px 0 73px;
-}
+    margin: 73px 0 73px;}
 
 .courses__headline {
     color: #3A3939;

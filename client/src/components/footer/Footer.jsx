@@ -9,11 +9,13 @@ import Map from '../UI/map/Map';
 import { useTranslation } from 'react-i18next';
 
 import VisualModal from '../../components/VisualModal/VisualModal';
+import { useStyle } from '../VisualModal/StyleContext';
 
 
 function Footer({ email, phoneNumber }) {
 
     const { t } = useTranslation();
+    const { styles } = useStyle();
 
     const handleEmailClick = () => {
         window.location.href = `mailto:${email}`;
@@ -24,7 +26,12 @@ function Footer({ email, phoneNumber }) {
       };
 
     return (
-        <div className={`${cl.footerWrapper} text-content`}>
+        <div 
+            className={`${cl.footerWrapper}`}
+            style={{
+                background: styles.colorMode == 'dark' ? '#000' : '#1F3C88'
+            }}
+        >
             <div className={cl.container}>
                 <div className={cl.footer}>
                     <div className={cl.footer__block}>

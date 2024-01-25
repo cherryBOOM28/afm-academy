@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useStyle } from "./StyleContext";
+import HideEye from "../../../src/assets/images/hideeye.svg";
 import "./VisualModal.scss";
 
 function VisualModal({
@@ -7,16 +8,19 @@ function VisualModal({
   onRemoveImages,
   onShowImages,
   onIntervalChange,
-  dark,
+  dark = true,
 }) {
+  const [speechButtonClicked, setSpeechButtonClicked] = useState(false);
+  const [selectedFont, setSelectedFont] = useState("Arial");
+
   const { styles, updateStyles } = useStyle();
   const { fontSize, fontFamily, colorMode, letterInterval } = styles;
   const [clickedButton, setClickedButton] = useState(null);
   const [selectedColorMode, setSelectedColorMode] = useState(colorMode);
   const [isSpeechEnabled, setIsSpeechEnabled] = useState(false);
-  const [selectedVoiceName, setSelectedVoiceName] = useState(""); // Added state for selected voice
+  const [selectedVoiceName, setSelectedVoiceName] = useState("");
   const [speechButtonActive, setSpeechButtonActive] = useState(false);
-
+  const [resetIntervalSpacing, setResetIntervalSpacing] = useState(false);
 
   useEffect(() => {
     if ("speechSynthesis" in window) {
@@ -36,7 +40,6 @@ function VisualModal({
     }, 100);
   };
 
-
   const handleEnableSpeech = () => {
     setIsSpeechEnabled(true);
     setSpeechButtonActive(true);
@@ -49,13 +52,13 @@ function VisualModal({
     speak("Синтетическая речь выключена");
   };
 
-
   if (!open) return null;
 
   const handleDisableImages = () => {
     updateStyles({ showImage: false });
     localStorage.setItem("showImage", false);
-    speak("Изображения выключены", selectedVoiceName);
+
+    if (isSpeechEnabled) speak("Изображения выключены", selectedVoiceName);
 
     onRemoveImages();
     setClickedButton("disableImages");
@@ -66,16 +69,13 @@ function VisualModal({
     localStorage.setItem("showImage", true);
     onShowImages();
     setClickedButton("enableImages");
-    speak("Изображения включены", selectedVoiceName);
+    if (isSpeechEnabled) speak("Изображения включены", selectedVoiceName);
   };
 
   const handleIntervalChange = (interval) => {
     updateStyles({ letterInterval: interval });
     onIntervalChange(interval);
-    localStorage.setItem("letterInterval", interval);
-    speak("Интервал изменен", selectedVoiceName);
-
-
+    if (isSpeechEnabled) speak("Интервал изменен", selectedVoiceName);
   };
 
   const handleFontSizeChange = (size) => {
@@ -87,17 +87,25 @@ function VisualModal({
         switch (size) {
           case "small":
             item.style.fontSize = "15px";
-            speak("Размер шрифта маленький", selectedVoiceName);
+            item.style.lineHeight = "17px";
+            if (isSpeechEnabled)
+              speak("Размер шрифта маленький", selectedVoiceName);
 
             break;
           case "standard":
             item.style.fontSize = "20px";
-            speak("Размер шрифта стандартный", selectedVoiceName);
+            item.style.lineHeight = "22px";
+
+            if (isSpeechEnabled)
+              speak("Размер шрифта стандартный", selectedVoiceName);
 
             break;
           case "large":
             item.style.fontSize = "24px";
-            speak("Размер шрифта большой", selectedVoiceName);
+            item.style.lineHeight = "26px";
+
+            if (isSpeechEnabled)
+              speak("Размер шрифта большой", selectedVoiceName);
 
             break;
           default:
@@ -108,9 +116,10 @@ function VisualModal({
   };
 
   const handleFontFamilyChange = (family) => {
+    setSelectedFont(family);
     updateStyles({ fontFamily: family });
     localStorage.setItem("fontFamily", family);
-    speak("Шрифт изменен", selectedVoiceName);
+    if (isSpeechEnabled) speak("Шрифт изменен", selectedVoiceName);
 
     const textContentElement = document.querySelector(".text-content");
     if (textContentElement) {
@@ -121,28 +130,49 @@ function VisualModal({
   const handleColorModeChange = (mode) => {
     const containerElement = document.querySelector(".text-content");
     if (containerElement) {
-      containerElement.classList.remove(
-        "light-mode",
-        "dark-mode",
-        "inverted-mode"
-      );
+      containerElement.classList.remove("light-mode", "dark-mode", "blue-mode");
     }
     updateStyles({ colorMode: mode });
     localStorage.setItem("colorMode", mode);
-    speak("Цветовая гамма изменена", selectedVoiceName);
+    if (isSpeechEnabled) speak("Цветовая гамма изменена", selectedVoiceName);
 
     if (containerElement) {
       containerElement.classList.add(mode + "-mode");
     }
     setSelectedColorMode(mode);
   };
-  
+  const lightButtonStyle = {
+    background: "white",
+    color: "black",
+  };
+
+  const darkButtonStyle = {
+    background: "black",
+    color: "white",
+  };
+
+  const blueButtonStyle = {
+    background: "#9dd1ff",
+    color: "#063462",
+  };
+  const handleSpeechButtonClick = (clicked) => {
+    console.log("Button clicked:", clicked);
+    setSpeechButtonClicked(clicked);
+  };
+
+  const handleRefreshPage = () => {
+    setResetIntervalSpacing(true);
+    window.location.reload();
+  };
 
   return (
     <div
-      className={`main-container root-body ${
-        dark ? "dark-mode" : "light-mode"
+      className={`main-container root-body visual-modal ${
+        styles.colorMode == "dark" ? "dark-mode" : "light-mode"
       }`}
+      style={{
+        color: !dark ? "white" : styles.colorMode == "dark" ? "white" : "black",
+      }}
     >
       <div
         className="interval"
@@ -153,13 +183,15 @@ function VisualModal({
             <span>Шрифт</span>
             <button
               onClick={() => handleFontFamilyChange("Arial")}
-              className="font1"
+              className={`font1 ${selectedFont === "Arial" ? "clicked" : ""}`}
             >
               T
             </button>
             <button
               onClick={() => handleFontFamilyChange("Times New Roman")}
-              className="font2"
+              className={`font2 ${
+                selectedFont === "Times New Roman" ? "clicked" : ""
+              }`}
             >
               T
             </button>
@@ -195,24 +227,27 @@ function VisualModal({
               className={`color-mode-button ${
                 colorMode === "light" ? "clicked" : ""
               }`}
+              style={lightButtonStyle}
             >
-              Светлый
+              A
             </button>
             <button
               onClick={() => handleColorModeChange("dark")}
               className={`color-mode-button ${
                 colorMode === "dark" ? "clicked" : ""
               }`}
+              style={darkButtonStyle}
             >
-              Черный
+              A
             </button>
             <button
-              onClick={() => handleColorModeChange("inverted")}
+              onClick={() => handleColorModeChange("blue")}
               className={`color-mode-button ${
-                colorMode === "inverted" ? "clicked" : ""
+                colorMode === "blue" ? "clicked" : ""
               }`}
+              style={blueButtonStyle}
             >
-              Инверсия
+              A
             </button>
 
             <span>Интервал</span>
@@ -260,20 +295,33 @@ function VisualModal({
             </button>
 
             <span>Синтетическая речь</span>
-      <button
-        onClick={handleEnableSpeech}
-        disabled={!isSpeechEnabled}
-        className={`speech-button ${speechButtonActive ? "active" : ""}`}
-      >
-        Вкл.
-      </button>
-      <button
-        onClick={handleDisableSpeech}
-        disabled={!isSpeechEnabled}
-        className={`speech-button ${!speechButtonActive ? "active" : ""}`}
-      >
-        Выкл.
-      </button>
+            <button
+              onClick={handleEnableSpeech}
+              disabled={!isSpeechEnabled}
+              className={`speech-button ${
+                speechButtonActive ? "active clicked" : ""
+              }`}
+            >
+              Вкл.
+            </button>
+            <button
+              onClick={handleDisableSpeech}
+              disabled={!isSpeechEnabled}
+              className={`speech-button ${
+                !speechButtonActive ? "active clicked" : ""
+              }`}
+            >
+              Выкл.
+            </button>
+            <button
+              onClick={() => {
+                handleRefreshPage();
+                handleColorModeChange("light");
+              }}
+              className="refresh-button"
+            >
+              <img src={HideEye} alt="Reset" className="reset-icon" />
+            </button>
           </div>
         </div>
       </div>
@@ -291,6 +339,5 @@ function getLetterSpacing(interval) {
       return "1px";
   }
 }
-
 
 export default VisualModal;

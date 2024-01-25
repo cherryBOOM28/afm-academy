@@ -120,7 +120,11 @@ function Charter() {
   }, [styles.fontFamily]);
 
   return (
-    <div className={`${cl.charterWrapper} text-content`}>
+    <div className={`${cl.charterWrapper} text-content`}
+    style={{
+      background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#fff" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+    }}
+    >
       <VisualModal
         open={openVisualModal}
         onRemoveImages={handleRemoveImages}
@@ -129,13 +133,17 @@ function Charter() {
         onIntervalChange={() => {}}
         styles={styles}
       />
-      <Header dark={true} handleOpenVisualModal={handleOpenVisualModal} />
+      <Header dark={styles.colorMode == "dark" ? false : true} handleOpenVisualModal={handleOpenVisualModal} />
       <div className={cl.container}>
       <div
           className="interval"
           style={{ letterSpacing: getLetterSpacing(letterInterval) }}
         >
-        <h1 className={`${cl.headline} text-content`}>{t("regulation")}</h1>
+        <h1 className={`${cl.headline} text-content`}
+        style={{
+          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+        }}
+        >{t("regulation")}</h1>
         <DownloadPDF />
         <div className={cl.charterContent}>
         {!imagesHidden && (

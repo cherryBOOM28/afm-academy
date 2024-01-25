@@ -35,15 +35,15 @@ function Structure() {
         switch (size) {
           case "small":
             item.style.fontSize = "15px";
-            item.style.lineHeight="17px";
+            item.style.lineHeight = "17px";
             break;
           case "standard":
             item.style.fontSize = "20px";
-            item.style.lineHeight="22px";
+            item.style.lineHeight = "22px";
             break;
           case "large":
             item.style.fontSize = "24px";
-            item.style.lineHeight="26px";
+            item.style.lineHeight = "26px";
             break;
           default:
             break;
@@ -57,17 +57,19 @@ function Structure() {
     // Remove previous color mode classes
     const containerElement = document.querySelector(".text-content");
     if (containerElement) {
-      containerElement.classList.remove("light-mode", "dark-mode", "inverted-mode");
+      containerElement.classList.remove(
+        "light-mode",
+        "dark-mode",
+        "inverted-mode"
+      );
     }
 
-    const {colorMode} = styles;
+    const { colorMode } = styles;
 
     if (containerElement) {
       containerElement.classList.add(colorMode + "-mode");
     }
-
   };
-
 
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
@@ -76,7 +78,6 @@ function Structure() {
     console.log("OPEN");
     setOpenVisualModal((prev) => !prev);
     setOpen((prev) => !prev);
-
   };
   const [openVisualModal, setOpenVisualModal] = useState(open);
 
@@ -147,7 +148,11 @@ function Structure() {
   };
 
   return (
-    <div className={`${cl.charterWrapper} text-content`}>
+    <div className={`${cl.charterWrapper} text-content`}
+    style={{
+      background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#fff" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+    }}
+    >
       <VisualModal
         open={openVisualModal}
         onRemoveImages={handleRemoveImages}
@@ -156,14 +161,22 @@ function Structure() {
         onIntervalChange={() => {}}
         styles={styles}
       />
-      <Header dark={true} handleOpenVisualModal={handleOpenVisualModal} />
+      <Header
+        dark={styles.colorMode == "dark" ? false : true}
+        handleOpenVisualModal={handleOpenVisualModal}
+      />
 
       <div className={cl.container}>
         <div
           className="interval"
           style={{ letterSpacing: getLetterSpacing(letterInterval) }}
         >
-          <h1 className={`${cl.headline} text-content`}>
+          <h1
+            className={`${cl.headline} text-content`}
+            style={{
+              color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+            }}
+          >
             {t("leadership of the Academy")}
           </h1>
           <div className={cl.charterContent}>
@@ -179,7 +192,12 @@ function Structure() {
                 onClick={() => handleClick(firstCard)}
               >
                 <div className={cl.card}>
-                  <p className={`${cl.card__title} text-content`}>
+                  <p
+                    className={`${cl.card__title} text-content`}
+                    style={{
+                      color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                    }}
+                  >
                     {firstCard.title}
                   </p>
                   {!imagesHidden && (
@@ -189,7 +207,12 @@ function Structure() {
                       className={cl.card__img}
                     />
                   )}
-                  <p className={`${cl.card__text} text-content`}>
+                  <p
+                    className={`${cl.card__text} text-content`}
+                    style={{
+                      color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#3A3939" : styles.colorMode === "blue" ? "#063462" : "#000",
+                    }}
+                  >
                     {firstCard.name}
                   </p>
                 </div>
@@ -211,7 +234,12 @@ function Structure() {
                       onClick={() => handleClick(card)}
                     >
                       <div className={cl.card}>
-                        <p className={`${cl.card__title} text-content`}>
+                        <p
+                          className={`${cl.card__title} text-content`}
+                          style={{
+                            color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                          }}
+                        >
                           {card.title}
                         </p>
                         {!imagesHidden && (
@@ -221,7 +249,12 @@ function Structure() {
                             className={cl.card__img}
                           />
                         )}
-                        <p className={`${cl.card__text} text-content`}>
+                        <p
+                          className={`${cl.card__text} text-content`}
+                          style={{
+                              color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#3A3939" : styles.colorMode === "blue" ? "#063462" : "#000",
+                          }}
+                        >
                           {card.name}
                         </p>
                       </div>
@@ -231,18 +264,47 @@ function Structure() {
               </div>
             </div>
           </div>
-          <h1 className={`${cl.headline} text-content`}>{t("divisions")}</h1>
+          <h1
+            className={`${cl.headline} text-content`}
+            style={{
+              color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+            }}
+          >
+            {t("divisions")}
+          </h1>
           <div className={`${cl.accordion} text-content`}>
             <Dropdown
               title={t("titleFirstDiv")}
               content={
-                <div>
+                <div
+                  style={{
+                    color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                  }}
+                >
                   {t("contentFirstDiv")}
                   <div className={`${cl.accordionContent} text-content`}>
                     <ul style={{ listStyleType: "disc" }}>
-                      <li>{t("contentFirstPointOneDiv")}</li>
-                      <li>{t("contentFirstPointTwoDiv")}</li>
-                      <li>{t("contentFirstPointThreeDiv")}</li>
+                      <li
+                        style={{
+                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                        }}
+                      >
+                        {t("contentFirstPointOneDiv")}
+                      </li>
+                      <li
+                        style={{
+                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                        }}
+                      >
+                        {t("contentFirstPointTwoDiv")}
+                      </li>
+                      <li
+                        style={{
+                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                        }}
+                      >
+                        {t("contentFirstPointThreeDiv")}
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -251,15 +313,49 @@ function Structure() {
             <Dropdown
               title={t("titleSecondDiv")}
               content={
-                <div>
+                <div
+                  style={{
+                    color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                  }}
+                >
                   {t("contentSecondDiv")}
                   <div className={`${cl.accordionContent} text-content`}>
                     <ul style={{ listStyleType: "disc" }}>
-                      <li>{t("contentSecondPointOneDiv")}</li>
-                      <li>{t("contentSecondPointTwoDiv")}</li>
-                      <li>{t("contentSecondPointThreeDiv")}</li>
-                      <li>{t("contentsecondPointFourDiv")}</li>
-                      <li>{t("contentSecondPointFiveDiv")}</li>
+                      <li
+                        style={{
+                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                        }}
+                      >
+                        {t("contentSecondPointOneDiv")}
+                      </li>
+                      <li
+                        style={{
+                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                        }}
+                      >
+                        {t("contentSecondPointTwoDiv")}
+                      </li>
+                      <li
+                        style={{
+                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                        }}
+                      >
+                        {t("contentSecondPointThreeDiv")}
+                      </li>
+                      <li
+                        style={{
+                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                        }}
+                      >
+                        {t("contentsecondPointFourDiv")}
+                      </li>
+                      <li
+                        style={{
+                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                        }}
+                      >
+                        {t("contentSecondPointFiveDiv")}
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -273,11 +369,41 @@ function Structure() {
                   {t("contentThirdDiv")}
                   <div className={`${cl.accordionContent} text-content`}>
                     <ul className={cl.marked}>
-                      <li>{t("contentThirdPointOneDiv")}</li>
-                      <li>{t("contentThirdPointTwoDiv")}</li>
-                      <li>{t("contentThirdPointThreeDiv")}</li>
-                      <li>{t("contentThirdPointFourDiv")}</li>
-                      <li>{t("contentThirdPointFiveDiv")}</li>
+                      <li
+                        style={{
+                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                        }}
+                      >
+                        {t("contentThirdPointOneDiv")}
+                      </li>
+                      <li
+                        style={{
+                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                        }}
+                      >
+                        {t("contentThirdPointTwoDiv")}
+                      </li>
+                      <li
+                        style={{
+                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                        }}
+                      >
+                        {t("contentThirdPointThreeDiv")}
+                      </li>
+                      <li
+                        style={{
+                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                        }}
+                      >
+                        {t("contentThirdPointFourDiv")}
+                      </li>
+                      <li
+                        style={{
+                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+                        }}
+                      >
+                        {t("contentThirdPointFiveDiv")}
+                      </li>
                     </ul>
                   </div>
                 </div>

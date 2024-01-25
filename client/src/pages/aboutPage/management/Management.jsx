@@ -34,15 +34,15 @@ function Management() {
         switch (size) {
           case "small":
             item.style.fontSize = "15px";
-            item.style.lineHeight="17px";
+            item.style.lineHeight = "17px";
             break;
           case "standard":
             item.style.fontSize = "20px";
-            item.style.lineHeight="22px";
+            item.style.lineHeight = "22px";
             break;
           case "large":
             item.style.fontSize = "24px";
-            item.style.lineHeight="26px";
+            item.style.lineHeight = "26px";
             break;
           default:
             break;
@@ -56,17 +56,20 @@ function Management() {
     // Remove previous color mode classes
     const containerElement = document.querySelector(".text-content");
     if (containerElement) {
-      containerElement.classList.remove("light-mode", "dark-mode", "inverted-mode");
+      containerElement.classList.remove(
+        "light-mode",
+        "dark-mode",
+        "inverted-mode",
+        "blue-mode"
+      );
     }
 
-    const {colorMode} = styles;
+    const { colorMode } = styles;
 
     if (containerElement) {
       containerElement.classList.add(colorMode + "-mode");
     }
-
   };
-
 
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
@@ -75,7 +78,6 @@ function Management() {
     console.log("OPEN");
     setOpenVisualModal((prev) => !prev);
     setOpen((prev) => !prev);
-
   };
   const [openVisualModal, setOpenVisualModal] = useState(open);
 
@@ -124,7 +126,11 @@ function Management() {
   }, [styles.fontFamily]);
 
   return (
-    <div className={`${cl.managementWrapper} text-content`}>
+    <div className={`${cl.managementWrapper} text-content`}
+    style={{
+      background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#fff" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+    }}
+    >
       <VisualModal
         open={openVisualModal}
         onRemoveImages={handleRemoveImages}
@@ -133,20 +139,44 @@ function Management() {
         onIntervalChange={() => {}}
         styles={styles}
       />
-      <Header dark={true} handleOpenVisualModal={handleOpenVisualModal} />
+      <Header
+        dark={styles.colorMode == "dark" ? false : true}
+        handleOpenVisualModal={handleOpenVisualModal}
+      />
       <div className={cl.container}>
         <div
           className="interval"
           style={{ letterSpacing: getLetterSpacing(letterInterval) }}
         >
-          <h1 className={`${cl.headline} text-content`}>
+          <h1
+            className={`${cl.headline}`}
+            style={{
+              color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+            }}
+          >
             {t("board of directors")}
           </h1>
           <div className={cl.boardOfDirectors}>
             <div className={cl.director}>
               {!imagesHidden && <img src={firstDirector} alt="" />}
-              <p className={`${cl.name} text-content`}>{t("firstDirector")}</p>
-              <p className={`${cl.post} text-content`}>{t("descFirstDir")}</p>
+              <p
+                className={`${cl.name} text-content`}
+                style={{
+                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+
+                }}
+              >
+                {t("firstDirector")}
+              </p>
+              <p
+                className={`${cl.post} text-content`}
+                style={{
+                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+
+                }}
+              >
+                {t("descFirstDir")}
+              </p>
             </div>
             {/* <div className={cl.director}>
                         <img src={secondDirector} alt="" />
@@ -155,18 +185,66 @@ function Management() {
                     </div> */}
             <div className={cl.director}>
               {!imagesHidden && <img src={thirdDirector} alt="" />}
-              <p className={`${cl.name} text-content`}>{t("secondDirector")}</p>
-              <p className={`${cl.post} text-content`}>{t("descSecondDir")}</p>
+              <p
+                className={`${cl.name} text-content`}
+                style={{
+                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+
+                }}
+              >
+                {t("secondDirector")}
+              </p>
+              <p
+                className={`${cl.post} text-content`}
+                style={{
+                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+
+                }}
+              >
+                {t("descSecondDir")}
+              </p>
             </div>
             <div className={cl.director}>
               {!imagesHidden && <img src={forthDirector} alt="" />}
-              <p className={`${cl.name} text-content`}>{t("therdDirector")}</p>
-              <p className={`${cl.post} text-content`}>{t("descTherdDir")}</p>
+              <p
+                className={`${cl.name} text-content`}
+                style={{
+                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+
+                }}
+              >
+                {t("therdDirector")}
+              </p>
+              <p
+                className={`${cl.post} text-content`}
+                style={{
+                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+
+                }}
+              >
+                {t("descTherdDir")}
+              </p>
             </div>
             <div className={cl.director}>
               {!imagesHidden && <img src={fifthDirector} alt="" />}
-              <p className={`${cl.name} text-content`}>{t("fourthDirector")}</p>
-              <p className={`${cl.post} text-content`}>{t("descFourthDir")}</p>
+              <p
+                className={`${cl.name} text-content`}
+                style={{
+                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+
+                }}
+              >
+                {t("fourthDirector")}
+              </p>
+              <p
+                className={`${cl.post} text-content`}
+                style={{
+                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+
+                }}
+              >
+                {t("descFourthDir")}
+              </p>
             </div>
           </div>
         </div>

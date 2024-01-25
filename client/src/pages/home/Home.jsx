@@ -6,8 +6,8 @@ import accIcon from "../../assets/icons/pacc.svg";
 import bookIcon from "../../assets/icons/book.svg";
 import realtionIcon from "../../assets/icons/relation.svg";
 import laptopIcon from "../../assets/icons/laptop.svg";
-import backgroundVideo from "../../assets/video/bgvideo.mov";
-
+import backgroundVideoLight from "../../assets/video/bgvideo.mov";
+import backgroundVideoDark from "../../assets/video/bgvideoDark.mov";
 import Button from "../../components/UI/button/Button";
 import Header from "../../components/header/Header";
 import VideoPlayer from "../../components/player/VideoPlayer";
@@ -30,7 +30,6 @@ import { useStyle } from "../../components/VisualModal/StyleContext";
 import { useTranslation } from "react-i18next";
 
 function Home() {
-  
   const navigate = useNavigate();
   const imageList = [
     { src: FirstPartner, alt: "Image 1" },
@@ -44,7 +43,6 @@ function Home() {
   const toggleRemoveBackground = () => {
     setRemoveBackground((prevValue) => !prevValue);
   };
-
 
   const scrollToCourses = () => {
     const coursesSection = document.getElementById("coursesSection");
@@ -82,7 +80,7 @@ function Home() {
   const { t } = useTranslation();
   const { i18n } = useTranslation();
   const currentLanguage = i18n.language;
-  
+
   const [openVisualModal, setOpenVisualModal] = useState(open);
   const [activeTab, setActiveTab] = useState(1);
 
@@ -96,15 +94,15 @@ function Home() {
         switch (size) {
           case "small":
             item.style.fontSize = "15px";
-            item.style.lineHeight="17px";
+            item.style.lineHeight = "17px";
             break;
           case "standard":
             item.style.fontSize = "20px";
-            item.style.lineHeight="22px";
+            item.style.lineHeight = "22px";
             break;
           case "large":
             item.style.fontSize = "24px";
-            item.style.lineHeight="26px";
+            item.style.lineHeight = "26px";
             break;
           default:
             break;
@@ -121,22 +119,25 @@ function Home() {
   const handleOpenVisualModal = () => {
     console.log("OPEN");
     setOpenVisualModal((prev) => !prev);
-    setOpen(prev => !prev)
+    setOpen((prev) => !prev);
   };
 
   const handleColorModeChange = (mode) => {
     // Remove previous color mode classes
     const containerElement = document.querySelector(".text-content");
     if (containerElement) {
-      containerElement.classList.remove("light-mode", "dark-mode", "inverted-mode");
+      containerElement.classList.remove(
+        "light-mode",
+        "dark-mode",
+        "inverted-mode"
+      );
     }
 
-    const {colorMode} = styles;
+    const { colorMode } = styles;
 
     if (containerElement) {
       containerElement.classList.add(colorMode + "-mode");
     }
-
   };
 
   const handleRemoveImages = () => {
@@ -172,7 +173,13 @@ function Home() {
   };
 
   return (
-    <div className={`${cl.homeWrapper} text-content`}>
+    <div className={`${cl.homeWrapper} text-content`}
+    // style={{
+    //   background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f9f9f9" : styles.colorMode === "blue" ? "#9dd1ff" : "#000",
+    //   zIndex: 0,
+    // }}
+    
+    >
       <div
         className="interval"
         style={{ letterSpacing: getLetterSpacing(letterInterval) }}
@@ -206,17 +213,20 @@ function Home() {
                     muted
                     className={`videoBackground ${cl.videoBackground}`}
                   >
-                    <source src={backgroundVideo} type="video/mp4" />
+                    {!styles.colorMode === "dark" ? (
+                      <source src={backgroundVideoDark} type="video/mp4" />
+                    ) : (
+                      <source src={backgroundVideoLight} type="video/mp4" />
+                    )}
                   </video>
                 </div>
               ) : (
-                <div className={cl.darkBackground}>
-
-                </div>
+                <div className={cl.darkBackground}></div>
               )}
               {/* <img src={aboutUsPic} alt="About us" /> */}
               <div className={cl.aboutUs__content}>
-                <p className={`${cl.aboutUs__headline} text-contnet`}>
+                <p className={`${cl.aboutUs__headline} text-contnet`}
+                >
                   AML ACADEMY
                 </p>
                 {/* <p className={cl.aboutUs__text}>Обучение для безопасности финансов</p> */}
@@ -261,35 +271,116 @@ function Home() {
             </div>
           </div>
         </section>
-        <section className={cl.educationWrappwer}>
+        <section
+          className={cl.educationWrappwer}
+          style={{
+            background:
+              styles.colorMode === "dark"
+                ? "#000"
+                : styles.colorMode === "light"
+                ? "#1A2751"
+                : styles.colorMode === "blue"
+                ? "#9dd1ff"
+                : "#000",
+          }}
+        >
           <div className={cl.container}>
-            <p className={`${cl.headline} text-content`}>{t("quality")}</p>
-            <p className={`${cl.subtitle} text-content`}>
+            <p
+              className={`${cl.headline} text-content`}
+              style={{
+                color:
+                  styles.colorMode === "dark"
+                    ? "#fff"
+                    : styles.colorMode === "light"
+                    ? "#fff"
+                    : styles.colorMode === "blue"
+                    ? "#063462"
+                    : "#000",
+              }}
+            >
+              {t("quality")}
+            </p>
+            <p className={`${cl.subtitle} text-content`}
+            style={{
+              color:
+                styles.colorMode === "dark"
+                  ? "#fff"
+                  : styles.colorMode === "light"
+                  ? "#fff"
+                  : styles.colorMode === "blue"
+                  ? "#063462"
+                  : "#000",
+            }}
+            >
               {t("advantages of academy")}
             </p>
             <div className={cl.education}>
               <div className={cl.advantages}>
                 <div className={cl.advantages_box}>
                   {!imagesHidden && <img src={accIcon} alt="acc" />}
-                  <p className={`${cl.advantages__text} text-content`}>
+                  <p className={`${cl.advantages__text} text-content`}
+                  style={{
+                    color:
+                      styles.colorMode === "dark"
+                        ? "#fff"
+                        : styles.colorMode === "light"
+                        ? "#fff"
+                        : styles.colorMode === "blue"
+                        ? "#063462"
+                        : "#000",
+                  }}
+                  >
                     {t("qualified experts")}
                   </p>
                 </div>
                 <div className={cl.advantages_box}>
                   {!imagesHidden && <img src={bookIcon} alt="acc" />}
-                  <p className={`${cl.advantages__text} text-content`}>
+                  <p className={`${cl.advantages__text} text-content`}
+                  style={{
+                    color:
+                      styles.colorMode === "dark"
+                        ? "#fff"
+                        : styles.colorMode === "light"
+                        ? "#fff"
+                        : styles.colorMode === "blue"
+                        ? "#063462"
+                        : "#000",
+                  }}
+                  >
                     {t("convenient learning format")}
                   </p>
                 </div>
                 <div className={cl.advantages_box}>
                   {!imagesHidden && <img src={realtionIcon} alt="acc" />}
-                  <p className={`${cl.advantages__text} text-content`}>
+                  <p className={`${cl.advantages__text} text-content`}
+                  style={{
+                    color:
+                      styles.colorMode === "dark"
+                        ? "#fff"
+                        : styles.colorMode === "light"
+                        ? "#fff"
+                        : styles.colorMode === "blue"
+                        ? "#063462"
+                        : "#000",
+                  }}
+                  >
                     {t("close cooperation with AFM")}
                   </p>
                 </div>
                 <div className={cl.advantages_box}>
                   {!imagesHidden && <img src={laptopIcon} alt="acc" />}
-                  <p className={`${cl.advantages__text__last} text-content`}>
+                  <p className={`${cl.advantages__text__last} text-content`}
+                  style={{
+                    color:
+                      styles.colorMode === "dark"
+                        ? "#fff"
+                        : styles.colorMode === "light"
+                        ? "#fff"
+                        : styles.colorMode === "blue"
+                        ? "#063462"
+                        : "#000",
+                  }}
+                  >
                     {t("programs")}
                   </p>
                 </div>
@@ -298,20 +389,103 @@ function Home() {
             </div>
           </div>
         </section>
-        <section className={cl.coursesWrapper} id="coursesSection">
-          <div className={cl.container}>
-            <h1 className={`${cl.courses__headline} text-content`}>
+        <section
+          className={cl.coursesWrapper}
+          style={{
+            background:
+              styles.colorMode === "dark"
+                ? "#000"
+                : styles.colorMode === "light"
+                ? "#fff"
+                : styles.colorMode === "blue"
+                ? "#9dd1ff"
+                : "#000",
+          }}
+          id="coursesSection"
+        >
+          <div
+            className={cl.container}
+            style={{
+              background:
+                styles.colorMode === "dark"
+                  ? "#000"
+                  : styles.colorMode === "light"
+                  ? "#fff"
+                  : styles.colorMode === "blue"
+                  ? "#9dd1ff"
+                  : "#000",
+            }}
+          >
+            <h1
+              className={`${cl.courses__headline} text-content`}
+              style={{
+                color:
+                  styles.colorMode === "dark"
+                    ? "#fff"
+                    : styles.colorMode === "light"
+                    ? "#3A3939"
+                    : styles.colorMode === "blue"
+                    ? "#063462"
+                    : "#000",
+              }}
+            >
               {t("Courses in the field of")}
             </h1>
             <Tabs />
           </div>
         </section>
-        <section className={`${cl.newsWrapper} text-content`} id="news">
+        <section
+          className={`${cl.newsWrapper} text-content`}
+          style={{
+            background:
+              styles.colorMode === "dark"
+                ? "#000"
+                : styles.colorMode === "light"
+                ? "#fff"
+                : styles.colorMode === "blue"
+                ? "#9dd1ff"
+                : "#000",
+          }}
+          id="news"
+        >
           <div className={cl.container}>
-            <p className={`${cl.news__headline} text-content`}>{t("news")}</p>
+            <p
+              className={`${cl.news__headline} text-content`}
+              style={{
+                color:
+                  styles.colorMode === "dark"
+                    ? "#fff"
+                    : styles.colorMode === "light"
+                    ? "#000"
+                    : styles.colorMode === "blue"
+                    ? "#063462"
+                    : "#000",
+              }}
+            >
+              {t("news")}
+            </p>
           </div>
 
-          <NewsTab />
+          <NewsTab
+            style={{
+              color:
+                styles.colorMode === "dark"
+                  ? "#fff"
+                  : styles.colorMode === "light"
+                  ? "#3A3939"
+                  : styles.colorMode === "blue"
+                  ? "#063462"
+                  : "#000",
+              background:
+                styles.colorMode === "dark"
+                  ? "#000"
+                  : styles.colorMode === "light"
+                  ? "#fff"
+                  : styles.colorMode === "blue"
+                  ? "#9dd1ff"
+                  : "#000",
+            }}
+          />
         </section>
         {/* <section className={cl.partnersWrapper}>
                 <div className={cl.container}>

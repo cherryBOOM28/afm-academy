@@ -24,6 +24,8 @@ import { useStyle } from "../../components/VisualModal/StyleContext";
 
 
 function VebinarsPage() {
+
+    
     const { t } = useTranslation();
 
     const navigate = useNavigate();
@@ -167,7 +169,12 @@ function VebinarsPage() {
 
 
     return (
-        <div className={'vebinars-page text-content'}>
+        <div className={'vebinars-page text-content'}
+        style={{ 
+            background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f2f2f2" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+        }}
+
+        >
             <VebinarModal 
                 handleClose={() => {
                     setOpenModal(false);
@@ -186,7 +193,9 @@ function VebinarsPage() {
                 />
 
             <div>
-            <Header dark={true} handleOpenVisualModal={handleOpenVisualModal} />
+            <Header           dark={styles.colorMode == "dark" ? false : true}
+
+            handleOpenVisualModal={handleOpenVisualModal} />
                 <div className="container">
                 </div>
             </div>
@@ -197,7 +206,11 @@ function VebinarsPage() {
           style={{ letterSpacing: getLetterSpacing(letterInterval) }}
         >
 
-                <h1 className='text-content'>{t('webinars')}</h1>
+                <h1 className='text-content'
+                style={{ 
+                    color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000"
+                }}
+                >{t('webinars')}</h1>
 
                 <div className="vebinar-list-block">
                 {/* {console.log(vebinars)} */}

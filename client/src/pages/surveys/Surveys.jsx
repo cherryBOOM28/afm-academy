@@ -32,15 +32,15 @@ function SurveysPage() {
         switch (size) {
           case "small":
             item.style.fontSize = "15px";
-            item.style.lineHeight="17px";
+            item.style.lineHeight = "17px";
             break;
           case "standard":
             item.style.fontSize = "20px";
-            item.style.lineHeight="22px";
+            item.style.lineHeight = "22px";
             break;
           case "large":
             item.style.fontSize = "24px";
-            item.style.lineHeight="26px";
+            item.style.lineHeight = "26px";
             break;
           default:
             break;
@@ -55,15 +55,18 @@ function SurveysPage() {
     // Remove previous color mode classes
     const containerElement = document.querySelector(".text-content");
     if (containerElement) {
-      containerElement.classList.remove("light-mode", "dark-mode", "inverted-mode");
+      containerElement.classList.remove(
+        "light-mode",
+        "dark-mode",
+        "inverted-mode"
+      );
     }
 
-    const {colorMode} = styles;
+    const { colorMode } = styles;
 
     if (containerElement) {
       containerElement.classList.add(colorMode + "-mode");
     }
-
   };
 
   const handleTabClick = (tabIndex) => {
@@ -73,7 +76,6 @@ function SurveysPage() {
     console.log("OPEN");
     setOpenVisualModal((prev) => !prev);
     setOpen((prev) => !prev);
-
   };
   const [openVisualModal, setOpenVisualModal] = useState(open);
 
@@ -172,17 +174,27 @@ function SurveysPage() {
     const family = styles.fontFamily;
 
     if (textContentElement) {
-        textContentElement.forEach((item) => {
-            if (family) {
-                item.style.fontFamily = family;
-            }
-        });
+      textContentElement.forEach((item) => {
+        if (family) {
+          item.style.fontFamily = family;
+        }
+      });
     }
-}, [styles.fontFamily]);
+  }, [styles.fontFamily]);
 
   return (
-    <div className="surveys-page">
-      <div className="text-context">
+    <div
+      className="surveys-page"
+      style={{
+        background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#fff" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+      }}
+    >
+      <div
+        className="text-context"
+        style={{
+          background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#fff" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+        }}
+      >
         <VisualModal
           open={openVisualModal}
           onRemoveImages={handleRemoveImages}
@@ -191,7 +203,10 @@ function SurveysPage() {
           onIntervalChange={() => {}}
           styles={styles}
         />
-        <Header dark={true} handleOpenVisualModal={handleOpenVisualModal} />
+        <Header
+          dark={styles.colorMode == "dark" ? false : true}
+          handleOpenVisualModal={handleOpenVisualModal}
+        />
         <div>
           <div className="container"></div>
         </div>
@@ -200,16 +215,35 @@ function SurveysPage() {
           style={{ letterSpacing: getLetterSpacing(letterInterval) }}
         >
           <main className="page-content container">
-            <h1 className="text-content">
+            <h1
+              className="text-content"
+              style={{
+                color: styles.colorMode == "dark" ? "#fff" : "#343434",
+              }}
+            >
               {t("survey on topics for training")}
             </h1>
-            <div className="surveys-list-block">
-              <div className="toggles">
+            <div
+              className="surveys-list-block"
+              style={{
+                color: styles.colorMode == "dark" ? "#fff" : "#000",
+                background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f2f2f2" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+              }}
+            >
+              <div className="toggles"
+              style={{
+                background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f2f2f2" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+              }}
+              >
                 <div
                   onClick={() => {
                     setSurvey(true);
                   }}
                   className={`${isSurvey ? "active" : ""} text-content`}
+                  style={{
+                    color: styles.colorMode == "dark" ? "#fff" : "#000",
+                    background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#d9d9d9" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+                  }}
                 >
                   {t("surveys")}
                 </div>
@@ -218,76 +252,169 @@ function SurveysPage() {
                     setSurvey(false);
                   }}
                   className={`${!isSurvey ? "active" : ""} text-content`}
+                  style={{
+                    color: styles.colorMode == "dark" ? "#fff" : "#000",
+                    background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#d9d9d9" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+                  }}
                 >
                   {t("testing")}
                 </div>
               </div>
 
-              <div className="survey-list">
-                <table style={{ letterSpacing: `${getLetterSpacing(letterInterval)} !important` }}>
+              <div
+                className="survey-list"
+                style={{
+                  color: styles.colorMode == "dark" ? "#fff" : "#000",
+                  background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f2f2f2" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+                }}
+              >
+                <table
+                  style={{
+                    letterSpacing: `${getLetterSpacing(
+                      letterInterval
+                    )} !important`,
+                    background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f2f2f2" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+                  }}
+                >
+                  <thead
+                    className="text-content"
+                    style={{
+                      background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f2f2f2" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+                    }}
+                  >
+                    <tr>
+                      <td
+                        className="text-content !important"
+                        style={{
+                          color: styles.colorMode == "dark" ? "#fff" : "#000",
+                        }}
+                      >
+                        №
+                      </td>
+                      <td
+                        className="text-content !important"
+                        style={{
+                          color: styles.colorMode == "dark" ? "#fff" : "#000",
+                          background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f2f2f2" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
 
-                    <thead className="text-content">
-                      <tr>
-                        <td className="text-content !important">№</td>
-                        <td className="text-content !important">
-                          {t("date of publication")}
-                        </td>
-                        <td className="text-content !important">
-                          {t("title")}
-                        </td>
-                        <td className="text-content !important">
-                          {t("status")}
-                        </td>
-                      </tr>
-                    </thead>
 
-                    <div style={{ height: "20px" }}></div>
+                        }}
+                      >
+                        {t("date of publication")}
+                      </td>
+                      <td
+                        className="text-content !important"
+                        style={{
+                          color: styles.colorMode == "dark" ? "#fff" : "#000",
+                        }}
+                      >
+                        {t("title")}
+                      </td>
+                      <td
+                        className="text-content !important"
+                        style={{
+                          color: styles.colorMode == "dark" ? "#fff" : "#000",
+                        }}
+                      >
+                        {t("status")}
+                      </td>
+                    </tr>
+                  </thead>
 
-                    <tbody className="text-content">
-                      {(isSurvey ? surveyList : testList).length !== 0 ? (
-                        (isSurvey ? surveyList : testList).map(
-                          (
-                            { date_open, date_close, name, status, id },
-                            index
-                          ) => {
-                            let _status =
-                              status === "active" ? t("open") : t("closed");
+                  <div style={{ height: "20px" }}></div>
 
-                            return (
-                              <tr
-                                onClick={() => {
-                                  if (status === "active" && isLoggedIn) {
-                                    navigate(`/survey/${id}`);
-                                  }
+                  <tbody
+                    className="text-content"
+                    style={{
+                      background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#fff" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+                    }}
+                  >
+                    {(isSurvey ? surveyList : testList).length !== 0 ? (
+                      (isSurvey ? surveyList : testList).map(
+                        (
+                          { date_open, date_close, name, status, id },
+                          index
+                        ) => {
+                          let _status =
+                            status === "active" ? t("open") : t("closed");
 
-                                  if (!isLoggedIn) navigate("/login");
+                          return (
+                            <tr
+                              style={{
+                                hover:
+                                  styles.colorMode == "dark" ? "#fff" : "#fff",
+                              }}
+                              onClick={() => {
+                                if (status === "active" && isLoggedIn) {
+                                  navigate(`/survey/${id}`);
+                                }
+
+                                if (!isLoggedIn) navigate("/login");
+                              }}
+                            >
+                              <td
+                                className="text-content !important"
+                                style={{
+                                  letterSpacing: `${getLetterSpacing(
+                                    letterInterval
+                                  )} !important`,
                                 }}
                               >
-                                <td className="text-content !important" style={{ letterSpacing: `${getLetterSpacing(letterInterval)} !important` }}>{index + 1}</td>
-                                <td className="text-content !important" style={{ letterSpacing: `${getLetterSpacing(letterInterval)} !important` }}>{date_open}</td>
-                                <td className="text-content !important" style={{ letterSpacing: `${getLetterSpacing(letterInterval)} !important` }}>{name}</td>
-                                <td className="text-content !important" style={{ letterSpacing: `${getLetterSpacing(letterInterval)} !important` }}>
-                                  <div 
-                                    className={`${
-                                      status === "active" ? "active" : "closed"
-                                    } text-content`}
-                                  >
-                                    {_status}
-                                  </div>
-                                </td>
-                              </tr>
-                            );
-                          }
-                        )
-                      ) : (
-                        <tr>
-                          <td className="text-content !important" colspan="4" style={{ textAlign: "center" }}>
-                            {t("no available")}{" "}
-                            {isSurvey ? t("survey") : t("tests")}
-                          </td>
-                        </tr>
-                      )}
-                    </tbody>
+                                {index + 1}
+                              </td>
+                              <td
+                                className="text-content !important"
+                                style={{
+                                  letterSpacing: `${getLetterSpacing(
+                                    letterInterval
+                                  )} !important`,
+                                }}
+                              >
+                                {date_open}
+                              </td>
+                              <td
+                                className="text-content !important"
+                                style={{
+                                  letterSpacing: `${getLetterSpacing(
+                                    letterInterval
+                                  )} !important`,
+                                }}
+                              >
+                                {name}
+                              </td>
+                              <td
+                                className="text-content !important"
+                                style={{
+                                  letterSpacing: `${getLetterSpacing(
+                                    letterInterval
+                                  )} !important`,
+                                }}
+                              >
+                                <div
+                                  className={`${
+                                    status === "active" ? "active" : "closed"
+                                  } text-content`}
+                                >
+                                  {_status}
+                                </div>
+                              </td>
+                            </tr>
+                          );
+                        }
+                      )
+                    ) : (
+                      <tr>
+                        <td
+                          className="text-content !important"
+                          colspan="4"
+                          style={{ textAlign: "center" }}
+                        >
+                          {t("no available")}{" "}
+                          {isSurvey ? t("survey") : t("tests")}
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
                 </table>
               </div>
             </div>
