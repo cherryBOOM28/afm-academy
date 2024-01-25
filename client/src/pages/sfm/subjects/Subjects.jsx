@@ -4,20 +4,18 @@ import DefaultHeader from "../../../components/defaultHeader/DefaultHeader";
 import Footer from "../../../components/footer/Footer";
 import Header from "../../../components/header/Header";
 
-import data_ru from "../../../components/data/subjectsData ru.json";
-import data_kz from "../../../components/data/subjectsData kz.json";
-import data_eng from "../../../components/data/subjectsData eng.json";
+import data_kz from '../../../components/data/subjectsData kz.json';
+import data_ru from '../../../components/data/subjectsData ru.json';
+import data_eng from '../../../components/data/subjectsData eng.json';
 
 import { useTranslation } from "react-i18next";
 import VisualModal from "../../../components/VisualModal/VisualModal";
 import { useStyle } from "../../../components/VisualModal/StyleContext";
 
 function Subjects() {
-  const [imagesHidden, setImagesHidden] = useState(false);
-  const { styles, open, setOpen } = useStyle();
-  const [letterInterval, setLetterInterval] = useState("standard");
-  const { i18n, t } = useTranslation();
-  const currentLanguage = i18n.language;
+    const { t } = useTranslation();
+    const { i18n } = useTranslation();
+    const currentLanguage = i18n.language;
 
   useEffect(() => {
     console.log(currentLanguage);

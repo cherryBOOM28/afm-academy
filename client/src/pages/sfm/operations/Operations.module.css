@@ -1,5 +1,7 @@
 .container {
-    width: 80%;
+    /* width: 80%; */
+    max-width: 1240px;
+
     margin: 0 auto;
 }
 
@@ -41,6 +43,8 @@
     font-size: 18px;
     font-weight: 600;
     margin: 11px 0;
+
+    text-align: center;
 }
 
 .blockText {
@@ -49,7 +53,7 @@
     color: #000;
     font-size: 16px;
     font-weight: 400;
-    text-transform: lowercase;
+    /* text-transform: lowercase; */
 }
 
 .text {

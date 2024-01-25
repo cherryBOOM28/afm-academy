@@ -1,5 +1,8 @@
 import React from 'react';
 import cl from './Footer.module.css';
+
+import './footer.scss'
+
 import { Link } from 'react-router-dom';
 import igIcon from '../../assets/icons/ig.svg';
 import fbIcon from '../../assets/icons/fb.svg';
@@ -52,6 +55,15 @@ function Footer({ email, phoneNumber }) {
                                 </li>
                             </ul>
                         </nav>
+                        <div className={'socials'}>
+                            <a href='https://www.instagram.com/aml_academy/' className={'rounde'}>
+                                <img src={igIcon} alt="instagram" className={'icon'} />
+                            </a>
+                        
+                            <a href='https://www.instagram.com/aml_academy/' className={'rounde'}>
+                                <img src={tgIcon} alt="telegram" className={'icon'} />
+                            </a>
+                        </div>
                     </div>
                     <div className={cl.footer__block}>
                         <p className={`${cl.footer__headline} text-content`}>{t('about us')}</p>
@@ -113,18 +125,18 @@ function Footer({ email, phoneNumber }) {
                         </nav>
                         
                     </div>
-                    {/* <div className={cl.footer__block}>
-                        <p className={cl.footer__headline}>Библиотека</p>
-                        <nav className={cl.footer__content}>
+                    {/* <div className={'footer__block'}>
+                        <p className={'footer__headline'}>Библиотека</p>
+                        <nav className={'footer__content'}>
                             <ul>
                                 <li>
-                                    <Link to="/npa" className={cl.footer__text}>НПА</Link>
+                                    <Link to="/npa" className={'footer__text'}>НПА</Link>
                                 </li>
                                 <li>
-                                    <Link to="/documents" className={cl.footer__text}>Документы международных организаций</Link>
+                                    <Link to="/documents" className={'footer__text'}>Документы международных организаций</Link>
                                 </li>
                                 <li>
-                                    <Link to="/other" className={cl.footer__text}>Иное</Link>
+                                    <Link to="/other" className={'footer__text'}>Иное</Link>
                                 </li>
                             </ul>
                         </nav>
@@ -157,26 +169,26 @@ function Footer({ email, phoneNumber }) {
                             </ul>
                         </nav>
                     </div>
-                    {/* <div className={cl.footer__block__middle}>
-                        <p className={cl.footer__headline}>Эксперты</p>
-                        <nav className={cl.footer__content}>
+                    {/* <div className={'footer__block__middle'}>
+                        <p className={'footer__headline'}>Эксперты</p>
+                        <nav className={'footer__content'}>
                             <ul>
                                 <li>
-                                    <Link to="/experts" className={cl.footer__text}>Эксперты</Link>
+                                    <Link to="/experts" className={'footer__text'}>Эксперты</Link>
                                 </li>
                                 <li>
-                                    <Link to="/rules" className={cl.footer__text}>Пул экспертов Академии</Link>
+                                    <Link to="/rules" className={'footer__text'}>Пул экспертов Академии</Link>
                                 </li>
                                 <li>
-                                    <Link to="" className={cl.footer__text}>Заявка на позицию <br></br> эксперта в Академии</Link>
+                                    <Link to="" className={'footer__text'}>Заявка на позицию <br></br> эксперта в Академии</Link>
                                 </li>
                                 <li>
-                                    <Link to="/jobs" className={cl.footer__text}>Вакансии</Link>
+                                    <Link to="/jobs" className={'footer__text'}>Вакансии</Link>
                                 </li>
                             </ul>
                         </nav>
                     </div> */}
-                    <Map />
+                    {/* <Map /> */}
                     
 
 

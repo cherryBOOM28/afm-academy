@@ -33,6 +33,7 @@ import PaymentPage from './pages/paymentPage/PaymentPage';
 import Sandbox from './pages/Sandbox';
 import Basic_course from './pages/basic-course';
 import PrivateRoute from './auth/PrivateRoute';
+import MustBeAdmin from './auth/AdminRoute.jsx';
 
 import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
@@ -42,6 +43,7 @@ import VisualModal from './/components/VisualModal/VisualModal.jsx'
 import { StyleProvider } from './/components/VisualModal/StyleContext.jsx';
 
 import './settings/i18n.js';
+import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigationCourse/index.jsx';
 
 function App() {
   const [fontStyle, setFontStyle] = useState('defaultFont'); // Default font style

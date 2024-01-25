@@ -170,129 +170,54 @@ const DirectorPage = () => {
   }
 
   return (
-    <div
-      className={cl.directorPageWrapper}
-      style={{
-        background:
-          styles.colorMode === "dark"
-            ? "#000"
-            : styles.colorMode === "light"
-            ? "#fff"
-            : styles.colorMode === "blue"
-            ? "#9dd1ff"
-            : "#000",
-      }}
-    >
-      <VisualModal
-        open={openVisualModal}
-        onRemoveImages={handleRemoveImages}
-        onShowImages={handleShowImages}
-        onFontFamily={() => {}}
-        onIntervalChange={() => {}}
-        styles={styles}
-      />
-      <Header dark={styles.colorMode == "dark" ? false : true} 
-      handleOpenVisualModal={handleOpenVisualModal}
-      />
-      <div
-        className={cl.container}
-        style={{
-          background:
-            styles.colorMode === "dark"
-              ? "#000"
-              : styles.colorMode === "light"
-              ? "#f2f2f2"
-              : styles.colorMode === "blue"
-              ? "#9dd1ff"
-              : "#000",
-        }}
-      >
-        <div className={cl.card}>
-          <img
-            src={cardData.photo}
-            alt="Director profile"
-            className={cl.card__img}
-          />
-          <div className={cl.card__block}>
-            <div className={cl.cardContent}>
-              <h2 className={cl.card__title}
-               style={{
-                color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#3A3939" : styles.colorMode === "blue" ? "#063462" : "#000",
-            }}
-              >{cardData.title}</h2>
-              <p className={cl.card__name}
-               style={{
-                color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#3A3939" : styles.colorMode === "blue" ? "#063462" : "#000",
-            }}
-              >{cardData.name}</p>
-              <p className={cl.card__text}
-               style={{
-                color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#3A3939" : styles.colorMode === "blue" ? "#063462" : "#000",
-            }}
-              >{cardData.text}</p>
+    <div className={cl.directorPageWrapper}>
+        <Header dark={true} />
+        <div className={cl.container}>
+            <div className={cl.card}>
+                <img src={cardData.photo} alt="Director profile" className={cl.card__img} />
+                <div className={cl.card__block}>
+                    <div className={cl.cardContent}>
+                        <h2 className={cl.card__title}>{cardData.title}</h2>
+                        <p className={cl.card__name}>{cardData.name}</p>
+                        <p className={cl.card__text}>{cardData.text}</p>
+                    </div>
+                    <div style={{display: 'flex', gap: '10px'}}>
+                        <Button onClick={() => setShowModal(true)} className={cl.btn}>Обратиться</Button>
+                        <Button onClick={handleGoBack} className={cl.btn}>Назад</Button>
+                    </div>
+                </div>
             </div>
-            <div style={{ display: "flex", gap: "10px" }}>
-              <Button onClick={() => setShowModal(true)} className={cl.btn}>
-                Обратиться
-              </Button>
-              <Button onClick={handleGoBack} className={cl.btn}>
-                Назад
-              </Button>
-            </div>
-          </div>
+            {/* <Comments commentsUrl="http://localhost:3000/structure" currentUserId="1" postId={id} /> */}
         </div>
-        {/* <Comments commentsUrl="http://localhost:3000/structure" currentUserId="1" postId={id} /> */}
-      </div>
-      <Footer />
-      {showModal ? (
-        <ModalWindow title={"Обратиться"} setShowModal={setShowModal}>
-          <FormInput
-            title={"Почта"}
-            field={"email"}
-            onChange={requestOnchange}
-          />
-          <FormInput title={"ФИО"} field={"name"} onChange={requestOnchange} />
-          <FormInput
-            title={"Номер телефона"}
-            field={"phone"}
-            onChange={requestOnchange}
-          />
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "end",
-              padding: "0px 20px",
-            }}
-          >
-            <div
-              style={{
-                background: "#1F3C88",
-                padding: "10px 20px",
-                color: "white",
-                fontSize: "16px",
-                borderRadius: "5px",
-                outline: "none",
-                cursor: "pointer",
-              }}
-              onClick={handleRequestSend}
-            >
-              Отправить
-            </div>
-          </div>
-        </ModalWindow>
-      ) : (
-        <></>
-      )}
+        <Footer />
+        {
+                showModal ? 
+                    <ModalWindow title={'Обратиться'} setShowModal={setShowModal}>
+                        <FormInput title={'Почта'} field={'email'} onChange={requestOnchange}/>
+                        <FormInput title={'ФИО'} field={'name'} onChange={requestOnchange}/>
+                        <FormInput title={'Номер телефона'} field={'phone'} onChange={requestOnchange}/>
+                        <div style={{display: 'flex', justifyContent: 'end', padding: '0px 20px'}}>
+                            <div 
+                                style={{background: '#1F3C88', padding: '10px 20px', color: 'white', fontSize: '16px', borderRadius: '5px', outline: 'none', cursor: 'pointer'}}
+                                onClick={handleRequestSend}
+                            >
+                                Отправить
+                            </div>
+                        </div>
+                    </ModalWindow>
+                :
+                    <></>
+            }
     </div>
   );
 };
 
-const FormInput = ({ title, field, onChange }) => {
-  const labelStyle = {
-    fontFamily: "Roboto",
-    fontSize: "1.2rem",
-    paddingLeft: "10px",
-  };
+const FormInput = ({title, field, onChange}) => {
+    const labelStyle = {
+        'fontFamily': 'Roboto',
+        'fontSize': '1.2rem',
+        paddingLeft: '10px',
+    }
 
   const inputStyle = {
     color: "black",

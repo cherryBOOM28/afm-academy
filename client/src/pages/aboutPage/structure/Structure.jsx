@@ -148,264 +148,108 @@ function Structure() {
   };
 
   return (
-    <div className={`${cl.charterWrapper} text-content`}
-    style={{
-      background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#fff" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
-    }}
-    >
-      <VisualModal
-        open={openVisualModal}
-        onRemoveImages={handleRemoveImages}
-        onShowImages={handleShowImages}
-        onFontFamily={() => {}}
-        onIntervalChange={() => {}}
-        styles={styles}
-      />
-      <Header
-        dark={styles.colorMode == "dark" ? false : true}
-        handleOpenVisualModal={handleOpenVisualModal}
-      />
-
-      <div className={cl.container}>
-        <div
-          className="interval"
-          style={{ letterSpacing: getLetterSpacing(letterInterval) }}
-        >
-          <h1
-            className={`${cl.headline} text-content`}
-            style={{
-              color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
-            }}
-          >
-            {t("leadership of the Academy")}
-          </h1>
-          <div className={cl.charterContent}>
-            <div className={cl.charterGrid}>
-              {/* Display the first card */}
-              <Link
-                className={`${cl.card__link} ${cl.firstCardContainer}`}
-                // to={{
-                //     pathname: `/structure/${firstCard.id}`,
-                //     state: { cardData: firstCard },
-                // }}
-                to={`/structure/${firstCard.id}`}
-                onClick={() => handleClick(firstCard)}
-              >
-                <div className={cl.card}>
-                  <p
-                    className={`${cl.card__title} text-content`}
-                    style={{
-                      color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                    }}
-                  >
-                    {firstCard.title}
-                  </p>
-                  {!imagesHidden && (
-                    <img
-                      src={firstCard.photo}
-                      alt={firstCard.caption}
-                      className={cl.card__img}
-                    />
-                  )}
-                  <p
-                    className={`${cl.card__text} text-content`}
-                    style={{
-                      color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#3A3939" : styles.colorMode === "blue" ? "#063462" : "#000",
-                    }}
-                  >
-                    {firstCard.name}
-                  </p>
-                </div>
-              </Link>
-              <img src={lineL} alt="line" />
-              <img src={lineR} alt="line" />
-              <div className={cl.bottomCardsGrid}>
-                {cardsData.slice(1).map((card, index) =>
-                  // Check if the card exists and has the 'id' property
-                  card && card.id ? (
+    <div className={cl.charterWrapper}>
+        <Header dark={true}  />
+    
+        <div className={cl.container}>
+            <h1 className={cl.headline}>{t('leadership of the Academy')}</h1>
+            <div className={cl.charterContent}>
+                <div className={cl.charterGrid}>
+                    {/* Display the first card */}
                     <Link
-                      key={index}
-                      className={cl.card__link}
-                      // to={{
-                      // pathname: `/structure/${card.id}`,
-                      // state: { cardData: card },
-                      // }}
-                      to={`/structure/${card.id}`}
-                      onClick={() => handleClick(card)}
+                    className={`${cl.card__link} ${cl.firstCardContainer}`}
+                    // to={{
+                    //     pathname: `/structure/${firstCard.id}`,
+                    //     state: { cardData: firstCard },
+                    // }}
+                    to={`/structure/${firstCard.id}`}
+                    onClick={() => handleClick(firstCard)}
                     >
-                      <div className={cl.card}>
-                        <p
-                          className={`${cl.card__title} text-content`}
-                          style={{
-                            color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                          }}
-                        >
-                          {card.title}
-                        </p>
-                        {!imagesHidden && (
-                          <img
-                            src={card.photo}
-                            alt={card.caption}
-                            className={cl.card__img}
-                          />
-                        )}
-                        <p
-                          className={`${cl.card__text} text-content`}
-                          style={{
-                              color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#3A3939" : styles.colorMode === "blue" ? "#063462" : "#000",
-                          }}
-                        >
-                          {card.name}
-                        </p>
-                      </div>
+                        
+                    <div className={cl.card}>
+                        <p className={cl.card__title}>{firstCard.title}</p>
+                        <img src={firstCard.photo} alt={firstCard.caption} className={cl.card__img} />
+                        <p className={cl.card__text}>{firstCard.name}</p>
+                    </div>
                     </Link>
-                  ) : null
-                )}
-              </div>
+                    <img src={lineL} alt="line" />
+                    <img src={lineR} alt="line" />        
+                    <div className={cl.bottomCardsGrid}>
+                        {cardsData.slice(1).map((card, index) => (
+                            // Check if the card exists and has the 'id' property
+                            card && card.id ? (
+                                <Link
+                                    key={index}
+                                    className={cl.card__link}
+                                    // to={{
+                                    // pathname: `/structure/${card.id}`,
+                                    // state: { cardData: card },
+                                    // }}
+                                    to={`/structure/${card.id}`}
+                                    onClick={() => handleClick(card)}
+                                >
+                                    <div className={cl.card}>
+                                        <p className={cl.card__title}>{card.title}</p>
+                                        <img src={card.photo} alt={card.caption} className={cl.card__img} />
+                                        <p className={cl.card__text}>{card.name}</p>
+                                    </div>
+                                </Link>
+                            ) : null
+                        ))}
+                    </div>
+                </div>
             </div>
-          </div>
-          <h1
-            className={`${cl.headline} text-content`}
-            style={{
-              color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
-            }}
-          >
-            {t("divisions")}
-          </h1>
-          <div className={`${cl.accordion} text-content`}>
-            <Dropdown
-              title={t("titleFirstDiv")}
-              content={
-                <div
-                  style={{
-                    color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                  }}
-                >
-                  {t("contentFirstDiv")}
-                  <div className={`${cl.accordionContent} text-content`}>
-                    <ul style={{ listStyleType: "disc" }}>
-                      <li
-                        style={{
-                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                        }}
-                      >
-                        {t("contentFirstPointOneDiv")}
-                      </li>
-                      <li
-                        style={{
-                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                        }}
-                      >
-                        {t("contentFirstPointTwoDiv")}
-                      </li>
-                      <li
-                        style={{
-                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                        }}
-                      >
-                        {t("contentFirstPointThreeDiv")}
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              }
-            />
-            <Dropdown
-              title={t("titleSecondDiv")}
-              content={
-                <div
-                  style={{
-                    color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                  }}
-                >
-                  {t("contentSecondDiv")}
-                  <div className={`${cl.accordionContent} text-content`}>
-                    <ul style={{ listStyleType: "disc" }}>
-                      <li
-                        style={{
-                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                        }}
-                      >
-                        {t("contentSecondPointOneDiv")}
-                      </li>
-                      <li
-                        style={{
-                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                        }}
-                      >
-                        {t("contentSecondPointTwoDiv")}
-                      </li>
-                      <li
-                        style={{
-                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                        }}
-                      >
-                        {t("contentSecondPointThreeDiv")}
-                      </li>
-                      <li
-                        style={{
-                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                        }}
-                      >
-                        {t("contentsecondPointFourDiv")}
-                      </li>
-                      <li
-                        style={{
-                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                        }}
-                      >
-                        {t("contentSecondPointFiveDiv")}
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              }
-            />
-            <Dropdown
-              className="text-content"
-              title={t("titleThirdDiv")}
-              content={
-                <div>
-                  {t("contentThirdDiv")}
-                  <div className={`${cl.accordionContent} text-content`}>
-                    <ul className={cl.marked}>
-                      <li
-                        style={{
-                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                        }}
-                      >
-                        {t("contentThirdPointOneDiv")}
-                      </li>
-                      <li
-                        style={{
-                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                        }}
-                      >
-                        {t("contentThirdPointTwoDiv")}
-                      </li>
-                      <li
-                        style={{
-                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                        }}
-                      >
-                        {t("contentThirdPointThreeDiv")}
-                      </li>
-                      <li
-                        style={{
-                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                        }}
-                      >
-                        {t("contentThirdPointFourDiv")}
-                      </li>
-                      <li
-                        style={{
-                          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
-                        }}
-                      >
-                        {t("contentThirdPointFiveDiv")}
-                      </li>
-                    </ul>
-                  </div>
+            <h1 className={cl.headline}>{t('divisions')}</h1>
+            <div className={cl.accordion}>
+                <Dropdown
+                    title={t('titleFirstDiv')}
+                    content={<div>
+                        {t('contentFirstDiv')}
+                        <div className={cl.accordionContent}>
+                            <ul style={{listStyleType: 'disc'}}>
+                                <li>
+                                {t('contentFirstPointOneDiv')}
+                                </li>
+                                <li>
+                                {t('contentFirstPointTwoDiv')}
+                                </li>
+                                <li>
+                                {t('contentFirstPointThreeDiv')}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>}
+                />
+                <Dropdown
+                    title={t('titleSecondDiv')}
+                    content={<div>
+                       {t('contentSecondDiv')}  
+                        <div className={cl.accordionContent}>
+                            <ul style={{listStyleType: 'disc'}}>
+                                <li>{t('contentSecondPointOneDiv')}</li>
+                                <li>{t('contentSecondPointTwoDiv')}</li>
+                                <li>{t('contentSecondPointThreeDiv')}</li>
+                                <li>{t('contentsecondPointFourDiv')}</li>
+                                <li>{t('contentSecondPointFiveDiv')}</li>
+                            </ul>
+                        </div>
+                    </div>}
+                />
+                <Dropdown
+                    title={t('titleThirdDiv')}
+                    content={<div>
+                            {t('contentThirdDiv')}  
+                        <div className={cl.accordionContent}>
+                            <ul className={cl.marked}>
+                                <li>{t('contentThirdPointOneDiv')}</li>
+                                <li>{t('contentThirdPointTwoDiv')}</li>
+                                <li>{t('contentThirdPointThreeDiv')}</li>
+                                <li>{t('contentThirdPointFourDiv')}</li>
+                                <li>{t('contentThirdPointFiveDiv')}</li>
+                            </ul> 
+                        </div>                      
+                    </div>}
+                />
                 </div>
               }
             />
