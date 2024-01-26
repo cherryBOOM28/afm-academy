@@ -23,14 +23,35 @@ import { Email } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { t } from 'i18next';
 
+import VisualModal from '../../components/VisualModal/VisualModal';
+import { useStyle } from '../VisualModal/StyleContext';
+
 
 
 function Header(props) {
 
   const { t } = useTranslation();
+
   const navigate = useNavigate();
+  const [selectedVoiceName, setSelectedVoiceName] = useState(""); 
+  const [letterInterval, setLetterInterval] = useState("standard");
+  const role = localStorage.getItem('role')
+
+
+
   const jwtToken = localStorage.getItem('jwtToken');
-  const role = localStorage.getItem('role');
+  const speak = (text, voiceName) => {
+    const synthesis = window.speechSynthesis;
+    setTimeout(() => {
+      synthesis.cancel();
+      const voices = synthesis.getVoices();
+      const selectedVoice = voices.find((voice) => voice.name === voiceName);
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.voice = selectedVoice;
+      synthesis.speak(utterance);
+    }, 100);
+  };
+
   const userEmail = localStorage.getItem('email');
   const name = localStorage.getItem('firstname') + " " + localStorage.getItem('lastname')
   const pfp = name.split(' ')[0][0] + name.split(' ')[1][0]
@@ -71,6 +92,8 @@ function Header(props) {
     };
   }, []);
 
+  
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -106,11 +129,50 @@ function Header(props) {
     i18n.changeLanguage(language);
   };
 
+  const darkModeStyles = {
+    filter: 'invert(100%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%)', 
+  };
+  
+  const lightModeStyles = {
+    filter: 'invert(0%)', 
+    
+  };
+  
+  const blueModeStyles = {
+    filter: 'invert(0%)',
+
+  };
+  const { styles, open, setOpen } = useStyle();
+
+  const getLetterSpacing = (interval) => {
+    interval = styles.letterInterval;
+
+    switch (interval) {
+      case "medium":
+        return "2px";
+      case "large":
+        return "4px";
+      default:
+        return "1px";
+    }
+  };
+
+
   return (
-    <div className={`navbar ${props.dark? 'dark' : ''}`}>
+    <div className="interval" style={{ letterSpacing: getLetterSpacing(letterInterval) }}>
+    <div className={`navbar ${props.dark? 'dark' : ''} text-content`}>
       <Link to="/" className='logo'>
-        <img src={logo} alt="logo" style={{pointerEvents: 'none', userSelect: 'none',  borderRadius: '50%' }} />
-      </Link>
+    <img
+      src={logo}
+      alt="logo"
+      style={{
+        pointerEvents: 'none',
+        userSelect: 'none',
+        borderRadius: '50%',
+        ...(styles.colorMode === 'dark' ? darkModeStyles : (styles.colorMode === 'light' ? lightModeStyles : blueModeStyles)),
+      }}
+    />
+  </Link>
       <div className='tool-navigation-container'>
         <div className='language-container'>
           <div className='lg-sm'>
@@ -162,14 +224,14 @@ function Header(props) {
                   <a className='user-toggle-links'>Админ панель</a>
                 </div> : null
                 }
-                <div onClick={handleLogout} className='menu-item'>
+                <div onClick={() => handleLogout} className='menu-item'>
                   <a className='user-toggle-links'>Выйти</a>
                 </div>
               </div> 
             </div> 
             : 
             <div className='user-actions'>
-              <a href='/registration' className='text-button'>{t('regestration')}</a>
+              <a href='/registration' className='text-button text-content'>{t('regestration')}</a>
               <a href='/login' className={`contained-button blue-button ${props.dark? 'dark' : ''}`}>{t('signin')}</a>
             </div>
           }
@@ -183,6 +245,7 @@ function Header(props) {
           <NavigationBar dark={props.dark}/>
         </div>
       </div>
+    </div>
     </div>
   )
 
@@ -208,39 +271,78 @@ const NavigationBar = (props) => {
       }
   };
 
+  const { styles } = useStyle(); 
+  useEffect(() => {
+    
+  }, [])
+
+  const getLetterSpacing = (interval) => {
+    switch (interval) {
+      case "medium":
+        return "2px";
+      case "large":
+        return "4px";
+      default:
+        return "1px";
+    }
+  };
+
+  const getFontSize = (size) => {
+    switch (size) {
+      case "small":
+        return "15px";
+        break;
+      case "standard":
+        return "20px";
+        break;
+      case "large":
+        return "24px";
+        break;
+      default:
+        return "20px";
+        break;
+    }
+  }
+
+
+
+
   return (
-      <div className={`navbarBoxes`}>
-          <div className={`menuBox`}>
-              <a className={`menu ${props.dark? 'dark' : ''}`}>{t('about us')}</a>
-              <ul className={'dropdownSub'}>
-                  <li>
-                      <Link to="/about" className={'subPages'}>{t('about the academy')} </Link>
+      <div className={`navbarBoxes text-content`}
+      
+      >
+             
+          <div className={`menuBox text-content`}>
+              <a className={`menu ${props.dark? 'dark' : ''} text-content`}>{t('about us')}</a>
+              <ul className={'dropdownSub text-content'}>
+                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
+                      <Link to="/about" className={'subPages text-content'}>{t('about the academy')} </Link>
                   </li>
-                  <li>
-                      <Link to="/management" className={'subPages'}>{t('board of directors')}</Link>
+                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
+                      <Link to="/management" className={'subPages text-content'}>{t('board of directors')}</Link>
                   </li>
-                  <li>
-                      <Link to="/structure" className={'subPages'}>{t('structure')}</Link>
+                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
+                      <Link to="/structure" className={'subPages text-content'}>{t('structure')}</Link>
                   </li>
-                  <li>
-                      <Link to="/charter" className={'subPages'}>{t('regulation')}</Link>
+                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
+                      <Link to="/charter" className={'subPages text-content'}>{t('regulation')}</Link>
                   </li>
-                  <li>
-                      <Link to="/roadmap" className={'subPages'}>{t('development plan')}</Link>
+                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
+                      <Link to="/roadmap" className={'subPages text-content'}>{t('development plan')}</Link>
                   </li>
               </ul>
           </div>
           <div className={'menuBox'}>
-              <a className={`menu ${props.dark ? 'dark' : ''}`}>{t('training')}</a>
-              <ul className={'dropdownSub'}>
-                  <li>
-                      <a onClick={scrollToCourses} className={'subPages'}>{t('types of courses')}</a>
+              <a className={`menu ${props.dark ? 'dark' : ''} text-content`}>{t('training')}</a>
+              <ul className={'dropdownSub text-content'}>
+                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
+                      <a onClick={scrollToCourses} className={'subPages text-content'}>{t('types of courses')}</a>
                   </li>  
-                  <li>
-                      <Link to="/courses/catalog" className={'subPages'}>{t('course catalog')}</Link>
+                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
+                      <Link to="/courses/catalog" className={'subPages text-content'}>{t('course catalog')}</Link>
                   </li>
-                  {isLoggedIn ? <li>
-                      <Link to="/courses/myCourses" className={'subPages'}>{t('my courses')}</Link>
+                  {isLoggedIn ? <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
+                      <Link to="/courses/myCourses" className={'subPages text-content'}>{t('my courses')}</Link>
                   </li> : null}
               </ul>
           </div>
@@ -259,50 +361,50 @@ const NavigationBar = (props) => {
               </ul>
           </div> */}
           <div className={'menuBox'}>
-              <a className={`menu ${props.dark? 'dark' : ''}`}>{t('webinars')}</a>
+              <a className={`menu ${props.dark? 'dark' : ''} text-content`}>{t('webinars')}</a>
               <ul className={'dropdownSub'}>
                   <li>
-                      <Link to="/vebinars" className={'subPages'}>{t('all webinars')}</Link>
+                      <Link to="/vebinars" className={'subPages text-content'}>{t('all webinars')}</Link>
                   </li>
                   <li>
-                      <Link to="/vebinars/calendar" className={'subPages'}>{t('calendar of events')}</Link>
+                      <Link to="/vebinars/calendar" className={'subPages text-content'}>{t('calendar of events')}</Link>
                   </li>
                   <li>
-                      <Link to="/vebinars/surveys" className={'subPages'}>{t('surveys')}</Link>
+                      <Link to="/vebinars/surveys" className={'subPages text-content'}>{t('surveys')}</Link>
                   </li>
               </ul>
           </div>
           <div className={'menuBox'}>
-              <a className={`menu ${props.dark? 'dark' : ''}`} onClick={() => scrollToNews()}>{t('news')}</a>
+              <a className={`menu ${props.dark? 'dark' : ''} text-content`} onClick={() => scrollToNews()}>{t('news')}</a>
           </div>
           <div className={'menuBox'}>
-              <a className={`menu ${props.dark? 'dark' : ''}`}>{t('aml/ft')}</a>
+              <a className={`menu ${props.dark? 'dark' : ''} text-content`}>{t('aml/ft')}</a>
               <ul className={'dropdownSub'}>
                   <li>
-                      <Link to="/anti-laundering" className={'subPages'}>{t('anti-washing system of the RK')}</Link>
+                      <Link to="/anti-laundering" className={'subPages text-content'}>{t('anti-washing system of the RK')}</Link>
                   </li>
                   <li>
-                      <Link to="/fatf" className={'subPages'}>{t('fatf')}</Link>
+                      <Link to="/fatf" className={'subPages text-content'}>{t('fatf')}</Link>
                   </li>
                   <li>
-                      <Link to="/eag" className={'subPages'}>{t('eag')}</Link>
+                      <Link to="/eag" className={'subPages text-content'}>{t('eag')}</Link>
                   </li>
                   <li>
-                      <Link to="/mutual-evaluation" className={'subPages'}>{t('mutual assessment')}</Link>
+                      <Link to="/mutual-evaluation" className={'subPages text-content'}>{t('mutual assessment')}</Link>
                   </li>
               </ul>
           </div>
           <div className={'menuBox'}>
-              <a className={`menu ${props.dark? 'dark' : ''}`}>{t('sfm')}</a>
+              <a className={`menu ${props.dark? 'dark' : ''} text-content`}>{t('sfm')}</a>
               <ul className={'dropdownSub'}>
                   <li>
-                      <Link to="/subjects" className={'subPages'}>{t('types of subjects of financial monitoring')}</Link>
+                      <Link to="/subjects" className={'subPages text-content'}>{t('types of subjects of financial monitoring')}</Link>
                   </li>
                   <li>
-                      <Link to="/rules" className={'subPages'}>{t('internal control rules')}</Link>
+                      <Link to="/rules" className={'subPages text-content'}>{t('internal control rules')}</Link>
                   </li>
                   <li>
-                      <Link to="/operations" className={'subPages'}>{t('transactions subject to financial monitoring')}</Link>
+                      <Link to="/operations" className={'subPages text-content'}>{t('transactions subject to financial monitoring')}</Link>
                   </li>
               </ul>
           </div>
@@ -321,6 +423,7 @@ const NavigationBar = (props) => {
               </ul>
           </div> */}
       </div>
+
   )
 }
 

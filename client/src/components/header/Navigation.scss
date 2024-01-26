@@ -22,9 +22,12 @@
             border-radius: 3px;
             padding: 10px;
             position: relative;
+            letter-spacing: inherit;
         
             .menu {
                 color: #FFF;
+                letter-spacing: inherit;
+
 
                 &.dark {
                     color: black;
