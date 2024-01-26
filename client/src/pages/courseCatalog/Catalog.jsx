@@ -232,12 +232,13 @@ function Catalog() {
                                 }
                             ]
                         },
-                        "paymentInfo": {
-                            "progress_percentage": 0,
-                            "payment_type": "KASPI.KZ",
-                            "payment_date": null,
-                            "status": "process"
-                        },
+                        "paymentInfo": null, 
+                        // {
+                        //     "progress_percentage": 0,
+                        //     "payment_type": "KASPI.KZ",
+                        //     "payment_date": null,
+                        //     "status": "process"
+                        // },
                         "shortStatus": 0
                     },
                     {
@@ -289,12 +290,13 @@ function Catalog() {
                                 }
                             ]
                         },
-                        "paymentInfo": {
-                            "progress_percentage": 0,
-                            "payment_type": "KASPI.KZ",
-                            "payment_date": null,
-                            "status": "process"
-                        },
+                        "paymentInfo": null, 
+                        // {
+                        //     "progress_percentage": 0,
+                        //     "payment_type": "KASPI.KZ",
+                        //     "payment_date": null,
+                        //     "status": "process"
+                        // },
                         "shortStatus": 0
                     }
                 ];
