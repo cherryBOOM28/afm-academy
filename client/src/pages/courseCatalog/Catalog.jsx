@@ -338,14 +338,14 @@ function Catalog() {
                             "course_id": 100,
                             "course_name": "Учебный курс по навыкам работы с виртуальными активами",
                             "course_price": 29000,
-                            "course_image": base64Course,
+                            "course_image": 'https://amlacademy.kz/aml/AMLCOURSEdefault%20%281%29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20240103%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240103T142301Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=9cbd540cc988a33b916bca982368fa1e363141c57c6f090b3ea6593c9fce66bd',
                             "course_for_member_of_the_system": "СФМ",
                             "duration": null,
                             "rating": 5,
                             "type_of_study": null,
                             "courseCategory": {
                                 "category_id": 1,
-                                "category_image": base64Course,
+                                "category_image": 'https://amlacademy.kz/aml/AMLCOURSEdefault%20%281%29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20240103%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240103T142301Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=9cbd540cc988a33b916bca982368fa1e363141c57c6f090b3ea6593c9fce66bd',
                                 "minio_image_name": "Screenshot 2023-11-04 at 23.43.20.png",
                                 "category_name": "AML ACADEMY"
                             },
@@ -396,14 +396,14 @@ function Catalog() {
                             "course_id": 101,
                             "course_name": "Общий порядок планирования досудебного расследования",
                             "course_price": 29000,
-                            "course_image": base64Course,
+                            "course_image": 'https://amlacademy.kz/aml/AMLCOURSEdefault%20%281%29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20240103%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240103T142301Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=9cbd540cc988a33b916bca982368fa1e363141c57c6f090b3ea6593c9fce66bd',
                             "course_for_member_of_the_system": "СФМ",
                             "duration": null,
                             "rating": 5,
                             "type_of_study": null,
                             "courseCategory": {
                                 "category_id": 1,
-                                "category_image": base64Course,
+                                "category_image": 'https://amlacademy.kz/aml/AMLCOURSEdefault%20%281%29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20240103%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240103T142301Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=9cbd540cc988a33b916bca982368fa1e363141c57c6f090b3ea6593c9fce66bd',
                                 "minio_image_name": "Screenshot 2023-11-04 at 23.43.20.png",
                                 "category_name": "AML ACADEMY"
                             },

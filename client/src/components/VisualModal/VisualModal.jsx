@@ -43,12 +43,16 @@ function VisualModal({
   const handleEnableSpeech = () => {
     setIsSpeechEnabled(true);
     setSpeechButtonActive(true);
+
+    console.log("on")
     speak("Синтетическая речь включена", selectedVoiceName);
   };
 
   const handleDisableSpeech = () => {
     setIsSpeechEnabled(false);
     setSpeechButtonActive(false);
+
+    console.log("off")
     speak("Синтетическая речь выключена");
   };
 
@@ -297,7 +301,7 @@ function VisualModal({
             <span>Синтетическая речь</span>
             <button
               onClick={() => handleEnableSpeech()}
-              disabled={!isSpeechEnabled}
+              disabled={isSpeechEnabled}
               className={`speech-button ${
                 speechButtonActive ? "active clicked" : ""
               }`}
