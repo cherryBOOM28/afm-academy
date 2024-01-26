@@ -44,6 +44,7 @@ import { StyleProvider } from './/components/VisualModal/StyleContext.jsx';
 
 import './settings/i18n.js';
 import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigationCourse/index.jsx';
+import ReadCourse from './pages/ReadCourse/index.jsx';
 
 function App() {
   const [fontStyle, setFontStyle] = useState('defaultFont'); // Default font style
@@ -117,14 +118,16 @@ function App() {
 
               {/* <Route path='/courses/testCourse' element={<TestCourse />}/> */}
 
+              <Route path='/courses/:id/read' element={<ReadCourse />} />
+
               <Route path='/courses/:id/' element={<BasicCourse />}/>
-              <Route path='/courses/:id/read' element={
+              <Route path='/courses/8/read' element={
                 // <PrivateRoute shouldBeLoggedIn={true} component={
                   <Basic_course />
                 // } redirect={'/courses/catalog'}/>
               }/>
-
               <Route path='/courses/100/read' element={<CryptoCourse />}/>
+              <Route path='/courses/101/read' element={<PlanningInvestigationCourse />}/>
 
               {/* <Route path='/payment' element={<PaymentPage />}/> */}
               <Route path='/payment/:id' element={<PaymentPage />} />
