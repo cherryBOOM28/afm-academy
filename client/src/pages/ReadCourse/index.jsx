@@ -14,7 +14,7 @@ import Reveal from './../../components/Reveal';
 import HeaderWithLine from './../../components/courseTemplates/common/HeaderWithLine';
 import NextLesson from './../../components/courseTemplates/complex/NextLesson';
 import CourseHeader from './../../components/courseTemplates/course-header';
-import { Module, Session } from './../../components/sessions/Sessions';
+import { Module, Session, TestSession } from './../../components/sessions/Sessions';
 
 import lectorImage from './lectorImage.png';
 import RandomGlossary from '../../components/courseTemplates/common/RandomGlossary';
@@ -55,6 +55,8 @@ import DropdownList_r5 from '../../components/courseTemplates/complex/interactiv
 import DragAndDropTwoSide from '../../components/courseTemplates/complex/DragAndDropTwoSide';
 import DropdownGlossaryList from '../../components/courseTemplates/complex/DropdownGlossaryList';
 import DataChain from '../../components/courseTemplates/complex/DataChain';
+import TestPage from '../../components/courseTemplates/complex/Test';
+import ModalWindow from '../../components/ModalWindow/ModalWindow';
 
 function ReadCourse() {
 
@@ -69,6 +71,11 @@ function ReadCourse() {
     const [isNavOpen, setIsNavOpen] = useState(true);
     const [activeSessionId, setActiveSessionId] = useState(1);
     const [activeModuleId, setActiveModuleId] = useState(1);
+    const [activeQuizId, setActiveQuizId] = useState(1);
+    const [isModuleQuiz, setIsModuleQuiz] = useState(false);
+
+    const [openQuizModal, setOpenQuizModal] = useState(false);
+    const [quizStatus, setQuizStatus] = useState('');
 
     const [courseProgress, setCourseProgress] = useState(0);
     
@@ -146,6 +153,31 @@ function ReadCourse() {
         scrollToTopAnimated();
         setActiveSessionId(lesson_id);
         setActiveModuleId(module_id);
+        setActiveQuizId(-1);
+        setIsModuleQuiz(false);
+    }
+
+    const handleTestSessionClick = (module_id, quiz_id) => {
+        console.log('Test is clicked');
+
+        setActiveQuizId(quiz_id);
+        setActiveModuleId(module_id);
+        setActiveSessionId(-1);
+        setIsModuleQuiz(true);
+    }
+
+    const handleQuizFail = (isFatal) => {
+        if (isFatal) setQuizStatus('fatal');
+        else setQuizStatus('fail');
+
+        setOpenQuizModal(true);
+    }
+
+    const handleQuizSuccesful = () => {
+        setQuizStatus('succesful');
+
+
+        setOpenQuizModal(true);
     }
 
     const checkCurrentChapter = (chapterNum) => {
@@ -187,7 +219,7 @@ function ReadCourse() {
         // Add other mappings as needed
     };
 
-    const getLesson = () => {
+    const getLesson = (isModuleQuiz) => {
 
         const activeModule = courseModules.find(module => module.module_id === activeModuleId)
 
@@ -195,7 +227,15 @@ function ReadCourse() {
             ? activeModule.lessons.find(lesson => lesson.lesson_id === activeSessionId)
             : null;
 
-        console.log(activeLesson);
+        if (isModuleQuiz && activeModule && activeModule.quiz) {
+            return (<TestPage 
+                name={activeModule.quiz.quiz_title}
+                quizId={activeModule.quiz.quiz_id}
+                questions={activeModule.quiz.quizList}
+                handleQuizFail={handleQuizFail}
+                handleQuizSuccesful={handleQuizSuccesful}
+            />)
+        }
 
         if (!activeLesson) {
             return null;
@@ -241,24 +281,73 @@ function ReadCourse() {
     return ( 
         <div className="read-course">
             <div className="course-wrapper">
+                {
+                    openQuizModal ? (
+                        <ModalWindow
+                            title={'Результат теста'}
+                            setShowModal={(val) => setOpenQuizModal(false)}
+                        >
+                            {
+                                quizStatus === 'fatal' ? (
+                                    <div className='modal-fatal'>
+                                        <p>
+                                            Вы провалили тест трижды. Рекомендуем перепройти модуль.
+                                        </p>
+                                    </div>
+                                ) : null
+                            }
+
+                            {
+                                quizStatus === 'fail' ? (
+                                    <div className='modal-fail'>
+                                        <p>
+                                            Вы провалили тест. Пройдите заново.
+                                        </p>
+                                    </div>
+                                ) : null
+                            }
+
+                            {
+                                quizStatus === 'successful' ? (
+                                    <div className='modal-successful'>
+                                        <p>
+                                            Вы успешно прошли тест.
+                                        </p>
+                                        {/* <button onClick={() => {
+                                            console.log(courseModules);
+
+                                            setOpenQuizModal(false);
+                                        }}>
+                                            Следующий урок
+                                        </button> */}
+                                    </div>
+                                ) : null
+                            }
+                        </ModalWindow> 
+                    ) : null
+                }
                 <CourseHeader
                     handleNavOpen={handleNavOpen}
                     courseName={courseName}
                 />
                 <div className="course-body">
                     <CourseNavigation
+                        course_id={id}
                         isNavOpen={isNavOpen}
                         activeSessionId={activeSessionId}
+                        isQuiz={isModuleQuiz}
+                        activeQuizId={activeQuizId}
                         handleSessionClick={handleSessionClick}
                         courseProgress={courseProgress}
                         courseName={courseName}
                         courseModules={courseModules}
+                        handleTestSessionClick={handleTestSessionClick}
                     />
 
                     <div className={isNavOpen ? "course-content open" : "course-content"}>
                         <div className="content">
                             {
-                                getLesson(activeSessionId)
+                                getLesson(isModuleQuiz)
                             }
                         </div>
                     </div>
@@ -269,12 +358,16 @@ function ReadCourse() {
 }
 
 const CourseNavigation = ({
+    course_id,
     isNavOpen,
     activeSessionId,
+    isQuiz,
+    activeQuizId,
     handleSessionClick,
     courseProgress,
     courseName,
-    courseModules
+    courseModules,
+    handleTestSessionClick
 }) => {
 
     const [currentModule, setCurrentModule] = useState(
@@ -292,6 +385,11 @@ const CourseNavigation = ({
     const _handleSessionClick = (lesson_id) => {
         handleSessionClick(currentModule, lesson_id);
     }
+
+    const _handleTestSessionClick = (quiz_id) => {
+        handleTestSessionClick(currentModule, quiz_id);
+    }
+
 
     return (
         <div className={isNavOpen ? "course-nav" : "course-nav hide"}>
@@ -326,7 +424,8 @@ const CourseNavigation = ({
                                     const lesson_id = lesson.lesson_id;
                                     const lesson_name = lesson.topic;
 
-                                    return <Session 
+                                    return <Session
+                                        courseId={course_id}
                                         session={{
                                             id: lesson_id,
                                             name: lesson_name,
@@ -337,20 +436,21 @@ const CourseNavigation = ({
                                 })
                             }
 
-                            {/* {
+                            {
                                 module_quiz 
                                     ? (
-                                        <Session 
+                                        <TestSession
+                                            course_id={course_id}
                                             session={{
                                                 id: module_quiz.quiz_id,
-                                                name: module_quiz.title,
+                                                name: module_quiz.quiz_title,
                                             }}
-                                            handleSessionClick={_handleSessionClick}
-                                            isActive={module_quiz.quiz_id === activeSessionId}
+                                            handleSessionClick={() => _handleTestSessionClick(module_quiz.quiz_id)}
+                                            isActive={isQuiz && activeQuizId === module_quiz.quiz_id}
                                         />
                                     )
                                     : null 
-                            } */}
+                            }
 
                         </Module>
                     })
