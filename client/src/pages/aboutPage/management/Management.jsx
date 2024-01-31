@@ -15,7 +15,7 @@ import { useStyle } from "../../../components/VisualModal/StyleContext";
 import VisualModal from "../../../components/VisualModal/VisualModal";
 
 function Management() {
-  const { styles, open, setOpen, userEntry } = useStyle();
+  const { styles, open, setOpen, userEntry, checkStyle } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
   const [letterInterval, setLetterInterval] = useState("standard");
   const { t } = useTranslation();
@@ -25,6 +25,8 @@ function Management() {
   const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
+    if(!checkStyle) return;
+
     console.log(userEntry)
     if (userEntry) return; 
     const textContentElement = document.querySelectorAll(".text-content");

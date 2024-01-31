@@ -75,7 +75,7 @@ function Home() {
   const toAbout = () => {
     navigate("/about");
   };
-  const { styles, open, setOpen, userEntry } = useStyle();
+  const { styles, open, setOpen, userEntry, checkStyle } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
   const [letterInterval, setLetterInterval] = useState("standard");
   const { t } = useTranslation();
@@ -86,6 +86,7 @@ function Home() {
   const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
+    if(!checkStyle) return;
     console.log(userEntry)
     if (userEntry) return; 
 
