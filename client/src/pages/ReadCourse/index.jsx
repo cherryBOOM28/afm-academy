@@ -175,7 +175,7 @@ function ReadCourse() {
     }
 
     const handleQuizSuccesful = () => {
-        setQuizStatus('succesful');
+        setQuizStatus('successful');
 
 
         setOpenQuizModal(true);
@@ -243,6 +243,7 @@ function ReadCourse() {
                 console.log(_lesson.lesson_id)
                 const res = await axios.post(
                     `${base_url}/api/aml/chapter/checked/${_lesson.lesson_id}`,
+                    {},
                     {
                         headers: {
                             Authorization : `Bearer ${jwtToken}`,
@@ -402,13 +403,6 @@ function ReadCourse() {
                                         <p>
                                             Вы успешно прошли тест.
                                         </p>
-                                        {/* <button onClick={() => {
-                                            console.log(courseModules);
-
-                                            setOpenQuizModal(false);
-                                        }}>
-                                            Следующий урок
-                                        </button> */}
                                     </div>
                                 ) : null
                             }
@@ -530,6 +524,7 @@ const CourseNavigation = ({
                                 module_quiz 
                                     ? (
                                         <TestSession
+                                            checked={module_quiz.quiz_max_points === 100}
                                             course_id={course_id}
                                             session={{
                                                 id: module_quiz.quiz_id,

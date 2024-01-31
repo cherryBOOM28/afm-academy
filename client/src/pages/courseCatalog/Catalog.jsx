@@ -32,311 +32,311 @@ import VisualModal from "../../components/VisualModal/VisualModal";
 
 function Catalog() {
 
-  const { styles, open, setOpen, userEntry, checkStyle } = useStyle();
+    const { styles, open, setOpen, userEntry, checkStyle } = useStyle();
     const [imagesHidden, setImagesHidden] = useState(false);
     const [letterInterval, setLetterInterval] = useState("standard");
     const { t } = useTranslation();
     const { i18n } = useTranslation();
     const currentLanguage = i18n.language;
-  
+
     const [activeTab, setActiveTab] = useState(1);
-  
+
     useEffect(() => {
-      const textContentElement = document.querySelectorAll(".text-content");
-      const size = styles.fontSize;
-      setImagesHidden(!styles.showImage);
-  
-      if (textContentElement) {
-        textContentElement.forEach((item) => {
-          switch (size) {
-            case "small":
-              item.style.fontSize = "15px";
-              item.style.lineHeight = "17px";
-              break;
-            case "standard":
-              item.style.fontSize = "20px";
-              item.style.lineHeight = "22px";
-              break;
-            case "large":
-              item.style.fontSize = "24px";
-              item.style.lineHeight = "26px";
-              break;
-            default:
-              break;
-          }
-        });
-      }
-  
-      handleColorModeChange();
+        const textContentElement = document.querySelectorAll(".text-content");
+        const size = styles.fontSize;
+        setImagesHidden(!styles.showImage);
+
+        if (textContentElement) {
+            textContentElement.forEach((item) => {
+                switch (size) {
+                    case "small":
+                        item.style.fontSize = "15px";
+                        item.style.lineHeight = "17px";
+                        break;
+                    case "standard":
+                        item.style.fontSize = "20px";
+                        item.style.lineHeight = "22px";
+                        break;
+                    case "large":
+                        item.style.fontSize = "24px";
+                        item.style.lineHeight = "26px";
+                        break;
+                    default:
+                        break;
+                }
+            });
+        }
+
+        handleColorModeChange();
     }, []);
     const handleColorModeChange = (mode) => {
-      // Remove previous color mode classes
-      const containerElement = document.querySelector(".text-content");
-      if (containerElement) {
-        containerElement.classList.remove(
-          "light-mode",
-          "dark-mode",
-          "inverted-mode",
-          "blue-mode",
-        );
-      }
-  
-      const { colorMode } = styles;
-  
-      if (containerElement) {
-        containerElement.classList.add(colorMode + "-mode");
-      }
+        // Remove previous color mode classes
+        const containerElement = document.querySelector(".text-content");
+        if (containerElement) {
+            containerElement.classList.remove(
+                "light-mode",
+                "dark-mode",
+                "inverted-mode",
+                "blue-mode",
+            );
+        }
+
+        const { colorMode } = styles;
+
+        if (containerElement) {
+            containerElement.classList.add(colorMode + "-mode");
+        }
     };
-  
+
     const handleTabClick = (tabIndex) => {
-      setActiveTab(tabIndex);
+        setActiveTab(tabIndex);
     };
     const handleOpenVisualModal = () => {
-      console.log("OPEN");
-      setOpenVisualModal((prev) => !prev);
-      setOpen((prev) => !prev);
+        console.log("OPEN");
+        setOpenVisualModal((prev) => !prev);
+        setOpen((prev) => !prev);
     };
     const [openVisualModal, setOpenVisualModal] = useState(open);
-  
+
     const handleRemoveImages = () => {
-      console.log("Images hidden");
-  
-      setImagesHidden(true);
+        console.log("Images hidden");
+
+        setImagesHidden(true);
     };
-  
+
     const handleShowImages = () => {
-      setImagesHidden(false);
+        setImagesHidden(false);
     };
-  
+
     const handleIntervalChange = (interval) => {
-      console.log("Interval changed");
-      setLetterInterval(interval);
+        console.log("Interval changed");
+        setLetterInterval(interval);
     };
-  
+
     const getShowImage = () => {
-      return imagesHidden;
+        return imagesHidden;
     };
-  
+
     const getLetterSpacing = (interval) => {
-      interval = styles.letterInterval;
-  
-      switch (interval) {
-        case "medium":
-          return "2px";
-        case "large":
-          return "4px";
-        default:
-          return "1px";
-      }
+        interval = styles.letterInterval;
+
+        switch (interval) {
+            case "medium":
+                return "2px";
+            case "large":
+                return "4px";
+            default:
+                return "1px";
+        }
     };
     useEffect(() => {
-      const textContentElement = document.querySelector(".text-content");
-      const family = styles.fontFamily;
-  
-      if (family) {
-        textContentElement.style.fontFamily = family;
-      }
+        const textContentElement = document.querySelector(".text-content");
+        const family = styles.fontFamily;
+
+        if (family) {
+            textContentElement.style.fontFamily = family;
+        }
     }, []);
 
 
-  useEffect(() => {
-    if(!checkStyle) return;
+    useEffect(() => {
+        if(!checkStyle) return;
 
-    console.log(userEntry)
-    if (userEntry) return; 
+        console.log(userEntry)
+        if (userEntry) return;
 
-    const textContentElement = document.querySelectorAll(".text-content");
-    const size = styles.fontSize;
-    setImagesHidden(!styles.showImage);
+        const textContentElement = document.querySelectorAll(".text-content");
+        const size = styles.fontSize;
+        setImagesHidden(!styles.showImage);
 
-    if (textContentElement) {
-      textContentElement.forEach((item) => {
-        switch (size) {
-          case "small":
-            item.style.fontSize = "15px";
-            item.style.lineHeight = "17px";
-            break;
-          case "standard":
-            item.style.fontSize = "20px";
-            item.style.lineHeight = "22px";
-            break;
-          case "large":
-            item.style.fontSize = "24px";
-            item.style.lineHeight = "26px";
-            break;
-          default:
-            break;
+        if (textContentElement) {
+            textContentElement.forEach((item) => {
+                switch (size) {
+                    case "small":
+                        item.style.fontSize = "15px";
+                        item.style.lineHeight = "17px";
+                        break;
+                    case "standard":
+                        item.style.fontSize = "20px";
+                        item.style.lineHeight = "22px";
+                        break;
+                    case "large":
+                        item.style.fontSize = "24px";
+                        item.style.lineHeight = "26px";
+                        break;
+                    default:
+                        break;
+                }
+            });
         }
-      });
-    }
 
-    handleColorModeChange();
-  }, []);
-  
+        handleColorModeChange();
+    }, []);
 
-  useEffect(() => {
-    const textContentElement = document.querySelector(".text-content");
-    const family = styles.fontFamily;
 
-    if (family) {
-      textContentElement.style.fontFamily = family;
-    }
-  }, []);
+    useEffect(() => {
+        const textContentElement = document.querySelector(".text-content");
+        const family = styles.fontFamily;
 
-  const navigate = useNavigate();
-
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [isLoading, setLoading] = useState(true);
-
-  const [coursesByCategory, setCoursesByCategory] = useState(null);
-
-  const jwtToken = localStorage.getItem("jwtToken");
-
-  const [categoryOpen, setCategoryOpen] = useState(false);
-  const [filterOpen, setFilterOpen] = useState(false);
-  const [categoryFilter, setCategoryFilter] = useState(["Все категории"]);
-  const [searchValue, setSearchValue] = useState("");
-
-  const handleCheckCategory = (e) => {
-    const selectedCategory = e.target.value;
-    setCategoryFilter((prevFilters) => {
-      if (!e.target.checked) {
-        return prevFilters.filter((filter) => filter !== selectedCategory);
-      } else {
-        prevFilters = prevFilters.filter(
-          (filter) => filter !== "Все категории"
-        );
-        return [...prevFilters, selectedCategory];
-      }
-    });
-  };
-
-  const handleCheckAllCategories = (e) => {
-    if (!e.target.checked) {
-      setCategoryFilter([]);
-    } else {
-      setCategoryFilter(["Все категории"]);
-    }
-  };
-
-  const handleChangeSearchValue = (e) => {
-    setSearchValue(e.target.value);
-  };
-
-  useEffect(() => {
-    if (!data) return;
-
-    if (searchValue === "") {
-      const _coursesByCategory = {};
-      data.forEach((course) => {
-        const categoryName = course.courseDTO.courseCategory.category_name;
-        if (!_coursesByCategory[categoryName]) {
-          _coursesByCategory[categoryName] = [];
+        if (family) {
+            textContentElement.style.fontFamily = family;
         }
-        _coursesByCategory[categoryName].push(course);
-      });
-      setCoursesByCategory(_coursesByCategory);
-    } else {
-      const _coursesByCategory = {};
-      data
-        .filter(
-          (course) =>
-            course.courseDTO.course_name
-              .toLowerCase()
-              .indexOf(searchValue.toLowerCase()) != -1 ||
-            course.courseDTO.courseCategory.category_name
-              .toLowerCase()
-              .indexOf(searchValue.toLowerCase()) != -1
-        )
-        .forEach((course) => {
-          const categoryName = course.courseDTO.courseCategory.category_name;
-          if (!_coursesByCategory[categoryName]) {
-            _coursesByCategory[categoryName] = [];
-          }
-          _coursesByCategory[categoryName].push(course);
+    }, []);
+
+    const navigate = useNavigate();
+
+    const [data, setData] = useState(null);
+    const [error, setError] = useState(null);
+    const [isLoading, setLoading] = useState(true);
+
+    const [coursesByCategory, setCoursesByCategory] = useState(null);
+
+    const jwtToken = localStorage.getItem("jwtToken");
+
+    const [categoryOpen, setCategoryOpen] = useState(false);
+    const [filterOpen, setFilterOpen] = useState(false);
+    const [categoryFilter, setCategoryFilter] = useState(["Все категории"]);
+    const [searchValue, setSearchValue] = useState("");
+
+    const handleCheckCategory = (e) => {
+        const selectedCategory = e.target.value;
+        setCategoryFilter((prevFilters) => {
+            if (!e.target.checked) {
+                return prevFilters.filter((filter) => filter !== selectedCategory);
+            } else {
+                prevFilters = prevFilters.filter(
+                    (filter) => filter !== "Все категории"
+                );
+                return [...prevFilters, selectedCategory];
+            }
         });
-      setCoursesByCategory(_coursesByCategory);
-    }
-  }, [searchValue]);
+    };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const url = "/api/aml/course/getUserCourses";
-        const url1 = "/api/aml/course/getUserCoursesNoPr";
-        let response = null; // Use let instead of const for response to allow reassignment
-        if (jwtToken != null) {
-          response = await axios.get(`${base_url}${url}`, {
-            headers: {
-              Authorization: `Bearer ${jwtToken}`,
-            },
-          });
+    const handleCheckAllCategories = (e) => {
+        if (!e.target.checked) {
+            setCategoryFilter([]);
         } else {
-          response = await axios.get(`${base_url}${url1}`);
+            setCategoryFilter(["Все категории"]);
         }
-        console.log(response);
-        // setData([...response.data,
-        //     {
-        //     "id": 0,
-        //     "courseDTO": {
-        //         "course_id": 100,
-        //         "course_name": "Учебный курс по навыкам работы с виртуальными активами",
-        //         "course_price": 29000,
-        //         "course_image": "https://amlacademy.kz/aml/AMLCOURSEdefault%20%281%29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20240103%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240103T142301Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=9cbd540cc988a33b916bca982368fa1e363141c57c6f090b3ea6593c9fce66bd",
-        //         "course_for_member_of_the_system": "СФМ",
-        //         "duration": null,
-        //         "rating": 5,
-        //         "type_of_study": null,
-        //         "courseCategory": {
-        //             "category_id": 1,
-        //             "category_image": "https://amlacademy.kz/aml/Screenshot%202023-11-04%20at%2023.43.20.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20231213%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231213T142301Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=af8aa065e5cc9cd3d9a7c1a290e84412ae4656c70b38f00e3e9b1a579ecc2c3c",
-        //             "minio_image_name": "Screenshot 2023-11-04 at 23.43.20.png",
-        //             "category_name": "AML ACADEMY"
-        //         },
-        //         "courseComments": [
-        //             {
-        //                 "course_comment_id": 27,
-        //                 "comment": "Очень интересный курс",
-        //                 "rate": 5,
-        //                 "user": {
-        //                     "user_id": 30,
-        //                     "firstname": "Дамир",
-        //                     "lastname": "Бегенов",
-        //                     "patronymic": "Арманович",
-        //                     "email": "damir_ps@mail.ru",
-        //                     "phone_number": "87707707581",
-        //                     "password": "$2a$10$ztyuWcAYW6eMvxDX1AfWU.py/EeNqA2gAWQGjD7zPQ7q1ZblqpSI.",
-        //                     "member_of_the_system": null,
-        //                     "type_of_member": null,
-        //                     "job_name": null,
-        //                     "verificationCode": "c25d302b-59fb-4416-aa25-947c9129c7e7",
-        //                     "enabled": true,
-        //                     "accountNonExpired": true,
-        //                     "accountNonLocked": true,
-        //                     "credentialsNonExpired": true,
-        //                     "username": "damir_ps@mail.ru",
-        //                     "authorities": [
-        //                         {
-        //                             "authority": "ROLE_STUDENT"
-        //                         }
-        //                     ],
-        //                     "_active": true
-        //                 }
-        //             }
-        //         ]
-        //     },
-        //     "paymentInfo": {
-        //         "progress_percentage": 0,
-        //         "payment_type": "KASPI.KZ",
-        //         "payment_date": null,
-        //         "status": "process"
-        //     },
-        //     "shortStatus": 0
-        // }])
+    };
+
+    const handleChangeSearchValue = (e) => {
+        setSearchValue(e.target.value);
+    };
+
+    useEffect(() => {
+        if (!data) return;
+
+        if (searchValue === "") {
+            const _coursesByCategory = {};
+            data.forEach((course) => {
+                const categoryName = course.courseDTO.courseCategory.category_name;
+                if (!_coursesByCategory[categoryName]) {
+                    _coursesByCategory[categoryName] = [];
+                }
+                _coursesByCategory[categoryName].push(course);
+            });
+            setCoursesByCategory(_coursesByCategory);
+        } else {
+            const _coursesByCategory = {};
+            data
+                .filter(
+                    (course) =>
+                        course.courseDTO.course_name
+                            .toLowerCase()
+                            .indexOf(searchValue.toLowerCase()) != -1 ||
+                        course.courseDTO.courseCategory.category_name
+                            .toLowerCase()
+                            .indexOf(searchValue.toLowerCase()) != -1
+                )
+                .forEach((course) => {
+                    const categoryName = course.courseDTO.courseCategory.category_name;
+                    if (!_coursesByCategory[categoryName]) {
+                        _coursesByCategory[categoryName] = [];
+                    }
+                    _coursesByCategory[categoryName].push(course);
+                });
+            setCoursesByCategory(_coursesByCategory);
+        }
+    }, [searchValue]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const url = "/api/aml/course/getUserCourses";
+                const url1 = "/api/aml/course/getUserCoursesNoPr";
+                let response = null; // Use let instead of const for response to allow reassignment
+                if (jwtToken != null) {
+                    response = await axios.get(`${base_url}${url}`, {
+                        headers: {
+                            Authorization: `Bearer ${jwtToken}`,
+                        },
+                    });
+                } else {
+                    response = await axios.get(`${base_url}${url1}`);
+                }
+                console.log(response);
+                // setData([...response.data,
+                //     {
+                //     "id": 0,
+                //     "courseDTO": {
+                //         "course_id": 100,
+                //         "course_name": "Учебный курс по навыкам работы с виртуальными активами",
+                //         "course_price": 29000,
+                //         "course_image": "https://amlacademy.kz/aml/AMLCOURSEdefault%20%281%29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20240103%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240103T142301Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=9cbd540cc988a33b916bca982368fa1e363141c57c6f090b3ea6593c9fce66bd",
+                //         "course_for_member_of_the_system": "СФМ",
+                //         "duration": null,
+                //         "rating": 5,
+                //         "type_of_study": null,
+                //         "courseCategory": {
+                //             "category_id": 1,
+                //             "category_image": "https://amlacademy.kz/aml/Screenshot%202023-11-04%20at%2023.43.20.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20231213%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231213T142301Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=af8aa065e5cc9cd3d9a7c1a290e84412ae4656c70b38f00e3e9b1a579ecc2c3c",
+                //             "minio_image_name": "Screenshot 2023-11-04 at 23.43.20.png",
+                //             "category_name": "AML ACADEMY"
+                //         },
+                //         "courseComments": [
+                //             {
+                //                 "course_comment_id": 27,
+                //                 "comment": "Очень интересный курс",
+                //                 "rate": 5,
+                //                 "user": {
+                //                     "user_id": 30,
+                //                     "firstname": "Дамир",
+                //                     "lastname": "Бегенов",
+                //                     "patronymic": "Арманович",
+                //                     "email": "damir_ps@mail.ru",
+                //                     "phone_number": "87707707581",
+                //                     "password": "$2a$10$ztyuWcAYW6eMvxDX1AfWU.py/EeNqA2gAWQGjD7zPQ7q1ZblqpSI.",
+                //                     "member_of_the_system": null,
+                //                     "type_of_member": null,
+                //                     "job_name": null,
+                //                     "verificationCode": "c25d302b-59fb-4416-aa25-947c9129c7e7",
+                //                     "enabled": true,
+                //                     "accountNonExpired": true,
+                //                     "accountNonLocked": true,
+                //                     "credentialsNonExpired": true,
+                //                     "username": "damir_ps@mail.ru",
+                //                     "authorities": [
+                //                         {
+                //                             "authority": "ROLE_STUDENT"
+                //                         }
+                //                     ],
+                //                     "_active": true
+                //                 }
+                //             }
+                //         ]
+                //     },
+                //     "paymentInfo": {
+                //         "progress_percentage": 0,
+                //         "payment_type": "KASPI.KZ",
+                //         "payment_date": null,
+                //         "status": "process"
+                //     },
+                //     "shortStatus": 0
+                // }])
 
                 let courses = [
-                    ...response.data, 
+                    ...response.data,
                     {
                         "id": 0,
                         "courseDTO": {
@@ -386,7 +386,7 @@ function Catalog() {
                                 }
                             ]
                         },
-                        "paymentInfo": null, 
+                        "paymentInfo": null,
                         // {
                         //     "progress_percentage": 0,
                         //     "payment_type": "KASPI.KZ",
@@ -444,7 +444,7 @@ function Catalog() {
                                 }
                             ]
                         },
-                        "paymentInfo": null, 
+                        "paymentInfo": null,
                         // {
                         //     "progress_percentage": 0,
                         //     "payment_type": "KASPI.KZ",
@@ -456,185 +456,185 @@ function Catalog() {
                 ];
                 // courses = response.data
 
-        const _coursesByCategory = {};
+                const _coursesByCategory = {};
 
-        if (response.status === 200) {
-          courses.forEach((course) => {
-            const categoryName = course.courseDTO.courseCategory.category_name;
-            if (!_coursesByCategory[categoryName]) {
-              _coursesByCategory[categoryName] = [];
+                if (response.status === 200) {
+                    courses.forEach((course) => {
+                        const categoryName = course.courseDTO.courseCategory.category_name;
+                        if (!_coursesByCategory[categoryName]) {
+                            _coursesByCategory[categoryName] = [];
+                        }
+                        _coursesByCategory[categoryName].push(course);
+                    });
+
+                    // console.log(_coursesByCategory)
+                    setCoursesByCategory(_coursesByCategory);
+                    setData(response.data);
+                } else {
+                    // Handle other status codes if needed
+                    setError(response.statusText);
+                    // console.log(response.statusText);
+                }
+
+                // Iterate through the courses and categorize them
+            } catch (error) {
+                setError(error);
+                console.error(error);
             }
-            _coursesByCategory[categoryName].push(course);
-          });
 
-          // console.log(_coursesByCategory)
-          setCoursesByCategory(_coursesByCategory);
-          setData(response.data);
-        } else {
-          // Handle other status codes if needed
-          setError(response.statusText);
-          // console.log(response.statusText);
-        }
+            setLoading(false);
+        };
 
-        // Iterate through the courses and categorize them
-      } catch (error) {
-        setError(error);
-        console.error(error);
-      }
+        fetchData();
+    }, []);
 
-      setLoading(false);
-    };
-
-    fetchData();
-  }, []);
-
-  return (
-    <div
-      className="catalog-page"
-      style={{
-        background:
-          styles.colorMode === "dark"
-            ? "#000"
-            : styles.colorMode === "light"
-            ? "#fff"
-            : styles.colorMode === "blue"
-            ? "#9dd1ff"
-            : "#000",
-        color:
-          styles.colorMode === "dark"
-            ? "#fff"
-            : styles.colorMode === "light"
-            ? "#343434"
-            : styles.colorMode === "blue"
-            ? "#063462"
-            : "#000",
-      }}
-    >
-      <VisualModal
-        open={openVisualModal}
-        onRemoveImages={handleRemoveImages}
-        onShowImages={handleShowImages}
-        onFontFamily={() => {}}
-        onIntervalChange={() => {}}
-        styles={styles}
-      />
-      <Header
-        dark={styles.colorMode == "dark" ? false : true}
-        handleOpenVisualModal={handleOpenVisualModal}
-      />
-      <div>
-        <div className="container"></div>
-      </div>
-
-      <main className="page-content">
-        <div className="catalog-header">
-          <div className="container">
-            <div className="header-title">
-              <h3
-                style={{
-                  color:
-                    styles.colorMode === "dark"
-                      ? "#fff"
-                      : styles.colorMode === "light"
-                      ? "#3A3939"
-                      : styles.colorMode === "blue"
-                      ? "#063462"
-                      : "#000",
-                }}
-              >
-                Каталог курсов
-              </h3>
-            </div>
-            <div
-              className="header-actions"
-              style={{
+    return (
+        <div
+            className="catalog-page"
+            style={{
                 background:
-                  styles.colorMode === "dark"
-                    ? "#000"
-                    : styles.colorMode === "light"
-                    ? "#fff"
-                    : styles.colorMode === "blue"
-                    ? "#9dd1ff"
-                    : "#000",
-              }}
-            >
-              <div className="filters">
-                <div>
-                  <div
-                    onClick={() => {
-                      setCategoryOpen((prev) => !prev);
-                      setFilterOpen(false);
-                    }}
-                  >
-                    <AiFillFolder size={20} className="icon" />
-                    <span
-                      className="inline-text"
-                      style={{
-                        color:
-                          styles.colorMode === "dark"
+                    styles.colorMode === "dark"
+                        ? "#000"
+                        : styles.colorMode === "light"
                             ? "#fff"
-                            : styles.colorMode === "light"
-                            ? "#343434"
                             : styles.colorMode === "blue"
-                            ? "#063462"
-                            : "#000",
-                      }}
-                    >
-                      {t("categories")}
-                    </span>
-                  </div>
-                  <div
-                    className="categories"
-                    style={{
-                      display: categoryOpen ? "flex" : "none",
-                    }}
-                    onMouseLeave={() => {
-                      setCategoryOpen(false);
-                    }}
-                  >
-                    <div>
-                      <input
-                        onChange={handleCheckAllCategories}
-                        checked={categoryFilter.includes("Все категории")}
-                        type="checkbox"
-                        value={"Все категории"}
-                      />
-                      <label className="inline-text">
-                        {t("all categories")}
-                      </label>
-                    </div>
-                    {Object.keys(coursesByCategory || {}).map((category) => {
-                      const isChecked =
-                        categoryFilter.includes(category) &&
-                        !category.includes("Все категории");
-
-                      return (
-                        <div
-                          key={category}
-                          style={{
-                            background:
-                              styles.colorMode === "dark"
-                                ? "#000"
-                                : styles.colorMode === "light"
-                                ? "#f2f2f2"
-                                : styles.colorMode === "blue"
                                 ? "#9dd1ff"
                                 : "#000",
-                          }}
-                        >
-                          <input
-                            onChange={handleCheckCategory}
-                            checked={isChecked}
-                            type="checkbox"
-                            value={category}
-                          />
-                          <label>{category}</label>
+                color:
+                    styles.colorMode === "dark"
+                        ? "#fff"
+                        : styles.colorMode === "light"
+                            ? "#343434"
+                            : styles.colorMode === "blue"
+                                ? "#063462"
+                                : "#000",
+            }}
+        >
+            <VisualModal
+                open={openVisualModal}
+                onRemoveImages={handleRemoveImages}
+                onShowImages={handleShowImages}
+                onFontFamily={() => {}}
+                onIntervalChange={() => {}}
+                styles={styles}
+            />
+            <Header
+                dark={styles.colorMode == "dark" ? false : true}
+                handleOpenVisualModal={handleOpenVisualModal}
+            />
+            <div>
+                <div className="container"></div>
+            </div>
+
+            <main className="page-content">
+                <div className="catalog-header">
+                    <div className="container">
+                        <div className="header-title">
+                            <h3
+                                style={{
+                                    color:
+                                        styles.colorMode === "dark"
+                                            ? "#fff"
+                                            : styles.colorMode === "light"
+                                                ? "#3A3939"
+                                                : styles.colorMode === "blue"
+                                                    ? "#063462"
+                                                    : "#000",
+                                }}
+                            >
+                                Каталог курсов
+                            </h3>
                         </div>
-                      );
-                    })}
-                  </div>
-                </div>
-                {/* <div>
+                        <div
+                            className="header-actions"
+                            style={{
+                                background:
+                                    styles.colorMode === "dark"
+                                        ? "#000"
+                                        : styles.colorMode === "light"
+                                            ? "#fff"
+                                            : styles.colorMode === "blue"
+                                                ? "#9dd1ff"
+                                                : "#000",
+                            }}
+                        >
+                            <div className="filters">
+                                <div>
+                                    <div
+                                        onClick={() => {
+                                            setCategoryOpen((prev) => !prev);
+                                            setFilterOpen(false);
+                                        }}
+                                    >
+                                        <AiFillFolder size={20} className="icon" />
+                                        <span
+                                            className="inline-text"
+                                            style={{
+                                                color:
+                                                    styles.colorMode === "dark"
+                                                        ? "#fff"
+                                                        : styles.colorMode === "light"
+                                                            ? "#343434"
+                                                            : styles.colorMode === "blue"
+                                                                ? "#063462"
+                                                                : "#000",
+                                            }}
+                                        >
+                      {t("categories")}
+                    </span>
+                                    </div>
+                                    <div
+                                        className="categories"
+                                        style={{
+                                            display: categoryOpen ? "flex" : "none",
+                                        }}
+                                        onMouseLeave={() => {
+                                            setCategoryOpen(false);
+                                        }}
+                                    >
+                                        <div>
+                                            <input
+                                                onChange={handleCheckAllCategories}
+                                                checked={categoryFilter.includes("Все категории")}
+                                                type="checkbox"
+                                                value={"Все категории"}
+                                            />
+                                            <label className="inline-text">
+                                                {t("all categories")}
+                                            </label>
+                                        </div>
+                                        {Object.keys(coursesByCategory || {}).map((category) => {
+                                            const isChecked =
+                                                categoryFilter.includes(category) &&
+                                                !category.includes("Все категории");
+
+                                            return (
+                                                <div
+                                                    key={category}
+                                                    style={{
+                                                        background:
+                                                            styles.colorMode === "dark"
+                                                                ? "#000"
+                                                                : styles.colorMode === "light"
+                                                                    ? "#f2f2f2"
+                                                                    : styles.colorMode === "blue"
+                                                                        ? "#9dd1ff"
+                                                                        : "#000",
+                                                    }}
+                                                >
+                                                    <input
+                                                        onChange={handleCheckCategory}
+                                                        checked={isChecked}
+                                                        type="checkbox"
+                                                        value={category}
+                                                    />
+                                                    <label>{category}</label>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                                {/* <div>
                                     <div onClick={() => {
                                         setFilterOpen(prev => !prev);
                                         setCategoryOpen(false);
@@ -656,172 +656,172 @@ function Catalog() {
                                         <div>Category 3</div>
                                     </div>
                                 </div> */}
-              </div>
-              <div
-                className="search"
-                style={{
-                  background:
-                    styles.colorMode === "dark"
-                      ? "#000"
-                      : styles.colorMode === "light"
-                      ? "#fff"
-                      : styles.colorMode === "blue"
-                      ? "#9dd1ff"
-                      : "#000",
-                }}
-              >
-                <BiSearch size={20} className="icon" />
-                <input
-                  type="text"
-                  value={searchValue}
-                  onChange={handleChangeSearchValue}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+                            </div>
+                            <div
+                                className="search"
+                                style={{
+                                    background:
+                                        styles.colorMode === "dark"
+                                            ? "#000"
+                                            : styles.colorMode === "light"
+                                                ? "#fff"
+                                                : styles.colorMode === "blue"
+                                                    ? "#9dd1ff"
+                                                    : "#000",
+                                }}
+                            >
+                                <BiSearch size={20} className="icon" />
+                                <input
+                                    type="text"
+                                    value={searchValue}
+                                    onChange={handleChangeSearchValue}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        {isLoading ? (
-          <div className="container">
-            <div
-              className="loading"
-              style={{
-                margin: "20px 0px",
-              }}
-            >
-              <div>загружаем</div>
-              <div>загружаем</div>
-              <div>загружаем</div>
-              {/* <div>загружаем</div>
+                {isLoading ? (
+                    <div className="container">
+                        <div
+                            className="loading"
+                            style={{
+                                margin: "20px 0px",
+                            }}
+                        >
+                            <div>загружаем</div>
+                            <div>загружаем</div>
+                            <div>загружаем</div>
+                            {/* <div>загружаем</div>
                                 <div>загружаем</div> */}
-            </div>
-          </div>
-        ) : coursesByCategory !== null ? (
-          Object.keys(coursesByCategory).map((categoryName) => {
-            if (
-              !categoryFilter.includes("Все категории") &&
-              !categoryFilter.includes(categoryName)
-            )
-              return;
+                        </div>
+                    </div>
+                ) : coursesByCategory !== null ? (
+                    Object.keys(coursesByCategory).map((categoryName) => {
+                        if (
+                            !categoryFilter.includes("Все категории") &&
+                            !categoryFilter.includes(categoryName)
+                        )
+                            return;
 
-            return (
-              <CoursesBlock
-                key={categoryName}
-                categoryName={categoryName}
-                categoryDesc={categoryName}
-                courses={coursesByCategory[categoryName]}
-              />
-            );
-          })
-        ) : null}
-      </main>
+                        return (
+                            <CoursesBlock
+                                key={categoryName}
+                                categoryName={categoryName}
+                                categoryDesc={categoryName}
+                                courses={coursesByCategory[categoryName]}
+                            />
+                        );
+                    })
+                ) : null}
+            </main>
 
-      <Footer />
-    </div>
-  );
+            <Footer />
+        </div>
+    );
 }
 
 const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
-  // console.log(categoryName, courses);
+    // console.log(categoryName, courses);
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const filteredCourses = courses.filter(
-    (course) => course.courseDTO.courseCategory.category_name === categoryName
-  );
+    const filteredCourses = courses.filter(
+        (course) => course.courseDTO.courseCategory.category_name === categoryName
+    );
 
-  // if (filteredCourses.length === 0) {
-  //     return null;
-  // }
+    // if (filteredCourses.length === 0) {
+    //     return null;
+    // }
 
-  return (
-    <>
-      <div className="container">
-        <h1
-          className="inline-text"
-          style={{
-            fontFamily: "Ubuntu",
-            fontSize: "20px",
-            fontWeight: "500",
-            lineHeight: "23px",
-            letterSpacing: "0em",
-            textAlign: "left",
-          }}
-        >
-          {categoryName}
-        </h1>
-        <p
-          className="inline-text"
-          style={{
-            fontFamily: "Ubuntu",
-            fontSize: "16px",
-            fontWeight: "400",
-            lineHeight: "19px",
-            letterSpacing: "0em",
-            textAlign: "left",
-            color: "#656678",
-          }}
-        >
-          {categoryDesc}
-        </p>
-      </div>
-      <div className="courses-block container">
-        {filteredCourses
-          .sort((a, b) => a.shortStatus - b.shortStatus)
-          .map((course, index) => {
-            const courseDTO = course.courseDTO;
-            const { course_image, course_name } = courseDTO;
-            const { paymentInfo } = course;
+    return (
+        <>
+            <div className="container">
+                <h1
+                    className="inline-text"
+                    style={{
+                        fontFamily: "Ubuntu",
+                        fontSize: "20px",
+                        fontWeight: "500",
+                        lineHeight: "23px",
+                        letterSpacing: "0em",
+                        textAlign: "left",
+                    }}
+                >
+                    {categoryName}
+                </h1>
+                <p
+                    className="inline-text"
+                    style={{
+                        fontFamily: "Ubuntu",
+                        fontSize: "16px",
+                        fontWeight: "400",
+                        lineHeight: "19px",
+                        letterSpacing: "0em",
+                        textAlign: "left",
+                        color: "#656678",
+                    }}
+                >
+                    {categoryDesc}
+                </p>
+            </div>
+            <div className="courses-block container">
+                {filteredCourses
+                    .sort((a, b) => a.shortStatus - b.shortStatus)
+                    .map((course, index) => {
+                        const courseDTO = course.courseDTO;
+                        const { course_image, course_name } = courseDTO;
+                        const { paymentInfo } = course;
 
-            const status =
-              paymentInfo === null ? "available" : paymentInfo.status;
+                        const status =
+                            paymentInfo === null ? "available" : paymentInfo.status;
 
-            return (
-              <div
-                className="course-card"
-                key={index}
-                onClick={() => {
-                  if (status === "process" || status === "finished") {
-                    navigate(`/courses/${course.courseDTO.course_id}/read`);
-                  } else {
-                    navigate(`/courses/${course.courseDTO.course_id}`);
-                  }
-                }}
-              >
-                <div className="image">
-                  <img src={course_image} alt={course_name} />
-                  <div className={`status ${status}`}>
-                    {status === "available"
-                      ? "Доступно"
-                      : status === "process"
-                      ? "В процессе"
-                      : "Завершен"}
-                  </div>
-                </div>
-                <div className="info">
-                  <div className="course-name">{course_name}</div>
-                  <div className="langAndDuration">
-                    {"РУС"} | {"1ч 45мин"}
-                  </div>
-                  <div className="rating">
-                    <div className="stars">
-                      <AiFillStar className="star-icon" size={23} />
-                      <AiFillStar className="star-icon" size={23} />
-                      <AiFillStar className="star-icon" size={23} />
-                      <AiFillStar className="star-icon" size={23} />
-                      <AiFillStar className="star-icon" size={23} />
-                    </div>
-                    <span>5.0</span>
-                  </div>
-                  <div className="type">
-                    <MdOndemandVideo size={23} />
-                    <span>Электронное обучение</span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        {/* <div className='course-card'
+                        return (
+                            <div
+                                className="course-card"
+                                key={index}
+                                onClick={() => {
+                                    if (status === "process" || status === "finished") {
+                                        navigate(`/courses/${course.courseDTO.course_id}/read`);
+                                    } else {
+                                        navigate(`/courses/${course.courseDTO.course_id}`);
+                                    }
+                                }}
+                            >
+                                <div className="image">
+                                    <img src={course_image} alt={course_name} />
+                                    <div className={`status ${status}`}>
+                                        {status === "available"
+                                            ? "Доступно"
+                                            : status === "process"
+                                                ? "В процессе"
+                                                : "Завершен"}
+                                    </div>
+                                </div>
+                                <div className="info">
+                                    <div className="course-name">{course_name}</div>
+                                    <div className="langAndDuration">
+                                        {"РУС"} | {"1ч 45мин"}
+                                    </div>
+                                    <div className="rating">
+                                        <div className="stars">
+                                            <AiFillStar className="star-icon" size={23} />
+                                            <AiFillStar className="star-icon" size={23} />
+                                            <AiFillStar className="star-icon" size={23} />
+                                            <AiFillStar className="star-icon" size={23} />
+                                            <AiFillStar className="star-icon" size={23} />
+                                        </div>
+                                        <span>5.0</span>
+                                    </div>
+                                    <div className="type">
+                                        <MdOndemandVideo size={23} />
+                                        <span>Электронное обучение</span>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
+                {/* <div className='course-card'
                     onClick={() => {
                         navigate(`/courses/100/read`)
                     }}
@@ -853,9 +853,9 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                         </div> 
                     </div>
                 </div> */}
-      </div>
-    </>
-  );
+            </div>
+        </>
+    );
 };
 
 export default Catalog;
