@@ -84,11 +84,12 @@ function App() {
     const [jwtToken, setJwtToken] = useState('');
 
     useEffect(() => {
-        const storedJwtToken = localStorage.getItem('jwtToken');
+
 
         // console.log(storedJwtToken)
 
         startTransition(() => {
+            const storedJwtToken = localStorage.getItem('jwtToken');
             if (storedJwtToken) {
                 setJwtToken(storedJwtToken);
             }
@@ -105,7 +106,7 @@ function App() {
                             <Route path="/login" element={<PrivateRoute shouldBeLoggedIn={false} component={Login} redirect={'/profile'}/>} />
                             <Route path="/registration" element={<PrivateRoute shouldBeLoggedIn={false} component={Registration} redirect={'/profile'}/>} />
 
-                            <Route path="/logout" element={<Suspense ><Login/></Suspense>} />
+                            <Route path="/logout" element={<Suspense><Login/></Suspense>} />
 
 
                             <Route path="/" element={<Suspense ><Home /></Suspense>}></Route>
