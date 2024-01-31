@@ -319,6 +319,27 @@ function ReadCourse() {
             />)
         }
 
+        if (activeSessionId === -2) {
+            return (<LessonPage name={'Заключение'}>
+
+                <Sizebox height={40} />
+                <Reveal>
+                    <ImageWithText
+                        color={'white'}
+                        imageText={'Дальнейших Вам профессиональных успехов и процветания!'} 
+                        img={'https://corporate.waterlogic.com/fileadmin/_processed_/f/4/csm_banner-hands-shaking-3_c621f2a33f.jpg'} 
+                    />
+                </Reveal>
+
+                <Sizebox height={100} />
+                <Reveal>
+                    <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
+                        Завершение учебного курса
+                    </HeaderWithLine>
+                </Reveal>
+            </LessonPage>)
+        }
+
         if (!activeLesson) {
             return null;
         }
@@ -539,6 +560,21 @@ const CourseNavigation = ({
 
                         </Module>
                     })
+                }
+                {
+                    courseProgress > 99.9 
+                    ? (
+                        <Session
+                            checked={true}
+                            course_id={course_id}
+                            session={{
+                                id: -2,
+                                name: 'Заключение',
+                            }}
+                            handleSessionClick={_handleSessionClick}
+                            isActive={-2 === activeSessionId}
+                        />
+                    ) : null
                 }
             </div>
 
