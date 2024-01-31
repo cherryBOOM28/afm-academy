@@ -245,7 +245,7 @@ function ReadCourse() {
                     `${base_url}/api/aml/chapter/checked/${_lesson.lesson_id}`,
                     {
                         headers: {
-                            'Authorization' : `Bearer ${jwtToken}`,
+                            Authorization : `Bearer ${jwtToken}`,
                         },
                     }
                 )

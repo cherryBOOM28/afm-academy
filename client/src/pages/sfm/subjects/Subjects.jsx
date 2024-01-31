@@ -149,7 +149,7 @@ function Subjects() {
           <div className={`${cl.cardContent} text-content`}
             style={{
               background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f9f9f9" : styles.colorMode === "blue" ? "#9dd1ff" : "#000",
-              display: styles.showImage ? 'block' : 'none', // Add this line
+              // display: styles.showImage ? 'block' : 'none', // Add this line
               color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
             }}
           >

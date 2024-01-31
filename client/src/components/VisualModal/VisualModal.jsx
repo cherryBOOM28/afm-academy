@@ -13,7 +13,7 @@ function VisualModal({
   const [speechButtonClicked, setSpeechButtonClicked] = useState(false);
   const [selectedFont, setSelectedFont] = useState("Arial");
 
-  const { styles, updateStyles, setOpen, userEntry } = useStyle();
+  const { styles, updateStyles, setOpen, userEntry, checkStyle, setCheckStyle } = useStyle();
   const { fontSize, fontFamily, colorMode, letterInterval } = styles;
   const [clickedButton, setClickedButton] = useState(null);
   const [selectedColorMode, setSelectedColorMode] = useState(colorMode);
@@ -29,6 +29,7 @@ function VisualModal({
   }, []);
 
   const speak = (text, voiceName) => {
+
     const synthesis = window.speechSynthesis;
     setTimeout(() => {
       synthesis.cancel();
@@ -41,6 +42,8 @@ function VisualModal({
   };
 
   const handleEnableSpeech = () => {
+    if (!checkStyle) setCheckStyle(true);
+
     setIsSpeechEnabled(true);
     setSpeechButtonActive(true);
 
@@ -49,6 +52,8 @@ function VisualModal({
   };
 
   const handleDisableSpeech = () => {
+    if (!checkStyle) setCheckStyle(true);
+
     setIsSpeechEnabled(false);
     setSpeechButtonActive(false);
 
@@ -59,6 +64,8 @@ function VisualModal({
   if (!open) return null;
 
   const handleDisableImages = () => {
+    if (!checkStyle) setCheckStyle(true);
+
     updateStyles({ showImage: false });
 
     if (isSpeechEnabled) speak("Изображения выключены", selectedVoiceName);
@@ -68,6 +75,8 @@ function VisualModal({
   };
 
   const handleEnableImages = () => {
+    if (!checkStyle) setCheckStyle(true);
+
     updateStyles({ showImage: true });
     onShowImages();
     setClickedButton("enableImages");
@@ -75,12 +84,16 @@ function VisualModal({
   };
 
   const handleIntervalChange = (interval) => {
+    if (!checkStyle) setCheckStyle(true);
+
     updateStyles({ letterInterval: interval });
     onIntervalChange(interval);
     if (isSpeechEnabled) speak("Интервал изменен", selectedVoiceName);
   };
 
   const handleFontSizeChange = (size) => {
+    if (!checkStyle) setCheckStyle(true);
+
     updateStyles({ fontSize: size, fontFamily });
     const textContentElement = document.querySelectorAll(".text-content");
     if (textContentElement) {
@@ -116,7 +129,10 @@ function VisualModal({
     }
   };
 
+
   const handleFontFamilyChange = (family) => {
+    if (!checkStyle) setCheckStyle(true);
+
     setSelectedFont(family);
     updateStyles({ fontFamily: family });
     if (isSpeechEnabled) speak("Шрифт изменен", selectedVoiceName);
@@ -128,6 +144,8 @@ function VisualModal({
   };
 
   const handleColorModeChange = (mode) => {
+    if (!checkStyle) setCheckStyle(true);
+
     const containerElement = document.querySelector(".text-content");
     if (containerElement) {
       containerElement.classList.remove("light-mode", "dark-mode", "blue-mode");
@@ -161,6 +179,7 @@ function VisualModal({
   };
 
   const handleRefreshPage = () => {
+    
     setResetIntervalSpacing(true);
     window.location.reload();
   };

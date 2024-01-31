@@ -32,7 +32,7 @@ import VisualModal from "../../components/VisualModal/VisualModal";
 
 function Catalog() {
 
-    const { styles, open, setOpen, userEntry } = useStyle();
+    const { styles, open, setOpen, userEntry, checkStyle } = useStyle();
     const [imagesHidden, setImagesHidden] = useState(false);
     const [letterInterval, setLetterInterval] = useState("standard");
     const { t } = useTranslation();
@@ -140,6 +140,8 @@ function Catalog() {
 
 
     useEffect(() => {
+        if(!checkStyle) return;
+
         console.log(userEntry)
         if (userEntry) return;
 

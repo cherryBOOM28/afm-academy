@@ -9,6 +9,7 @@ export const useStyle = () => {
 
 export const StyleProvider = ({ children }) => {
   const [userEntry, setUserEntry] = useState(true);
+  const[checkStyle, setCheckStyle] = useState(false);
 
   const [styles, setStyles] = useState({
     fontSize: 'standard',
@@ -50,7 +51,9 @@ export const StyleProvider = ({ children }) => {
     open,
     setOpen,
     userEntry,
-    setUserEntry
+    setUserEntry,
+    checkStyle,
+    setCheckStyle
   };
 
   useEffect(() => {
