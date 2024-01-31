@@ -63,7 +63,7 @@ function App() {
     // Logic to handle opening the visual modal
     console.log("Visual Modal Opened");
   };
-  const [fontSize, setFontSize] = useState('medium');
+
 
   
 

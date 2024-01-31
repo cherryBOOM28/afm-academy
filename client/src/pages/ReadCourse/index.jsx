@@ -111,6 +111,7 @@ function ReadCourse() {
 
             setCourseName(res.data.course.course_name);
             setCourseModules(res.data.course.modules);
+            setCourseProgress(res.data.progress_percentage)
             console.log(res);
         } catch (e) {
             setError(e);
@@ -180,9 +181,89 @@ function ReadCourse() {
         setOpenQuizModal(true);
     }
 
-    const checkCurrentChapter = (chapterNum) => {
+    const CheckCurrentChapter = (module_id, lesson_id) => {
+        let has_quiz = false;
+        let next_module = null;
+        let _module = null;
+        
+        courseModules.map((module, index) => {
+            if (next_module !== null) {
+                return;
+            }
+
+            if (next_module === null && _module !== null) {
+                next_module = module;
+            }
+
+            if (module.module_id === module_id) {
+                _module = module;
+
+                if (module.quiz) has_quiz = true;
+                return module;
+            }
+        })
+
+        let _lesson = null;
+        let next_lesson = null;
+        if (_module !== null) 
+            _module.lessons.find((lesson, index) => {
+                if (next_lesson !== null) {
+                    return;
+                }
+
+                if (next_lesson === null && _lesson !== null) {
+                    next_lesson = lesson;
+                }
+
+                if (lesson.lesson_id === lesson_id) {
+                    _lesson = lesson;
+                }
+            })
+
+        let _module_id = null;
+        let _lesson_id = null;
+        
+
+        if (has_quiz && next_lesson === null) {
+            setIsModuleQuiz(true);
+            setActiveQuizId(_module.quiz.quiz_id)
+        }
+
+        if (has_quiz === null && next_lesson === null && next_module !== null) {
+            _lesson_id = next_module.lessons[0].lesson_id;
+            _module_id = next_module.module_id;
+        }
+
+        if (next_lesson !== null) {
+            _lesson_id = next_lesson.lesson_id
+        }
+
+        const _fetch_data = async () => {
+            try {
+                console.log(_lesson.lesson_id)
+                const res = await axios.post(
+                    `${base_url}/api/aml/chapter/checked/${_lesson.lesson_id}`,
+                    {
+                        headers: {
+                            'Authorization' : `Bearer ${jwtToken}`,
+                        },
+                    }
+                )
+
+                console.log(res);
+            } catch (e) {
+                setError(e);
+                console.log(e);
+            }
+        }
+        
+        if (_lesson) _fetch_data()
+            
+
+        
         scrollToTopAnimated();
-        setActiveSessionId(activeSessionId + 1);
+        if (_module_id !== null) setActiveModuleId(_module_id);
+        setActiveSessionId(_lesson_id);
     };
 
     const ComponentMapper = {
@@ -268,6 +349,14 @@ function ReadCourse() {
                     </Reveal>
                 );
             })}
+
+            <Sizebox height={100}/>
+
+            <Reveal>
+                <NextLesson handleOnClick={() => {
+                    CheckCurrentChapter(activeModule.module_id, activeLesson.lesson_id);
+                }}/>
+            </Reveal>
 
         </LessonPage>)
     }
@@ -425,7 +514,8 @@ const CourseNavigation = ({
                                     const lesson_name = lesson.topic;
 
                                     return <Session
-                                        courseId={course_id}
+                                        key={index}
+                                        course_id={course_id}
                                         session={{
                                             id: lesson_id,
                                             name: lesson_name,
