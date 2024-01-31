@@ -28,6 +28,7 @@ import VisualModal from "../../components/VisualModal/VisualModal";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 
 import { useTranslation } from "react-i18next";
+import { IoMdReturnLeft } from "react-icons/io";
 
 function Home() {
   const navigate = useNavigate();
@@ -60,6 +61,7 @@ function Home() {
 
   const params = useParams();
   const location = useLocation();
+
   useEffect(() => {
     // console.log(params);
     if (location.hash === "#coursesSection") {
@@ -68,13 +70,12 @@ function Home() {
       scrollToNews();
     }
 
-    console.log(t);
   }, []);
 
   const toAbout = () => {
     navigate("/about");
   };
-  const { styles, open, setOpen } = useStyle();
+  const { styles, open, setOpen, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
   const [letterInterval, setLetterInterval] = useState("standard");
   const { t } = useTranslation();
@@ -85,6 +86,9 @@ function Home() {
   const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
+    console.log(userEntry)
+    if (userEntry) return; 
+
     const textContentElement = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
     setImagesHidden(!styles.showImage);

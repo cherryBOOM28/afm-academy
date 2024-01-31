@@ -13,7 +13,7 @@ function VisualModal({
   const [speechButtonClicked, setSpeechButtonClicked] = useState(false);
   const [selectedFont, setSelectedFont] = useState("Arial");
 
-  const { styles, updateStyles } = useStyle();
+  const { styles, updateStyles, setOpen, userEntry } = useStyle();
   const { fontSize, fontFamily, colorMode, letterInterval } = styles;
   const [clickedButton, setClickedButton] = useState(null);
   const [selectedColorMode, setSelectedColorMode] = useState(colorMode);
@@ -60,7 +60,6 @@ function VisualModal({
 
   const handleDisableImages = () => {
     updateStyles({ showImage: false });
-    localStorage.setItem("showImage", false);
 
     if (isSpeechEnabled) speak("Изображения выключены", selectedVoiceName);
 
@@ -70,7 +69,6 @@ function VisualModal({
 
   const handleEnableImages = () => {
     updateStyles({ showImage: true });
-    localStorage.setItem("showImage", true);
     onShowImages();
     setClickedButton("enableImages");
     if (isSpeechEnabled) speak("Изображения включены", selectedVoiceName);
@@ -84,7 +82,6 @@ function VisualModal({
 
   const handleFontSizeChange = (size) => {
     updateStyles({ fontSize: size, fontFamily });
-    localStorage.setItem("fontSize", size);
     const textContentElement = document.querySelectorAll(".text-content");
     if (textContentElement) {
       textContentElement.forEach((item) => {
@@ -122,7 +119,6 @@ function VisualModal({
   const handleFontFamilyChange = (family) => {
     setSelectedFont(family);
     updateStyles({ fontFamily: family });
-    localStorage.setItem("fontFamily", family);
     if (isSpeechEnabled) speak("Шрифт изменен", selectedVoiceName);
 
     const textContentElement = document.querySelector(".text-content");
@@ -137,7 +133,6 @@ function VisualModal({
       containerElement.classList.remove("light-mode", "dark-mode", "blue-mode");
     }
     updateStyles({ colorMode: mode });
-    localStorage.setItem("colorMode", mode);
     if (isSpeechEnabled) speak("Цветовая гамма изменена", selectedVoiceName);
 
     if (containerElement) {
@@ -145,6 +140,7 @@ function VisualModal({
     }
     setSelectedColorMode(mode);
   };
+  
   const lightButtonStyle = {
     background: "white",
     color: "black",

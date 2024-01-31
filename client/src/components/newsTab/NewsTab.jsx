@@ -25,27 +25,27 @@ const NewsTab = () => {
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const jwtToken = localStorage.getItem("jwtToken");
-  useEffect(() => {
-    const textContentElement = document.querySelectorAll(".text-content");
-    const size = styles.fontSize;
-    if (textContentElement) {
-      textContentElement.forEach((item) => {
-        switch (size) {
-          case "small":
-            item.style.fontSize = "15px";
-            break;
-          case "standard":
-            item.style.fontSize = "20px";
-            break;
-          case "large":
-            item.style.fontSize = "24px";
-            break;
-          default:
-            break;
-        }
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   const textContentElement = document.querySelectorAll(".text-content");
+  //   const size = styles.fontSize;
+  //   if (textContentElement) {
+  //     textContentElement.forEach((item) => {
+  //       switch (size) {
+  //         case "small":
+  //           item.style.fontSize = "15px";
+  //           break;
+  //         case "standard":
+  //           item.style.fontSize = "20px";
+  //           break;
+  //         case "large":
+  //           item.style.fontSize = "24px";
+  //           break;
+  //         default:
+  //           break;
+  //       }
+  //     });
+  //   }
+  // }, []);
 
   useEffect(() => {
     const fetchData = async () => {

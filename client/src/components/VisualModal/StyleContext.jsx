@@ -8,6 +8,8 @@ export const useStyle = () => {
 };
 
 export const StyleProvider = ({ children }) => {
+  const [userEntry, setUserEntry] = useState(true);
+
   const [styles, setStyles] = useState({
     fontSize: 'standard',
     fontFamily: 'Arial',
@@ -20,14 +22,19 @@ export const StyleProvider = ({ children }) => {
   const [open, setOpen] = useState(false);
 
   const updateStyles = (newStyles) => {
-    console.log(newStyles)
-
     setStyles((prevStyles) => ({
       ...prevStyles,
       ...newStyles,
     }));
-
   };
+
+  function checkFirstVisit() {
+    if (!sessionStorage.getItem("first_visit")) {
+      sessionStorage.setItem("first_visit", "yes");
+      return true; // First visit in this browser session
+    }
+    return false; // Not first visit in this session
+  }
 
   const setOpenComponent = (component) => {
     setStyles((prevStyles) => ({
@@ -36,33 +43,23 @@ export const StyleProvider = ({ children }) => {
     }));
   };
 
-  useEffect(() => {
-    const _fontSize = localStorage.getItem('fontSize');
-    const _fontFamily = localStorage.getItem('fontFamily');
-    const _colorMode = localStorage.getItem('colorMode');
-    const _letterInterval = localStorage.getItem('letterInterval');
-    const _showImage = localStorage.getItem('showImage');
-    const _OpenComponent = localStorage.getItem('openComponent');
-    let _style = {
-        fontSize: _fontSize,
-        fontFamily: _fontFamily,
-        colorMode: _colorMode,
-        letterInterval: _letterInterval,
-        showImage: _showImage,
-        openComponent: _OpenComponent,
-    }
-
-    console.log(_style)
-    setStyles(_style);
-  }, [])
-
   const value = {
     styles,
     updateStyles,
     setOpenComponent,
     open,
-    setOpen
+    setOpen,
+    userEntry,
+    setUserEntry
   };
+
+  useEffect(() => {
+    if (checkFirstVisit()) {
+      setUserEntry(true);
+    } else {
+      setUserEntry(false);
+    }
+  }, [])
 
   return <StyleContext.Provider value={value}>{children}</StyleContext.Provider>;
 };
