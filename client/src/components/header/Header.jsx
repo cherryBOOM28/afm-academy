@@ -108,6 +108,7 @@ function Header(props) {
     localStorage.removeItem('user_id');
     localStorage.removeItem('firstname');
     localStorage.removeItem('lastname');
+      console.log("works")
 
     setIsLoggedIn(false)
     setUsername('')
@@ -224,7 +225,7 @@ function Header(props) {
                   <a className='user-toggle-links'>Админ панель</a>
                 </div> : null
                 }
-                <div onClick={() => handleLogout} className='menu-item'>
+                <div onClick={handleLogout} className='menu-item'>
                   <a className='user-toggle-links'>Выйти</a>
                 </div>
               </div> 

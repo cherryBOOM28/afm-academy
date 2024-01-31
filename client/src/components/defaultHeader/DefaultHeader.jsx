@@ -33,16 +33,19 @@ function DefaultHeader() {
   } = useAuth()
 
   const handleLogin = () => {
+    console.log("works")
     navigate('/login');
+
   };
 
   const handleLogout = () => {
     localStorage.removeItem('email')
     localStorage.removeItem('jwtToken')
+
     setUsername('')
     setIsLoggedIn(false);
 
-    // console.log("works")
+    console.log("works")
 
     navigate('/login')
   }; 

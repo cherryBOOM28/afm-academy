@@ -9,7 +9,6 @@ import { AuthProvider, useAuth } from './auth/AuthContext';
 import './settings/i18n.js';
 import VisualModal from './/components/VisualModal/VisualModal.jsx'
 import { StyleProvider } from './/components/VisualModal/StyleContext.jsx';
-import {Logout} from "@mui/icons-material";
 
 const Home = lazy(() => import ('./pages/home/Home'))
 //import Home from './pages/home/Home';
@@ -106,7 +105,7 @@ function App() {
                             <Route path="/login" element={<PrivateRoute shouldBeLoggedIn={false} component={Login} redirect={'/profile'}/>} />
                             <Route path="/registration" element={<PrivateRoute shouldBeLoggedIn={false} component={Registration} redirect={'/profile'}/>} />
 
-                            <Route path="/logout" element={<Suspense ><Logout /></Suspense>} />
+                            <Route path="/logout" element={<Suspense ><Login/></Suspense>} />
 
 
                             <Route path="/" element={<Suspense ><Home /></Suspense>}></Route>
