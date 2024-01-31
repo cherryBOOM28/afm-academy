@@ -13,7 +13,7 @@ function VisualModal({
   const [speechButtonClicked, setSpeechButtonClicked] = useState(false);
   const [selectedFont, setSelectedFont] = useState("Arial");
 
-  const { styles, updateStyles } = useStyle();
+  const { styles, updateStyles, setOpen, userEntry } = useStyle();
   const { fontSize, fontFamily, colorMode, letterInterval } = styles;
   const [clickedButton, setClickedButton] = useState(null);
   const [selectedColorMode, setSelectedColorMode] = useState(colorMode);

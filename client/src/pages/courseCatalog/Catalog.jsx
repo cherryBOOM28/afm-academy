@@ -32,7 +32,7 @@ import VisualModal from "../../components/VisualModal/VisualModal";
 
 function Catalog() {
 
-    const { styles, open, setOpen } = useStyle();
+  const { styles, open, setOpen, userEntry } = useStyle();
     const [imagesHidden, setImagesHidden] = useState(false);
     const [letterInterval, setLetterInterval] = useState("standard");
     const { t } = useTranslation();
@@ -140,6 +140,9 @@ function Catalog() {
 
 
   useEffect(() => {
+    console.log(userEntry)
+    if (userEntry) return; 
+
     const textContentElement = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
     setImagesHidden(!styles.showImage);
