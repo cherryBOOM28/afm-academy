@@ -4,6 +4,7 @@ import closeIcon from './../../pages/testCoursePage/closeIcon.svg';
 import finishedIcon from './../../pages/testCoursePage/finishedIcon.svg';
 import { AiFillCheckCircle } from "react-icons/ai";
 import { ImRadioUnchecked } from "react-icons/im";
+import { RiSurveyLine } from "react-icons/ri";
 import unfinishedIcon from './../../pages/testCoursePage/unfinishedIcon.svg';
 import lectureIcon from './lectureIcon.svg';
 import { VscListSelection } from "react-icons/vsc";
@@ -58,6 +59,60 @@ export const Session = ({title, session, handleSessionClick, isActive}) => {
 
             {/* <img src={AiFillFile} style={{color: 'white', background: 'white'}} alt="icon" /> */}
             <VscListSelection style={{color: 'white', fontSize: '28px'}} />
+            <h6>{session.name}</h6>
+            <div className="sessionProgress">
+                {
+                    sessionChecked 
+                        ? <AiFillCheckCircle />
+                        : <ImRadioUnchecked />
+                }
+            </div>
+        </div>
+    )
+}
+
+export const TestSession = ({title, session, handleSessionClick, isActive}) => {
+    const sessionFinished = session.progress === 100;
+    const [sessionChecked, setSessionChecked] = useState(false);
+
+    const jwtToken = localStorage.getItem('jwtToken');
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await axios.get(`${base_url}/api/aml/chapter/getChecked`, {
+    //                 headers: {
+    //                     Authorization: `Bearer ${jwtToken}`,
+    //                 },
+    //             });
+
+    //             if (response.status === 200) {
+    //                 const _temp = response.data.filter(_session => _session.id === session.id);
+    //                 if (_temp.length !== 0) {
+    //                     setSessionChecked(_temp[0].checked)
+    //                 }
+                    
+    //             } else {
+    //                 // Handle other status codes if needed
+    //                 // console.log(response.statusText);
+    //             }
+    //         } catch (error) {
+    //             console.error(error);
+    //         }
+    //     };
+        
+    //     fetchData();
+    // }, [])
+
+    return (
+        <div 
+            className={`session ${isActive ? 'active' : ''}`} 
+            key={session.name}
+            onClick={() => handleSessionClick(session.id)}
+        >
+
+            {/* <img src={AiFillFile} style={{color: 'white', background: 'white'}} alt="icon" /> */}
+            <RiSurveyLine style={{color: 'white', fontSize: '28px'}} />
             <h6>{session.name}</h6>
             <div className="sessionProgress">
                 {

@@ -43,12 +43,16 @@ function VisualModal({
   const handleEnableSpeech = () => {
     setIsSpeechEnabled(true);
     setSpeechButtonActive(true);
+
+    console.log("on")
     speak("Синтетическая речь включена", selectedVoiceName);
   };
 
   const handleDisableSpeech = () => {
     setIsSpeechEnabled(false);
     setSpeechButtonActive(false);
+
+    console.log("off")
     speak("Синтетическая речь выключена");
   };
 
@@ -180,148 +184,174 @@ function VisualModal({
       >
         <div className="text-button-header">
           <div className="section">
-            <span>Шрифт</span>
-            <button
-              onClick={() => handleFontFamilyChange("Arial")}
-              className={`font1 ${selectedFont === "Arial" ? "clicked" : ""}`}
-            >
-              T
-            </button>
-            <button
-              onClick={() => handleFontFamilyChange("Times New Roman")}
-              className={`font2 ${
-                selectedFont === "Times New Roman" ? "clicked" : ""
-              }`}
-            >
-              T
-            </button>
+            <div>
+              <span>Шрифт</span>
+              <div>
+                <button
+                  onClick={() => handleFontFamilyChange("Arial")}
+                  className={`font1 ${selectedFont === "Arial" ? "clicked" : ""}`}
+                >
+                  T
+                </button>
+                <button
+                  onClick={() => handleFontFamilyChange("Times New Roman")}
+                  className={`font2 ${
+                    selectedFont === "Times New Roman" ? "clicked" : ""
+                  }`}
+                >
+                  T
+                </button>
+              </div>
+            </div>
 
-            <span>Размер</span>
-            <button
-              onClick={() => handleFontSizeChange("small")}
-              className={`font-size-button ${
-                fontSize === "small" ? "clicked" : ""
-              }`}
-            >
-              Small
-            </button>
-            <button
-              onClick={() => handleFontSizeChange("standard")}
-              className={`font-size-button ${
-                fontSize === "standard" ? "clicked" : ""
-              }`}
-            >
-              Standard
-            </button>
-            <button
-              onClick={() => handleFontSizeChange("large")}
-              className={`font-size-button ${
-                fontSize === "large" ? "clicked" : ""
-              }`}
-            >
-              Large
-            </button>
-            <span>Цвет</span>
-            <button
-              onClick={() => handleColorModeChange("light")}
-              className={`color-mode-button ${
-                colorMode === "light" ? "clicked" : ""
-              }`}
-              style={lightButtonStyle}
-            >
-              A
-            </button>
-            <button
-              onClick={() => handleColorModeChange("dark")}
-              className={`color-mode-button ${
-                colorMode === "dark" ? "clicked" : ""
-              }`}
-              style={darkButtonStyle}
-            >
-              A
-            </button>
-            <button
-              onClick={() => handleColorModeChange("blue")}
-              className={`color-mode-button ${
-                colorMode === "blue" ? "clicked" : ""
-              }`}
-              style={blueButtonStyle}
-            >
-              A
-            </button>
+            <div>
+              <span>Размер</span>
+              <div>
+                <button
+                  onClick={() => handleFontSizeChange("small")}
+                  className={`font-size-button ${
+                    fontSize === "small" ? "clicked" : ""
+                  }`}
+                >
+                  Small
+                </button>
+                <button
+                  onClick={() => handleFontSizeChange("standard")}
+                  className={`font-size-button ${
+                    fontSize === "standard" ? "clicked" : ""
+                  }`}
+                >
+                  Standard
+                </button>
+                <button
+                  onClick={() => handleFontSizeChange("large")}
+                  className={`font-size-button ${
+                    fontSize === "large" ? "clicked" : ""
+                  }`}
+                >
+                  Large
+                </button>
+              </div>
+            </div>
+            
+            <div>
+              <span>Цвет</span>
+              <div>
+                <button
+                  onClick={() => handleColorModeChange("light")}
+                  className={`color-mode-button ${
+                    colorMode === "light" ? "clicked" : ""
+                  }`}
+                  style={lightButtonStyle}
+                >
+                  A
+                </button>
+                <button
+                  onClick={() => handleColorModeChange("dark")}
+                  className={`color-mode-button ${
+                    colorMode === "dark" ? "clicked" : ""
+                  }`}
+                  style={darkButtonStyle}
+                >
+                  A
+                </button>
+                <button
+                  onClick={() => handleColorModeChange("blue")}
+                  className={`color-mode-button ${
+                    colorMode === "blue" ? "clicked" : ""
+                  }`}
+                  style={blueButtonStyle}
+                >
+                  A
+                </button>
+              </div>
+            </div>
 
-            <span>Интервал</span>
-            <button
-              onClick={() => handleIntervalChange("standard")}
-              className={`interval-button ${
-                letterInterval === "standard" ? "clicked" : ""
-              }`}
-            >
-              Стандартный
-            </button>
-            <button
-              onClick={() => handleIntervalChange("medium")}
-              className={`interval-button ${
-                letterInterval === "medium" ? "clicked" : ""
-              }`}
-            >
-              Средний
-            </button>
-            <button
-              onClick={() => handleIntervalChange("large")}
-              className={`interval-button ${
-                letterInterval === "large" ? "clicked" : ""
-              }`}
-            >
-              Большой
-            </button>
+            <div>
+              <span>Интервал</span>
+              <div>
+                <button
+                  onClick={() => handleIntervalChange("standard")}
+                  className={`interval-button ${
+                    letterInterval === "standard" ? "clicked" : ""
+                  }`}
+                >
+                  Стандартный
+                </button>
+                <button
+                  onClick={() => handleIntervalChange("medium")}
+                  className={`interval-button ${
+                    letterInterval === "medium" ? "clicked" : ""
+                  }`}
+                >
+                  Средний
+                </button>
+                <button
+                  onClick={() => handleIntervalChange("large")}
+                  className={`interval-button ${
+                    letterInterval === "large" ? "clicked" : ""
+                  }`}
+                >
+                  Большой
+                </button>
+              </div>
+            </div>
 
-            <span>Изображения</span>
-            <button
-              onClick={() => handleEnableImages()}
-              className={`enable-button ${
-                clickedButton === "enableImages" ? "clicked" : ""
-              }`}
-            >
-              Вкл.
-            </button>
-            <button
-              onClick={() => handleDisableImages()}
-              className={`disable-button ${
-                clickedButton === "disableImages" ? "clicked" : ""
-              }`}
-            >
-              Выкл.
-            </button>
+            <div>
+              <span>Изображения</span>
+              <div>
+                <button
+                  onClick={() => handleEnableImages()}
+                  className={`enable-button ${
+                    clickedButton === "enableImages" ? "clicked" : ""
+                  }`}
+                >
+                  Вкл.
+                </button>
+                <button
+                  onClick={() => handleDisableImages()}
+                  className={`disable-button ${
+                    clickedButton === "disableImages" ? "clicked" : ""
+                  }`}
+                >
+                  Выкл.
+                </button>
+              </div>
+            </div>
 
-            <span>Синтетическая речь</span>
+            <div>
+              <span>Синтетическая речь</span>
+              <div>
+                <button
+                  onClick={() => handleEnableSpeech()}
+                  disabled={isSpeechEnabled}
+                  className={`speech-button ${
+                    speechButtonActive ? "active clicked" : ""
+                  }`}
+                >
+                  Вкл.
+                </button>
+                <button
+                  onClick={() => handleDisableSpeech()}
+                  disabled={!isSpeechEnabled}
+                  className={`speech-button ${
+                    !speechButtonActive ? "active clicked" : ""
+                  }`}
+                >
+                  Выкл.
+                </button>
+              </div>
+            </div>
+
             <button
-              onClick={() => handleEnableSpeech()}
-              disabled={!isSpeechEnabled}
-              className={`speech-button ${
-                speechButtonActive ? "active clicked" : ""
-              }`}
-            >
-              Вкл.
-            </button>
-            <button
-              onClick={() => handleDisableSpeech()}
-              disabled={!isSpeechEnabled}
-              className={`speech-button ${
-                !speechButtonActive ? "active clicked" : ""
-              }`}
-            >
-              Выкл.
-            </button>
-            <button
-              onClick={() => {
-                handleRefreshPage();
-                handleColorModeChange("light");
-              }}
-              className="refresh-button"
-            >
-              <img src={HideEye} alt="Reset" className="reset-icon" />
-            </button>
+                onClick={() => {
+                  handleRefreshPage();
+                  handleColorModeChange("light");
+                }}
+                className="refresh-button"
+              >
+                <img src={HideEye} alt="Reset" className="reset-icon" />
+              </button>
           </div>
         </div>
       </div>
