@@ -78,38 +78,8 @@ export const Session = ({course_id, title, session, handleSessionClick, isActive
     )
 }
 
-export const TestSession = ({title, session, handleSessionClick, isActive}) => {
-    const sessionFinished = session.progress === 100;
-    const [sessionChecked, setSessionChecked] = useState(false);
-
+export const TestSession = ({title, session, handleSessionClick, isActive, checked}) => {
     const jwtToken = localStorage.getItem('jwtToken');
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await axios.get(`${base_url}/api/aml/chapter/getChecked`, {
-    //                 headers: {
-    //                     Authorization: `Bearer ${jwtToken}`,
-    //                 },
-    //             });
-
-    //             if (response.status === 200) {
-    //                 const _temp = response.data.filter(_session => _session.id === session.id);
-    //                 if (_temp.length !== 0) {
-    //                     setSessionChecked(_temp[0].checked)
-    //                 }
-                    
-    //             } else {
-    //                 // Handle other status codes if needed
-    //                 // console.log(response.statusText);
-    //             }
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     };
-        
-    //     fetchData();
-    // }, [])
 
     return (
         <div 
@@ -123,7 +93,7 @@ export const TestSession = ({title, session, handleSessionClick, isActive}) => {
             <h6>{session.name}</h6>
             <div className="sessionProgress">
                 {
-                    sessionChecked 
+                    checked 
                         ? <AiFillCheckCircle />
                         : <ImRadioUnchecked />
                 }
