@@ -23,7 +23,14 @@ function SurveysPage() {
   const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
-
+    if (!checkStyle) {
+      return;
+    }
+  
+  
+    if (userEntry) {
+      return;
+    }
     const textContentElement = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
     setImagesHidden(!styles.showImage);
@@ -51,7 +58,7 @@ function SurveysPage() {
     }
 
     handleColorModeChange();
-  }, []);
+  }, [checkStyle, userEntry]);
 
   const handleColorModeChange = (mode) => {
     // Remove previous color mode classes
