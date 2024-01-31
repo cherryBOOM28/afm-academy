@@ -41,34 +41,7 @@ function Catalog() {
 
     const [activeTab, setActiveTab] = useState(1);
 
-    useEffect(() => {
-        const textContentElement = document.querySelectorAll(".text-content");
-        const size = styles.fontSize;
-        setImagesHidden(!styles.showImage);
 
-        if (textContentElement) {
-            textContentElement.forEach((item) => {
-                switch (size) {
-                    case "small":
-                        item.style.fontSize = "15px";
-                        item.style.lineHeight = "17px";
-                        break;
-                    case "standard":
-                        item.style.fontSize = "20px";
-                        item.style.lineHeight = "22px";
-                        break;
-                    case "large":
-                        item.style.fontSize = "24px";
-                        item.style.lineHeight = "26px";
-                        break;
-                    default:
-                        break;
-                }
-            });
-        }
-
-        handleColorModeChange();
-    }, []);
     const handleColorModeChange = (mode) => {
         // Remove previous color mode classes
         const containerElement = document.querySelector(".text-content");
@@ -140,10 +113,19 @@ function Catalog() {
 
 
     useEffect(() => {
-        if(!checkStyle) return;
-
-        console.log(userEntry)
-        if (userEntry) return;
+        console.log("checkStyle:", checkStyle);
+        if (!checkStyle) {
+          console.log("checkStyle is falsy, returning");
+          return;
+        }
+      
+        console.log("Continue with useEffect");
+      
+        console.log("userEntry:", userEntry);
+        if (userEntry) {
+          console.log("userEntry is truthy, returning");
+          return;
+        }
 
         const textContentElement = document.querySelectorAll(".text-content");
         const size = styles.fontSize;
