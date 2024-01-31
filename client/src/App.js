@@ -65,8 +65,6 @@ function App() {
   };
 
 
-  
-
   return (
     // <div className={fontStyle}>
     // <VisualModal setFontStyle={setFontStyle} />

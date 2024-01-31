@@ -243,6 +243,7 @@ function ReadCourse() {
                 console.log(_lesson.lesson_id)
                 const res = await axios.post(
                     `${base_url}/api/aml/chapter/checked/${_lesson.lesson_id}`,
+                    {},
                     {
                         headers: {
                             Authorization : `Bearer ${jwtToken}`,
