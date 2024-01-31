@@ -15,8 +15,11 @@ import {
 function MutualEvaluation() {
   const [imagesHidden, setImagesHidden] = useState(false);
 
-  const { styles, open, setOpen } = useStyle();
+  const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   useEffect(() => {
+    if(!checkStyle) return;
+    console.log(userEntry)
+    if (userEntry) return; 
     const textContentElement = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
     if (textContentElement) {

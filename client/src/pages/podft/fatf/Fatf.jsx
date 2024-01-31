@@ -14,7 +14,7 @@ import {
 } from "../../../components/VisualModal/StyleContext";
 
 function Fatf() {
-  const { styles, open, setOpen } = useStyle();
+  const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
   const { t } = useTranslation();
   const [letterInterval, setLetterInterval] = useState("standard");
@@ -32,6 +32,9 @@ function Fatf() {
   };
 
   useEffect(() => {
+    if(!checkStyle) return;
+    console.log(userEntry)
+    if (userEntry) return; 
     const textContentElement = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
     console.log(styles.showImage);

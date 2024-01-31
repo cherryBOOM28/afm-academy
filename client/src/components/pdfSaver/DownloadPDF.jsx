@@ -18,28 +18,6 @@ const DownloadPDF = () => {
     console.log("Interval changed");
     setLetterInterval(interval);
   };
-  useEffect(() => {
-    const textContentElement = document.querySelectorAll(".text-content");
-    const size = styles.fontSize;
-
-    if (textContentElement) {
-      textContentElement.forEach((item) => {
-        switch (size) {
-          case "small":
-            item.style.fontSize = "15px";
-            break;
-          case "standard":
-            item.style.fontSize = "20px";
-            break;
-          case "large":
-            item.style.fontSize = "24px";
-            break;
-          default:
-            break;
-        }
-      });
-    }
-  }, []);
   const getLetterSpacing = (interval) => {
     interval = styles.letterInterval;
 

@@ -12,7 +12,7 @@ import VisualModal from "../../../components/VisualModal/VisualModal";
 import { useTranslation } from "react-i18next";
 
 function Operations() {
-  const { styles, open, setOpen } = useStyle();
+  const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
   const [letterInterval, setLetterInterval] = useState("standard");
   const { t } = useTranslation();
@@ -21,7 +21,9 @@ function Operations() {
 
   const [activeTab, setActiveTab] = useState(1);
 
-  useEffect(() => {
+  useEffect(() => {    if(!checkStyle) return;
+    console.log(userEntry)
+    if (userEntry) return; 
     const textContentElement = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
     if (textContentElement) {

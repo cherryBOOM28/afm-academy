@@ -13,7 +13,7 @@ import VisualModal from "../../../components/VisualModal/VisualModal";
 import { useStyle } from "../../../components/VisualModal/StyleContext";
 
 function Subjects() {
-  const { styles, open, setOpen } = useStyle();
+  const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
 
     const { t } = useTranslation();
     const { i18n } = useTranslation();
@@ -23,6 +23,9 @@ function Subjects() {
 
 
     useEffect(() => {
+      if(!checkStyle) return;
+      console.log(userEntry)
+      if (userEntry) return; 
       setImagesHidden(!styles.showImage);
 
       const textContentElement = document.querySelectorAll(".text-content");

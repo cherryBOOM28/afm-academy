@@ -23,16 +23,13 @@ function SurveysPage() {
   const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
-    if(!checkStyle) return;
-
-    console.log(userEntry)
-    if (userEntry) return; 
 
     const textContentElement = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
     setImagesHidden(!styles.showImage);
 
     if (textContentElement) {
+      
       textContentElement.forEach((item) => {
         switch (size) {
           case "small":
@@ -126,6 +123,9 @@ function SurveysPage() {
   const { isLoggedIn } = useAuth();
 
   useEffect(() => {
+    if (!checkStyle) return;
+    console.log(userEntry);
+    if (userEntry) return;
     setSurveyList([
       {
         id: "_123",
@@ -150,29 +150,7 @@ function SurveysPage() {
       },
     ]);
   });
-  useEffect(() => {
-    const textContentElement = document.querySelectorAll(".text-content");
-    const size = styles.fontSize;
-    setImagesHidden(!styles.showImage);
 
-    if (textContentElement) {
-      textContentElement.forEach((item) => {
-        switch (size) {
-          case "small":
-            item.style.fontSize = "15px ";
-            break;
-          case "standard":
-            item.style.fontSize = "20px";
-            break;
-          case "large":
-            item.style.fontSize = "24px";
-            break;
-          default:
-            break;
-        }
-      });
-    }
-  }, [styles.fontSize, styles.showImage]);
 
   useEffect(() => {
     const textContentElement = document.querySelectorAll(".text-content");

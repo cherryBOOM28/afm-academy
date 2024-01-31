@@ -12,7 +12,7 @@ import { useStyle } from "../../../components/VisualModal/StyleContext";
 import VisualModal from "../../../components/VisualModal/VisualModal";
 
 function Charter() {
-  const { styles, open, setOpen } = useStyle();
+  const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
   const [letterInterval, setLetterInterval] = useState("standard");
   const { t } = useTranslation();
@@ -22,6 +22,14 @@ function Charter() {
   const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
+    if (!checkStyle) {
+      return;
+    }
+  
+  
+    if (userEntry) {
+      return;
+    }
     const textContentElement = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
     setImagesHidden(!styles.showImage);
@@ -48,7 +56,7 @@ function Charter() {
     }
 
     handleColorModeChange();
-  }, []);
+  }, [checkStyle, userEntry]);
   const handleColorModeChange = (mode) => {
     // Remove previous color mode classes
     const containerElement = document.querySelector(".text-content");

@@ -15,7 +15,7 @@ import {
 } from "../../../components/VisualModal/StyleContext";
 
 function Eag() {
-  const { styles, open, setOpen } = useStyle();
+  const { styles, open, setOpen, checkStyle, userEntry} = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
 
   const handleShowImages = () => {
@@ -28,6 +28,9 @@ function Eag() {
   };
 
   useEffect(() => {
+    if(!checkStyle) return;
+    console.log(userEntry)
+    if (userEntry) return; 
     const textContentElement = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
     setImagesHidden(!styles.showImage);

@@ -15,7 +15,7 @@ import "./AntiLaundering.module.css";
 import { useStyle } from "../../../components/VisualModal/StyleContext";
 
 function AntiLaundering() {
-  const { styles, open, setOpen } = useStyle();
+  const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
   const [letterInterval, setLetterInterval] = useState("standard");
   const { t } = useTranslation();
@@ -25,6 +25,9 @@ function AntiLaundering() {
   const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
+    if(!checkStyle) return;
+    console.log(userEntry)
+    if (userEntry) return; 
     const textContentElement = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
     setImagesHidden(!styles.showImage);

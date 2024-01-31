@@ -26,8 +26,8 @@ function Structure() {
   const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
+    console.log(checkStyle)
     if(!checkStyle) return;
-
     console.log(userEntry)
     if (userEntry) return; 
     const textContentElement = document.querySelectorAll(".text-content");
