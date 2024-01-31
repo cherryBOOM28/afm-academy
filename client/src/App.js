@@ -9,8 +9,8 @@ import { AuthProvider, useAuth } from './auth/AuthContext';
 import './settings/i18n.js';
 import VisualModal from './/components/VisualModal/VisualModal.jsx'
 import { StyleProvider } from './/components/VisualModal/StyleContext.jsx';
-
 const Home = lazy(() => import ('./pages/home/Home'))
+const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
 //import Home from './pages/home/Home';
 const AboutUs = lazy(()=> import('./pages/aboutPage/aboutUs/AboutUs'))
 //import AboutUs from './pages/aboutPage/aboutUs/AboutUs';
@@ -142,13 +142,14 @@ function App() {
 
                             {/* <Route path='/courses/testCourse' element={<TestCourse />}/> */}
 
+                            <Route path='/courses/:id/read' element={<Suspense ><ReadCourse/></Suspense>} />
+
                             <Route path='/courses/:id/' element={<Suspense ><BasicCourse /></Suspense>}/>
-                            <Route path='/courses/:id/read' element={
+                            <Route path='/courses/8/read' element={
                                 // <PrivateRoute shouldBeLoggedIn={true} component={
                                 <Suspense><Basic_course /></Suspense>
                                 // } redirect={'/courses/catalog'}/>
                             }/>
-
                             <Route path='/courses/100/read' element={<Suspense ><CryptoCourse /></Suspense>}/>
                             <Route path='/courses/101/read' element={<Suspense ><PlanningInvestigationCourse /></Suspense>}/>
 
