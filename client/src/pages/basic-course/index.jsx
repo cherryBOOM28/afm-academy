@@ -653,6 +653,22 @@ const CourseNavigation = ({
                 />
                 </Module>
                 <Module
+                    name={'Государственный контроль за соблюдением законодательства Республики Казахстан о ПОД/ФТ'}
+                    moduleId={4}
+                    isOpen={currentModule === 4}
+                    handleModuleOpen={handleModuleOpen}
+                >
+                    <Session
+                        session={{
+                            id: 99,
+                            name: 'Урок 1',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={99 === activeSessionId}
+                    />
+                </Module>
+                <Module
                     name={'Подразделение финансовой разведки'}
                     moduleId={5}
                     isOpen={currentModule === 5}
