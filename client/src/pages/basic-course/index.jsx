@@ -661,7 +661,6 @@ const CourseNavigation = ({
                     <Session
                         session={{
                             id: 24,
-                            group: 'introduction',
                             name: 'Агентство Республики Казахстан по финансовому мониторингу',
                             progress: 0,
                         }}
@@ -670,8 +669,7 @@ const CourseNavigation = ({
                     /><Session
                     session={{
                         id: 25,
-                        group: 'introduction',
-                        name: 'Функции АФМ',
+                        name: 'Межведомственные органы и рабочие группы',
                         progress: 0,
                     }}
                     handleSessionClick={handleSessionClick}
@@ -687,12 +685,20 @@ const CourseNavigation = ({
                     <Session
                         session={{
                             id: 26,
-                            group: 'introduction',
-                            name: 'УРОК 1',
+                            name: 'Урок 1',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
                         isActive={26 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 27,
+                            name: 'Межведомственные органы и рабочие группы',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={27 === activeSessionId}
                     />
                 </Module>
             </div>
