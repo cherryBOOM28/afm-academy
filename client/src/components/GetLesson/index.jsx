@@ -85,6 +85,9 @@ import image76 from './../../assets/images/dola.png'
 import image77 from './../../assets/images/terrari.png'
 import image78 from './../../assets/images/websfm.png'
 import image79 from './../../assets/images/erorrr.png'
+import module_5_2_img from './../../assets/images/module_5_2.png'
+import module_5_21_img from './../../assets/images/module_5_21.png'
+import module_5_22_img from './../../assets/images/module_5_22.png'
 import ArrowRightIcon from '../courseTemplates/common_v2/FlexRow/Arrow-right.svg';
 import HackerIcon from '../courseTemplates/common_v2/FlexRow/Hacker.svg'; 
 import PaymentIcon from '../courseTemplates/common_v2/FlexRow/Payment.svg'; 
@@ -104,6 +107,8 @@ import carousel_111 from './../../assets/images/Carousel_111.png'
 import imageAndColumns_1 from './../../assets/images/columnsImage_1.png'
 import DropDownMSQ from '../courseTemplates/common_v2/DropDownMSQ';
 import TwoColumnsDivider from '../courseTemplates/common_v2/TwoColumnsDivider';
+import Image from '../courseTemplates/common_v2/Image';
+import PyramidList from '../courseTemplates/common_v2/PyramidList';
 
 
 const LessonPage = ({ children, name, lecturer }) => {
@@ -4315,8 +4320,16 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Reveal>
                     <VideoLine url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'}/>
                 </Reveal>
+
                 <Sizebox height={80} />
 
+                <Reveal>
+                    <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
+                        Теперь, когда вы ознакомились с задачами и функциями АФМ, перейдем к изучению межведомственных групп, работу которых координирует АФМ.
+                    </HeaderWithLine>
+                </Reveal>
+
+                <Sizebox height={80} />
                 <NextLesson handleOnClick={() => {
                     CheckCurrentChapter(id);
                 }}/> 
@@ -4325,6 +4338,164 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
         case 25:
             return (<LessonPage name={'Межведомственные органы и рабочие группы'} lecturer={'AML Academy'}>
                 
+                <Sizebox height={40} />
+                <Reveal>
+                    <Centered>
+                        <RandomH2>
+                            Межведомственная рабочая группа по вопросам подготовки ко взаимной оценке ЕАГ (МВРГ)
+                        </RandomH2>
+                    </Centered>
+                </Reveal>
+
+                <Sizebox height={40} />
+                <Reveal>
+                    <TextWithBackground 
+                        backgroundColor={'#CADEFC'}
+                        text={[<>АФМ отвечает за руководство и координацию деятельности в области противодействия ОД/ФТ и получает поддержку на высоком уровне страны. Одним из эффективных инструментов является созданная при Администрации Президента Республики Казахстан <span className="bold">Межведомственная рабочая группа по вопросам подготовки ко взаимной оценке ЕАГ</span> (МВРГ).</>]}
+                    />
+                </Reveal>
+
+                <Sizebox height={80} />
+                <Reveal>
+                    <Centered>
+                        <Image 
+                            style={{
+                                maxHeight: 600,
+                            }}
+                            src={module_5_2_img}
+                        />
+                    </Centered>
+                </Reveal>
+                <Sizebox height={40} />
+                <Reveal>
+                    <TextWithTitle 
+                        text={[
+                            'МВРГ является консультативно-совещательным органом и создана в целях выработки мер по реализации государственной политики в сфере ПОД/ФТ, и повышения их эффективности, а также координации мер, направленных на снижение рисков ОД/ФТ и противодействие теневой экономике.',
+                            'В состав МВРГ вошли представители АП РК, Совбез РК, ВС, ГП, МИД, КНБ, МВД, АФМ, АПК, АРРФР, АЗРК, НБ, Высшей аудиторской палаты, АСПиР, МНЭ, МФ, МЗ, МНВО, МТСЗН, МТС, МЮ, МЦРИАП, МТИ, МСХ, МКОР, МЭ, МПС, МЭПР, НПП «Атамекен», МФЦА.'
+                        ]}
+                    />
+                </Reveal>
+
+                <Sizebox height={100} />
+                <Reveal>
+                    <Centered>
+                        <RandomH2>
+                            Межведомственный совет в сфере ПОД/ФТ
+                        </RandomH2>
+                    </Centered>
+                </Reveal>
+                <Sizebox height={40} />
+                <Reveal>
+                    <TextWithBackground 
+                        backgroundColor={'#CADEFC'}
+                        text={[<>В ноябре 2020 года вступила в силу норма ст. 11-1 Закона о ПОД/ФТ, в соответствии с которой в Казахстане создан <span className="bold">Межведомственный совет в сфере ПОД/ФТ</span> (МВС), который стал эффективной диалоговой площадкой для выработки государственной политики в сфере ПОД/ФТ/ФРОМУ.</>]}
+                    />
+                </Reveal>
+
+                <Sizebox height={80} />
+                <Reveal>
+                    <Centered>
+                        <Image 
+                            style={{
+                                maxHeight: 600,
+                            }}
+                            src={module_5_21_img}
+                        />
+                    </Centered>
+                </Reveal>
+                <Sizebox height={40} />
+                <Reveal>
+                    <TextWithTitle 
+                        text={[
+                            'В его состав вошли заместители первых руководителей государственных правоохранительных, специальных государственных органов и госорганов-регуляторов, задействованных в борьбе с ОД/ФТ/ФРОМУ.',
+                            'По итогам заседаний МВС утвержден ряд стратегически важных документов, в том числе, одобрены и приняты закрытые и публичные версии НОР ОД и НОР ФТ/ФРОМУ, секторальной оценке НКО, а также отчет уязвимости юридических лиц, методические рекомендации по выявлению ПДЛ, бенефициарных собственников и утверждены рекомендаций для НКО в сфере ПФТ.'
+                        ]}
+                    />
+                </Reveal>
+
+                <Sizebox height={100} />
+                <Reveal>
+                    <Centered>
+                        <RandomH2>
+                            ФУНКЦИИ МВС
+                        </RandomH2>
+                    </Centered>
+                </Reveal>
+                <Sizebox height={40} />
+                {/* <TODO text={'PIRAMIDA'} /> */}
+                <PyramidList />
+                <Sizebox height={80} />
+                <Reveal>
+                    <FileDownloader 
+                        fileName={'Публичные отчеты НОР ОД  и НОР ФТ'}
+                    />
+                </Reveal>
+
+                <Sizebox height={100} />
+                <Reveal>
+                    <Centered>
+                        <RandomH2>Совет комплаенс</RandomH2>
+                    </Centered>
+                </Reveal>
+                <Sizebox height={40} />
+                <Reveal>
+                    <TextWithBackground 
+                        backgroundColor={'#CADEFC'}
+                        text={[<>Для усиления взаимодействия с СФМ и решения организационных и правовых вопросов в ноябре 2019 года при АФМ создан <span className="bold">Совет комплаенс.</span></>]}
+                    />
+                </Reveal>
+
+                <Sizebox height={80} />
+                <Reveal>
+                    <Centered>
+                        <Image 
+                            style={{
+                                maxHeight: 600,
+                            }}
+                            src={module_5_22_img}
+                        />
+                    </Centered>
+                </Reveal>
+                <Sizebox height={40} />
+                <Reveal>
+                    <NumberedDots 
+                        dotsColor={'white'}
+                        header={'Основными задачами Совета комплаенс являются:'}
+                        list={[
+                            'подготовка рекомендаций по внедрению новых форматов взаимодействия и обратной связи с СФМ;',
+                            'подготовка и обсуждение предложений по совершенствованию информационного обмена между СФМ и Агентством, а также по иным вопросам информационного взаимодействия;',
+                            'участие в проектах, связанных с информированием СФМ о рисках ОД/ФТ для практического использования при реализации процедур внутреннего контроля;',
+                            'организация и участие в совместных обучающих мероприятиях, обмене лучшими практиками и опытом работы в сфере ПОД/ФТ, в том числе с участием приглашенных экспертов.',
+                        ]}
+                    />
+                </Reveal>
+                <Sizebox height={40} />
+                <Reveal>
+                    <Report_Warning>
+                        С момента действия данной площадки проведено более 70 встреч с СФМ и государственными органами, на которых, к примеру, был доведен унифицированный реестр рисковых лиц, итоги НОР ОД/ФТ/ФРОМУ и другое.
+                    </Report_Warning>
+                </Reveal>
+                <Sizebox height={40} />
+                <Reveal>
+                    <RandomParapraph>
+                        Взаимодействие и сотрудничество является одной из сильных сторон казахстанской системы ПОД/ФТ. АФМ отвечает за руководство и координацию деятельности в области противодействия ОД/ФТ и получает поддержку на высоком уровне страны.
+                    </RandomParapraph>
+                </Reveal>
+                <Sizebox height={40} />
+                <Reveal>
+                    <Report_Warning>
+                        В настоящее время заключено 7 соглашений о сотрудничестве и взаимодействии в сфере ПОД/ФТ с госорганами – регуляторами, с 19 общественными объединениями, а также 39 меморандумов о взаимодействии в сфере ПОД/ФТ с иностранными ПФР.
+                    </Report_Warning>
+                </Reveal>
+
+                <Sizebox height={100} />
+
+                <Reveal>
+                    <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
+                        ПЕРЕЙДЕМ К СЛЕДУЮЩЕМУ БЛОКУ ОБУЧЕНИЯ
+                    </HeaderWithLine>
+                </Reveal>
+
                 <Reveal>
                     <Sizebox height={100}/>
                     <NextLesson handleOnClick={() => {
