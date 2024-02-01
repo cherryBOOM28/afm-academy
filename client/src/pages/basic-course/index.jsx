@@ -709,15 +709,6 @@ const CourseNavigation = ({
                         handleSessionClick={handleSessionClick}
                         isActive={26 === activeSessionId}
                     />
-                    <Session
-                        session={{
-                            id: 27,
-                            name: 'Межведомственные органы и рабочие группы',
-                            progress: 0,
-                        }}
-                        handleSessionClick={handleSessionClick}
-                        isActive={27 === activeSessionId}
-                    />
                 </Module>
             </div>
 

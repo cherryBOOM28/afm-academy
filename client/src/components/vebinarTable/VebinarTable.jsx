@@ -7,6 +7,7 @@ import img from './../../assets/images/vebinar-img.png'
 import './vebinarTable.scss'
 import axios from "axios";
 import base_url from "../../settings/base_url";
+import { useStyle } from '../VisualModal/StyleContext';
 
 const VebinarTable = () => {
 
@@ -14,6 +15,8 @@ const VebinarTable = () => {
     const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(true);
     const jwtToken = localStorage.getItem('jwtToken');
+
+    const { styles } = useStyle();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -77,6 +80,7 @@ const VebinarTable = () => {
             contingent: '50ppl',
         }
     ]);
+
     const rowsPerPage = 10;
 
     const [page,
@@ -87,7 +91,7 @@ const VebinarTable = () => {
 
     const cellPadding = '20px 0px';
     const cellFont = `400 16px/normal 'Inter', sans-serif`;
-    const headCellFont = `500 16px/normal 'Inter', sans-serif`;
+    const headCellFont = `400 16px/normal`;
     const cellColor = '#3A3939'
     const headCellColor = '#20102B'
 
@@ -105,7 +109,7 @@ const VebinarTable = () => {
                                     align={last ? 'right' : 'left'} 
                                     key={index}
                                 >
-                                    <div style={{padding: '0px 10px'}}>
+                                    <div style={{padding: '0px 10px'}} className='text-content'>
                                     {column}
                                     </div>
                                 </TableCell>

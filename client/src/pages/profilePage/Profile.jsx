@@ -88,11 +88,13 @@ function Profile(props) {
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
   };
+
   const handleOpenVisualModal = () => {
     console.log("OPEN");
     setOpenVisualModal((prev) => !prev);
     setOpen((prev) => !prev);
   };
+  
   const [openVisualModal, setOpenVisualModal] = useState(open);
 
   const handleRemoveImages = () => {
@@ -126,6 +128,7 @@ function Profile(props) {
         return "1px";
     }
   };
+
   useEffect(() => {
     const textContentElement = document.querySelector(".text-content");
     const family = styles.fontFamily;

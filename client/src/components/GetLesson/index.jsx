@@ -90,6 +90,8 @@ import image82 from './../../assets/images/85.png'
 import module_5_2_img from './../../assets/images/module_5_2.png'
 import module_5_21_img from './../../assets/images/module_5_21.png'
 import module_5_22_img from './../../assets/images/module_5_22.png'
+import module_7_12_img from './../../assets/images/module_7_12.png'
+import module_7_13_img from './../../assets/images/module_7_13.png'
 import ArrowRightIcon from '../courseTemplates/common_v2/FlexRow/Arrow-right.svg';
 import HackerIcon from '../courseTemplates/common_v2/FlexRow/Hacker.svg'; 
 import PaymentIcon from '../courseTemplates/common_v2/FlexRow/Payment.svg'; 
@@ -4650,10 +4652,11 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                     <Sizebox height={40} />
                 </Reveal>
                 <Reveal>
-                    <TextWithTitle title={"В КАКИХ ЦЕЛЯХ СФМ НЕОБХОДИМО ОБУЧАТЬСЯ, ПОВЫШАТЬ КВАЛИФИКАЦИЮ И ПРОХОДИТЬ ТЕСТИРОВАНИЕ?\n"}
+                    <TextWithTitle 
+                        title={"В КАКИХ ЦЕЛЯХ СФМ НЕОБХОДИМО ОБУЧАТЬСЯ, ПОВЫШАТЬ КВАЛИФИКАЦИЮ И ПРОХОДИТЬ ТЕСТИРОВАНИЕ?\n"}
                     />
 
-                    <Sizebox height={40} />
+                    <Sizebox height={20} />
                     <NotNumberedDots
                         dotsColor={'#CADEFC'}
                         list={[
@@ -4664,13 +4667,25 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                             'СПОСОБЫ И СХЕМЫ ОД/ФТ ПОСТОЯННО СОВЕРШЕНСТВУЮТСЯ;',
                         ]}
                     />
-                    <Sizebox height={40}/>
                 </Reveal>
-                <Reveal>
-                    <TextWithTitle title={"В целях реализации Требований по подготовке и обучению Субъект:"}
-                    />
 
-                    <Sizebox height={40} />
+                <Sizebox height={60}/>
+                <Reveal>
+                    <Centered>
+                        <Image 
+                            src={module_7_12_img} 
+                            style={{
+                                maxHeight: '600px'
+                            }}
+                        />  
+                    </Centered>
+                </Reveal>
+                <Sizebox height={20} />
+                <Reveal>
+                    <TextWithTitle 
+                        title={"В целях реализации Требований по подготовке и обучению Субъект:"}
+                    />
+                    <Sizebox height={20} />
                     <NumberedDots
                         dotsColor={'#CADEFC'}
                         list={[
@@ -4679,7 +4694,6 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                             'Устанавливает порядок учета прохождения своими сотрудниками программы обучения.',
                             'Ведет учет прохождения своими сотрудниками программы обучения.',
                             'Устанавливает форму и содержание документа по факту проведения со своим сотрудником обучения и ознакомления с НПА РК в области ПОД/ФТ и внутренними документами, принятыми в целях организации внутреннего контроля и подтверждается его собственноручной подписью.',
-                            'Ведет учет прохождения своими сотрудниками программы обучения.',
                             'Приобщает к личному делу своего сотрудника документы, подтверждающие прохождение им программы обучения.',
                             'Размещает информацию о прохождении тестирования в личном кабинете веб-портала АФМ.',
 
@@ -4705,10 +4719,10 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
 
                 <Reveal/>
                 <Reveal>
-                    <TextWithTitle title={"Учет прохождения субъектами финансового мониторинга обучения и тестирования"}
+                    <TextWithTitle 
+                        title={"Учет прохождения субъектами финансового мониторинга обучения и тестирования"}
                     />
-
-                    <Sizebox height={40} />
+                    <Sizebox height={20} />
                     <NumberedDots
                         dotsColor={'#CADEFC'}
                         list={[
@@ -4724,14 +4738,23 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                     <Sizebox height={40}/>
                 </Reveal>
                 <Reveal>
-                    <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
-                        <>
-                            В целях подтверждения изучения субъектами материала, изученного в процессе обучения субъекты проходят <span class="bold">тестирование</span> с периодичностью не реже <span class="bold">1 (одного) раза в 3 (три) года</span> с даты прохождения тестирования на базе Национального центра по управлению персоналом государственной службы и его территориальных подразделений.
-                        </>
-                    </HeaderWithLine>
+                    <RandomParapraph >
+                        В целях подтверждения изучения субъектами материала, изученного в процессе обучения субъекты проходят <span class="bold">тестирование</span> с периодичностью не реже <span class="bold">1 (одного) раза в 3 (три) года</span> с даты прохождения тестирования на базе Национального центра по управлению персоналом государственной службы и его территориальных подразделений.
+                    </RandomParapraph>
                 </Reveal>
+                <Sizebox height={20}/>
                 <Reveal>
-                    <Sizebox height={40}/>
+                    <Centered>
+                        <Image 
+                            src={module_7_13_img} 
+                            style={{
+                                maxHeight: '400px'
+                            }}
+                        />  
+                    </Centered>
+                </Reveal>
+                <Sizebox height={20}/>
+                <Reveal>
                     <Report_Information>
                         <>
                             <p className='italic'>
@@ -4812,8 +4835,6 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                     <Sizebox height={40} />
                 </Reveal>
                 <Reveal>
-                    {/*<TextWithTitle title={"В КАКИХ ЦЕЛЯХ СФМ НЕОБХОДИМО ОБУЧАТЬСЯ, ПОВЫШАТЬ КВАЛИФИКАЦИЮ И ПРОХОДИТЬ ТЕСТИРОВАНИЕ?\n"}*/}
-                    {/*/>*/}
                     <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
                         <>
                             Государственный контроль и надзор за соблюдением законодательства ПОД/ФТ реализуется над субъектами финансового мониторинга соответствующими государственными органами-регуляторами.

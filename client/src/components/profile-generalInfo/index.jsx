@@ -446,7 +446,7 @@ const InputField = ({
   let _value = value;
 
   return (
-    <div className="field">
+    <div className="field text-content">
       <label htmlFor={name}>{label}</label>
       <div>
         <input

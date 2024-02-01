@@ -33,7 +33,7 @@ function Vebinar(props) {
               : "#000",
         }}
       >
-        <div>Календарь выбранных вебинаров:</div>
+        <div className="text-content">Календарь выбранных вебинаров:</div>
         <div>
           <BiFilter />
           <Select
@@ -69,10 +69,10 @@ const Select = ({ value, options, handleChange }) => {
   };
 
   return (
-    <select value={value} onChange={handleSelectChange}>
+    <select value={value} onChange={handleSelectChange} className="text-content">
       {options.map((option) => {
         return (
-          <option value={option} key={option}>
+          <option value={option} key={option} >
             {option}
           </option>
         );
