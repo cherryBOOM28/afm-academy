@@ -221,7 +221,7 @@ function Basic_course(props) {
         setActiveSessionId(id);
     }
 
-    const CheckCurrentChapter = (chapterNum) => {
+    const CheckCurrentChapter = (chapterNum, nexChapter) => {
         const fetchData = async () => {
             try {
                 const response = await axios.post(
@@ -256,7 +256,9 @@ function Basic_course(props) {
         // console.log(jwtToken);
         fetchData();
         scrollToTopAnimated();
-        setActiveSessionId(activeSessionId + 1);
+
+        if (nexChapter) setActiveSessionId(nexChapter)
+        else setActiveSessionId(activeSessionId + 1);
     };
 
 
@@ -653,6 +655,22 @@ const CourseNavigation = ({
                 />
                 </Module>
                 <Module
+                    name={'Государственный контроль за соблюдением законодательства Республики Казахстан о ПОД/ФТ'}
+                    moduleId={4}
+                    isOpen={currentModule === 4}
+                    handleModuleOpen={handleModuleOpen}
+                >
+                    <Session
+                        session={{
+                            id: 99,
+                            name: 'Урок 1',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={99 === activeSessionId}
+                    />
+                </Module>
+                <Module
                     name={'Подразделение финансовой разведки'}
                     moduleId={5}
                     isOpen={currentModule === 5}
@@ -661,7 +679,6 @@ const CourseNavigation = ({
                     <Session
                         session={{
                             id: 24,
-                            group: 'introduction',
                             name: 'Агентство Республики Казахстан по финансовому мониторингу',
                             progress: 0,
                         }}
@@ -670,8 +687,7 @@ const CourseNavigation = ({
                     /><Session
                     session={{
                         id: 25,
-                        group: 'introduction',
-                        name: 'Функции АФМ',
+                        name: 'Межведомственные органы и рабочие группы',
                         progress: 0,
                     }}
                     handleSessionClick={handleSessionClick}
@@ -687,12 +703,20 @@ const CourseNavigation = ({
                     <Session
                         session={{
                             id: 26,
-                            group: 'introduction',
-                            name: 'УРОК 1',
+                            name: 'Урок 1',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
                         isActive={26 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 27,
+                            name: 'Межведомственные органы и рабочие группы',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={27 === activeSessionId}
                     />
                 </Module>
             </div>
