@@ -2,7 +2,7 @@
     position: relative;
 
     > div:first-child {
-        background-color: white;
+        background-color: inherit;
     }
 
     .container {
@@ -137,7 +137,6 @@
 
                     .course-name {
                         color: #3A3939;
-                        font-family: 'Ubuntu';
                         font-size: 18px;
                         font-style: normal;
                         font-weight: 600;

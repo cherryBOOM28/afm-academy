@@ -10,8 +10,120 @@ import './style.scss'
 import axios from 'axios';
 import base_url from '../../settings/base_url';
 import { Box, Modal } from '@mui/material';
+import { useStyle } from "../../components/VisualModal/StyleContext";
+import { useTranslation } from "react-i18next";
+
+
 
 function ProfileEducation({ handleOpenModal }) {
+    const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
+  const [imagesHidden, setImagesHidden] = useState(false);
+  const [letterInterval, setLetterInterval] = useState("standard");
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const currentLanguage = i18n.language;
+
+  const [activeTab, setActiveTab] = useState(1);
+
+  useEffect(() => {
+    if(!checkStyle) return;
+    console.log(userEntry)
+    if (userEntry) return; 
+    const textContentElement = document.querySelectorAll(".text-content");
+    const size = styles.fontSize;
+    setImagesHidden(!styles.showImage);
+
+    if (textContentElement) {
+      textContentElement.forEach((item) => {
+        switch (size) {
+          case "small":
+            item.style.fontSize = "15px";
+            item.style.lineHeight = "18px";
+            break;
+          case "standard":
+            item.style.fontSize = "20px";
+            item.style.lineHeight = "23px";
+            break;
+          case "large":
+            item.style.fontSize = "24px";
+            item.style.lineHeight = "27px";
+            break;
+          default:
+            break;
+        }
+      });
+    }
+
+    handleColorModeChange();
+  }, []);
+  const handleColorModeChange = (mode) => {
+    // Remove previous color mode classes
+    const containerElement = document.querySelector(".text-content");
+    if (containerElement) {
+      containerElement.classList.remove(
+        "light-mode",
+        "dark-mode",
+        "inverted-mode",
+        "blue-mode",
+      );
+    }
+
+    const { colorMode } = styles;
+
+    if (containerElement) {
+      containerElement.classList.add(colorMode + "-mode");
+    }
+  };
+
+  const handleTabClick = (tabIndex) => {
+    setActiveTab(tabIndex);
+  };
+  const handleOpenVisualModal = () => {
+    console.log("OPEN");
+    setOpenVisualModal((prev) => !prev);
+    setOpen((prev) => !prev);
+  };
+  const [openVisualModal, setOpenVisualModal] = useState(open);
+
+  const handleRemoveImages = () => {
+    console.log("Images hidden");
+
+    setImagesHidden(true);
+  };
+
+  const handleShowImages = () => {
+    setImagesHidden(false);
+  };
+
+  const handleIntervalChange = (interval) => {
+    console.log("Interval changed");
+    setLetterInterval(interval);
+  };
+
+  const getShowImage = () => {
+    return imagesHidden;
+  };
+
+  const getLetterSpacing = (interval) => {
+    interval = styles.letterInterval;
+
+    switch (interval) {
+      case "medium":
+        return "2px";
+      case "large":
+        return "4px";
+      default:
+        return "1px";
+    }
+  };
+  useEffect(() => {
+    const textContentElement = document.querySelector(".text-content");
+    const family = styles.fontFamily;
+
+    if (family) {
+      textContentElement.style.fontFamily = family;
+    }
+  }, []);
 
     const eduColumns = ['Курс', 'Вид курса', 'Начало курса', 'Конец курса', 'Actions'];
     const [eduRows, setEduRows] = useState([
@@ -26,7 +138,7 @@ function ProfileEducation({ handleOpenModal }) {
     const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(true);
 
-    const [open, setOpen] = useState(false)
+    const [opening, setOpening] = useState(false)
 
     const jwtToken = localStorage.getItem('jwtToken');
 
@@ -99,16 +211,22 @@ function ProfileEducation({ handleOpenModal }) {
 
     return ( 
         <>
-        <div className="education-info">
+        <div className="education-info text-content"
+        style={{
+            background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#fff" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+          }}
+        >
             {/* <div className="title">Опыт работы</div> */}
-            <div className='table'>
-                <PaginableTable columns={eduColumns} rows={eduRows} rowsPerPage={eduRowsPerPage} isExtendable={false}>
+            <div className='table text-content'>
+                <PaginableTable 
+                className='text-content'
+                columns={eduColumns} rows={eduRows} rowsPerPage={eduRowsPerPage} isExtendable={false}>
                     <div className='edu-action' style={{order: 2}} onClick={() => {handleOpenModal()}}>
-                        <span>Отзыв</span>
+                        <span className='text-content'>Отзыв</span>
                         {/* <AiFillStar size={23} style={{color: '#F9CB36'}}/> */}
                     </div>
                     <div className='edu-action' style={{order: 1}} onClick={() => {getFile(1)}}>
-                        <span>Сертификат</span>
+                        <span className='text-content'>Сертификат</span>
                         <BiSolidFilePdf size={23} style={{color: '#1F3C88'}}/>
                     </div>
                 </PaginableTable>

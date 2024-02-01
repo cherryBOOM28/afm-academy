@@ -236,12 +236,17 @@
                     &.active {
                         border-radius: 5px;
                         background: #1F3C88;
-                        color: #FFF;
+                        color: #FFF !important;
 
                         padding: 12px 38px;
                     }
+                    .active-text {
+                        /* Styles for the text when the tab is active */
+                        color: #fff; /* Change the text color when active */
+                      }
                 }
             }
+
 
             .main-section {
                 width: calc(100% - 270px);
