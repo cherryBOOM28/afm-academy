@@ -185,14 +185,14 @@ const EditCatalog = () => {
                                 {/* Dropdowns for users and courses */}
                                 <div className="dropdown-container">
                                     <select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
-                                        <option value="">Select User</option>
+                                        <option value="">Выбрать Пользователя</option>
                                         {userData.map(user => (
                                             <option key={user.user_id} value={user.user_id}>{user.firstname + ' ' + user.lastname}</option>
                                         ))}
                                     </select>
 
                                     <select value={selectedCourses} onChange={(e) => setSelectedCourses(e.target.value)}>
-                                        <option value="">Select Course</option>
+                                        <option value="">Выбрать Курс</option>
                                         {courseData.map(course => (
                                             <option key={course.course_id} value={course.course_id}>{course.course_name + " " + course.course_id}</option>
                                         ))}
