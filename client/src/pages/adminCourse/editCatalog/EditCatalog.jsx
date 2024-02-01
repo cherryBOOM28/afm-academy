@@ -19,9 +19,14 @@ const EditCatalog = () => {
 
     const [deletingCourse, setDeletingCourse] = useState(false)
     const [selectedCourse, setSelectedCourse] = useState({course_id: 0, course_name: ""})
+    const [selectedUser, setSelectedUser] = useState('');
+    const [selectedCourses, setSelectedCourses] = useState('');
+    const jwtToken = localStorage.getItem('jwtToken');
 
     const [draftPage, setDraftPage] = useState(true)
 
+    const [userData, setUserData] = useState([]);
+    const [courseData, setCourseData] = useState([]);
 
     useEffect(() => {
         axios
@@ -35,7 +40,44 @@ const EditCatalog = () => {
     const closeModal = () => {
         setDeletingCourse(false)
     }
+    const handleAddClick = () => {
+        // Ensure both user and course are selected
+        if (!selectedUser || !selectedCourse) {
+            alert("Please select both a user and a course");
+            return;
+        }
 
+        // POST request to the API
+        axios.put(base_url + `/api/aml/course/saveUser/${selectedUser}/course/${selectedCourses}`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${jwtToken}`,
+                },
+            })
+            .then(response => {
+                // Handle the successful response here
+                console.log("User added to course successfully:", response);
+            })
+            .catch(error => {
+                // Handle errors here
+                console.error("Error in adding user to course:", error);
+            });
+    };
+
+    const setUser = () => {
+        axios.get(base_url + '/api/aml/course/getUsersAndCourses')
+            .then(response => {
+                // Assuming the response contains an array of users and courses
+                setUserData(response.data.users);
+                setCourseData(response.data.courses);
+                console.log(response.data)
+            })
+            .catch(error => {
+                // Handle error here
+                console.error("Error fetching data: ", error);
+            });
+    };
     const deleteCourse = (course_id) => {
         axios
             .post(base_url + '/api/aml/course/deleteCourse', null, {
@@ -50,7 +92,9 @@ const EditCatalog = () => {
                 // alert(error)
             })
     }
-
+    useEffect(() => {
+        setUser();
+    }, []);
     const setCourse = (course_id, course_name) => {
         setSelectedCourse({course_id, course_name})
     }
@@ -129,9 +173,41 @@ const EditCatalog = () => {
                                             {/* onClick={publishCourse(x.course_id)}  */}
                                             <a onClick={() => publishCourse(x.course_id)} className="publish">Опубликовать</a>
                                         </div>
+
                                     </div>
+
                                 )
                             })}
+                            </div>
+                            <div>
+                                {/* ... existing JSX ... */}
+
+                                {/* Dropdowns for users and courses */}
+                                <div className="dropdown-container">
+                                    <select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
+                                        <option value="">Select User</option>
+                                        {userData.map(user => (
+                                            <option key={user.user_id} value={user.user_id}>{user.firstname + ' ' + user.lastname}</option>
+                                        ))}
+                                    </select>
+
+                                    <select value={selectedCourses} onChange={(e) => setSelectedCourses(e.target.value)}>
+                                        <option value="">Select Course</option>
+                                        {courseData.map(course => (
+                                            <option key={course.course_id} value={course.course_id}>{course.course_name + " " + course.course_id}</option>
+                                        ))}
+                                    </select>
+
+                                    <div>
+                                        {/* ... existing JSX ... */}
+                                        <div className="dropdown-container">
+                                            {/* ... existing dropdowns ... */}
+                                            <button onClick={handleAddClick}>Добавить</button>
+                                        </div>
+                                        {/* ... rest of your JSX ... */}
+                                    </div>                                </div>
+
+                                {/* ... rest of your JSX ... */}
                             </div>
                         </div>
                     </div>
