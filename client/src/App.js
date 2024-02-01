@@ -8,6 +8,7 @@ import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigati
 import { AuthProvider, useAuth } from './auth/AuthContext';
 import './settings/i18n.js';
 import VisualModal from './/components/VisualModal/VisualModal.jsx'
+import Login from './pages/login/Login';
 import { StyleProvider } from './/components/VisualModal/StyleContext.jsx';
 const Home = lazy(() => import ('./pages/home/Home'))
 const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
@@ -24,8 +25,8 @@ const Charter = lazy(()=>import('./pages/aboutPage/charter/Charter'))
 //import Charter from './pages/aboutPage/charter/Charter';
 const Subjects = lazy(()=>import('./pages/sfm/subjects/Subjects'))
 //import Subjects from './pages/sfm/subjects/Subjects';
-const Login = lazy(()=>import('./pages/login/Login'))
-//import Login from './pages/login/Login';
+// const Login = lazy(()=>import('./pages/login/Login'))
+
 const Registration = lazy(() => import('./pages/registration/Registration'));
 //import Registration from './pages/registration/Registration';
 const Rules = lazy(() => import('./pages/sfm/rules/Rules'));
@@ -106,7 +107,7 @@ function App() {
                             <Route path="/login" element={<PrivateRoute shouldBeLoggedIn={false} component={Login} redirect={'/profile'}/>} />
                             <Route path="/registration" element={<PrivateRoute shouldBeLoggedIn={false} component={Registration} redirect={'/profile'}/>} />
 
-                            <Route path="/logout" element={<Suspense><Login/></Suspense>} />
+                            <Route path="/logout" element={<Login/>} />
 
 
                             <Route path="/" element={<Suspense ><Home /></Suspense>}></Route>
