@@ -423,14 +423,14 @@ function MyCourses() {
                                       : "#000",
                                 }}
                               >
-                                {"РУС"} | {"1ч 45мин"}
+                                {"РУС"} | {courseDTO.duration}
                               </div>
                               <div className="rating text-content">
                                 <AiFillStar
                                   className="star-icon text-content"
                                   size={23}
                                 />
-                                <span>5.0</span>
+                                <span>{courseDTO.rating}.0</span>
                               </div>
                             </div>
                           </div>
@@ -448,7 +448,7 @@ function MyCourses() {
                             }}
                           >
                             <MdOndemandVideo size={23} />
-                            <span>Электронное обучение</span>
+                            <span>{courseDTO.course_for_member_of_the_system}</span>
                           </div>
                         </div>
                       );
