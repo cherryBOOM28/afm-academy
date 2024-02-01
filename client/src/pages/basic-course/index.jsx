@@ -221,7 +221,7 @@ function Basic_course(props) {
         setActiveSessionId(id);
     }
 
-    const CheckCurrentChapter = (chapterNum) => {
+    const CheckCurrentChapter = (chapterNum, nexChapter) => {
         const fetchData = async () => {
             try {
                 const response = await axios.post(
@@ -256,7 +256,9 @@ function Basic_course(props) {
         // console.log(jwtToken);
         fetchData();
         scrollToTopAnimated();
-        setActiveSessionId(activeSessionId + 1);
+
+        if (nexChapter) setActiveSessionId(nexChapter)
+        else setActiveSessionId(activeSessionId + 1);
     };
 
 

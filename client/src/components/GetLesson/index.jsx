@@ -4302,21 +4302,24 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                         </>
                     </HeaderWithLine>
                 </Reveal>
-                
-                <Sizebox height={80} />
-
-                <VideoLine url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'}/>
 
                 <Sizebox height={80} />
 
-                <Reveal/>
-                
                 <Reveal>
-                    <Sizebox height={40}/>
-                    <NextLesson handleOnClick={() => {
-                        CheckCurrentChapter(id);
-                    }}/>
+                    <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
+                        Функции АФМ
+                    </HeaderWithLine>
                 </Reveal>
+                <Sizebox height={40} />
+
+                <Reveal>
+                    <VideoLine url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'}/>
+                </Reveal>
+                <Sizebox height={80} />
+
+                <NextLesson handleOnClick={() => {
+                    CheckCurrentChapter(id);
+                }}/> 
 
             </LessonPage>)
         case 25:
@@ -4767,7 +4770,7 @@ function GetLesson({id, CheckCurrentChapter, quizQuestions, handleOpenFeedbackMo
                 <Reveal>
                     <Sizebox height={40}/>
                     <NextLesson handleOnClick={() => {
-                        CheckCurrentChapter(id);
+                        CheckCurrentChapter(id, 24);
                     }}/>
                 </Reveal>
 
