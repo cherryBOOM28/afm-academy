@@ -783,7 +783,7 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                                 <div className="info">
                                     <div className="course-name">{course_name}</div>
                                     <div className="langAndDuration">
-                                        {"РУС"} | {"1ч 45мин"}
+                                        {"РУС"} | {course.courseDTO.duration}
                                     </div>
                                     <div className="rating">
                                         <div className="stars">
@@ -793,11 +793,11 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                                             <AiFillStar className="star-icon" size={23} />
                                             <AiFillStar className="star-icon" size={23} />
                                         </div>
-                                        <span>5.0</span>
+                                        <span>{course.courseDTO.rating}.0</span>
                                     </div>
                                     <div className="type">
                                         <MdOndemandVideo size={23} />
-                                        <span>Электронное обучение</span>
+                                        <span>{course.courseDTO.course_for_member_of_the_system}</span>
                                     </div>
                                 </div>
                             </div>
