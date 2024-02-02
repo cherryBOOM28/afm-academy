@@ -270,6 +270,10 @@ function ProfileGeneral() {
             : "000",
       }}
     >
+            <div
+        className="interval"
+        style={{ letterSpacing: getLetterSpacing(letterInterval) }}
+      >
       <div className="profile-img">
         <span className="text-content">
           {(localData ? localData["firstname"] : "*****").substring(0, 1)}
@@ -277,6 +281,7 @@ function ProfileGeneral() {
         <span className="text-content">
           {(localData ? localData["lastname"] : "*****").substring(0, 1)}
         </span>
+      </div>
       </div>
       <div className="fields text-content">
         <InputField

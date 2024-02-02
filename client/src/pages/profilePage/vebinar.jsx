@@ -33,7 +33,11 @@ function Vebinar(props) {
               : "#000",
         }}
       >
-        <div className="text-content">Календарь выбранных вебинаров:</div>
+        <div className="text-content"
+         style={{
+          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+        }}
+        >Календарь выбранных вебинаров:</div>
         <div>
           <BiFilter />
           <Select

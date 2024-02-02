@@ -228,7 +228,7 @@ function VisualModal({
                     fontSize === "small" ? "clicked" : ""
                   }`}
                 >
-                  Small
+                  Маленький
                 </button>
                 <button
                   onClick={() => handleFontSizeChange("standard")}
@@ -236,7 +236,7 @@ function VisualModal({
                     fontSize === "standard" ? "clicked" : ""
                   }`}
                 >
-                  Standard
+                  Стандарт
                 </button>
                 <button
                   onClick={() => handleFontSizeChange("large")}
@@ -244,7 +244,7 @@ function VisualModal({
                     fontSize === "large" ? "clicked" : ""
                   }`}
                 >
-                  Large
+                  Большой
                 </button>
               </div>
             </div>
