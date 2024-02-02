@@ -94,7 +94,7 @@ function Profile(props) {
     setOpenVisualModal((prev) => !prev);
     setOpen((prev) => !prev);
   };
-  
+
   const [openVisualModal, setOpenVisualModal] = useState(open);
 
   const handleRemoveImages = () => {
@@ -313,7 +313,12 @@ function Profile(props) {
           <Link to="/courses/catalog" className="nav-back text-content">
             <IoIosArrowBack />
             <div>
-              <a className="text-content">Назад к главной</a>
+              <a 
+                className="text-content"
+                style={{
+                  letterSpacing: getLetterSpacing(styles.interval)
+                }}
+              >Назад к главной</a>
             </div>
           </Link>
 
@@ -349,28 +354,32 @@ function Profile(props) {
               >
                 <p
                   className="text-content"
-                  
+                  style={{
+                    letterSpacing: getLetterSpacing(styles.interval)
+                  }}
                 >
                   Личные данные
                 </p>
               </div>
               <div
-                                style={{
-                                    color:
-                                      styles.colorMode === "dark"
-                                        ? "#fff"
-                                        : styles.colorMode === "light"
-                                        ? "#343434"
-                                        : styles.colorMode === "blue"
-                                        ? "#063462"
-                                        : "#000",
-                                  }}
+                  style={{
+                      color:
+                        styles.colorMode === "dark"
+                          ? "#fff"
+                          : styles.colorMode === "light"
+                          ? "#343434"
+                          : styles.colorMode === "blue"
+                          ? "#063462"
+                          : "#000",
+                    }}
                 className={`${currentTab === 2 ? "active" : ""}`}
                 onClick={() => HandleTabClickProfile(2)}
               >
                 <p
                   className="text-content"
-
+                  style={{
+                    letterSpacing: getLetterSpacing(styles.interval)
+                  }}
                 >
                   Вебинары
                 </p>
@@ -394,6 +403,9 @@ function Profile(props) {
               >
                 <p
                   className="text-content"
+                  style={{
+                    letterSpacing: getLetterSpacing(styles.interval)
+                  }}
                 >
                   Сертификаты
                 </p>
@@ -412,7 +424,12 @@ function Profile(props) {
                 className={`${currentTab === 5 ? "active" : ""}`}
                 onClick={() => HandleTabClickProfile(5)}
               >
-                <p className="text-content">Сменить пароль</p>
+                <p 
+                  className="text-content"
+                  style={{
+                    letterSpacing: getLetterSpacing(styles.interval)
+                  }}
+                >Сменить пароль</p>
               </div>
             </div>
             <div className="main-section text-content">{getSection()}</div>

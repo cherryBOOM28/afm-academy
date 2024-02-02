@@ -40,8 +40,8 @@ function AntiLaundering() {
             item.style.lineHeight = "18px";
             break;
           case "standard":
-            item.style.fontSize = "20px";
-            item.style.lineHeight = "23px";
+            item.style.fontSize = "unset";
+            item.style.lineHeight = "unset";
             break;
           case "large":
             item.style.fontSize = "24px";

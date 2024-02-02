@@ -216,19 +216,21 @@ function ProfileEducation({ handleOpenModal }) {
             background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#fff" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
           }}
         >
+
             {/* <div className="title">Опыт работы</div> */}
-            <div className='table text-content'>
+            <div className='table text-content interval'
+            style={{ letterSpacing: getLetterSpacing(letterInterval) }}
+            >
                 <PaginableTable 
-                className='text-content'
-                columns={eduColumns} rows={eduRows} rowsPerPage={eduRowsPerPage} isExtendable={false}>
-                    <div className='edu-action' style={{order: 2}} onClick={() => {handleOpenModal()}}>
-                        <span className='text-content'>Отзыв</span>
-                        {/* <AiFillStar size={23} style={{color: '#F9CB36'}}/> */}
-                    </div>
-                    <div className='edu-action' style={{order: 1}} onClick={() => {getFile(1)}}>
-                        <span className='text-content'>Сертификат</span>
-                        <BiSolidFilePdf size={23} style={{color: '#1F3C88'}}/>
-                    </div>
+                  columns={eduColumns} rows={eduRows} rowsPerPage={eduRowsPerPage} isExtendable={false}>
+                      <div className='edu-action' style={{order: 2}} onClick={() => {handleOpenModal()}}>
+                          <span className='text-content'>Отзыв</span>
+                          {/* <AiFillStar size={23} style={{color: '#F9CB36'}}/> */}
+                      </div>
+                      <div className='edu-action' style={{order: 1}} onClick={() => {getFile(1)}}>
+                          <span className='text-content'>Сертификат</span>
+                          <BiSolidFilePdf size={23} style={{color: '#1F3C88'}}/>
+                      </div>
                 </PaginableTable>
             </div>
         </div>

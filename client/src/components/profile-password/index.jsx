@@ -204,7 +204,8 @@ function ProfilePassword(props) {
     return ( 
         <div className="profile-password text-content"
         style={{
-            background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#fff" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+            background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#fff" : styles.colorMode === "blue" ? "#9dd1ff" : "#000",
+            letterSpacing: getLetterSpacing(letterInterval)
           }}
         >
             <div className="title"
@@ -220,6 +221,7 @@ function ProfilePassword(props) {
                 <InputField
                     style={{
                         color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                        letterSpacing: getLetterSpacing(letterInterval)
                       }}
                     value={password}
                     isPassword={true}
@@ -231,6 +233,8 @@ function ProfilePassword(props) {
                 <InputField
                 style={{
                     color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                    letterSpacing: getLetterSpacing(letterInterval)
+
                   }}
                     value={confirmPassword}
                     isPassword={true}
@@ -291,7 +295,7 @@ const InputField = ({
     isPassword,
     handleChange,
     isEdit,
-    styles
+    style
 }) => {
 
     const [showPassword, setShowPassword] = useState(
@@ -304,7 +308,7 @@ const InputField = ({
         <div className='field'
         >
             <label className='text-content' 
-            htmlFor={name}>{label}</label>
+              htmlFor={name}>{label}</label>
             <div>
                 <input
                     disabled={!isEdit}
@@ -316,7 +320,9 @@ const InputField = ({
                     name={name}
                     onChange={(e) => {
                         handleChange(e.target.value)
-                    }}/>
+                    }}
+                    style={style}
+                    />
                 
                 {isPassword 
                     ? (

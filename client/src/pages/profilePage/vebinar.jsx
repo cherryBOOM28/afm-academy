@@ -10,9 +10,23 @@ import { useStyle } from "../../components/VisualModal/StyleContext";
 
 function Vebinar(props) {
   const { styles } = useStyle();
+  const { interval } = styles;
 
   const [filterValue, setFilterValue] = useState("Сначала новые");
   const { colorMode } = styles;
+
+  const getLetterSpacing = (interval) => {
+    interval = styles.letterInterval;
+
+    switch (interval) {
+      case "medium":
+        return "2px";
+      case "large":
+        return "4px";
+      default:
+        return "1px";
+    }
+  };
 
   const handleFilterChange = (option) => {
     setFilterValue(option);
@@ -36,6 +50,7 @@ function Vebinar(props) {
         <div className="text-content"
          style={{
           color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+          letterSpacing: getLetterSpacing(interval)
         }}
         >Календарь выбранных вебинаров:</div>
         <div>

@@ -99,7 +99,7 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
                     <TableRow style={{border: 'none'}}>
                         {columns.map((column, index) => {
                             return <TableCell 
-                                        style={{ padding: cellPadding, font: headCellFont, color: headCellColor }} 
+                                        style={{ padding: cellPadding, font: headCellFont, color: headCellColor, letterSpacing: 'inherit' }} 
                                         align={index === columns.length - 1 ? 'right' : 'left'} 
                                         key={index}
                                     >
@@ -125,20 +125,20 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
                 </TableHead>
                 <TableBody>
                     {isAdding ? <TableRow>
-                        <TableCell style={{ minWidth: '200px', padding: cellPadding, font: cellFont, color: cellColor }}>
+                        <TableCell style={{ minWidth: '200px', padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
                             <input type="text" style={addInputStyle} value={addData['name']} onChange={(e) => handleAddDataChange('name', e.target.value)}/>
                         </TableCell>
-                        <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>
+                        <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
                             <input type="text" style={addInputStyle} value={addData['subname']} onChange={(e) => handleAddDataChange('subname', e.target.value)}/>
                         </TableCell>
-                        <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>
+                        <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
                             <input type="date" style={addInputStyle} value={addData['start_date']} onChange={(e) => handleAddDataChange('start_date', e.target.value)}/>
                         </TableCell>
-                        <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>
+                        <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
                             <input type="date" style={addInputStyle} value={addData['end_date']} onChange={(e) => handleAddDataChange('end_date', e.target.value)}/>
                         </TableCell>
                         <TableCell 
-                            style={{ padding: cellPadding, font: cellFont, color: cellColor, display: 'flex', flexDirection: 'row', alignItems: 'center',gap: '10px'}} 
+                            style={{ padding: cellPadding, font: cellFont, color: cellColor, display: 'flex', flexDirection: 'row', alignItems: 'center',gap: '10px', letterSpacing: 'inherit'}} 
                             align='right'
 
                             >
@@ -148,7 +148,7 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
                     </TableRow> : null}
                     {Array.isArray(rows) ? rows.slice(page * rowsPerPage, (page + 1) * rowsPerPage).map((row, index) => (
                         <TableRow key={index} id={row.job_ex_id}>
-                            <TableCell style={{ minWidth: '200px', padding: cellPadding, font: cellFont, color: cellColor }}>
+                            <TableCell style={{ minWidth: '200px', padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
                                 <div 
                                     className='text-content'
                                     style={{
@@ -162,7 +162,7 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
                                     {row.org_name}
                                 </div>
                             </TableCell>
-                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>
+                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
                                 <div 
                                     className='text-content'
                                     style={{
@@ -176,7 +176,7 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
                                     {row.position}
                                 </div>
                             </TableCell>
-                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>
+                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
                                 <div 
                                     className='text-content'
                                     style={{
@@ -190,7 +190,7 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
                                     {row.start_date ? typeof row.start_date === 'number' ? numberToDate(row.start_date) : row.start_date : ''}
                                 </div>
                             </TableCell>
-                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>
+                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
                                 <div 
                                     className='text-content'
                                     style={{
@@ -205,7 +205,7 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
                                 </div>
                             </TableCell>
                             <TableCell 
-                                style={{ padding: cellPadding, font: cellFont, color: cellColor, display: 'flex', flexDirection: 'row-reverse', gap: '10px'}} 
+                                style={{ padding: cellPadding, font: cellFont, color: cellColor, display: 'flex', flexDirection: 'row-reverse', gap: '10px', letterSpacing: 'inherit'}} 
                                 align='right'
                                 
                                 >

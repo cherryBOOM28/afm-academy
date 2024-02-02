@@ -27,6 +27,7 @@ const getItems = (entity_type) => {
 
 function ProfileGeneral() {
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
+  const { interval } = styles;
   const [imagesHidden, setImagesHidden] = useState(false);
   const [letterInterval, setLetterInterval] = useState("standard");
   const { t } = useTranslation();
@@ -285,6 +286,7 @@ function ProfileGeneral() {
       </div>
       <div className="fields text-content">
         <InputField
+          style={{ letterSpacing: getLetterSpacing(interval) }}
           value={localData ? localData["firstname"] : "*****"}
           isEdit={isEdit}
           name={"firstname"}
@@ -293,6 +295,7 @@ function ProfileGeneral() {
           handleChange={handleInfoChange}
         />
         <InputField
+          style={{ letterSpacing: getLetterSpacing(interval) }}
           value={localData ? localData["phone_number"] : "*****"}
           isEdit={isEdit}
           name={"phone_number"}
@@ -301,6 +304,7 @@ function ProfileGeneral() {
           handleChange={handleInfoChange}
         />
         <InputField
+          style={{ letterSpacing: getLetterSpacing(interval) }}
           value={localData ? localData["lastname"] : "*****"}
           isEdit={isEdit}
           name={"lastname"}
@@ -309,6 +313,7 @@ function ProfileGeneral() {
           handleChange={handleInfoChange}
         />
         <InputField
+          style={{ letterSpacing: getLetterSpacing(interval) }}
           value={localData ? localData["email"] : "*****"}
           isEdit={isEdit}
           name={"email"}
@@ -317,6 +322,7 @@ function ProfileGeneral() {
           handleChange={handleInfoChange}
         />
         <InputField
+          style={{ letterSpacing: getLetterSpacing(interval) }}
           value={localData ? localData["patronymic"] : "*****"}
           isEdit={isEdit}
           name={"patronymic"}
@@ -325,6 +331,7 @@ function ProfileGeneral() {
           handleChange={handleInfoChange}
         />
         <SelectField
+          style={{ letterSpacing: getLetterSpacing(interval) }}
           isEdit={isEdit}
           value={localData ? localData["member_of_the_system"] : ""}
           name={"member_of_the_system"}
@@ -341,6 +348,7 @@ function ProfileGeneral() {
         {localData &&
         localData["member_of_the_system"] !== "Общественное объединение" ? (
           <SelectField
+            style={{ letterSpacing: getLetterSpacing(interval) }}
             isEdit={isEdit}
             name={"type_of_member"}
             value={localData ? localData["type_of_member"] : ""}
@@ -353,6 +361,7 @@ function ProfileGeneral() {
           />
         ) : (
           <InputField
+            style={{ letterSpacing: getLetterSpacing(interval) }}
             value={localData ? localData["type_of_member"] : "*****"}
             isEdit={isEdit}
             name={"type_of_member"}
@@ -365,6 +374,7 @@ function ProfileGeneral() {
         localData["member_of_the_system"] ===
           "Субъект финансового мониторнга" ? (
           <InputField
+            style={{ letterSpacing: getLetterSpacing(interval) }}
             value={localJob ? localJob : ""}
             isEdit={isEdit}
             name={"jobName"}
@@ -378,15 +388,15 @@ function ProfileGeneral() {
       </div>
       <div className="actions">
         {!isEdit ? (
-          <div className={`redact`} onClick={() => setEdit(true)}>
+          <div style={{ letterSpacing: getLetterSpacing(interval) }} className={`redact`} onClick={() => setEdit(true)}>
             Изменить
           </div>
         ) : (
           <>
-            <div className={`save`} onClick={() => handleSaveChanges()}>
+            <div style={{ letterSpacing: getLetterSpacing(interval) }} className={`save`} onClick={() => handleSaveChanges()}>
               Сохранить
             </div>
-            <div className={`cancel`} onClick={() => handleCancelChanges()}>
+            <div style={{ letterSpacing: getLetterSpacing(interval) }} className={`cancel`} onClick={() => handleCancelChanges()}>
               Отменить
             </div>
           </>
@@ -403,12 +413,13 @@ const SelectField = ({
   selectItems,
   handleChange,
   isEdit,
+  style
 }) => {
   let _value = value;
 
   return (
     <div className="field">
-      <label htmlFor={name}>{label}</label>
+      <label style={style} htmlFor={name}>{label}</label>
       <div className="custom-select">
         <select
           disabled={!isEdit}
@@ -419,6 +430,7 @@ const SelectField = ({
             _value = e.target.value;
             handleChange(name, e.target.value);
           }}
+          style={style}
         >
           {selectItems.map((item) => (
             <option key={item} value={item}>
@@ -445,6 +457,7 @@ const InputField = ({
   isPassword,
   handleChange,
   isEdit,
+  style
 }) => {
   const [showPassword, setShowPassword] = useState(isPassword);
 
@@ -452,7 +465,7 @@ const InputField = ({
 
   return (
     <div className="field text-content">
-      <label htmlFor={name}>{label}</label>
+      <label style={style} htmlFor={name}>{label}</label>
       <div>
         <input
           disabled={!isEdit}
@@ -464,6 +477,7 @@ const InputField = ({
             value = e.target.value;
             handleChange(name, e.target.value);
           }}
+          style={style}
         />
 
         {isPassword ? (

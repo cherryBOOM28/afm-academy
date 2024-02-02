@@ -314,7 +314,10 @@ const VebinarTable = () => {
                 return (
                   <TableRow key={index} className="table-row text-content">
                     <TableCell className="title text-content">
-                      <div>
+                      <div
+                      className="interval"
+                      style={{ letterSpacing: getLetterSpacing(letterInterval) }}
+                      >
                         <img src={row.image} alt={row.title} />
                         <span
                           style={{
