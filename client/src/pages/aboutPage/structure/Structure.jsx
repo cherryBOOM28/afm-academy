@@ -1,32 +1,143 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import cl from './Structure.module.css';
-import data_ru from './structureData ru.json';
-import data_kz from './structureData kz.json';
-import data_eng from './structureData eng.json';
-import DefaultHeader from '../../../components/defaultHeader/DefaultHeader';
-import lineL from '../../../assets/icons/lineL.svg';
-import lineR from '../../../assets/icons/lineR.svg';
-import Footer from '../../../components/footer/Footer';
-import Dropdown from '../../../components/dropdown/Dropdown';
-import Header from '../../../components/header/Header';
-import { useTranslation } from 'react-i18next';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import cl from "./Structure.module.css";
+import data_ru from "./structureData ru.json";
+import data_kz from "./structureData kz.json";
+import data_eng from "./structureData eng.json";
+import DefaultHeader from "../../../components/defaultHeader/DefaultHeader";
+import lineL from "../../../assets/icons/lineL.svg";
+import lineR from "../../../assets/icons/lineR.svg";
+import Footer from "../../../components/footer/Footer";
+import Dropdown from "../../../components/dropdown/Dropdown";
+import Header from "../../../components/header/Header";
+import { useTranslation } from "react-i18next";
 
-
+import { useStyle } from "../../../components/VisualModal/StyleContext";
+import VisualModal from "../../../components/VisualModal/VisualModal";
 
 function Structure() {
-    const { t } = useTranslation();
-    const { i18n } = useTranslation();
-    const currentLanguage = i18n.language;
-    const cardsData = (
-        currentLanguage === 'ru'
-          ? data_ru
-          : currentLanguage === 'kz'
-          ? data_kz
-          : data_eng
-      ).cards;
+  const { styles, open, setOpen, userEntry, checkStyle } = useStyle();
+  const [imagesHidden, setImagesHidden] = useState(false);
+  const [letterInterval, setLetterInterval] = useState("standard");
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const currentLanguage = i18n.language;
 
-   if (!cardsData || cardsData.length === 0) {
+  const [activeTab, setActiveTab] = useState(1);
+
+  useEffect(() => {
+    console.log(checkStyle)
+    if(!checkStyle) return;
+    console.log(userEntry)
+    if (userEntry) return; 
+    const textContentElement = document.querySelectorAll(".text-content");
+    const size = styles.fontSize;
+    setImagesHidden(!styles.showImage);
+
+    if (textContentElement) {
+      textContentElement.forEach((item) => {
+        switch (size) {
+          case "small":
+            item.style.fontSize = "15px";
+            item.style.lineHeight = "17px";
+            break;
+          case "standard":
+            item.style.fontSize = "20px";
+            item.style.lineHeight = "22px";
+            break;
+          case "large":
+            item.style.fontSize = "24px";
+            item.style.lineHeight = "26px";
+            break;
+          default:
+            break;
+        }
+      });
+    }
+
+    handleColorModeChange();
+  }, []);
+  const handleColorModeChange = (mode) => {
+    // Remove previous color mode classes
+    const containerElement = document.querySelector(".text-content");
+    if (containerElement) {
+      containerElement.classList.remove(
+        "light-mode",
+        "dark-mode",
+        "inverted-mode"
+      );
+    }
+
+    const { colorMode } = styles;
+
+    if (containerElement) {
+      containerElement.classList.add(colorMode + "-mode");
+    }
+  };
+
+  const handleTabClick = (tabIndex) => {
+    setActiveTab(tabIndex);
+  };
+  const handleOpenVisualModal = () => {
+    console.log("OPEN");
+    setOpenVisualModal((prev) => !prev);
+    setOpen((prev) => !prev);
+  };
+  const [openVisualModal, setOpenVisualModal] = useState(open);
+
+  const handleRemoveImages = () => {
+    console.log("Images hidden");
+
+    setImagesHidden(true);
+  };
+
+  const handleShowImages = () => {
+    setImagesHidden(false);
+  };
+
+  const handleIntervalChange = (interval) => {
+    console.log("Interval changed");
+    setLetterInterval(interval);
+  };
+
+  const getShowImage = () => {
+    return imagesHidden;
+  };
+
+  const getLetterSpacing = (interval) => {
+    interval = styles.letterInterval;
+
+    switch (interval) {
+      case "medium":
+        return "2px";
+      case "large":
+        return "4px";
+      default:
+        return "1px";
+    }
+  };
+  useEffect(() => {
+    const textContentElement = document.querySelectorAll(".text-content");
+    const family = styles.fontFamily;
+
+    if (textContentElement) {
+      textContentElement.forEach((item) => {
+        if (family) {
+          item.style.fontFamily = family;
+        }
+      });
+    }
+  }, [styles.fontFamily]);
+
+  const cardsData = (
+    currentLanguage === "ru"
+      ? data_ru
+      : currentLanguage === "kz"
+      ? data_kz
+      : data_eng
+  ).cards;
+
+  if (!cardsData || cardsData.length === 0) {
     return <p>No cards data available.</p>;
   }
 
@@ -39,7 +150,6 @@ function Structure() {
   const handleClick = (cardData) => {
     // console.log("User Information:", cardData);
   };
-  
 
   return (
     <div className={cl.charterWrapper}>
@@ -131,8 +241,9 @@ function Structure() {
                 />
                 <Dropdown
                     title={t('titleThirdDiv')}
-                    content={<div>
-                            {t('contentThirdDiv')}  
+                    content={
+                    <div>
+                           <a> {t('contentThirdDiv')} </a> 
                         <div className={cl.accordionContent}>
                             <ul className={cl.marked}>
                                 <li>{t('contentThirdPointOneDiv')}</li>
@@ -144,13 +255,12 @@ function Structure() {
                         </div>                      
                     </div>}
                 />
-                </div>
-                
-        </div>
-        <Footer />
+              </div>
+              
+            </div>
+      <Footer />
     </div>
   );
 }
-
 
 export default Structure;

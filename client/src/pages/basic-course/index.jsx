@@ -221,7 +221,7 @@ function Basic_course(props) {
         setActiveSessionId(id);
     }
 
-    const CheckCurrentChapter = (chapterNum) => {
+    const CheckCurrentChapter = (chapterNum, nexChapter) => {
         const fetchData = async () => {
             try {
                 const response = await axios.post(
@@ -256,7 +256,9 @@ function Basic_course(props) {
         // console.log(jwtToken);
         fetchData();
         scrollToTopAnimated();
-        setActiveSessionId(activeSessionId + 1);
+
+        if (nexChapter) setActiveSessionId(nexChapter)
+        else setActiveSessionId(activeSessionId + 1);
     };
 
 
@@ -414,7 +416,6 @@ const CourseNavigation = ({
                     <Session
                         session={{
                             id: 1,
-                            group: 'introduction',
                             name: 'Основные понятия и сокращения',
                             progress: 0,
                         }}
@@ -594,25 +595,28 @@ const CourseNavigation = ({
                         }}
                         handleSessionClick={handleSessionClick}
                         isActive={17 === activeSessionId}
-                    /><Session
-                    session={{
-                        id: 18,
-                        group: 'introduction',
-                        name: 'Субъекты финансового мониторинга',
-                        progress: 0,
-                    }}
-                    handleSessionClick={handleSessionClick}
-                    isActive={18 === activeSessionId}
-                /><Session
-                    session={{
-                        id: 19,
-                        group: 'introduction',
-                        name: 'Надлежащая проверка субъектами финансового мониторинга клиентов',
-                        progress: 0,
-                    }}
-                    handleSessionClick={handleSessionClick}
-                    isActive={19 === activeSessionId}
-                /><Session
+                    />
+                    <Session
+                        session={{
+                            id: 18,
+                            group: 'introduction',
+                            name: 'Субъекты финансового мониторинга',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={18 === activeSessionId}
+                    />
+                    <Session
+                        session={{
+                            id: 19,
+                            group: 'introduction',
+                            name: 'Надлежащая проверка субъектами финансового мониторинга клиентов',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={19 === activeSessionId}
+                    />
+                <Session
                     session={{
                         id: 20,
                         group: 'introduction',
@@ -651,6 +655,22 @@ const CourseNavigation = ({
                 />
                 </Module>
                 <Module
+                    name={'Государственный контроль за соблюдением законодательства Республики Казахстан о ПОД/ФТ'}
+                    moduleId={4}
+                    isOpen={currentModule === 4}
+                    handleModuleOpen={handleModuleOpen}
+                >
+                    <Session
+                        session={{
+                            id: 99,
+                            name: 'Урок 1',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={99 === activeSessionId}
+                    />
+                </Module>
+                <Module
                     name={'Подразделение финансовой разведки'}
                     moduleId={5}
                     isOpen={currentModule === 5}
@@ -659,27 +679,26 @@ const CourseNavigation = ({
                     <Session
                         session={{
                             id: 24,
-                            group: 'introduction',
                             name: 'Агентство Республики Казахстан по финансовому мониторингу',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
                         isActive={24 === activeSessionId}
-                    /><Session
-                    session={{
-                        id: 25,
-                        group: 'introduction',
-                        name: 'Функции АФМ',
-                        progress: 0,
-                    }}
-                    handleSessionClick={handleSessionClick}
-                    isActive={25 === activeSessionId}
-                />
+                    />
+                    <Session
+                        session={{
+                            id: 25,
+                            name: 'Межведомственные органы и рабочие группы',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={25 === activeSessionId}
+                    />
                 </Module>
                 <Module
-                    name={'Требования к СФМ по подготовке и обучению в сфере ПОД/ФТ'}
-                    moduleId={7}
-                    isOpen={currentModule === 7}
+                    name={'Требования к внутренним нормативным документам'}
+                    moduleId={6}
+                    isOpen={currentModule === 6}
                     handleModuleOpen={handleModuleOpen}
                 >
                     <Session
@@ -694,22 +713,22 @@ const CourseNavigation = ({
                     />
                 </Module>
                 <Module
-                    name={'Требования к внутренним нормативным документам'}
-                    moduleId={8}
-                    isOpen={currentModule === 8}
+                    name={'Требования к СФМ по подготовке и обучению в сфере ПОД/ФТ'}
+                    moduleId={7}
+                    isOpen={currentModule === 7}
                     handleModuleOpen={handleModuleOpen}
                 >
                     <Session
                         session={{
                             id: 27,
-                            group: 'introduction',
-                            name: 'УРОК 1',
+                            name: 'Урок 1',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
                         isActive={27 === activeSessionId}
                     />
                 </Module>
+                
             </div>
 
         </div>

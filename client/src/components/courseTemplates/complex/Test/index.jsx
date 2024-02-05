@@ -6,7 +6,14 @@ import { FaCheck } from "react-icons/fa6";
 import axios from 'axios';
 import base_url from '../../../../settings/base_url';
 
-function TestPage({ name, questions, quizId, handleOpenModal }) {
+function TestPage({ 
+    name, 
+    questions, 
+    quizId, 
+    handleOpenModal, 
+    handleQuizSuccesful,  
+    handleQuizFail,  
+}) {
     const jwtToken = localStorage.getItem('jwtToken');
 
     const [currQuestion, setCurrQuestion] = useState(0)
@@ -18,6 +25,7 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
     ])
 
     useEffect(() => {
+        console.log(questions)
         let _checkedQustions = questions ? questions.map(question => {
             return {
                 question: question.question_id,
@@ -26,7 +34,6 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
         }) : null;
 
         // console.log(_checkedQustions)
-        console.log(questions)
 
         setCheckedQustions(_checkedQustions)
     }, [])
@@ -37,34 +44,42 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
         const fetchData = async () => {
             console.log(checkedQustions)
             try {
-                const response = await axios.post(`${base_url}/api/aml/quiz/checkQuiz/${quizId}`, checkedQustions, {
-                    headers: {
-                        Authorization: `Bearer ${jwtToken}`,
-                    },
-                });
+                const response = await axios.post(
+                    `${base_url}/api/aml/quiz/checkQuiz/${quizId}`, 
+                    {
+                        'mcqQuestionAnswerList': checkedQustions
+                    }, 
+                    {
+                        headers: {
+                            Authorization: `Bearer ${jwtToken}`,
+                        },
+                    }
+                );
 
-                console.log(response)
-
-                if (response.status === 200) {
-                    // console.log(response.data)
-                } else {
-                    // console.log(response.data)
+                
+                if (response.data === 'quiz failed') {
+                    handleQuizFail(false);
+                } else if (response.data === 'zanova') {
+                    handleQuizFail(true);
+                } else if (response.data === 'quiz completed') {
+                    handleQuizSuccesful();
                 }
+
             } catch (error) {
-                // console.log(error)
+                console.log(error)
             }
         };
         
         // console.log(jwtToken);
         fetchData();
-        handleOpenModal();
+        // handleOpenModal();
     }
 
     if (!questions || questions.length === 0 && checkedQustions != undefined) return null;
 
     return ( 
         <div className="testPage">
-            <div className="test-wrapper">
+             <div className="test-wrapper">
                 <div className="title">{name}</div>
                 <div className="test">
                     <div className="question-header">
@@ -81,7 +96,6 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
                             : null}</div>
                         </div>
                     </div>
-                    {/* MSQ Questions */}
                     {
                         questions[currQuestion] && questions[currQuestion].mcqOption 
                         && questions[currQuestion].mcqOption.length > 0
@@ -100,10 +114,10 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
                                         });
                                     };
 
-                                    const isChecked = checkedQustions[currQuestion] && checkedQustions[currQuestion].answer === answer.mcq_option_id;
+                                    const isChecked = checkedQustions.length !== 0 && checkedQustions[currQuestion] && checkedQustions[currQuestion].answer === answer.mcq_option_id;
 
                                     return (
-                                        <div className="test-answer" key={answer.mcq_option_title} onClick={() => handleAnswerClick(answer.mcq_option_id)}>
+                                        <div className="test-answer" key={answer.mcq_option_id} onClick={() => handleAnswerClick(answer.mcq_option_id)}>
                                             <div className={`checkbox ${isChecked ? 'checked' : null}`}>
                                                 {isChecked ? <FaCheck /> : null}
                                             </div>
@@ -118,7 +132,6 @@ function TestPage({ name, questions, quizId, handleOpenModal }) {
                         ) : null
                     }
 
-                    {/* MATCHING PAIR Questions */}
                     {
                         questions[currQuestion] && questions[currQuestion].matchingPairs
                         && questions[currQuestion].matchingPairs.length > 0

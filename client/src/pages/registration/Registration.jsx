@@ -97,7 +97,7 @@ const Registration = () => {
                     }
                 })
         } else {
-            alert('Passwords do not match.');
+            alert('Пароли не совпадают.');
         }
     };
 
@@ -148,7 +148,7 @@ const Registration = () => {
 
     return (
         <div className='register-page'>
-            <RegistationModal onClose={() => {
+            <RegistationModal handleClose={() => {
                 setOpenModal(false);
                 navigate('/login')
             }} open={openModal}/>
@@ -290,6 +290,10 @@ const RegistationModal = ({ open, handleClose }) => {
             outline: 'none',
             border: 'none',
 
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+
             position: 'absolute',
             top: '30%',
             left: '50%',
@@ -336,27 +340,26 @@ const RegistationModal = ({ open, handleClose }) => {
             }}>
                 Если вы не видите наше сообщение в папке "Входящие", проверьте папку "Спам". Иногда письма могут туда попадать.
             </p>
-            <div 
-            onClick={() => handleClose()}
-            style={{
-                width: 'max-content',
-                margin: '0 auto',
-                borderRadius: '8px',
-                background: '#1F3C88',
-                borderRadius: '8px',
-                padding: '12px 96px',
-                color: '#FFF',
-                fontFeatureSettings: `'clig' off, 'liga' off`,
-                fontFamily: 'Manrope',
-                fontSize: '16px',
-                fontStyle: 'normal',
-                fontWeight: '700',
-                lineHeight: '24px', /* 150% */
-                letterSpacing: '0.2px',
-                cursor: 'pointer',
-            }}>
-                Перейти на почту
-            </div>
+            <a href={'https://mail.google.com'}
+                style={{
+                    width: 'max-content',
+                    margin: '0 auto',
+                    borderRadius: '8px',
+                    background: '#1F3C88',
+                    padding: '12px 96px',
+                    color: '#FFF',
+                    fontFeatureSettings: `'clig' off, 'liga' off`,
+                    fontFamily: 'Manrope',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: '700',
+                    lineHeight: '24px', /* 150% */
+                    letterSpacing: '0.2px',
+                    cursor: 'pointer',
+                    textDecoration: 'none'
+                }}>
+                    Перейти на почту
+            </a>
         </Box>
     </Modal>
 }

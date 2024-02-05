@@ -1,17 +1,28 @@
 .footerWrapper {
-    background: #1F3C88;
+    /* background: #1F3C88; */
     padding: 63px 0 134px;
+}
+
+.footerWrapper.light-mode {
+    background: #1F3C88;
+    border: 1px solid red;
+}
+
+.footerWrapper.dark-mode {
+    background: #000;
 }
 
 .container {
     /* max-width: 1240px; */
-    padding: 0px 120px;
+    /* padding: 0px 120px; */
+    max-width: 80%;
     margin: 0 auto;
 }
 
 .footer {
     display: flex;
     align-items: self-start;
+    justify-content: space-between;
     flex-wrap: wrap;
     gap: 20px;
 }
@@ -31,8 +42,7 @@
 .footer__headline {
     color: #FFF;
     font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 32px;
+    font-weight: 500;  
 }
 
 .footer__text {

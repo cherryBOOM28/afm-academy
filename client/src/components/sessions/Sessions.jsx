@@ -4,6 +4,7 @@ import closeIcon from './../../pages/testCoursePage/closeIcon.svg';
 import finishedIcon from './../../pages/testCoursePage/finishedIcon.svg';
 import { AiFillCheckCircle } from "react-icons/ai";
 import { ImRadioUnchecked } from "react-icons/im";
+import { RiSurveyLine } from "react-icons/ri";
 import unfinishedIcon from './../../pages/testCoursePage/unfinishedIcon.svg';
 import lectureIcon from './lectureIcon.svg';
 import { VscListSelection } from "react-icons/vsc";
@@ -16,7 +17,7 @@ import axios from 'axios';
 import base_url from '../../settings/base_url';
 import { useAnimation, motion } from 'framer-motion';
 
-export const Session = ({title, session, handleSessionClick, isActive}) => {
+export const Session = ({course_id, title, session, handleSessionClick, isActive, checked}) => {
     const sessionFinished = session.progress === 100;
     const [sessionChecked, setSessionChecked] = useState(false);
 
@@ -24,12 +25,18 @@ export const Session = ({title, session, handleSessionClick, isActive}) => {
 
     useEffect(() => {
         const fetchData = async () => {
+            console.log("Session", course_id)
             try {
-                const response = await axios.get(`${base_url}/api/aml/chapter/getChecked`, {
-                    headers: {
-                        Authorization: `Bearer ${jwtToken}`,
-                    },
-                });
+                const response = await axios.get(
+                    `${base_url}/api/aml/chapter/getChecked/${course_id}`, 
+                    {
+                        headers: {
+                            Authorization: `Bearer ${jwtToken}`,
+                        },
+                    }
+                );
+
+                console.log(response)
 
                 if (response.status === 200) {
                     const _temp = response.data.filter(_session => _session.id === session.id);
@@ -37,6 +44,7 @@ export const Session = ({title, session, handleSessionClick, isActive}) => {
                         setSessionChecked(_temp[0].checked)
                     }
                     
+                    console.log(_temp, session.id)
                 } else {
                     // Handle other status codes if needed
                     // console.log(response.statusText);
@@ -46,7 +54,8 @@ export const Session = ({title, session, handleSessionClick, isActive}) => {
             }
         };
         
-        fetchData();
+        if (!checked) fetchData();
+        if (checked) setSessionChecked(checked);
     }, [])
 
     return (
@@ -62,6 +71,30 @@ export const Session = ({title, session, handleSessionClick, isActive}) => {
             <div className="sessionProgress">
                 {
                     sessionChecked 
+                        ? <AiFillCheckCircle />
+                        : <ImRadioUnchecked />
+                }
+            </div>
+        </div>
+    )
+}
+
+export const TestSession = ({title, session, handleSessionClick, isActive, checked}) => {
+    const jwtToken = localStorage.getItem('jwtToken');
+
+    return (
+        <div 
+            className={`session ${isActive ? 'active' : ''}`} 
+            key={session.name}
+            onClick={() => handleSessionClick(session.id)}
+        >
+
+            {/* <img src={AiFillFile} style={{color: 'white', background: 'white'}} alt="icon" /> */}
+            <RiSurveyLine style={{color: 'white', fontSize: '28px'}} />
+            <h6>{session.name}</h6>
+            <div className="sessionProgress">
+                {
+                    checked 
                         ? <AiFillCheckCircle />
                         : <ImRadioUnchecked />
                 }

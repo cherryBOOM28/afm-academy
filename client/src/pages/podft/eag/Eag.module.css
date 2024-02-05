@@ -1,5 +1,7 @@
 .container {
-    width: 80%;
+    /* width: 80%; */
+    max-width: 1240px;
+
     margin: 0 auto;
 }
 
@@ -18,8 +20,8 @@
 
 .eagImgContent img {
     height: 100%;
-    width: 50%;
-    min-width: 700px;
+    width: 100%;
+    min-width: 500px;
 }
 
 .eagImgTextFirst {

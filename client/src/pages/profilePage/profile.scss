@@ -142,24 +142,26 @@
     }
 
     .container {
-        width: 100%;
-        padding: 0px 120px;
+        // width: 100%;
+        max-width: 1240px;
+
+        // padding: 0px 120px;
         box-sizing: border-box;
 
         @media (max-width: 1300px) {
-            padding: 0px 70px;
+            // padding: 0px 70px;
         }
 
         @media (min-width: 1500px) {
-            padding: 0px 150px;
+            // padding: 0px 150px;
         }
 
         @media (min-width: 1700px) {
-            padding: 0px 200px;
+            // padding: 0px 200px;
         }
 
         @media (min-width: 1900px) {
-            padding: 0px 250px;
+            // padding: 0px 250px;
         }
 
         // @media screen and (max-width: 1180px) {
@@ -176,7 +178,6 @@
 
         .nav-back {
             text-decoration: none;
-            color: inherit;
 
             display: flex;
             flex-direction: row;
@@ -234,12 +235,17 @@
                     &.active {
                         border-radius: 5px;
                         background: #1F3C88;
-                        color: #FFF;
+                        color: #FFF !important;
 
                         padding: 12px 38px;
                     }
+                    .active-text {
+                        /* Styles for the text when the tab is active */
+                        color: #fff; /* Change the text color when active */
+                      }
                 }
             }
+
 
             .main-section {
                 width: calc(100% - 270px);

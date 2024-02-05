@@ -5,6 +5,7 @@ import React, { useState, useEffect, Children } from 'react';
 import {BiPlus, BiSave} from 'react-icons/bi';
 import {ImCancelCircle} from 'react-icons/im';
 import base_url from '../../settings/base_url';
+import { useStyle } from '../VisualModal/StyleContext';
 
 
 const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, handleOnAdd}) => {
@@ -13,6 +14,8 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
+
+    const { styles } = useStyle();
 
     const jwtToken = localStorage.getItem('jwtToken');
 
@@ -96,7 +99,7 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
                     <TableRow style={{border: 'none'}}>
                         {columns.map((column, index) => {
                             return <TableCell 
-                                        style={{ padding: cellPadding, font: headCellFont, color: headCellColor }} 
+                                        style={{ padding: cellPadding, font: headCellFont, color: headCellColor, letterSpacing: 'inherit' }} 
                                         align={index === columns.length - 1 ? 'right' : 'left'} 
                                         key={index}
                                     >
@@ -104,7 +107,17 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
                                             ? isExtendable
                                                 ? <BiPlus style={{color: headCellColor, cursor: 'pointer'}} size={23} onClick={() => _handleAdd()}/> 
                                                 : ''
-                                            : column
+                                            : <div 
+                                                className='text-content' 
+                                                style={{
+                                                    color: styles.colorMode === 'light' 
+                                                        ? 'black'
+                                                        : styles.colorMode === 'dark'
+                                                            ? 'white'
+                                                            : 'rgb(6, 52, 98)'
+                                                }}
+                                            >
+                                                {column}</div>
                                         }
                                     </TableCell>
                         })}
@@ -112,20 +125,20 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
                 </TableHead>
                 <TableBody>
                     {isAdding ? <TableRow>
-                        <TableCell style={{ minWidth: '200px', padding: cellPadding, font: cellFont, color: cellColor }}>
+                        <TableCell style={{ minWidth: '200px', padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
                             <input type="text" style={addInputStyle} value={addData['name']} onChange={(e) => handleAddDataChange('name', e.target.value)}/>
                         </TableCell>
-                        <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>
+                        <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
                             <input type="text" style={addInputStyle} value={addData['subname']} onChange={(e) => handleAddDataChange('subname', e.target.value)}/>
                         </TableCell>
-                        <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>
+                        <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
                             <input type="date" style={addInputStyle} value={addData['start_date']} onChange={(e) => handleAddDataChange('start_date', e.target.value)}/>
                         </TableCell>
-                        <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>
+                        <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
                             <input type="date" style={addInputStyle} value={addData['end_date']} onChange={(e) => handleAddDataChange('end_date', e.target.value)}/>
                         </TableCell>
                         <TableCell 
-                            style={{ padding: cellPadding, font: cellFont, color: cellColor, display: 'flex', flexDirection: 'row', alignItems: 'center',gap: '10px'}} 
+                            style={{ padding: cellPadding, font: cellFont, color: cellColor, display: 'flex', flexDirection: 'row', alignItems: 'center',gap: '10px', letterSpacing: 'inherit'}} 
                             align='right'
 
                             >
@@ -135,12 +148,64 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
                     </TableRow> : null}
                     {Array.isArray(rows) ? rows.slice(page * rowsPerPage, (page + 1) * rowsPerPage).map((row, index) => (
                         <TableRow key={index} id={row.job_ex_id}>
-                            <TableCell style={{ minWidth: '200px', padding: cellPadding, font: cellFont, color: cellColor }}>{row.org_name}</TableCell>
-                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>{row.position}</TableCell>
-                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>{row.start_date ? typeof row.start_date === 'number' ? numberToDate(row.start_date) : row.start_date : ''}</TableCell>
-                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor }}>{row.end_date ? typeof row.end_date === 'number' ? numberToDate(row.start_date) : row.end_date : ''}</TableCell>
+                            <TableCell style={{ minWidth: '200px', padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
+                                <div 
+                                    className='text-content'
+                                    style={{
+                                        color: styles.colorMode === 'light' 
+                                            ? 'black'
+                                            : styles.colorMode === 'dark'
+                                                ? 'white'
+                                                : 'rgb(6, 52, 98)'
+                                    }}
+                                >
+                                    {row.org_name}
+                                </div>
+                            </TableCell>
+                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
+                                <div 
+                                    className='text-content'
+                                    style={{
+                                        color: styles.colorMode === 'light' 
+                                            ? 'black'
+                                            : styles.colorMode === 'dark'
+                                                ? 'white'
+                                                : 'rgb(6, 52, 98)'
+                                    }}
+                                >
+                                    {row.position}
+                                </div>
+                            </TableCell>
+                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
+                                <div 
+                                    className='text-content'
+                                    style={{
+                                        color: styles.colorMode === 'light' 
+                                            ? 'black'
+                                            : styles.colorMode === 'dark'
+                                                ? 'white'
+                                                : 'rgb(6, 52, 98)'
+                                    }}
+                                >
+                                    {row.start_date ? typeof row.start_date === 'number' ? numberToDate(row.start_date) : row.start_date : ''}
+                                </div>
+                            </TableCell>
+                            <TableCell style={{ padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
+                                <div 
+                                    className='text-content'
+                                    style={{
+                                        color: styles.colorMode === 'light' 
+                                            ? 'black'
+                                            : styles.colorMode === 'dark'
+                                                ? 'white'
+                                                : 'rgb(6, 52, 98)'
+                                    }}
+                                >
+                                    {row.end_date ? typeof row.end_date === 'number' ? numberToDate(row.start_date) : row.end_date : ''}
+                                </div>
+                            </TableCell>
                             <TableCell 
-                                style={{ padding: cellPadding, font: cellFont, color: cellColor, display: 'flex', flexDirection: 'row-reverse', gap: '10px'}} 
+                                style={{ padding: cellPadding, font: cellFont, color: cellColor, display: 'flex', flexDirection: 'row-reverse', gap: '10px', letterSpacing: 'inherit'}} 
                                 align='right'
                                 
                                 >
