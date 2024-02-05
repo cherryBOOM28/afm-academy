@@ -693,6 +693,23 @@ const CourseNavigation = ({
                         isActive={26 === activeSessionId}
                     />
                 </Module>
+                <Module
+                    name={'Требования к внутренним нормативным документам'}
+                    moduleId={8}
+                    isOpen={currentModule === 8}
+                    handleModuleOpen={handleModuleOpen}
+                >
+                    <Session
+                        session={{
+                            id: 27,
+                            group: 'introduction',
+                            name: 'УРОК 1',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={27 === activeSessionId}
+                    />
+                </Module>
             </div>
 
         </div>
