@@ -23,31 +23,79 @@ function Rules() {
 
   const [activeTab, setActiveTab] = useState(1);
 
+  const fontSizes = {
+    small: {
+      fontSize: "15px",
+      lineHeight: "17px",
+      caption: { fontSize: "18px", lineHeight: "20px" },
+      subtitle: { fontSize: "14px", lineHeight: "16px" },
+    },
+    standard: {
+      fontSize: "16px",
+      lineHeight: "18px",
+      caption: { fontSize: "26px", lineHeight: "26px" },
+      subtitle: { fontSize: "18px", lineHeight: "20px" },
+      customSize: { fontSize: "18px", lineHeight: "20px" }, // New variable for standard mode
+    },
+    large: {
+      fontSize: "24px",
+      lineHeight: "26px",
+      caption: { fontSize: "32px", lineHeight: "34px" },
+      subtitle: { fontSize: "22px", lineHeight: "24px" },
+    },
+  };
+  
   useEffect(() => {
-    if(!checkStyle) return;
-    console.log(userEntry)
-    if (userEntry) return; 
+    if (!checkStyle) return;
+    console.log(userEntry);
+    if (userEntry) return;
+  
     const textContentElement = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
+    setImagesHidden(!styles.showImage);
+  
     if (textContentElement) {
       textContentElement.forEach((item) => {
         switch (size) {
           case "small":
-            item.style.fontSize = "15px";
-            break;
-          case "standard":
-            item.style.fontSize = "20px";
-            break;
           case "large":
-            item.style.fontSize = "24px";
+            // Use specified size for small and large modes
+            item.style.fontSize = fontSizes[size].fontSize;
+            item.style.lineHeight = fontSizes[size].lineHeight;
+  
+            // Adjust size for caption and subtitle in small and large modes
+            if (item.classList.contains("caption")) {
+              item.style.fontSize = fontSizes[size].caption.fontSize;
+              item.style.lineHeight = fontSizes[size].caption.lineHeight;
+            } else if (item.classList.contains("subtitle")) {
+              item.style.fontSize = fontSizes[size].subtitle.fontSize;
+              item.style.lineHeight = fontSizes[size].subtitle.lineHeight;
+            }
             break;
+  
+          case "standard":
+            // Use different sizes for different elements in standard mode
+            if (item.classList.contains("caption")) {
+              item.style.fontSize = fontSizes[size].caption.fontSize;
+              item.style.lineHeight = fontSizes[size].caption.lineHeight;
+            } else if (item.classList.contains("subtitle")) {
+              item.style.fontSize = fontSizes[size].subtitle.fontSize;
+              item.style.lineHeight = fontSizes[size].subtitle.lineHeight;
+            } else {
+              // Use custom size for other elements in standard mode
+              item.style.fontSize = fontSizes[size].customSize.fontSize;
+              item.style.lineHeight = fontSizes[size].customSize.lineHeight;
+            }
+            break;
+  
           default:
             break;
         }
       });
     }
     handleColorModeChange();
-  }, []);
+
+  }, [checkStyle, userEntry, styles, setImagesHidden, fontSizes]);
   const handleColorModeChange = (mode) => {
     // Remove previous color mode classes
     const containerElement = document.querySelector(".text-content");
@@ -136,7 +184,7 @@ function Rules() {
           style={{ letterSpacing: getLetterSpacing(letterInterval) }}
         >
           <h1
-            className={`${cl.headline} text-content`}
+            className={`${cl.headline} text-content caption`}
             style={{
               color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
             }}
@@ -210,7 +258,7 @@ function Rules() {
               </p>
             </div>
           </div>
-          <h1 className={`${cl.subtitle} text-content`}
+          <h1 className={`${cl.subtitle} text-content caption`}
           style={{
             color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
           }}
@@ -228,7 +276,7 @@ function Rules() {
                 style={{ height: "160px" }}
               />)}
               <p
-                className={`${cl.customerText} text-content`}
+                className={`${cl.customerText} text-content customSize`}
                 style={{
                   color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
                 }}

@@ -21,15 +21,31 @@ function Charter() {
 
   const [activeTab, setActiveTab] = useState(1);
 
+  const fontSizes = {
+    small: {
+      fontSize: "15px",
+      lineHeight: "17px",
+      caption: { fontSize: "18px", lineHeight: "20px" },
+      subtitle: { fontSize: "14px", lineHeight: "16px" },
+    },
+    standard: {
+      fontSize: "16px",
+      lineHeight: "18px",
+      caption: { fontSize: "26px", lineHeight: "28px" },
+      subtitle: { fontSize: "18px", lineHeight: "20px" },
+    },
+    large: {
+      fontSize: "24px",
+      lineHeight: "26px",
+      caption: { fontSize: "32px", lineHeight: "34px" },
+      subtitle: { fontSize: "22px", lineHeight: "24px" },
+    },
+  };
   useEffect(() => {
-    if (!checkStyle) {
-      return;
-    }
-  
-  
-    if (userEntry) {
-      return;
-    }
+    if (!checkStyle) return;
+    console.log(userEntry);
+    if (userEntry) return;
+
     const textContentElement = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
     setImagesHidden(!styles.showImage);
@@ -38,25 +54,44 @@ function Charter() {
       textContentElement.forEach((item) => {
         switch (size) {
           case "small":
-            item.style.fontSize = "15px";
-            item.style.lineHeight="17px";
-            break;
-          case "standard":
-            item.style.fontSize = "20px";
-            item.style.lineHeight="22px";
-            break;
           case "large":
-            item.style.fontSize = "24px";
-            item.style.lineHeight="26px";
+            // Use specified size for small and large modes
+            item.style.fontSize = fontSizes[size].fontSize;
+            item.style.lineHeight = fontSizes[size].lineHeight;
+
+            // Adjust size for caption and subtitle in small and large modes
+            if (item.classList.contains("caption")) {
+              item.style.fontSize = fontSizes[size].caption.fontSize;
+              item.style.lineHeight = fontSizes[size].caption.lineHeight;
+            } else if (item.classList.contains("subtitle")) {
+              item.style.fontSize = fontSizes[size].subtitle.fontSize;
+              item.style.lineHeight = fontSizes[size].subtitle.lineHeight;
+            }
             break;
+
+          case "standard":
+            // Use different sizes for different elements in standard mode
+            if (item.classList.contains("caption")) {
+              item.style.fontSize = fontSizes[size].caption.fontSize;
+              item.style.lineHeight = fontSizes[size].caption.lineHeight;
+            } else if (item.classList.contains("subtitle")) {
+              item.style.fontSize = fontSizes[size].subtitle.fontSize;
+              item.style.lineHeight = fontSizes[size].subtitle.lineHeight;
+            } else {
+              // Default size for other elements
+              item.style.fontSize = fontSizes[size].fontSize;
+              item.style.lineHeight = fontSizes[size].lineHeight;
+            }
+            break;
+
           default:
             break;
         }
       });
     }
-
     handleColorModeChange();
-  }, [checkStyle, userEntry]);
+
+  }, [checkStyle, userEntry, styles, setImagesHidden, fontSizes]);
   const handleColorModeChange = (mode) => {
     // Remove previous color mode classes
     const containerElement = document.querySelector(".text-content");
