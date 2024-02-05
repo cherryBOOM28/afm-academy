@@ -684,15 +684,33 @@ const CourseNavigation = ({
                         }}
                         handleSessionClick={handleSessionClick}
                         isActive={24 === activeSessionId}
-                    /><Session
-                    session={{
-                        id: 25,
-                        name: 'Межведомственные органы и рабочие группы',
-                        progress: 0,
-                    }}
-                    handleSessionClick={handleSessionClick}
-                    isActive={25 === activeSessionId}
-                />
+                    />
+                    <Session
+                        session={{
+                            id: 25,
+                            name: 'Межведомственные органы и рабочие группы',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={25 === activeSessionId}
+                    />
+                </Module>
+                <Module
+                    name={'Требования к внутренним нормативным документам'}
+                    moduleId={6}
+                    isOpen={currentModule === 6}
+                    handleModuleOpen={handleModuleOpen}
+                >
+                    <Session
+                        session={{
+                            id: 26,
+                            group: 'introduction',
+                            name: 'УРОК 1',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={26 === activeSessionId}
+                    />
                 </Module>
                 <Module
                     name={'Требования к СФМ по подготовке и обучению в сфере ПОД/ФТ'}
@@ -702,14 +720,15 @@ const CourseNavigation = ({
                 >
                     <Session
                         session={{
-                            id: 26,
+                            id: 27,
                             name: 'Урок 1',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={26 === activeSessionId}
+                        isActive={27 === activeSessionId}
                     />
                 </Module>
+                
             </div>
 
         </div>
