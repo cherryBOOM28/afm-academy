@@ -22,26 +22,58 @@ function AboutUs() {
 
   const [isDark, setIsDark] = useState(false);
 
+  const fontSizes = {
+    small: {
+      fontSize: "15px",
+      lineHeight: "17px",
+      caption: { fontSize: "18px", lineHeight: "20px" },
+      subtitle: { fontSize: "14px", lineHeight: "16px" },
+    },
+    standard: {
+      fontSize: "16px",
+      lineHeight: "18px",
+      caption: { fontSize: "26px", lineHeight: "26px" },
+      subtitle: { fontSize: "18px", lineHeight: "20px" },
+    },
+    large: {
+      fontSize: "24px",
+      lineHeight: "26px",
+      caption: { fontSize: "32px", lineHeight: "34px" },
+      subtitle: { fontSize: "22px", lineHeight: "24px" },
+    },
+  };
+
   useEffect(() => {
-    if (!checkStyle) return;
-    console.log(userEntry);
-    if (userEntry) return;
-    const textContentElement = document.querySelectorAll(".text-content");
+    if (!checkStyle || userEntry) return;
+
+    const textContentElements = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
     setImagesHidden(!styles.showImage);
 
-    if (textContentElement) {
-      textContentElement.forEach((item) => {
+    if (textContentElements) {
+      textContentElements.forEach((item) => {
+        // Handle styles based on size and mode
+        const applyStyles = (style) => {
+          item.style.fontSize = style.fontSize;
+          item.style.lineHeight = style.lineHeight;
+        };
+
         switch (size) {
           case "small":
-            item.style.fontSize = "15px";
-            break;
-          case "standard":
-            item.style.fontSize = "20px";
-            break;
           case "large":
-            item.style.fontSize = "24px";
+            applyStyles(fontSizes[size]);
             break;
+
+          case "standard":
+            if (item.classList.contains("caption")) {
+              applyStyles(fontSizes.standard.caption);
+            } else if (item.classList.contains("subtitle")) {
+              applyStyles(fontSizes.standard.subtitle);
+            } else {
+              applyStyles(fontSizes.standard); // Use standard size for other elements
+            }
+            break;
+
           default:
             break;
         }
@@ -49,7 +81,7 @@ function AboutUs() {
     }
 
     handleColorModeChange();
-  }, []);
+  }, [checkStyle, userEntry, styles, setImagesHidden, fontSizes]);
 
   const handleColorModeChange = (mode) => {
     // Remove previous color mode classes
@@ -142,6 +174,7 @@ function AboutUs() {
       <Header
         dark={styles.colorMode == "dark" ? false : true}
         handleOpenVisualModal={handleOpenVisualModal}
+        style={{ letterSpacing: getLetterSpacing(letterInterval) }}
       />
 
       {/* <div className={cl.container}>
@@ -157,7 +190,7 @@ function AboutUs() {
               <div className={`${cl.academy} text-content`}>
                 <div className={`${cl.academy__text} text-content`}>
                   <p
-                    className={`${cl.headline}`}
+                    className={`${cl.headline} text-content caption`}
                     style={{
                       color:
                         styles.colorMode === "dark"
@@ -171,7 +204,7 @@ function AboutUs() {
                   >
                     {t("about academy")}
                   </p>
-                  <p className={`${cl.academy__p} text-content`}>
+                  <p className={`${cl.academy__p} text-content customSize subtitle`}>
                     {t("descAbout")}
                   </p>
                 </div>
@@ -195,7 +228,7 @@ function AboutUs() {
                 />
               )}
               <div className={cl.aboutTheFounder__text}>
-                <p className={`${cl.headline} text-content`}>
+                <p className={`${cl.headline} text-content caption`}>
                   {t("about shareholder")}
                 </p>
                 <p className={`${cl.aboutTheFounder__p} text-content`}>
@@ -204,10 +237,10 @@ function AboutUs() {
               </div>
             </div>
             <div className={cl.purposeOfAcademy}>
-              <p className={`${cl.headline} text-content`}>
+              <p className={`${cl.headline} text-content caption`}>
                 {t("purpose and objectives of the AML ACADEMY")}
               </p>
-              <p className={`${cl.purposeOfAcademy__text} text-content`}>
+              <p className={`${cl.purposeOfAcademy__text} text-content subtitle`}>
                 {t("descPurpose")}
               </p>
               <p className={`${cl.subtitle} text-content`}>{t("main Task")}</p>

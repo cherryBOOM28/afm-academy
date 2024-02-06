@@ -24,38 +24,74 @@ function Management() {
 
   const [activeTab, setActiveTab] = useState(1);
 
+  const fontSizes = {
+    small: {
+      fontSize: "15px",
+      lineHeight: "17px",
+      caption: { fontSize: "18px", lineHeight: "20px" },
+      subtitle: { fontSize: "14px", lineHeight: "16px" },
+    },
+    standard: {
+      fontSize: "16px",
+      lineHeight: "18px",
+      caption: { fontSize: "26px", lineHeight: "26px" },
+      subtitle: { fontSize: "18px", lineHeight: "20px" },
+      name: { fontSize: "18px", lineHeight: "20px" }, // New variable for name
+      descname: { fontSize: "13px", lineHeight: "15px" }, // New variable for descname
+    },
+    large: {
+      fontSize: "24px",
+      lineHeight: "26px",
+      caption: { fontSize: "40px", lineHeight: "42px" }, // Adjusted caption size for large
+      subtitle: { fontSize: "22px", lineHeight: "24px" },
+    },
+  };
+  
   useEffect(() => {
-    if(!checkStyle) return;
-
-    console.log(userEntry)
-    if (userEntry) return; 
-    const textContentElement = document.querySelectorAll(".text-content");
+    if (!checkStyle || userEntry) return;
+  
+    const textContentElements = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
     setImagesHidden(!styles.showImage);
-
-    if (textContentElement) {
-      textContentElement.forEach((item) => {
+  
+    if (textContentElements) {
+      textContentElements.forEach((item) => {
+        // Handle styles based on size and mode
+        const applyStyles = (style) => {
+          item.style.fontSize = style.fontSize;
+          item.style.lineHeight = style.lineHeight;
+        };
+  
         switch (size) {
           case "small":
-            item.style.fontSize = "15px";
-            item.style.lineHeight = "17px";
-            break;
-          case "standard":
-            item.style.fontSize = "20px";
-            item.style.lineHeight = "22px";
-            break;
           case "large":
-            item.style.fontSize = "24px";
-            item.style.lineHeight = "26px";
+            applyStyles(fontSizes[size]);
             break;
+  
+          case "standard":
+            if (item.classList.contains("caption")) {
+              applyStyles(fontSizes.standard.caption);
+            } else if (item.classList.contains("subtitle")) {
+              applyStyles(fontSizes.standard.subtitle);
+            } else if (item.classList.contains("name")) {
+              applyStyles(fontSizes.standard.name); // Use name size for name
+            } else if (item.classList.contains("descname")) {
+              applyStyles(fontSizes.standard.descname); // Use descname size for descname
+            } else {
+              applyStyles(fontSizes.standard); // Use standard size for other elements
+            }
+            break;
+  
           default:
             break;
         }
       });
     }
-
+  
     handleColorModeChange();
-  }, []);
+  }, [checkStyle, userEntry, styles, setImagesHidden, fontSizes]);
+  
+  
   const handleColorModeChange = (mode) => {
     // Remove previous color mode classes
     const containerElement = document.querySelector(".text-content");
@@ -153,7 +189,7 @@ function Management() {
           style={{ letterSpacing: getLetterSpacing(letterInterval) }}
         >
           <h1
-            className={`${cl.headline}`}
+            className={`${cl.headline} text-content caption`}
             style={{
               color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
             }}
@@ -164,7 +200,7 @@ function Management() {
             <div className={cl.director}>
               {!imagesHidden && <img src={firstDirector} alt="" />}
               <p
-                className={`${cl.name} text-content`}
+                className={`${cl.name} text-content name`}
                 style={{
                   color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
 
@@ -173,7 +209,7 @@ function Management() {
                 {t("firstDirector")}
               </p>
               <p
-                className={`${cl.post} text-content`}
+                className={`${cl.post} text-content descname`}
                 style={{
                   color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
 
@@ -190,7 +226,7 @@ function Management() {
             <div className={cl.director}>
               {!imagesHidden && <img src={thirdDirector} alt="" />}
               <p
-                className={`${cl.name} text-content`}
+                className={`${cl.name} text-content name`}
                 style={{
                   color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
 
@@ -199,7 +235,7 @@ function Management() {
                 {t("secondDirector")}
               </p>
               <p
-                className={`${cl.post} text-content`}
+                className={`${cl.post} text-content descname`}
                 style={{
                   color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
 
@@ -211,7 +247,7 @@ function Management() {
             <div className={cl.director}>
               {!imagesHidden && <img src={forthDirector} alt="" />}
               <p
-                className={`${cl.name} text-content`}
+                className={`${cl.name} text-content name`}
                 style={{
                   color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
 
@@ -220,7 +256,7 @@ function Management() {
                 {t("therdDirector")}
               </p>
               <p
-                className={`${cl.post} text-content`}
+                className={`${cl.post} text-content descname`}
                 style={{
                   color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
 
@@ -232,7 +268,7 @@ function Management() {
             <div className={cl.director}>
               {!imagesHidden && <img src={fifthDirector} alt="" />}
               <p
-                className={`${cl.name} text-content`}
+                className={`${cl.name} text-content name`}
                 style={{
                   color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
 
@@ -241,7 +277,7 @@ function Management() {
                 {t("fourthDirector")}
               </p>
               <p
-                className={`${cl.post} text-content`}
+                className={`${cl.post} text-content descname`}
                 style={{
                   color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
 
