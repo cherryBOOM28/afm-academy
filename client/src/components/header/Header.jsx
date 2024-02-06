@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef  } from 'react';
+import React, { useState, useEffect, useRef, forwardRef  } from 'react';
 // import cl from './Header.module.css';
 import './Header.scss'
 import './Navigation.scss'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import logo from '../../assets/images/logo.svg';
 import language from '../../assets/icons/lang.svg';
@@ -27,6 +27,7 @@ import VisualModal from '../../components/VisualModal/VisualModal';
 import { useStyle } from '../VisualModal/StyleContext';
 
 import navbar_items from './navbar_items';
+import { FaCaretLeft } from "react-icons/fa";
 
 function Header(props) {
 
@@ -461,17 +462,30 @@ const NavigationBar = (props) => {
   )
 }
 
-const Hamburger = ({
-  ref,
+const Hamburger = forwardRef(({
   openNavbar,
   setOpenNavbar,
   setActiveNavItem,
   activeNavItem,
   openVisualModal,
-}) => {
+}, ref) => {
 
   const navigate = useNavigate();
-  console.log(ref)
+  const location = useLocation();
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language);
+  };
+
+  useEffect(() => {
+    console.log(location)
+  }, [])
+
+  const isHomePage = location.pathname === '/';
+  const barStyle = {
+    backgroundColor: isHomePage ? 'white' : 'black'
+  }
 
   return (
     <div className="hamburger-navigation-wrapper">
@@ -485,9 +499,9 @@ const Hamburger = ({
           return true;
         });
       }}>
-        <div className='bar'></div>
-        <div className='bar'></div>
-        <div className='bar'></div>
+        <div className='bar' style={barStyle}></div>
+        <div className='bar' style={barStyle}></div>
+        <div className='bar' style={barStyle}></div>
       </div>
       {
         openNavbar 
@@ -505,7 +519,12 @@ const Hamburger = ({
                           navigate(item.route)
                       }}
                     >
-                      { item.name }
+                      {
+                        item.subItems.length > 0 
+                          ? <FaCaretLeft size={20}/>
+                          : <FaCaretLeft size={20} style={{ opacity: '0'}}/>
+                      }
+                      <span>{ item.name }</span>
                     </div>
                     {
                       activeNavItem === item.name
@@ -547,13 +566,17 @@ const Hamburger = ({
                   <img src={waIcon} style={{width: '20px'}} alt="telegram" className='icon' />
                 </a>
               </div>
+              <div className="navigation-lang">
+                <a className='language' onClick={() => changeLanguage('kz')}>ҚАЗ</a>
+                <a className='language' onClick={() => changeLanguage('ru')}>РУС</a>
+                <a className='language' onClick={() => changeLanguage('eng')}>ENG</a>
+              </div>
           </div>
           )
           : null
       }
     </div>
   )
-}
-
+})
 
 export default Header;
