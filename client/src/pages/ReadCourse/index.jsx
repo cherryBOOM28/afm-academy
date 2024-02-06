@@ -5,6 +5,7 @@ import './style.scss';
 
 import axios from 'axios';
 import base_url from './../../settings/base_url';
+import { FaStar } from "react-icons/fa";
 
 /* 
    course Templates 
@@ -61,6 +62,7 @@ import ModalWindow from '../../components/ModalWindow/ModalWindow';
 function ReadCourse() {
 
     const { id } = useParams();
+    const navigate = useNavigate();
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(true);
@@ -80,6 +82,8 @@ function ReadCourse() {
     const [courseProgress, setCourseProgress] = useState(0);
     
     const [courseModules, setCourseModules] = useState([]);
+
+    const [stars, setStars] = useState(0);
 
     useEffect(() => {
 
@@ -312,6 +316,7 @@ function ReadCourse() {
         if (isModuleQuiz && activeModule && activeModule.quiz) {
             return (<TestPage 
                 name={activeModule.quiz.quiz_title}
+                finished={activeModule.quiz.quiz_max_points === 100}
                 quizId={activeModule.quiz.quiz_id}
                 questions={activeModule.quiz.quizList}
                 handleQuizFail={handleQuizFail}
@@ -336,6 +341,57 @@ function ReadCourse() {
                     <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
                         Завершение учебного курса
                     </HeaderWithLine>
+                </Reveal>
+
+                <Sizebox height={100} />
+
+                <Reveal>
+                    <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
+                        Сертификат можете найти в личном кабинете
+                    </HeaderWithLine>
+                </Reveal>
+                <Sizebox height={100} />
+
+                <div className="stars" style={{
+                    display: 'flex',
+                    width: '100%',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    gap: '10px',
+                    marginBottom: '20px',
+                }}>
+                    {
+                        [0, 0, 0, 0, 0].map((star, index) => {
+                            const active = '#1F3C88';
+                            const nonActive = '#dddddd';
+                            const _color = stars >= index+1 ? active : nonActive;
+
+                            const handleClick = () => {
+                                setStars(index+1);
+                            }
+
+                            return <FaStar size={50} style={{color: _color, cursor: 'pointer'}} onClick={handleClick}/>
+                        })
+                    }
+                </div>
+                <Centered>
+                    <RandomParapraph>
+                        Оцените курс
+                    </RandomParapraph>
+                </Centered>
+                <Sizebox height={100} />
+
+                <Reveal>
+                    <NextLesson
+                        nextLessonName={'Личный кабинет'} 
+                        handleOnClick={() => {
+                            if (stars === 0) {
+                                alert('Оцените курс');
+                                return;
+                            }
+                            navigate('/profile/sertificates')
+                        }}
+                    />
                 </Reveal>
             </LessonPage>)
         }

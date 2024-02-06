@@ -93,38 +93,64 @@ function VisualModal({
 
   const handleFontSizeChange = (size) => {
     if (!checkStyle) setCheckStyle(true);
-
+  
+    const fontSizes = {
+      small: {
+        fontSize: "15px",
+        lineHeight: "17px",
+        caption: { fontSize: "18px", lineHeight: "20px" },
+        subtitle: { fontSize: "14px", lineHeight: "16px" },
+      },
+      standard: {
+        fontSize: "20px",
+        lineHeight: "22px",
+        caption: { fontSize: "24px", lineHeight: "26px" },
+        subtitle: { fontSize: "18px", lineHeight: "20px" },
+      },
+      large: {
+        fontSize: "24px",
+        lineHeight: "26px",
+        caption: { fontSize: "28px", lineHeight: "30px" },
+        subtitle: { fontSize: "22px", lineHeight: "24px" },
+      },
+    };
+  
     updateStyles({ fontSize: size, fontFamily });
+  
     const textContentElement = document.querySelectorAll(".text-content");
+  
     if (textContentElement) {
       textContentElement.forEach((item) => {
-        switch (size) {
-          case "small":
-            item.style.fontSize = "15px";
-            item.style.lineHeight = "17px";
-            if (isSpeechEnabled)
-              speak("Размер шрифта маленький", selectedVoiceName);
-
-            break;
-          case "standard":
-            item.style.fontSize = "20px";
-            item.style.lineHeight = "22px";
-
-            if (isSpeechEnabled)
-              speak("Размер шрифта стандартный", selectedVoiceName);
-
-            break;
-          case "large":
-            item.style.fontSize = "24px";
-            item.style.lineHeight = "26px";
-
-            if (isSpeechEnabled)
-              speak("Размер шрифта большой", selectedVoiceName);
-
-            break;
-          default:
-            break;
-        }
+        
+            // Adjust size for caption and subtitle in small and large modes
+            if (item.classList.contains("caption")) {
+              item.style.fontSize = fontSizes[size].caption.fontSize;
+              item.style.lineHeight = fontSizes[size].caption.lineHeight;
+            } else if (item.classList.contains("subtitle")) {
+              item.style.fontSize = fontSizes[size].subtitle.fontSize;
+              item.style.lineHeight = fontSizes[size].subtitle.lineHeight;
+            } else {
+              item.style.fontSize = fontSizes[size].fontSize;
+              item.style.lineHeight = fontSizes[size].lineHeight;
+            }
+  
+        //     // Use different sizes for different elements in standard mode
+        //     if (item.classList.contains("caption")) {
+        //       item.style.fontSize = fontSizes[size].caption.fontSize;
+        //       item.style.lineHeight = fontSizes[size].caption.lineHeight;
+        //     } else if (item.classList.contains("subtitle")) {
+        //       item.style.fontSize = fontSizes[size].subtitle.fontSize;
+        //       item.style.lineHeight = fontSizes[size].subtitle.lineHeight;
+        //     } else {
+        //       // Default size for other elements
+        //       item.style.fontSize = fontSizes[size].fontSize;
+        //       item.style.lineHeight = fontSizes[size].lineHeight;
+        //     }
+        //     break;
+  
+        //   default:
+        //     break;
+        // }
       });
     }
   };
