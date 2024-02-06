@@ -37,6 +37,8 @@ function Header(props) {
   const [letterInterval, setLetterInterval] = useState("standard");
   const role = localStorage.getItem('role')
 
+  const [ openNavbar, setOpenNavbar] = useState(false);
+  const [ activeNavItem, setActiveNavItem] = useState('');
 
 
   const jwtToken = localStorage.getItem('jwtToken');
@@ -67,8 +69,14 @@ function Header(props) {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const userToggleRef = useRef(null);
+  const hamburgerRef = useRef(null);
 
   useEffect(() => {
+
+    handleWindowResolution();
+    window.addEventListener('resize', handleWindowResolution);
+
+
     // console.log(username)
     const handleClickOutside = (event) => {
       // Check if the clicked element is a descendant of the .user-icon button
@@ -81,6 +89,16 @@ function Header(props) {
         // Clicked outside of user-toggle (excluding user-icon button), close it
         setIsMenuOpen(false);
       }
+
+      if (
+        hamburgerRef.current &&
+        !hamburgerRef.current.contains(event.target) &&
+        event.target.className !== 'hamburger-navigation' &&
+        event.target.className !== 'bar'
+      ) {
+        setActiveNavItem('');
+        setOpenNavbar(false);
+      }
     };
 
     // Attach the event listener when the component mounts
@@ -92,8 +110,20 @@ function Header(props) {
     };
   }, []);
 
-  
+  const handleWindowResolution = () => {
+    const { width, height } = getWindowDimensions();
+    if (width > 1200) {
+      setOpenNavbar(false);
+    }
+  }
 
+  function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
+  }
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -237,86 +267,180 @@ function Header(props) {
             </div>
           }
           <div className="hamburger-navigation-wrapper">
-            <div className='hamburger-navigation'>
+            <div className='hamburger-navigation' onClick={() => {
+              setOpenNavbar(prev => {
+                if (prev === true) {
+                  setActiveNavItem('');
+                  return false;
+                } 
+
+                return true;
+              });
+            }}>
               <div className='bar'></div>
               <div className='bar'></div>
               <div className='bar'></div>
             </div>
-            {/* <div className='hamburger-navigation-body'>
-                {
-                  [
+            {
+              openNavbar 
+                ? (
+                  <div className='hamburger-navigation-body' ref={hamburgerRef}>
                     {
-                      name: 'О нас',
-                      route: null,
-                      subItems: [
+                      [
                         {
-                          name: 'Об академии',
-                          route: '/about'
+                          name: 'О нас',
+                          route: null,
+                          subItems: [
+                            {
+                              name: 'Об академии',
+                              route: '/about'
+                            },
+                            {
+                              name: 'Совет директоров',
+                              route: '/management'
+                            }
+                          ]
                         },
                         {
-                          name: 'Совет директоров',
-                          route: '/management'
-                        }
-                      ]
-                    },
-                    {
-                      name: 'Обучение',
-                      route: null,
-                      subItems: [
-                        {
-                          name: 'Виды курсов',
-                          route: '/#coursesSection'
+                          name: 'Обучение',
+                          route: null,
+                          subItems: [
+                            {
+                              name: 'Виды курсов',
+                              route: '/#coursesSection'
+                            },
+                            {
+                              name: 'Каталог курсов',
+                              route: '/courses/catalog'
+                            },
+                            {
+                              name: 'Мои курсы',
+                              route: '/courses/myCourses'
+                            },
+                          ]
                         },
                         {
-                          name: 'Каталог курсов',
-                          route: '/courses/catalog'
+                          name: 'Вебинары',
+                          route: null,
+                          subItems: [
+                            {
+                              name: 'Все вебинары',
+                              route: '/vebinars'
+                            },
+                            {
+                              name: 'Календарь мероприятий',
+                              route: '/vebinars/calendar'
+                            },
+                            {
+                              name: 'Опросы',
+                              route: '/vebinars/surveys'
+                            },
+                          ]
                         },
                         {
-                          name: 'Мои курсы',
-                          route: '/courses/myCourses'
+                          name: 'Новости',
+                          route: '/#newsSection',
+                          subItems: [
+                            
+                          ]
                         },
-                      ]
-                    },
-                  ].map((item, index) => {
+                        {
+                          name: 'ПОД/ФТ',
+                          route: null,
+                          subItems: [
+                            {
+                              name: 'Антиотмывочная система РК',
+                              route: '/anti-laundering'
+                            },
+                            {
+                              name: 'ФАТФ',
+                              route: '/fatf'
+                            },
+                            {
+                              name: 'ЕАГ',
+                              route: '/eag'
+                            },
+                            {
+                              name: 'Взаимная оценка',
+                              route: '/mutual-evaluation'
+                            },
+                          ]
+                        },
+                        {
+                          name: 'СФМ',
+                          route: null,
+                          subItems: [
+                            {
+                              name: 'Виды субъектов финансового мониторинга',
+                              route: '/subjects'
+                            },
+                            {
+                              name: 'Правила внутреннего контроля',
+                              route: '/rules'
+                            },
+                            {
+                              name: 'Операции, подлежащие финансовому мониторингу',
+                              route: '/operations'
+                            },
+                          ]
+                        },
+                      ].map((item, index) => {
 
-                    return <div className="navigation-item-wrapper" key={index}>
-                      <div 
-                        className="navigation-item"
-                      >
-                        { item.name }
-                      </div>
-                      <div className="navigation-sub-items">
-                        {
-                          item.subItems.map((subItem, index) => {
-                            return <div 
-                              className="navigation-sub-item"
-                              key={index}
-                            >
-                              {
-                                subItem.name
-                              }
-                            </div>
-                          })
-                        }
-                      </div>
+                        return <div className="navigation-item-wrapper" key={index}>
+                          <div 
+                            className="navigation-item"
+                            onClick={() => {
+                              setActiveNavItem(item.name)
+                              if (item.route) 
+                                navigate(item.route)
+                            }}
+                          >
+                            { item.name }
+                          </div>
+                          {
+                            activeNavItem === item.name
+                              ? (
+                                <div className="navigation-sub-items">
+                                  {
+                                    item.subItems.map((subItem, index) => {
+                                      return <div 
+                                        className="navigation-sub-item"
+                                        key={index}
+                                        onClick={() => {
+                                          if (subItem.route)
+                                            navigate(subItem.route)
+                                        }}
+                                      >
+                                        {
+                                          subItem.name
+                                        }
+                                      </div>
+                                    })
+                                  }
+                                </div>
+                              ) : null
+                          }
+                        </div>
+                      })
+                    }     
+                    <div className="navigation-socials">
+                      <a href='#' className='soc-icon blue-button' onClick={openVisualModal}>
+                        <img src={language} alt="language" className='icon' />
+                      </a>
+                      <a target='_blank' href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
+                        <img src={igIcon} alt="instagram" className='icon' />
+                      </a>
+                      <a target='_blank' href='https://t.me/s/afm_rk?before=1811' className='soc-icon blue-button'>
+                        <img src={tgIcon} alt="telegram" className='icon' />
+                      </a>
+                      <a target='_blank' href='https://wa.me/77087168416' className='soc-icon blue-button'>
+                        <img src={waIcon} style={{width: '20px'}} alt="telegram" className='icon' />
+                      </a>
                     </div>
-                  })
-                }     
-                <div className="navigation-socials">
-                  <a href='#' className='soc-icon blue-button' onClick={openVisualModal}>
-                    <img src={language} alt="language" className='icon' />
-                  </a>
-                  <a target='_blank' href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
-                    <img src={igIcon} alt="instagram" className='icon' />
-                  </a>
-                  <a target='_blank' href='https://t.me/s/afm_rk?before=1811' className='soc-icon blue-button'>
-                    <img src={tgIcon} alt="telegram" className='icon' />
-                  </a>
-                  <a target='_blank' href='https://wa.me/77087168416' className='soc-icon blue-button'>
-                    <img src={waIcon} style={{width: '20px'}} alt="telegram" className='icon' />
-                  </a>
                 </div>
-              </div> */}
+                )
+                : null
+            }
           </div>
         </div>
         <div className={`navigation-container ${isMenuOpen ? 'menu-open' : ''}`}>
