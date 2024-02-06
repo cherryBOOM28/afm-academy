@@ -204,3 +204,34 @@
     justify-content: space-between;
 }
 
+.container {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* Styles for screens with a maximum width of 768px */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    .aboutUs__headline {
+        font-size: 40px;
+    }
+
+    /* Add more styles as needed for smaller screens */
+}
+
+/* Styles for screens with a maximum width of 480px */
+@media screen and (max-width: 480px) {
+    .container {
+        width: 95%;
+    }
+
+    .aboutUs__headline {
+        font-size: 30px;
+    }
+
+    /* Add more styles as needed for even smaller screens */
+}
