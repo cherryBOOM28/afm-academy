@@ -13,6 +13,7 @@ function TestPage({
     handleOpenModal, 
     handleQuizSuccesful,  
     handleQuizFail,  
+    finished
 }) {
     const jwtToken = localStorage.getItem('jwtToken');
 
@@ -105,6 +106,8 @@ function TestPage({
                                 questions[currQuestion] ? questions[currQuestion].mcqOption.map(answer => {
                                     const handleAnswerClick = (answerId) => {
                                         // console.log(answerId, checkedQustions[currQuestion])
+                                        if (finished) return;
+
                                         setCheckedQustions(prevQuestions => {
                                             const updatedQuestions = [...prevQuestions];
                                             if (updatedQuestions[currQuestion]) {
@@ -114,7 +117,13 @@ function TestPage({
                                         });
                                     };
 
-                                    const isChecked = checkedQustions.length !== 0 && checkedQustions[currQuestion] && checkedQustions[currQuestion].answer === answer.mcq_option_id;
+                                    let isChecked = false;
+
+                                    if (finished) {
+                                        isChecked = answer.is_true;
+                                    } else {
+                                        isChecked = checkedQustions.length !== 0 && checkedQustions[currQuestion] && checkedQustions[currQuestion].answer === answer.mcq_option_id;
+                                    }
 
                                     return (
                                         <div className="test-answer" key={answer.mcq_option_id} onClick={() => handleAnswerClick(answer.mcq_option_id)}>
@@ -142,7 +151,14 @@ function TestPage({
                 <div className="actions">
                     {currQuestion !== 0 ? <div className="prev"  onClick={() => { setCurrQuestion(currQuestion - 1) }}>Предыдущий вопрос</div> : null}
                     {currQuestion !== questions.length-1 ? <div className="next" onClick={() => { setCurrQuestion(currQuestion + 1) }}>Следующий вопрос</div> : null}
-                    {currQuestion === questions.length-1 ? <div className="finish" onClick={() => {finishTest()}}>Завершить тест</div> : null}
+                    {currQuestion === questions.length-1 
+                        ? <div className={`finish ${finished ? 'disabled' : null}`} 
+                            onClick={() => {
+                                if (finished) return;
+                                finishTest()
+                            }
+                        }>Завершить тест</div> 
+                        : null}
                 </div>
             </div>
         </div>

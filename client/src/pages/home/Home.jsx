@@ -86,7 +86,6 @@ function Home() {
   const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
-    if(!checkStyle) return;
     console.log(userEntry)
     if (userEntry) return; 
 

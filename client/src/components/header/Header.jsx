@@ -203,7 +203,7 @@ function Header(props) {
           </div>
           {jwtToken ? 
             <div className='user-actions'>
-              <div onClick={toggleMenu} className='user-icon toggle-user-button'>
+              <div onClick={() => toggleMenu()} className='user-icon toggle-user-button'>
                 <a className='toggle-user-button'>{pfp.toUpperCase()}</a>
               </div>
               <div className='user-toggle' 
@@ -213,7 +213,7 @@ function Header(props) {
                 ref={userToggleRef}
               >
                 <div onClick={profilePageLink} className='person-menu-item menu-item underline-item'>
-                  <div onClick={toggleMenu} className='user-icon'>
+                  <div className='user-icon'>
                     <a>{pfp.toUpperCase()}</a>
                   </div>
                   <div>
@@ -236,10 +236,87 @@ function Header(props) {
               <a href='/login' className={`contained-button blue-button ${props.dark? 'dark' : ''}`}>{t('signin')}</a>
             </div>
           }
-          <div className='hamburger-navigation'>
+          <div className="hamburger-navigation-wrapper">
+            <div className='hamburger-navigation'>
               <div className='bar'></div>
               <div className='bar'></div>
               <div className='bar'></div>
+            </div>
+            {/* <div className='hamburger-navigation-body'>
+                {
+                  [
+                    {
+                      name: 'О нас',
+                      route: null,
+                      subItems: [
+                        {
+                          name: 'Об академии',
+                          route: '/about'
+                        },
+                        {
+                          name: 'Совет директоров',
+                          route: '/management'
+                        }
+                      ]
+                    },
+                    {
+                      name: 'Обучение',
+                      route: null,
+                      subItems: [
+                        {
+                          name: 'Виды курсов',
+                          route: '/#coursesSection'
+                        },
+                        {
+                          name: 'Каталог курсов',
+                          route: '/courses/catalog'
+                        },
+                        {
+                          name: 'Мои курсы',
+                          route: '/courses/myCourses'
+                        },
+                      ]
+                    },
+                  ].map((item, index) => {
+
+                    return <div className="navigation-item-wrapper" key={index}>
+                      <div 
+                        className="navigation-item"
+                      >
+                        { item.name }
+                      </div>
+                      <div className="navigation-sub-items">
+                        {
+                          item.subItems.map((subItem, index) => {
+                            return <div 
+                              className="navigation-sub-item"
+                              key={index}
+                            >
+                              {
+                                subItem.name
+                              }
+                            </div>
+                          })
+                        }
+                      </div>
+                    </div>
+                  })
+                }     
+                <div className="navigation-socials">
+                  <a href='#' className='soc-icon blue-button' onClick={openVisualModal}>
+                    <img src={language} alt="language" className='icon' />
+                  </a>
+                  <a target='_blank' href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
+                    <img src={igIcon} alt="instagram" className='icon' />
+                  </a>
+                  <a target='_blank' href='https://t.me/s/afm_rk?before=1811' className='soc-icon blue-button'>
+                    <img src={tgIcon} alt="telegram" className='icon' />
+                  </a>
+                  <a target='_blank' href='https://wa.me/77087168416' className='soc-icon blue-button'>
+                    <img src={waIcon} style={{width: '20px'}} alt="telegram" className='icon' />
+                  </a>
+                </div>
+              </div> */}
           </div>
         </div>
         <div className={`navigation-container ${isMenuOpen ? 'menu-open' : ''}`}>
