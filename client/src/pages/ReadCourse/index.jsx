@@ -86,7 +86,8 @@ function ReadCourse() {
     const [stars, setStars] = useState(0);
 
     useEffect(() => {
-
+        handleWindowResolution();
+        window.addEventListener('resize', handleWindowResolution);
 
         fetchData();
         setLoading(false);
