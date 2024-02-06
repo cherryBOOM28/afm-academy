@@ -48,7 +48,7 @@ const QuizApp = ({ questions }) => {
       )}
 
       {showNextQuestionButton && !isLastQuestion && (
-        <button onClick={handleNextQuestionButtonClick}>
+        <button className='buttonQuiz'onClick={handleNextQuestionButtonClick}>
           Следующий вопрос
         </button>
       )}

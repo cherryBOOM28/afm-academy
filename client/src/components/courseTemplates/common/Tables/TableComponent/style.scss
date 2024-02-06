@@ -30,7 +30,7 @@
   width: 220px;
 }
 
-.details-button {
+.details-buttonGeneral {
   margin-left: 25px;
   background-color: #4caf50;
   color: white;
@@ -42,7 +42,7 @@
   cursor: pointer;
 }
 
-.details-button2 {
+.details-button2General {
   margin-left: 25px;
   background-color: #ffffff;
   color: rgb(0, 187, 9);
@@ -56,7 +56,6 @@
 
 .details-modal {
   position: absolute;
-  
   right: 210px;
   width: 220px;
   padding: 25px;

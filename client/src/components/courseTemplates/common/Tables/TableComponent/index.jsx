@@ -48,7 +48,7 @@
             ))}
           </tbody>
         </table>
-        <button  className={`details-button ${selectedRow===selectedRowBtn && selectedRow !==null ? 'details-button' :  'details-button2'}`} onClick={() => handleShowDetailsBtn(selectedRow)}>
+        <button  className={`details-buttonGeneral ${selectedRow===selectedRowBtn && selectedRow !==null ? 'details-buttonGeneral' :  'details-button2General'}`} onClick={() => handleShowDetailsBtn(selectedRow)}>
           +
         </button>
 
