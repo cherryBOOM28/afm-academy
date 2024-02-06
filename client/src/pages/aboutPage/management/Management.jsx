@@ -42,8 +42,8 @@ function Management() {
     large: {
       fontSize: "24px",
       lineHeight: "26px",
-      caption: { fontSize: "40px", lineHeight: "42px" }, // Adjusted caption size for large
-      subtitle: { fontSize: "22px", lineHeight: "24px" },
+      caption: { fontSize: "33px", lineHeight: "33px" }, // Adjusted caption size for large
+      subtitle: { fontSize: "29px", lineHeight: "29px" },
     },
   };
   
@@ -62,10 +62,23 @@ function Management() {
           item.style.lineHeight = style.lineHeight;
         };
   
+        console.log(fontSizes[size].caption)
+
         switch (size) {
           case "small":
           case "large":
-            applyStyles(fontSizes[size]);
+            if (item.classList.contains("caption")) {
+              applyStyles(fontSizes[size].caption);
+            } else if (item.classList.contains("subtitle")) {
+              applyStyles(fontSizes[size].subtitle);
+            }
+            // } else if (item.classList.contains("name")) {
+            //   applyStyles(fontSizes[size].name); // Use name size for name
+            // } else if (item.classList.contains("descname")) {
+            //   applyStyles(fontSizes[size].descname); // Use descname size for descname
+            // } else {
+            //   applyStyles(fontSizes[size]); // Use standard size for other elements
+            // }
             break;
   
           case "standard":
@@ -158,6 +171,7 @@ function Management() {
         return "1px";
     }
   };
+
   useEffect(() => {
     const textContentElement = document.querySelectorAll(".text-content");
     const family = styles.fontFamily;
