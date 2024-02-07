@@ -1,0 +1,60 @@
+// LupaZone.scss
+.dropZoneParent {
+    position: relative;
+    width: 600px;
+    margin: 0 auto;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    .drop-zone {
+      position: absolute;
+      border: 1px solid gray;
+      padding: 20px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  
+    .Btn1 {
+      position: absolute;
+      bottom: -3%; /* Выберите подходящее значение */
+      left: 21.5%; /* Выберите подходящее значение */
+      background-color: rgb(17, 103, 233);
+      padding: 6px;
+      border-radius: 4px;
+      color: rgb(255, 255, 255);
+      z-index: 100;
+    }
+  }
+  
+  .B {
+    margin-top: 1%;
+    margin-left: 31.5%;
+    font-weight: bold;
+    font-size: 25px;
+  }
+  
+  .correct-lupa {
+    background-blend-mode: multiply;
+    background-color: greenyellow;
+  }
+  
+  .incorrect-lupa {
+    background-blend-mode: multiply;
+    background-color: red;
+  }
+  
+  // DraggableOption/style.scss
+  .draggable-option-lupa {
+    border: 1px solid #ccc;
+    padding: 8px;
+    margin-bottom: 8px;
+    margin-left: 12%;
+    margin-right: 13%;
+    cursor: move;
+  }
+  

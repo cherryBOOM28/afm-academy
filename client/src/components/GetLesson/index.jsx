@@ -51,6 +51,7 @@ import BoxOfThree from '../courseTemplates/common/BoxOfThree';
 import ToolTipComponent from '../courseTemplates/common/ToolTipComponents/ToolTipComponent';
 import TooltipComponent2 from '../courseTemplates/common/ToolTipComponents/ToolTipComponent2';
 import TooltipComponent1 from '../courseTemplates/common/ToolTipComponents/ToolTipComponent1';
+import TooltipComponentWithLupa from '../courseTemplates/common/ToolTipComponents/ToolTipComponentWithLupa';
 import TableWithTable from '../courseTemplates/common/Tables/TableWithTable';
 // import { Tooltip } from 'react-tooltip';
 // import 'react-tooltip/dist/react-tooltip.css';
@@ -148,6 +149,7 @@ import { green } from '@mui/material/colors';import DropDownMSQ from '../courseT
 import TwoColumnsDivider from '../courseTemplates/common_v2/TwoColumnsDivider';
 import Image from '../courseTemplates/common_v2/Image';
 import PyramidList from '../courseTemplates/common_v2/PyramidList';
+import ToolTipComponentWithLupa from '../courseTemplates/common/ToolTipComponents/ToolTipComponentWithLupa';
 
 
 const LessonPage = ({ children, name, lecturer }) => {
@@ -4992,7 +4994,9 @@ function GetLesson({
           </Reveal>
 
           <Reveal>
-            <LupaDetailed></LupaDetailed>
+            <ToolTipComponentWithLupa
+           
+            ></ToolTipComponentWithLupa>
           </Reveal>
 
           <></>
