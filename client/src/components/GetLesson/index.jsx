@@ -6269,7 +6269,9 @@ function GetLesson({
           </Reveal>
           <Reveal>
             <Sizebox height={40} />
+            <Centered>
             <ImageLine img={image78} height={600}></ImageLine>
+            </Centered>
           </Reveal>
           <Reveal>
             <Sizebox height={80} />
@@ -6423,8 +6425,8 @@ function GetLesson({
               ]}
               dataBtn={[
                 { name: '1 вкладка' },
-                { name: 'Вторая вкладка' },
-                { name: 'Третья вкладка' },
+                { name: '2 вкладка' },
+                { name: '3 вкладка' },
               ]}
               Height={'250px'}
             ></TableWithData>
