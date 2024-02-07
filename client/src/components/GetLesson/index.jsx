@@ -4372,8 +4372,8 @@ function GetLesson({
                           имуществом в отношении следующей деятельности:
                         </RandomParapraph>
                         <Sizebox height={20} />
-                        <NotNumberedDots
-                          dotsColor={'black'}
+                        <NumberedDots
+                          dotsColor={'rgb(249, 249, 249)'}
                           list={[
                             'купли-продажи недвижимости;',
                             'управления деньгами, ценными бумагами или иным имуществом клиента;',
