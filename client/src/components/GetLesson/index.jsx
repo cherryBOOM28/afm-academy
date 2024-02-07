@@ -46,15 +46,12 @@ import CustomCarousel from '../courseTemplates/complex/CustomCarousel';
 import ImageAndColumns from '../courseTemplates/common_v2/ImageAndColumns';
 import LupaDetailed from '../../components/courseTemplates/common/LupaDetailed';
 import DoubleDraggableOption from '../courseTemplates/common/DoubleDraggableOption';
-
-import BoxOfThree from '../courseTemplates/common/BoxOfThree';
 import JustTextWithP from '../courseTemplates/common/JustTextWithP';
-
+import BoxOfThree from '../courseTemplates/common/BoxOfThree';
 import ToolTipComponent from '../courseTemplates/common/ToolTipComponents/ToolTipComponent';
 import TooltipComponent2 from '../courseTemplates/common/ToolTipComponents/ToolTipComponent2';
 import TooltipComponent1 from '../courseTemplates/common/ToolTipComponents/ToolTipComponent1';
 import TableWithTable from '../courseTemplates/common/Tables/TableWithTable';
-import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
 
 // default images
@@ -4805,15 +4802,15 @@ function GetLesson({
               Height={'300px'}
             ></LupaDragZone>
             <Sizebox height={40} />
-            <TextWithTitle
-              title={'Обновление сведений осуществляется в случаях:'}
-              text={[
+            <NumberedDots
+              header={'Обновление сведений осуществляется в случаях:'}
+              list={[
                 '1. установления деловых отношений с клиентом',
                 '2. осуществления операций с деньгами и (или) иным имуществом, в том числе подозрительных операций',
                 '3. наличия оснований для сомнения в достоверности ранее полученных сведений о клиенте (его представителе), бенефициарном собственнике и правилами внутреннего контроля',
                 '4. При наличии основания для сомнения в достоверности ранее полученных сведений о клиенте (его представителе), бенефициарном собственнике обновление сведений о клиенте (его представителе) и бенефициарном собственнике осуществляется в течение пятнадцати рабочих дней, следующих за днем принятия субъектом финансового мониторинга решения о наличии такого сомнения',
               ]}
-            ></TextWithTitle>
+            ></NumberedDots>
 
             <Sizebox height={40} />
           </Reveal>
@@ -4828,7 +4825,6 @@ function GetLesson({
                 'Субъекты финансового мониторинга в рамках дистанционно установленных деловых отношений с клиентом вправе совершать операции, за исключением трансграничных платежей, без принятия мер по проверке достоверности сведений, необходимых для идентификации клиента (его представителя), бенефициарного собственника, в случаях:'
               }
             />
-
             <Sizebox height={40} />
             <NumberedDots
               dotsColor={'#CADEFC'}
@@ -4839,6 +4835,15 @@ function GetLesson({
             />
             <Sizebox height={40} />
           </Reveal>
+          <Centered>
+          <JustTextWithP
+              textData={`
+                "Надлежащая проверка субъектами финансового мониторинга своих клиентов (их представителей) и бенефициарных собственников осуществляется в соответствии с правилами внутреннего контроля.",
+                Субъект финансового мониторинга вправе требовать от клиента (его представителя) представления сведений и документов, "необходимых или достаточных для идентификации клиента" (его представителя), выявления бенефициарного собственника, а также представления сведений о налоговом резидентстве, роде деятельности и источнике финансирования совершаемых операций.,
+                Клиенты (их представители) "обязаны предоставлять" субъектам финансового мониторинга сведения и документы, необходимые для исполнения ими обязанностей, предусмотренных Законом о ПОД/, включая сведения о бенефициарных собственниках.
+              `}
+            />
+            </Centered>
           <Reveal>
             <Report_Information>
               Сведения о бенефициарных собственниках представляются клиентами
@@ -7261,7 +7266,6 @@ function GetLesson({
             <TextWithTitle
               title={'В соответствии с нормами действующего законодательства о ПОД/ФТ субъекты принимают соответствующие меры во избежание использования, как самих субъектов, так и его услуг иными лицами для совершения или оказания какого-либо содействия в легализации ОД/ФТ/ФРОМУ.'}
             >
-
             </TextWithTitle> <Sizebox height={20}></Sizebox>
             <TextWithTitle
               title={'Таким образом, субъекты в целях противодействия ПОД/ФТ разрабатывают ПВК и программы их осуществления, а также несут ответственность за соблюдение правил и реализацию этих программ.'}
@@ -7271,7 +7275,6 @@ function GetLesson({
             <TextWithTitle
               title={'ПВК разрабатываются, принимаются органом управления или исполнительным органом СФМ с образованием юрлица и СФМ без образования юрлица и исполняются СФМ с учетом результатов оценки степени подверженности услуг СФМ рискам ОД/ФТ, размера, характера и сложности организации и, помимо требований к деятельности СФМ при проведении внутреннего контроля.'}
             >
-
             </TextWithTitle>
             <Sizebox height={60}></Sizebox><Sizebox height={20}></Sizebox>
           </Reveal>
@@ -7323,6 +7326,7 @@ function GetLesson({
               <ImageLine img={image97} color={'#FFFFFF'}></ImageLine>
             </Centered>
           </Reveal>
+        
 
           <Sizebox height={50} />
           <Reveal>
@@ -7431,7 +7435,6 @@ function GetLesson({
                     и иные.
                   </p><br />
                 </div>
-     
               </>
             </Centered>
             <Centered>
@@ -7445,7 +7448,6 @@ function GetLesson({
                     textIndent: '15px',
                   }}
                 >
-               
                 </div>
                 <div
                   style={{
@@ -7973,31 +7975,7 @@ function GetLesson({
                 'Количество вопросов ОЛК – 24'
               ]}
             />
-
-
-            
-
           </Reveal>
-          
-
-
-
-        
-          
-
-          
-          
-        
-
-
-
-
-
-
-
-
-
-
           <Reveal>
             <Sizebox height={40} />
             <NextLesson

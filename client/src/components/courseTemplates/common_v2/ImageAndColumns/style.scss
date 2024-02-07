@@ -74,7 +74,7 @@
 
     .columns {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Default to 2 columns */
+        grid-template-columns: repeat(3, 1fr); /* Default to 2 columns */
 
         .column {
             width: 100%;
@@ -96,7 +96,7 @@
         
         /* For large screens, use 4 columns */
         @media screen and (min-width: 900px) {
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
         }
 
         @media (max-width: 600px) {
