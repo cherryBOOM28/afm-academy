@@ -1,20 +1,22 @@
 .DraggableOptionZone{
   width: 100%;
-  text-align: center;
-  .drop-area {
-    flex: 1;
+  .DragZoneWrapper{
     position: relative;
-    width: 26%;
-    height: 200px;
-    border: 7px solid #000000;
-    border-radius: 4px;
-    margin-top: 1%;
-    margin-left: 34.5%;
-    margin-right: 25%;
-    padding: 20px; 
-  
+    width: 25%;
+    margin: 0 auto;
+    height: 360px;
+    align-items: center;
+    justify-content: left;
+    .drop-area {
+      flex: 1;
+      position: relative;
+      height: 200px;
+      border: 7px solid #000000;
+      border-radius: 4px;
+      margin-top: 1%;
+      padding: 20px;
+    }
   }
-  
 }
 .theCorrect {
   border-color:  green !important;
@@ -24,25 +26,22 @@
   border-color: red !important;
 }
 .Btn {
-  
   margin-top: 1%;
   background-color: rgb(27, 80, 255);
   padding: 4px;
-  margin-right: 220px;
   border-radius: 4px;
   color: rgb(255, 255, 255);
   font-weight: bold;
 }
 
-.B {
+.DragTitle {
   margin-top: 1%;
+  margin-bottom: 3%;
   font-weight: bold;
-  font-size: 25px;
-  
-  margin: 0 auto;
+  font-size: 20px;
 }
 .B.small {
-  font-size: 95% !important;
+  font-size: 85% !important;
 
    /* Уменьшенный размер шрифта */
 }

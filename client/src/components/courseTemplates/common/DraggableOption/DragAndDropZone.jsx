@@ -46,21 +46,25 @@ const DragAndDropZone = ({options, correctOptions, title}) => {
         </div>
         <div className="separator"></div>
         <div className='DraggableOptionZone'>
-          <Centered><b className={`B ${isTitleLong ? 'small' : ''}`}>{title}</b></Centered>
-        <div
-          className={`drop-area ${isCorrect ? 'theCorrect' : isIncorrectSelection ? 'theIncorrect' : ''}`}
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-        >
-          <p>Перетащите ответы внутрь квадрата:</p>
-          <br/>
-          <ul>
-          {selectedOptions.map((option, index) => (
-            <li key={index}>{option}</li>
-          ))}
-        </ul>
+        <div className='DragZoneWrapper'>
+          <b className={`DragTitle ${isTitleLong ? 'small' : ''}`}>{title}</b>
+          <div
+              className={`drop-area ${isCorrect ? 'theCorrect' : isIncorrectSelection ? 'theIncorrect' : ''}`}
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
+          >
+            <p>Перетащите ответы внутрь квадрата:</p>
+            <br/>
+            <ul>
+              {selectedOptions.map((option, index) => (
+                  <li key={index}>{option}</li>
+              ))}
+            </ul>
+
           </div>
           <button className="Btn" onClick={handleTryAgain}>Попробовать еще раз</button>
+
+        </div>
         </div>
       </div>
       <div className="selected-options">
