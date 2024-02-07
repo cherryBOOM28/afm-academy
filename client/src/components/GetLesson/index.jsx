@@ -54,8 +54,8 @@ import ToolTipComponent from '../courseTemplates/common/ToolTipComponents/ToolTi
 import TooltipComponent2 from '../courseTemplates/common/ToolTipComponents/ToolTipComponent2';
 import TooltipComponent1 from '../courseTemplates/common/ToolTipComponents/ToolTipComponent1';
 import TableWithTable from '../courseTemplates/common/Tables/TableWithTable';
-import { Tooltip } from 'react-tooltip';
-import 'react-tooltip/dist/react-tooltip.css';
+// import { Tooltip } from 'react-tooltip';
+// import 'react-tooltip/dist/react-tooltip.css';
 
 // default images
 // if the images is not given
@@ -702,7 +702,7 @@ function GetLesson({
 
           <VideoLine
             url={
-              'https://videos.sproutvideo.com/embed/d390d1b1191ae7c15a/1deb0d91facdef1d?playerColor=1f71a1'
+              'https://videos.sproutvideo.com/embed/0690d6b6191be8ce8f/e497cafd5f67b504'
             }
           />
 
@@ -1843,7 +1843,7 @@ function GetLesson({
           </Reveal>
           <Sizebox height={40} />
           <Reveal>
-            <VideoLine />
+            <VideoLine url={'https://videos.sproutvideo.com/embed/a790d6b6191ce4c02e/d3b90f4c6746727e'}/>
           </Reveal>
           <Sizebox height={40} />
           <Reveal>
@@ -1879,7 +1879,7 @@ function GetLesson({
           </Reveal>
           <Sizebox height={40} />
           <Reveal>
-            <VideoLine />
+            <VideoLine url={'https://videos.sproutvideo.com/embed/ac90d6b6191be8cc25/017133e5d220ffaa'}/>
           </Reveal>
           <Sizebox height={40} />
           <Reveal>
@@ -1954,7 +1954,7 @@ function GetLesson({
           </Reveal>
           <Sizebox height={40} />
           <Reveal>
-            <VideoLine />
+            <VideoLine url={'https://videos.sproutvideo.com/embed/4d90d6b6191ce5c3c4/d684e1c6405b57de'}/>
           </Reveal>
           <Sizebox height={40} />
           <Reveal>
@@ -2099,7 +2099,7 @@ function GetLesson({
           <Sizebox height={100} />
           <Reveal>
             <VideoWithTitleAndText
-              url={null}
+              url={'https://videos.sproutvideo.com/embed/a790d6b6191ce4c02e/d3b90f4c6746727e'}
               title={'Схема ОД в сделках с объектами недвижимого имущества'}
               text={
                 <>
@@ -2214,7 +2214,7 @@ function GetLesson({
           <Sizebox height={100} />
           <Reveal>
             <VideoWithTitleAndText
-              url={null}
+              url={'https://videos.sproutvideo.com/embed/d390d6b6181de2c25a/badb3fb0fb84d0a1'}
               title={'Мошенничество'}
               text={
                 <>
@@ -4154,8 +4154,8 @@ function GetLesson({
                   name: 'УНФПП (установленные нефинансовые предприятия и профессии)',
                 },
                 { id: 4, x: 720, y: 1220, name: 'Общественные организации' },
-                { id: 5, x: 1604, y: 500, name: 'Общественные организации' },
-                { id: 6, x: 1604, y: 928, name: 'Общественные организации' },
+                { id: 5, x: 1604, y: 500, name: 'Правоохранительные органы' },
+                { id: 6, x: 1604, y: 928, name: 'Международные организации' },
               ]}
               list={[
                 [
