@@ -7,7 +7,6 @@
 
 .coursesContent {
     /* max-width: 1240px; */
-    height: 449px;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -24,16 +23,11 @@
     width: 100%;
     cursor: pointer;
     /* height: 347px; */
-    overflow-x: auto;
-}
-.btnTab {
-    width: 48%; /* Adjust the width for two tabs in a row */
 }
 
 @media screen and (max-width: 768px) {
     .tabHeader {
         flex-wrap: wrap;
-        overflow-x: auto;
     }
 
     .btnTab {
@@ -52,52 +46,8 @@
         position: static; /* Reset the position for smaller screens */
         margin-top: 15px; /* Add margin between the text and button */
     }
-}
-@media screen and (max-width: 480px) {
-    .tabSliderContainer {
-        width: 100%; /* Full width for the smallest screens */
-    }
-
-    .cardContent {
-        width: 100%; /* Full width for the smallest screens */
-    }
-
-    .newsImg {
-        width: 100%; /* Full width for the smallest screens */
-        height: auto; /* Allow image to take the height based on content */
-    }
-
-    .cardTitle {
-        font-size: 14px; /* Reduce font size for smaller screens */
-    }
-
-    .cardBtn {
-        padding: 5px 15px; /* Adjust padding for smaller screens */
-        font-size: 12px; /* Reduce font size for smaller screens */
-    }
-
-    .dateContent {
-        margin-top: 10px; /* Adjust margin for smaller screens */
-    }
-
-    .dateTime {
-        font-size: 10px; /* Reduce font size for smaller screens */
-    }
-
-    .video {
-        width: 100%; /* Full width for the smallest screens */
-        height: auto; /* Allow video to take the height based on content */
-    }
-
-    .btnTab {
-        height: auto; /* Allow tabs to take the height based on content */
-        padding: 10px; /* Add padding to the tabs for better spacing */
-        text-align: center; /* Center align text in tabs for smaller screens */
-    }
-
-    .more {
-        position: static; /* Reset the position for smaller screens */
-        margin-top: 15px; /* Add margin between the text and button */
+    .tabHeader {
+        overflow-x: hidden; /* Hide horizontal overflow for smaller screens */
     }
 }
 
@@ -147,7 +97,6 @@
     /* width: 270px; */
     width: 100%;
     
-    height: 157px;
     text-align: center;
 }
 

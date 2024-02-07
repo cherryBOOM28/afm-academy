@@ -94,6 +94,7 @@
     .tabHeader {
         flex-direction: column; /* Stack tabs vertically */
         align-items: center; /* Center align tabs */
+        overflow-x: hidden; /* Hide horizontal overflow for slider */
     }
 
     .btnTab {
