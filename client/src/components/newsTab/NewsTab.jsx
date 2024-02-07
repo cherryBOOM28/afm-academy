@@ -25,6 +25,26 @@ const NewsTab = () => {
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const jwtToken = localStorage.getItem("jwtToken");
+
+  const [ settings, setSettings ] = useState({
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+  })
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      setSettings({
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: getSlidesToShow(),
+        slidesToScroll: 1,
+      })
+    })
+  }, [])
   // useEffect(() => {
   //   const textContentElement = document.querySelectorAll(".text-content");
   //   const size = styles.fontSize;
@@ -74,12 +94,19 @@ const NewsTab = () => {
     setImagesHidden(!styles.showImage);
   }, [styles.showImage]);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
+  const getSlidesToShow = () => {
+    const windowWidth = window.innerWidth;
+
+    if (windowWidth >= 1200) {
+      return 3; // Large screens, show 3 slides
+    } else if (windowWidth >= 900) {
+      return 2; // Medium screens, show 2 slides
+    } else if (windowWidth >= 768){
+      return 1; // Small screens, show 1 slide
+    }
+    else {
+      return 1;
+    }
   };
 
   const handleTabChange = (tab) => {

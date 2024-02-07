@@ -49,6 +49,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .block {
@@ -62,6 +63,7 @@
     padding: 20px 10px;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px; 
 }
 
 .blockText {
@@ -103,7 +105,8 @@
     font-size: 18px;
     font-weight: 400;
     line-height: 23px; /* 127.778% */
-    width: 862px;
+    width: 100%; /* Added to make text block take full width on smaller screens */
+    margin-bottom: 20px; 
 }
 
 .customerNumbersContent {
@@ -113,11 +116,11 @@
 
 .customerNumber {
     padding: 18px;
-    /* width: 475px; */
     border-radius: 5px;
     background: #F2F2F2;
     display: flex;
     align-items: self-start;
+    margin-bottom: 20px;
 }
 
 .circleImg {

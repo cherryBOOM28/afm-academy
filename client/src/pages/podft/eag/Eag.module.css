@@ -13,16 +13,25 @@
 }
 
 .eagImgContent {
-    margin: 62px 0 32px 0px;
+    margin: 62px 0 32px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;
 }
+.eagImg {
+    width: 100%;
+    max-width: 500px; /* Adjust the maximum width as needed */
+  }
 
 .eagImgContent img {
     height: 100%;
     width: 100%;
     min-width: 500px;
 }
+.eagImgTextWrapper {
+    margin-top: 20px; /* Adjust the spacing between image and text as needed */
+    text-align: center; /* Center the text */
+  }
 
 .eagImgTextFirst {
     /* width: 819px; */
@@ -31,6 +40,8 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 23px; 
+    display: flex;
+    flex-direction: column;
 }
 
 .eagImgText {
@@ -87,3 +98,14 @@
     font-weight: 400;
     line-height: 23px; /* 143.75% */
 }
+@media (min-width: 769px) {
+    .eagImgContent {
+      flex-direction: row; /* Switch back to horizontal layout on larger screens */
+    }
+  
+    .eagImgTextWrapper {
+      margin-top: 0; /* Reset margin on larger screens */
+      margin-left: 20px; /* Adjust the spacing between image and text as needed */
+      text-align: left; /* Align the text to the left */
+    }
+  }
