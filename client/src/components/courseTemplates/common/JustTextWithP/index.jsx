@@ -2,23 +2,20 @@ import React from 'react';
 import './style.scss';
 
 const JustTextWithP = ({ textData }) => {
-  // Проверяем, является ли textData строкой перед использованием split
-  if (typeof textData !== 'string') {
-    return <div>No data to display</div>; // или другое сообщение, если textData не является строкой
-  }
+  // Check if textData is an array, if not convert it to an array with a single element
+  const dataArray = Array.isArray(textData) ? textData : [textData];
 
-  // Разбиваем текст по кавычкам, сохраняя текст между ними
-  const parts = textData.split(/("[^"]*")/);
+  const formatText = (text) => {
+    return text.replace(/"(.*?)"/g, '<span style="font-weight: bold;">$1</span>');
+  };
 
   return (
     <div>
-      {parts.map((part, index) => {
-        // Проверяем, является ли текущая часть текста заключенной в кавычки
-        const isBold = part.startsWith('"') && part.endsWith('"');
+      {dataArray.map((text, index) => { // Use dataArray here
         return (
           <div key={index}>
             {/* Применяем стили в зависимости от того, является ли текст жирным */}
-            <p className={`abzac ${isBold ? 'bold' : ''}`}>{part}</p>
+            <p className={'abzac'} dangerouslySetInnerHTML={{ __html: formatText(text) }}></p>
             <br />
           </div>
         );
