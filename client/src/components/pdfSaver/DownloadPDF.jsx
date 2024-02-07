@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from '../UI/button/Button';
 import { useStyle } from "../../components/VisualModal/StyleContext";
+import irl from "../../assets/images/Устав Академия ФМ AML ACADEMY.pdf";
 
 import { useTranslation } from 'react-i18next';
 
@@ -32,10 +33,10 @@ const DownloadPDF = () => {
   };
 
   const handleDownload = () => {
-    const fileUrl = '../data/peach.pdf';
+    const fileUrl = irl;
     const link = document.createElement('a');
     link.href = fileUrl;
-    link.setAttribute('download', 'downloaded-file.pdf');
+    link.setAttribute('download', 'Ustav_AML.pdf');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

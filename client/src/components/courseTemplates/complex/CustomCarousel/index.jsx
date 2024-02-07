@@ -9,7 +9,7 @@ function CustomCarousel({
 
     return (
         <div className="custom-carousel">
-            <Carousel autoPlay={false} animation='fade' navButtonsAlwaysVisible={true}>
+            <Carousel autoPlay={false} animation='fade' navButtonsAlwaysVisible={true} fullHeightHover={true} index={1}>
                 {
                     data.map( (item, i) =>  <Item key={i} item={item} /> )
                 }
@@ -32,7 +32,7 @@ const Item = ({ item }) => {
                 <p>{ imageText }</p>
             </div>
             <div>
-                <img src={image} alt={image} />
+                <img className="imgCarousel" src={image} alt={image} />
             </div>
         </div>
     )

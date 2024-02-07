@@ -8,8 +8,7 @@
   
   .highlight {
     position: relative;
-    background-color: rgb(206, 193, 5);
-    color: white;
+    color: rgb(61, 78, 232);
     border-radius: 10px;
     padding: 4px;
     cursor: pointer;
@@ -24,7 +23,7 @@
   .highlight:hover::before {
     content: attr(randomText);
     position: absolute;
-    background-color: #4CAF50;
+    background-color: #0004f7;
     color: #fff;
     padding: 5px;
     font-size: medium;

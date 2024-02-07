@@ -472,7 +472,7 @@ const Hamburger = forwardRef(({
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const changeLanguage = (language) => {
     i18n.changeLanguage(language);
@@ -524,7 +524,7 @@ const Hamburger = forwardRef(({
                           ? <FaCaretLeft size={20}/>
                           : <FaCaretLeft size={20} style={{ opacity: '0'}}/>
                       }
-                      <span>{ item.name }</span>
+                      <span>{ t(item.name) }</span>
                     </div>
                     {
                       activeNavItem === item.name
@@ -541,7 +541,7 @@ const Hamburger = forwardRef(({
                                   }}
                                 >
                                   {
-                                    subItem.name
+                                    t(subItem.name)
                                   }
                                 </div>
                               })
