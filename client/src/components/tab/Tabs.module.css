@@ -7,7 +7,6 @@
 
 .coursesContent {
     /* max-width: 1240px; */
-    height: 449px;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -24,6 +23,32 @@
     width: 100%;
     cursor: pointer;
     /* height: 347px; */
+}
+
+@media screen and (max-width: 768px) {
+    .tabHeader {
+        flex-wrap: wrap;
+    }
+
+    .btnTab {
+        width: 100%; /* Full width for a single tab in a row */
+        margin-bottom: 10px; /* Adjust the margin between tabs */
+    }
+}
+
+/* Media query for screens with a maximum width of 480px */
+@media screen and (max-width: 480px) {
+    .btnTab {
+        height: auto; /* Allow tabs to take the height based on content */
+    }
+
+    .more {
+        position: static; /* Reset the position for smaller screens */
+        margin-top: 15px; /* Add margin between the text and button */
+    }
+    .tabHeader {
+        overflow-x: hidden; /* Hide horizontal overflow for smaller screens */
+    }
 }
 
 .tabContent {
@@ -72,7 +97,6 @@
     /* width: 270px; */
     width: 100%;
     
-    height: 157px;
     text-align: center;
 }
 

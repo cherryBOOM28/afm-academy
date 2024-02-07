@@ -83,19 +83,25 @@ function Management() {
   
           case "standard":
             if (item.classList.contains("caption")) {
+              console.log("Applying standard caption styles");
               applyStyles(fontSizes.standard.caption);
             } else if (item.classList.contains("subtitle")) {
+              console.log("Applying standard subtitle styles");
               applyStyles(fontSizes.standard.subtitle);
             } else if (item.classList.contains("name")) {
-              applyStyles(fontSizes.standard.name); // Use name size for name
+              console.log("Applying standard name styles");
+              applyStyles(fontSizes.standard.name);
             } else if (item.classList.contains("descname")) {
-              applyStyles(fontSizes.standard.descname); // Use descname size for descname
+              console.log("Applying standard descname styles");
+              applyStyles(fontSizes.standard.descname);
             } else {
-              applyStyles(fontSizes.standard); // Use standard size for other elements
+              console.log("Applying standard styles");
+              applyStyles(fontSizes.standard);
             }
             break;
   
           default:
+            console.log("Default case");
             break;
         }
       });

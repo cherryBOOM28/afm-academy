@@ -23,9 +23,10 @@
     scrollbar-width: auto; // "thin" для тонкого скроллбара или "auto" для стандартного
     scrollbar-color: #9a9a9a #f0f0f0;
 
-
-
-
+    // &::-webkit-scrollbar {
+    //     display: none;
+    // }
+    
     .wrapper {
         width: 100%;
     }

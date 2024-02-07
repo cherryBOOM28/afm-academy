@@ -243,6 +243,7 @@ function Home() {
         />{" "}
         <section className={`${cl.aboutUs} text-content`}>
           <div className={cl.container}>
+            
             <div
               className={`${cl.aboutUs__section} ${
                 imagesHidden ? cl.darkBlueBackground : ""
