@@ -36,13 +36,13 @@ function Management() {
       lineHeight: "18px",
       caption: { fontSize: "26px", lineHeight: "26px" },
       subtitle: { fontSize: "18px", lineHeight: "20px" },
-      name: { fontSize: "18px", lineHeight: "20px" }, // New variable for name
-      descname: { fontSize: "13px", lineHeight: "15px" }, // New variable for descname
+      name: { fontSize: "18px", lineHeight: "20px" }, 
+      descname: { fontSize: "13px", lineHeight: "15px" }, 
     },
     large: {
       fontSize: "24px",
       lineHeight: "26px",
-      caption: { fontSize: "33px", lineHeight: "33px" }, // Adjusted caption size for large
+      caption: { fontSize: "33px", lineHeight: "33px" }, 
       subtitle: { fontSize: "29px", lineHeight: "29px" },
     },
   };
@@ -56,7 +56,7 @@ function Management() {
   
     if (textContentElements) {
       textContentElements.forEach((item) => {
-        // Handle styles based on size and mode
+
         const applyStyles = (style) => {
           item.style.fontSize = style.fontSize;
           item.style.lineHeight = style.lineHeight;

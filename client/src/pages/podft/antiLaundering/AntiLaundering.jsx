@@ -200,11 +200,11 @@ function AntiLaundering() {
             </h1>
             {!imagesHidden &&
               (i18n.language === "ru" ? (
-                <img src={schemeImgRu} alt="schemeImg" className={cl.scheme} />
+                <img src={schemeImgRu} alt="schemeImg" className={cl.scheme}  style={{ maxWidth: "100%", height: "auto" }}/>
               ) : i18n.language === "kz" ? (
-                <img src={schemeImgKz} alt="schemeImg" className={cl.scheme} />
+                <img src={schemeImgKz} alt="schemeImg" className={cl.scheme}  style={{ maxWidth: "100%", height: "auto" }}/>
               ) : (
-                <img src={schemeImgEng} alt="schemeImg" className={cl.scheme} />
+                <img src={schemeImgEng} alt="schemeImg" className={cl.scheme} style={{ maxWidth: "100%", height: "auto" }}/>
               ))}
             <p
               className={`${cl.text} text-content`}

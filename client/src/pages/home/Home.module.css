@@ -240,8 +240,27 @@
     }
 
     .aml_box {
-        width: 100%; /* Adjust the width for even smaller screens */
+        width: 100%;
+        margin-bottom: 20px; /* Adjust the width for even smaller screens */
     }
+    .courses_boxes {
+        flex-direction: column;
+        align-items: center;
+    }
+
 
     /* Add more styles as needed for even smaller screens */
 }
+@media screen and (max-width: 1411px) {
+    .courses_boxes {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .aml_box {
+        width: 100%;
+        margin-bottom: 20px; /* Adjust spacing between boxes */
+    }
+}
+
+/* Styles for screens with a maximum width of 480px */

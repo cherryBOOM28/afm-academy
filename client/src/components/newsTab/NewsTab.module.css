@@ -27,6 +27,7 @@
 }
 
 .cardContent {
+    height: auto;
     /* width: 320px; */
     width: 85%;
     height: 210px;
@@ -37,15 +38,7 @@
     display: flex;
     flex-direction: column;
 }
-@media screen and (max-width: 768px) {
-    .tabSliderContainer {
-        width: 100%; /* Full width for smaller screens */
-    }
 
-    .cardContent {
-        width: 100%; /* Full width for smaller screens */
-    }
-}
 .courses__headline {
     color: #3A3939;
     font-size: 26px;
@@ -64,6 +57,7 @@
 }
 
 .tabHeader {
+    height: auto;
     display: flex;
     justify-content: space-between;
     border-radius: 10px;
@@ -73,15 +67,27 @@
     cursor: pointer;
     /* height: 347px; */
     overflow-x: auto;
+    flex-wrap: wrap;
 }
 .btnTab {
     width: 48%; /* Adjust the width for two tabs in a row */
 }
 
 @media screen and (max-width: 768px) {
+    .tabSliderContainer {
+        width: 100%;
+    }
+
+    .cardContent {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1100px) {
     .tabHeader {
-        flex-wrap: wrap;
-        overflow-x: auto;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
     }
 
     .btnTab {
@@ -92,61 +98,67 @@
 
 @media screen and (max-width: 480px) {
     .tabHeader {
-        flex-direction: column; /* Stack tabs vertically */
-        align-items: center; /* Center align tabs */
-        overflow-x: hidden; /* Hide horizontal overflow for slider */
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
     }
 
     .btnTab {
-        width: 100%; /* Full width for each tab */
-        margin-bottom: 10px; /* Adjust margin between tabs */
+        width: 100%;
+        margin-bottom: 10px;
     }
 
     .more {
-        position: static; /* Reset the position for smaller screens */
-        margin-top: 15px; /* Add margin between the text and button */
+        position: static;
+        margin-top: 15px;
     }
 
     .tabSliderContainer {
-        width: 100%; /* Full width for the smallest screens */
-        overflow-x: hidden; /* Hide horizontal overflow for slider */
+        width: 100%;
+        overflow-x: hidden;
     }
 
     .cardContent,
     .newsImg,
     .video {
-        width: 100%; /* Full width for the smallest screens */
+        width: 100%;
     }
 
     .newsImg {
-        height: auto; /* Allow image to take the height based on content */
+        height: auto;
     }
 
     .cardTitle {
-        font-size: 14px; /* Reduce font size for smaller screens */
+        font-size: 14px;
     }
 
     .cardBtn {
-        padding: 5px 15px; /* Adjust padding for smaller screens */
-        font-size: 12px; /* Reduce font size for smaller screens */
+        padding: 5px 15px;
+        font-size: 12px;
     }
 
     .dateContent {
-        margin-top: 10px; /* Adjust margin for smaller screens */
+        margin-top: 10px;
     }
 
     .dateTime {
-        font-size: 10px; /* Reduce font size for smaller screens */
+        font-size: 10px;
     }
 
     .video {
-        height: auto; /* Allow video to take the height based on content */
+        height: auto;
     }
 
     .btnTab {
-        height: auto; /* Allow tabs to take the height based on content */
-        padding: 10px; /* Add padding to the tabs for better spacing */
-        text-align: center; /* Center align text in tabs for smaller screens */
+        height: auto;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .sliderContainer {
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
     }
 }
 .tabContent {
@@ -186,6 +198,7 @@
 }
 
 .btnTab {
+    height: auto; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -218,7 +231,7 @@
 }
 
 .cardContainer {
-    height: 305px;
+    height: auto;
     background-color: inherit;
 }
 
@@ -276,6 +289,7 @@
 }
 
 .video {
-    width: 320px;
-    height: 115px;
+    width: 100%; /* Use 100% width to make it responsive */
+    max-width: 320px; /* Set a maximum width if needed */
+    height: auto; /* Automatically adjust height to maintain aspect ratio */
 }
