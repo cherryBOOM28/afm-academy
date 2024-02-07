@@ -79,7 +79,7 @@ import DropDownTextWithTabs from '../../../components/courseTemplates/complex/Dr
 import { useNavigate } from 'react-router'
 
 const elements = {
-    'Текстовые элементы': {
+    'Текстовые элементыss': {
         'Заголовок с полосой': {
             component: HeaderWithLine,
             icon: headerWithLineIcon,

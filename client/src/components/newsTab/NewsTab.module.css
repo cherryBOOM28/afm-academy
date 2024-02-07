@@ -37,6 +37,185 @@
     display: flex;
     flex-direction: column;
 }
+@media screen and (max-width: 768px) {
+    .tabSliderContainer {
+        width: 100%; /* Full width for smaller screens */
+    }
+
+    .cardContent {
+        width: 100%; /* Full width for smaller screens */
+    }
+}
+.courses__headline {
+    color: #3A3939;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.coursesContent {
+    /* max-width: 1240px; */
+    height: 449px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background: #F9F9F9;
+    padding: 15px;
+}
+
+.tabHeader {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    gap: 20px;
+    /* max-width: 1109px; */
+    width: 100%;
+    cursor: pointer;
+    /* height: 347px; */
+    overflow-x: auto;
+}
+.btnTab {
+    width: 48%; /* Adjust the width for two tabs in a row */
+}
+
+@media screen and (max-width: 768px) {
+    .tabHeader {
+        flex-wrap: wrap;
+        overflow-x: auto;
+    }
+
+    .btnTab {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .tabHeader {
+        flex-direction: column; /* Stack tabs vertically */
+        align-items: center; /* Center align tabs */
+        overflow-x: hidden; /* Hide horizontal overflow for slider */
+    }
+
+    .btnTab {
+        width: 100%; /* Full width for each tab */
+        margin-bottom: 10px; /* Adjust margin between tabs */
+    }
+
+    .more {
+        position: static; /* Reset the position for smaller screens */
+        margin-top: 15px; /* Add margin between the text and button */
+    }
+
+    .tabSliderContainer {
+        width: 100%; /* Full width for the smallest screens */
+        overflow-x: hidden; /* Hide horizontal overflow for slider */
+    }
+
+    .cardContent,
+    .newsImg,
+    .video {
+        width: 100%; /* Full width for the smallest screens */
+    }
+
+    .newsImg {
+        height: auto; /* Allow image to take the height based on content */
+    }
+
+    .cardTitle {
+        font-size: 14px; /* Reduce font size for smaller screens */
+    }
+
+    .cardBtn {
+        padding: 5px 15px; /* Adjust padding for smaller screens */
+        font-size: 12px; /* Reduce font size for smaller screens */
+    }
+
+    .dateContent {
+        margin-top: 10px; /* Adjust margin for smaller screens */
+    }
+
+    .dateTime {
+        font-size: 10px; /* Reduce font size for smaller screens */
+    }
+
+    .video {
+        height: auto; /* Allow video to take the height based on content */
+    }
+
+    .btnTab {
+        height: auto; /* Allow tabs to take the height based on content */
+        padding: 10px; /* Add padding to the tabs for better spacing */
+        text-align: center; /* Center align text in tabs for smaller screens */
+    }
+}
+.tabContent {
+    position: relative;
+    margin-top: 15px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 15px;
+    border-radius: 10px;
+    /* max-width:1209px; */
+    width: 97.5%;
+    min-height: 247px;
+}
+
+.courses__info {
+    display: flex;
+    flex-direction: column;
+}
+
+.course__headline {
+    color: #000;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.course__text {
+    margin-top: 15px;
+    color: #000;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21px;
+    
+    /* overflow: hidden; Hide the overflowing text */
+    /* text-overflow: ellipsis; Add the ellipsis (...) */
+    /* white-space: nowrap; Prevent the text from wrapping */
+}
+
+.btnTab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    /* width: 270px; */
+    width: 100%;
+    
+    height: 157px;
+    text-align: center;
+}
+
+.btnTab:hover{
+    background: #F9F9F9;
+}
+
+.btnTab:focus{
+    background: #F9F9F9;
+    outline: none !important;
+    border: none;
+    transform: scale(1);
+    color: #000000;
+}
+
+.more {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
 
 .cardContainer {
     height: 305px;
@@ -46,6 +225,12 @@
 .cardImg {
     width: 256px;
     height: 115px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.newsImg {
+    width: 100%; /* Full width for smaller screens */
+    height: 125px;
     object-fit: cover;
     border-radius: 10px;
 }
