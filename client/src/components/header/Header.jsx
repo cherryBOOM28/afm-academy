@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef  } from 'react';
+import React, { useState, useEffect, useRef, forwardRef  } from 'react';
 // import cl from './Header.module.css';
 import './Header.scss'
 import './Navigation.scss'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import logo from '../../assets/images/logo.svg';
 import language from '../../assets/icons/lang.svg';
@@ -26,7 +26,8 @@ import { t } from 'i18next';
 import VisualModal from '../../components/VisualModal/VisualModal';
 import { useStyle } from '../VisualModal/StyleContext';
 
-
+import navbar_items from './navbar_items';
+import { FaCaretLeft } from "react-icons/fa";
 
 function Header(props) {
 
@@ -266,182 +267,14 @@ function Header(props) {
               <a href='/login' className={`contained-button blue-button ${props.dark? 'dark' : ''}`}>{t('signin')}</a>
             </div>
           }
-          <div className="hamburger-navigation-wrapper">
-            <div className='hamburger-navigation' onClick={() => {
-              setOpenNavbar(prev => {
-                if (prev === true) {
-                  setActiveNavItem('');
-                  return false;
-                } 
-
-                return true;
-              });
-            }}>
-              <div className='bar'></div>
-              <div className='bar'></div>
-              <div className='bar'></div>
-            </div>
-            {
-              openNavbar 
-                ? (
-                  <div className='hamburger-navigation-body' ref={hamburgerRef}>
-                    {
-                      [
-                        {
-                          name: 'О нас',
-                          route: null,
-                          subItems: [
-                            {
-                              name: 'Об академии',
-                              route: '/about'
-                            },
-                            {
-                              name: 'Совет директоров',
-                              route: '/management'
-                            }
-                          ]
-                        },
-                        {
-                          name: 'Обучение',
-                          route: null,
-                          subItems: [
-                            {
-                              name: 'Виды курсов',
-                              route: '/#coursesSection'
-                            },
-                            {
-                              name: 'Каталог курсов',
-                              route: '/courses/catalog'
-                            },
-                            {
-                              name: 'Мои курсы',
-                              route: '/courses/myCourses'
-                            },
-                          ]
-                        },
-                        {
-                          name: 'Вебинары',
-                          route: null,
-                          subItems: [
-                            {
-                              name: 'Все вебинары',
-                              route: '/vebinars'
-                            },
-                            {
-                              name: 'Календарь мероприятий',
-                              route: '/vebinars/calendar'
-                            },
-                            {
-                              name: 'Опросы',
-                              route: '/vebinars/surveys'
-                            },
-                          ]
-                        },
-                        {
-                          name: 'Новости',
-                          route: '/#newsSection',
-                          subItems: [
-                            
-                          ]
-                        },
-                        {
-                          name: 'ПОД/ФТ',
-                          route: null,
-                          subItems: [
-                            {
-                              name: 'Антиотмывочная система РК',
-                              route: '/anti-laundering'
-                            },
-                            {
-                              name: 'ФАТФ',
-                              route: '/fatf'
-                            },
-                            {
-                              name: 'ЕАГ',
-                              route: '/eag'
-                            },
-                            {
-                              name: 'Взаимная оценка',
-                              route: '/mutual-evaluation'
-                            },
-                          ]
-                        },
-                        {
-                          name: 'СФМ',
-                          route: null,
-                          subItems: [
-                            {
-                              name: 'Виды субъектов финансового мониторинга',
-                              route: '/subjects'
-                            },
-                            {
-                              name: 'Правила внутреннего контроля',
-                              route: '/rules'
-                            },
-                            {
-                              name: 'Операции, подлежащие финансовому мониторингу',
-                              route: '/operations'
-                            },
-                          ]
-                        },
-                      ].map((item, index) => {
-
-                        return <div className="navigation-item-wrapper" key={index}>
-                          <div 
-                            className="navigation-item"
-                            onClick={() => {
-                              setActiveNavItem(item.name)
-                              if (item.route) 
-                                navigate(item.route)
-                            }}
-                          >
-                            { item.name }
-                          </div>
-                          {
-                            activeNavItem === item.name
-                              ? (
-                                <div className="navigation-sub-items">
-                                  {
-                                    item.subItems.map((subItem, index) => {
-                                      return <div 
-                                        className="navigation-sub-item"
-                                        key={index}
-                                        onClick={() => {
-                                          if (subItem.route)
-                                            navigate(subItem.route)
-                                        }}
-                                      >
-                                        {
-                                          subItem.name
-                                        }
-                                      </div>
-                                    })
-                                  }
-                                </div>
-                              ) : null
-                          }
-                        </div>
-                      })
-                    }     
-                    <div className="navigation-socials">
-                      <a href='#' className='soc-icon blue-button' onClick={openVisualModal}>
-                        <img src={language} alt="language" className='icon' />
-                      </a>
-                      <a target='_blank' href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
-                        <img src={igIcon} alt="instagram" className='icon' />
-                      </a>
-                      <a target='_blank' href='https://t.me/s/afm_rk?before=1811' className='soc-icon blue-button'>
-                        <img src={tgIcon} alt="telegram" className='icon' />
-                      </a>
-                      <a target='_blank' href='https://wa.me/77087168416' className='soc-icon blue-button'>
-                        <img src={waIcon} style={{width: '20px'}} alt="telegram" className='icon' />
-                      </a>
-                    </div>
-                </div>
-                )
-                : null
-            }
-          </div>
+          <Hamburger 
+            ref={hamburgerRef}
+            setOpenNavbar={setOpenNavbar}
+            setActiveNavItem={setActiveNavItem}
+            activeNavItem={activeNavItem}
+            openVisualModal={openVisualModal}
+            openNavbar={openNavbar}
+          />
         </div>
         <div className={`navigation-container ${isMenuOpen ? 'menu-open' : ''}`}>
           <NavigationBar dark={props.dark}/>
@@ -629,5 +462,121 @@ const NavigationBar = (props) => {
   )
 }
 
+const Hamburger = forwardRef(({
+  openNavbar,
+  setOpenNavbar,
+  setActiveNavItem,
+  activeNavItem,
+  openVisualModal,
+}, ref) => {
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (language) => {
+    i18n.changeLanguage(language);
+  };
+
+  useEffect(() => {
+    console.log(location)
+  }, [])
+
+  const isHomePage = location.pathname === '/';
+  const barStyle = {
+    backgroundColor: isHomePage ? 'white' : 'black'
+  }
+
+  return (
+    <div className="hamburger-navigation-wrapper">
+      <div className='hamburger-navigation' onClick={() => {
+        setOpenNavbar(prev => {
+          if (prev === true) {
+            setActiveNavItem('');
+            return false;
+          } 
+
+          return true;
+        });
+      }}>
+        <div className='bar' style={barStyle}></div>
+        <div className='bar' style={barStyle}></div>
+        <div className='bar' style={barStyle}></div>
+      </div>
+      {
+        openNavbar 
+          ? (
+            <div className='hamburger-navigation-body' ref={ref}>
+              {
+                navbar_items.map((item, index) => {
+
+                  return <div className="navigation-item-wrapper" key={index}>
+                    <div 
+                      className="navigation-item"
+                      onClick={() => {
+                        setActiveNavItem(item.name)
+                        if (item.route) 
+                          navigate(item.route)
+                      }}
+                    >
+                      {
+                        item.subItems.length > 0 
+                          ? <FaCaretLeft size={20}/>
+                          : <FaCaretLeft size={20} style={{ opacity: '0'}}/>
+                      }
+                      <span>{ item.name }</span>
+                    </div>
+                    {
+                      activeNavItem === item.name
+                        ? (
+                          <div className="navigation-sub-items">
+                            {
+                              item.subItems.map((subItem, index) => {
+                                return <div 
+                                  className="navigation-sub-item"
+                                  key={index}
+                                  onClick={() => {
+                                    if (subItem.route)
+                                      navigate(subItem.route)
+                                  }}
+                                >
+                                  {
+                                    subItem.name
+                                  }
+                                </div>
+                              })
+                            }
+                          </div>
+                        ) : null
+                    }
+                  </div>
+                })
+              }     
+              <div className="navigation-socials">
+                <a href='#' className='soc-icon blue-button' onClick={openVisualModal}>
+                  <img src={language} alt="language" className='icon' />
+                </a>
+                <a target='_blank' href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
+                  <img src={igIcon} alt="instagram" className='icon' />
+                </a>
+                <a target='_blank' href='https://t.me/s/afm_rk?before=1811' className='soc-icon blue-button'>
+                  <img src={tgIcon} alt="telegram" className='icon' />
+                </a>
+                <a target='_blank' href='https://wa.me/77087168416' className='soc-icon blue-button'>
+                  <img src={waIcon} style={{width: '20px'}} alt="telegram" className='icon' />
+                </a>
+              </div>
+              <div className="navigation-lang">
+                <a className='language' onClick={() => changeLanguage('kz')}>ҚАЗ</a>
+                <a className='language' onClick={() => changeLanguage('ru')}>РУС</a>
+                <a className='language' onClick={() => changeLanguage('eng')}>ENG</a>
+              </div>
+          </div>
+          )
+          : null
+      }
+    </div>
+  )
+})
 
 export default Header;
