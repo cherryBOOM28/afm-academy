@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.scss';
 
-const TextWithLink = ({ text, link }) => {
+const TextWithBold = ({ text }) => {
   if (!text) {
     return null;
   }
@@ -18,14 +18,7 @@ const TextWithLink = ({ text, link }) => {
           if (part.startsWith('"') && part.endsWith('"')) {
             const content = part.slice(1, -1);
             return (
-              <a className='textWithLink' key={index} href={link} target="_blank" rel="noopener noreferrer" dangerouslySetInnerHTML={{ __html: formatText(content) }} />
-            );
-          }
-
-          if (part.startsWith('+') && part.endsWith('+')) {
-            const content = part.slice(1, -1);
-            return (
-              <b key={index} href={link} target="_blank" rel="noopener noreferrer" dangerouslySetInnerHTML={{ __html: formatText(content) }} />
+              <b className='boldB' key={index} target="_blank" rel="noopener noreferrer" dangerouslySetInnerHTML={{ __html: formatText(content) }} />
             );
           }
 
@@ -38,4 +31,4 @@ const TextWithLink = ({ text, link }) => {
   );
 };
 
-export default TextWithLink;
+export default TextWithBold;

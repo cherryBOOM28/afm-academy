@@ -148,6 +148,7 @@ import QuizWithCardComponent from '../courseTemplates/common/QuizWithCardCompone
 import NumberedDotsAndImage from '../courseTemplates/common/NumberedDotsAndImage';
 import { green } from '@mui/material/colors';import DropDownMSQ from '../courseTemplates/common_v2/DropDownMSQ';
 import TwoColumnsDivider from '../courseTemplates/common_v2/TwoColumnsDivider';
+import TextWithBold from '../courseTemplates/common/TextWithBold';
 import Image from '../courseTemplates/common_v2/Image';
 import PyramidList from '../courseTemplates/common_v2/PyramidList';
 import ToolTipComponentWithLupa from '../courseTemplates/common/ToolTipComponents/ToolTipComponentWithLupa';
@@ -5359,10 +5360,16 @@ function GetLesson({
           <Reveal>
             <TextWithLink
               text={
-                '  Порядок предоставления субъектами финансового мониторинга сведений и информации об операциях, подлежащих финансовому мониторингу, и признаки определения подозрительной операции утверждены приказом Председателя Агентства Республики Казахстан по финансовому мониторингу по согласованию с государственными органами-регуляторами."Об утверждении Правил представления субъектами финансового мониторинга сведений и информации об операциях, подлежащих финансовому мониторингу, и признаков определения подозрительной операции - ИПС Әділет (zan.kz)"\n+  В приказе также описана форма ФМ-1, при этом «*» указаны строки обязательные к заполнению субъектами+ финансового мониторинга при направлении сообщения в АФМ РК.'
+                '  Порядок предоставления субъектами финансового мониторинга сведений и информации об операциях, подлежащих финансовому мониторингу, и признаки определения подозрительной операции утверждены приказом Председателя Агентства Республики Казахстан по финансовому мониторингу по согласованию с государственными органами-регуляторами."Об утверждении Правил представления субъектами финансового мониторинга сведений и информации об операциях, подлежащих финансовому мониторингу, и признаков определения подозрительной операции - ИПС Әділет (zan.kz)".'
               }
               link={'https://adilet.zan.kz/rus/docs/V2200026924'}
             ></TextWithLink>
+            <TextWithBold
+              text={
+                '"В приказе также описана форма ФМ-1, при этом «*» указаны строки обязательные к заполнению субъектами" финансового мониторинга при направлении сообщения в АФМ РК'
+              }
+          
+            ></TextWithBold>
           </Reveal>
           <Sizebox height={40} />
           <Reveal>
