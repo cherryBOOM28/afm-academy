@@ -2329,7 +2329,7 @@ function GetLesson({
           <Sizebox height={100} />
           <Reveal>
             <VideoWithTitleAndText
-              url={null}
+              url={'https://videos.sproutvideo.com/embed/4d90d6b61410e5c2c4/adfb28742845efe8'}
               title={'Схема незаконной предпринимательской деятельности'}
               text={
                 <>
@@ -4370,8 +4370,8 @@ function GetLesson({
                           имуществом в отношении следующей деятельности:
                         </RandomParapraph>
                         <Sizebox height={20} />
-                        <NotNumberedDots
-                          dotsColor={'black'}
+                        <NumberedDots
+                          dotsColor={'rgb(249, 249, 249)'}
                           list={[
                             'купли-продажи недвижимости;',
                             'управления деньгами, ценными бумагами или иным имуществом клиента;',
@@ -5043,6 +5043,9 @@ function GetLesson({
           </Reveal>
           <Reveal>
             <ImageLine img={image76}></ImageLine>
+              <Sizebox height={40} />
+              <RandomParapraph>
+                  Законом о ПОД/ФТ определены пороговые операции с деньгами и (или) иным имуществом подлежащие финансовому мониторингу, т.е. операции равные либо превышающие пороговые значения.              </RandomParapraph>
           </Reveal>
           <Reveal>
             <Sizebox height={80} />
@@ -7152,7 +7155,7 @@ function GetLesson({
             <Sizebox height={80} />
 
             <Reveal>
-                <VideoLine url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'}/>
+                <VideoLine url={'https://videos.sproutvideo.com/embed/1190d6b6191be6cb98/1e08aa67291ed98e'}/>
             </Reveal>
             <Sizebox height={80} />
 
@@ -7484,7 +7487,7 @@ function GetLesson({
             <Sizebox height={60}></Sizebox>
             <VideoLine
               url={
-                'https://www.youtube.com/watch?v=u9v3fQs_Bhw&pp=ygUOQU1MIGFjYWRlbXkga3o%3D'
+                'https://videos.sproutvideo.com/embed/7990d6b6191be9ccf0/f2adefa00f3da451'
               }
             ></VideoLine>
             <Sizebox height={40} />
@@ -7499,13 +7502,15 @@ function GetLesson({
                <Sizebox height={70} />
           </Reveal>
           <Reveal>
-            <Centered>
             <Sizebox height={40} />
-            <ImageLine
-            img={image94}
-            ></ImageLine>
-            </Centered>
+                <VideoLine
+                    url={
+                        'https://videos.sproutvideo.com/embed/4490d6b6191be6cacd/d4b415608a84d11d'
+                    }
+                ></VideoLine>
+
           </Reveal>
+
           <Reveal>
           <Sizebox height={70} />
             <TextWithTitle
@@ -7527,11 +7532,12 @@ function GetLesson({
             <Sizebox height={70} />
           </Reveal>
           <Reveal>
-          <VideoLine
-              url={
-                'https://www.youtube.com/watch?v=u9v3fQs_Bhw&pp=ygUOQU1MIGFjYWRlbXkga3o%3D'
-              }
-            ></VideoLine>
+              <Centered>
+                  <ImageLine
+                      img={image94}
+                  ></ImageLine>
+              </Centered>
+
             <Sizebox height={70} />
             <NumberedDotsAndImage
               imageUrl={image93}
@@ -7722,7 +7728,7 @@ function GetLesson({
             <Sizebox height={60}></Sizebox>
             <VideoLine
               url={
-                'https://www.youtube.com/watch?v=u9v3fQs_Bhw&pp=ygUOQU1MIGFjYWRlbXkga3o%3D'
+                'https://videos.sproutvideo.com/embed/1190d6b6181de5cf98/b07ef776b68992ed'
               }
             ></VideoLine>
             <Sizebox height={40} />

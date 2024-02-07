@@ -5,98 +5,110 @@ const navbar_items = [
         subItems: []
     },
     {
-      name: 'О нас',
+      name: 'about us',
       route: null,
       subItems: [
         {
-          name: 'Об академии',
+          name: 'about the academy',
           route: '/about'
         },
         {
-          name: 'Совет директоров',
+          name: 'board of directors',
           route: '/management'
+        },
+        {
+          name: 'structure',
+          route: '/structure'
+        },
+        {
+          name: 'regulation',
+          route: '/charter'
+        },
+        {
+          name: 'development plan',
+          route: '/roadmap'
         }
       ]
     },
     {
-      name: 'Обучение',
+      name: 'training',
       route: null,
       subItems: [
         {
-          name: 'Виды курсов',
+          name: 'types of courses',
           route: '/#coursesSection'
         },
         {
-          name: 'Каталог курсов',
+          name: 'course catalog',
           route: '/courses/catalog'
         },
         {
-          name: 'Мои курсы',
+          name: 'my courses',
           route: '/courses/myCourses'
         },
       ]
     },
     {
-      name: 'Вебинары',
+      name: 'webinars',
       route: null,
       subItems: [
         {
-          name: 'Все вебинары',
+          name: 'all webinars',
           route: '/vebinars'
         },
         {
-          name: 'Календарь мероприятий',
+          name: 'calendar of events',
           route: '/vebinars/calendar'
         },
         {
-          name: 'Опросы',
+          name: 'surveys',
           route: '/vebinars/surveys'
         },
       ]
     },
     {
-      name: 'Новости',
+      name: 'news',
       route: '/#newsSection',
       subItems: [
         
       ]
     },
     {
-      name: 'ПОД/ФТ',
+      name: 'aml/ft',
       route: null,
       subItems: [
         {
-          name: 'Антиотмывочная система РК',
+          name: 'anti-washing system of the RK',
           route: '/anti-laundering'
         },
         {
-          name: 'ФАТФ',
+          name: 'fatf',
           route: '/fatf'
         },
         {
-          name: 'ЕАГ',
+          name: 'eag',
           route: '/eag'
         },
         {
-          name: 'Взаимная оценка',
+          name: 'mutual assessment',
           route: '/mutual-evaluation'
         },
       ]
     },
     {
-      name: 'СФМ',
+      name: 'sfm',
       route: null,
       subItems: [
         {
-          name: 'Виды субъектов финансового мониторинга',
+          name: 'types of subjects of financial monitoring',
           route: '/subjects'
         },
         {
-          name: 'Правила внутреннего контроля',
+          name: 'internal control rules',
           route: '/rules'
         },
         {
-          name: 'Операции, подлежащие финансовому мониторингу',
+          name: 'transactions subject to financial monitoring',
           route: '/operations'
         },
       ]
