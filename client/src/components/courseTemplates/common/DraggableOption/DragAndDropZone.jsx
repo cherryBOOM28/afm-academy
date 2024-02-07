@@ -40,9 +40,11 @@ const DragAndDropZone = ({options, correctOptions, title}) => {
       <div className="options-container">
         <div className="options">
           
-          {options.map((option, index) => (
-            <DraggableOption key={index} option={option} onDragStart={handleDragStart} />
-          ))}
+          <div className='optionsWrapper'>
+            {options.map((option, index) => (
+                <DraggableOption key={index} option={option} onDragStart={handleDragStart} />
+            ))}
+          </div>
         </div>
         <div className="separator"></div>
         <div className='DraggableOptionZone'>
