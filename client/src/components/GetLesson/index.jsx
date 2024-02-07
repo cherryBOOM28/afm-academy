@@ -46,10 +46,8 @@ import CustomCarousel from '../courseTemplates/complex/CustomCarousel';
 import ImageAndColumns from '../courseTemplates/common_v2/ImageAndColumns';
 import LupaDetailed from '../../components/courseTemplates/common/LupaDetailed';
 import DoubleDraggableOption from '../courseTemplates/common/DoubleDraggableOption';
-
-import BoxOfThree from '../courseTemplates/common/BoxOfThree';
 import JustTextWithP from '../courseTemplates/common/JustTextWithP';
-
+import BoxOfThree from '../courseTemplates/common/BoxOfThree';
 import ToolTipComponent from '../courseTemplates/common/ToolTipComponents/ToolTipComponent';
 import TooltipComponent2 from '../courseTemplates/common/ToolTipComponents/ToolTipComponent2';
 import TooltipComponent1 from '../courseTemplates/common/ToolTipComponents/ToolTipComponent1';
@@ -1671,7 +1669,7 @@ function GetLesson({
           <Reveal>
             <ImageWithText
               img={image57}
-              imageText={'Расслоение'}
+              imageText={'Интеграция'}
               color={'#FFFFFF'}
             />
           </Reveal>
@@ -2331,7 +2329,7 @@ function GetLesson({
           <Sizebox height={100} />
           <Reveal>
             <VideoWithTitleAndText
-              url={null}
+              url={'https://videos.sproutvideo.com/embed/4d90d6b61410e5c2c4/adfb28742845efe8'}
               title={'Схема незаконной предпринимательской деятельности'}
               text={
                 <>
@@ -4656,7 +4654,7 @@ function GetLesson({
             }
             image={imageAndColumns_1}
             list={[
-              'установления деловых отношений с клиентом;',
+              'установления деловых отношений с клиентом.',
               'осуществления операций с деньгами и (или) иным имуществом, в том числе подозрительных операций.',
               'наличия оснований для сомнения в достоверности ранее полученных сведений о клиенте (его представителе), бенефициарном собственнике.',
             ]}
@@ -4807,19 +4805,26 @@ function GetLesson({
             <Sizebox height={40} />
             <TextWithTitle
               title={'Обновление сведений осуществляется в случаях:'}
-              text={[
-                '1. установления деловых отношений с клиентом',
-                '2. осуществления операций с деньгами и (или) иным имуществом, в том числе подозрительных операций',
-                '3. наличия оснований для сомнения в достоверности ранее полученных сведений о клиенте (его представителе), бенефициарном собственнике и правилами внутреннего контроля',
-                '4. При наличии основания для сомнения в достоверности ранее полученных сведений о клиенте (его представителе), бенефициарном собственнике обновление сведений о клиенте (его представителе) и бенефициарном собственнике осуществляется в течение пятнадцати рабочих дней, следующих за днем принятия субъектом финансового мониторинга решения о наличии такого сомнения',
-              ]}
             ></TextWithTitle>
-
+              <NotNumberedDots
+                  dotsColor={'#CADEFC'}
+                  list={[
+                      'установления деловых отношений с клиентом',
+                      'осуществления операций с деньгами и (или) иным имуществом, в том числе подозрительных операций',
+                      'наличия оснований для сомнения в достоверности ранее полученных сведений о клиенте (его представителе), бенефициарном собственнике и правилами внутреннего контроля',
+                      'При наличии основания для сомнения в достоверности ранее полученных сведений о клиенте (его представителе), бенефициарном собственнике обновление сведений о клиенте (его представителе) и бенефициарном собственнике осуществляется в течение пятнадцати рабочих дней, следующих за днем принятия субъектом финансового мониторинга решения о наличии такого сомнения',
+                  ]}
+              />
             <Sizebox height={40} />
           </Reveal>
-          <Reveal>
-            <TableComponent></TableComponent>
-          </Reveal>
+            <Reveal>
+                <TextWithTitle
+                    title={
+                        'В законодательстве также предусмотрены случаи, когда мреы Надлежащей проверки клиентов не принимаются субъектами в случаях проведении слудующих разовых операциях'
+                    }
+                />
+                <TableComponent></TableComponent>
+            </Reveal>
 
           <Sizebox height={80} />
           <Reveal>
@@ -4828,7 +4833,6 @@ function GetLesson({
                 'Субъекты финансового мониторинга в рамках дистанционно установленных деловых отношений с клиентом вправе совершать операции, за исключением трансграничных платежей, без принятия мер по проверке достоверности сведений, необходимых для идентификации клиента (его представителя), бенефициарного собственника, в случаях:'
               }
             />
-
             <Sizebox height={40} />
             <NumberedDots
               dotsColor={'#CADEFC'}
@@ -4839,6 +4843,15 @@ function GetLesson({
             />
             <Sizebox height={40} />
           </Reveal>
+          <Centered>
+          <JustTextWithP
+              textData={`
+                "Надлежащая проверка субъектами финансового мониторинга своих клиентов (их представителей) и бенефициарных собственников осуществляется в соответствии с правилами внутреннего контроля.",
+                Субъект финансового мониторинга вправе требовать от клиента (его представителя) представления сведений и документов, "необходимых или достаточных для идентификации клиента" (его представителя), выявления бенефициарного собственника, а также представления сведений о налоговом резидентстве, роде деятельности и источнике финансирования совершаемых операций.,
+                Клиенты (их представители) "обязаны предоставлять" субъектам финансового мониторинга сведения и документы, необходимые для исполнения ими обязанностей, предусмотренных Законом о ПОД/, включая сведения о бенефициарных собственниках.
+              `}
+            />
+            </Centered>
           <Reveal>
             <Report_Information>
               Сведения о бенефициарных собственниках представляются клиентами
@@ -4873,7 +4886,7 @@ function GetLesson({
                     '"Усиленные меры" надлежащей проверки клиентов (их представителей), бенефициарных собственников применяются при "высоком уровне риска" легализации (отмывания) доходов, полученных преступным путем, и финансирования терроризма.\n\nПри применении усиленных мер надлежащей проверки клиентов субъекты финансового мониторинга дополнительно осуществляют одно или несколько из следующих действий:\n1) установление причин, запланированных или проведенных операций; \n2) увеличение количества и частоты проверок и выявления характера операций, которые требуют дальнейшей проверки;\n2-1) получение сведений о роде деятельности и источнике финансирования совершаемых операций; \n3) получение разрешения руководящего работника организации на установление, продолжение деловых отношений с клиентами.',
                 },
               ]}
-              dataBtn={[{ name: 'Первая вкладка' }, { name: 'Вторая вкладка' }]}
+              dataBtn={[{ name: 'Упрощенные меры' }, { name: 'Усиленные меры' }]}
               Height={'600px'}
             ></TableWithData>
           </Reveal>
@@ -4956,9 +4969,9 @@ function GetLesson({
                 },
               ]}
               dataBtn={[
-                { name: 'Первая вкладка' },
-                { name: 'Вторая вкладка' },
-                { name: 'Третья вкладка' },
+                { name: '1' },
+                { name: '2' },
+                { name: '3' },
               ]}
               Height={'150px'}
             ></TableWithData>
@@ -5027,16 +5040,16 @@ function GetLesson({
             <TextWithTitle title={'Согласно закону о ПОД/ФТ,'} />
 
             <Sizebox height={40} />
-            <NotNumberedDots
-              dotsColor={'#CADEFC'}
-              list={[
-                'Финансовый мониторинг — это совокупность мер по сбору, обработке, анализу и использованию сведений и информации об операциях с деньгами и (или) иным имуществом, осуществляемых уполномоченным органом и субъектом финансового мониторинга в соответствии с Законом о ПОД/ФТ.',
-              ]}
-            />
+            <RandomParapraph>
+                <span class="bold">Финансовый мониторинг -</span> это совокупность мер по сбору, обработке, анализу и использованию сведений и информации об операциях с деньгами и (или) иным имуществом, осуществляемых уполномоченным органом и субъектом финансового мониторинга в соответствии с Законом о ПОД/ФТ.
+            </RandomParapraph>
             <Sizebox height={40} />
           </Reveal>
           <Reveal>
             <ImageLine img={image76}></ImageLine>
+              <Sizebox height={40} />
+              <RandomParapraph>
+                  Законом о ПОД/ФТ определены пороговые операции с деньгами и (или) иным имуществом подлежащие финансовому мониторингу, т.е. операции равные либо превышающие пороговые значения.              </RandomParapraph>
           </Reveal>
           <Reveal>
             <Sizebox height={80} />
@@ -5155,7 +5168,7 @@ function GetLesson({
                 'А) Подозрительные операции',
                 'Б) Все финансовые операции',
                 'С) Операции граждан, не выполняющих рекомендации ФАТФ',
-                'Д) Операции нотариуса не',
+                'Д) Операции нотариуса, связанные с наличным расчетом',
                 'Е) Операции, имеющие характеристики, соответствующие типологиям, схемам и способам легализации ОД/ФТ',
               ]}
               correctOptions={[
@@ -6321,7 +6334,7 @@ function GetLesson({
                 },
               ]}
               dataBtn={[
-                { name: 'Первая вкладка' },
+                { name: '1 вкладка' },
                 { name: 'Вторая вкладка' },
                 { name: 'Третья вкладка' },
               ]}
@@ -7146,7 +7159,7 @@ function GetLesson({
             <Sizebox height={80} />
 
             <Reveal>
-                <VideoLine url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'}/>
+                <VideoLine url={'https://videos.sproutvideo.com/embed/1190d6b6191be6cb98/1e08aa67291ed98e'}/>
             </Reveal>
             <Sizebox height={80} />
 
@@ -7261,7 +7274,6 @@ function GetLesson({
             <TextWithTitle
               title={'В соответствии с нормами действующего законодательства о ПОД/ФТ субъекты принимают соответствующие меры во избежание использования, как самих субъектов, так и его услуг иными лицами для совершения или оказания какого-либо содействия в легализации ОД/ФТ/ФРОМУ.'}
             >
-
             </TextWithTitle> <Sizebox height={20}></Sizebox>
             <TextWithTitle
               title={'Таким образом, субъекты в целях противодействия ПОД/ФТ разрабатывают ПВК и программы их осуществления, а также несут ответственность за соблюдение правил и реализацию этих программ.'}
@@ -7271,7 +7283,6 @@ function GetLesson({
             <TextWithTitle
               title={'ПВК разрабатываются, принимаются органом управления или исполнительным органом СФМ с образованием юрлица и СФМ без образования юрлица и исполняются СФМ с учетом результатов оценки степени подверженности услуг СФМ рискам ОД/ФТ, размера, характера и сложности организации и, помимо требований к деятельности СФМ при проведении внутреннего контроля.'}
             >
-
             </TextWithTitle>
             <Sizebox height={60}></Sizebox><Sizebox height={20}></Sizebox>
           </Reveal>
@@ -7323,6 +7334,7 @@ function GetLesson({
               <ImageLine img={image97} color={'#FFFFFF'}></ImageLine>
             </Centered>
           </Reveal>
+        
 
           <Sizebox height={50} />
           <Reveal>
@@ -7431,7 +7443,6 @@ function GetLesson({
                     и иные.
                   </p><br />
                 </div>
-     
               </>
             </Centered>
             <Centered>
@@ -7445,7 +7456,6 @@ function GetLesson({
                     textIndent: '15px',
                   }}
                 >
-               
                 </div>
                 <div
                   style={{
@@ -7481,7 +7491,7 @@ function GetLesson({
             <Sizebox height={60}></Sizebox>
             <VideoLine
               url={
-                'https://www.youtube.com/watch?v=u9v3fQs_Bhw&pp=ygUOQU1MIGFjYWRlbXkga3o%3D'
+                'https://videos.sproutvideo.com/embed/7990d6b6191be9ccf0/f2adefa00f3da451'
               }
             ></VideoLine>
             <Sizebox height={40} />
@@ -7496,13 +7506,15 @@ function GetLesson({
                <Sizebox height={70} />
           </Reveal>
           <Reveal>
-            <Centered>
             <Sizebox height={40} />
-            <ImageLine
-            img={image94}
-            ></ImageLine>
-            </Centered>
+                <VideoLine
+                    url={
+                        'https://videos.sproutvideo.com/embed/4490d6b6191be6cacd/d4b415608a84d11d'
+                    }
+                ></VideoLine>
+
           </Reveal>
+
           <Reveal>
           <Sizebox height={70} />
             <TextWithTitle
@@ -7524,11 +7536,12 @@ function GetLesson({
             <Sizebox height={70} />
           </Reveal>
           <Reveal>
-          <VideoLine
-              url={
-                'https://www.youtube.com/watch?v=u9v3fQs_Bhw&pp=ygUOQU1MIGFjYWRlbXkga3o%3D'
-              }
-            ></VideoLine>
+              <Centered>
+                  <ImageLine
+                      img={image94}
+                  ></ImageLine>
+              </Centered>
+
             <Sizebox height={70} />
             <NumberedDotsAndImage
               imageUrl={image93}
@@ -7719,7 +7732,7 @@ function GetLesson({
             <Sizebox height={60}></Sizebox>
             <VideoLine
               url={
-                'https://www.youtube.com/watch?v=u9v3fQs_Bhw&pp=ygUOQU1MIGFjYWRlbXkga3o%3D'
+                'https://videos.sproutvideo.com/embed/1190d6b6181de5cf98/b07ef776b68992ed'
               }
             ></VideoLine>
             <Sizebox height={40} />
@@ -7973,31 +7986,7 @@ function GetLesson({
                 'Количество вопросов ОЛК – 24'
               ]}
             />
-
-
-            
-
           </Reveal>
-          
-
-
-
-        
-          
-
-          
-          
-        
-
-
-
-
-
-
-
-
-
-
           <Reveal>
             <Sizebox height={40} />
             <NextLesson

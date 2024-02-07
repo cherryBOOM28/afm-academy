@@ -3,7 +3,7 @@
   import './style.scss';
 
   const TableComponent = () => {
-    const [selectedRow, setSelectedRow] = useState(null);
+    const [selectedRow, setSelectedRow] = useState(1);
     const [selectedRowBtn, setSelectedRowBtn] = useState(null);
     
 
