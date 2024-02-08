@@ -253,14 +253,32 @@
 }
 @media screen and (max-width: 1411px) {
     .courses_boxes {
-        flex-direction: column;
-        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .aml_box {
-        width: 100%;
+         /* Set the width for two columns */
         margin-bottom: 20px; /* Adjust spacing between boxes */
     }
 }
 
 /* Styles for screens with a maximum width of 480px */
+@media screen and (max-width: 480px) {
+    .container {
+        width: 95%;
+    }
+
+    .aboutUs__headline {
+        font-size: 30px;
+    }
+
+    .aml_box {
+        width: 100%;
+        margin-bottom: 20px; /* Adjust the width for even smaller screens */
+    }
+    .courses_boxes {
+        flex-direction: column;
+        align-items: center;
+    }
+}
