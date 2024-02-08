@@ -8,10 +8,25 @@ function TextWithTitle({ title, text, color,fontWeight }) {
     const defaultFontWeight = '500';
     const _fontWeight = fontWeight ? fontWeight : defaultFontWeight;
     const formatTitle = (text) => {
-        return text.replace(/"(.*?)"/g, '<span style="font-weight: 500;">$1</span>');
+        let res = '';
+
+        try {
+            res = text.replace(/"(.*?)"/g, '<span style="font-weight: 500;">$1</span>');
+        } catch (e) {
+            res = text;
+        }
+
+        return res;
     }
     const formatText = (text) => {
-        return text.replace(/"(.*?)"/g, '<span style="font-weight: 500;">$1</span>');
+        let res = '';
+        try {
+            res = text.replace(/"(.*?)"/g, '<span style="font-weight: 500;">$1</span>');
+        } catch (e) {
+            res = text;
+        }
+
+        return res;
     };
 
     return ( 

@@ -8291,7 +8291,7 @@ function GetLesson({
           return (
               <TestPage
                   finished={modules[6].quiz.quiz_max_points === 100}
-                  name={'ТЕСТИРОВАНИЕ 5'}
+                  name={'ТЕСТИРОВАНИЕ 7'}
                   questions={modules[6].quiz.quizList || []}
                   quizId={17}
                   handleOpenModal={handleOpenFeedbackModal}
