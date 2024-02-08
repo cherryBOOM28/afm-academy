@@ -7046,11 +7046,21 @@ function GetLesson({
             <Reveal>
                 <Sizebox height={100}/>
                 <NextLesson handleOnClick={() => {
-                    CheckCurrentChapter(id);
+                    CheckCurrentChapter(id,10);
                 }}/>
             </Reveal>
 
         </LessonPage>)
+      case 10:
+          return (
+              <TestPage
+                  finished={modules[4].quiz.quiz_max_points === 100}
+                  name={'ТЕСТИРОВАНИЕ 5'}
+                  questions={modules[4].quiz.quizList || []}
+                  quizId={16}
+                  handleOpenModal={handleOpenFeedbackModal}
+              ></TestPage>
+          );
       return (
         <LessonPage name={'Функции АФМ'} lecturer={'AML Academy'}>
           <Reveal>
@@ -8272,11 +8282,21 @@ function GetLesson({
             <Reveal>
                 <Sizebox height={40}/>
                 <NextLesson handleOnClick={() => {
-                    CheckCurrentChapter(id, 81);
+                    CheckCurrentChapter(id, 11);
                 }}/>
             </Reveal>
 
         </LessonPage>)
+      case 11:
+          return (
+              <TestPage
+                  finished={modules[6].quiz.quiz_max_points === 100}
+                  name={'ТЕСТИРОВАНИЕ 5'}
+                  questions={modules[6].quiz.quizList || []}
+                  quizId={17}
+                  handleOpenModal={handleOpenFeedbackModal}
+              ></TestPage>
+          );
   }
 }
 
