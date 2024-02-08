@@ -2,8 +2,6 @@
 import React, { useState } from 'react';
 import './LupaZone.scss'
 import Lupa from './index.jsx';
-import Sizebox from '../Sizebox/index.jsx';
-import TextWithTitle from '../TextWithTitle/index.jsx';
 
 const LupaZone = ({ options, correctOptions, imgUrl, Width, Height, another }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -60,7 +58,7 @@ const LupaZone = ({ options, correctOptions, imgUrl, Width, Height, another }) =
               ))}
             </ul>
           </div>
-          <button className="Btn1" onClick={handleTryAgain}>
+          <button className="BtnRetry" onClick={handleTryAgain}>
            Попробовать еще раз
            </button>
         </div>

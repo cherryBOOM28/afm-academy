@@ -1,33 +1,26 @@
 .dropZoneParent {
   position: relative;
-  width: 600px;
+  width: max-content;
   margin: 0 auto;
   height: 400px;
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
 
   .drop-zone {
-    position: absolute;
+    position: relative;
     border: 1px solid gray;
     padding: 20px;
     background-repeat: no-repeat;
     background-size: cover;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
-
-  .Btn1 {
-    position: absolute;
-    bottom: -3%; /* Выберите подходящее значение */
-    left: 21.5%; /* Выберите подходящее значение */
+  .BtnRetry {
+    position: relative;
     background-color: rgb(17, 103, 233);
     padding: 6px;
     border-radius: 4px;
     color: rgb(255, 255, 255);
-    z-index: 100;
-    
+    margin-top: 1%;
   }
 }
 
