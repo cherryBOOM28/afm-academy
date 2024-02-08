@@ -47,7 +47,7 @@ import GetLesson from '../../components/GetLesson';
 function Basic_course(props) {
     const [courseName, setCourseName] = useState('Базовый курс');
     const [isNavOpen, setIsNavOpen] = useState(true);
-    const [activeSessionId, setActiveSessionId] = useState(1);
+    const [activeSessionId, setActiveSessionId] = useState(58);
 
     const jwtToken = localStorage.getItem('jwtToken');
 
@@ -58,6 +58,7 @@ function Basic_course(props) {
 
 
     const [quizQuestions, setQuizQuestions] = useState([])
+    const [modules, setModules] = useState([]);
 
     const [courseProgress, setCourseProgress] = useState(0);
 
@@ -167,6 +168,7 @@ function Basic_course(props) {
                 if (response.status === 200) {
                     setData(response.data);
                     setCourseProgress(response.data.progress_percentage)
+                    setModules(response.data.course.modules)
                     setQuizQuestions(response.data.course.modules[0].quiz.quizList)
                     // console.log(response.data.course.chapters[0].quiz.quizList)
 
@@ -264,7 +266,7 @@ function Basic_course(props) {
 
     const getLesson = (id) => {
         // console.log('getLesson', quizQuestions)
-        return <GetLesson id={id} CheckCurrentChapter={CheckCurrentChapter} quizQuestions={quizQuestions} handleOpenFeedbackModal={handleOpenFeedbackModal} />
+        return <GetLesson id={id} modules={modules} CheckCurrentChapter={CheckCurrentChapter} quizQuestions={quizQuestions} handleOpenFeedbackModal={handleOpenFeedbackModal} />
     }
 
     return (
@@ -731,6 +733,17 @@ const CourseNavigation = ({
                         handleSessionClick={handleSessionClick}
                         isActive={82 === activeSessionId}
                     />
+                    <Session
+                        course_id={8}
+                        session={{
+                            id: 10,
+                            group: 'introduction',
+                            name: 'Тестирование 5',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={10 === activeSessionId}
+                    />
                 </Module>
                 <Module
                     name={'Требования к внутренним нормативным документам'}
@@ -765,6 +778,17 @@ const CourseNavigation = ({
                         }}
                         handleSessionClick={handleSessionClick}
                         isActive={84 === activeSessionId}
+                    />
+                    <Session
+                        course_id={8}
+                        session={{
+                            id: 11,
+                            group: 'introduction',
+                            name: 'Тестирование 7',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={11 === activeSessionId}
                     />
                 </Module>
                 
