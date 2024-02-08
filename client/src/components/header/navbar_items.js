@@ -26,7 +26,7 @@ const navbar_items = [
         },
         {
           name: 'development plan',
-          route: '/roadmap'
+          route: '/'
         }
       ]
     },
