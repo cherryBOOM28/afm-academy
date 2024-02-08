@@ -25,7 +25,6 @@ export const Session = ({course_id, title, session, handleSessionClick, isActive
 
     useEffect(() => {
         const fetchData = async () => {
-            console.log("Session", course_id)
             try {
                 const response = await axios.get(
                     `${base_url}/api/aml/chapter/getChecked/${course_id}`, 
@@ -36,18 +35,14 @@ export const Session = ({course_id, title, session, handleSessionClick, isActive
                     }
                 );
 
-                console.log(response)
-
                 if (response.status === 200) {
                     const _temp = response.data.filter(_session => _session.id === session.id);
                     if (_temp.length !== 0) {
                         setSessionChecked(_temp[0].checked)
                     }
                     
-                    console.log(_temp, session.id)
                 } else {
                     // Handle other status codes if needed
-                    // console.log(response.statusText);
                 }
             } catch (error) {
                 console.error(error);

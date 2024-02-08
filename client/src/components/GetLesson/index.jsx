@@ -196,6 +196,7 @@ function GetLesson({
   CheckCurrentChapter,
   quizQuestions,
   handleOpenFeedbackModal,
+  modules
 }) {
   switch (id) {
     case 58:
@@ -2858,8 +2859,9 @@ function GetLesson({
     case 8:
       return (
         <TestPage
+          finished={modules[0].quiz.quiz_max_points === 100}
           name={'ТЕСТИРОВАНИЕ 1'}
-          questions={quizQuestions || []}
+          questions={modules[0].quiz.quizList || []}
           quizId={4}
           handleOpenModal={handleOpenFeedbackModal}
         ></TestPage>
@@ -4120,8 +4122,9 @@ function GetLesson({
       case 9:
           return (
               <TestPage
+                  finished={modules[1].quiz.quiz_max_points === 100}
                   name={'ТЕСТИРОВАНИЕ 2'}
-                  questions={quizQuestions || []}
+                  questions={modules[1].quiz.quizList || []}
                   quizId={15}
                   handleOpenModal={handleOpenFeedbackModal}
               ></TestPage>

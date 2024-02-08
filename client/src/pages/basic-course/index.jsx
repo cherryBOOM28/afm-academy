@@ -47,7 +47,7 @@ import GetLesson from '../../components/GetLesson';
 function Basic_course(props) {
     const [courseName, setCourseName] = useState('Базовый курс');
     const [isNavOpen, setIsNavOpen] = useState(true);
-    const [activeSessionId, setActiveSessionId] = useState(1);
+    const [activeSessionId, setActiveSessionId] = useState(58);
 
     const jwtToken = localStorage.getItem('jwtToken');
 
@@ -58,6 +58,7 @@ function Basic_course(props) {
 
 
     const [quizQuestions, setQuizQuestions] = useState([])
+    const [modules, setModules] = useState([]);
 
     const [courseProgress, setCourseProgress] = useState(0);
 
@@ -167,6 +168,7 @@ function Basic_course(props) {
                 if (response.status === 200) {
                     setData(response.data);
                     setCourseProgress(response.data.progress_percentage)
+                    setModules(response.data.course.modules)
                     setQuizQuestions(response.data.course.modules[0].quiz.quizList)
                     // console.log(response.data.course.chapters[0].quiz.quizList)
 
@@ -264,7 +266,7 @@ function Basic_course(props) {
 
     const getLesson = (id) => {
         // console.log('getLesson', quizQuestions)
-        return <GetLesson id={id} CheckCurrentChapter={CheckCurrentChapter} quizQuestions={quizQuestions} handleOpenFeedbackModal={handleOpenFeedbackModal} />
+        return <GetLesson id={id} modules={modules} CheckCurrentChapter={CheckCurrentChapter} quizQuestions={quizQuestions} handleOpenFeedbackModal={handleOpenFeedbackModal} />
     }
 
     return (
