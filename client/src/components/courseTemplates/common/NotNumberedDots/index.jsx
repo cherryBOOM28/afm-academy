@@ -3,10 +3,15 @@ import React, { useState, useEffect } from 'react';
 import './style.scss'
 import Sizebox from '../Sizebox';
 
-const NotNumberedDots = ({ list, header, dotsColor, color, gap='27px' }) => {
+const NotNumberedDots = ({ list, header, dotsColor, color, gap='27px', fontWeight }) => {
 
     const defaultDotsColor = '#F9CB36';
     const defaultColor = '#3A3939';
+    const defaultFontWeight = '600';
+    const _fontWeight = fontWeight ? fontWeight : defaultFontWeight;
+    const formatText = (text) => {
+        return text.replace(/"(.*?)"/g, '<span style="font-weight: 900;">$1</span>');
+    }
 
     if (!list) return null;
 
@@ -23,7 +28,8 @@ const NotNumberedDots = ({ list, header, dotsColor, color, gap='27px' }) => {
                                 lineHeight: '140%',
                                 fontSize: '24px'
                             }}
-                        >{header}</h3>
+                            dangerouslySetInnerHTML={{ __html: formatText(header)}}
+                        ></h3>
                         <Sizebox height={37} />
                     </>
                 ) : null
@@ -45,8 +51,10 @@ const NotNumberedDots = ({ list, header, dotsColor, color, gap='27px' }) => {
                                 <p
                                     style={{
                                         color: color ? color : defaultColor,
+                                        fontWeight: 200
                                     }}
-                                >{item}</p>
+                                    dangerouslySetInnerHTML={{ __html: formatText(item)}}
+                                ></p>
                             </div>
                         )
                     })
