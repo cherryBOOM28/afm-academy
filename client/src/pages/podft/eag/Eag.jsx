@@ -15,7 +15,7 @@ import {
 } from "../../../components/VisualModal/StyleContext";
 
 function Eag() {
-  const { styles, open, setOpen, checkStyle, userEntry} = useStyle();
+  const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
 
   const handleShowImages = () => {
@@ -156,10 +156,18 @@ function Eag() {
   };
 
   return (
-    <div className={`${cl.eagWrapper} text-content `}
-    style={{
-      background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#fff" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
-    }}
+    <div
+      className={`${cl.eagWrapper} text-content `}
+      style={{
+        background:
+          styles.colorMode === "dark"
+            ? "#000"
+            : styles.colorMode === "light"
+            ? "#fff"
+            : styles.colorMode === "blue"
+            ? "#9dd1ff"
+            : "#000",
+      }}
     >
       <VisualModal
         open={openVisualModal}
@@ -181,31 +189,65 @@ function Eag() {
           <h1
             className={`${cl.headline} text-content caption`}
             style={{
-              color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+              color:
+                styles.colorMode === "dark"
+                  ? "#fff"
+                  : styles.colorMode === "light"
+                  ? "#343434"
+                  : styles.colorMode === "blue"
+                  ? "#063462"
+                  : "#000",
             }}
           >
             {t("eag")}
           </h1>
           <div className={`${cl.eagImgContent} text-content`}>
-            {!imagesHidden ? <img src={eagImg} alt="eagImg" /> : null}
-            <p
-              className={`${cl.eagImgTextFirst} text-content`}
-              style={{
-                color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",              }}
-            >
-              {t("descEag1")}
-            </p>
+            {!imagesHidden && (
+              <img src={eagImg} alt="eagImg" className={cl.eagImg} />
+            )}
+            <div className={cl.eagImgTextWrapper}>
+              <p
+                className={`${cl.eagImgTextFirst} text-content`}
+                style={{
+                  color:
+                    styles.colorMode === "dark"
+                      ? "#fff"
+                      : styles.colorMode === "light"
+                      ? "#000"
+                      : styles.colorMode === "blue"
+                      ? "#063462"
+                      : "#000",
+                }}
+              >
+                {t("descEag1")}
+              </p>
+            </div>
           </div>
           <div
             className={`${cl.block} text-content`}
             style={{
-              background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f2f2f2" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+              background:
+                styles.colorMode === "dark"
+                  ? "#000"
+                  : styles.colorMode === "light"
+                  ? "#f2f2f2"
+                  : styles.colorMode === "blue"
+                  ? "#9dd1ff"
+                  : "#000",
             }}
           >
             <p
               className={`${cl.text} text-content`}
               style={{
-                color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",              }}
+                color:
+                  styles.colorMode === "dark"
+                    ? "#fff"
+                    : styles.colorMode === "light"
+                    ? "#000"
+                    : styles.colorMode === "blue"
+                    ? "#063462"
+                    : "#000",
+              }}
             >
               {t("descEag2")}
             </p>
@@ -214,7 +256,14 @@ function Eag() {
         <div
           className={`${cl.groupWrapper} text-content`}
           style={{
-            background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f2f2f2" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+            background:
+              styles.colorMode === "dark"
+                ? "#000"
+                : styles.colorMode === "light"
+                ? "#f2f2f2"
+                : styles.colorMode === "blue"
+                ? "#9dd1ff"
+                : "#000",
           }}
         >
           <div className={`${cl.container} text-content`}>
@@ -223,7 +272,14 @@ function Eag() {
               <div className={`${cl.eagImgText} text-content`}>
                 <span
                   style={{
-                    color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                    color:
+                      styles.colorMode === "dark"
+                        ? "#fff"
+                        : styles.colorMode === "light"
+                        ? "#343434"
+                        : styles.colorMode === "blue"
+                        ? "#063462"
+                        : "#000",
                   }}
                 >
                   {t("descEag3")}
@@ -233,7 +289,14 @@ function Eag() {
                   <li
                     className={`text-content`}
                     style={{
-                      color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                      color:
+                        styles.colorMode === "dark"
+                          ? "#fff"
+                          : styles.colorMode === "light"
+                          ? "#343434"
+                          : styles.colorMode === "blue"
+                          ? "#063462"
+                          : "#000",
                     }}
                   >
                     {t("descEag4")}
@@ -241,7 +304,14 @@ function Eag() {
                   <li
                     className={`text-content`}
                     style={{
-                      color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                      color:
+                        styles.colorMode === "dark"
+                          ? "#fff"
+                          : styles.colorMode === "light"
+                          ? "#343434"
+                          : styles.colorMode === "blue"
+                          ? "#063462"
+                          : "#000",
                     }}
                   >
                     {t("descEag5")}
@@ -249,7 +319,14 @@ function Eag() {
                   <li
                     className={`text-content`}
                     style={{
-                      color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                      color:
+                        styles.colorMode === "dark"
+                          ? "#fff"
+                          : styles.colorMode === "light"
+                          ? "#343434"
+                          : styles.colorMode === "blue"
+                          ? "#063462"
+                          : "#000",
                     }}
                   >
                     {t("descEag6")}
@@ -262,7 +339,14 @@ function Eag() {
                 <li
                   className={`text-content`}
                   style={{
-                    color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                    color:
+                      styles.colorMode === "dark"
+                        ? "#fff"
+                        : styles.colorMode === "light"
+                        ? "#343434"
+                        : styles.colorMode === "blue"
+                        ? "#063462"
+                        : "#000",
                   }}
                 >
                   {t("descEag7")}
@@ -270,7 +354,14 @@ function Eag() {
                 <li
                   className={`text-content`}
                   style={{
-                    color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                    color:
+                      styles.colorMode === "dark"
+                        ? "#fff"
+                        : styles.colorMode === "light"
+                        ? "#343434"
+                        : styles.colorMode === "blue"
+                        ? "#063462"
+                        : "#000",
                   }}
                 >
                   {t("descEag4")}
@@ -281,7 +372,14 @@ function Eag() {
               <a
                 href="https://eurasiangroup.org/ru"
                 style={{
-                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                  color:
+                    styles.colorMode === "dark"
+                      ? "#fff"
+                      : styles.colorMode === "light"
+                      ? "#343434"
+                      : styles.colorMode === "blue"
+                      ? "#063462"
+                      : "#000",
                 }}
               >
                 {t("linkEag")}

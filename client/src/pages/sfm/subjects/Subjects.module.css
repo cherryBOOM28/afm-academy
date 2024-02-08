@@ -58,3 +58,10 @@
     /* text-transform: capitalize; */
     margin-left: 18px;
 }
+@media (max-width: 1016px) {
+    .card {
+      width: 100%; /* Set width to 100% for single column layout */
+      /* Remove the fixed width and adjust as needed */
+      /* width: 49%; */
+    }
+  }
