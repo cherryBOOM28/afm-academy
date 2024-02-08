@@ -1,10 +1,17 @@
 .divka {
     width: 100%; /* Ширина .divka 100% */
-    display: flex;
+    margin-left: 14.5%;
     justify-content: center; /* Выравнивание по центру */
+  .ComplexTableBtn{
+    width:70%;
+    padding: 15px;
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 17px;
+  }
   
     .ComplexTable {
-      width: 80%; /* Ширина .ComplexTable 80% от ширины .divka */
+      width: 70%; /* Ширина .ComplexTable 80% от ширины .divka */
       border-collapse: collapse;
   
       th,
