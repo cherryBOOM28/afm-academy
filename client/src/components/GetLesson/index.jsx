@@ -198,7 +198,7 @@ function GetLesson({
   handleOpenFeedbackModal,
 }) {
   switch (id) {
-    case 1:
+    case 58:
       return (
         <LessonPage
           name={'Основные понятия и сокращения'}
@@ -534,13 +534,13 @@ function GetLesson({
           <Reveal>
             <NextLesson
               handleOnClick={() => {
-                CheckCurrentChapter(1);
+                CheckCurrentChapter(id);
               }}
             />
           </Reveal>
         </LessonPage>
       );
-    case 2:
+    case 59:
       return (
         <LessonPage name={'Система ПОД/ФТ'} lecturer={'AML Academy'}>
           <Sizebox height={28} />
@@ -927,13 +927,13 @@ function GetLesson({
           <Reveal>
             <NextLesson
               handleOnClick={() => {
-                CheckCurrentChapter(2);
+                CheckCurrentChapter(id);
               }}
             />
           </Reveal>
         </LessonPage>
       );
-    case 3:
+    case 60:
       return (
         <LessonPage
           name={'История возникновения первых «схем» отмывания денег'}
@@ -1121,13 +1121,13 @@ function GetLesson({
           <Reveal>
             <NextLesson
               handleOnClick={() => {
-                CheckCurrentChapter(3);
+                CheckCurrentChapter(id);
               }}
             />
           </Reveal>
         </LessonPage>
       );
-    case 4:
+    case 61:
       return (
         <LessonPage
           name={
@@ -1235,13 +1235,13 @@ function GetLesson({
           <Reveal>
             <NextLesson
               handleOnClick={() => {
-                CheckCurrentChapter(4);
+                CheckCurrentChapter(id);
               }}
             />
           </Reveal>
         </LessonPage>
       );
-    case 5:
+    case 62:
       return (
         <LessonPage
           name={'Основные стадии отмывания денег'}
@@ -1792,7 +1792,7 @@ function GetLesson({
           <Reveal>
             <NextLesson
               handleOnClick={() => {
-                CheckCurrentChapter(5);
+                CheckCurrentChapter(id);
               }}
             />
           </Reveal>
@@ -1800,7 +1800,7 @@ function GetLesson({
           {/* ------------ */}
         </LessonPage>
       );
-    case 6:
+    case 63:
       return (
         <LessonPage name={'Схемы отмывания денег'} lecturer={'AML Academy'}>
           <Sizebox height={28} />
@@ -2504,10 +2504,10 @@ function GetLesson({
           {/* ------------ */}
         </LessonPage>
       );
-    case 7:
+    case 64:
       return (
         <LessonPage
-          name={'Основные стадии отмывания денег'}
+          name={'Финансирование терроризма'}
           lecturer={'AML Academy'}
         >
           <Reveal>
@@ -2849,7 +2849,7 @@ function GetLesson({
           <Reveal>
             <NextLesson
               handleOnClick={() => {
-                CheckCurrentChapter(id);
+                CheckCurrentChapter(id, 8);
               }}
             />
           </Reveal>
@@ -2858,13 +2858,13 @@ function GetLesson({
     case 8:
       return (
         <TestPage
-          name={'ТЕСТ ПОД ФТ'}
+          name={'ТЕСТИРОВАНИЕ 1'}
           questions={quizQuestions || []}
           quizId={4}
           handleOpenModal={handleOpenFeedbackModal}
         ></TestPage>
       );
-    case 9:
+    case 65:
       return (
         <LessonPage
           name={
@@ -3091,7 +3091,7 @@ function GetLesson({
           />
         </LessonPage>
       );
-    case 10:
+    case 66:
       return (
         <LessonPage
           name={'Региональные группы по типу ФАТФ'}
@@ -3171,7 +3171,7 @@ function GetLesson({
           />
         </LessonPage>
       );
-    case 11:
+    case 67:
       return (
         <LessonPage name={'Рекомендации ФАТФ'} lecturer={'AML Academy'}>
           <Reveal>
@@ -3497,7 +3497,7 @@ function GetLesson({
           </Reveal>
         </LessonPage>
       );
-    case 12:
+    case 68:
       return (
         <LessonPage
           name={'Непосредственный результат 4 «Превентивные меры»'}
@@ -3559,7 +3559,7 @@ function GetLesson({
           </Reveal>
         </LessonPage>
       );
-    case 13:
+    case 69:
       return (
         <LessonPage name={'Отчет о Взаимной оценке'} lecturer={'AML Academy'}>
           <Sizebox height={30} />
@@ -3734,7 +3734,7 @@ function GetLesson({
           />
         </LessonPage>
       );
-    case 14:
+    case 70:
       return (
         <LessonPage
           name={'Национальная оценка рисков'}
@@ -3976,7 +3976,7 @@ function GetLesson({
           />
         </LessonPage>
       );
-    case 15:
+    case 71:
       return (
         <LessonPage name={'Списки ФАТФ'} lecturer={'AML Academy'}>
           <Sizebox height={30} />
@@ -4047,7 +4047,7 @@ function GetLesson({
           </Reveal>
         </LessonPage>
       );
-    case 16:
+    case 72:
       return (
         <LessonPage name={'ЕАГ'} lecturer={'AML Academy'}>
           <Sizebox height={30} />
@@ -4111,13 +4111,22 @@ function GetLesson({
           <Reveal>
             <NextLesson
               handleOnClick={() => {
-                CheckCurrentChapter(id);
+                CheckCurrentChapter(id,9);
               }}
             />
           </Reveal>
         </LessonPage>
       );
-    case 17:
+      case 9:
+          return (
+              <TestPage
+                  name={'ТЕСТИРОВАНИЕ 2'}
+                  questions={quizQuestions || []}
+                  quizId={15}
+                  handleOpenModal={handleOpenFeedbackModal}
+              ></TestPage>
+          );
+    case 73:
       return (
         <LessonPage name={'Законодательство'} lecturer={'AML Academy'}>
           <Reveal>
@@ -4365,7 +4374,7 @@ function GetLesson({
           </Reveal>
         </LessonPage>
       );
-    case 18:
+    case 74:
       return (
         <LessonPage
           name={'Субъекты финансового мониторинга'}
@@ -4657,7 +4666,7 @@ function GetLesson({
           </Reveal>
         </LessonPage>
       );
-    case 19:
+    case 75:
       return (
         <LessonPage
           name={
@@ -5116,7 +5125,7 @@ function GetLesson({
           </Reveal>
         </LessonPage>
       );
-    case 20:
+    case 76:
       return (
         <LessonPage
           name={
@@ -5302,7 +5311,7 @@ function GetLesson({
           </Reveal>
         </LessonPage>
       );
-    case 21:
+    case 77:
       return (
         <LessonPage
           name={
@@ -6238,7 +6247,7 @@ function GetLesson({
           />
         </LessonPage>
       );
-    case 22:
+    case 78:
       return (
         <LessonPage
           name={
@@ -6656,7 +6665,7 @@ function GetLesson({
           />
         </LessonPage>
       );
-    case 23:
+    case 79:
       return (
         <LessonPage
           name={'Отказ от проведения и приостановление'}
@@ -6687,7 +6696,7 @@ function GetLesson({
           />
         </LessonPage>
       );
-    case 24:
+    case 81:
         return (<LessonPage name={'Агентство Республики Казахстан по финансовому мониторингу'} lecturer={'AML Academy'}>
             <Reveal>
                 <Sizebox height={40}/>
@@ -6868,7 +6877,7 @@ function GetLesson({
 
         </LessonPage>)
     
-    case 25:
+    case 82:
         return (<LessonPage name={'Межведомственные органы и рабочие группы'} lecturer={'AML Academy'}>
             
             <Sizebox height={40} />
@@ -7185,8 +7194,8 @@ function GetLesson({
           </Reveal>
         </LessonPage>
       );
-    case 27:
-        return (<LessonPage name={'Агентство Республики Казахстан по финансовому мониторингу'} lecturer={'AML Academy'}>
+    case 84:
+        return (<LessonPage name={'Требования к СФМ по подготовке и обучению в сфере ПОД/ФТ'} lecturer={'AML Academy'}>
             <Reveal>
                 <ImageLine
                     img={image75}
@@ -7352,7 +7361,7 @@ function GetLesson({
             </Reveal>
 
         </LessonPage>)
-    case 26:
+    case 83:
       return (
         <LessonPage
           name={'Требования к внутренним нормативным документам'}
@@ -8094,7 +8103,7 @@ function GetLesson({
           </Reveal>
         </LessonPage>
       );
-    case 99:
+    case 80:
         return (<LessonPage name={'Урок 1'} lecturer={'AML Academy'}>
             <Reveal>
                 <ImageLine
@@ -8256,7 +8265,7 @@ function GetLesson({
             <Reveal>
                 <Sizebox height={40}/>
                 <NextLesson handleOnClick={() => {
-                    CheckCurrentChapter(id, 24);
+                    CheckCurrentChapter(id, 81);
                 }}/>
             </Reveal>
 

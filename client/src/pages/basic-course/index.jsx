@@ -414,79 +414,87 @@ const CourseNavigation = ({
                     name={'Общая характеристика национальной системы ПОД/ФТ'}
                 >
                     <Session
+                        course_id={8}
                         session={{
-                            id: 1,
+                            id: 58,
                             name: 'Основные понятия и сокращения',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={1 === activeSessionId}
+                        isActive={58 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
-                            id: 2,
+                            id: 59,
                             group: 'introduction',
                             name: 'Система ПОД/ФТ',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={2 === activeSessionId}
+                        isActive={59 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
-                            id: 3,
+                            id: 60,
                             group: 'introduction',
                             name: 'История возникновения первых «схем» отмывания денег',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={3 === activeSessionId}
+                        isActive={60 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
-                            id: 4,
+                            id: 61,
                             group: 'introduction',
                             name: 'Правовой фундамент понятия «легализации денег» в Республике Казахстан',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={4 === activeSessionId}
+                        isActive={61 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
-                            id: 5,
+                            id: 62,
                             group: 'introduction',
                             name: 'Основные стадии отмывания денег',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={5 === activeSessionId}
+                        isActive={62 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
-                            id: 6,
+                            id: 63,
                             group: 'introduction',
                             name: 'Схемы отмывания денег',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={6 === activeSessionId}
+                        isActive={63 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
-                            id: 7,
+                            id: 64,
                             group: 'introduction',
                             name: 'Финансирование терроризма',
                             progress: 7,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={7 === activeSessionId}
+                        isActive={64 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
                             id: 8,
                             group: 'introduction',
-                            name: 'ПОД ФТ ТЕСТ',
+                            name: 'Тестирование 1',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
@@ -500,84 +508,103 @@ const CourseNavigation = ({
                     handleModuleOpen={handleModuleOpen}
                 >
                     <Session
+                        course_id={8}
                         session={{
-                            id: 9,
+                            id: 65,
                             group: 'introduction',
                             name: 'Группа разработки финансовых мер борьбы с отмыванием денег (ФАТФ)',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={9 === activeSessionId}
+                        isActive={65 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
-                            id: 10,
+                            id: 66,
                             group: 'introduction',
                             name: 'Региональные группы по типу ФАТФ',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={10 === activeSessionId}
+                        isActive={66 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
-                            id: 11,
+                            id: 67,
                             group: 'introduction',
                             name: 'Рекомендации ФАТФ',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={11 === activeSessionId}
+                        isActive={67 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
-                            id: 12,
+                            id: 68,
                             group: 'introduction',
                             name: 'Непосредственный результат 4 «Превентивные меры»',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={12 === activeSessionId}
+                        isActive={68 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
-                            id: 13,
+                            id: 69,
                             group: 'introduction',
                             name: 'Отчет о Взаимной оценке',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={13 === activeSessionId}
+                        isActive={69 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
-                            id: 14,
+                            id: 70,
                             group: 'introduction',
                             name: 'Национальная оценка рисков',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={14 === activeSessionId}
+                        isActive={70 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
-                            id: 15,
+                            id: 71,
                             group: 'introduction',
                             name: 'Списки ФАТФ',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={15 === activeSessionId}
+                        isActive={71 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
-                            id: 16,
+                            id: 72,
                             group: 'introduction',
                             name: 'ЕАГ',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={16 === activeSessionId}
+                        isActive={72 === activeSessionId}
+                    />
+                    <Session
+                        course_id={8}
+                        session={{
+                            id: 9,
+                            group: 'introduction',
+                            name: 'Тестирование 2',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={9 === activeSessionId}
                     />
                 </Module>
                 <Module
@@ -587,71 +614,78 @@ const CourseNavigation = ({
                     handleModuleOpen={handleModuleOpen}
                 >
                     <Session
+                        course_id={8}
                         session={{
-                            id: 17,
+                            id: 73,
                             group: 'introduction',
                             name: 'Законодательство',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={17 === activeSessionId}
+                        isActive={73 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
-                            id: 18,
+                            id: 74,
                             group: 'introduction',
                             name: 'Субъекты финансового мониторинга',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={18 === activeSessionId}
+                        isActive={74 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
-                            id: 19,
+                            id: 75,
                             group: 'introduction',
                             name: 'Надлежащая проверка субъектами финансового мониторинга клиентов',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={19 === activeSessionId}
+                        isActive={75 === activeSessionId}
                     />
                 <Session
+                    course_id={8}
                     session={{
-                        id: 20,
+                        id: 76,
                         group: 'introduction',
                         name: 'Операции с деньгами и (или) иным имуществом, подлежащие финансовому мониторингу\n',
                         progress: 0,
                     }}
                     handleSessionClick={handleSessionClick}
-                    isActive={20 === activeSessionId}
+                    isActive={76 === activeSessionId}
                 /><Session
+                    course_id={8}
                     session={{
-                        id: 21,
+                        id: 77,
                         group: 'introduction',
                         name: 'Сбор сведений и информации об операциях, подлежащих финансовому мониторингу',
                         progress: 0,
                     }}
                     handleSessionClick={handleSessionClick}
-                    isActive={21 === activeSessionId}
+                    isActive={77 === activeSessionId}
                 /><Session
+                    course_id={8}
                     session={{
-                        id: 22,
+                        id: 78,
                         group: 'introduction',
                         name: 'Целевые финансовые санкции, относящиеся к предупреждению и предотвращению терроризма и финансирования терроризма',
                         progress: 0,
                     }}
                     handleSessionClick={handleSessionClick}
-                    isActive={22 === activeSessionId}
+                    isActive={78 === activeSessionId}
                 /><Session
+                    course_id={8}
                     session={{
-                        id: 23,
+                        id: 79,
                         group: 'introduction',
                         name: 'Отказ от проведения и приостановление ',
                         progress: 0,
                     }}
                     handleSessionClick={handleSessionClick}
-                    isActive={23 === activeSessionId}
+                    isActive={79 === activeSessionId}
                 />
                 </Module>
                 <Module
@@ -661,13 +695,14 @@ const CourseNavigation = ({
                     handleModuleOpen={handleModuleOpen}
                 >
                     <Session
+                        course_id={8}
                         session={{
-                            id: 99,
+                            id: 80,
                             name: 'Урок 1',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={99 === activeSessionId}
+                        isActive={80 === activeSessionId}
                     />
                 </Module>
                 <Module
@@ -677,22 +712,24 @@ const CourseNavigation = ({
                     handleModuleOpen={handleModuleOpen}
                 >
                     <Session
+                        course_id={8}
                         session={{
-                            id: 24,
+                            id: 81,
                             name: 'Агентство Республики Казахстан по финансовому мониторингу',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={24 === activeSessionId}
+                        isActive={81 === activeSessionId}
                     />
                     <Session
+                        course_id={8}
                         session={{
-                            id: 25,
+                            id: 82,
                             name: 'Межведомственные органы и рабочие группы',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={25 === activeSessionId}
+                        isActive={82 === activeSessionId}
                     />
                 </Module>
                 <Module
@@ -702,14 +739,15 @@ const CourseNavigation = ({
                     handleModuleOpen={handleModuleOpen}
                 >
                     <Session
+                        course_id={8}
                         session={{
-                            id: 26,
+                            id: 83,
                             group: 'introduction',
-                            name: 'УРОК 1',
+                            name: 'Урок 1',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={26 === activeSessionId}
+                        isActive={83 === activeSessionId}
                     />
                 </Module>
                 <Module
@@ -719,13 +757,14 @@ const CourseNavigation = ({
                     handleModuleOpen={handleModuleOpen}
                 >
                     <Session
+                        course_id={8}
                         session={{
-                            id: 27,
+                            id: 84,
                             name: 'Урок 1',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
-                        isActive={27 === activeSessionId}
+                        isActive={84 === activeSessionId}
                     />
                 </Module>
                 
