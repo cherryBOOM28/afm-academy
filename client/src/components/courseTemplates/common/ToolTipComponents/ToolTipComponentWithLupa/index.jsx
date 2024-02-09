@@ -89,7 +89,7 @@ const ToolTipComponentWithLupa = ({ imgUrl, Width, Height, another }) => {
               ))}
             </ul>
           </div>
-          <button className="Btn1" onClick={handleTryAgain}>
+          <button className="BtnToolTipLupa" onClick={handleTryAgain}>
             Попробовать еще раз
           </button>
         </div>

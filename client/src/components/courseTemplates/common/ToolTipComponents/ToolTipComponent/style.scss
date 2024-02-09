@@ -8,7 +8,8 @@
   
   .highlight {
     position: relative;
-    color: rgb(61, 78, 232);
+    background-color: rgb(61, 78, 232);
+    color: #fff;
     border-radius: 10px;
     padding: 4px;
     cursor: pointer;
@@ -26,13 +27,20 @@
     background-color: #0004f7;
     color: #fff;
     padding: 5px;
-    font-size: medium;
+    font-size: 12px;
     border-radius: 5px;
     top: 100%;
-    width: 300px;
+    width: 500px;
     height: max-content;
-    left: 0;
+    right: -150%;
     white-space: normal;
     z-index: 1000000;
+  }
+  .BtnToolTipLupa{
+    color: #fff;
+    padding: 5px;
+    margin-top: 1%;
+    background-color: #0004f7;
+    border: none;
   }
   
