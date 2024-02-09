@@ -23,7 +23,7 @@ const NotNumberedDots = ({ list, header, dotsColor, color, gap='27px', fontWeigh
                         <h3 
                             className='not-numbered-dots-header'
                             style={{
-                                fontWeight: 600,
+                                fontWeight: fontWeight ? fontWeight : defaultFontWeight,
                                 color: color ? color : defaultColor,
                                 lineHeight: '140%',
                                 fontSize: '24px'
