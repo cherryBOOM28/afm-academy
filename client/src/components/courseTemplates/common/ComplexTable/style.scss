@@ -2,17 +2,24 @@
     width: 100%; /* Ширина .divka 100% */
     margin-left: 14.5%;
     justify-content: center; /* Выравнивание по центру */
+    background-image: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
   .ComplexTableBtn{
     width:70%;
     padding: 15px;
     border-radius: 4px;
     font-weight: 400;
     font-size: 17px;
+    
   }
   
     .ComplexTable {
       width: 70%; /* Ширина .ComplexTable 80% от ширины .divka */
       border-collapse: collapse;
+      background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+      
+     
+      
+
   
       th,
       td {

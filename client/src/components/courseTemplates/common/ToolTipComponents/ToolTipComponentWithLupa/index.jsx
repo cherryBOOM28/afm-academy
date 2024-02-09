@@ -4,7 +4,7 @@ import './style.scss'; // Импортируем стили из DraggableOption
 const ToolTipComponentWithLupa = ({ imgUrl, Width, Height, another }) => {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [showResults, setShowResults] = useState();
-  const [correctOptions] = useState(['option1', 'option2', 'option3']); // Задаем correctOptions внутри компонента
+    const [correctOptions] = useState(['- клиент (его представитель)...', '- клиент (его представитель)3...', '- клиент является лицом']); // Задаем correctOptions внутри компонента
 
   const handleDragStart = (e, option) => {
     e.dataTransfer.setData('text/plain', option);
@@ -37,12 +37,40 @@ const ToolTipComponentWithLupa = ({ imgUrl, Width, Height, another }) => {
       <div className="options-container">
         <div className="options">
           {/* Добавьте свои элементы здесь */}
-          <div className="draggable-option-lupa" draggable="true" onDragStart={(e) => handleDragStart(e)}>
-          <div className="tooltip">
-        Физическое лицо, включенное в Перечень в целях обеспечения своей жизнедеятельности и членов <span className="highlight" randomText="Супруга (супруг), совместные или одного из супругов несовершеннолетние дети (в том числе усыновленные (удочеренные), находящиеся на иждивении или под опекой (попечительством); родители и родители супруга (супруги), находящиеся на иждивении), не имеющих самостоятельных источников дохода, вправе обратиться к субъекту финансового мониторинга для осуществления следующих операций с деньгами или иным имуществом:">семьи</span>, не имеющих самостоятельных источников дохода, вправе обратиться к субъекту финансового мониторинга для осуществления следующих операций с деньгами или иным имуществом:
-      </div>
+          <div className="draggable-option-lupa" draggable="true" onDragStart={(e) => handleDragStart(e, "- клиент (его представитель)...")}>
+          <div className="tooltipLupa">
+          - клиент (его представитель) и бенефициарный собственник являются лицом, включенным в  <span className="highlightLupa" randomText="причастных к террористической деятельности">Список лиц</span>, а также<span className="highlightLupa" randomText="организаций и лиц, связанных с финансированием терроризма и экстремизма ">Перечень</span>и в<span className="highlightLupa" randomText="организаций и лиц, связанных с финансированием терроризма и экстремизма с финансированием оружия массового уничтожения;">Перечень ФРОМУ </span></div>
           </div>
-          {/* Можете добавить еще элементов здесь */}
+
+          <div className="draggable-option-lupa" draggable="true" onDragStart={(e) => handleDragStart(e, " - аффилированные лица...")}>
+            <div className="tooltipLupa">
+            - аффилированные лица клиента ранее привлекались к административной ответственности;
+            </div> 
+          </div>
+
+          <div className="draggable-option-lupa" draggable="true" onDragStart={(e) => handleDragStart(e, "- клиент (его представитель)3...")}>
+          <div className="tooltipLupa">
+          - клиент (его представитель) и бенефициарный собственник являются установленным лицом или организацией, в отношении которых применяются международные санкции в соответствии с резолюциями <span className="highlightLupa" randomText="Совет Безопасности ООН;">СОВБЕЗ ООН</span> 
+            </div>
+          </div>
+
+          <div className="draggable-option-lupa" draggable="true" onDragStart={(e) => handleDragStart(e, " - клиент ранее имел гражданство...")}>
+            <div className="tooltipLupa">
+            - клиент ранее имел гражданство иностранного государства;
+            </div>
+          </div>
+
+          <div className="draggable-option-lupa" draggable="true" onDragStart={(e) => handleDragStart(e, "- клиент является лицом")}>
+          <div className="tooltipLupa">
+          - клиент является лицом, которому присвоен уровень риска, требующий применения усиленных мер надлежащей проверки и <span className="highlightLupa" randomText="Правил внутреннего контроля">ПВК</span>, за исключением заключения страховыми организациями договоров страхования в электронной форме, страховая премия и (или) страховая выплата по которым осуществляются через банковские счета.
+            </div>
+          </div>
+
+          <div className="draggable-option-lupa" draggable="true" onDragStart={(e) => handleDragStart(e, "- клиент является государственным служащим")}>
+          <div className="tooltipLupa">
+          - клиент является государственным служащим
+            </div>
+          </div>
         </div>
 
         <b className='B'></b>

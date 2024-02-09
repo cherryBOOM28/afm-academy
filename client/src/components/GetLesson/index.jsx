@@ -133,7 +133,7 @@ import image_77 from '../../assets/images/image_77.jpg';
 import image_76 from '../../assets/images/image_76.jpg';
 import image_1111 from '../../assets/images/88888.png';
 
-
+import stopSign from '../../assets/images/stopSign.jpg'
 import imgLupa from '../../assets/images/Lupa.jpg';
 import carousel_110 from './../../assets/images/Carousel_110.png';
 import carousel_111 from './../../assets/images/Carousel_111.png';
@@ -5085,6 +5085,9 @@ function GetLesson({
 
           <Reveal>
             <ToolTipComponentWithLupa
+              imgUrl={stopSign}
+              Width={330}
+              Height={300}
            
             ></ToolTipComponentWithLupa>
           </Reveal>
