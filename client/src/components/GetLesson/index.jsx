@@ -2603,7 +2603,7 @@ function GetLesson({
               <RandomParapraph>
                 <>
                   ФАТФ выделил следующие
-                  <span className="bold">источники доходов </span>
+                  <span className="bold"> источники доходов </span>
                   субъектов террористической деятельности:
                 </>
               </RandomParapraph>
@@ -2674,10 +2674,7 @@ function GetLesson({
           <Reveal>
             <NumberedDots
               header={
-                <>
-                  <span className="bold">Уголовным кодексом</span>{' '}
-                  предусматриваются следующие виды наказаний за ФТ:
-                </>
+                  '"Уголовным кодексом" предусматриваются следующие виды наказаний за ФТ:'
               }
               dotsColor={'#CADEFC'}
               list={[
@@ -2711,7 +2708,7 @@ function GetLesson({
 
           <Reveal>
             <NotNumberedDots
-              header={<>Основные тенденции развития современного терроризма:</>}
+              header={'Основные тенденции развития современного терроризма:'}
               dotsColor={'#CADEFC'}
               list={[
                 'Расширение географии терроризма в мире и его интернационализация;',

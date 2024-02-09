@@ -9,9 +9,17 @@ const NotNumberedDots = ({ list, header, dotsColor, color, gap='27px', fontWeigh
     const defaultColor = '#3A3939';
     const defaultFontWeight = '600';
     const _fontWeight = fontWeight ? fontWeight : defaultFontWeight;
-    const formatText = (text) => {
-        return text.replace(/"(.*?)"/g, '<span style="font-weight: 900;">$1</span>');
-    }
+ 
+    const formatText = (anyString) => {
+        let res = '';
+        try {
+            res = anyString.replace(/"(.*?)"/g, '<span style="font-weight: 500;">$1</span>');
+        } catch (e) {
+            res = anyString;
+        }
+
+        return res;
+    };
 
     if (!list) return null;
 
