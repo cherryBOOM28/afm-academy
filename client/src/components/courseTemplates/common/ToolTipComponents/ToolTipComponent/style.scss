@@ -43,4 +43,65 @@
     background-color: #0004f7;
     border: none;
   }
+  .highlightList {
+    position: relative;
+    background-color: rgb(61, 78, 232);
+    color: #fff;
+    border-radius: 10px;
+    padding: 4px !important;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+  
+    
+  }
+  .highlightList:hover .tooltip-text {
+    display: block;
+  }
+  
+  .highlightList:hover::before {
+    content: attr(randomText);
+    position: absolute;
+    background-color: #0004f7;
+    color: #fff;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 5px;
+    top: 100%;
+    width: max-content;
+    height: max-content;
+    white-space: normal;
+    z-index: 1000000;
+  }
+  .highlightFROMU {
+    position: relative;
+    background-color: rgb(61, 78, 232);
+    color: #fff;
+    border-radius: 10px;
+    padding: 4px !important;
+    font-size: 13px;
+    padding: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+  
+    
+  }
+  .highlightFROMU:hover .tooltip-text {
+    display: block;
+  }
+  
+  .highlightFROMU:hover::before {
+    content: attr(randomText);
+    position: absolute;
+    background-color: #0004f7;
+    color: #fff;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 5px;
+    bottom: 100%;
+    width: max-content;
+    height: max-content;
+    white-space: normal;
+    z-index: 1000000;
+  }
   

@@ -4,7 +4,7 @@ import DropdownButton from './DropdownButton';
 import DropdownContent from './DropdownContent';
 
 const DropdownPage = ({data, dataBtn, Height}) => {
-  const [openDropdown, setOpenDropdown] = useState(1);
+  const [openDropdown, setOpenDropdown] = useState(0);
  
 
 
