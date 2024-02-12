@@ -9,7 +9,7 @@
   
   .highlight {
     position: relative;
-    background-color: rgb(61, 78, 232);
+    background-color: rgb(48, 171, 199);
     color: #fff;
     border-radius: 10px;
     padding: 4px;
@@ -25,7 +25,7 @@
   .highlight:hover::before {
     content: attr(randomText);
     position: absolute;
-    background-color: #0004f7;
+    background-color: #4CAF50;
     color: #fff;
     padding: 5px;
     font-size: 12px;
@@ -41,12 +41,12 @@
     color: #fff;
     padding: 5px;
     margin-top: 1%;
-    background-color: #0004f7;
+    background-color: rgb(48, 171, 199);
     border: none;
   }
   .highlightList {
     position: relative;
-    background-color: rgb(61, 78, 232);
+    background-color: rgb(48, 171, 199);
     color: #fff;
     border-radius: 10px;
     padding: 4px !important;
@@ -63,7 +63,7 @@
   .highlightList:hover::before {
     content: attr(randomText);
     position: absolute;
-    background-color: #0004f7;
+    background-color: #4CAF50;
     color: #fff;
     padding: 5px;
     font-size: 12px;
@@ -76,7 +76,7 @@
   }
   .highlightFROMU {
     position: relative;
-    background-color: rgb(61, 78, 232);
+    background-color: rgb(48, 171, 199);
     color: #fff;
     border-radius: 10px;
     padding: 4px !important;
@@ -94,7 +94,7 @@
   .highlightFROMU:hover::before {
     content: attr(randomText);
     position: absolute;
-    background-color: #0004f7;
+    background-color: #4CAF50;
     color: #fff;
     padding: 5px;
     font-size: 12px;

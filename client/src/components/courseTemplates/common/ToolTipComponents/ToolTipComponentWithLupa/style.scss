@@ -9,7 +9,7 @@
   
   .highlightLupa {
     position: relative;
-    background-color: rgb(61, 78, 232);
+    background-color: rgb(48, 171, 199);
     color: #fff;
     border-radius: 10px;
     padding: 4px;
@@ -25,7 +25,7 @@
   .highlightLupa:hover::before {
     content: attr(randomText);
     position: absolute;
-    background-color: #0004f7;
+    background-color: #4CAF50;
     color: #fff;
     padding: 5px;
     font-size: medium;

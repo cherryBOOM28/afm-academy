@@ -32,20 +32,24 @@ const QuizApp = ({ questions }) => {
 
   return (
     <div className="quiz-app">
-      {currentQuestionIndex-2 < questions.length ? (
-        <QuizQuestion
+      {currentQuestionIndex < questions.length ? (
+        <div>
+          <QuizQuestion
           question={questions[currentQuestionIndex].question}
           options={questions[currentQuestionIndex].options}
           correctOptionIndex={questions[currentQuestionIndex].correctOptionIndex}
           onNextQuestion={handleNextQuestion}
           showNextQuestionButton={showNextQuestionButton}
         />
+      
+        </div>
       ) : (
         <div className="quiz-completed">
           <p>Quiz Completed!</p>
           <p>Your Score: {score}</p>
         </div>
       )}
+     
 
       {showNextQuestionButton && !isLastQuestion && (
         <button className='buttonQuiz'onClick={handleNextQuestionButtonClick}>

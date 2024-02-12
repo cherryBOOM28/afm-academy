@@ -3,13 +3,13 @@ import './style.scss';
 import DropdownButton from './DropdownButton';
 import DropdownContent from './DropdownContent';
 
-const DropdownPage = ({data, dataBtn, Height='max-content'}) => {
+const DropdownPage = ({data, dataBtn}) => {
   const [openDropdown, setOpenDropdown] = useState(0);
  
 
 
   const handleButtonClick = (index) => {
-    setOpenDropdown(index === openDropdown ? 0 : index);
+    setOpenDropdown(index);
   };
 
   return (
@@ -18,7 +18,7 @@ const DropdownPage = ({data, dataBtn, Height='max-content'}) => {
       <div className="buttons-container">
         
         {dataBtn.map((item, index) => (
-         <DropdownButton label={item.name} onClick={() => handleButtonClick(index)} isOpen={openDropdown === index} />
+         <DropdownButton label={item.name.length > 6 ? `${item.name.slice(0, 6)}...` : item.name} onClick={() => handleButtonClick(index)} isOpen={openDropdown === index} />
        ))}
       </div>
 
