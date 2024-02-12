@@ -4910,7 +4910,7 @@ function GetLesson({
             <Reveal>
                 <TextWithTitle
                     title={
-                        'В законодательстве также предусмотрены случаи, когда мреы Надлежащей проверки клиентов не принимаются субъектами в случаях проведении слудующих разовых операциях'
+                        'В законодательстве также предусмотрены случаи, когда меры Надлежащей проверки клиентов не принимаются субъектами в случаях проведении слудующих разовых операциях'
                     }
                 />
                 <TableComponent></TableComponent>
@@ -5245,7 +5245,7 @@ function GetLesson({
           <Sizebox height={20} />
           <VideoLine
             url={
-              'https://videos.sproutvideo.com/embed/1190d1b1191ae8c498/b8caa50df4b0d67b?playerColor=1f71a1'
+              'https://videos.sproutvideo.com/embed/7090d1b1191ae9c8f9/fecda4e3e1f59b44'
             }
           />
 
