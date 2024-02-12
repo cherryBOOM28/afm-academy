@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 /* eslint-disable no-useless-concat */
 /* eslint-disable react/jsx-pascal-case */
 import React from 'react';
@@ -8478,6 +8479,8 @@ function GetLesson({
                   handleOpenModal={handleOpenFeedbackModal}
               ></TestPage>
       );
+  
+
   }
    
 }
