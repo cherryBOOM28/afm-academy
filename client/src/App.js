@@ -15,15 +15,15 @@ const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
 //import Home from './pages/home/Home';
 const AboutUs = lazy(()=> import('./pages/aboutPage/aboutUs/AboutUs'))
 //import AboutUs from './pages/aboutPage/aboutUs/AboutUs';
-const Management = lazy(()=>import('./pages/aboutPage/management/Management'))
+const Management = lazy(() => import('./pages/aboutPage/management/Management'))
 //import Management from './pages/aboutPage/management/Management';
-const Structure = lazy(()=>import('./pages/aboutPage/structure/Structure'))
+const Structure = lazy(() => import('./pages/aboutPage/structure/Structure'))
 //import Structure from './pages/aboutPage/structure/Structure';
-const DirectorPage = lazy(()=>import('./pages/aboutPage/director/DirectorPage'))
+const DirectorPage = lazy(() => import('./pages/aboutPage/director/DirectorPage'))
 //import DirectorPage from './pages/aboutPage/director/DirectorPage';
-const Charter = lazy(()=>import('./pages/aboutPage/charter/Charter'))
+const Charter = lazy(() => import('./pages/aboutPage/charter/Charter'))
 //import Charter from './pages/aboutPage/charter/Charter';
-const Subjects = lazy(()=>import('./pages/sfm/subjects/Subjects'))
+const Subjects = lazy(() => import('./pages/sfm/subjects/Subjects'))
 //import Subjects from './pages/sfm/subjects/Subjects';
 // const Login = lazy(()=>import('./pages/login/Login'))
 
@@ -53,8 +53,6 @@ const Profile = lazy(() => import('./pages/profilePage/Profile'));
 const PaymentPage = lazy(() => import('./pages/paymentPage/PaymentPage'));
 const Sandbox = lazy(() => import('./pages/Sandbox'));
 const Basic_course = lazy(() => import('./pages/basic-course'));
-
-
 const CryptoCourse = lazy(() => import('./pages/ReadCourses/CryptoCourse'));
 
 

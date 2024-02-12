@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
 
 import './style.scss'
@@ -8,10 +9,13 @@ const NotNumberedDots = ({ list, header, dotsColor, color, gap='27px', fontWeigh
     const defaultDotsColor = '#F9CB36';
     const defaultColor = '#3A3939';
     const defaultFontWeight = '600';
-    const _fontWeight = fontWeight ? fontWeight : defaultFontWeight;
-    const formatText = (text) => {
-        return text.replace(/"(.*?)"/g, '<span style="font-weight: 900;">$1</span>');
-    }
+ 
+    const formatText = (anyString) => {
+        if (typeof anyString === 'string') {
+            return anyString.replace(/"(.*?)"/g, '<span style="font-weight: 500;">$1</span>');
+        }
+        return anyString;
+    };
 
     if (!list) return null;
 
@@ -23,13 +27,12 @@ const NotNumberedDots = ({ list, header, dotsColor, color, gap='27px', fontWeigh
                         <h3 
                             className='not-numbered-dots-header'
                             style={{
-                                fontWeight: 600,
+                                fontWeight: fontWeight ? fontWeight : defaultFontWeight,
                                 color: color ? color : defaultColor,
                                 lineHeight: '140%',
                                 fontSize: '24px'
                             }}
-                            dangerouslySetInnerHTML={{ __html: formatText(header)}}
-                        ></h3>
+                        >{formatText(header)}</h3>
                         <Sizebox height={37} />
                     </>
                 ) : null

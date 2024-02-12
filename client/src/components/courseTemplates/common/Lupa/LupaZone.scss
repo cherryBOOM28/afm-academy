@@ -6,6 +6,7 @@
   display: block;
   align-items: center;
   justify-content: center;
+  font-family: Ubuntu, Montserrat;
 
   .drop-zone {
     position: relative;
@@ -16,8 +17,8 @@
   }
   .BtnRetry {
     position: relative;
-    background-color: rgb(17, 103, 233);
-    padding: 6px;
+    background-color: rgb(27, 80, 255);
+    padding: 4px;
     border-radius: 4px;
     color: rgb(255, 255, 255);
     margin-top: 1%;

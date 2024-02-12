@@ -4,19 +4,12 @@
   display: inline-block;
   line-height: 1.5;
   text-align: left;
-  font-size: large;
-
+  font-size: x-large;
   padding: 20px;
-
-
-
 }
-.pComponent{
-  text-indent: 15px;
-}
+
 .NumberedDotsInToolTipComponent{
-  margin-left: -10%;
-  
+  margin-left: -15%;
 }
 
 
@@ -27,9 +20,7 @@
   border-radius: 10px;
   padding: 4px;
   cursor: pointer;
-  white-space: nowrap;
-
-  
+  white-space: nowrap;  
 }
 
 .highlight2:hover .tooltip-text {
@@ -46,7 +37,8 @@
   font-size: medium;
   border-radius: 5px;
   top: 100%;
-  width: 300%;
+  width: 300px;
+  height: max-content;
   left: 0;
   white-space: normal;
   z-index: 1000000;

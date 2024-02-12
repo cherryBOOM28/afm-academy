@@ -2,6 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  font-family: Ubuntu, Montserrat;
   
   .dropdown-page {
     width: 700px;
@@ -24,6 +25,7 @@
     width: 100%;
     height: max-content;
     margin: 20px;
+    padding-bottom: 30px;
     white-space: pre-wrap;
   }
 }

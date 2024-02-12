@@ -9,7 +9,7 @@ const DropdownPageTable = ({ dataBtn, Height, simpleTableProps }) => {
   const [openDropdown, setOpenDropdown] = useState(0);
 
   const handleButtonClick = (index) => {
-    setOpenDropdown(index === openDropdown ? 0 : index);
+    setOpenDropdown(index);
   };
 
   return (

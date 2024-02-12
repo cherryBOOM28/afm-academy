@@ -11,19 +11,19 @@ function TextWithTitle({ title, text, color,fontWeight }) {
         let res = '';
 
         try {
-            res = text.replace(/"(.*?)"/g, '<span style="font-weight: 500;">$1</span>');
+            res = text.replace(/"(.*?)"/g, '<span style="font-weight: 600;">$1</span>');
         } catch (e) {
             res = text;
         }
 
         return res;
     }
-    const formatText = (text) => {
+    const formatText = (anyString) => {
         let res = '';
         try {
-            res = text.replace(/"(.*?)"/g, '<span style="font-weight: 500;">$1</span>');
+            res = anyString.replace(/"(.*?)"/g, '<span style="font-weight: 500;">$1</span>');
         } catch (e) {
-            res = text;
+            res = anyString;
         }
 
         return res;
