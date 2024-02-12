@@ -278,7 +278,7 @@ function Home() {
                   {t("our courses")}
                 </p>
                 <div className={`${cl.courses_boxes} text-content`}>
-                  <Link to="/courses/8" style={{ textDecoration: "none" }}>
+                  <Link to="/courses/catalog" style={{ textDecoration: "none" }}>
                     <div className={cl.aml_box}>
                       {!imagesHidden && <img src={basicCourse} alt="" />}
                       <p className={`${cl.course_box_name} text-content`}>
@@ -299,14 +299,6 @@ function Home() {
                       {!imagesHidden && <img src={deepCourse} alt="" />}
                       <p className={`${cl.course_box_name} text-content`}>
                         {t("advanced")}
-                      </p>
-                    </div>
-                  </Link>
-                  <Link to="/3" style={{ textDecoration: "none" }}>
-                    <div className={cl.aml_box}>
-                      {!imagesHidden && <img src={upCourse} alt="" />}
-                      <p className={`${cl.course_box_name} text-content`}>
-                        {t("thematic")}
                       </p>
                     </div>
                   </Link>
