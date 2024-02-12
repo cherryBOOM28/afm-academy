@@ -1,5 +1,6 @@
 .DraggableOptionZone{
   width: 100%;
+  font-family: Ubuntu, Montserrat;
   .DragZoneWrapper{
     position: relative;
     width: 25%;
@@ -39,6 +40,7 @@
   margin-bottom: 3%;
   font-weight: bold;
   font-size: 20px;
+  font-family: Ubuntu, Montserrat;
 }
 .B.small {
   font-size: 85% !important;
