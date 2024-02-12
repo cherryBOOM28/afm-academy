@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-concat */
+/* eslint-disable react/jsx-pascal-case */
 import React from 'react';
 import './style.scss';
 
@@ -44,14 +46,13 @@ import SimpleTable from '../courseTemplates/common/SimpleTable';
 import ImageWithPoints from '../courseTemplates/complex/interactives/ImageWithPoints';
 import CustomCarousel from '../courseTemplates/complex/CustomCarousel';
 import ImageAndColumns from '../courseTemplates/common_v2/ImageAndColumns';
-import LupaDetailed from '../../components/courseTemplates/common/LupaDetailed';
 import DoubleDraggableOption from '../courseTemplates/common/DoubleDraggableOption';
 import JustTextWithP from '../courseTemplates/common/JustTextWithP';
 import BoxOfThree from '../courseTemplates/common/BoxOfThree';
 import ToolTipComponent from '../courseTemplates/common/ToolTipComponents/ToolTipComponent';
 import TooltipComponent2 from '../courseTemplates/common/ToolTipComponents/ToolTipComponent2';
 import TooltipComponent1 from '../courseTemplates/common/ToolTipComponents/ToolTipComponent1';
-import TooltipComponentWithLupa from '../courseTemplates/common/ToolTipComponents/ToolTipComponentWithLupa';
+import ToolTipComponentWithLupa from '../courseTemplates/common/ToolTipComponents/ToolTipComponentWithLupa';
 import TableWithTable from '../courseTemplates/common/Tables/TableWithTable';
 // import { Tooltip } from 'react-tooltip';
 // import 'react-tooltip/dist/react-tooltip.css';
@@ -82,7 +83,6 @@ import image67 from './../../assets/images/lawyer.png';
 import image69 from './../../assets/images/blackimage.png';
 import image70 from './../../assets/images/afmlogo.png';
 import image71 from './../../assets/images/71image.png';
-import image72 from './../../assets/images/pfr.png';
 import image74 from './../../assets/images/mvs.png';
 import image75 from './../../assets/images/troika2.png';
 import image76 from './../../assets/images/dola.png';
@@ -133,7 +133,7 @@ import image_77 from '../../assets/images/image_77.jpg';
 import image_76 from '../../assets/images/image_76.jpg';
 import image_1111 from '../../assets/images/88888.png';
 
-
+import stopSign from '../../assets/images/stopSign.jpg'
 import imgLupa from '../../assets/images/Lupa.jpg';
 import carousel_110 from './../../assets/images/Carousel_110.png';
 import carousel_111 from './../../assets/images/Carousel_111.png';
@@ -146,12 +146,11 @@ import MoneyImage from '../../assets/images/Money.jpg';
 import dangerImage from '../../assets/images/danger.jpg';
 import QuizWithCardComponent from '../courseTemplates/common/QuizWithCardComponent';
 import NumberedDotsAndImage from '../courseTemplates/common/NumberedDotsAndImage';
-import { green } from '@mui/material/colors';import DropDownMSQ from '../courseTemplates/common_v2/DropDownMSQ';
 import TwoColumnsDivider from '../courseTemplates/common_v2/TwoColumnsDivider';
 import TextWithBold from '../courseTemplates/common/TextWithBold';
 import Image from '../courseTemplates/common_v2/Image';
 import PyramidList from '../courseTemplates/common_v2/PyramidList';
-import ToolTipComponentWithLupa from '../courseTemplates/common/ToolTipComponents/ToolTipComponentWithLupa';
+
 
 
 const LessonPage = ({ children, name, lecturer }) => {
@@ -4116,7 +4115,7 @@ function GetLesson({
           </Reveal>
         </LessonPage>
       );
-      case 9:
+    case 9:
           return (
               <TestPage
                   finished={modules[1].quiz.quiz_max_points === 100}
@@ -5085,6 +5084,9 @@ function GetLesson({
 
           <Reveal>
             <ToolTipComponentWithLupa
+              imgUrl={stopSign}
+              Width={330}
+              Height={300}
            
             ></ToolTipComponentWithLupa>
           </Reveal>
@@ -6636,6 +6638,47 @@ function GetLesson({
             <Sizebox height={80} />
           </Reveal>
 
+          <Reveal>
+            <TextWithTitle
+              title={'"Решение о проведении операции может быть принято при" соблюдении следующих требований:'}
+              fontWeight={400}
+            ></TextWithTitle>
+            <NumberedDots
+              list={[
+                <>
+                  договор не связан с любыми запрещенными предметами, материалами, оборудованием, товарами, технологиями, помощью, обучением, финансовой поддержкой, инвестированием, брокерской деятельностью или услугами, указанными в документах <span className="highlightList" randomText="Совет безопасности ООН.">СОВБЕЗ ООН</span>, относящимися к предупреждению, воспрепятствованию и прекращению распространения оружия массового уничтожения и его финансирования;
+                </>,
+                <>
+                  платеж не будет получен непосредственно или опосредованно организацией или лицом, включенным в резолюции <span className="highlightList" randomText="Совет безопасности ООН.">СОВБЕЗ ООН</span>, относящиеся к предупреждению, воспрепятствованию и прекращению распространения оружия массового уничтожения и его финансирования.
+                </>,
+                <>
+                  АФМ после принятия решения о проведении операции незамедлительно направляет уведомление в соответствующий Комитет <span className="highlightList" randomText="Совет безопасности ООН.">СОВБЕЗ ООН</span> о намерении разрешить проведение операции.
+                </>,
+                <>
+                  Уполномоченный орган в соответствии с законодательством Республики Казахстан уведомляет соответствующий Комитет <span className="highlightList" randomText="Совет безопасности ООН.">СОВБЕЗ ООН</span>,о пересечении Государственной границы Республики Казахстан физическими лицами, включенными в Перечень <span className="highlightFROMU" randomText="Перечень организаций и лиц, связанных с финансированием распространения оружия массового уничтожения.">ФРОМУ</span>,
+                </>
+              ]}
+            >
+            </NumberedDots>
+          </Reveal>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <Sizebox height={80} />
           <Reveal>
             <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
@@ -6666,8 +6709,158 @@ function GetLesson({
           <Sizebox height={80} />
           <Reveal>
             <ImageLine img={image79} height={600}></ImageLine>
+            <Sizebox height={20}></Sizebox>
+            <Centered>
+            <TextWithTitle
+              title={'Отказ от проведения и приостановление '}
+            ></TextWithTitle>
+           </Centered>
           </Reveal>
           <Sizebox height={80} />
+          <TableWithData
+              data={[
+                {
+                  option:
+                    'Субъекты финансового мониторинга "обязаны отказать" физическому, юридическому лицу или иностранной структуре без образования юридического лица "в установлении деловых отношений" в случае невозможности принятия мер по надлежащей проверке клиентов (фиксирование сведений, необходимых для идентификации физ. и юр. лица; фиксирование сведений, необходимых для идентификации иностранной структуры без образования юридического лица; выявление бенефициарного собственника и фиксирование сведений, необходимых для его идентификации; установление предполагаемой цели и характера деловых отношений).',
+                },
+                {
+                  option:
+                    'Субъекты финансового мониторинга также "обязаны отказать" в проведении операций с деньгами и (или) иным имуществом и (или) прекратить деловые отношения в случае "невозможности принятия" вышеуказанных мер и "мер по проверке достоверности сведений", необходимых для идентификации клиента (его представителя), бенефициарного собственника, и обновление сведений о клиенте (его представителе) и бенефициарном собственнике.',
+                },
+                {
+                  option:
+                    '"СФМ вправе отказать" в проведении операций с деньгами и (или) иным имуществом, а также в установлении деловых отношений и (или) прекратить деловые отношения с клиентом "в случае наличия подозрений" о том, что деловые отношения используются клиентом в целях легализации (отмывания) доходов, полученных преступным путем, или финансирования терроризма.',
+                },
+              ]}
+              dataBtn={[
+                { name: '1' },
+                { name: '2' },
+                { name: '3' },
+              ]}
+          ></TableWithData>
+          <Sizebox height={80} />
+          <Reveal>
+            <TextWithTitle
+              fontWeight={400}
+              title={'Субъекты в течение двадцати четырех часов с момента размещения на интернет-ресурсе АФМ Списка, информации о включении организации или лица в Перечень и Перечень ФРОМУ "обязаны незамедлительно принять следующие меры" по замораживанию операций с деньгами и (или) иным имуществом:'}
+            ></TextWithTitle>
+          </Reveal>
+          <Sizebox height={40} />
+          <Reveal>
+          <DropdownGlossaryList
+              list={[
+                {
+                  title: 'Приостановить расходные операции.',
+                  description:
+                    'приостановить расходные операции по банковским счетам такой организации или физического лица, по банковским счетам клиента, бенефициарным собственником которого является такое физическое лицо (за исключением операций, связанных с обслуживанием банковских счетов), организации, прямо или косвенно находящейся в собственности или под контролем такой организации или физического лица, а также физического или юридического лица, действующего от имени или по указанию такой организации или такого физического лица;',
+                },
+                {
+                  title: 'Приостанавливать исполнение указаний по платежу или переводу денег без использования банковского счета.',
+                  description:
+                    <><span className='bold'>приостанавливать исполнение указаний по платежу или переводу денег без использования банковского счета</span> таких организаций и физических лиц, указаний клиента, бенефициарным собственником которого является такое физическое лицо, организации, прямо или косвенно находящейся в собственности или под контролем такой организации или физического лица, а также физического или юридического лица, действующего от имени или по указанию такой организации или такого физического лица;</>,
+                },
+                {
+                  title: 'Блокировать ценные бумаги.',
+                  description:
+                    'блокировать ценные бумаги в системе реестров держателей ценных бумаг и системе учета номинального держания на лицевых счетах такой организации или физического лица, на лицевых счетах клиента, бенефициарным собственником которого является такое физическое лицо, организации, прямо или косвенно находящейся в собственности или под контролем такой организации или физического лица, а также физического или юридического лица, действующего от имени или по указанию такой организации или такого физического лица;',
+                },
+                {
+                  title: 'Отказывать в проведении операций.',
+                  description:
+                    <><span className="bold">отказывать в проведении операций</span> по осуществлению страховой выплаты, по возврату страховой премии или ее части в случае досрочного прекращения договора страхования и вознаграждения в случае досрочного прекращения страхователем договора об оказании услуг брокерской деятельности (за исключением операций, связанных с обязательным социальным медицинским страхованием, страхованием работника от несчастных случаев при исполнении им трудовых (служебных) обязанностей, обязательным страхованием гражданско-правовой ответственности владельцев транспортных средств, обязательным страхованием гражданско-правовой ответственности перевозчика перед пассажирами, обязательным страхованием туриста);</>,
+                },
+                {
+                  title: 'Отказывать в проведении иных операций с деньгами и (или) иным имуществом.',
+                  description:
+                    <><span className="bold">отказывать в проведении иных операций с деньгами и (или) иным имуществом</span> совершаемых такой организацией или физическим лицом либо в их пользу, а равно клиентом, бенефициарным собственником которого является такое физическое лицо, либо в его пользу (за исключением зачисления денег такому лицу на банковский счет, внесения, перечисления обязательных пенсионных взносов в единый накопительный пенсионный фонд), организацией, прямо или косвенно находящейся в собственности или под контролем такой организации или физического лица, либо в ее пользу, а также физическим или юридическим лицом, действующим от имени или по указанию такой организации или такого физического лица, либо в их пользу.</>,
+                },
+              ]}
+              headerTextColor={'#170F49'}
+              activeHeaderTextColor={'#1F3C88'}
+              textColor={'#6F6C90'}
+              tabsTextColor={'#3A3939'}
+              tabsBackgroundColor={'#BAD6FF'}
+            />
+          </Reveal>
+          <Sizebox height={80} />
+          <Reveal>
+            <HeaderWithLine
+              header={'В каких случая операция не подлежит заморозке?'}
+            ></HeaderWithLine>
+          </Reveal>
+          <Sizebox height={80} />
+          <Reveal>
+          <NumberedDots
+            list={[
+              'получение в виде оплаты трудового отпуска или заработной платы в размере, не превышающем минимального размера заработной платы, установленного на соответствующий финансовый год законом о республиканском бюджете, в течение календарного месяца из расчета на каждого члена семьи;',
+              'получение в виде пенсии, расходов на служебные командировки, стипендии, пособия, иной социальной выплаты в соответствии с законодательством Казахстана, уплата налогов, коммунальных и социальных платежей, других обязательных платежей в бюджет, пеней и штрафов;',
+              'обращение физлица, включенного в Перечень ФРОМУ в АФМ с письменным мотивированным заявлением о частичной или полной отмене применяемых мер по замораживанию операций с деньгами и (или) иным имуществом в целях обеспечения своей жизнедеятельности и членов семьи, не имеющих самостоятельных источников дохода;',
+              'в случае, если хотя бы одна из сторон операций является лицом, включенным в Перечень ФРОМУ, и операции осуществляются в рамках договоров, заключенных до включения таких лиц в этот перечень '
+            ]}
+          ></NumberedDots>
+          </Reveal>
+          <Sizebox height={40} />
+          <Reveal>
+            <NotNumberedDots
+              header={
+                <>
+                  При этом <span className="highlight2" randomText="Приостановление расходных операций по банковским счетам такой организации или физлица, по банковским счетам клиента, бенефициарным собственником которого является такое физлицо (за исключением операций, связанных с обслуживанием банковских счетов), организации, прямо или косвенно находящейся в собственности или под контролем такой организации или физлица, а также физ или юрлица, действующего от имени или по указанию такой организации или такого физлица. ">меры по замораживанию операций с деньгами и (или) иным имуществом</span> , не применяются в отношении следующих операций по договорам, заключенным с субъектом финансового мониторинга до включения лица в Перечень:
+                </>
+              }
+              list={[
+                'продления сроков банковского вклада;',
+                'списания и перечисления денег с банковского счета лица, включенного в Перечень, в счет погашения обязательств по договорам банковского займа, лизинга или договору о предоставлении микрокредита.'
+              ]}
+            ></NotNumberedDots>
+          </Reveal>
+          <Sizebox height={40} />
+          <Reveal>
+            <Centered>
+              <VideoLine
+                url={''}
+              ></VideoLine>
+            </Centered>
+            <Sizebox height={20}></Sizebox>
+            <TextWithTitle
+              title={'По каким фатам субъекты финансового мониторинга также предоставляют информацию в АФМ?'}
+            ></TextWithTitle>
+          </Reveal>
+          <Sizebox height={40}></Sizebox>
+          <Reveal>
+            <Report_Warning>
+            Отказ от проведения, приостановление операций с деньгами и (или) иным имуществом, а также отказ от установления деловых отношений или прекращение деловых отношений в соответствии с Законом о ПОД/ФТ не являются основаниями для гражданско-правовой ответственности субъектов финансового мониторинга за нарушение условий соответствующих договоров (обязательств). 
+            </Report_Warning>
+            <Sizebox height={40}></Sizebox>
+          </Reveal>
+          <Reveal>
+            <Report_Warning>
+            Приостановление и замораживание операций с деньгами и (или) иным имуществом не являются основаниями для возникновения гражданско-правовой или иной ответственности государственных органов за ущерб, в том числе упущенную выгоду, возникший вследствие такого приостановления и замораживания. 
+            </Report_Warning>
+            <Sizebox height={40}></Sizebox>
+          </Reveal>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <Reveal>
             <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
               <>
@@ -6867,8 +7060,7 @@ function GetLesson({
                 CheckCurrentChapter(id);
             }}/> 
 
-        </LessonPage>)
-    
+        </LessonPage>) 
     case 82:
         return (<LessonPage name={'Межведомственные органы и рабочие группы'} lecturer={'AML Academy'}>
             
@@ -7038,7 +7230,7 @@ function GetLesson({
             </Reveal>
 
         </LessonPage>)
-      case 10:
+    case 10:
           return (
               <TestPage
                   finished={modules[4].quiz.quiz_max_points === 100}
@@ -8274,10 +8466,9 @@ function GetLesson({
                 <NextLesson handleOnClick={() => {
                     CheckCurrentChapter(id, 11);
                 }}/>
-            </Reveal>
-
+          </Reveal>
         </LessonPage>)
-      case 11:
+    case 11:
           return (
               <TestPage
                   finished={modules[6].quiz.quiz_max_points === 100}
@@ -8286,8 +8477,14 @@ function GetLesson({
                   quizId={17}
                   handleOpenModal={handleOpenFeedbackModal}
               ></TestPage>
-          );
+      );
+    default:
+      return (
+        <div></div>
+    );
+
   }
+   
 }
 
 export default GetLesson;

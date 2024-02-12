@@ -3,8 +3,8 @@ import './style.scss';
 import DropdownButton from './DropdownButton';
 import DropdownContent from './DropdownContent';
 
-const DropdownPage = ({data, dataBtn, Height}) => {
-  const [openDropdown, setOpenDropdown] = useState(1);
+const DropdownPage = ({data, dataBtn, Height='max-content'}) => {
+  const [openDropdown, setOpenDropdown] = useState(0);
  
 
 
@@ -24,8 +24,7 @@ const DropdownPage = ({data, dataBtn, Height}) => {
 
       <div
         className="dropdown-container"
-        style={{height:Height}}
-      >
+        >
       {data.map((item, index) => (
         <DropdownContent isOpen={index === openDropdown} key={item.option}>
           {item.option}
