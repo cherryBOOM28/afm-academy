@@ -4,15 +4,22 @@ import React from 'react'
 import image from './../../../../assets/images/Image_22.png';
 
 function ImageLine({
-                       img,
-                       color,
-                       height,
-                       notCrop=true
-                   }) {
+    img,
+    color,
+    height,
+    notCrop = true,
+    adjustWidth = false
+}) {
 
     if (img !== null && img !== undefined) {
         return (
-            <div className={`image-line ${notCrop ? 'not-crop' : ''}`}>
+            <div 
+                className={`
+                    image-line 
+                    ${notCrop ? 'not-crop' : ''}
+                    ${adjustWidth ? 'adjustWidth' : ''}
+                `}
+            >
                 <img src={img} alt="image" style={{ height: `${height}px` }}/>
             </div>
         )
@@ -20,8 +27,13 @@ function ImageLine({
 
     if (color !== null && color!== undefined) {
         return (
-            <div className={`image-line ${notCrop ? 'not-crop' : ''}`}
-                 style={{backgroundColor: color, height: `${height}px`, width: '100%'}}>
+            <div 
+                className={`
+                    image-line 
+                    ${notCrop ? 'not-crop' : ''}
+                    ${adjustWidth ? 'adjustWidth' : ''}
+                `}
+                style={{backgroundColor: color, height: `${height}px`, width: '100%'}}>
             </div>
         )
     }

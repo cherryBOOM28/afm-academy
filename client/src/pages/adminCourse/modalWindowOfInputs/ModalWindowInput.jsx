@@ -39,9 +39,18 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
     const hasQuestions = inputs.some((x) => x.name == 'questions')
     const hasColumnsInput = inputs.some((x) => x.name == 'columns')
     const hasDataInput = inputs.some((x) => x.name == 'data')
-    const hasIconInput = inputs.some((x) => x.name == 'icons')
+    const hasIconInput = inputs.some((x) => x.name == 'icons');
+    const hasCentered = inputs.some((x) => x.name == 'isCentered');
+    const adjustWidth = inputs.some((x) => x.name == 'adjustWidth');
 
     const hasTableInput = inputs.some((x) => x.name === 'rows');
+
+    if (adjustWidth) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'adjustWidth': exValues?.adjustWidth || false
+      }))
+    }
 
     if (hasListInput) {
       // Update the 'list' property in the values state to an empty string
@@ -124,6 +133,11 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
         ...prevValues,
         'icons': exValues?.icons || [''],
         'data': exValues?.data || [{title: 'Заголовок', description: 'Текст'}],
+      }));
+    } else if (hasCentered) {
+      setValues((prevValues) => ({
+        ...prevValues,
+        'isCentered': exValues?.isCentered || false
       }));
     }
 
@@ -1076,8 +1090,20 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
                   </div>
                 </div>
                 : input.type == 'title_desx_of_icons' ? null
-                :
-                <div key={input.name} className='default-input'>
+                : input.type == 'checkbox'
+                ? (
+                  <div key={input.name} className='checkbox-input'>
+                    <label>{input.label}</label>
+                    <input 
+                      type='checkbox'
+                      value={values[input.name] || false}
+                      onChange={(e) => {
+                        values[input.name] = e.target.checked;
+                      }}
+                    />
+                  </div>
+                )
+                : <div key={input.name} className='default-input'>
                   <label>{input.label}</label>
                   <input
                       type={input.type}
