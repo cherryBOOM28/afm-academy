@@ -6,7 +6,7 @@ const DropdownContent = ({ isOpen, children }) => {
     return text.replace(/"(.*?)"/g, '<span style="font-weight: bold;">$1</span>');
   };
 
-  return <div className={`dropdown-contentData ${isOpen ? 'open' : ''}`} dangerouslySetInnerHTML={{ __html: formatText(children) }} />;
+  return <div className={`dropdown-contentData ${isOpen ? 'open' : ''}`}>{  formatText(children) }</div>;
 };
 
 export default DropdownContent;

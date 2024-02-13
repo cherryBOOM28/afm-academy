@@ -29,10 +29,6 @@ function TextWithTitle({ title, text, color,fontWeight }) {
         return res;
     };
 
-    if (typeof text === 'string' && text.indexOf('\n') !== -1) {
-        text = text.split('\n');
-    }
-
     return ( 
         <div className="text-with-title">
             {title ? (<h4 style={{
@@ -51,7 +47,7 @@ function TextWithTitle({ title, text, color,fontWeight }) {
                                         }}
                                         key={i}
                                        
-                                    > { formatText(i)}</p>
+                                    >{i}</p>
                                 ))
                             }
                         </div>

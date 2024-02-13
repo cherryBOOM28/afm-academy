@@ -57,7 +57,7 @@ const NotNumberedDots = ({ list, header, dotsColor, color, gap='27px', fontWeigh
                                         fontWeight: 200
                                     }}
                                   
-                                >  {formatText(item)}</p>
+                                >  {item}</p>
                             </div>
                         )
                     })
