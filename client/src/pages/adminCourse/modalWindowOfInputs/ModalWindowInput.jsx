@@ -707,7 +707,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
     <div className="modal">
         <a className='modal-title'>Введите данные для компонента</a>
         <div className="modal-content">
-            {inputs.map((input) => (
+            {inputs !== null && inputs.map((input) => (
               input.type == "file" ?
                 <div key={input.name} className='file-input'>
                     <label>{input.label}</label>
