@@ -56,8 +56,8 @@ const NotNumberedDots = ({ list, header, dotsColor, color, gap='27px', fontWeigh
                                         color: color ? color : defaultColor,
                                         fontWeight: 200
                                     }}
-                                    dangerouslySetInnerHTML={{ __html: formatText(item)}}
-                                ></p>
+                                  
+                                >  {formatText(item)}</p>
                             </div>
                         )
                     })
