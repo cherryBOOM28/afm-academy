@@ -5,6 +5,7 @@ import Modal from '../modalWindowOfInputs/ModalWindowInput'
 import QuestionnaireForm from '../fillQuestionnaire/Questionnaire'
 
 //Components
+import Quote from '../../../components/courseTemplates/common_v2/Quote'
 import Centered from '../../../components/courseTemplates/common/Centered'
 import FileDownloader from '../../../components/courseTemplates/common/FileDownloader'
 import HeaderWithLine from '../../../components/courseTemplates/common/HeaderWithLine'
@@ -80,356 +81,14 @@ import base_url from '../../../settings/base_url'
 import DropDownTextWithTabs from '../../../components/courseTemplates/complex/DropDownTextWithTabs'
 import { useNavigate } from 'react-router'
 
-const elements = {
-    'Текстовые элементыss': {
-        'Заголовок с полосой': {
-            component: HeaderWithLine,
-            icon: headerWithLineIcon,
-            inputs: [
-                { name: 'children', label: 'Children', type: 'text' },
-                { name: 'header', label: 'Текст', type: 'text' },
-                { name: 'headerColor', label: 'Цвет текста', type: 'color' },
-                { name: 'lineColor', label: 'Цвет полосы', type: 'color' },
-            ],
-        }, //children (span for bold), header (for usual text), headerColor, lineColor
-        'Текст': {
-            component: RandomGlossary,
-            icon: randomGlossaryIcon,
-            inputs: [
-                { name: 'title', label: 'Заголовок', type: 'text' },
-                { name: 'text', label: 'Текст', type: 'text' },
-                { name: 'color', label: 'Цвет', type: 'color' },
-                { name: 'backgroundColor', label: 'Цвет фона', type: 'color' },
-            ],
-        }, //title, text, color, backgroundColor
-        'Маленький заголовок': {
-            component: RandomH2,
-            icon: randomH2Icon,
-            inputs: [
-                { name: 'children', label: 'Children', type: 'text' },
-                { name: 'isCentered', label: 'Централизировать', type: 'checkbox' },
-            ]
-        }, //children
-        'Параграф': {
-            component: RandomParapraph,
-            icon: randomParagraphIcon,
-            inputs: [
-              { name: 'children', label: 'Текст (Children)', type: 'text' },
-              { name: 'color', label: 'Цвет', type: 'color' },
-              { name: 'fontSize', label: 'Размер шрифта', type: 'number' },
-            ],
-        }, //children, color, fontSize
-        'Цветной фон': {
-            component: TextWithBackground,
-            icon: imageIcon,
-            inputs: [
-                { name: 'header', label: 'Заголовок', type: 'text' },
-                { name: 'text', label: 'Текст', type: 'text' },
-                { name: 'color', label: 'Цвет текста', type: 'color' },
-                { name: 'backgroundColor', label: 'Цвет фона', type: 'color' },
-            ],
-              
-        }, //text [,,], color, backgroundColor
-        'Заголовок + текст': {
-            component: TextWithTitle,
-            icon: textWithTitleIcon,
-            inputs: [
-                { name: 'title', label: 'Заголовок', type: 'text' },
-                { name: 'text', label: 'Текст', type: 'text' },
-                { name: 'color', label: 'Цвет текста', type: 'color' },
-            ],
-        }, //title, text
-        'Аннотация': {
-            component: Report_Warning,
-            icon: reportIcon,
-            inputs: [
-                { name: 'children', label: 'Children', type: 'text' },
-            ],
-        }, //children
-        'Аннотация параграф': {
-            component: Report_Information,
-            icon: reportInformationIcon,
-            inputs: [
-                { name: 'children', label: 'Children', type: 'text' },
-            ],
-        }, //children
-        
-    },
-    'Списковые элементы': {
-        'Точечный': {
-            component: NotNumberedDots,
-            icon: norNumberedDotsIcon,
-            inputs: [
-                { name: 'header', label: 'Заголовок', type: 'text' },
-                { name: 'list', label: 'Список', type: 'list' },
-                { name: 'dotsColor', label: 'Цвет точек', type: 'color' },
-                { name: 'color', label: 'Цвет текста', type: 'color' },
-            ],
-        }, 
-        'Нумированный': {
-            component: NumberedDots,
-            icon: numberedDotsIcon,
-            inputs: [
-                { name: 'header', label: 'Заголовок', type: 'text' },
-                { name: 'list', label: 'Список', type: 'list' },
-                { name: 'dotsColor', label: 'Цвет точек', type: 'color' },
-                { name: 'color', label: 'Цвет текста', type: 'color' },
-            ],
-        },
-        'Список квадратный': {
-            component: FancyList,
-            icon: squareIcon,
-            inputs: [
-                { name: 'list', label: 'Список', type: 'list' },
-                { name: 'textColor', label: 'Цвет текста', type: 'color' },
-                { name: 'numberColor', label: 'Цвет номеров', type: 'color' },
-                { name: 'listColor', label: 'Цвет квадратов', type: 'color' },
-            ],
-        }, 
-        'Выпадающий список с описанием': {
-            component: DropdownList,
-            icon: dropDownListIcon,
-            inputs: [
-                { name: 'list', label: 'Список', type: 'listNameDescroptionItems' },
-            ],
-        },
-        // Done but needs to be generic
-        // 'Выпадающий список': {
-        //     component: DropdownList_r5,
-        //     icon: dropDownListIcon,
-        //     inputs: [
-        //         { name: 'title', label: 'Заголовок', type: 'text' },
-        //         { name: 'items', label: 'Список', type: 'items_text' },
-        //     ]
-        // },
-        'Раскрывающийся список': {
-            component: DropdownGlossaryList,
-            icon: listIcon,
-            inputs: [
-                { name: 'list', label: 'Список', type: 'title_desx_list'},
-                { name: 'headerTextColor', label: 'Цвет заголовков', type: 'color'},
-                { name: 'activeHeaderTextColor', label: 'Цвет активного заголовка', type: 'color'},
-                { name: 'textColor', label: 'Цвет текста', type: 'color'},
-                { name: 'tabsTextColor', label: 'Цвет текста вкладок', type: 'color'},
-                { name: 'tabsBackgroundColor', label: 'Цвет вкладок', type: 'color'},
-            ]
-        },
-        'Вкладки с текстами': {
-            component: TabsGlossary,
-            icon: tabsGlossaryIcon, // Replace with the actual icon reference
-            inputs: [
-                { name: 'tabs', label: 'Вкладки', type: 'tabs'},
-                { name: 'tabsGlossary', label: 'Тексты', type: 'tabsGlossary'},
-                { name: 'color', label: 'Цвет', type: 'color' },
-                { name: 'tabsBackgroundColor', label: 'Цвет фона названии разделов', type: 'color' },
-                { name: 'tabsActiveBackgroundColor', label: 'Фон активного названия раздела', type: 'color' },
-                { name: 'glossaryBackgroundColor', label: 'Фон раздела', type: 'color' }
-                // Add more inputs as needed based on the TabsGlossary component's props
-            ],
-        },
-        'Вкладки с разделами': {
-            component: DropDownTextWithTabs,
-            icon: dropDownTableIcon,
-            inputs: [
-                { name: 'tabs', label: 'Вкладки', type: 'dropd'},
-                { name: 'tabsData', label: 'Данные Вкладок', type: 'tabsData'},
-                { name: 'headerTextColor', label: 'Цвет Текста Заголовка', type: 'color'},
-                { name: 'activeHeaderTextColor', label: 'Цвет Активного Текста Заголовка', type: 'color'},
-                { name: 'textColor', label: 'Цвет Текста', type: 'color'},
-                { name: 'tabsTextColor', label: 'Цвет Текста Вкладок', type: 'color'},
-                { name: 'tabsBackgroundColor', label: 'Цвет Фона Вкладок', type: 'color'},
-            ]
-        }
-    },
-    'Табличные элементы': {
-        'Двухколонная': {
-            component: Table_1,
-            icon: table1Icon,
-            inputs: [
-                { name: 'rows', label: 'Строки', type: 'rows' },
-                { name: 'borderColor', label: 'Цвет границы', type: 'color' },
-                { name: 'color', label: 'Цвет текста', type: 'color' },
-            ],
-              
-        }, // rows [{first:, second:}], borderColor, color
-        'Видовой': {
-            component: SimpleTable,
-            icon: table1Icon,
-            inputs: [
-                { name: 'columns', label: 'Колонны', type: 'table_headers' },
-                { name: 'data', label: 'Строки', type: 'table_rows' },
-            ],
-              
-        }, 
-    
-    },
-    'Медиа': {
-        'Текст с изображением': {
-            component: ImageWithText,
-            icon: imageWithTextIcon,
-            inputs: [
-                { name: 'img', label: 'Изображение', type: 'file' },
-                { name: 'imageText', label: 'Текст', type: 'text' },
-                { name: 'children', label: 'Children', type: 'text' },
-                { name: 'color', label: 'Цвет', type: 'color' },
-              ],
-        }, //img, imageText or children, color
-        'Изображение': {
-            component: ImageLine,
-            icon: imageIcon,
-            inputs: [
-                { name: 'img', label: 'Изображение', type: 'file' },
-                { name: 'color', label: 'Цвет', type: 'color' },
-                { name: 'height', label: 'Высота', type: 'number' },
-                { name: 'adjustWidth', label: 'Подогнать ширину', type: 'checkbox' },
-            ],
-        }, //img, height, color done
-        'Видео': {
-            component: VideoLine,
-            icon: videoLineIcon,
-            inputs: [
-                // { name: 'poster', label: 'Постер', type: 'text' },
-                { name: 'url', label: 'Ссылка', type: 'text' },
-            ],
-        }, // url , poster done
-        'Видео с текстом': {
-            component: VideoWithTitleAndText,
-            icon: textContentIcon,
-            inputs: [
-                // { name: 'poster', label: 'Постер', type: 'text' },
-                { name: 'url', label: 'Ссылка', type: 'text' },
-                { name: 'title', label: 'Заголовок', type: 'text' },
-                { name: 'text', label: 'Текст', type: 'text' },
-            ],
-        }, // url , poster done
-    },
-    'Элементы вида': {
-        // 'Централизовать': {
-        //     component: Centered,
-        //     icon: centeredIcon
-        // }, //
-        'Отступ': {
-            component: Sizebox,
-            icon: sizeBoxIcon,
-            inputs: [
-                {name: 'height', label: 'Размер отступа в PX', type: 'number' }
-            ]
-        }, //
-    },
-    'Ссылки и файлы': {
-        'Файл': {
-            component: FileDownloader,
-            icon: fileDIcon,
-            inputs: [
-                { name: 'file', label: 'Файл', type: 'file' },
-                { name: 'fileName', label: 'Имя файла', type: 'text' },
-                { name: 'type', label: 'Тип', type: 'text' },
-                { name: 'color', label: 'Цвет', type: 'color' },
-            ],
-              
-        }, //file, fileName 
-        'Ссылка': {
-            component: TextAndLink,
-            icon: randomGlossaryIcon,
-            inputs: [
-                { name: 'text', label: 'Название', type: 'text' },
-                { name: 'link', label: 'Ссылка', type: 'text' },
-                { name: 'linkText', label: 'Текст ссылки', type: 'text' },
-                { name: 'textColor', label: 'Цвет Названия', type: 'color' },
-                { name: 'linkColor', label: 'Цвет Ссылки', type: 'color' },
-                { name: 'linkBackgroundColor', label: 'Цвет заднего фона ссылки', type: 'color' },
-            ],
-              
-        }, //file, fileName 
-    },
-    'Другие': {
-        'Биография': {
-            component: ShortBiography,
-            icon: biographyIcon,
-            inputs: [
-                { name: 'img', label: 'Фото', type: 'file'},
-                { name: 'name', label: 'ФИО', type: 'text'},
-                { name: 'birthdate', label: 'Дата рождения', type: 'text'},
-                { name: 'deathdate', label: 'Дата смерти', type: 'text'},
-                { name: 'biography', label: 'Биография', type: 'textarea'},
-            ]
-        },
-        'Цепь с текстами': {
-            component: DataChain,
-            icon: listIcon,
-            inputs: [
-                { name: 'data', label: 'Список', type: 'title_desx_list'},
-            ]
-        },
-        'Блоки': {
-            component: FlexBoxes,
-            icon: block2Icon,
-            inputs: [
-                { name: 'list', label: 'Список', type: 'list' },
-                { name: 'color', label: 'Цвет текста', type: 'color' },
-                { name: 'backgroundColor', label: 'Цвет фона', type: 'color' },
-            ],
-        }, 
-        'Блоки 2': {
-            component: FlexRow,
-            icon: blockIcon,
-            inputs: [
-                { name: 'icons', label: 'Картинки', type: 'icons_title_desx_list' },
-                { name: 'data', label: 'Список', type: 'title_desx_of_icons' },
-                { name: 'textColor', label: 'Цвет текста', type: 'color' },
-            ],
-        }, 
-    },
-    'Интерактивные': {
-        'Двух вариантный': {
-            component: DragAndDropTwoSide,
-            icon: dndTwoSideIcon,
-            inputs: [
-                { name: 'leftAnswer', label: 'Первый вариант', type: 'text'},
-                { name: 'rightAnswer', label: 'Второй вариант', type: 'text'},
-                { name: 'questions', label: 'Вопросы', type: 'dnd_questions'},
-            ]
-        },
-    }
-}
+import Elements from './Elements'
+import componentMap from './ComponentMap'
 
 function getKeyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
 }
 
-const componentMap = {
-    HeaderWithLine,
-    ImageWithText,
-    ImageLine,
-    RandomGlossary,
-    RandomH2,
-    RandomParapraph,
-    TextWithBackground,
-    TextWithTitle,
-    Report_Warning,
-    Report_Information,
-    NotNumberedDots,
-    NumberedDots,
-    Table_1,
-    FileDownloader,
-    VideoLine,
-    Sizebox,
-    TabsGlossary,
-    DropDownTextWithTabs,
-    VideoWithTitleAndText,
-    TextAndLink,
-    DropdownList,
-    DropdownList_r5,
-    ShortBiography,
-    DragAndDropTwoSide,
-    DropdownGlossaryList,
-    DataChain,
-    SimpleTable,
-    FancyList,
-    FlexBoxes,
-    FlexRow
-    // Add other components here
-};
+
 
 function generateUniqueId() {
     const timestamp = new Date().getTime();
@@ -691,11 +350,11 @@ const Constructor = ({saveCancel, save, id, title}) => {
                 let newComponents = res.data.map(item => {
                     // Find the category and component that matches the componentName
                     let inputs = null;
-                    for (const category in elements) {
-                        for (const element in elements[category]) {
+                    for (const category in Elements) {
+                        for (const element in Elements[category]) {
 
-                            if (elements[category][element].component.name == item.componentName) {
-                                inputs = elements[category][element].inputs;
+                            if (Elements[category][element].component.name == item.componentName) {
+                                inputs = Elements[category][element].inputs;
                                 break;
                             }
                         }
@@ -725,6 +384,8 @@ const Constructor = ({saveCancel, save, id, title}) => {
     }, [])
     
     useEffect(() => {
+        console.log(componentHistory)
+
         if (save) {
             // Clone the componentHistory to avoid direct state mutation
             let modifiedHistory = JSON.parse(JSON.stringify(componentHistory));
@@ -912,7 +573,7 @@ const Constructor = ({saveCancel, save, id, title}) => {
                     console.log(componentHistory)
                 }} style={{color: 'white', cursor: 'default'}}>CONSOLE.LOG</a>
                 <div className='elements'>
-                    {Object.entries(elements).map(([groupName, groupElements]) => (
+                    {Object.entries(Elements).map(([groupName, groupElements]) => (
                         <div className='element-group' key={groupName}>
                             <h4>{groupName}</h4>
                             <div className='element-grid'>
