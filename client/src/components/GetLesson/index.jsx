@@ -1,7 +1,7 @@
 /* eslint-disable default-case */
 /* eslint-disable no-useless-concat */
 /* eslint-disable react/jsx-pascal-case */
-import React from 'react';
+import React,{useState} from 'react';
 import './style.scss';
 
 // components
@@ -151,6 +151,7 @@ import TwoColumnsDivider from '../courseTemplates/common_v2/TwoColumnsDivider';
 import TextWithBold from '../courseTemplates/common/TextWithBold';
 import Image from '../courseTemplates/common_v2/Image';
 import PyramidList from '../courseTemplates/common_v2/PyramidList';
+import Modal from '../../pages/adminCourse/modalWindowOfInputs/ModalWindowInput'
 
 
 
@@ -190,6 +191,22 @@ const TODO = ({ text }) => (
     <p style={{ color: '#FFF' }}>TODO: {text}</p>
   </div>
 );
+const props = {
+  onClose: () => console.log('Modal closed'),
+  inputs: [
+    { type: 'text', label: 'Text Input 1', name: 'textInput1' },
+    { type: 'number', label: 'Number Input', name: 'numberInput' },
+    { type: 'file', label: 'File Input', name: 'fileInput' },
+    // Другие типы входных данных
+  ],
+  onSubmit: () => console.log('Form submitted'),
+  exValues: {
+    textInput1: 'Random Text',
+    numberInput: 42,
+    fileInput: null, // Пример значения для файла
+    // Другие значения
+  }
+};
 
 function GetLesson({
   id,
@@ -198,6 +215,15 @@ function GetLesson({
   handleOpenFeedbackModal,
   modules
 }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   switch (id) {
     case 58:
       return (
@@ -271,6 +297,12 @@ function GetLesson({
               ]}
             />
           </Reveal>
+          <button onClick={openModal}>Открыть модальное окно</button>
+      
+      {/* Модальное окно */}
+      {isModalOpen && (
+        <Modal onClose={closeModal} inputs={props.inputs} onSubmit={props.onSubmit} exValues={props.exValues} />
+      )}
 
           <Sizebox height={40} />
 
