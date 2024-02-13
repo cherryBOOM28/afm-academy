@@ -42,6 +42,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
     const hasIconInput = inputs.some((x) => x.name == 'icons');
     const hasCentered = inputs.some((x) => x.name == 'isCentered');
     const adjustWidth = inputs.some((x) => x.name == 'adjustWidth');
+    const isSublist = inputs.some((x) => x.name == 'isSublist');
 
     const hasTableInput = inputs.some((x) => x.name === 'rows');
 
@@ -49,6 +50,13 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
       setValues(prevValues => ({
         ...prevValues,
         'adjustWidth': exValues?.adjustWidth || false
+      }))
+    }
+
+    if (isSublist) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'isSublist': exValues?.isSublist || false
       }))
     }
 

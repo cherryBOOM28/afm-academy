@@ -65,6 +65,7 @@ const Elements = {
     'Текстовые элементыss': {
         'Заголовок с полосой': {
             component: HeaderWithLine,
+            name: 'HeaderWithLine',
             icon: headerWithLineIcon,
             inputs: [
                 { name: 'children', label: 'Children', type: 'text' },
@@ -75,6 +76,7 @@ const Elements = {
         }, //children (span for bold), header (for usual text), headerColor, lineColor
         'Текст': {
             component: RandomGlossary,
+            name: 'RandomGlossary',
             icon: randomGlossaryIcon,
             inputs: [
                 { name: 'title', label: 'Заголовок', type: 'text' },
@@ -85,6 +87,7 @@ const Elements = {
         }, //title, text, color, backgroundColor
         'Маленький заголовок': {
             component: RandomH2,
+            name: 'RandomH2',
             icon: randomH2Icon,
             inputs: [
                 { name: 'children', label: 'Children', type: 'text' },
@@ -93,6 +96,7 @@ const Elements = {
         }, //children
         'Параграф': {
             component: RandomParapraph,
+            name: 'RandomParapraph',
             icon: randomParagraphIcon,
             inputs: [
               { name: 'children', label: 'Текст (Children)', type: 'text' },
@@ -102,6 +106,7 @@ const Elements = {
         }, //children, color, fontSize
         'Цветной фон': {
             component: TextWithBackground,
+            name: 'TextWithBackground',
             icon: imageIcon,
             inputs: [
                 { name: 'header', label: 'Заголовок', type: 'text' },
@@ -113,6 +118,7 @@ const Elements = {
         }, //text [,,], color, backgroundColor
         'Заголовок + текст': {
             component: TextWithTitle,
+            name: 'TextWithTitle',
             icon: textWithTitleIcon,
             inputs: [
                 { name: 'title', label: 'Заголовок', type: 'text' },
@@ -122,6 +128,7 @@ const Elements = {
         }, //title, text
         'Аннотация': {
             component: Report_Warning,
+            name: 'Report_Warning',
             icon: reportIcon,
             inputs: [
                 { name: 'children', label: 'Children', type: 'text' },
@@ -129,6 +136,7 @@ const Elements = {
         }, //children
         'Аннотация параграф': {
             component: Report_Information,
+            name: 'Report_Information',
             icon: reportInformationIcon,
             inputs: [
                 { name: 'children', label: 'Children', type: 'text' },
@@ -136,6 +144,7 @@ const Elements = {
         }, //children
         'Цитата': {
             component: Quote,
+            name: 'Quote',
             icon: reportInformationIcon,
             inputs: [
                 { name: 'text', label: 'Текст', type: 'text' },
@@ -147,16 +156,19 @@ const Elements = {
     'Списковые элементы': {
         'Точечный': {
             component: NotNumberedDots,
+            name: 'NotNumberedDots',
             icon: norNumberedDotsIcon,
             inputs: [
                 { name: 'header', label: 'Заголовок', type: 'text' },
                 { name: 'list', label: 'Список', type: 'list' },
                 { name: 'dotsColor', label: 'Цвет точек', type: 'color' },
                 { name: 'color', label: 'Цвет текста', type: 'color' },
+                { name: 'isSublist', label: 'Подсписок', type: 'checkbox' },
             ],
         }, 
         'Нумированный': {
             component: NumberedDots,
+            name: 'NumberedDots',
             icon: numberedDotsIcon,
             inputs: [
                 { name: 'header', label: 'Заголовок', type: 'text' },
@@ -167,6 +179,7 @@ const Elements = {
         },
         'Список квадратный': {
             component: FancyList,
+            name: 'FancyList',
             icon: squareIcon,
             inputs: [
                 { name: 'list', label: 'Список', type: 'list' },
@@ -177,6 +190,7 @@ const Elements = {
         }, 
         'Выпадающий список с описанием': {
             component: DropdownList,
+            name: 'DropdownList',
             icon: dropDownListIcon,
             inputs: [
                 { name: 'list', label: 'Список', type: 'listNameDescroptionItems' },
@@ -193,6 +207,7 @@ const Elements = {
         // },
         'Раскрывающийся список': {
             component: DropdownGlossaryList,
+            name: 'DropdownGlossaryList',
             icon: listIcon,
             inputs: [
                 { name: 'list', label: 'Список', type: 'title_desx_list'},
@@ -205,6 +220,7 @@ const Elements = {
         },
         'Вкладки с текстами': {
             component: TabsGlossary,
+            name: 'TabsGlossary',
             icon: tabsGlossaryIcon, // Replace with the actual icon reference
             inputs: [
                 { name: 'tabs', label: 'Вкладки', type: 'tabs'},
@@ -218,6 +234,7 @@ const Elements = {
         },
         'Вкладки с разделами': {
             component: DropDownTextWithTabs,
+            name: 'DropDownTextWithTabs',
             icon: dropDownTableIcon,
             inputs: [
                 { name: 'tabs', label: 'Вкладки', type: 'dropd'},
@@ -233,6 +250,7 @@ const Elements = {
     'Табличные элементы': {
         'Двухколонная': {
             component: Table_1,
+            name: 'Table_1',
             icon: table1Icon,
             inputs: [
                 { name: 'rows', label: 'Строки', type: 'rows' },
@@ -243,6 +261,7 @@ const Elements = {
         }, // rows [{first:, second:}], borderColor, color
         'Видовой': {
             component: SimpleTable,
+            name: 'SimpleTable',
             icon: table1Icon,
             inputs: [
                 { name: 'columns', label: 'Колонны', type: 'table_headers' },
@@ -255,6 +274,7 @@ const Elements = {
     'Медиа': {
         'Текст с изображением': {
             component: ImageWithText,
+            name: 'ImageWithText',
             icon: imageWithTextIcon,
             inputs: [
                 { name: 'img', label: 'Изображение', type: 'file' },
@@ -265,6 +285,7 @@ const Elements = {
         }, //img, imageText or children, color
         'Изображение': {
             component: ImageLine,
+            name: 'ImageLine',
             icon: imageIcon,
             inputs: [
                 { name: 'img', label: 'Изображение', type: 'file' },
@@ -275,6 +296,7 @@ const Elements = {
         }, //img, height, color done
         'Видео': {
             component: VideoLine,
+            name: 'VideoLine',
             icon: videoLineIcon,
             inputs: [
                 // { name: 'poster', label: 'Постер', type: 'text' },
@@ -283,6 +305,7 @@ const Elements = {
         }, // url , poster done
         'Видео с текстом': {
             component: VideoWithTitleAndText,
+            name: 'VideoWithTitleAndText',
             icon: textContentIcon,
             inputs: [
                 // { name: 'poster', label: 'Постер', type: 'text' },
@@ -299,6 +322,7 @@ const Elements = {
         // }, //
         'Отступ': {
             component: Sizebox,
+            name: 'Sizebox',
             icon: sizeBoxIcon,
             inputs: [
                 {name: 'height', label: 'Размер отступа в PX', type: 'number' }
@@ -308,6 +332,7 @@ const Elements = {
     'Ссылки и файлы': {
         'Файл': {
             component: FileDownloader,
+            name: 'FileDownloader',
             icon: fileDIcon,
             inputs: [
                 { name: 'file', label: 'Файл', type: 'file' },
@@ -319,6 +344,7 @@ const Elements = {
         }, //file, fileName 
         'Ссылка': {
             component: TextAndLink,
+            name: 'TextAndLink',
             icon: randomGlossaryIcon,
             inputs: [
                 { name: 'text', label: 'Название', type: 'text' },
@@ -334,6 +360,7 @@ const Elements = {
     'Другие': {
         'Биография': {
             component: ShortBiography,
+            name: 'ShortBiography',
             icon: biographyIcon,
             inputs: [
                 { name: 'img', label: 'Фото', type: 'file'},
@@ -345,6 +372,7 @@ const Elements = {
         },
         'Цепь с текстами': {
             component: DataChain,
+            name: 'DataChain',
             icon: listIcon,
             inputs: [
                 { name: 'data', label: 'Список', type: 'title_desx_list'},
@@ -352,6 +380,7 @@ const Elements = {
         },
         'Блоки': {
             component: FlexBoxes,
+            name: 'FlexBoxes',
             icon: block2Icon,
             inputs: [
                 { name: 'list', label: 'Список', type: 'list' },
@@ -361,6 +390,7 @@ const Elements = {
         }, 
         'Блоки 2': {
             component: FlexRow,
+            name: 'FlexRow',
             icon: blockIcon,
             inputs: [
                 { name: 'icons', label: 'Картинки', type: 'icons_title_desx_list' },
@@ -372,6 +402,7 @@ const Elements = {
     'Интерактивные': {
         'Двух вариантный': {
             component: DragAndDropTwoSide,
+            name: 'DragAndDropTwoSide',
             icon: dndTwoSideIcon,
             inputs: [
                 { name: 'leftAnswer', label: 'Первый вариант', type: 'text'},

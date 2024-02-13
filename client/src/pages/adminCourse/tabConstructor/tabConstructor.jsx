@@ -5,71 +5,9 @@ import Modal from '../modalWindowOfInputs/ModalWindowInput'
 import QuestionnaireForm from '../fillQuestionnaire/Questionnaire'
 
 //Components
-import Quote from '../../../components/courseTemplates/common_v2/Quote'
-import Centered from '../../../components/courseTemplates/common/Centered'
-import FileDownloader from '../../../components/courseTemplates/common/FileDownloader'
-import HeaderWithLine from '../../../components/courseTemplates/common/HeaderWithLine'
-import ImageLine from '../../../components/courseTemplates/common/ImageLine'
-import ImageWithText from '../../../components/courseTemplates/common/ImageWithText'
-import NotNumberedDots from '../../../components/courseTemplates/common/NotNumberedDots'
-import NumberedDots from '../../../components/courseTemplates/common/NumberedDots'
-import RandomGlossary from '../../../components/courseTemplates/common/RandomGlossary'
-import RandomH2 from '../../../components/courseTemplates/common/RandomH2'
-import RandomParapraph from '../../../components/courseTemplates/common/RandomParagraph'
-import Sizebox from '../../../components/courseTemplates/common/Sizebox'
-import SmallNotNuberedDots from '../../../components/courseTemplates/common/SmallNotNuberedDots'
 
-import Table_1 from '../../../components/courseTemplates/common/Tables/Table-1'
-
-import FlexRow from '../../../components/courseTemplates/common_v2/FlexRow'
-import FlexBoxes from '../../../components/courseTemplates/common_v2/FlexBoxes'
-import FancyList from '../../../components/courseTemplates/common_v2/FancyList'
-import TextWithBackground from '../../../components/courseTemplates/common/TextWithBackground'
-import TextWithTitle from '../../../components/courseTemplates/common/TextWithTitle'
-import VideoLine from '../../../components/courseTemplates/common/VideoLine'
-import Report_Warning from '../../../components/courseTemplates/common/Warnings/Report'
-import Report_Information from '../../../components/courseTemplates/common/Warnings/Report_Information'
-import TabsGlossary from '../../../components/courseTemplates/complex/TabsGlossary'
-import VideoWithTitleAndText from '../../../components/courseTemplates/complex/Video/VideoWithTitleAndText'
-import TextAndLink from '../../../components/courseTemplates/complex/TextAndLink'
-import DropdownList from '../../../components/courseTemplates/complex/interactives/DropdownList'
-import DropdownList_r5 from '../../../components/courseTemplates/complex/interactives/DropdownList_r5'
-import ShortBiography from '../../../components/courseTemplates/complex/images/ShortBiography'
-import DragAndDropTwoSide from '../../../components/courseTemplates/complex/DragAndDropTwoSide'
-import DropdownGlossaryList from '../../../components/courseTemplates/complex/DropdownGlossaryList'
-import DataChain from '../../../components/courseTemplates/complex/DataChain'
-import SimpleTable from '../../../components/courseTemplates/common/SimpleTable'
-
-
-import headerWithLineIcon from '../images/header-icon.svg'
-import imageWithTextIcon from '../images/textWithBackground-icon.svg'
-import randomGlossaryIcon from '../images/randomGlossary-icon.svg'
-import randomH2Icon from '../images/randomh2-icon.svg'
-import randomParagraphIcon from '../images/randomParagraph-icon.svg'
-import textWithTitleIcon from '../images/textWithTitle-icon.svg'
-import reportIcon from '../images/reportWarning-icon.svg'
-import reportInformationIcon from '../images/reportIndormation-icon.svg'
-import norNumberedDotsIcon from '../images/notNumberedDots-icon.svg'
-import numberedDotsIcon from '../images/numberedDots-icon.svg'
-import table1Icon from '../images/table-1-icon.svg'
-import fileDIcon from '../images/download-icon.svg'
-import imageIcon from '../images/imageLine-icon.svg'
-import videoLineIcon from '../images/videoLine-icon.svg'
-import centeredIcon from '../images/centered-icon.svg'
-import sizeBoxIcon from '../images/sizeBox-icon.svg'
 import Reveal from '../../../components/Reveal'
 import saveButton from '../images/save-button.svg'
-import saveDark from '../images/save-dark.svg'
-import tabsGlossaryIcon from '../images/tabs-glossary-icon.svg'
-import dropDownTableIcon from '../images/dropdropwithtext-icon.svg'
-import textContentIcon from '../images/text-content-icon.svg'
-import dropDownListIcon from '../images/drop-down-list-icon.svg'
-import biographyIcon from '../images/biography-icon.svg'
-import dndTwoSideIcon from '../images/two-side-icon.svg'
-import listIcon from '../images/list-icon.png'
-import squareIcon from '../images/square-icon.svg'
-import blockIcon from '../images/blocks-icon.svg'
-import block2Icon from '../images/blocks-2-icon.svg'
 
 import hatIcon from '../images/hat-light-icon.svg'
 import { IoMdArrowDown, IoMdArrowUp } from "react-icons/io";
@@ -78,7 +16,6 @@ import { BiCopyAlt } from "react-icons/bi";
 import axios from 'axios'
 
 import base_url from '../../../settings/base_url'
-import DropDownTextWithTabs from '../../../components/courseTemplates/complex/DropDownTextWithTabs'
 import { useNavigate } from 'react-router'
 
 import Elements from './Elements'
@@ -342,18 +279,13 @@ const Constructor = ({saveCancel, save, id, title}) => {
         axios
             .get(base_url + '/api/aml/chapter/getComponents', {params: {id}})
             .then((res) => {
-                // console.log(res.data)
-                
-                Object.keys(componentMap).forEach(key => {
-                    // console.log(componentMap[key].name);
-                });
                 let newComponents = res.data.map(item => {
                     // Find the category and component that matches the componentName
                     let inputs = null;
                     for (const category in Elements) {
                         for (const element in Elements[category]) {
-
-                            if (Elements[category][element].component.name == item.componentName) {
+                            
+                            if (Elements[category][element].name == item.componentName) {
                                 inputs = Elements[category][element].inputs;
                                 break;
                             }
@@ -384,7 +316,6 @@ const Constructor = ({saveCancel, save, id, title}) => {
     }, [])
     
     useEffect(() => {
-        console.log(componentHistory)
 
         if (save) {
             // Clone the componentHistory to avoid direct state mutation
@@ -398,7 +329,6 @@ const Constructor = ({saveCancel, save, id, title}) => {
                 });
             });
 
-            // console.log("MODU", modifiedHistory)
             axios  
                 .post(base_url + '/api/aml/chapter/saveComponents/'+id,
                     modifiedHistory, {
@@ -426,8 +356,6 @@ const Constructor = ({saveCancel, save, id, title}) => {
             values: {},  
         };
 
-        // console.log(newComponent)
-        
         // Check if the clicked element is an existing component from componentHistory
         const existingComponentIndex = componentHistory.findIndex(
             (item) => item.component_entry_id === newComponent.component_entry_id
@@ -487,7 +415,6 @@ const Constructor = ({saveCancel, save, id, title}) => {
     };
 
     const handleMoveUp = (index) => {
-        console.log(index)
         if (index > 0) { 
             const updatedHistory = [...componentHistory];
             [updatedHistory[index], updatedHistory[index - 1]] = [updatedHistory[index - 1], updatedHistory[index]];
@@ -513,8 +440,6 @@ const Constructor = ({saveCancel, save, id, title}) => {
         const updatedHistory = [...componentHistory];
         // Insert the duplicate right after the original component
         updatedHistory.splice(index + 1, 0, duplicate);
-    
-        console.log(updatedHistory);
     
         setComponentHistory(updatedHistory);
     };
@@ -562,7 +487,7 @@ const Constructor = ({saveCancel, save, id, title}) => {
                         inputs={selectedComponent.inputs}
                         onSubmit={handleModalSubmit}
                         exValues={selectedComponent.values || {}}
-                        />
+                    />
                 </div>
             )}
             </div>
@@ -625,8 +550,6 @@ const ModuleStructure = ({id, toQuestionnaire, lessonById, setLessonTitle }) => 
                 alert(error)
             })
 
-        console.log("asdas", currentLessons)
-
     }, [id])
 
     const addLesson = ( ) => {
@@ -639,8 +562,7 @@ const ModuleStructure = ({id, toQuestionnaire, lessonById, setLessonTitle }) => 
                     setNewLessonName("Урок №" + (res.data.length + 1))
                 })
                 .catch(function (error) {
-                        console.log(error)
-                        // alert(error)
+                    console.log(error)
                 })
         } else {
             alert('Пожалуйста введите название урока')
@@ -668,9 +590,9 @@ const ModuleStructure = ({id, toQuestionnaire, lessonById, setLessonTitle }) => 
         <div className="base">
                 <a className="title">{module.title}<span>: {module.number_of_lessons} Уроков</span></a>
                 <div className="list-of-modules">
-                    {currentLessons.filter(x => x._active == true).map((x) => {
+                    {currentLessons.filter(x => x._active == true).map((x, index) => {
                         return (
-                            <div className="module-line">
+                            <div className="module-line" key={index}>
                                 <div className='name-icon'> 
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">
                                         <path d="M19 11.2743V17.3184C19 19.204 19 20.1468 18.4142 20.7326C17.8284 21.3184 16.8856 21.3184 15 21.3184H3.79003C2.24914 21.3184 1 20.0692 1 18.5283V18.5283C1 16.9874 2.24914 15.7383 3.79003 15.7383H15C16.8856 15.7383 17.8284 15.7383 18.4142 15.1525C19 14.5667 19 13.6239 19 11.7383V5.23016C19 3.34454 19 2.40174 18.4142 1.81595C17.8284 1.23016 16.8856 1.23016 15 1.23016H5C3.11438 1.23016 2.17157 1.23016 1.58579 1.81595C1 2.40174 1 3.34455 1 5.23016V18.5283" stroke="#374761" stroke-width="1.2"/>

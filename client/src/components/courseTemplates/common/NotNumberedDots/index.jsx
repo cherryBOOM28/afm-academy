@@ -4,11 +4,20 @@ import React, { useState, useEffect } from 'react';
 import './style.scss'
 import Sizebox from '../Sizebox';
 
-const NotNumberedDots = ({ list, header, dotsColor, color, gap='27px', fontWeight }) => {
+const NotNumberedDots = ({ 
+    list, 
+    header, 
+    dotsColor, 
+    color, 
+    gap='27px', 
+    fontWeight, 
+    isSublist
+}) => {
 
     const defaultDotsColor = '#F9CB36';
     const defaultColor = '#3A3939';
     const defaultFontWeight = '600';
+
     return (
         <>
             {
@@ -27,7 +36,7 @@ const NotNumberedDots = ({ list, header, dotsColor, color, gap='27px', fontWeigh
                     </>
                 ) : null
             }
-            <div className='not-numbered-dots' style={{ gap: gap }}>
+            <div className='not-numbered-dots' style={{ gap: isSublist ? '5px' : gap, marginLeft: isSublist ? '30px' : '0px' }}>
                 {
                     list.map((item, index) => {
                         return (

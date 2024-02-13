@@ -12,7 +12,6 @@ function RandomParapraph({ children, color, fontSize }) {
                 {
                     children.split('\\n').map((child, index) => {
                         const last = index === children.split('\\n').length - 1;
-                        console.log(child)
 
                         return <>
                             <p
