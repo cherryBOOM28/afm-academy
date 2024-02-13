@@ -99,7 +99,7 @@ const Elements = {
             name: 'RandomParapraph',
             icon: randomParagraphIcon,
             inputs: [
-              { name: 'children', label: 'Текст (Children)', type: 'textarea' },
+              { name: 'children', label: 'Текст (Children)', type: 'formatTextarea' },
               { name: 'color', label: 'Цвет', type: 'color' },
               { name: 'fontSize', label: 'Размер шрифта', type: 'number' },
             ],
