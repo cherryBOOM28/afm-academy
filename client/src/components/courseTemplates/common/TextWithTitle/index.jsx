@@ -46,8 +46,8 @@ function TextWithTitle({ title, text, color,fontWeight }) {
                                             color: _color,
                                         }}
                                         key={i}
-                                        dangerouslySetInnerHTML={{ __html: formatText(i)}}
-                                    ></p>
+                                       
+                                    > { formatText(i)}</p>
                                 ))
                             }
                         </div>
