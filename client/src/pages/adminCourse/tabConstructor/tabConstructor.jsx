@@ -880,7 +880,7 @@ const Constructor = ({saveCancel, save, id, title}) => {
                                     ? (
                                         <BiCopyAlt onClick={() => handleCopy(index)} size={20}/>
                                     ) : null}
-                                <BiCopyAlt onClick={() => handleCopy(index)} size={20}/>
+                                {/* <BiCopyAlt onClick={() => handleCopy(index)} size={20}/> */}
                             </div>
                             <Reveal>
                                 {
