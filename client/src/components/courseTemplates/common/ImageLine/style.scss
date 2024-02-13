@@ -16,4 +16,10 @@
         }
 
     }
+
+    &.adjustWidth {
+        img {
+            object-fit: contain;
+        }
+    }
 }

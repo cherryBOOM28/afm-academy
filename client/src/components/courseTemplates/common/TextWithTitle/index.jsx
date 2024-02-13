@@ -29,6 +29,10 @@ function TextWithTitle({ title, text, color,fontWeight }) {
         return res;
     };
 
+    if (typeof text === 'string' && text.indexOf('\n') !== -1) {
+        text = text.split('\n');
+    }
+
     return ( 
         <div className="text-with-title">
             {title ? (<h4 style={{

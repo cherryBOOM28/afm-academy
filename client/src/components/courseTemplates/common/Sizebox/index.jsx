@@ -1,3 +1,5 @@
+import './style.scss';
+
 function Sizebox({ height, width }) {
 
     return ( 
@@ -7,9 +9,8 @@ function Sizebox({ height, width }) {
             <div
                 style={{
                     height: `${height || 100}px`,
-                    width: `${width || 0}px`,
                 }}
-            ></div>
+            ><p>Вертикальный отступ {height} пикселей</p></div>
         </div>
     );
 }
