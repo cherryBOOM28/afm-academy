@@ -1111,14 +1111,27 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
                     />
                   </div>
                 )
-                : <div key={input.name} className='default-input'>
-                  <label>{input.label}</label>
-                  <input
-                      type={input.type}
-                      value={values[input.name] || ''}
-                      onChange={(e) => handleChange(input.name, e.target.value, input.type)}
-                  />
-                </div>
+                : input.type === 'formatTextarea' 
+                ? (
+                  <div className="format-textarea">
+                    <label>{input.label}</label>
+                    <div className="inner">
+                      <div className="actions"></div>
+                      <textarea></textarea>
+                    </div>
+
+                  </div>
+                ) 
+                : (
+                  <div key={input.name} className='default-input'>
+                    <label>{input.label}</label>
+                    <input
+                        type={input.type}
+                        value={values[input.name] || ''}
+                        onChange={(e) => handleChange(input.name, e.target.value, input.type)}
+                    />
+                  </div>
+                )
             ))}
             <div className='buttons'>
               <button className="close-button" onClick={onClose}>Закрыть</button>
