@@ -5,9 +5,6 @@ import DropdownContent from './DropdownContent';
 
 const DropdownPage = ({data, dataBtn}) => {
   const [openDropdown, setOpenDropdown] = useState(0);
- 
-
-
   const handleButtonClick = (index) => {
     setOpenDropdown(index);
   };
@@ -18,7 +15,7 @@ const DropdownPage = ({data, dataBtn}) => {
       <div className="buttons-container">
         
         {dataBtn.map((item, index) => (
-         <DropdownButton title={item.name} label={item.name.length > 12 ? `${item.name.slice(0, 12)}...` : item.name} onClick={() => handleButtonClick(index)} isOpen={openDropdown === index} />
+         <DropdownButton  label={item.name} onClick={() => handleButtonClick(index)} isOpen={openDropdown === index}/>
        ))}
       </div>
 
