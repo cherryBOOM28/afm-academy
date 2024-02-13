@@ -9,16 +9,6 @@ const NotNumberedDots = ({ list, header, dotsColor, color, gap='27px', fontWeigh
     const defaultDotsColor = '#F9CB36';
     const defaultColor = '#3A3939';
     const defaultFontWeight = '600';
- 
-    const formatText = (anyString) => {
-        if (typeof anyString === 'string') {
-            return anyString.replace(/"(.*?)"/g, '<span style="font-weight: 500;">$1</span>');
-        }
-        return anyString;
-    };
-
-    if (!list) return null;
-
     return (
         <>
             {
@@ -32,7 +22,7 @@ const NotNumberedDots = ({ list, header, dotsColor, color, gap='27px', fontWeigh
                                 lineHeight: '140%',
                                 fontSize: '24px'
                             }}
-                        >{formatText(header)}</h3>
+                        >{ header }</h3>
                         <Sizebox height={37} />
                     </>
                 ) : null
