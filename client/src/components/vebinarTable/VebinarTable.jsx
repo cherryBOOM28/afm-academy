@@ -164,7 +164,7 @@ const VebinarTable = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${base_url}/api/aml/webinar/getWebinars`,
+          `${base_url}/api/aml/webinar/getWebinarss`,
           {
             headers: {
               Authorization: `Bearer ${jwtToken}`,

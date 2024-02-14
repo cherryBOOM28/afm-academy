@@ -30,11 +30,27 @@ function VebinarsPage() {
 
   const [openModal, setOpenModal] = useState(false);
 
-  const handleVebinarEnter = () => {
-    // Выполняем регистрацию на вебинар
+    const handleVebinarEnter = (webinar_id) => {
+        // Выполняем регистрацию на вебинар
+        const jwtToken = localStorage.getItem("jwtToken");
+        axios.post(
+            `${base_url}/api/aml/webinar/saveUser/webinar/${webinar_id}`,{}, {
+                headers: {
+                    Authorization: `Bearer ${jwtToken}`,
+                },
+            }).then(response => {
+            // Handle success
+            console.log("Participation added successfully", response.data);
+            // Optionally, you can refresh the data or notify the user
+        })
+            .catch(error => {
+                // Handle error
+                console.error("Error adding participation", error);
+                // Notify the user of the error
+            });;
 
-    setOpenModal(true);
-  };
+        setOpenModal(true);
+    };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -243,25 +259,6 @@ function VebinarsPage() {
     </div>
   );
 }
-const handleVebinarEnter = (webinar_id) => {
-    const jwtToken = localStorage.getItem("jwtToken");
-    axios.post(
-        `${base_url}/api/aml/webinar/saveUser/webinar/${webinar_id}`,{}, {
-            headers: {
-                Authorization: `Bearer ${jwtToken}`,
-            },
-        }).then(response => {
-        // Handle success
-        console.log("Participation added successfully", response.data);
-        // Optionally, you can refresh the data or notify the user
-    })
-        .catch(error => {
-            // Handle error
-            console.error("Error adding participation", error);
-            // Notify the user of the error
-        });;
-
-    };
 const VebinarModal = ({ open, handleClose }) => {
   return (
     <Modal
@@ -430,7 +427,7 @@ const VebinarCard = (props) => {
             </div>
             <div
               className="action-btn"
-             onClick={() => handleVebinarEnter(webinar_id)}
+             onClick={() => props.handleVebinarEnter(webinar_id)}
             >
               Принять участие
             </div>
