@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.scss';
 import NumberedDots from '../../NumberedDots';
+import { lightBlue } from '@mui/material/colors';
 
 class TooltipComponent2 extends React.Component {
   render() {
@@ -21,7 +22,7 @@ class TooltipComponent2 extends React.Component {
         <p className='pComponent'>АФМ рассматривает заявление об исключении организации или физического лица из этого перечня, в сроки, установленные Административным процедурно-процессуальным кодексом Республики Казахстан, и принимает одно из следующих мотивированных решений:</p>
         <div className='NumberedDotsInToolTipComponent'>
           <br /><br />
-        <NumberedDots
+        <NumberedDots dotsColor={'#CADEFC'}
           list={['об исключении организации или физического лица из указанного перечня;', 'об отказе в удовлетворении заявления с предоставлением мотивированного основания в отказе.']}
         ></NumberedDots><br /><br />
         </div>
