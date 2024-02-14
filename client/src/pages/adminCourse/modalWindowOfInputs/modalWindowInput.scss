@@ -301,8 +301,6 @@
             }
         }
 
-        
-
         input, textarea {
             box-sizing: border-box;
             // border: 3px solid #ccc;
@@ -311,6 +309,43 @@
             outline: none;
         }
 
+        .format-textarea {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .inner {
+                width: 100%;
+                
+                .actions {
+                    display: flex;
+                    flex-direction: row;
+
+                    > button {
+                        min-width: 30px;
+                    }
+
+                    .btn-bold {
+                        font-weight: 600;
+                    }
+
+                    .btn-italic {
+                        font-style: italic;
+                    }
+
+                    .btn-bold-italic {
+                        font-weight: 700;
+                        font-style: italic;
+                    }
+                }
+
+                textarea {
+                    width: 100%;
+                    min-height: 300px;
+                    height: max-content;
+                }
+            }
+        }
 
         input[type=text], textarea{
             resize: none;

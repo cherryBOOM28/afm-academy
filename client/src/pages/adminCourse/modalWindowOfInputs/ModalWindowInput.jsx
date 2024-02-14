@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './modalWindowInput.scss'
 
 function fileToBase64(file, callback) {
@@ -1113,22 +1113,21 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
                 )
                 : input.type === 'formatTextarea' 
                 ? (
-                  <div className="format-textarea">
-                    <label>{input.label}</label>
-                    <div className="inner">
-                      <div className="actions"></div>
-                      <textarea></textarea>
-                    </div>
-
-                  </div>
+                  <Formatable_Textarea 
+                    handleChange={handleChange}
+                    label={input.label}
+                    name={input.name}
+                    type={input.type}
+                    value={values[input.name] || ''}
+                  />
                 ) 
                 : (
                   <div key={input.name} className='default-input'>
                     <label>{input.label}</label>
                     <input
-                        type={input.type}
-                        value={values[input.name] || ''}
-                        onChange={(e) => handleChange(input.name, e.target.value, input.type)}
+                      type={input.type}
+                      value={values[input.name] || ''}
+                      onChange={(e) => handleChange(input.name, e.target.value, input.type)}
                     />
                   </div>
                 )
@@ -1141,5 +1140,107 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
     </div>
   );
 };
+
+const Formatable_Textarea = ({
+  handleChange,
+  label,
+  name,
+  type,
+  value,
+}) => {
+
+  const textAreaRef = useRef(null);
+
+  const wrapSelected = (symbol, endSymbol=symbol) => {
+    const textArea = textAreaRef.current;
+    const start = textArea.selectionStart;
+    const end = textArea.selectionEnd;
+    const selectedText = value.substring(start, end);
+    
+    // Only proceed if there is a selection
+    if (start !== end) {
+      const before = value.substring(0, start);
+      const after = value.substring(end);
+
+      // **bold**
+      // ||italic||
+      const newText = `${before}${symbol}${selectedText}${endSymbol}${after}`;
+
+      handleChange(name, newText, type)
+      
+      setTimeout(() => {
+        textArea.selectionStart = start;
+        textArea.selectionEnd = end + 4; // Adjust for the added characters
+      }, 0);
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent default Enter behavior (optional)
+
+      const cursorPosition = event.target.selectionStart;
+      const textBeforeCursor = value.substring(0, cursorPosition);
+      const textAfterCursor = value.substring(cursorPosition);
+
+      if (textBeforeCursor.slice(-2) === '\\n' || textBeforeCursor.slice(-1) === '\n') {
+        const newValue = textBeforeCursor + '\n' + textAfterCursor;
+        handleChange(name, newValue, type)
+
+        setTimeout(() => {
+          event.target.selectionStart = event.target.selectionEnd = cursorPosition + 2;
+        }, 0);
+
+        return;
+      }
+
+      console.log(cursorPosition, textBeforeCursor, textAfterCursor);
+
+      // Check if text before cursor is not just whitespace
+      if (/\S/.test(textBeforeCursor)) {
+        // Insert \n at cursor position
+        const newValue = textBeforeCursor + '\\n\n' + textAfterCursor;
+        handleChange(name, newValue, type)
+
+        // Set cursor position to right after the inserted \n
+        // Note: This needs to be done after the state update takes effect
+        setTimeout(() => {
+          event.target.selectionStart = event.target.selectionEnd = cursorPosition + 2;
+        }, 0);
+      }
+    }
+  };
+
+  return (
+    <div className="format-textarea">
+      <label>{label}</label>
+      <div className="inner">
+        <div className="actions">
+          <button 
+            className='btn-bold'
+            onClick={() => wrapSelected('**')}
+          >Ж</button>
+          <button 
+            className='btn-italic'
+            onClick={() => wrapSelected('||')}
+          >К</button>
+          <button 
+            className='btn-bold-italic'
+            onClick={() => wrapSelected('|*', '*|')}
+          >ЖК</button>
+        </div>
+
+        <textarea
+          ref={textAreaRef}
+          type="text"
+          value={value}
+          onKeyDown={handleKeyDown}
+          onChange={(e) => handleChange(name, e.target.value, type)}
+        ></textarea>
+      </div>
+
+    </div>
+  )
+}
 
 export default Modal;
