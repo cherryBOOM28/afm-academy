@@ -1218,16 +1218,20 @@ const Formatable_Textarea = ({
         <div className="actions">
           <button 
             className='btn-bold'
-            onClick={() => wrapSelected('**')}
+            onClick={() => wrapSelected('|b|')}
           >Ж</button>
           <button 
             className='btn-italic'
-            onClick={() => wrapSelected('||')}
+            onClick={() => wrapSelected('|i|')}
           >К</button>
+          {/* <button 
+            className='btn-bold btn-italic'
+            onClick={() => wrapSelected('|bi|', '|bi|')}
+          >ЖК</button> */}
           <button 
-            className='btn-bold-italic'
-            onClick={() => wrapSelected('|*', '*|')}
-          >ЖК</button>
+            className='btn-underline'
+            onClick={() => wrapSelected('|u|', '|u|')}
+          >П</button>
         </div>
 
         <textarea
