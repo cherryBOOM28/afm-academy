@@ -151,6 +151,8 @@ const VebinarTable = () => {
   .then(response => {
           // Handle success
           console.log("Participation cancelled successfully", response.data);
+          const updatedVebinars = vebinars.filter(webinar => webinar.webinar_id !== webinarId);
+          setVebinars(updatedVebinars);
           // Optionally, you can refresh the data or notify the user
         })
         .catch(error => {
