@@ -308,7 +308,7 @@
             transition: 0.5s;
             outline: none;
         }
-        
+
         .format-textarea {
             display: flex;
             flex-direction: column;
@@ -316,7 +316,23 @@
 
             .inner {
                 width: 100%;
-                // border: 1px solid red;
+                
+                .actions {
+                    display: flex;
+                    flex-direction: row;
+
+                    > button {
+                        min-width: 30px;
+                    }
+
+                    .btn-bold {
+                        font-weight: 600;
+                    }
+
+                    .btn-italic {
+                        font-style: italic;
+                    }
+                }
 
                 textarea {
                     width: 100%;
