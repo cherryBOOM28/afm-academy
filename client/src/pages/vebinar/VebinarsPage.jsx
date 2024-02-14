@@ -246,24 +246,22 @@ function VebinarsPage() {
 const handleVebinarEnter = (webinar_id) => {
     const jwtToken = localStorage.getItem("jwtToken");
     axios.post(
-        `${base_url}/api/aml/webinar/saveUser/webinar/${webinar_id}`,
-        {
+        `${base_url}/api/aml/webinar/saveUser/webinar/${webinar_id}`,{}, {
             headers: {
                 Authorization: `Bearer ${jwtToken}`,
             },
-        }
-    )
-        .then(response => {
-            // Handle success
-            console.log("Participation cancelled successfully", response.data);
-            // Optionally, you can refresh the data or notify the user
-        })
+        }).then(response => {
+        // Handle success
+        console.log("Participation added successfully", response.data);
+        // Optionally, you can refresh the data or notify the user
+    })
         .catch(error => {
             // Handle error
-            console.error("Error cancelling participation", error);
+            console.error("Error adding participation", error);
             // Notify the user of the error
-        });
-};
+        });;
+
+    };
 const VebinarModal = ({ open, handleClose }) => {
   return (
     <Modal
