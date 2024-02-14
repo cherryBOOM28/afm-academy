@@ -48,7 +48,7 @@ import GetLesson from '../../components/GetLesson';
 function Basic_course(props) {
     const [courseName, setCourseName] = useState('Базовый курс');
     const [isNavOpen, setIsNavOpen] = useState(true);
-    const [activeSessionId, setActiveSessionId] = useState(58);
+    const [activeSessionId, setActiveSessionId] = useState(1);
 
     const jwtToken = localStorage.getItem('jwtToken');
 
@@ -410,6 +410,16 @@ const CourseNavigation = ({
                 </div>
             </div>
             <div className="nav-body">
+                <Session
+                    course_id={8}
+                    session={{
+                        id: 1,
+                        name: 'О курсе',
+                        progress: 0,
+                    }}
+                    handleSessionClick={handleSessionClick}
+                    isActive={1 === activeSessionId}
+                />
                 <Module
                     moduleId={1}
                     isOpen={currentModule === 1}
@@ -701,7 +711,7 @@ const CourseNavigation = ({
                         course_id={8}
                         session={{
                             id: 80,
-                            name: 'Урок 1',
+                            name: 'Государственный контроль',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
