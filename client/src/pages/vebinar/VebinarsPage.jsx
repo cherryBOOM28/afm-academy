@@ -66,6 +66,7 @@ function VebinarsPage() {
 
     fetchData();
   }, []);
+
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
   const [letterInterval, setLetterInterval] = useState("standard");
@@ -156,6 +157,7 @@ function VebinarsPage() {
   };
 
   const jwtToken = localStorage.getItem("jwtToken");
+
   const handleOpenVisualModal = () => {
     console.log("OPEN");
     setOpenVisualModal((prev) => !prev);
@@ -241,7 +243,27 @@ function VebinarsPage() {
     </div>
   );
 }
-
+const handleVebinarEnter = (webinar_id) => {
+    const jwtToken = localStorage.getItem("jwtToken");
+    axios.post(
+        `${base_url}/api/aml/webinar/saveUser/webinar/${webinar_id}`,
+        {
+            headers: {
+                Authorization: `Bearer ${jwtToken}`,
+            },
+        }
+    )
+        .then(response => {
+            // Handle success
+            console.log("Participation cancelled successfully", response.data);
+            // Optionally, you can refresh the data or notify the user
+        })
+        .catch(error => {
+            // Handle error
+            console.error("Error cancelling participation", error);
+            // Notify the user of the error
+        });
+};
 const VebinarModal = ({ open, handleClose }) => {
   return (
     <Modal
@@ -321,7 +343,6 @@ const VebinarModal = ({ open, handleClose }) => {
           style={{
             width: "max-content",
             margin: "0 auto",
-            borderRadius: "8px",
             background: "#1F3C88",
             borderRadius: "8px",
             padding: "12px 96px",
@@ -345,7 +366,7 @@ const VebinarModal = ({ open, handleClose }) => {
 
 const VebinarCard = (props) => {
   const {
-    id,
+    webinar_id,
     image,
     name,
     webinar_for_member_of_the_system,
@@ -387,9 +408,6 @@ const VebinarCard = (props) => {
 
   const navigate = useNavigate();
 
-  const handleVebinarEnter = () => {
-    props.handleVebinarEnter();
-  };
 
   return (
     <div className="vebinar-card">
@@ -414,10 +432,7 @@ const VebinarCard = (props) => {
             </div>
             <div
               className="action-btn"
-              onClick={() => {
-                handleVebinarEnter();
-                // navigate(`/vebinars/${id}`)
-              }}
+             onClick={() => handleVebinarEnter(webinar_id)}
             >
               Принять участие
             </div>

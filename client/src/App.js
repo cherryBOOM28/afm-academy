@@ -10,6 +10,8 @@ import './settings/i18n.js';
 import VisualModal from './/components/VisualModal/VisualModal.jsx'
 import Login from './pages/login/Login';
 import { StyleProvider } from './/components/VisualModal/StyleContext.jsx';
+import Registration from './pages/registration/Registration';
+
 const Home = lazy(() => import ('./pages/home/Home'))
 const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
 //import Home from './pages/home/Home';
@@ -27,8 +29,6 @@ const Subjects = lazy(() => import('./pages/sfm/subjects/Subjects'))
 //import Subjects from './pages/sfm/subjects/Subjects';
 // const Login = lazy(()=>import('./pages/login/Login'))
 
-const Registration = lazy(() => import('./pages/registration/Registration'));
-//import Registration from './pages/registration/Registration';
 const Rules = lazy(() => import('./pages/sfm/rules/Rules'));
 //import Rules from './pages/sfm/rules/Rules';
 const Operations = lazy(() => import('./pages/sfm/operations/Operations'));
