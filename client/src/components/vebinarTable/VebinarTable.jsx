@@ -136,6 +136,31 @@ const VebinarTable = () => {
   const [isLoading, setLoading] = useState(true);
   const jwtToken = localStorage.getItem("jwtToken");
   const { colorMode } = styles;
+  const handleCancelParticipation = (webinarId) => {
+    // Construct the URL with the provided userId and webinarId
+    const user_id = localStorage.getItem('user_id');
+    // Make the DELETE request using Axios
+    axios.delete(
+        `${base_url}/api/aml/webinar/deleteWebinarFromUser/${user_id}/${webinarId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+          },
+        }
+    )
+  .then(response => {
+          // Handle success
+          console.log("Participation cancelled successfully", response.data);
+          const updatedVebinars = vebinars.filter(webinar => webinar.webinar_id !== webinarId);
+          setVebinars(updatedVebinars);
+          // Optionally, you can refresh the data or notify the user
+        })
+        .catch(error => {
+          // Handle error
+          console.error("Error cancelling participation", error);
+          // Notify the user of the error
+        });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
