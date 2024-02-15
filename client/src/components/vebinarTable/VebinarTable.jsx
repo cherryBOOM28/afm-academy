@@ -166,7 +166,7 @@ const VebinarTable = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${base_url}/api/aml/webinar/getWebinars`,
+          `${base_url}/api/aml/webinar/getWebinarss`,
           {
             headers: {
               Authorization: `Bearer ${jwtToken}`,
@@ -443,7 +443,7 @@ const VebinarTable = () => {
                     <TableCell align={"right"} className={"actions"}>
                       <div>
                         <div className="text-content">Ссылка на вебинар</div>
-                        <div className="text-content">Отменить участие</div>
+                        <div className="text-content" onClick={() => handleCancelParticipation(row.webinar_id)}>Отменить участие</div>
                       </div>
                     </TableCell>
                   </TableRow>
