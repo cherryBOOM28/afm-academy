@@ -3202,13 +3202,7 @@ function GetLesson({
           </Reveal>
 
           <Sizebox height={100} />
-          <Reveal>
-            <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
-              ФАТФ уделяет значительное внимание сотрудничеству с такими
-              международными организациями, как МВФ, Всемирный банк, Управление
-              ООН по наркотикам и преступности.
-            </HeaderWithLine>
-          </Reveal>
+      
 
           <Sizebox height={50} />
           <Reveal>
@@ -3570,7 +3564,7 @@ function GetLesson({
             <>
               <Centered>
                 <RandomH2>
-                  Существует четыре возможных уровня соответствия:
+                  Существует пять возможных уровня соответствия:
                 </RandomH2>
               </Centered>
               <Sizebox height={20} />
@@ -3804,7 +3798,7 @@ function GetLesson({
           <Reveal>
             <RandomParapraph>
               В рамках взаимной оценки{' '}
-              <span className="bold">эксперты-оценщики</span>
+              <span className="bold">эксперты-оценщики </span>
               проводят работу по документарному{' '}
               <span className="bold">
                 анализу технического соответствия
