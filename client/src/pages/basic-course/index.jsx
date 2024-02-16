@@ -767,7 +767,7 @@ const CourseNavigation = ({
                         session={{
                             id: 83,
                             group: 'introduction',
-                            name: 'Урок 1',
+                            name: 'Правила внутреннего контроля',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
@@ -775,7 +775,7 @@ const CourseNavigation = ({
                     />
                 </Module>
                 <Module
-                    name={'Требования к СФМ по подготовке и обучению в сфере ПОД/ФТ'}
+                    name={'Подготовка и обучение'}
                     moduleId={7}
                     isOpen={currentModule === 7}
                     handleModuleOpen={handleModuleOpen}
@@ -784,7 +784,7 @@ const CourseNavigation = ({
                         course_id={8}
                         session={{
                             id: 84,
-                            name: 'Урок 1',
+                            name: 'Требования к СФМ по подготовке и обучению в сфере ПОД/ФТ',
                             progress: 0,
                         }}
                         handleSessionClick={handleSessionClick}
