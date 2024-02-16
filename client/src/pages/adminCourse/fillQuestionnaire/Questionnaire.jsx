@@ -94,11 +94,13 @@ const QuestionnaireForm = ({saveCancel, save, id}) => {
                 })
                 .then(response => {
                     console.log('Quiz saved successfully', response);
+                    alert('Тест сохранен');
                     saveCancel()
                     // Handle any additional logic after successful save
                 })
                 .catch(error => {
                     console.error('Error saving quiz', error);
+                    alert('Ошибка! Тест не сохранен');
                     saveCancel()
 
                     // Handle errors here

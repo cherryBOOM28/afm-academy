@@ -64,10 +64,18 @@ import blockIcon from '../images/blocks-icon.svg'
 import block2Icon from '../images/blocks-2-icon.svg'
 
 
+// Example images
+import HeaderWithLineExample from './../../../assets/images/Template Examples/HeaderWithLine.png'
+import NumberedDotsExample from './../../../assets/images/Template Examples/NumberedList.png'
+import QuoteExample from './../../../assets/images/Template Examples/Quote.png'
+import RandomParagraphExample from './../../../assets/images/Template Examples/RandomParagraph.png'
+
+
 const Elements = {
-    'Текстовые элементыss': {
+    'Текстовые элементы': {
         'Заголовок с полосой': {
             component: HeaderWithLine,
+            example: HeaderWithLineExample,
             name: 'HeaderWithLine',
             icon: headerWithLineIcon,
             inputs: [
@@ -99,6 +107,7 @@ const Elements = {
         }, //children
         'Параграф': {
             component: RandomParapraph,
+            example: RandomParagraphExample,
             name: 'RandomParapraph',
             icon: randomParagraphIcon,
             inputs: [
@@ -149,6 +158,7 @@ const Elements = {
         }, //children
         'Цитата': {
             component: Quote,
+            example: QuoteExample,
             name: 'Quote',
             icon: reportInformationIcon,
             inputs: [
@@ -173,6 +183,7 @@ const Elements = {
         }, 
         'Нумированный': {
             component: NumberedDots,
+            example: NumberedDotsExample,
             name: 'NumberedDots',
             icon: numberedDotsIcon,
             inputs: [

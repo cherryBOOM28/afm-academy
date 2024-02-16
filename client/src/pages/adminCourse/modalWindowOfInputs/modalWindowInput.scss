@@ -17,12 +17,30 @@
     overflow-y: scroll;
     overflow-x: hidden;
 
-    .modal-title {
-        font-family: 'Ubuntu';
-        font-weight: 700;
-        font-size: 24px;
-        color: #374761;
+    
+    .title-example {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .modal-title {
+            font-family: 'Ubuntu';
+            font-weight: 700;
+            font-size: 24px;
+            color: #374761;
+        }
+
+        .example {
+            text-decoration: underline;
+            cursor: pointer;
+            user-select: none;
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
     }
+
     .modal-content {
         padding-top: 25px;
         width: 100% !important;

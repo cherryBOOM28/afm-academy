@@ -24,8 +24,9 @@ function fileToBase64(file, callback) {
   reader.readAsDataURL(file);
 }
 
-const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
+const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
   const [values, setValues] = useState(exValues || {});
+  const [showExample, setShowExample] = useState(false);
   
   useEffect(() => {
     const hasListInput = inputs.some((x) => x.name == 'list');
@@ -740,7 +741,28 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
 
   return (
     <div className="modal">
-        <a className='modal-title'>Введите данные для компонента</a>
+
+        <div className='title-example'>
+          <a className='modal-title'>Введите данные для компонента</a>
+          {
+            example 
+              ? (
+                <>
+                  <div 
+                    className="example"
+                    onClick={() => setShowExample(prev => !prev)}
+                  >{ !showExample ? 'Показать пример' : 'Скрыть пример' }</div>
+
+                  {
+                    showExample 
+                      ? (
+                        <img src={example} />
+                      ) : null
+                  }
+                </>
+              ) : null
+          }
+        </div>
 
         <div className="modal-content">
             {inputs !== null && inputs.map((input) => (
