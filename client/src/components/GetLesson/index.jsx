@@ -86,6 +86,7 @@ import image70 from './../../assets/images/afmlogo.png';
 import image71 from './../../assets/images/71image.png';
 import image74 from './../../assets/images/mvs.png';
 import image75 from './../../assets/images/troika2.png';
+import image111113 from './../../assets/images/finalfinal.png';
 import image76 from './../../assets/images/dola.png';
 import image77 from './../../assets/images/terrari.png';
 import image78 from './../../assets/images/websfm.png';
@@ -8716,7 +8717,7 @@ function GetLesson({
           return (<LessonPage name={'Заключительная часть'} lecturer={'AML Academy'}>
               <Reveal>
                   <ImageLine
-                      img={image75}
+                      img={image111113}
                       color={'#FFFFFF'}
                   />
                   <Sizebox height={40} />
