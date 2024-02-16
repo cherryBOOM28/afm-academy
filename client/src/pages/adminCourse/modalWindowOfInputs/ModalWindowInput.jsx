@@ -28,7 +28,6 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
   const [values, setValues] = useState(exValues || {});
   
   useEffect(() => {
-    console.log(inputs)
     const hasListInput = inputs.some((x) => x.name == 'list');
     const hasTabsInput = inputs.some((x) => x.name == 'tabs');
     const hasTabsGlossaryInput = inputs.some((x) => x.name == 'tabsGlossary');
@@ -43,6 +42,8 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
     const hasCentered = inputs.some((x) => x.name == 'isCentered');
     const adjustWidth = inputs.some((x) => x.name == 'adjustWidth');
     const isSublist = inputs.some((x) => x.name == 'isSublist');
+    const hasAlignment = inputs.some((x) => x.name == 'alignment');
+    const hasImages = inputs.some((x) => x.name == 'images');
 
     const hasTableInput = inputs.some((x) => x.name === 'rows');
 
@@ -53,10 +54,38 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
       }))
     }
 
+    if (inputs.some((x) => x.name === 'version')) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'version': 2
+      }))
+    }
+
+    if (hasImages) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'images': exValues?.images || []
+      }))
+    }
+
     if (isSublist) {
       setValues(prevValues => ({
         ...prevValues,
         'isSublist': exValues?.isSublist || false
+      }))
+    }
+
+    if (hasAlignment) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'alignment': exValues?.alignment || 'сenter'
+      }))
+    }
+
+    if (hasIconInput) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'icons': exValues?.icons || []
       }))
     }
 
@@ -83,7 +112,6 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
           newTabsGlossary = exValues?.tabsGlossary || [];
       }
 
-      // console.log(newTabsGlossary)
 
 
       setValues((prevValues) => ({
@@ -158,7 +186,6 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
   }, [inputs])
 
   const handleAddToList = (...args) => {
-    // console.log(args)
     if (args.length == 1) {
       if (args[0] == 'tabs') {
         setValues((prevValues) => ({
@@ -714,9 +741,11 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
   return (
     <div className="modal">
         <a className='modal-title'>Введите данные для компонента</a>
+
         <div className="modal-content">
             {inputs !== null && inputs.map((input) => (
-              input.type == "file" ?
+              input.type === 'ignore' ? null
+              : input.type == "file" ?
                 <div key={input.name} className='file-input'>
                     <label>{input.label}</label>
                     <input
@@ -1093,6 +1122,32 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
                       </div>
                     )
                   })}
+                  {values?.list?.map((item, index) => {
+                    return (
+                      <div className='ictide-columns'>
+                        <div className='second-column'>
+                          <input
+                            type={'text'}
+                            value={item || ''}
+                            onChange={(e) => {
+                              values.list[index] = e.target.value;
+                            }}
+                          />
+                        </div>
+                        <div className='third-column'>
+                          {/* <label for="file-upload" class="custom-file-upload">
+                              Иконка
+                          </label> */}
+                          <input 
+                            id='file-upload'
+                            type={'file'}
+                            value={values.icons[index] || ''}
+                            onChange={(e) => handleInputChange(input.name, e.target.files[0], 'icons')}
+                          />
+                        </div>
+                      </div>
+                    )
+                  })}
                   <div className='add-button-div'>
                     <button className='add-button' onClick={() => handleAddToList('icons-title-desx')}>Добавить</button>
                   </div>
@@ -1121,6 +1176,108 @@ const Modal = ({ onClose, inputs, onSubmit, exValues }) => {
                     value={values[input.name] || ''}
                   />
                 ) 
+                : input.type === 'files_and_list'
+                ? (
+                  <div className="icons-and-list" key={input.name}>
+                    <div className="title">Лист</div>
+                    <div className="list">
+                      <div className="row">
+                        <div>Иконка</div>
+                        <div>Текст</div>
+                      </div>
+
+                      {
+                        values?.list?.map((item, index) => {
+
+                          return (
+                            <div className="row">
+                              <div>
+                                <input 
+                                  type="file" 
+                                  // value={values.icons[index]}
+                                  onChange={e => {
+                                    const file = e.target.files[0];
+
+                                    console.log(file)
+
+                                    fileToBase64(file, (base64String) => {
+                                      console.log(base64String)
+                                      setValues(prev => {
+                                        const updatedIcons = [...prev[input.name]];
+                                        updatedIcons[index] = base64String;
+
+                                        return {
+                                          ...prev,
+                                          [input.name]: updatedIcons
+                                        }
+                                      })
+                                    })
+                                  }}
+                                />
+                              </div>
+                              <div>
+                                <input 
+                                  type="text"
+                                  value={values.list[index]}
+                                  onChange={e => {
+                                    setValues(prev => {
+                                      const updatedList = [...prev.list];
+                                      updatedList[index] = e.target.value;
+
+                                        return {
+                                          ...prev,
+                                          ['list']: updatedList
+                                        }
+                                    })
+                                  }}
+                                />
+                              </div>
+                            </div>
+                          )
+                        })
+                      }
+
+                      <div className="row-btn">
+                        <button 
+                          className='add-button' 
+                          onClick={(e) => {
+                            setValues(prev => {
+                              
+                              return {
+                                ...prev,
+                                [input.name]: [...prev[input.name], ''],
+                                ['list']: prev.list ? [...prev['list'], 'Новый итем'] : [],
+                              }
+                            })
+                          }}
+                        >Добавить</button>
+                      </div>
+                    </div>
+
+                  </div>
+                )
+                : input.type === 'select'
+                ? (
+                  <div className='select-input' key={input.name}>
+                    <label>{input.label}</label>
+                    <select 
+                      value={values[input.name]}
+                      onChange={e => {
+                        setValues(prev => {
+
+                          return {
+                            ...prev, 
+                            ['alignment']: e.target.value
+                          }
+                        })
+                      }}
+                    >
+                      <option value={'center'}>Центр</option>
+                      <option value={'left'}>Налево</option>
+                      <option value={'right'}>Направо</option>
+                    </select>
+                  </div>
+                )
                 : (
                   <div key={input.name} className='default-input'>
                     <label>{input.label}</label>

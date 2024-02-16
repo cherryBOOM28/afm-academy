@@ -12,6 +12,8 @@ function FileDownloader({
     type,
     color
 }) {
+
+    console.log(file)
     const defaultType = 'pdf'
     const _type = type || defaultType;
 

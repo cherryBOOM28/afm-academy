@@ -16,8 +16,6 @@ function RandomParapraph({ children, color, fontSize }) {
         let match;
         let lastIndex = 0;
 
-        console.log(text);
-
         while ((match = regex.exec(text)) !== null) {
             // Push preceding text if it exists
             if (match.index > lastIndex) {
@@ -25,7 +23,6 @@ function RandomParapraph({ children, color, fontSize }) {
             }
 
             if (match[1]) { // Bold text
-                console.log(match[1], match[2])
                 parts.push(<span key={parts.length} className="bold">{match[2].indexOf("\|") !== -1 ? parseText(match[2]) : match[2]}</span>);
             } else if (match[3]) { // Italic text
                 parts.push(<span key={parts.length} className="italic">{match[4].indexOf("\|") !== -1 ? parseText(match[4]) : match[[4]]}</span>);

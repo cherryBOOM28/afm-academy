@@ -31,7 +31,11 @@ import DragAndDropTwoSide from '../../../components/courseTemplates/complex/Drag
 import DropdownGlossaryList from '../../../components/courseTemplates/complex/DropdownGlossaryList'
 import DataChain from '../../../components/courseTemplates/complex/DataChain'
 import SimpleTable from '../../../components/courseTemplates/common/SimpleTable'
-
+import DropDownTextWithTabs from '../../../components/courseTemplates/complex/DropDownTextWithTabs'
+import Quote from '../../../components/courseTemplates/common_v2/Quote'
+import IconDots from '../../../components/courseTemplates/common_v2/IconDots'
+import ImageAndColumns from '../../../components/courseTemplates/common_v2/ImageAndColumns'
+import ImageSequence from '../../../components/courseTemplates/common_v2/ImageSequence'
 
 import headerWithLineIcon from '../images/header-icon.svg'
 import imageWithTextIcon from '../images/textWithBackground-icon.svg'
@@ -58,8 +62,7 @@ import listIcon from '../images/list-icon.png'
 import squareIcon from '../images/square-icon.svg'
 import blockIcon from '../images/blocks-icon.svg'
 import block2Icon from '../images/blocks-2-icon.svg'
-import DropDownTextWithTabs from '../../../components/courseTemplates/complex/DropDownTextWithTabs'
-import Quote from '../../../components/courseTemplates/common_v2/Quote'
+
 
 const Elements = {
     'Текстовые элементыss': {
@@ -131,7 +134,8 @@ const Elements = {
             name: 'Report_Warning',
             icon: reportIcon,
             inputs: [
-                { name: 'children', label: 'Children', type: 'text' },
+                { name: 'children', label: 'Children', type: 'formatTextarea' },
+                { name: 'version', label: 'Version', type: 'ignore' }
             ],
         }, //children
         'Аннотация параграф': {
@@ -139,7 +143,8 @@ const Elements = {
             name: 'Report_Information',
             icon: reportInformationIcon,
             inputs: [
-                { name: 'children', label: 'Children', type: 'text' },
+                { name: 'version', label: 'Version', type: 'ignore' },
+                { name: 'children', label: 'Children', type: 'formatTextarea' },
             ],
         }, //children
         'Цитата': {
@@ -196,15 +201,6 @@ const Elements = {
                 { name: 'list', label: 'Список', type: 'listNameDescroptionItems' },
             ],
         },
-        // Done but needs to be generic
-        // 'Выпадающий список': {
-        //     component: DropdownList_r5,
-        //     icon: dropDownListIcon,
-        //     inputs: [
-        //         { name: 'title', label: 'Заголовок', type: 'text' },
-        //         { name: 'items', label: 'Список', type: 'items_text' },
-        //     ]
-        // },
         'Раскрывающийся список': {
             component: DropdownGlossaryList,
             name: 'DropdownGlossaryList',
@@ -216,6 +212,19 @@ const Elements = {
                 { name: 'textColor', label: 'Цвет текста', type: 'color'},
                 { name: 'tabsTextColor', label: 'Цвет текста вкладок', type: 'color'},
                 { name: 'tabsBackgroundColor', label: 'Цвет вкладок', type: 'color'},
+            ]
+        },
+        'Список с иконками': {
+            component: IconDots,
+            name: 'IconDots',
+            icon: norNumberedDotsIcon,
+            inputs: [
+                { name: 'header', label: 'Заголовок', type: 'text' },
+                { name: 'icons', label: 'Иконки', type: 'files_and_list' },
+                { name: 'gap', label: 'Растояния между объектами листа', type: 'number' },
+                { name: 'height', label: 'Высота иконки', type: 'number' },
+                { name: 'width', label: 'Ширина иконки', type: 'number' },
+                { name: 'fontSize', label: 'Размер шрифта', type: 'number' },
             ]
         },
         'Вкладки с текстами': {
@@ -292,6 +301,7 @@ const Elements = {
                 { name: 'color', label: 'Цвет', type: 'color' },
                 { name: 'height', label: 'Высота', type: 'number' },
                 { name: 'adjustWidth', label: 'Подогнать ширину', type: 'checkbox' },
+                { name: 'alignment', label: 'Выравниевание', type: 'select' },
             ],
         }, //img, height, color done
         'Видео': {
@@ -314,6 +324,14 @@ const Elements = {
                 { name: 'text', label: 'Текст', type: 'text' },
             ],
         }, // url , poster done
+        'Цепочка изображений с описанием': {
+            component: ImageSequence,
+            name: 'ImageSequence',
+            icon: imageIcon,
+            inputs: [
+                { name: 'images', label: 'Иконки', type: 'files_and_list' },
+            ]
+        }
     },
     'Элементы вида': {
         // 'Централизовать': {
@@ -397,7 +415,19 @@ const Elements = {
                 { name: 'data', label: 'Список', type: 'title_desx_of_icons' },
                 { name: 'textColor', label: 'Цвет текста', type: 'color' },
             ],
-        }, 
+        },
+        'Изображение с колоннами': {
+            component: ImageAndColumns,
+            name: 'ImageAndColumns',
+            icon: table1Icon,
+            inputs: [
+                { name: 'header', label: 'Заголовок', type: 'text' },
+                { name: 'image', label: 'Изображение', type: 'file' },
+                { name: 'list', label: 'Лист', type: 'list' },
+                { name: 'headerColor', label: 'Цвет заголовка', type: 'color' },
+                { name: 'listColor', label: 'Цвет текста', type: 'color' }
+            ]
+        }
     },
     'Интерактивные': {
         'Двух вариантный': {

@@ -8,7 +8,8 @@ function ImageLine({
     color,
     height,
     notCrop = true,
-    adjustWidth = false
+    adjustWidth = false,
+    alignment = 'center',
 }) {
 
     if (img !== null && img !== undefined) {
@@ -18,6 +19,7 @@ function ImageLine({
                     image-line 
                     ${notCrop ? 'not-crop' : ''}
                     ${adjustWidth ? 'adjustWidth' : ''}
+                    ${alignment}
                 `}
             >
                 <img src={img} alt="image" style={{ height: `${height}px` }}/>
@@ -32,6 +34,7 @@ function ImageLine({
                     image-line 
                     ${notCrop ? 'not-crop' : ''}
                     ${adjustWidth ? 'adjustWidth' : ''}
+                    ${alignment}
                 `}
                 style={{backgroundColor: color, height: `${height}px`, width: '100%'}}>
             </div>

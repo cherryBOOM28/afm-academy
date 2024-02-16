@@ -13,7 +13,7 @@ function ImageAndColumns({
         <div className="image-and-columns">
             <div className="wrapper">
                 <div className="image">
-                    <div className="header" style={{ color: headerColor }}>{header}</div>
+                    { header ? <div className="header" style={{ color: headerColor }}>{header}</div> : null}
                     <img src={image} alt={image} />
                 </div>
                 <div className="columns">
