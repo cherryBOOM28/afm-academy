@@ -17,12 +17,30 @@
     overflow-y: scroll;
     overflow-x: hidden;
 
-    .modal-title {
-        font-family: 'Ubuntu';
-        font-weight: 700;
-        font-size: 24px;
-        color: #374761;
+    
+    .title-example {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .modal-title {
+            font-family: 'Ubuntu';
+            font-weight: 700;
+            font-size: 24px;
+            color: #374761;
+        }
+
+        .example {
+            text-decoration: underline;
+            cursor: pointer;
+            user-select: none;
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
     }
+
     .modal-content {
         padding-top: 25px;
         width: 100% !important;
@@ -55,6 +73,65 @@
             }
         }
 
+        .checkbox-input {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .select-input {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .icons-and-list {
+            margin: 20px 0px;
+
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            
+            .list {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 5px;
+                width: 100%;
+
+                .row {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 10px;
+
+                    width: calc(100% - 10px);
+
+
+                    &:first-child {
+                        > div {
+                            padding-left: 10px;
+                        }
+
+                        margin-bottom: 5px;
+                    }
+
+                    > div:nth-child(1) {
+                        width: 30%;
+                    }
+    
+                    > div:nth-child(2) {
+                        width: 70%;
+
+                        > input {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
 
         .dropdown-columns {
             padding-top: 5px;

@@ -11,6 +11,7 @@ import RandomH2 from '../../../components/courseTemplates/common/RandomH2'
 import RandomParapraph from '../../../components/courseTemplates/common/RandomParagraph'
 import Sizebox from '../../../components/courseTemplates/common/Sizebox'
 import SmallNotNuberedDots from '../../../components/courseTemplates/common/SmallNotNuberedDots'
+import ImageSequence from '../../../components/courseTemplates/common_v2/ImageSequence'
 
 import Table_1 from '../../../components/courseTemplates/common/Tables/Table-1'
 
@@ -20,7 +21,6 @@ import FancyList from '../../../components/courseTemplates/common_v2/FancyList'
 import TextWithBackground from '../../../components/courseTemplates/common/TextWithBackground'
 import TextWithTitle from '../../../components/courseTemplates/common/TextWithTitle'
 import VideoLine from '../../../components/courseTemplates/common/VideoLine'
-import Report_Warning from '../../../components/courseTemplates/common/Warnings/Report'
 import Report_Information from '../../../components/courseTemplates/common/Warnings/Report_Information'
 import TabsGlossary from '../../../components/courseTemplates/complex/TabsGlossary'
 import VideoWithTitleAndText from '../../../components/courseTemplates/complex/Video/VideoWithTitleAndText'
@@ -33,7 +33,9 @@ import DropdownGlossaryList from '../../../components/courseTemplates/complex/Dr
 import DataChain from '../../../components/courseTemplates/complex/DataChain'
 import SimpleTable from '../../../components/courseTemplates/common/SimpleTable'
 import DropDownTextWithTabs from '../../../components/courseTemplates/complex/DropDownTextWithTabs'
-
+import IconDots from '../../../components/courseTemplates/common_v2/IconDots'
+import Report_Warning from '../../../components/courseTemplates/common/Warnings/Report'
+import ImageAndColumns from '../../../components/courseTemplates/common_v2/ImageAndColumns'
 
 const componentMap = {
     HeaderWithLine,
@@ -66,7 +68,10 @@ const componentMap = {
     FancyList,
     FlexBoxes,
     FlexRow,
-    Quote
+    Quote,
+    IconDots,
+    ImageAndColumns,
+    ImageSequence
     // Add other components here
 };
 

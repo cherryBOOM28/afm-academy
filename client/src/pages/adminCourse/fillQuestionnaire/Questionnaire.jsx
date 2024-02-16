@@ -35,7 +35,7 @@ const transformQuizData = (responseData) => {
         }
     });
 
-    return transformedQuestions;
+    return transformedQuestions.filter(question => question !== undefined && question !== null);
 }
 
 
@@ -55,11 +55,13 @@ const QuestionnaireForm = ({saveCancel, save, id}) => {
                 }
             })
             .then((res) => {
+                console.log(res.data)
+
                 if (res.data) {
                     console.log(res.data)
                     setTitle(res.data.quiz_title)
                     const transformedData = transformQuizData(res.data);
-                    console.log(transformedData)
+
                     setQuestions(transformedData);
                 }
             })
@@ -92,11 +94,13 @@ const QuestionnaireForm = ({saveCancel, save, id}) => {
                 })
                 .then(response => {
                     console.log('Quiz saved successfully', response);
+                    alert('Тест сохранен');
                     saveCancel()
                     // Handle any additional logic after successful save
                 })
                 .catch(error => {
                     console.error('Error saving quiz', error);
+                    alert('Ошибка! Тест не сохранен');
                     saveCancel()
 
                     // Handle errors here
@@ -245,6 +249,8 @@ const QuestionnaireForm = ({saveCancel, save, id}) => {
             <h1 className='text'>Вопросы тестирования</h1>
             <div className='questions-block'>
             {questions.map((x, index) => {
+                if (!x) return null;
+
                 return (
                     <div className='single-question-block'>
                         <div className='title-type'>
