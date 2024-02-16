@@ -133,7 +133,8 @@ import image_78 from '../../assets/images/image_78.jpg';
 import image_77 from '../../assets/images/image_77.jpg';
 import image_76 from '../../assets/images/image_76.jpg';
 import image_1111 from '../../assets/images/88888.png';
-
+import pdf1 from '../../assets/video/НОР ОД откр версия РУС (1).pdf'
+import pdf2 from '../../assets/video/НОР ФТ публич версия рус.pdf'
 import stopSign from '../../assets/images/stopSign.jpg'
 import imgLupa from '../../assets/images/Lupa.jpg';
 import carousel_110 from './../../assets/images/Carousel_110.png';
@@ -7407,11 +7408,24 @@ function GetLesson({
             <PyramidList />
             <Sizebox height={80} />
             <Reveal>
-                <FileDownloader 
-                    fileName={'Публичные отчеты НОР ОД  и НОР ФТ'}
+                <Centered>
+                    <RandomH2>Вы также можете скачать и ознакомиться с публичными отчетами НОР ОД  и НОР ФТ</RandomH2>
+                </Centered>
+            </Reveal>
+            <Sizebox height={40} />
+
+            <Reveal>
+                <FileDownloader file={pdf1}
+                    fileName={'Публичные отчеты НОР ОД'}
                 />
             </Reveal>
+            <Sizebox height={40} />
 
+            <Reveal>
+                <FileDownloader file={pdf2}
+                                fileName={'Публичные отчеты НОР ФТ'}
+                />
+            </Reveal>
             <Sizebox height={100} />
             <Reveal>
                 <Centered>
@@ -7714,7 +7728,7 @@ function GetLesson({
             <Sizebox height={80} />
 
             <Reveal>
-                <VideoLine url={'https://videos.sproutvideo.com/embed/1190d6b6191be6cb98/1e08aa67291ed98e'}/>
+                <VideoLine url={'https://videos.sproutvideo.com/embed/4490d6b6191ce0cbcd/dfd1a36893ba80f0'}/>
             </Reveal>
             <Sizebox height={80} />
 
