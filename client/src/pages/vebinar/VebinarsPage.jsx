@@ -30,11 +30,27 @@ function VebinarsPage() {
 
   const [openModal, setOpenModal] = useState(false);
 
-  const handleVebinarEnter = () => {
-    // Выполняем регистрацию на вебинар
+    const handleVebinarEnter = (webinar_id) => {
+        // Выполняем регистрацию на вебинар
+        const jwtToken = localStorage.getItem("jwtToken");
+        axios.post(
+            `${base_url}/api/aml/webinar/saveUser/webinar/${webinar_id}`,{}, {
+                headers: {
+                    Authorization: `Bearer ${jwtToken}`,
+                },
+            }).then(response => {
+            // Handle success
+            console.log("Participation added successfully", response.data);
+            // Optionally, you can refresh the data or notify the user
+        })
+            .catch(error => {
+                // Handle error
+                console.error("Error adding participation", error);
+                // Notify the user of the error
+            });;
 
-    setOpenModal(true);
-  };
+        setOpenModal(true);
+    };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,6 +82,7 @@ function VebinarsPage() {
 
     fetchData();
   }, []);
+
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
   const [letterInterval, setLetterInterval] = useState("standard");
@@ -156,6 +173,7 @@ function VebinarsPage() {
   };
 
   const jwtToken = localStorage.getItem("jwtToken");
+
   const handleOpenVisualModal = () => {
     console.log("OPEN");
     setOpenVisualModal((prev) => !prev);
@@ -241,7 +259,6 @@ function VebinarsPage() {
     </div>
   );
 }
-
 const VebinarModal = ({ open, handleClose }) => {
   return (
     <Modal
@@ -321,7 +338,6 @@ const VebinarModal = ({ open, handleClose }) => {
           style={{
             width: "max-content",
             margin: "0 auto",
-            borderRadius: "8px",
             background: "#1F3C88",
             borderRadius: "8px",
             padding: "12px 96px",
@@ -345,7 +361,7 @@ const VebinarModal = ({ open, handleClose }) => {
 
 const VebinarCard = (props) => {
   const {
-    id,
+    webinar_id,
     image,
     name,
     webinar_for_member_of_the_system,
@@ -387,9 +403,6 @@ const VebinarCard = (props) => {
 
   const navigate = useNavigate();
 
-  const handleVebinarEnter = () => {
-    props.handleVebinarEnter();
-  };
 
   return (
     <div className="vebinar-card">
@@ -414,10 +427,7 @@ const VebinarCard = (props) => {
             </div>
             <div
               className="action-btn"
-              onClick={() => {
-                handleVebinarEnter();
-                // navigate(`/vebinars/${id}`)
-              }}
+             onClick={() => props.handleVebinarEnter(webinar_id)}
             >
               Принять участие
             </div>

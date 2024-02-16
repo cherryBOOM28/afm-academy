@@ -2,6 +2,7 @@ import { useState, useEffect,lazy,Suspense,startTransition } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import PrivateRoute from './auth/PrivateRoute';
+import AdminRoute from './auth/AdminRoute.jsx';
 import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
 import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigationCourse/index.jsx';
@@ -10,6 +11,8 @@ import './settings/i18n.js';
 import VisualModal from './/components/VisualModal/VisualModal.jsx'
 import Login from './pages/login/Login';
 import { StyleProvider } from './/components/VisualModal/StyleContext.jsx';
+import Registration from './pages/registration/Registration';
+
 const Home = lazy(() => import ('./pages/home/Home'))
 const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
 //import Home from './pages/home/Home';
@@ -27,8 +30,6 @@ const Subjects = lazy(() => import('./pages/sfm/subjects/Subjects'))
 //import Subjects from './pages/sfm/subjects/Subjects';
 // const Login = lazy(()=>import('./pages/login/Login'))
 
-const Registration = lazy(() => import('./pages/registration/Registration'));
-//import Registration from './pages/registration/Registration';
 const Rules = lazy(() => import('./pages/sfm/rules/Rules'));
 //import Rules from './pages/sfm/rules/Rules';
 const Operations = lazy(() => import('./pages/sfm/operations/Operations'));
@@ -104,7 +105,9 @@ function App() {
                         <Routes>
                             <Route path="/login" element={<PrivateRoute shouldBeLoggedIn={false} component={Login} redirect={'/profile'}/>} />
                             <Route path="/registration" element={<PrivateRoute shouldBeLoggedIn={false} component={Registration} redirect={'/profile'}/>} />
-
+                            {/* <Route path='/manager' element={<AdminRoute component={EditCatalog} shouldBeLoggedIn={true} redirect={'/'} />} /> */}
+                            {/* <Route path='/createcourse' element={<AdminRoute component={CreateCoursePage} shouldBeLoggedIn={true} redirect={'/'} />}/> */}
+                           
                             <Route path="/logout" element={<Login/>} />
 
 
