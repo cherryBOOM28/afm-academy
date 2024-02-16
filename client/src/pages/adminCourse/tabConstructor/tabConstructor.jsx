@@ -345,13 +345,15 @@ const Constructor = ({saveCancel, save, id, title}) => {
         }
     }, [save, componentHistory, id, saveCancel])
 
-    const handleElementClick = ({ ElementComponent, InputsOfElement }) => {
+    
+    const handleElementClick = ({ ElementComponent, InputsOfElement, ElementExample }) => {
         // const newComponent = { componentName: ElementComponent.name, inputs: InputsOfElement, values: {} };
         // setSelectedComponent(newComponent);
         let key = getKeyByValue(componentMap, ElementComponent);
         const newComponent = {
             component_entry_id: generateUniqueId(),
             componentName: key,
+            example: ElementExample,
             inputs: InputsOfElement || [],
             values: {},  
         };
@@ -369,6 +371,7 @@ const Constructor = ({saveCancel, save, id, title}) => {
             setSelectedComponent(newComponent);
         }
     };
+
     const handleEditComponent = (index) => {
         const editedComponent = componentHistory[index];
         setSelectedComponent(editedComponent);
@@ -480,10 +483,12 @@ const Constructor = ({saveCancel, save, id, title}) => {
                 })}
             </div>
 
+            {selectedComponent? console.log(selectedComponent) : null}
             {selectedComponent && (
                 <div className='modal-window'>
                     <Modal
                         onClose={handleCloseModal}
+                        example={selectedComponent.example}
                         inputs={selectedComponent.inputs}
                         onSubmit={handleModalSubmit}
                         exValues={selectedComponent.values || {}}
@@ -502,18 +507,71 @@ const Constructor = ({saveCancel, save, id, title}) => {
                         <div className='element-group' key={groupName}>
                             <h4>{groupName}</h4>
                             <div className='element-grid'>
-                                {Object.entries(groupElements).map(([elementName, { component: ElementComponent, icon: ElementIcon, inputs: InputsOfElement }]) => (
-                                    <div className='element' key={elementName} onClick={() => handleElementClick({ ElementComponent, InputsOfElement })}>                                        {/* Display the icon */}
-                                        <img src={ElementIcon} alt={`Icon for ${elementName}`} />
-
-                                        <a>{elementName}</a>
-                                    </div>
-                                ))}
+                                {Object.entries(groupElements).map((item) => {
+                                    const [ElementName, { component: ElementComponent, icon: ElementIcon, inputs: InputsOfElement, example: ElementExample }] = item;
+                                    
+                                    return <Element 
+                                        ElementName={ElementName} 
+                                        ElementIcon={ElementIcon}
+                                        ElementComponent={ElementComponent}
+                                        InputsOfElement={InputsOfElement}
+                                        ElementExample={ElementExample}
+                                        handleElementClick={handleElementClick}
+                                    />
+                                })}
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
+        </div>
+    )
+}
+
+const Element = ({
+    ElementName,
+    ElementIcon,
+    ElementComponent,
+    InputsOfElement,
+    ElementExample,
+    handleElementClick
+}) => {
+    const handleElementMouseEnter = () => {
+        console.log(ElementExample);
+
+        setShowExample(true);
+    }
+
+    const handleElementMouseExit = () => {
+        setShowExample(false);
+    }
+
+    const [showExample, setShowExample] = useState(false);
+
+    return (
+        <div 
+            className='element' 
+            key={ElementName} 
+            onClick={() => handleElementClick({ ElementComponent, InputsOfElement, ElementExample })}
+            onMouseEnter={() => handleElementMouseEnter()}
+            onMouseLeave={() => handleElementMouseExit()}
+
+        >                                        {/* Display the icon */}
+            <img src={ElementIcon} alt={`Icon for ${ElementName}`} />
+
+            <a>{ElementName}</a>
+
+            {
+                ElementExample && showExample
+                    ? <div className="example-image-wrapper">
+                        <p>Как будет выглядеть: </p>
+                        <img 
+                            className='example-image'
+                            src={ElementExample}
+                        />
+                    </div>
+                    : null
+            }
         </div>
     )
 }

@@ -5,8 +5,8 @@
     "about the academy": "Об Академии",
     "board of directors": "Совет директоров",
     "structure": "Структура",
-    "regulation": "Устав",
-    "development plan": "План развития",
+    "corporate governance": "Корпоративное управление",
+    "сontacts": "Контакты",
 
     "training": "Обучение",
     "types of courses": "Виды курсов",
@@ -15,7 +15,7 @@
 
     "webinars": "Вебинары",
     "all webinars": "Все вебинары",
-    "calendar of events": "Календарь мероприятий",
+    "announcements": "Анонсы",
     "surveys": "Опросы", 
 
     "news": "Новости",
@@ -26,6 +26,8 @@
     "eag": "ЕАГ",
     "mutual assessment": "Взаимная оценка",
 
+    "ric":"НИИ",
+
     "sfm": "СФМ",
     "types of subjects of financial monitoring": "Виды субъектов финансового мониторинга",
     "internal control rules": "Правила внутреннего контроля",
@@ -34,9 +36,12 @@
     "our courses": "Знания, которые защищают",
     "quality": "Качество обучения", 
 
-    "core": "Обучение",
-    "specialized": "НИИ",
-    "advanced": "IT",
+    "core": "Базовый",
+    "specialized": "Профильный",
+    "advanced": "Продвинутый",
+    "it":"IT",
+    "thematic":"Тематический",
+    "education":"Обучение",
 
     "advantages of academy": "Преимущества Академии",
     "qualified experts": "Квалифицированные эксперты с опытом работы в сфере ПОД/ФТ",

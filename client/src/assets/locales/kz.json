@@ -5,8 +5,8 @@
     "about the academy": "Академия туралы",
     "board of directors": "Директорлар кеңесі",
     "structure": "Құрылым",
-    "regulation": "Жарлық",
-    "development plan": "Даму жоспары",
+    "corporate governance": "Корпоративтік басқару",
+    "сontacts": "Байланыс номерлері",
 
     "training": "Оқыту",
     "types of courses": "Курстар түрлері",
@@ -15,7 +15,7 @@
 
     "webinars": "Вебинарлар",
     "all webinars": "Барлық вебинарлар",
-    "calendar of events": "Іс-шаралар күнтізбесі",
+    "announcements": "Хабарландырулар",
     "surveys": "Сұрақтар",
 
     "news": "Жаңалықтар",
@@ -26,6 +26,8 @@
     "eag": "ЕАТ",
     "mutual assessment": "Өзара бағалау",
 
+    "ric":"ҒЗИ",
+
     "sfm": "ҚМС",
     "types of subjects of financial monitoring": "Қаржылық мониторинг субъектілерінің түрлері",
     "internal control rules": "Ішкі бақылау қағидалары",
@@ -34,9 +36,16 @@
     "our courses": "Қорғайтын білім",
     "quality": "Оқыту сапасы",
 
-    "core": "Оқыту",
-    "specialized": "ҒЗИ",
-    "advanced": "IT",
+    "core": "Базалық",
+    "specialized": "Мамандандырылған",
+    "advanced": "Жетілдірілген",
+    "thematic":"Тематикалық", 
+
+    "it":"IT",
+    "education":"Білім беру",
+    
+    
+
 
     "advantages of academy": "Академияның басымдылығы",
     "qualified experts": "КЖ/ТҚҚ саласында жұмыс тәжірибесі бар білікті сарапшылар",

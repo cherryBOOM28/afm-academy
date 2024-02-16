@@ -21,12 +21,12 @@ const navbar_items = [
           route: '/structure'
         },
         {
-          name: 'regulation',
+          name: 'corporate governance',
           route: '/charter'
         },
         {
-          name: 'development plan',
-          route: '/'
+          name: 'contacts',
+          route: '/contacts'
         }
       ]
     },
@@ -53,11 +53,11 @@ const navbar_items = [
       route: null,
       subItems: [
         {
-          name: 'all webinars',
+          name: 'webinars',
           route: '/vebinars'
         },
         {
-          name: 'calendar of events',
+          name: 'announcements',
           route: '/vebinars/calendar'
         },
         {
@@ -93,6 +93,12 @@ const navbar_items = [
           name: 'mutual assessment',
           route: '/mutual-evaluation'
         },
+      ]
+  },
+    {
+      name: 'ric',
+      route: null,
+      subItems: [
       ]
     },
     {

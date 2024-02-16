@@ -7,7 +7,6 @@
     font-style: normal;
     line-height: normal;
     height: calc(100% - 80px);
-    overflow-x: hidden;
     overflow-y: scroll;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;
@@ -271,7 +270,7 @@
         }
         .tool-bar {
             // height: calc(100vh - 210px);
-            overflow: scroll;
+            overflow: visible;
             height: calc(100% - 209px);
             width: 300px;
             position: absolute;
@@ -307,7 +306,10 @@
                         column-gap: 8px;
                         row-gap: 8px;
                         grid-template-columns: 150px 150px;
+
                         .element {
+                            position: relative;
+
                             cursor: pointer;
                             border-radius: 5px;
                             border: 1px solid rgba(55, 71, 97, 0.15);
@@ -322,6 +324,39 @@
                             img {
                                 height: 15px;
                             }
+
+                            .example-image-wrapper {
+                                position: absolute;
+                                top: 0;
+                                z-index: 4;
+                                transform: translate(calc(-100% - 30px));
+
+                                width: max-content;
+                                padding: 10px;
+
+                                display: flex;
+                                flex-direction: column;
+                                gap: 20px;
+                                align-items: center;
+
+
+                                border: 1px solid black;
+                                border-radius: 16px;
+                                border-top-right-radius: 0px;
+
+                                background-color: white;
+
+                                p {
+                                    font-size: 22px;
+                                }
+
+                                .example-image {
+                                    width: 100%;
+                                    height: initial;
+                                    max-height: 200px;
+                                }
+                            }
+
                             a {
                                 color: #374761;
                                 font-family: Ubuntu;

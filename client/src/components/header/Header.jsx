@@ -360,25 +360,32 @@ const NavigationBar = (props) => {
                       <Link to="/structure" className={'subPages text-content'}>{t('structure')}</Link>
                   </li>
                   <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
-                      <Link to="/charter" className={'subPages text-content'}>{t('regulation')}</Link>
+                      <Link to="/charter" className={'subPages text-content'}>{t('corporate governance')}</Link>
                   </li>
                   <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
-                      <Link to="/roadmap" className={'subPages text-content'}>{t('development plan')}</Link>
+                      <Link to="/contacts" className={'subPages text-content'}>{t('contacts')}</Link>
                   </li>
               </ul>
           </div>
           <div className={'menuBox'}>
               <a className={`menu ${props.dark ? 'dark' : ''} text-content`}>{t('training')}</a>
               <ul className={'dropdownSub text-content'}>
-                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
-                      <a onClick={scrollToCourses} className={'subPages text-content'}>{t('types of courses')}</a>
-                  </li>  
+                    
                   <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
                       <Link to="/courses/catalog" className={'subPages text-content'}>{t('course catalog')}</Link>
                   </li>
                   {isLoggedIn ? <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
                       <Link to="/courses/myCourses" className={'subPages text-content'}>{t('my courses')}</Link>
-                  </li> : null}
+                   </li> : null}
+                   <li>
+                      <Link to="/vebinars" className={'subPages text-content'}>{t('webinars')}</Link>
+                  </li>
+                  <li>
+                      <Link to="/vebinars/calendar" className={'subPages text-content'}>{t('announcements')}</Link>
+                  </li>
+                  <li>
+                      <Link to="/vebinars/surveys" className={'subPages text-content'}>{t('surveys')}</Link>
+                  </li>
               </ul>
           </div>
           {/* <div className={'menuBox'}>
@@ -395,22 +402,12 @@ const NavigationBar = (props) => {
                   </li>
               </ul>
           </div> */}
-          <div className={'menuBox'}>
-              <a className={`menu ${props.dark? 'dark' : ''} text-content`}>{t('webinars')}</a>
-              <ul className={'dropdownSub'}>
-                  <li>
-                      <Link to="/vebinars" className={'subPages text-content'}>{t('all webinars')}</Link>
-                  </li>
-                  <li>
-                      <Link to="/vebinars/calendar" className={'subPages text-content'}>{t('calendar of events')}</Link>
-                  </li>
-                  <li>
-                      <Link to="/vebinars/surveys" className={'subPages text-content'}>{t('surveys')}</Link>
-                  </li>
-              </ul>
-          </div>
+      
           <div className={'menuBox'}>
               <a className={`menu ${props.dark? 'dark' : ''} text-content`} onClick={() => scrollToNews()}>{t('news')}</a>
+          </div>
+          <div className={'menuBox'}>
+              <a className={`menu ${props.dark? 'dark' : ''} text-content`} >{t('ric')}</a>
           </div>
           <div className={'menuBox'}>
               <a className={`menu ${props.dark? 'dark' : ''} text-content`}>{t('aml/ft')}</a>

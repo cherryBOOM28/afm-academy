@@ -282,7 +282,7 @@ function Home() {
                     <div className={cl.aml_box}>
                       {!imagesHidden && <img src={basicCourse} alt="" />}
                       <p className={`${cl.course_box_name} text-content`}>
-                        {t("core")}
+                        {t("education")}
                       </p>
                     </div>
                   </Link>
@@ -290,7 +290,7 @@ function Home() {
                     <div className={cl.aml_box}>
                       {!imagesHidden && <img src={proCourse} alt="" />}
                       <p className={`${cl.course_box_name} text-content`}>
-                        {t("specialized")}
+                        {t("ric")}
                       </p>
                     </div>
                   </Link>
@@ -298,7 +298,7 @@ function Home() {
                     <div className={cl.aml_box}>
                       {!imagesHidden && <img src={deepCourse} alt="" />}
                       <p className={`${cl.course_box_name} text-content`}>
-                        {t("advanced")}
+                        {t("it")}
                       </p>
                     </div>
                   </Link>

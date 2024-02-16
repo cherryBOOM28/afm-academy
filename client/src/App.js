@@ -19,6 +19,7 @@ const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
 const AboutUs = lazy(()=> import('./pages/aboutPage/aboutUs/AboutUs'))
 //import AboutUs from './pages/aboutPage/aboutUs/AboutUs';
 const Management = lazy(() => import('./pages/aboutPage/management/Management'))
+const Contacts = lazy(() => import('./pages/aboutPage/contacts/Contacts.jsx'))
 //import Management from './pages/aboutPage/management/Management';
 const Structure = lazy(() => import('./pages/aboutPage/structure/Structure'))
 //import Structure from './pages/aboutPage/structure/Structure';
@@ -105,8 +106,8 @@ function App() {
                         <Routes>
                             <Route path="/login" element={<PrivateRoute shouldBeLoggedIn={false} component={Login} redirect={'/profile'}/>} />
                             <Route path="/registration" element={<PrivateRoute shouldBeLoggedIn={false} component={Registration} redirect={'/profile'}/>} />
-                            {/* <Route path='/manager' element={<AdminRoute component={EditCatalog} shouldBeLoggedIn={true} redirect={'/'} />} /> */}
-                            {/* <Route path='/createcourse' element={<AdminRoute component={CreateCoursePage} shouldBeLoggedIn={true} redirect={'/'} />}/> */}
+                            <Route path='/manager' element={<AdminRoute component={EditCatalog} shouldBeLoggedIn={true} redirect={'/'} />} />
+                            <Route path='/createcourse' element={<AdminRoute component={CreateCoursePage} shouldBeLoggedIn={true} redirect={'/'} />}/>
                            
                             <Route path="/logout" element={<Login/>} />
 
@@ -115,6 +116,7 @@ function App() {
                             <Route path="/:scroll" element={<Suspense ><Home /></Suspense>}></Route>
                             <Route path="/about" element={<Suspense ><AboutUs /></Suspense>}></Route>
                             <Route path="/management" element={<Suspense ><Management /></Suspense>}></Route>
+                            <Route path="/contacts" element={<Suspense ><Contacts /></Suspense>}></Route>
                             <Route path="/structure" element={<Suspense ><Structure /></Suspense>}></Route>
                             <Route path="/structure/:id" element={<Suspense ><DirectorPage /></Suspense>} />
                             <Route path="/charter" element={<Suspense ><Charter /></Suspense>}></Route>
@@ -163,8 +165,8 @@ function App() {
 
                             {/* <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={CreateCoursePage} />}/> */}
                             {/* <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={EditCatalog} />}/> */}
-                            <Route path='/createcourse' element={<CreateCoursePage/>}/>
-                            <Route path='/manager' element={<EditCatalog/>} />
+                            {/* <Route path='/createcourse' element={<CreateCoursePage/>}/> */}
+                            {/* <Route path='/manager' element={<EditCatalog/>} /> */}
                         </Routes>
                     </BrowserRouter>
                 </AuthProvider>

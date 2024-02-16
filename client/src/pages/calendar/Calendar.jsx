@@ -267,7 +267,7 @@ function CalendarPage(props) {
 
                 }}
               >
-                {t("calendar of events")}
+                {t("announcements")}
               </h2>
 
               <div className="calendar-wrapper">
