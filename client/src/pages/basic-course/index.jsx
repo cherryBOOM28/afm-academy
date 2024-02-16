@@ -802,7 +802,16 @@ const CourseNavigation = ({
                         isActive={11 === activeSessionId}
                     />
                 </Module>
-                
+                <Session
+                    course_id={8}
+                    session={{
+                        id: 999,
+                        name: 'Заключительная часть',
+                        progress: 0,
+                    }}
+                    handleSessionClick={handleSessionClick}
+                    isActive={999 === activeSessionId}
+                />
             </div>
 
         </div>
