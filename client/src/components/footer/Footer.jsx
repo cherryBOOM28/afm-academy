@@ -39,6 +39,7 @@ function Footer({ email, phoneNumber }) {
                 <div className={cl.footer}>
                     <div className={cl.footer__block}>
                         <p className={`${cl.footer__headline} text-content`}>{t('contacts')}</p>
+                        <br />
                         <nav className={cl.footer__content}>
                             <ul>
                                 <li>
@@ -67,6 +68,7 @@ function Footer({ email, phoneNumber }) {
                     </div>
                     <div className={cl.footer__block}>
                         <p className={`${cl.footer__headline} text-content`}>{t('about us')}</p>
+                        <br />
                         <nav className={cl.footer__content}>
                             <ul>
                                 <li>
@@ -79,10 +81,7 @@ function Footer({ email, phoneNumber }) {
                                     <Link to="/structure" className={`${cl.footer__text} text-content`}>{t('structure')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/charter" className={`${cl.footer__text} text-content`}>{t('regulation')}</Link>
-                                </li>
-                                <li>
-                                    <Link to="/roadmap" className={`${cl.footer__text} text-content`}>{t('development plan')}</Link>
+                                    <Link to="/charter" className={`${cl.footer__text} text-content`}>{t('corporate governance')}</Link>
                                 </li>
                             </ul>
                         </nav>
@@ -90,6 +89,7 @@ function Footer({ email, phoneNumber }) {
                     </div>
                     <div className={cl.footer__block}>
                         <p className={`${cl.footer__headline} text-content`}>{t('aml/ft')}</p>
+                        <br />
                         <nav className={cl.footer__content}>
                             <ul>
                                 <li>
@@ -110,6 +110,7 @@ function Footer({ email, phoneNumber }) {
                     </div>
                     <div className={cl.footer__block}>
                         <p className={`${cl.footer__headline} text-content`}>{t('training')}</p>
+                        <br />
                         <nav className={cl.footer__content}>
                             <ul>
                                 <li>
@@ -155,6 +156,7 @@ function Footer({ email, phoneNumber }) {
                     </div>
                     <div className={cl.footer__block__big}>
                         <p className={`${cl.footer__headline} text-content`}>{t('sfm')}</p>
+                        <br />
                         <nav className={cl.footer__content}>
                             <ul>
                                 <li>

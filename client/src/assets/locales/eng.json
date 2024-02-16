@@ -5,8 +5,8 @@
     "about the academy": "About the Academy",
     "board of directors": "The Board of Directors",
     "structure": "Structure",
-    "regulation": "Regulation",
-    "development plan": "Development plan",
+    "corporate governance": "Corporate governance",
+    "сontacts": "Contacts",
 
     "training": "Training",
     "types of courses": "Types of courses",
@@ -15,16 +15,20 @@
 
     "webinars": "Webinars",
     "all webinars": "All webinars",
-    "calendar of events": "Calendar of events",
-    "surveys": "Surveys", 
+    "announcements": "Announcements",
+    "surveys": "Surveys",
+    "thematic":"Thematic", 
 
     "news": "News",
+    
 
     "aml/ft": "AML/FT",
     "anti-washing system of the RK": "Anti-washing system of the RK",
     "fatf": "FATF",
     "eag": "EAG",
     "mutual assessment": "Mutual assessment",
+
+    "ric":"RIC",
 
     "sfm": "SFM",
     "types of subjects of financial monitoring": "Types of subjects of financial monitoring",
@@ -34,9 +38,11 @@
     "our courses": "Knowledge that protects",
     "quality": "Study quality",
 
-    "core": "Education",
-    "specialized": "RIC",
-    "advanced": "IT",
+    "core": "Core",
+    "specialized": "Specialized",
+    "advanced": "Advanced",
+    "it":"IT",
+    "education":"Education",
 
     "advantages of academy": "Advantages of the Academy",
     "qualified experts": "Qualified experts with experience in the field of AML/CFT",
