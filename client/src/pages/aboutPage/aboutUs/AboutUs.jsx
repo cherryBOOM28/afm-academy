@@ -3,7 +3,7 @@ import cl from "./AboutUs.module.css";
 import DefaultHeader from "../../../components/defaultHeader/DefaultHeader";
 import Header from "../../../components/header/Header";
 import aboutUsImg from "../../../assets/images/aboutus.png";
-import aboutFounderImg from "../../../assets/images/afm.png";
+import aboutFounderImg from "../../../assets/images/afmafmafmlogo.jpeg";
 import Footer from "../../../components/footer/Footer";
 import { useTranslation } from "react-i18next";
 import { useStyle } from "../../../components/VisualModal/StyleContext";
