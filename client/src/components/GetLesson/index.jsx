@@ -8712,7 +8712,69 @@ function GetLesson({
                   handleOpenModal={handleOpenFeedbackModal}
               ></TestPage>
       );
-  
+      case 999:
+          return (<LessonPage name={'Заключительная часть'} lecturer={'AML Academy'}>
+              <Reveal>
+                  <ImageLine
+                      img={image75}
+                      color={'#FFFFFF'}
+                  />
+                  <Sizebox height={40} />
+              </Reveal>
+              <Sizebox height={20} />
+              <Reveal>
+                  <TextWithTitle
+                      title={"По итогам данного курса – Базового курса по ПОД/ФТ вам известно:"}
+                  />
+                  <Sizebox height={20} />
+                  <NumberedDots
+                      dotsColor={'#CADEFC'}
+                      list={[
+                          'система ПОД/ФТ в Республике Казахстан, в том числе и предикатные преступления в этой области;',
+                          'международные стандарты и Рекомендации ФАТФ, членство Республики Казахстан в международных антиотмывочных сообществах;',
+                          'деятельность и роль госорганов-регуляторов и АФМ;',
+                          'требования к внутренним нормативным документам субъекта и программе подготовке и обучения в сфере ПОД/ФТ и процедура сдачи тестировани;',
+
+                      ]}
+                  />
+                  <Sizebox height={40}/>
+              </Reveal>
+
+              <Reveal>
+                  <Sizebox height={60}></Sizebox>
+                  <TextWithTitle
+                      title={'Данные направления были объединены Академией в курс, для того, чтобы субъекты, имея знания в этой области могли осуществлять функции связанные с соблюдением законодательства о ПОД/ФТ как этого требуют нормы НПА.'}
+                  >
+                  </TextWithTitle> <Sizebox height={20}></Sizebox>
+                  <TextWithTitle
+                      title={'Однако, для полноценного обучения, в том числе и по деятельности каждого вида СФМ субъектам необходимо пройти обучение по Профильному курсу, которая предусматривает изучение системы ПОД/ФТ со стороны определенного СФМ (МФО, ломбард, обменные пункты и др.) с учетом продуктов и услуг, оказываемых СФМ своим клиентам.\n'}
+
+                  >
+
+                  </TextWithTitle><Sizebox height={20}></Sizebox>
+                  <TextWithTitle
+                      title={'Академия выражает готовность в дальнейшем сотрудничестве и взаимодействии, а также при подготовке обучающихся к процедуре тестирования в сфере ПОД/ФТ.'}
+                  >
+                  </TextWithTitle>
+                  <Sizebox height={60}></Sizebox><Sizebox height={20}></Sizebox>
+              </Reveal>
+              <Reveal>
+                  <Report_Information>
+                      <>
+                          <p className='italic'>
+                              Благодарим за внимание!                            </p>
+                      </>
+                  </Report_Information>
+              </Reveal>
+
+              <Reveal>
+                  <Sizebox height={40}/>
+                  <NextLesson handleOnClick={() => {
+                      CheckCurrentChapter(id);
+                  }}/>
+              </Reveal>
+
+          </LessonPage>)
 
   }
    
