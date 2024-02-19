@@ -8,7 +8,9 @@ import DefaultHeader from "../../../components/defaultHeader/DefaultHeader";
 import Button from "../../../components/UI/button/Button";
 import Footer from "../../../components/footer/Footer";
 import Comments from "../../../components/commentSection/Comments";
-
+import merzadinov from '../../../assets/images/merzadinov.png';
+import tleu from '../../../assets/images/tleu.png';
+import dauren from '../../../assets/images/dauren.png';
 import ModalWindow from "../../../components/ModalWindow/ModalWindow";
 import Header from "../../../components/header/Header";
 
@@ -178,7 +180,7 @@ const DirectorPage = () => {
         <Header dark={true} />
         <div className={cl.container}>
             <div className={cl.card}>
-                <img src={cardData.photo} alt="Director profile" className={cl.card__img} />
+                <img src={cardData.id === '1' ?  merzadinov : cardData.id === '2' ? tleu : dauren} alt="Director profile" className={cl.card__img} />
                 <div className={cl.card__block}>
                     <div className={cl.cardContent}>
                         <h2 className={cl.card__title}>{cardData.title}</h2>
