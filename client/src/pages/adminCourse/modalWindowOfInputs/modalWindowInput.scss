@@ -1,13 +1,14 @@
 .modal {
     z-index: 5;
     position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;
-    width: 40% !important;
-    height: 50% ;
+    top: 25%;
+    left: 25%;
+
+    width: max-content;
+    min-width: 600px;
+    height: max-content;
+    max-height: 400px;
+
     background-color: rgb(255, 255, 255);
     border: 1px solid rgba(55, 71, 97, 0.15);
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
@@ -30,10 +31,15 @@
             color: #374761;
         }
 
+        img {
+            max-width: 600px;
+        }
+
         .example {
             text-decoration: underline;
             cursor: pointer;
             user-select: none;
+
 
             &:hover {
                 opacity: 0.5;
