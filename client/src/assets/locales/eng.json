@@ -90,17 +90,26 @@
     "secondTask": "improvement and further development of the activities of additional education in the field of AML/CFT/FMT",
     "therdTask": "conducting scientific, applied, analytical and IT research, evaluation activities, methodological developments in order to develop the national AML/CFT/FMT system",
 
-    "firstDirector": "Elimanov Zhanat Kaldybekovich",
+    "firstDirector": "Merzadinov",
     "descFirstDir": "Chairman of the Financial Monitoring Agency of the Republic of Kazakhstan, Chairman The Board of Directors",
 
-    "secondDirector": "Myrzakhmetov Kairat Zhaksykulovich",
+    "secondDirector": "Raisov",
     "descSecondDir": "Deputy Chairman of the State Property and Privatization Committee of the Ministry of Finance of the Republic of Kazakhstan, member of the Board of Directors from the authorized body for state property",
 
-    "therdDirector": "Kushimov Nurhat Manasovich",
+    "therdDirector": "Sagydikov",
     "descTherdDir": "Director General of the IFC Financial Services Regulatory Committee, Independent Director",
 
     "fourthDirector": "Хусаинов Галим Абильжанович",
     "descFourthDir": "Member of the Board of Directors, Independent Director of Bereke Bank JSC, Independent Director.",
+
+    "fifthDirector": "Elimanov Zhanat Kaldybekovich",
+    "descFifthDir": "Chairman of the Financial Monitoring Agency of the Republic of Kazakhstan, Chairman The Board of Directors",
+
+    "sixthDirector": "Myrzakhmetov Kairat Zhaksykulovich",
+    "descSixthDir": "Deputy Chairman of the State Property and Privatization Committee of the Ministry of Finance of the Republic of Kazakhstan, member of the Board of Directors from the authorized body for state property",
+
+    "seventhDirector": "Kushimov Nurhat Manasovich",
+    "descSeventhDir": "Director General of the IFC Financial Services Regulatory Committee, Independent Director",
 
     "categories": "Categories",
     "all categories": "All categories",
