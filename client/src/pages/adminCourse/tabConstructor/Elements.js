@@ -67,8 +67,32 @@ import block2Icon from '../images/blocks-2-icon.svg'
 // Example images
 import HeaderWithLineExample from './../../../assets/images/Template Examples/HeaderWithLine.png'
 import NumberedDotsExample from './../../../assets/images/Template Examples/NumberedList.png'
+import NotNumberedDotsExample from './../../../assets/images/Template Examples/NotNumberedList.png'
 import QuoteExample from './../../../assets/images/Template Examples/Quote.png'
 import RandomParagraphExample from './../../../assets/images/Template Examples/RandomParagraph.png'
+import RandomH2Example from './../../../assets/images/Template Examples/RandomH2.png'
+import RandomGlossaryExample from './../../../assets/images/Template Examples/RandomGlossary.png'
+import TextWithBackgroundExample from './../../../assets/images/Template Examples/TextWithBackground.png'
+import ReportWarningExample from './../../../assets/images/Template Examples/ReportWarning.png'
+import ReportInformationExample from './../../../assets/images/Template Examples/ReportInformation.png'
+import FancyListExample from './../../../assets/images/Template Examples/FancyList.png'
+import DropdownListExample from './../../../assets/images/Template Examples/DropdownList.png'
+import DropdownGlossaryListExample from './../../../assets/images/Template Examples/DropdownGlossaryList.png'
+import IconDotsExample from './../../../assets/images/Template Examples/IconDots.png'
+import TabsGlossaryExample from './../../../assets/images/Template Examples/TabsGlossary.png'
+import DropDownTextWithTabsExample from './../../../assets/images/Template Examples/DropDownTextWithTabs.png'
+import Table_1Example from './../../../assets/images/Template Examples/Table_1.png'
+import SimpleTableExample from './../../../assets/images/Template Examples/SimpleTable.png'
+import ImageWithTextExample from './../../../assets/images/Template Examples/ImageWithText.png'
+import ImageLineExample from './../../../assets/images/Template Examples/ImageLine.png'
+import ImageSequenceExample from './../../../assets/images/Template Examples/ImageSequence.png'
+import FileDownloaderExample from './../../../assets/images/Template Examples/FileDownloader.png'
+import TextAndLinkExample from './../../../assets/images/Template Examples/TextAndLink.png'
+import ShortBiographyExample from './../../../assets/images/Template Examples/ShortBiography.png'
+import DataChainExample from './../../../assets/images/Template Examples/DataChain.png'
+import FlexBoxesExample from './../../../assets/images/Template Examples/FlexBoxes.png'
+import ImageAndColumnsExample from './../../../assets/images/Template Examples/ImageAndColumns.png'
+import DragAndDropTwoSideExample from './../../../assets/images/Template Examples/DragAndDropTwoSide.png'
 
 
 const Elements = {
@@ -87,6 +111,7 @@ const Elements = {
         }, //children (span for bold), header (for usual text), headerColor, lineColor
         'Текст': {
             component: RandomGlossary,
+            example: RandomGlossaryExample,
             name: 'RandomGlossary',
             icon: randomGlossaryIcon,
             inputs: [
@@ -98,6 +123,7 @@ const Elements = {
         }, //title, text, color, backgroundColor
         'Маленький заголовок': {
             component: RandomH2,
+            example: RandomH2Example,
             name: 'RandomH2',
             icon: randomH2Icon,
             inputs: [
@@ -118,6 +144,7 @@ const Elements = {
         }, //children, color, fontSize
         'Цветной фон': {
             component: TextWithBackground,
+            example: TextWithBackgroundExample,
             name: 'TextWithBackground',
             icon: imageIcon,
             inputs: [
@@ -140,6 +167,7 @@ const Elements = {
         }, //title, text
         'Аннотация': {
             component: Report_Warning,
+            example: ReportWarningExample,
             name: 'Report_Warning',
             icon: reportIcon,
             inputs: [
@@ -149,6 +177,7 @@ const Elements = {
         }, //children
         'Аннотация параграф': {
             component: Report_Information,
+            example: ReportInformationExample,
             name: 'Report_Information',
             icon: reportInformationIcon,
             inputs: [
@@ -171,6 +200,7 @@ const Elements = {
     'Списковые элементы': {
         'Точечный': {
             component: NotNumberedDots,
+            example: NotNumberedDotsExample,
             name: 'NotNumberedDots',
             icon: norNumberedDotsIcon,
             inputs: [
@@ -195,6 +225,7 @@ const Elements = {
         },
         'Список квадратный': {
             component: FancyList,
+            example: FancyListExample,
             name: 'FancyList',
             icon: squareIcon,
             inputs: [
@@ -206,6 +237,7 @@ const Elements = {
         }, 
         'Выпадающий список с описанием': {
             component: DropdownList,
+            example: DropdownListExample,
             name: 'DropdownList',
             icon: dropDownListIcon,
             inputs: [
@@ -214,6 +246,7 @@ const Elements = {
         },
         'Раскрывающийся список': {
             component: DropdownGlossaryList,
+            example: DropdownGlossaryListExample,
             name: 'DropdownGlossaryList',
             icon: listIcon,
             inputs: [
@@ -227,6 +260,7 @@ const Elements = {
         },
         'Список с иконками': {
             component: IconDots,
+            example: IconDotsExample,
             name: 'IconDots',
             icon: norNumberedDotsIcon,
             inputs: [
@@ -240,6 +274,7 @@ const Elements = {
         },
         'Вкладки с текстами': {
             component: TabsGlossary,
+            example: TabsGlossaryExample,
             name: 'TabsGlossary',
             icon: tabsGlossaryIcon, // Replace with the actual icon reference
             inputs: [
@@ -254,6 +289,7 @@ const Elements = {
         },
         'Вкладки с разделами': {
             component: DropDownTextWithTabs,
+            example: DropDownTextWithTabsExample,
             name: 'DropDownTextWithTabs',
             icon: dropDownTableIcon,
             inputs: [
@@ -270,6 +306,7 @@ const Elements = {
     'Табличные элементы': {
         'Двухколонная': {
             component: Table_1,
+            example: Table_1Example,
             name: 'Table_1',
             icon: table1Icon,
             inputs: [
@@ -281,6 +318,7 @@ const Elements = {
         }, // rows [{first:, second:}], borderColor, color
         'Видовой': {
             component: SimpleTable,
+            example: SimpleTableExample,
             name: 'SimpleTable',
             icon: table1Icon,
             inputs: [
@@ -294,6 +332,7 @@ const Elements = {
     'Медиа': {
         'Текст с изображением': {
             component: ImageWithText,
+            example: ImageWithTextExample,
             name: 'ImageWithText',
             icon: imageWithTextIcon,
             inputs: [
@@ -305,6 +344,7 @@ const Elements = {
         }, //img, imageText or children, color
         'Изображение': {
             component: ImageLine,
+            example: ImageLineExample,
             name: 'ImageLine',
             icon: imageIcon,
             inputs: [
@@ -337,6 +377,7 @@ const Elements = {
         }, // url , poster done
         'Цепочка изображений с описанием': {
             component: ImageSequence,
+            example: ImageSequenceExample,
             name: 'ImageSequence',
             icon: imageIcon,
             inputs: [
@@ -361,6 +402,7 @@ const Elements = {
     'Ссылки и файлы': {
         'Файл': {
             component: FileDownloader,
+            example: FileDownloaderExample,
             name: 'FileDownloader',
             icon: fileDIcon,
             inputs: [
@@ -373,6 +415,7 @@ const Elements = {
         }, //file, fileName 
         'Ссылка': {
             component: TextAndLink,
+            example: TextAndLinkExample,
             name: 'TextAndLink',
             icon: randomGlossaryIcon,
             inputs: [
@@ -389,6 +432,7 @@ const Elements = {
     'Другие': {
         'Биография': {
             component: ShortBiography,
+            example: ShortBiographyExample,
             name: 'ShortBiography',
             icon: biographyIcon,
             inputs: [
@@ -401,6 +445,7 @@ const Elements = {
         },
         'Цепь с текстами': {
             component: DataChain,
+            example: DataChainExample,
             name: 'DataChain',
             icon: listIcon,
             inputs: [
@@ -409,6 +454,7 @@ const Elements = {
         },
         'Блоки': {
             component: FlexBoxes,
+            example: FlexBoxesExample,
             name: 'FlexBoxes',
             icon: block2Icon,
             inputs: [
@@ -429,6 +475,7 @@ const Elements = {
         },
         'Изображение с колоннами': {
             component: ImageAndColumns,
+            example: ImageAndColumnsExample,
             name: 'ImageAndColumns',
             icon: table1Icon,
             inputs: [
@@ -443,6 +490,7 @@ const Elements = {
     'Интерактивные': {
         'Двух вариантный': {
             component: DragAndDropTwoSide,
+            example: DragAndDropTwoSideExample,
             name: 'DragAndDropTwoSide',
             icon: dndTwoSideIcon,
             inputs: [
