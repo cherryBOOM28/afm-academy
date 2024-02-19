@@ -20,6 +20,7 @@ const AboutUs = lazy(()=> import('./pages/aboutPage/aboutUs/AboutUs'))
 //import AboutUs from './pages/aboutPage/aboutUs/AboutUs';
 const Management = lazy(() => import('./pages/aboutPage/management/Management'))
 const Contacts = lazy(() => import('./pages/aboutPage/contacts/Contacts.jsx'))
+const PrivacyPolicy = lazy(() => import('./pages/aboutPage/privacyPolicy/privacyPolicy.jsx'))
 //import Management from './pages/aboutPage/management/Management';
 const Structure = lazy(() => import('./pages/aboutPage/structure/Structure'))
 //import Structure from './pages/aboutPage/structure/Structure';
@@ -117,6 +118,7 @@ function App() {
                             <Route path="/about" element={<Suspense ><AboutUs /></Suspense>}></Route>
                             <Route path="/management" element={<Suspense ><Management /></Suspense>}></Route>
                             <Route path="/contacts" element={<Suspense ><Contacts /></Suspense>}></Route>
+                            <Route path="/privacy-policy" element={<Suspense ><PrivacyPolicy /></Suspense>}></Route>
                             <Route path="/structure" element={<Suspense ><Structure /></Suspense>}></Route>
                             <Route path="/structure/:id" element={<Suspense ><DirectorPage /></Suspense>} />
                             <Route path="/charter" element={<Suspense ><Charter /></Suspense>}></Route>

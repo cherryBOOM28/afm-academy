@@ -15,6 +15,7 @@ import go_types from './../../components/data/go_types'
 import go_typesKz from './../../components/data/go_typesKz'
 import go_typesEng  from './../../components/data/go_typesEng'
 import po_types from '../../components/data/po_types';
+import PrivacyPolicyPage from '../aboutPage/privacyPolicy/privacyPolicy';
 import po_typesKz from '../../components/data/po_typesKz';
 import po_typesEng from '../../components/data/po_typesEng';
 
@@ -204,7 +205,7 @@ const Registration = () => {
                                 <input type="checkbox" onChange={(e) => {
                                     setPolicyChecked(e.target.checked);
                                 }}/>
-                                <p>{t('consent1')} <a href="#politics">{t('consent2')}</a></p> 
+                                <p>{t('consent1')} <Link to={'/privacy-policy'} target="_blank"><a>{t('consent2')}</a></Link></p> 
                             </div>
                             {false ? <p className='policy-error'>Даю согласие на обработку</p>: null}
                         </div>
