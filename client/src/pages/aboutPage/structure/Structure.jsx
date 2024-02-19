@@ -11,10 +11,11 @@ import Footer from "../../../components/footer/Footer";
 import Dropdown from "../../../components/dropdown/Dropdown";
 import Header from "../../../components/header/Header";
 import { useTranslation } from "react-i18next";
-
 import { useStyle } from "../../../components/VisualModal/StyleContext";
 import VisualModal from "../../../components/VisualModal/VisualModal";
-
+import merzadinov from '../../../assets/images/merzadinov.png';
+import tleu from '../../../assets/images/tleu.png';
+import dauren from '../../../assets/images/dauren.png';
 function Structure() {
   const { styles, open, setOpen, userEntry, checkStyle } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
@@ -264,7 +265,7 @@ function Structure() {
                   {firstCard.title}
                 </p>
                 <img
-                  src={firstCard.photo}
+                  src={merzadinov}
                   alt={firstCard.caption}
                   className={cl.card__img}
                 />
@@ -315,10 +316,11 @@ function Structure() {
                               : "#000",
                         }}
                       >
+
                         {card.title}
                       </p>
                       <img
-                        src={card.photo}
+                        src={(card.id === '2') ? tleu : dauren}
                         alt={card.caption}
                         className={cl.card__img}
                       />
