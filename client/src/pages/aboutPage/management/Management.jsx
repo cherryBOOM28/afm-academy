@@ -307,6 +307,77 @@ function Management() {
               </p>
             </div>
           </div>
+          <div className={cl.boardOfDirectors}>
+            <div className={cl.director}>
+              {!imagesHidden && <img src={firstDirector} alt="" />}
+              <p
+                className={`${cl.name} text-content name`}
+                style={{
+                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+
+                }}
+              >
+                {t("fifthDirector")}
+              </p>
+              <p
+                className={`${cl.post} text-content descname`}
+                style={{
+                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+
+                }}
+              >
+                {t("descFirstDir")}
+              </p>
+            </div>
+            {/* <div className={cl.director}>
+                        <img src={secondDirector} alt="" />
+                        <p className={cl.name}>Садырбеков Габит Амангельдиевич</p>
+                        <p className={cl.post}>Первый заместитель Председателя Агентства Республики Казахстан по финансовому мониторингу, член Совета директоров</p>
+                    </div> */}
+            <div className={cl.director}>
+              {!imagesHidden && <img src={thirdDirector} alt="" />}
+              <p
+                className={`${cl.name} text-content name`}
+                style={{
+                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+
+                }}
+              >
+                {t("sixthDirector")}
+              </p>
+              <p
+                className={`${cl.post} text-content descname`}
+                style={{
+                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+
+                }}
+              >
+                {t("descSecondDir")}
+              </p>
+            </div>
+            <div className={cl.director}>
+              {!imagesHidden && <img src={forthDirector} alt="" />}
+              <p
+                className={`${cl.name} text-content name`}
+                style={{
+                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+
+                }}
+              >
+                {t("seventhDirector")}
+              </p>
+              <p
+                className={`${cl.post} text-content descname`}
+                style={{
+                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",
+
+                }}
+              >
+                {t("descTherdDir")}
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
 

@@ -186,7 +186,7 @@ function Charter() {
         style={{
           color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
         }}
-        >{t("regulation")}</h1>
+        >{t("corporate governance")}</h1>
         <DownloadPDF />
         <div className={cl.charterContent}>
         {!imagesHidden && (
