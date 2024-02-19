@@ -407,7 +407,18 @@ const NavigationBar = (props) => {
               <a className={`menu ${props.dark? 'dark' : ''} text-content`} onClick={() => scrollToNews()}>{t('news')}</a>
           </div>
           <div className={'menuBox'}>
-              <a className={`menu ${props.dark? 'dark' : ''} text-content`} >{t('ric')}</a>
+        <a className={`menu ${props.dark ? 'dark' : ''} text-content`} >{t('ric')}</a>
+        <ul className={'dropdownSub'}>
+                  <li>
+                      <Link to="/main-tasks-and-activities" className={'subPages text-content'}>{t('Main tasks and activities')}</Link>
+                  </li>
+                  <li>
+                      <Link to="/academic-council" className={'subPages text-content'}>{t('Academic Council')}</Link>
+                  </li>
+                  <li>
+                      <Link to="/plans-and-reports" className={'subPages text-content'}>{t('Plans and reports')}</Link>
+                  </li>
+              </ul>
           </div>
           <div className={'menuBox'}>
               <a className={`menu ${props.dark? 'dark' : ''} text-content`}>{t('aml/ft')}</a>
