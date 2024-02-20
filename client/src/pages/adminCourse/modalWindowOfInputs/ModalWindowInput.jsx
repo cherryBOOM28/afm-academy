@@ -45,13 +45,39 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
     const isSublist = inputs.some((x) => x.name == 'isSublist');
     const hasAlignment = inputs.some((x) => x.name == 'alignment');
     const hasImages = inputs.some((x) => x.name == 'images');
+    const notCrop = inputs.some((x) => x.name == 'notCrop');
 
     const hasTableInput = inputs.some((x) => x.name === 'rows');
+
+    const hasLeft = inputs.some((x) => x.name === 'left');
+    const hasRight = inputs.some((x) => x.name === 'right');
+
+    if (hasLeft) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'adjustWidth': exValues?.left || null
+      }))
+    }
+
+    if (hasRight) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'adjustWidth': exValues?.right || null
+      }))
+    }
+
 
     if (adjustWidth) {
       setValues(prevValues => ({
         ...prevValues,
         'adjustWidth': exValues?.adjustWidth || false
+      }))
+    }
+
+    if (notCrop) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'notCrop': exValues?.notCrop || true
       }))
     }
 

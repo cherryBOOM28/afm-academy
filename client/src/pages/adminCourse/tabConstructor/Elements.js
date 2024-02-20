@@ -93,6 +93,7 @@ import DataChainExample from './../../../assets/images/Template Examples/DataCha
 import FlexBoxesExample from './../../../assets/images/Template Examples/FlexBoxes.png'
 import ImageAndColumnsExample from './../../../assets/images/Template Examples/ImageAndColumns.png'
 import DragAndDropTwoSideExample from './../../../assets/images/Template Examples/DragAndDropTwoSide.png'
+import TwoColumnsDivider from '../../../components/courseTemplates/common_v2/TwoColumnsDivider'
 
 
 const Elements = {
@@ -351,6 +352,7 @@ const Elements = {
                 { name: 'img', label: 'Изображение', type: 'file' },
                 { name: 'color', label: 'Цвет', type: 'color' },
                 { name: 'height', label: 'Высота', type: 'number' },
+                // { name: 'notCrop', label: 'Не обрезать по высоте', type: 'checkbox'},
                 { name: 'adjustWidth', label: 'Подогнать ширину', type: 'checkbox' },
                 { name: 'alignment', label: 'Выравниевание', type: 'select' },
             ],
@@ -486,6 +488,17 @@ const Elements = {
                 { name: 'listColor', label: 'Цвет текста', type: 'color' }
             ]
         },
+        'Разделитель на две колонны': {
+            component: TwoColumnsDivider,
+            name: 'TwoColumnsDivider',
+            icon: table1Icon,
+            inputs: [
+                { name: 'left', label: 'Левый компонент', type: 'Component' },
+                { name: 'right', label: 'Правый компонент', type: 'Component' },
+                { name: 'gap', label: 'Растояние между колоннами', type: 'number'},
+                { name: 'version', label: 'Version', type: 'ignore' }
+            ]
+        }
     },
     'Интерактивные': {
         'Двух вариантный': {
