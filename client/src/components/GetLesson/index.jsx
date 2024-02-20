@@ -135,6 +135,7 @@ import image_78 from '../../assets/images/image_78.jpg';
 import image_77 from '../../assets/images/image_77.jpg';
 import image_76 from '../../assets/images/image_76.jpg';
 import image_1111 from '../../assets/images/88888.png';
+import courseaftor from '../../assets/images/courseAftor.png';
 import pdf1 from '../../assets/video/НОР ОД откр версия РУС (1).pdf'
 import pdf2 from '../../assets/video/НОР ФТ публич версия рус.pdf'
 import stopSign from '../../assets/images/stopSign.jpg'
@@ -231,12 +232,6 @@ function GetLesson({
                       }}
                   >
                       <img
-                          src={AFM_logo}
-                          style={{
-                              height: '100px'
-                          }}
-                      />
-                      <img
                           src={'https://gurk.kz/uploads/images/b2/d9/b5/b20d97b5ba0a593e567752302b279da7.jpg'}
                           style={{
                               height: '100px'
@@ -244,33 +239,12 @@ function GetLesson({
                       />
 
                   </div>
+                  <Sizebox height={50}/>
+                  <ImageLine img={courseaftor}></ImageLine>
 
               </Reveal>
 
 
-              <Sizebox height={30}/>
-
-              <Reveal>
-                  <Centered>
-                      <RandomH2>
-                          Авторы учебного курса
-                      </RandomH2>
-                  </Centered>
-              </Reveal>
-              <Sizebox height={20}/>
-              <Reveal>
-                  <SimpleTable
-                      data={[
-                          [
-                              'Шагатаев Даурен Кайрбекович ', 'Проректор AML Academy '
-                          ],
-                          ['Махметов Муратбек Калиханович', 'Директор AML Academy '],
-                          ['Махашева Асем Онгаровна ', 'Главный специалист AML Academy'],
-                          ['Сәлімжан Камила Азаматқызы', 'Ведущий специалист AML Academy']
-
-                      ]}
-                  />
-              </Reveal>
 
               <Sizebox height={70}/>
 
