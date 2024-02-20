@@ -396,8 +396,8 @@ const Constructor = ({saveCancel, save, id, title}) => {
                 ...prevHistory.slice(existingComponentIndex + 1),
             ]);
         } else {
-            
             setComponentHistory((prevHistory) => {
+                console.log(values)
                 return [
                     ...prevHistory,
                     { component_entry_id: generateUniqueId(), componentName: selectedComponent.componentName, inputs, values },
@@ -455,6 +455,7 @@ const Constructor = ({saveCancel, save, id, title}) => {
                 <div className='components'>
 
                     {componentHistory.map((item, index) => {
+                        console.log(componentMap[item.componentName]);    
 
                         return (
 
@@ -488,7 +489,6 @@ const Constructor = ({saveCancel, save, id, title}) => {
                     
                 </div>
 
-                {selectedComponent? console.log(selectedComponent) : null}
                 {selectedComponent && (
                     <div className='modal-window'>
                         <Modal
@@ -515,8 +515,32 @@ const Constructor = ({saveCancel, save, id, title}) => {
                             <h4>{groupName}</h4>
                             <div className='element-grid'>
                                 {Object.entries(groupElements).map((item) => {
-                                    const [ElementName, { component: ElementComponent, icon: ElementIcon, inputs: InputsOfElement, example: ElementExample }] = item;
+                                    const [ElementName, { component: ElementComponent, name: ComponentName, icon: ElementIcon, inputs: InputsOfElement, example: ElementExample }] = item;
                                     
+                                    if (ElementName === 'Разделитель на две колонны') {
+                                        return <Element 
+                                            ElementName={ElementName} 
+                                            ElementIcon={ElementIcon}
+                                            ElementComponent={ElementComponent}
+                                            InputsOfElement={InputsOfElement}
+                                            ElementExample={ElementExample}
+                                            handleElementClick={() => {
+                                                const _values = {
+                                                    'left': null,
+                                                    'right': null,
+                                                    'gap': 10,
+                                                }
+
+                                                setComponentHistory((prevHistory) => {
+                                                    return [
+                                                        ...prevHistory,
+                                                        { component_entry_id: generateUniqueId(), componentName: ComponentName, InputsOfElement, values: _values },
+                                                    ]
+                                                });
+                                            }}
+                                        />
+                                    }
+
                                     return <Element 
                                         ElementName={ElementName} 
                                         ElementIcon={ElementIcon}
@@ -548,8 +572,6 @@ const Element = ({
     handleElementClick
 }) => {
     const handleElementMouseEnter = () => {
-        console.log(ElementExample);
-
         setShowExample(true);
     }
 

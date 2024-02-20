@@ -36,6 +36,7 @@ import DropDownTextWithTabs from '../../../components/courseTemplates/complex/Dr
 import IconDots from '../../../components/courseTemplates/common_v2/IconDots'
 import Report_Warning from '../../../components/courseTemplates/common/Warnings/Report'
 import ImageAndColumns from '../../../components/courseTemplates/common_v2/ImageAndColumns'
+import TwoColumnsDivider from '../../../components/courseTemplates/common_v2/TwoColumnsDivider'
 
 const componentMap = {
     HeaderWithLine,
@@ -71,7 +72,8 @@ const componentMap = {
     Quote,
     IconDots,
     ImageAndColumns,
-    ImageSequence
+    ImageSequence,
+    TwoColumnsDivider
     // Add other components here
 };
 

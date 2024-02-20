@@ -133,7 +133,6 @@
                     cursor: pointer;
                 }
             }
-            
         }
     }
 }
@@ -147,6 +146,17 @@
 
     $sidebarBackgroundColor: #1F3C88;
     $sidebarHoverBackgroundColor: #182f6a;
+
+    .modal-fatal, .modal-fail, .modal-successful {
+        display: flex;
+        justify-content: center;
+
+        padding: 28px;
+        
+        p {
+            font-size: 1.5rem;
+        }
+    }
 
     .course-body {
         

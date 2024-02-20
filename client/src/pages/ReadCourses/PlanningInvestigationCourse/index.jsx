@@ -1019,11 +1019,14 @@ function PlanningInvestigationCourse() {
                         <Sizebox height={60} />
                         
                         <Reveal>
-                            <ImageLine img={'https://bainews.kz/wp-content/uploads/2023/08/dd7e1eb2b0f047468e41b1180c45ce8b.jpeg'} />
+                            <ImageLine 
+                                img={'https://bainews.kz/wp-content/uploads/2023/08/dd7e1eb2b0f047468e41b1180c45ce8b.jpeg'} 
+                                notCrop={false}
+                            />
                         </Reveal>
                         <Sizebox height={40} />
                         <Reveal>
-                            <TextWithTitle 
+                У            <TextWithTitle 
                                 text={[
                                     <><span className="bold">Вместе с тем, при планировании расследования уголовных дел важное значение имеет изучение судебно-следственной практики по обвинительным актам и приговорам (в том числе оправдательным), которые имеются в открытом доступе на сайте Верховного Суда РК «www.office.sud.kz».</span></>,
                                     <>Данный метод поможет устранить лишнюю работу, определить рамки расследования и объем следственных действий, чтобы добиться успешных результатов не в ущерб полноте и всесторонности следствия.</>,

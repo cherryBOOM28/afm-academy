@@ -2,7 +2,6 @@ import { useState, useEffect,lazy,Suspense,startTransition } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import PrivateRoute from './auth/PrivateRoute';
-import AdminRoute from './auth/AdminRoute.jsx';
 import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
 import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigationCourse/index.jsx';
@@ -11,8 +10,6 @@ import './settings/i18n.js';
 import VisualModal from './/components/VisualModal/VisualModal.jsx'
 import Login from './pages/login/Login';
 import { StyleProvider } from './/components/VisualModal/StyleContext.jsx';
-import Registration from './pages/registration/Registration';
-
 const Home = lazy(() => import ('./pages/home/Home'))
 const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
 //import Home from './pages/home/Home';
@@ -27,16 +24,18 @@ const PublicOfferAgreement = lazy(() => import('./pages/PublicOfferAgreement'))
 const PlansAndReports = lazy(() => import('./pages/ric/plansAndReports'))
 const PrivacyPolicy = lazy(() => import('./pages/aboutPage/privacyPolicy/privacyPolicy.jsx'))
 //import Management from './pages/aboutPage/management/Management';
-const Structure = lazy(() => import('./pages/aboutPage/structure/Structure'))
+const Structure = lazy(()=>import('./pages/aboutPage/structure/Structure'))
 //import Structure from './pages/aboutPage/structure/Structure';
-const DirectorPage = lazy(() => import('./pages/aboutPage/director/DirectorPage'))
+const DirectorPage = lazy(()=>import('./pages/aboutPage/director/DirectorPage'))
 //import DirectorPage from './pages/aboutPage/director/DirectorPage';
-const Charter = lazy(() => import('./pages/aboutPage/charter/Charter'))
+const Charter = lazy(()=>import('./pages/aboutPage/charter/Charter'))
 //import Charter from './pages/aboutPage/charter/Charter';
-const Subjects = lazy(() => import('./pages/sfm/subjects/Subjects'))
+const Subjects = lazy(()=>import('./pages/sfm/subjects/Subjects'))
 //import Subjects from './pages/sfm/subjects/Subjects';
 // const Login = lazy(()=>import('./pages/login/Login'))
 
+const Registration = lazy(() => import('./pages/registration/Registration'));
+//import Registration from './pages/registration/Registration';
 const Rules = lazy(() => import('./pages/sfm/rules/Rules'));
 //import Rules from './pages/sfm/rules/Rules';
 const Operations = lazy(() => import('./pages/sfm/operations/Operations'));
@@ -61,31 +60,8 @@ const Profile = lazy(() => import('./pages/profilePage/Profile'));
 const PaymentPage = lazy(() => import('./pages/paymentPage/PaymentPage'));
 const Sandbox = lazy(() => import('./pages/Sandbox'));
 const Basic_course = lazy(() => import('./pages/basic-course'));
+
 const CryptoCourse = lazy(() => import('./pages/ReadCourses/CryptoCourse'));
-
-
-
-
-//import MutualEvaluation from './pages/podft/mutualEvaluation/MutualEvaluation';
-//import CalendarPage from './pages/calendar/Calendar';
-//import InfoPage from './pages/courseInfoPage/InfoPage';
-//import CoursesPage from './pages/courses/Courses';
-//import BasicCourse from './pages/courses-basic/BasicCourse';
-//import SpecializedCourse from './pages/courses-specialized/SpecializedCourse';
-//import SurveysPage from './pages/surveys/Surveys';
-//import VebinarsPage from './pages/vebinar/VebinarsPage';
-
-
-// import TestCourse from './pages/testCoursePage/TestCourse';
-//import Catalog from './pages/courseCatalog/Catalog';
-//import MyCourses from './pages/myCourses/MyCourses';
-//import Profile from './pages/profilePage/Profile';
-//import PaymentPage from './pages/paymentPage/PaymentPage';
-//import Sandbox from './pages/Sandbox';
-//import Basic_course from './pages/basic-course';
-
-//import CryptoCourse from './pages/ReadCourses/CryptoCourse';
-
 
 function App() {
     const [jwtToken, setJwtToken] = useState('');
@@ -112,9 +88,7 @@ function App() {
                         <Routes>
                             <Route path="/login" element={<PrivateRoute shouldBeLoggedIn={false} component={Login} redirect={'/profile'}/>} />
                             <Route path="/registration" element={<PrivateRoute shouldBeLoggedIn={false} component={Registration} redirect={'/profile'}/>} />
-                            <Route path='/manager' element={<AdminRoute component={EditCatalog} shouldBeLoggedIn={true} redirect={'/'} />} />
-                            <Route path='/createcourse' element={<AdminRoute component={CreateCoursePage} shouldBeLoggedIn={true} redirect={'/'} />}/>
-                           
+
                             <Route path="/logout" element={<Login/>} />
 
 
@@ -177,8 +151,8 @@ function App() {
 
                             {/* <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={CreateCoursePage} />}/> */}
                             {/* <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={EditCatalog} />}/> */}
-                            {/* <Route path='/createcourse' element={<CreateCoursePage/>}/> */}
-                            {/* <Route path='/manager' element={<EditCatalog/>} /> */}
+                            <Route path='/createcourse' element={<CreateCoursePage/>}/>
+                            <Route path='/manager' element={<EditCatalog/>} />
                         </Routes>
                     </BrowserRouter>
                 </AuthProvider>

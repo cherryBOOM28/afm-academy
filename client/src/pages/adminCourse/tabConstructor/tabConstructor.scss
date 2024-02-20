@@ -227,7 +227,6 @@
                 // padding-left: -80px;
                 // border: 1px solid rgb(0, 60, 255);
                 .component-display {
-                    
                     width: 99%;
                     
                     transition: all 0.2s ease;
@@ -266,7 +265,14 @@
                             }
                         }
                     }
+
+                    .two-columns-divider {
+                        height: 100px;
+                    }
                 }
+
+                
+
             }
 
             

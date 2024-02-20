@@ -74,6 +74,7 @@ import image56 from './../../assets/images/Lesson_5_img_6.png';
 import image57 from './../../assets/images/Lesson_5_img_7.png';
 import image58 from './../../assets/images/Lesson_5_img_8.png';
 import image59 from './../../assets/images/FATF.jpg';
+import theendbaza from './../../assets/images/theendBaza.png';
 import image60 from './../../assets/images/oonn.png';
 import image61 from './../../assets/images/fatff.png';
 import image62 from './../../assets/images/eagg.png';
@@ -134,6 +135,7 @@ import image_78 from '../../assets/images/image_78.jpg';
 import image_77 from '../../assets/images/image_77.jpg';
 import image_76 from '../../assets/images/image_76.jpg';
 import image_1111 from '../../assets/images/88888.png';
+import courseaftor from '../../assets/images/courseAftor.png';
 import pdf1 from '../../assets/video/НОР ОД откр версия РУС (1).pdf'
 import pdf2 from '../../assets/video/НОР ФТ публич версия рус.pdf'
 import stopSign from '../../assets/images/stopSign.jpg'
@@ -156,8 +158,6 @@ import Image from '../courseTemplates/common_v2/Image';
 import PyramidList from '../courseTemplates/common_v2/PyramidList';
 import AFM_logo from "../../assets/images/crypto_AFM.png";
 import FancyList from "../courseTemplates/common_v2/FancyList";
-
-
 
 const LessonPage = ({ children, name, lecturer }) => {
 
@@ -199,10 +199,19 @@ const TODO = ({ text }) => (
 function GetLesson({
   id,
   CheckCurrentChapter,
-  quizQuestions,
-  handleOpenFeedbackModal,
-  modules
+  modules,
+  handleQuizFail,
+  handleQuizSuccesful
 }) {
+  const _handleQuizFail = (isFatal) => {
+    console.log('works')
+    handleQuizFail(isFatal);
+  }
+
+  const _handleQuizSuccesful = () => {
+    handleQuizSuccesful('works');
+  }
+
   switch (id) {
       case 1:
           return (<LessonPage name={'О курсе'}>
@@ -223,12 +232,6 @@ function GetLesson({
                       }}
                   >
                       <img
-                          src={AFM_logo}
-                          style={{
-                              height: '100px'
-                          }}
-                      />
-                      <img
                           src={'https://gurk.kz/uploads/images/b2/d9/b5/b20d97b5ba0a593e567752302b279da7.jpg'}
                           style={{
                               height: '100px'
@@ -236,35 +239,10 @@ function GetLesson({
                       />
 
                   </div>
-
+                  <Sizebox height={50}/>
+                  <ImageLine img={courseaftor}></ImageLine>
               </Reveal>
-
-
-              <Sizebox height={30}/>
-
-              <Reveal>
-                  <Centered>
-                      <RandomH2>
-                          Авторы учебного курса
-                      </RandomH2>
-                  </Centered>
-              </Reveal>
-              <Sizebox height={20}/>
-              <Reveal>
-                  <SimpleTable
-                      data={[
-                          [
-                              'Шагатаев Даурен Кайрбекович ', 'Проректор AML Academy '
-                          ],
-                          ['Махметов Муратбек Калиханович', 'Директор AML Academy '],
-                          ['Сәлімжан Камила Азаматқызы', 'Ведущий специалист AML Academy'],
-                          ['Махашева Асем Онгаровна ', 'Главный специалист AML Academy']
-                      ]}
-                  />
-              </Reveal>
-
               <Sizebox height={70}/>
-
               <Reveal>
                   <Centered>
                       <RandomH2>
@@ -273,7 +251,6 @@ function GetLesson({
                   </Centered>
               </Reveal>
               <Sizebox height={30}/>
-
               <NumberedDots
                   dotsColor={'white'}
                   list={[
@@ -287,9 +264,7 @@ function GetLesson({
                   ]}
                   header={'Общая характеристика национальной системы ПОД/ФТ:'}
               />
-
               <Sizebox height={50}/>
-
               <Reveal>
                   <NumberedDots
                       dotsColor={'white'}
@@ -3063,7 +3038,8 @@ function GetLesson({
           name={'ТЕСТИРОВАНИЕ 1'}
           questions={modules[0].quiz.quizList || []}
           quizId={4}
-          handleOpenModal={handleOpenFeedbackModal}
+          handleQuizFail={_handleQuizFail}
+          handleQuizSuccesful={_handleQuizSuccesful}
         ></TestPage>
       );
     case 65:
@@ -4326,13 +4302,15 @@ function GetLesson({
     case 9:
           return (
               <TestPage
-                  finished={modules[1].quiz.quiz_max_points === 100}
-                  name={'ТЕСТИРОВАНИЕ 2'}
-                  questions={modules[1].quiz.quizList || []}
-                  quizId={15}
-                  handleOpenModal={handleOpenFeedbackModal}
+                finished={modules[1].quiz.quiz_max_points === 100}
+                name={'ТЕСТИРОВАНИЕ 2'}
+                questions={modules[1].quiz.quizList || []}
+                quizId={15}
+                handleQuizFail={_handleQuizFail}
+                handleQuizSuccesful={_handleQuizSuccesful}
               ></TestPage>
           );
+
     case 73:
       return (
         <LessonPage name={'Законодательство'} lecturer={'AML Academy'}>
@@ -7665,7 +7643,8 @@ function GetLesson({
                   name={'ТЕСТИРОВАНИЕ 5'}
                   questions={modules[4].quiz.quizList || []}
                   quizId={16}
-                  handleOpenModal={handleOpenFeedbackModal}
+                  handleQuizFail={_handleQuizFail}
+                  handleQuizSuccesful={_handleQuizSuccesful}
               ></TestPage>
           );
       return (
@@ -8708,19 +8687,26 @@ function GetLesson({
                   name={'ТЕСТИРОВАНИЕ 7'}
                   questions={modules[6].quiz.quizList || []}
                   quizId={17}
-                  handleOpenModal={handleOpenFeedbackModal}
+                  handleQuizFail={_handleQuizFail}
+                  handleQuizSuccesful={_handleQuizSuccesful}
               ></TestPage>
       );
       case 999:
           return (<LessonPage name={'Заключительная часть'} lecturer={'AML Academy'}>
               <Reveal>
                   <ImageLine
-                      img={image111113}
+                      img={theendbaza}
                       color={'#FFFFFF'}
                   />
                   <Sizebox height={40} />
               </Reveal>
               <Sizebox height={20} />
+              <Reveal>
+                <HeaderWithLine
+                  header={'Поздравляем, Вы завершили дистанционное обучение по Базовому курсу!'}
+                />
+              </Reveal>
+              <Sizebox height={50} />
               <Reveal>
                   <TextWithTitle
                       title={"По итогам данного курса – Базового курса по ПОД/ФТ вам известно:"}
@@ -8730,9 +8716,10 @@ function GetLesson({
                       dotsColor={'#CADEFC'}
                       list={[
                           'система ПОД/ФТ в Республике Казахстан, в том числе и предикатные преступления в этой области;',
-                          'международные стандарты и Рекомендации ФАТФ, членство Республики Казахстан в международных антиотмывочных сообществах;',
-                          'деятельность и роль госорганов-регуляторов и АФМ;',
-                          'требования к внутренним нормативным документам субъекта и программе подготовке и обучения в сфере ПОД/ФТ и процедура сдачи тестировани;',
+                          'субъектах финансового мониторинга;',
+                          'какие существуют международные стандарты (ФАТФ), регулирующие сферу противодействия отмывания доходов и финансирования терроризма;',
+                          'функции и задачи уполномоченного органа по финансовому мониторингу;',
+                          'основные требования к внутренним нормативным документам в сфере ПОД/ФТ для субъекта финансового мониторинга;',
 
                       ]}
                   />
@@ -8742,20 +8729,16 @@ function GetLesson({
               <Reveal>
                   <Sizebox height={60}></Sizebox>
                   <TextWithTitle
-                      title={'Данные направления были объединены Академией в курс, для того, чтобы субъекты, имея знания в этой области могли осуществлять функции связанные с соблюдением законодательства о ПОД/ФТ как этого требуют нормы НПА.'}
+                      title={'Вышеуказанные направления и другие материалы были заложены и структурированы в базовом курсе с целью достижения представления понимания основных понятий, требований и работы государственной системы по противодействию отмывания доходов и финансирования терроризма.'}
                   >
                   </TextWithTitle> <Sizebox height={20}></Sizebox>
                   <TextWithTitle
-                      title={'Однако, для полноценного обучения, в том числе и по деятельности каждого вида СФМ субъектам необходимо пройти обучение по Профильному курсу, которая предусматривает изучение системы ПОД/ФТ со стороны определенного СФМ (МФО, ломбард, обменные пункты и др.) с учетом продуктов и услуг, оказываемых СФМ своим клиентам.\n'}
+                      title={'Вместе с тем, сообщаем, что Академией также разработаны и другие курсы для более углубленного изучения темы противодействия отмывания доходов и финансирования терроризма о которых подробнее Вы можете узнать по телефону:  8 708 716 8416.'}
 
                   >
 
-                  </TextWithTitle><Sizebox height={20}></Sizebox>
-                  <TextWithTitle
-                      title={'Академия выражает готовность в дальнейшем сотрудничестве и взаимодействии, а также при подготовке обучающихся к процедуре тестирования в сфере ПОД/ФТ.'}
-                  >
                   </TextWithTitle>
-                  <Sizebox height={60}></Sizebox><Sizebox height={20}></Sizebox>
+                  <Sizebox height={60}></Sizebox>
               </Reveal>
               <Reveal>
                   <Report_Information>

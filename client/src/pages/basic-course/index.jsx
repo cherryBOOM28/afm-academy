@@ -44,6 +44,8 @@ import axios from 'axios';
 import base_url from '../../settings/base_url';
 import TestPage from '../../components/courseTemplates/complex/Test';
 import GetLesson from '../../components/GetLesson';
+import ModalWindow from './../../components/ModalWindow/ModalWindow';
+
 
 function Basic_course(props) {
     const [courseName, setCourseName] = useState('Базовый курс');
@@ -64,6 +66,24 @@ function Basic_course(props) {
     const [courseProgress, setCourseProgress] = useState(0);
 
     const [courseContent, setCourseContent] = useState(null);
+
+    const [openQuizModal, setOpenQuizModal] = useState(false);
+    const [quizStatus, setQuizStatus] = useState('');
+
+    const handleQuizFail = (isFatal) => {
+        console.log("WORKRKRKKRKRS")
+
+        if (isFatal) setQuizStatus('fatal');
+        else setQuizStatus('fail');
+    
+        setOpenQuizModal(true);
+    }
+
+    const handleQuizSuccesful = () => {
+        setQuizStatus('successful');
+
+        setOpenQuizModal(true);
+    }
 
     const handleSendFeedback = () => {
         // const fetchData = async () => {
@@ -267,12 +287,20 @@ function Basic_course(props) {
 
     const getLesson = (id) => {
         // console.log('getLesson', quizQuestions)
-        return <GetLesson id={id} modules={modules} CheckCurrentChapter={CheckCurrentChapter} quizQuestions={quizQuestions} handleOpenFeedbackModal={handleOpenFeedbackModal} />
+        return <GetLesson 
+            id={id} 
+            modules={modules} 
+            CheckCurrentChapter={CheckCurrentChapter} 
+            quizQuestions={quizQuestions} 
+            handleOpenFeedbackModal={handleOpenFeedbackModal} 
+            handleQuizFail={handleQuizFail}
+            handleQuizSuccesful={handleQuizSuccesful}
+        />
     }
 
     return (
         <div className="basic-course">
-            {
+            {/* {
                 openFeedbackModal ? (
                     <div className="modal">
                         <div className="wrapper" onClick={(e) => {
@@ -317,8 +345,8 @@ function Basic_course(props) {
                         </div>
                     </div>
                 ) : null
-            }
-            {
+            } */}
+            {/* {
                 openSertificateModal ? (
                     <div className="modal">
                         <div className="wrapper" onClick={(e) => {
@@ -347,9 +375,46 @@ function Basic_course(props) {
                         </div>
                     </div>
                 ) : null
-            }
+            } */}
             <div className="course-wrapper">
+                {
+                    openQuizModal ? (
+                        <ModalWindow
+                            title={'Результат теста'}
+                            setShowModal={(val) => setOpenQuizModal(false)}
+                        >
+                            {
+                                quizStatus === 'fatal' ? (
+                                    <div className='modal-fatal'>
+                                        <p>
+                                            Вы провалили тест трижды. Рекомендуем перепройти модуль.
+                                        </p>
+                                    </div>
+                                ) : null
+                            }
 
+                            {
+                                quizStatus === 'fail' ? (
+                                    <div className='modal-fail'>
+                                        <p>
+                                            Вы провалили тест. Пройдите заново.
+                                        </p>
+                                    </div>
+                                ) : null
+                            }
+
+                            {
+                                quizStatus === 'successful' ? (
+                                    <div className='modal-successful'>
+                                        <p>
+                                            Вы успешно прошли тест.
+                                        </p>
+                                    </div>
+                                ) : null
+                            }
+                        </ModalWindow> 
+                    ) : null
+                }
                 <CourseHeader
                     handleNavOpen={handleNavOpen}
                     courseName={courseName}
