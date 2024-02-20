@@ -241,13 +241,8 @@ function GetLesson({
                   </div>
                   <Sizebox height={50}/>
                   <ImageLine img={courseaftor}></ImageLine>
-
               </Reveal>
-
-
-
               <Sizebox height={70}/>
-
               <Reveal>
                   <Centered>
                       <RandomH2>
@@ -256,7 +251,6 @@ function GetLesson({
                   </Centered>
               </Reveal>
               <Sizebox height={30}/>
-
               <NumberedDots
                   dotsColor={'white'}
                   list={[
@@ -270,9 +264,7 @@ function GetLesson({
                   ]}
                   header={'Общая характеристика национальной системы ПОД/ФТ:'}
               />
-
               <Sizebox height={50}/>
-
               <Reveal>
                   <NumberedDots
                       dotsColor={'white'}
