@@ -223,7 +223,7 @@ const handlePhoneClick = () => {
       <div className="page-content container">
         <div
           className="interval"
-          style={{ letterSpacing: getLetterSpacing(letterInterval) }}
+          style={{ letterSpacing: getLetterSpacing(letterInterval), lineHeight: "1.5" }}
         >
           <h1
             className="text-content"
@@ -239,15 +239,47 @@ const handlePhoneClick = () => {
             }}
           >
             {t("Academic Council")}
-                  </h1>
-        </div>
-          </div>
+            </h1>
+              </div>
+        <p style={{
+          color:
+            styles.colorMode === "dark"
+              ? "#fff"
+              : styles.colorMode === "light"
+                ? "#343434"
+                : styles.colorMode === "blue"
+                  ? "#063462"
+                  : "#000",
+        }}><span style={{
+                  fontSize: "18px",
+                  fontWeight:"600",
+        }}>{t("Academic Council")}</span> <span style={{fontSize:"18px"}}>{t("Academic Council description")}</span> </p>
+        <br />
+        <p style={{
+          color:
+            styles.colorMode === "dark"
+              ? "#fff"
+              : styles.colorMode === "light"
+                ? "#343434"
+                : styles.colorMode === "blue"
+                  ? "#063462"
+                  : "#000",
+        }}><p style={{
+                  fontSize: "20px",
+                  fontWeight:"600",
+          }}>{t("Academic Council general tasks")}</p>
           <br />
-          <br />
-          <br />
-          <br />
-
-      <Footer />
+          <p style={{ fontSize: "18px" }}>{t("Academic Council general tasks description 1")}</p><br />
+          <p style={{ fontSize: "18px" }}>{t("Academic Council general tasks description 2")}</p><br />
+          <p style={{ fontSize: "18px" }}>{t("Academic Council general tasks description 3")}</p><br />
+          <p style={{ fontSize: "18px" }}>{t("Academic Council general tasks description 4")}</p> </p>
+        <br />
+        <br />
+       <br />
+      
+      
+      </div>
+      <Footer/>
     </div>
   );
 }

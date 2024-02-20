@@ -223,7 +223,14 @@ const handlePhoneClick = () => {
       <div className="page-content container" style={{lineHeight:"1.5"}}>
         <div
           className="interval"
-          style={{ letterSpacing: getLetterSpacing(letterInterval) }}
+          style={{ letterSpacing: getLetterSpacing(letterInterval),color:
+            styles.colorMode === "dark"
+              ? "#fff"
+              : styles.colorMode === "light"
+              ? "#343434"
+              : styles.colorMode === "blue"
+              ? "#063462"
+              : "#000", }}
         >
           <h1
             className="text-content"
