@@ -6,7 +6,7 @@ import "./style.scss";
 import Footer from "../../../components/footer/Footer";
 import igIcon from '../../../assets/images/Instagram_icon.png';
 import tgIcon from '../../../assets/images/Telegram_Messenger.png';
-
+import pdf from "../../../assets/images/ustavv.png";
 import axios from "axios";
 import base_url from "../../../settings/base_url";
 import { Box, Modal } from "@mui/material";
@@ -18,6 +18,7 @@ import { useTranslation } from "react-i18next";
 import VisualModal from "../../../components/VisualModal/VisualModal";
 
 import { useStyle } from "../../../components/VisualModal/StyleContext";
+import DownloadPDF from "../../../components/pdfSaver/DownloadPDF";
 
 function PlansAndReports({ email, phoneNumber }) {
   const { t } = useTranslation();
@@ -240,7 +241,15 @@ const handlePhoneClick = () => {
           >
             {t("Plans and reports")}
                   </h1>
-                 
+                  <DownloadPDF />
+          <div style={{
+            display: "flex",
+            justifyContent:"center"
+          }}>
+        {!imagesHidden && (
+          <img src={pdf} alt="" />
+        )}
+        </div>
 
           
         </div>
