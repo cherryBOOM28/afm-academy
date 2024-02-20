@@ -220,10 +220,17 @@ const handlePhoneClick = () => {
         <div className="container"></div>
       </div>
 
-      <div className="page-content container">
+      <div className="page-content container" style={{lineHeight:"1.5"}}>
         <div
           className="interval"
-          style={{ letterSpacing: getLetterSpacing(letterInterval) }}
+          style={{ letterSpacing: getLetterSpacing(letterInterval),color:
+            styles.colorMode === "dark"
+              ? "#fff"
+              : styles.colorMode === "light"
+              ? "#343434"
+              : styles.colorMode === "blue"
+              ? "#063462"
+              : "#000", }}
         >
           <h1
             className="text-content"
@@ -241,12 +248,62 @@ const handlePhoneClick = () => {
             {t("Main tasks and activities")}
                   </h1>
               </div>
-              <h2>{t("ricGroups")}</h2>
+              <p style={{  color:
+                styles.colorMode === "dark"
+                  ? "#fff"
+                  : styles.colorMode === "light"
+                  ? "#343434"
+                  : styles.colorMode === "blue"
+                  ? "#063462"
+                : "#000",
+                  fontSize: "20px",
+                  fontWeight:"600",
+        }}>{t("ricGroups")}</p>
+        <br />
               <ul>
-                  <li>{ t("li1")}</li>
-                  <li>{ t("li2")}</li>
+                  <li>{t("li1")}</li>
+             
+                  <li>{t("li2")}</li>
+                 
                   <li>{ t("li3")}</li>
-              </ul>
+        </ul>
+        <br />
+
+        <p style={{  color:
+                styles.colorMode === "dark"
+                  ? "#fff"
+                  : styles.colorMode === "light"
+                  ? "#343434"
+                  : styles.colorMode === "blue"
+                  ? "#063462"
+                : "#000",
+                  fontSize: "20px",
+                  fontWeight:"600",
+        }}>{t("ricTask")}</p> <br /><p>{t("ricTaskDesk")}</p> <br />
+         <p style={{  color:
+                styles.colorMode === "dark"
+                  ? "#fff"
+                  : styles.colorMode === "light"
+                  ? "#343434"
+                  : styles.colorMode === "blue"
+                  ? "#063462"
+                : "#000",
+                  fontSize: "20px",
+                  fontWeight:"600",
+        }}>{t("generalTask")}</p> 
+        <br />
+        <p>{t("task1")}</p>
+        <br />
+        <p>{t("task2")}</p>
+        <br />
+        <p>{t("task3")}</p>
+        <br />
+        <p>{t("task4")}</p>
+        <br />
+        <br />
+      
+      
+       
           </div>
          
 
