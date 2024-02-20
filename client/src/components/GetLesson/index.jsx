@@ -4335,6 +4335,7 @@ function GetLesson({
                   handleOpenModal={handleOpenFeedbackModal}
               ></TestPage>
           );
+
     case 73:
       return (
         <LessonPage name={'Законодательство'} lecturer={'AML Academy'}>
