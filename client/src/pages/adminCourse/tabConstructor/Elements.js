@@ -485,7 +485,7 @@ const Elements = {
                 { name: 'headerColor', label: 'Цвет заголовка', type: 'color' },
                 { name: 'listColor', label: 'Цвет текста', type: 'color' }
             ]
-        }
+        },
     },
     'Интерактивные': {
         'Двух вариантный': {
