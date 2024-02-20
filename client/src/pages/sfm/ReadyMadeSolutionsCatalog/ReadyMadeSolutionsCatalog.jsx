@@ -1,63 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
-import "./style.scss";
-
+import "./ReadyMadeCatalogSolution.scss";
 import Footer from "../../../components/footer/Footer";
-import igIcon from '../../../assets/images/Instagram_icon.png';
-import tgIcon from '../../../assets/images/Telegram_Messenger.png';
-
 import axios from "axios";
 import base_url from "../../../settings/base_url";
-import { Box, Modal } from "@mui/material";
 import Header from "../../../components/header/Header";
-
 import { t } from "i18next";
 import { useTranslation } from "react-i18next";
-
 import VisualModal from "../../../components/VisualModal/VisualModal";
-
 import { useStyle } from "../../../components/VisualModal/StyleContext";
-
-function AcademicCouncil({ email, phoneNumber }) {
+import randomImg from "../../../assets/images/80.png"
+import { Link } from "react-router-dom";
+function ReadyMadeCatalogSolution() {
   const { t } = useTranslation();
-
-  const navigate = useNavigate();
 
   const [vebinars, setVebinars] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
 
   const [openModal, setOpenModal] = useState(false);
-  const handleEmailClick = () => {
-    window.location.href = `mailto:${email}`;
-};
-
-const handlePhoneClick = () => {
-    window.location.href = `tel:${phoneNumber}`;
-  };
-    const handleVebinarEnter = (webinar_id) => {
-        // Выполняем регистрацию на вебинар
-        const jwtToken = localStorage.getItem("jwtToken");
-        axios.post(
-            `${base_url}/api/aml/webinar/saveUser/webinar/${webinar_id}`,{}, {
-                headers: {
-                    Authorization: `Bearer ${jwtToken}`,
-                },
-            }).then(response => {
-            // Handle success
-            console.log("Participation added successfully", response.data);
-            // Optionally, you can refresh the data or notify the user
-        })
-            .catch(error => {
-                // Handle error
-                console.error("Error adding participation", error);
-                // Notify the user of the error
-            });;
-
-        setOpenModal(true);
-    };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -220,7 +180,7 @@ const handlePhoneClick = () => {
         <div className="container"></div>
       </div>
 
-      <div className="page-content container" style={{lineHeight: "1.5"}}>
+      <div className="page-content container">
         <div
           className="interval"
           style={{ letterSpacing: getLetterSpacing(letterInterval) }}
@@ -238,50 +198,24 @@ const handlePhoneClick = () => {
                   : "#000",
             }}
           >
-            {t("Academic Council")}
-            </h1>
-              </div>
-        <p style={{
-          color:
-            styles.colorMode === "dark"
-              ? "#fff"
-              : styles.colorMode === "light"
-                ? "#343434"
-                : styles.colorMode === "blue"
-                  ? "#063462"
-                  : "#000",
-        }}><span style={{
-                  fontSize: "18px",
-                  fontWeight:"600",
-        }}>{t("Academic Council")}</span> <span style={{fontSize:"18px"}}>{t("Academic Council description")}</span> </p>
-        <br />
-        <p style={{
-          color:
-            styles.colorMode === "dark"
-              ? "#fff"
-              : styles.colorMode === "light"
-                ? "#343434"
-                : styles.colorMode === "blue"
-                  ? "#063462"
-                  : "#000",
-        }}><p style={{
-                  fontSize: "20px",
-                  fontWeight:"600",
-          }}>{t("Academic Council general tasks")}</p>
+            {t("ready-made solutions catalog")}
+                  </h1>
+        </div>
+        <div style={{display:"flex"}}>
+          <Link to='/main-tasks-and-activities'> <div className="bbBum" style={{ position: "relative", width: "300px", height: "200px", border: "2px black !important", borderRadius: "8px", backgroundImage: `url(${randomImg})`, textAlign:"center",color:"white",lineHeight:"3.5",alignItems:"bottom",borderColor:"black" }}> <div href style={{ zIndex:"1",position: "absolute", bottom:"0",width: "300px", height: "60px", border: "2px", borderRadius: "8px", backgroundImage: "linear-gradient(to left,blue, #3968df)", textAlign:"center",color:"white",lineHeight:"3.5" }}> Документы по ПОД/ФТ </div> </div></Link>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Link to='/main-tasks-and-activities'> <div className="bbBum" style={{ position: "relative", width: "300px", height: "200px", border: "2px black !important", borderRadius: "8px", backgroundImage: `url(${randomImg})`, textAlign:"center",color:"white",lineHeight:"3.5",alignItems:"bottom",borderColor:"black" }}> <div href style={{ zIndex:"1",position: "absolute", bottom:"0",width: "300px", height: "60px", border: "2px", borderRadius: "8px",  backgroundImage: "linear-gradient(to left, blue, #3968df)", textAlign:"center",color:"white",lineHeight:"3.5" }}> Онлайн-консультация по ПОД/ФТ </div> </div></Link>
+        </div>
+        
+          </div>
           <br />
-          <p style={{ fontSize: "18px" }}>{t("Academic Council general tasks description 1")}</p><br />
-          <p style={{ fontSize: "18px" }}>{t("Academic Council general tasks description 2")}</p><br />
-          <p style={{ fontSize: "18px" }}>{t("Academic Council general tasks description 3")}</p><br />
-          <p style={{ fontSize: "18px" }}>{t("Academic Council general tasks description 4")}</p> </p>
-        <br />
-        <br />
-       <br />
-      
-      
-      </div>
-      <Footer/>
+          <br />
+          <br />
+          <br />
+
+      <Footer />
     </div>
   );
 }
 
-export default AcademicCouncil;
+export default ReadyMadeCatalogSolution;

@@ -15,7 +15,14 @@ const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
 //import Home from './pages/home/Home';
 const AboutUs = lazy(()=> import('./pages/aboutPage/aboutUs/AboutUs'))
 //import AboutUs from './pages/aboutPage/aboutUs/AboutUs';
-const Management = lazy(()=>import('./pages/aboutPage/management/Management'))
+const Management = lazy(() => import('./pages/aboutPage/management/Management'))
+const Contacts = lazy(() => import('./pages/aboutPage/contacts/Contacts.jsx'))
+const ReadMadeSolutionsCatalog = lazy(() => import('./pages/sfm/ReadyMadeSolutionsCatalog/ReadyMadeSolutionsCatalog.jsx'))
+const AcademicCouncil = lazy(() => import('./pages/ric/academicCouncil'))
+const MainTasksAndActivities = lazy(() => import('./pages/ric/mainTasksAndActivities'))
+const PublicOfferAgreement = lazy(() => import('./pages/PublicOfferAgreement'))
+const PlansAndReports = lazy(() => import('./pages/ric/plansAndReports'))
+const PrivacyPolicy = lazy(() => import('./pages/aboutPage/privacyPolicy/privacyPolicy.jsx'))
 //import Management from './pages/aboutPage/management/Management';
 const Structure = lazy(()=>import('./pages/aboutPage/structure/Structure'))
 //import Structure from './pages/aboutPage/structure/Structure';
@@ -89,6 +96,13 @@ function App() {
                             <Route path="/:scroll" element={<Suspense ><Home /></Suspense>}></Route>
                             <Route path="/about" element={<Suspense ><AboutUs /></Suspense>}></Route>
                             <Route path="/management" element={<Suspense ><Management /></Suspense>}></Route>
+                            <Route path="/contacts" element={<Suspense ><Contacts /></Suspense>}></Route>
+                            <Route path="/privacy-policy" element={<Suspense ><PrivacyPolicy /></Suspense>}></Route>
+                            <Route path="/academic-council" element={<Suspense ><AcademicCouncil /></Suspense>}></Route>
+                            <Route path="/plans-and-reports" element={<Suspense ><PlansAndReports /></Suspense>}></Route>
+                            <Route path="/main-tasks-and-activities" element={<Suspense ><MainTasksAndActivities /></Suspense>}></Route>
+                            <Route path="/ready-made-solutions" element={<Suspense ><ReadMadeSolutionsCatalog /></Suspense>}></Route>
+                            <Route path="/offer-agreement" element={<Suspense ><PublicOfferAgreement /></Suspense>}></Route>
                             <Route path="/structure" element={<Suspense ><Structure /></Suspense>}></Route>
                             <Route path="/structure/:id" element={<Suspense ><DirectorPage /></Suspense>} />
                             <Route path="/charter" element={<Suspense ><Charter /></Suspense>}></Route>

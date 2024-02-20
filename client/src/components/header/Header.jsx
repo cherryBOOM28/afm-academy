@@ -449,6 +449,9 @@ const NavigationBar = (props) => {
                   <li>
                       <Link to="/operations" className={'subPages text-content'}>{t('transactions subject to financial monitoring')}</Link>
                   </li>
+                  <li>
+                      <Link to="/ready-made-solutions" className={'subPages text-content'}>{t('ready-made solutions catalog')}</Link>
+                  </li>
               </ul>
           </div>
           {/* <div className={'menuBox'}>

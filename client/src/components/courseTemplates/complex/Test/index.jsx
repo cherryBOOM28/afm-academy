@@ -193,7 +193,7 @@ const MatchingQuestion = ({ question_id, answers, handleUpdatePairs }) => {
     const [right, setRight] = useState([])
     const [left, setLeft] = useState([])
     const [matched, setMatched] = useState([]);
-
+    const [question, setQuestion] = useState(null)
     const [currLeft, setCurrLeft] = useState(null);
     const [currRight, setCurrRight] = useState(null);
 
