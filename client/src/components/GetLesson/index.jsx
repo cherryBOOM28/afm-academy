@@ -158,8 +158,6 @@ import PyramidList from '../courseTemplates/common_v2/PyramidList';
 import AFM_logo from "../../assets/images/crypto_AFM.png";
 import FancyList from "../courseTemplates/common_v2/FancyList";
 
-
-
 const LessonPage = ({ children, name, lecturer }) => {
 
     return (
@@ -200,10 +198,19 @@ const TODO = ({ text }) => (
 function GetLesson({
   id,
   CheckCurrentChapter,
-  quizQuestions,
-  handleOpenFeedbackModal,
-  modules
+  modules,
+  handleQuizFail,
+  handleQuizSuccesful
 }) {
+  const _handleQuizFail = (isFatal) => {
+    console.log('works')
+    handleQuizFail(isFatal);
+  }
+
+  const _handleQuizSuccesful = () => {
+    handleQuizSuccesful('works');
+  }
+
   switch (id) {
       case 1:
           return (<LessonPage name={'О курсе'}>
@@ -3065,7 +3072,8 @@ function GetLesson({
           name={'ТЕСТИРОВАНИЕ 1'}
           questions={modules[0].quiz.quizList || []}
           quizId={4}
-          handleOpenModal={handleOpenFeedbackModal}
+          handleQuizFail={_handleQuizFail}
+          handleQuizSuccesful={_handleQuizSuccesful}
         ></TestPage>
       );
     case 65:
@@ -4328,11 +4336,12 @@ function GetLesson({
     case 9:
           return (
               <TestPage
-                  finished={modules[1].quiz.quiz_max_points === 100}
-                  name={'ТЕСТИРОВАНИЕ 2'}
-                  questions={modules[1].quiz.quizList || []}
-                  quizId={15}
-                  handleOpenModal={handleOpenFeedbackModal}
+                finished={modules[1].quiz.quiz_max_points === 100}
+                name={'ТЕСТИРОВАНИЕ 2'}
+                questions={modules[1].quiz.quizList || []}
+                quizId={15}
+                handleQuizFail={_handleQuizFail}
+                handleQuizSuccesful={_handleQuizSuccesful}
               ></TestPage>
           );
 
@@ -7668,7 +7677,8 @@ function GetLesson({
                   name={'ТЕСТИРОВАНИЕ 5'}
                   questions={modules[4].quiz.quizList || []}
                   quizId={16}
-                  handleOpenModal={handleOpenFeedbackModal}
+                  handleQuizFail={_handleQuizFail}
+                  handleQuizSuccesful={_handleQuizSuccesful}
               ></TestPage>
           );
       return (
@@ -8711,7 +8721,8 @@ function GetLesson({
                   name={'ТЕСТИРОВАНИЕ 7'}
                   questions={modules[6].quiz.quizList || []}
                   quizId={17}
-                  handleOpenModal={handleOpenFeedbackModal}
+                  handleQuizFail={_handleQuizFail}
+                  handleQuizSuccesful={_handleQuizSuccesful}
               ></TestPage>
       );
       case 999:

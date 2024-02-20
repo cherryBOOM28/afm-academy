@@ -58,6 +58,7 @@ import DropdownGlossaryList from '../../components/courseTemplates/complex/Dropd
 import DataChain from '../../components/courseTemplates/complex/DataChain';
 import TestPage from '../../components/courseTemplates/complex/Test';
 import ModalWindow from '../../components/ModalWindow/ModalWindow';
+import componentMap from '../adminCourse/tabConstructor/ComponentMap';
 
 function ReadCourse() {
 
@@ -410,7 +411,7 @@ function ReadCourse() {
 
 
             {activeLesson.componentEntries.map((component, index) => {
-                const Component = ComponentMapper[component.componentName];
+                const Component = componentMap[component.componentName];
 
                 if (!Component) {
                     return <div key={index}>Component not found: {component.componentName}</div>;
