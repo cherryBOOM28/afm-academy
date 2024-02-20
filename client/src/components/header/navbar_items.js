@@ -99,6 +99,22 @@ const navbar_items = [
       name: 'ric',
       route: null,
       subItems: [
+        {
+          name: 'types of subjects of financial monitoring',
+          route: '/subjects'
+        },
+        {
+          name: 'internal control rules',
+          route: '/rules'
+        },
+        {
+          name: 'transactions subject to financial monitoring',
+          route: '/operations'
+        },
+        {
+          name: 'transactions subject to financial monitoring',
+          route: '/operations'
+        },
       ]
     },
     {
