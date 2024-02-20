@@ -20,6 +20,7 @@ const AboutUs = lazy(()=> import('./pages/aboutPage/aboutUs/AboutUs'))
 //import AboutUs from './pages/aboutPage/aboutUs/AboutUs';
 const Management = lazy(() => import('./pages/aboutPage/management/Management'))
 const Contacts = lazy(() => import('./pages/aboutPage/contacts/Contacts.jsx'))
+const ReadMadeSolutionsCatalog = lazy(() => import('./pages/sfm/ReadyMadeSolutionsCatalog/ReadyMadeSolutionsCatalog.jsx'))
 const AcademicCouncil = lazy(() => import('./pages/ric/academicCouncil'))
 const MainTasksAndActivities = lazy(() => import('./pages/ric/mainTasksAndActivities'))
 const PublicOfferAgreement = lazy(() => import('./pages/PublicOfferAgreement'))
@@ -126,6 +127,7 @@ function App() {
                             <Route path="/academic-council" element={<Suspense ><AcademicCouncil /></Suspense>}></Route>
                             <Route path="/plans-and-reports" element={<Suspense ><PlansAndReports /></Suspense>}></Route>
                             <Route path="/main-tasks-and-activities" element={<Suspense ><MainTasksAndActivities /></Suspense>}></Route>
+                            <Route path="/ready-made-solutions" element={<Suspense ><ReadMadeSolutionsCatalog /></Suspense>}></Route>
                             <Route path="/offer-agreement" element={<Suspense ><PublicOfferAgreement /></Suspense>}></Route>
                             <Route path="/structure" element={<Suspense ><Structure /></Suspense>}></Route>
                             <Route path="/structure/:id" element={<Suspense ><DirectorPage /></Suspense>} />
