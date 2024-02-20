@@ -5,8 +5,11 @@ import './style.scss';
 function TwoColumnsDivider({
     left,
     right,
-    gap=10
+    gap=10,
+    version=1,
 }) {
+    
+
     return ( 
         <div className="two-columns-divider" 
         >
