@@ -117,10 +117,10 @@
             &:focus-within {
                 border: 1px solid rgba(255, 255, 255, 0.6); /* your desired color here */;
             }
-
+ 
             &:hover {
                 border: 1px solid rgba(255, 255, 255, 0.6);
-                opacity: 0.7;
+                opacity: 0.1;
                 transition: all 0.2s ease;
             }
             &.dark:hover {
