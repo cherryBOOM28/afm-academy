@@ -266,8 +266,48 @@
                         }
                     }
 
-                    .two-columns-divider {
-                        height: 100px;
+                    .c-two-columns-divider {
+                        min-height: 300px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+
+                        .wrapper {
+                            height: 100%;
+                            display: flex;
+                            flex-direction: row;
+                            gap: 10px;
+
+                            .left, .right {
+                                border: 1px dashed #838383;
+                                min-height: 300px;
+                                width: 50%;
+
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                justify-content: center;
+
+                                overflow: hidden;
+
+                                > div {
+                                    margin: 0;
+                                    padding: 10px 70px;
+                                    box-sizing: border-box;
+                                }
+
+                                p {
+                                    text-align: center;
+                                    user-select: none;
+                                }
+
+                                &.highlighted {
+                                    border: 2px dashed #4b4b4b;
+                                }
+                            }
+                        }
+
+                        
                     }
                 }
 
