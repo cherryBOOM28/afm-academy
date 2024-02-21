@@ -25,9 +25,11 @@ function TestPage({
         }
     ])
 
+    const [matchingPairAnswers, setMatchingPairAnswers] = useState([]);
+
     useEffect(() => {
-        console.log(questions)
-        let _checkedQustions = questions ? questions.map(question => {
+        // console.log("Questions", questions)
+        let _checkedQustions = questions ? questions.filter(question => question.mcqOption.length > 0).map(question => {
             return {
                 question: question.question_id,
                 answer: 0
@@ -39,16 +41,33 @@ function TestPage({
         setCheckedQustions(_checkedQustions)
     }, [])
 
+    const handleUpdatePairs = (matched) => {
+        console.log(matched)
+        const _matched = matched.map(answer => {
+            return {
+                'question': answer.question,
+                'left_part': answer.left_part,
+                'right_part': answer.right_part
+            }
+        })
+        setMatchingPairAnswers(_matched)
+        console.log(_matched)
+    }
+
     const finishTest = () => {
         // console.log(checkedQustions)
 
         const fetchData = async () => {
-            console.log(checkedQustions)
+            console.log({
+                'mcqQuestionAnswerList': checkedQustions,
+                'matchingPairAnswers': matchingPairAnswers
+            })
             try {
                 const response = await axios.post(
                     `${base_url}/api/aml/quiz/checkQuiz/${quizId}`, 
                     {
-                        'mcqQuestionAnswerList': checkedQustions
+                        'mcqQuestionAnswerList': checkedQustions,
+                        'matchingPairAnswers': matchingPairAnswers
                     }, 
                     {
                         headers: {
@@ -71,7 +90,6 @@ function TestPage({
             }
         };
         
-        // console.log(jwtToken);
         fetchData();
         // handleOpenModal();
     }
@@ -105,7 +123,6 @@ function TestPage({
                             {
                                 questions[currQuestion] ? questions[currQuestion].mcqOption.map(answer => {
                                     const handleAnswerClick = (answerId) => {
-                                        // console.log(answerId, checkedQustions[currQuestion])
                                         if (finished) return;
 
                                         setCheckedQustions(prevQuestions => {
@@ -144,7 +161,11 @@ function TestPage({
                     {
                         questions[currQuestion] && questions[currQuestion].matchingPairs
                         && questions[currQuestion].matchingPairs.length > 0
-                        ? <MatchingQuestion answers={questions[currQuestion].matchingPairs}/> : null
+                        ? <MatchingQuestion 
+                            answers={questions[currQuestion].matchingPairs}
+                            question_id={questions[currQuestion].question_id}
+                            handleUpdatePairs={handleUpdatePairs}
+                        /> : null
                     }
                 </div>
 
@@ -165,7 +186,7 @@ function TestPage({
     );
 }
 
-const MatchingQuestion = ({ answers }) => {
+const MatchingQuestion = ({ question_id, answers, handleUpdatePairs }) => {
     const [_answers, _setUnswers] = useState(answers)
     const [right, setRight] = useState([])
     const [left, setLeft] = useState([])
@@ -183,7 +204,6 @@ const MatchingQuestion = ({ answers }) => {
                 text
             }
         })
-        // console.log("init left", left)
         setLeft(left)
 
         const right = answers.map(answer => {
@@ -194,13 +214,12 @@ const MatchingQuestion = ({ answers }) => {
                 text
             }
         })
-        // console.log("init right", right)
 
         setRight(right)
     }, [])
 
     useEffect(() => {
-        // console.log(matched)
+        handleUpdatePairs(matched);
     }, [matched])
 
     const updatePairs = (leftId, rightId) => {
@@ -215,10 +234,11 @@ const MatchingQuestion = ({ answers }) => {
             setMatched(prev => [
                 ...prev,
                 {
+                    question: question_id,
                     id,
-                    leftPart,
+                    left_part: leftPart,
                     leftId,
-                    rightPart,
+                    right_part: rightPart,
                     rightId
                 }
             ]);
@@ -240,8 +260,6 @@ const MatchingQuestion = ({ answers }) => {
     }
 
     const leftPairClick = (id) => {
-        // console.log(id)
-
         if (currLeft === id) {
             setCurrLeft(null);
             return;
@@ -252,8 +270,6 @@ const MatchingQuestion = ({ answers }) => {
     }
 
     const rightPairClick = (id) => {
-        // console.log(id)
-
         if (currRight === id) {
             setCurrRight(null);
             return;
@@ -274,12 +290,12 @@ const MatchingQuestion = ({ answers }) => {
                             <div className="row" key={id} onClick={() => unmatchPairs(id)}>
                                 <div className="left">
                                     <div className={`pair`}>
-                                        { answer.leftPart }
+                                        { answer.left_part }
                                     </div>
                                 </div>
                                 <div className="right">
                                     <div className={`pair`}>
-                                        { answer.rightPart }
+                                        { answer.right_part }
                                     </div>
                                 </div>
                             </div>
@@ -292,8 +308,6 @@ const MatchingQuestion = ({ answers }) => {
                     _answers.map(answer => {
                         const id = answer.matching_pair_id;
                         
-                        // console.log(left.find(v => v.id === answer.matching_pair_id))
-
                         const leftText = left.find(v => v.id === id)?.text;
                         const rightText = right.find(v => v.id === id)?.text;
 
