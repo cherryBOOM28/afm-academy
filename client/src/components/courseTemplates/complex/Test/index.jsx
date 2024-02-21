@@ -28,7 +28,7 @@ function TestPage({
     const [matchingPairAnswers, setMatchingPairAnswers] = useState([]);
 
     useEffect(() => {
-        console.log(questions)
+        // console.log("Questions", questions)
         let _checkedQustions = questions ? questions.filter(question => question.mcqOption.length > 0).map(question => {
             return {
                 question: question.question_id,
@@ -90,7 +90,6 @@ function TestPage({
             }
         };
         
-        // console.log(jwtToken);
         fetchData();
         // handleOpenModal();
     }
@@ -124,7 +123,6 @@ function TestPage({
                             {
                                 questions[currQuestion] ? questions[currQuestion].mcqOption.map(answer => {
                                     const handleAnswerClick = (answerId) => {
-                                        // console.log(answerId, checkedQustions[currQuestion])
                                         if (finished) return;
 
                                         setCheckedQustions(prevQuestions => {
@@ -206,7 +204,6 @@ const MatchingQuestion = ({ question_id, answers, handleUpdatePairs }) => {
                 text
             }
         })
-        // console.log("init left", left)
         setLeft(left)
 
         const right = answers.map(answer => {
@@ -217,13 +214,11 @@ const MatchingQuestion = ({ question_id, answers, handleUpdatePairs }) => {
                 text
             }
         })
-        // console.log("init right", right)
 
         setRight(right)
     }, [])
 
     useEffect(() => {
-        // console.log(matched)
         handleUpdatePairs(matched);
     }, [matched])
 
@@ -265,8 +260,6 @@ const MatchingQuestion = ({ question_id, answers, handleUpdatePairs }) => {
     }
 
     const leftPairClick = (id) => {
-        // console.log(id)
-
         if (currLeft === id) {
             setCurrLeft(null);
             return;
@@ -277,8 +270,6 @@ const MatchingQuestion = ({ question_id, answers, handleUpdatePairs }) => {
     }
 
     const rightPairClick = (id) => {
-        // console.log(id)
-
         if (currRight === id) {
             setCurrRight(null);
             return;
@@ -317,8 +308,6 @@ const MatchingQuestion = ({ question_id, answers, handleUpdatePairs }) => {
                     _answers.map(answer => {
                         const id = answer.matching_pair_id;
                         
-                        // console.log(left.find(v => v.id === answer.matching_pair_id))
-
                         const leftText = left.find(v => v.id === id)?.text;
                         const rightText = right.find(v => v.id === id)?.text;
 

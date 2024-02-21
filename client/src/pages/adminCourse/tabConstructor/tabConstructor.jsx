@@ -277,6 +277,8 @@ const Constructor = ({saveCancel, save, id, title}) => {
     const [selectedComponent, setSelectedComponent] = useState(null);
     const [componentHistory, setComponentHistory] = useState([]);
 
+    const [destination, setDestination] = useState(null);
+
     useEffect(() => {
         axios
             .get(base_url + '/api/aml/chapter/getComponents', {params: {id}})
@@ -374,6 +376,10 @@ const Constructor = ({saveCancel, save, id, title}) => {
         }
     };
 
+    const handleAdvancedSelect = (destination) => {
+        setDestination(destination);
+    }
+
     const handleEditComponent = (index) => {
         const editedComponent = componentHistory[index];
         setSelectedComponent(editedComponent);
@@ -396,21 +402,59 @@ const Constructor = ({saveCancel, save, id, title}) => {
                 ...prevHistory.slice(existingComponentIndex + 1),
             ]);
         } else {
-            setComponentHistory((prevHistory) => {
-                console.log(values)
-                return [
-                    ...prevHistory,
-                    { component_entry_id: generateUniqueId(), componentName: selectedComponent.componentName, inputs, values },
-                ]
-            });
+
+            if (destination === null) {
+                
+                setComponentHistory((prevHistory) => {
+                    console.log(values)
+                    return [
+                        ...prevHistory,
+                        { component_entry_id: generateUniqueId(), componentName: selectedComponent.componentName, inputs, values },
+                    ]
+                });
+
+            } else {
+
+                handleAddToDestination(destination, inputs, values);
+
+            }
         }
     
         handleCloseModal();
-        // setComponentHistory((prevHistory) => [
-        //     ...prevHistory,
-        //     { componentName: selectedComponent.componentName, inputs, values },
-        // ]);
     };
+
+    const handleAddToDestination = (destination, inputs, values) => {
+        const colon_i = destination.indexOf(':');
+        const second_colon_i = destination.indexOf(':', colon_i + 1);
+
+        const index = destination.substring(0, colon_i);
+        const dest_name = destination.substring(colon_i + 1, second_colon_i);
+        const detail = destination.substring(second_colon_i+1)
+
+        if (dest_name === 'TwoColumnsDivider') {
+            setComponentHistory((prevHistory) => {
+                // let _updated = [...prevHistory]
+                // _updated[index] = 
+
+                return [
+                    ...prevHistory.slice(0, index),
+                    { 
+                        ...prevHistory[index], 
+                        values: {
+                            ...prevHistory[index].values,
+                            [detail]: {
+                                component_entry_id: generateUniqueId(), componentName: selectedComponent.componentName, inputs, values
+                            }
+                        } 
+                    },
+                    ...prevHistory.slice(index + 1),
+                ]
+            });
+        }
+
+        console.log(index, dest_name, detail);
+    }
+
     const handleDeleteComponent = (index) => {
         const updatedHistory = [...componentHistory];
         
@@ -464,6 +508,8 @@ const Constructor = ({saveCancel, save, id, title}) => {
                                 handleMoveDown={handleMoveDown}
                                 handleCopy={handleCopy}
                                 item={item}
+
+                                handleAdvancedSelect={handleAdvancedSelect}
                             />
                         }
 
@@ -538,6 +584,7 @@ const Constructor = ({saveCancel, save, id, title}) => {
                                                     'left': null,
                                                     'right': null,
                                                     'gap': 10,
+                                                    'version': 2
                                                 }
 
                                                 setComponentHistory((prevHistory) => {
@@ -580,11 +627,22 @@ const TwoColumnsDividerConstuctor = ({
     handleMoveDown,
     handleCopy,
 
-    item
+    item,
+    handleAdvancedSelect
 }) => {
-    console.log("Two Columns Divider")
+    console.log("Two Columns Divider", item)
 
     const [highlighIndex, setHighlighIndex] = useState(0);
+
+    useEffect(() => {
+        if (highlighIndex === 1) {
+            handleAdvancedSelect(`${index}:TwoColumnsDivider:left`)
+        } else if (highlighIndex === 2) {
+            handleAdvancedSelect(`${index}:TwoColumnsDivider:right`)
+        } else if (highlighIndex === 0) {
+            handleAdvancedSelect(null)
+        }
+    }, [highlighIndex])
 
     return (
 
@@ -602,6 +660,11 @@ const TwoColumnsDividerConstuctor = ({
             </div>
 
             <div className="c-two-columns-divider">
+                <p>В самом курсе элемент будет выглядить по другому</p>
+                {/* <div className='gap-input'>
+                    <label>Расстояние</label>
+                    <input type="text" />
+                </div> */}
                 <div className="wrapper">
 
                     <div 
@@ -613,7 +676,17 @@ const TwoColumnsDividerConstuctor = ({
                             })
                         }}
                     >
-                        <p>Чтобы добавить элемент, выделите и нажмите на элемент</p>                        
+                        {
+                            item.values['left'] !== null 
+                                ? (
+                                    
+                                    componentMap[item.values['left'].componentName] && (
+                                        React.createElement(componentMap[item.values['left'].componentName], item.values['left'].values)
+                                    ) 
+                                    
+                                ) 
+                                : <p>Чтобы добавить элемент, выделите и нажмите на элемент</p>  
+                        }                      
                     </div>
 
                     <div 
@@ -625,7 +698,17 @@ const TwoColumnsDividerConstuctor = ({
                             })
                         }}
                     >
-                        <p>Чтобы добавить элемент, выделите и нажмите на элемент</p>                        
+                        {
+                            item.values['right'] !== null 
+                                ? (
+                                    
+                                    componentMap[item.values['right'].componentName] && (
+                                        React.createElement(componentMap[item.values['right'].componentName], item.values['right'].values)
+                                    ) 
+                                    
+                                ) 
+                                : <p>Чтобы добавить элемент, выделите и нажмите на элемент</p>  
+                        }                            
                     </div>
 
                 </div>
@@ -888,44 +971,5 @@ const ModuleStructure = ({id, toQuestionnaire, lessonById, setLessonTitle }) => 
             </div>
     )
 }
-
-const lessons = [
-    {
-        "id": 1,
-        "title": 'First Lesson',
-        "hidden": false 
-    },
-    {
-        "id": 2,
-        "title": 'Second Lesson',
-        "hidden": false 
-    },
-    {
-        "id": 3,
-        "title": 'Third Lesson',
-        "hidden": false
-    },
-]
-
-const modules = [
-    {
-        "chapter_id": 1,
-        "chapter_name": 'First Module',
-        "number_of_lessons": 0,
-        "hidden": false 
-    },
-    {
-        "chapter_id": 2,
-        "chapter_name": 'Second Module',
-        "number_of_lessons": 3,
-        "hidden": false 
-    },
-    {
-        "chapter_id": 3,
-        "chapter_name": 'Third Module',
-        "number_of_lessons": 2,
-        "hidden": false
-    },
-]
 
 export default TabConstructor

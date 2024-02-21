@@ -268,6 +268,9 @@
 
                     .c-two-columns-divider {
                         min-height: 300px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
 
                         .wrapper {
                             height: 100%;
@@ -284,6 +287,14 @@
                                 flex-direction: column;
                                 align-items: center;
                                 justify-content: center;
+
+                                overflow: hidden;
+
+                                > div {
+                                    margin: 0;
+                                    padding: 10px 70px;
+                                    box-sizing: border-box;
+                                }
 
                                 p {
                                     text-align: center;

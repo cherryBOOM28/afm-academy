@@ -32,8 +32,14 @@
                 width: 100%;
             }
 
-            > * {
+            > *:not(
+                .textWithBackground
+            ) {
                 padding: 0px;
+            }
+
+            > * {
+                height: 100%;
             }
         }
 
