@@ -338,6 +338,21 @@ const NavigationBar = (props) => {
         break;
     }
   }
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    let timer;
+    if (isHovered) {
+      // Если курсор находится над элементом, установите таймер на 1 секунду
+      timer = setTimeout(() => {
+        setIsHovered(false); // После 1 секунды установите состояние обратно в false
+      }, 1000);
+    } else {
+      clearTimeout(timer); // Если курсор убран, очистите таймер, чтобы сбросить его
+    }
+
+    return () => clearTimeout(timer); // Очистка таймера при размонтировании компонента или изменении состояния
+  }, [isHovered]);
 
 
 
@@ -450,7 +465,19 @@ const NavigationBar = (props) => {
                       <Link to="/operations" className={'subPages text-content'}>{t('transactions subject to financial monitoring')}</Link>
                   </li>
                   <li>
-                      <Link to="/ready-made-solutions" className={'subPages text-content'}>{t('ready-made solutions catalog')}</Link>
+            <Link to="/ready-made-solutions"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className={isHovered ? 'hovered' : ''}>{t('ready-made solutions catalog')}</Link> 
+                                <ul className='subsub' >
+                                      <li className='li1'>
+                                        <Link to="/subjects" className={'subPages1 text-content'}>{t('types of subjects of financial monitoring')}</Link>
+                                        </li>
+                                        <li className='li1'>
+                                        <Link to="/rules" className={'subPages1 text-content'}>{t('internal control rules')}</Link>
+                                        </li>
+                                </ul>
+                       
                   </li>
               </ul>
           </div>
