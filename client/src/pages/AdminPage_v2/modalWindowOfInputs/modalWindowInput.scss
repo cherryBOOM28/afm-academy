@@ -1,10 +1,8 @@
 .modal {
-    z-index: 11;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
+    z-index: 5;
+    position: absolute;
+    top: 25%;
+    left: 25%;
 
     width: max-content;
     min-width: 600px;
@@ -19,6 +17,7 @@
 
     overflow-y: scroll;
     overflow-x: hidden;
+
     
     .title-example {
         display: flex;

@@ -138,7 +138,7 @@ const EditCatalog = () => {
                                 <a>Курсы</a>
                             </div>
                         </div>
-                        <div onClick={() => {navigate('/createcourse')}} className='create-course-button'>
+                        <div onClick={() => {navigate('/new-admin-page')}} className='create-course-button'>
                             <a>Создать курс</a>
                         </div>
                     </div>
@@ -167,7 +167,7 @@ const EditCatalog = () => {
                                                 }}className="delete">
                                                 <img src={deletIcon} alt="del"></img>
                                             </div>
-                                            <div onClick={() => {navigate('/createcourse/?id=' + x.course_id)}} className="edit">
+                                            <div onClick={() => {navigate('/new-admin-page/?id=' + x.course_id)}} className="edit">
                                                 <img src={editIcon} alt="edit"></img>
                                             </div>
                                             {/* onClick={publishCourse(x.course_id)}  */}
