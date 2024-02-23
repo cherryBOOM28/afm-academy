@@ -339,15 +339,25 @@ const NavigationBar = (props) => {
     }
   }
   const [isHovered, setIsHovered] = useState(false);
-   const handleMouseEnter = () => {
+  const [timeoutId, setTimeoutId] = useState(null);
+
+  const handleMouseEnter = () => {
+    clearTimeout(timeoutId); // Очистить предыдущий таймаут, если он существует
     setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
-    setTimeout(() => {
+    const id = setTimeout(() => {
       setIsHovered(false);
-    }, 2000); // 3000 миллисекунд (3 секунды)
+    }, 200); // 3000 миллисекунд (3 секунды)
+    setTimeoutId(id); // Сохранить идентификатор таймаута для последующей отмены
   };
+  useEffect(() => {
+    return () => {
+      clearTimeout(timeoutId); // Очистить таймаут при размонтировании компонента
+    };
+  }, [timeoutId]);
+
 
 
 
@@ -464,10 +474,10 @@ const NavigationBar = (props) => {
                                 <ul 
                                     style={{display: isHovered ? 'block' : 'none'}}
                                     className='subsub' >
-                                      <li className='li1'   onMouseEnter={handleMouseEnter}>
+                                      <li className='li1'   onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
                                         <Link to="/subjects" className={'subPages1 text-content'}>{t('types of subjects of financial monitoring')}</Link>
                                         </li>
-                                        <li className='li1'   onMouseEnter={handleMouseEnter}>
+                                        <li className='li1'   onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
                                         <Link to="/rules"    className={'subPages1 text-content'}>{t('internal control rules')}</Link>
                                         </li>
                                 </ul>
