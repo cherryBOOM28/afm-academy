@@ -263,7 +263,6 @@ const TabConstructor = ({saveCancel, save, id}) => {
             <QuestionnaireForm id={previous} saveCancel={saveCancel} save={save}/>
             : 
             stepConstructor != 'constructor' ? <ModuleStructure id={stepConstructor} toQuestionnaire={toQuestionnaire} setLessonTitle={setLessonTitle} lessonById={lessonById}/>
-            
             :
             <Constructor saveCancel={saveCancel} save={save} id={lesson} title={title} />
             }

@@ -10,6 +10,8 @@ import './settings/i18n.js';
 import VisualModal from './/components/VisualModal/VisualModal.jsx'
 import Login from './pages/login/Login';
 import { StyleProvider } from './/components/VisualModal/StyleContext.jsx';
+import AdminPage_Main from './pages/AdminPage_v2/main/index.jsx';
+
 const Home = lazy(() => import ('./pages/home/Home'))
 const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
 //import Home from './pages/home/Home';
@@ -153,6 +155,8 @@ function App() {
                             {/* <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={EditCatalog} />}/> */}
                             <Route path='/createcourse' element={<CreateCoursePage/>}/>
                             <Route path='/manager' element={<EditCatalog/>} />
+
+                            <Route path='/new-admin-page' element={<AdminPage_Main/>} />
                         </Routes>
                     </BrowserRouter>
                 </AuthProvider>
