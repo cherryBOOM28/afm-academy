@@ -158,6 +158,26 @@ import Image from '../courseTemplates/common_v2/Image';
 import PyramidList from '../courseTemplates/common_v2/PyramidList';
 import AFM_logo from "../../assets/images/crypto_AFM.png";
 import FancyList from "../courseTemplates/common_v2/FancyList";
+import file1 from "../../assets/files/КоАП.pdf"
+import file2 from "../../assets/files/Закон о ПОДФТ.pdf"
+import file3 from "../../assets/files/НОР_ОД.docx"
+import file4 from "../../assets/files/НОР_ФТ.docx"
+import file5 from "../../assets/files/ПВК для игорного бизнеса.pdf"
+import file6 from "../../assets/files/ПВК для МФО.pdf"
+import file7 from "../../assets/files/ПВК для не финансового сектора.pdf"
+import file8 from "../../assets/files/ПВК для нотариусов.pdf"
+import file9 from "../../assets/files/ПВК для оператора почты.pdf"
+import file10 from "../../assets/files/ПВК для ПУРЦБ.pdf"
+import file11 from "../../assets/files/ПВК для страховых орг.pdf"
+import file12 from "../../assets/files/ПВК для товарных бирж.pdf"
+import file13 from "../../assets/files/По подготовке и обучению.docx"
+import file14 from "../../assets/files/ПП_915_от_20.12.2021г..pdf"
+import file15 from "../../assets/files/Правила предоставления информации и КППО.pdf"
+import file16 from "../../assets/files/Правила проведения оценки рисков.pdf"
+import file17 from "../../assets/files/СТАНДАРТЫ_ФАТФ.pdf"
+import file18 from "../../assets/files/УК РК.pdf"
+
+
 
 const LessonPage = ({ children, name, lecturer }) => {
 
@@ -1090,7 +1110,24 @@ function GetLesson({
                     <Sizebox height={50} />
 
                     <Reveal>
-                        <FileDownloader file={'fff'} />
+                        <FileDownloader fileName={'Закон о ПОДФТ'} file={file2} />
+                        <FileDownloader fileName={'КоАП'} file={file1} />
+                        <FileDownloader fileName={'НОР_ОД'} file={file3} />
+                        <FileDownloader fileName={'НОР_ФТ'} file={file4} />
+                        <FileDownloader fileName={'ПВК для игорного бизнеса'} file={file5} />
+                        <FileDownloader fileName={'ПВК для МФО'} file={file6} />
+                        <FileDownloader fileName={'ПВК для не финансового сектора'} file={file7} />
+                        <FileDownloader fileName={'ПВК для нотариусов'} file={file8} />
+                        <FileDownloader fileName={'ПВК для оператора почты'} file={file9} />
+                        <FileDownloader fileName={'ПВК для ПУРЦБ'} file={file10} />
+                        <FileDownloader fileName={'ПВК для страховых орг'} file={file11} />
+                        <FileDownloader fileName={'ПВК для товарных бирж'} file={file12} />
+                        <FileDownloader fileName={'По подготовке и обучению'} file={file13} />
+                        <FileDownloader fileName={'ПП_915_от_20.12.2021г'} file={file14} />
+                        <FileDownloader fileName={'Правила предоставления информации и КППО'} file={file15} />
+                        <FileDownloader fileName={'Правила проведения оценки рисков'} file={file16} />
+                        <FileDownloader fileName={'СТАНДАРТЫ_ФАТФ'} file={file17} />
+                        <FileDownloader fileName={'УК РК'} file={file18} />
                     </Reveal>
 
                     <Sizebox height={100} />
