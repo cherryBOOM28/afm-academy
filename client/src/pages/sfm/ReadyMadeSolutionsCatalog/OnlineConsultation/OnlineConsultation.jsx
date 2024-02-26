@@ -1,23 +1,63 @@
 import React, { useState, useEffect } from "react";
-import "./ReadyMadeCatalogSolution.scss";
-import Footer from "../../../components/footer/Footer";
+import { useNavigate } from "react-router-dom";
+
+import "./OnlineConsultation.scss";
+
+import Footer from "../../../../components/footer/Footer";
+import igIcon from '../../../../assets/images/Instagram_icon.png';
+import tgIcon from '../../../../assets/images/Telegram_Messenger.png';
+
 import axios from "axios";
-import base_url from "../../../settings/base_url";
-import Header from "../../../components/header/Header";
+import base_url from "../../../../settings/base_url";
+import { Box, Modal } from "@mui/material";
+import Header from "../../../../components/header/Header";
+
 import { t } from "i18next";
 import { useTranslation } from "react-i18next";
-import VisualModal from "../../../components/VisualModal/VisualModal";
-import { useStyle } from "../../../components/VisualModal/StyleContext";
-import randomImg from "../../../assets/images/80.png"
-import { Link } from "react-router-dom";
-function ReadyMadeCatalogSolution() {
+
+import VisualModal from "../../../../components/VisualModal/VisualModal";
+
+import { useStyle } from "../../../../components/VisualModal/StyleContext";
+
+function PreparationAndSupport({ email, phoneNumber }) {
   const { t } = useTranslation();
+
+  const navigate = useNavigate();
 
   const [vebinars, setVebinars] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
 
   const [openModal, setOpenModal] = useState(false);
+  const handleEmailClick = () => {
+    window.location.href = `mailto:${email}`;
+};
+
+const handlePhoneClick = () => {
+    window.location.href = `tel:${phoneNumber}`;
+  };
+    const handleVebinarEnter = (webinar_id) => {
+        // Выполняем регистрацию на вебинар
+        const jwtToken = localStorage.getItem("jwtToken");
+        axios.post(
+            `${base_url}/api/aml/webinar/saveUser/webinar/${webinar_id}`,{}, {
+                headers: {
+                    Authorization: `Bearer ${jwtToken}`,
+                },
+            }).then(response => {
+            // Handle success
+            console.log("Participation added successfully", response.data);
+            // Optionally, you can refresh the data or notify the user
+        })
+            .catch(error => {
+                // Handle error
+                console.error("Error adding participation", error);
+                // Notify the user of the error
+            });;
+
+        setOpenModal(true);
+    };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -198,15 +238,41 @@ function ReadyMadeCatalogSolution() {
                   : "#000",
             }}
           >
-            {t("ready-made solutions catalog")}
-                  </h1>
-        </div>
-        <div style={{display:"flex"}}>
-          <Link to='/main-tasks-and-activities'> <div className="bbBum" style={{ position: "relative", width: "300px", height: "200px", border: "2px black !important", borderRadius: "8px", backgroundImage: `url(${randomImg})`, textAlign:"center",color:"white",lineHeight:"3.5",alignItems:"bottom",borderColor:"black" }}> <div href style={{ zIndex:"1",position: "absolute", bottom:"0",width: "300px", height: "60px", border: "2px", borderRadius: "8px", backgroundImage: "linear-gradient(to left,blue, #3968df)", textAlign:"center",color:"white",lineHeight:"3.5" }}> Документы по ПОД/ФТ </div> </div></Link>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <Link to='/online-consultation'> <div className="bbBum" style={{ position: "relative", width: "300px", height: "200px", border: "2px black !important", borderRadius: "8px", backgroundImage: `url(${randomImg})`, textAlign:"center",color:"white",lineHeight:"3.5",alignItems:"bottom",borderColor:"black" }}> <div href style={{ zIndex:"1",position: "absolute", bottom:"0",width: "300px", height: "60px", border: "2px", borderRadius: "8px",  backgroundImage: "linear-gradient(to left, blue, #3968df)", textAlign:"center",color:"white",lineHeight:"3.5" }}> Онлайн-консультация по ПОД/ФТ </div> </div></Link>
-        </div>
-        
+            {t("Online consultation")}
+          </h1>
+          <p>{t("monitoring_activity_and_document_analysis")}</p>
+          <br />
+          <p>{t("reviewing_processes_in_AML_CFT_domain")}</p>
+          <br />
+          <p>{t("compliance_analysis_document_management")}</p>
+          <br />
+          <p>{t("analysis_information_disclosure_procedures")}</p>
+          <br />
+          <p>{t("monitoring_regime_suspicious_activity_reporting")}</p>
+          <br />
+          <p>{t("preparing_missing_documents_for_AML_CFT_check")}</p>
+          <br />
+          <p>{t("customer_questionnaire_review")}</p>
+          <br />
+          <p>{t("customer_profile_compilation")}</p>
+          <br />
+          <p>{t("management_interviews_for_violation_analysis")}</p>
+          <br />
+          <p>{t("company_and_management_survey_risk_assessment_prep")}</p>
+          <br />
+          <p>{t("development_documents_required_financial_monitoring")}</p>
+          <br />
+          <p>{t("collection_processing_document_list_financial_monitoring_prep")}</p>
+          <br />
+          <p>{t("customer_base_analysis")}</p>
+          <br />
+          <p>{t("consultation_session_info_disclosure_procedure_clarification")}</p>
+          <br />
+          <p>{t("beneficial_owners_disclosure_guidance")}</p>
+               
+
+          
+          </div>
           </div>
           <br />
           <br />
@@ -218,4 +284,4 @@ function ReadyMadeCatalogSolution() {
   );
 }
 
-export default ReadyMadeCatalogSolution;
+export default PreparationAndSupport;

@@ -21,6 +21,7 @@ const Management = lazy(() => import('./pages/aboutPage/management/Management'))
 const Contacts = lazy(() => import('./pages/aboutPage/contacts/Contacts.jsx'))
 const DevelopmentOfIcps = lazy(() => import('./pages/sfm/ReadyMadeSolutionsCatalog/DevelopmentOfIcps/DevelopmentOfIcps.jsx'))
 const PreparationAndSupport = lazy(() => import('./pages/sfm/ReadyMadeSolutionsCatalog/PreparationAndSupport/PreparationAndSupport.jsx'))
+const OnlineConsultation = lazy(() => import('./pages/sfm/ReadyMadeSolutionsCatalog/OnlineConsultation/OnlineConsultation.jsx'))
 const ReadMadeSolutionsCatalog = lazy(() => import('./pages/sfm/ReadyMadeSolutionsCatalog/ReadyMadeSolutionsCatalog.jsx'))
 const AcademicCouncil = lazy(() => import('./pages/ric/academicCouncil'))
 const MainTasksAndActivities = lazy(() => import('./pages/ric/mainTasksAndActivities'))
@@ -105,6 +106,7 @@ function App() {
                             <Route path="/main-tasks-and-activities" element={<Suspense ><MainTasksAndActivities /></Suspense>}></Route>
                             <Route path="/ready-made-solutions" element={<Suspense ><ReadMadeSolutionsCatalog /></Suspense>}></Route>
                             <Route path="/development-of-icps" element={<Suspense ><DevelopmentOfIcps /></Suspense>}></Route>
+                            <Route path="/online-consultation" element={<Suspense ><OnlineConsultation /></Suspense>}></Route>
                             <Route path="/preparation-and-support" element={<Suspense ><PreparationAndSupport /></Suspense>}></Route>
                             <Route path="/offer-agreement" element={<Suspense ><PublicOfferAgreement /></Suspense>}></Route>
                             <Route path="/structure" element={<Suspense ><Structure /></Suspense>}></Route>
