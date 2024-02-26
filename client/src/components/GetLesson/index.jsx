@@ -5415,7 +5415,7 @@ function GetLesson({
                     <Sizebox height={20} />
                     <VideoLine
                         url={
-                            'https://videos.sproutvideo.com/embed/1190d1b1191ae8c498/b8caa50df4b0d67b?playerColor=1f71a1'
+                            'https://videos.sproutvideo.com/embed/ac90d7b31a1be0c325/18ecff3f2cab343e'
                         }
                     />
 
@@ -7001,16 +7001,16 @@ function GetLesson({
                         ></NotNumberedDots>
                     </Reveal>
                     <Sizebox height={40} />
+                    <TextWithTitle
+                        title={'По каким фактам субъекты финансового мониторинга также предоставляют информацию в АФМ?'}
+                    ></TextWithTitle>
                     <Reveal>
                         <Centered>
                             <VideoLine
-                                url={''}
+                                url={'https://videos.sproutvideo.com/embed/7990d7b31a1be0c2f0/8621de2e0cf4f397'}
                             ></VideoLine>
                         </Centered>
                         <Sizebox height={20}></Sizebox>
-                        <TextWithTitle
-                            title={'По каким фактам субъекты финансового мониторинга также предоставляют информацию в АФМ?'}
-                        ></TextWithTitle>
                     </Reveal>
                     <Sizebox height={40}></Sizebox>
                     <Reveal>
@@ -7117,7 +7117,7 @@ function GetLesson({
                 <Sizebox height={40} />
 
                 <Reveal>
-                    <VideoLine url={'https://videos.sproutvideo.com/embed/7990d0b51d1ae4c1f0/6e43cdd74851d083?playerColor=1f71a1'}/>
+                    <VideoLine url={'https://videos.sproutvideo.com/embed/4490d7b01211e1cbcd/572cb926e5320b07'}/>
                 </Reveal>
 
                 <Sizebox height={50} />
