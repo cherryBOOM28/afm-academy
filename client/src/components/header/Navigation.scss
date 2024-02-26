@@ -67,15 +67,14 @@
                     }
                     .subsub{
                         margin-top: 6px;
+                        backdrop-filter: blur(13px) !important;
                         right: 100%;
                         bottom: -110%;
-                        backdrop-filter: blur(13px);
                         line-height: 2;
                         position: absolute;
                         width: 90%;
-            
-                        // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                        background-color: rgba(150, 142, 142, 0.922);
+                        background-color: #bebebe8f;
+                       
                         padding: 20px;
                         margin-top: 6px;
                         border-radius: 5px;

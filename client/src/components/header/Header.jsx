@@ -475,11 +475,11 @@ const NavigationBar = (props) => {
                                     style={{display: isHovered ? 'block' : 'none'}}
                                     className='subsub' >
                                       <li className='li1'   onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
-                                        <Link to="/subjects" className={'subPages1 text-content'}>{t('Preparation and support')}</Link>
-              </li>
-              <br />
+                                        <Link to="/preparation-and-support" className={'subPages1 text-content'}>{t('Preparation and support')}</Link>
+                                          </li>
+                                          <br />
                                         <li className='li1'   onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
-                                        <Link to="/rules"    className={'subPages1 text-content'}>{t('Development of ICPs')}</Link>
+                                        <Link to="/development-of-icps"    className={'subPages1 text-content'}>{t('Development of ICPs')}</Link>
                                         </li>
                                 </ul>
                        
