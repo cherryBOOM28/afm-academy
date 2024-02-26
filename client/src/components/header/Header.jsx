@@ -349,7 +349,7 @@ const NavigationBar = (props) => {
   const handleMouseLeave = () => {
     const id = setTimeout(() => {
       setIsHovered(false);
-    }, 200); // 3000 миллисекунд (3 секунды)
+    }, 600); // 3000 миллисекунд (3 секунды)
     setTimeoutId(id); // Сохранить идентификатор таймаута для последующей отмены
   };
   useEffect(() => {
@@ -475,10 +475,11 @@ const NavigationBar = (props) => {
                                     style={{display: isHovered ? 'block' : 'none'}}
                                     className='subsub' >
                                       <li className='li1'   onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
-                                        <Link to="/subjects" className={'subPages1 text-content'}>{t('types of subjects of financial monitoring')}</Link>
-                                        </li>
+                                        <Link to="/subjects" className={'subPages1 text-content'}>{t('Preparation and support')}</Link>
+              </li>
+              <br />
                                         <li className='li1'   onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
-                                        <Link to="/rules"    className={'subPages1 text-content'}>{t('internal control rules')}</Link>
+                                        <Link to="/rules"    className={'subPages1 text-content'}>{t('Development of ICPs')}</Link>
                                         </li>
                                 </ul>
                        
