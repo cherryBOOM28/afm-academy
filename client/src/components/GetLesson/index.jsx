@@ -78,7 +78,7 @@ import theendbaza from './../../assets/images/theendBaza.png';
 import image60 from './../../assets/images/oonn.png';
 import image61 from './../../assets/images/fatff.png';
 import image62 from './../../assets/images/eagg.png';
-import image63 from './../../assets/images/errror.gif';
+import image63 from './../../assets/images/BLACKLISTTTT.png';
 import image65 from './../../assets/images/terer.jpg';
 import image66 from './../../assets/images/earth.jpg';
 import image67 from './../../assets/images/lawyer.png';
