@@ -4176,7 +4176,7 @@ function GetLesson({
                     </Reveal>
 
                     <Sizebox height={80} />
-                                    <Reveal>
+                                    {/* <Reveal>
                     <ComplexTable 
                         showCollapseButton={false}
                         columns={['Черный список', 'Серый список']}
@@ -4200,7 +4200,7 @@ function GetLesson({
                             
                             }
                         ]} />
-                </Reveal>
+                </Reveal> */}
 
                                 
                     <Sizebox height={40} />
