@@ -18,6 +18,7 @@ import { useTranslation } from "react-i18next";
 import VisualModal from "../../../components/VisualModal/VisualModal";
 
 import { useStyle } from "../../../components/VisualModal/StyleContext";
+import { BiLeftArrow } from "react-icons/bi";
 
 function ContactsPage({ email, phoneNumber }) {
   const { t } = useTranslation();
@@ -293,7 +294,8 @@ const handlePhoneClick = () => {
           >
             {t("contacts")}
                   </h1>
-                  <div className={''}>
+              <div style={{display:'flex'}}>
+              <div className={''}>
                         <br />
                         <nav className={''}>
                             <ul>
@@ -324,22 +326,17 @@ const handlePhoneClick = () => {
                                 <img src={tgIcon} alt="telegram" className={'iconContacts'} />
                             </a>
                         </div>
-                    </div>
+              </div>
+              <div style={{marginLeft:'10%',marginBottom:'10%'}}>
+            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A4a08d0ccfef04383de3fc2bab937c2d0636fd66b16a047a660fdc1a3d634a91d&amp;source=constructor" width="700" height="400" frameBorder="0"></iframe>
+        </div>
 
+               </div>
           
         </div>
           </div>
-          <br />
-          <br />
-          <br />
-          <br />
 </div>
-        <div>
-            <br/>
-            <br/>
-            <br/>
-            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A4a08d0ccfef04383de3fc2bab937c2d0636fd66b16a047a660fdc1a3d634a91d&amp;source=constructor" width="700" height="400" frameBorder="0"></iframe>
-        </div>
+       
         </div>
         <br/><br/>
           <Footer />
