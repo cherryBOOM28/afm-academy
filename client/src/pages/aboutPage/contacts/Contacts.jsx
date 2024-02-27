@@ -295,7 +295,7 @@ const handlePhoneClick = () => {
             {t("contacts")}
                   </h1>
               <div style={{display:'flex'}}>
-              <div className={''}>
+              <div className={''} style={{lineHeight:'2'}}>
                         <br />
                         <nav className={''}>
                             <ul>
