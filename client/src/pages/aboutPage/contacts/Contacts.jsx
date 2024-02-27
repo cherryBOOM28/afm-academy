@@ -141,6 +141,57 @@ const handlePhoneClick = () => {
       containerElement.classList.add(colorMode + "-mode");
     }
   };
+    const MapComponent = () => {
+        useEffect(() => {
+            const script = document.createElement('script');
+            script.charset = 'utf-8';
+            script.src = 'https://widgets.2gis.com/js/DGWidgetLoader.js';
+            document.head.appendChild(script);
+
+            script.onload = () => {
+                new window.DGWidgetLoader({
+                    width: 640,
+                    height: 600,
+                    borderColor: '#a3a3a3',
+                    pos: {
+                        lat: 51.0921218723467,
+                        lon: 71.4210891723633,
+                        zoom: 16
+                    },
+                    opt: {
+                        city: 'nur_sultan'
+                    },
+                    org: [{ id: '70000001083568354' }]
+                });
+            };
+
+            // Cleanup
+            return () => {
+                document.head.removeChild(script);
+            };
+        }, []);
+
+        return (
+            <div>
+                <a
+                    className="dg-widget-link"
+                    href="http://2gis.kz/nur_sultan/firm/70000001083568354/center/71.4210891723633,51.0921218723467/zoom/16?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap"
+                >
+                    Посмотреть на карте Астаны
+                </a>
+                <div className="dg-widget-link">
+                    <a
+                        href="http://2gis.kz/nur_sultan/center/71.421524,51.092334/zoom/16/routeTab/rsType/bus/to/71.421524,51.092334╎Aml Academy, академия финансового мониторинга ?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route"
+                    >
+                        Найти проезд до Aml Academy, академия финансового мониторинга
+                    </a>
+                </div>
+                <noscript style={{ color: '#c00', fontSize: '16px', fontWeight: 'bold' }}>
+                    Виджет карты использует JavaScript. Включите его в настройках вашего браузера.
+                </noscript>
+            </div>
+        );
+    };
 
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
@@ -219,8 +270,10 @@ const handlePhoneClick = () => {
         />
         <div className="container"></div>
       </div>
-
       <div className="page-content container">
+          <div style={{display: "flex" }}>
+              <div>
+
         <div
           className="interval"
           style={{ letterSpacing: getLetterSpacing(letterInterval) }}
@@ -280,8 +333,16 @@ const handlePhoneClick = () => {
           <br />
           <br />
           <br />
-
-      <Footer />
+</div>
+        <div>
+            <br/>
+            <br/>
+            <br/>
+            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A4a08d0ccfef04383de3fc2bab937c2d0636fd66b16a047a660fdc1a3d634a91d&amp;source=constructor" width="700" height="400" frameBorder="0"></iframe>
+        </div>
+        </div>
+        <br/><br/>
+          <Footer />
     </div>
   );
 }

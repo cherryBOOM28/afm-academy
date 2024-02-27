@@ -286,7 +286,7 @@ function Home() {
                       </p>
                     </div>
                   </Link>
-                  <Link to="/#" style={{ textDecoration: "none" }}>
+                  <Link to="/ready-made-solutions" style={{ textDecoration: "none" }}>
                     <div className={cl.aml_box}>
                       {!imagesHidden && <img src={proCourse} alt="" />}
                       <p className={`${cl.course_box_name} text-content`}>
