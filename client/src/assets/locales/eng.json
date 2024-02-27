@@ -90,6 +90,8 @@
     "internal control rules": "Internal control rules",
     "transactions subject to financial monitoring": "Transactions subject to financial monitoring",
     "ready-made solutions catalog":"Ready-made solutions catalog",
+    "Preparation and support":"Preparation and support of your organization during AML/CFT inspections",
+    "Development of ICPs":"Development of ICPs (Internal Control Rules), elaboration of all sections of ICPs taking into account the specifics of your company's sphere of activity",
 
     "our courses": "Knowledge that protects",
     "quality": "Study quality",
@@ -146,27 +148,27 @@
     "secondTask": "improvement and further development of the activities of additional education in the field of AML/CFT/FMT",
     "therdTask": "conducting scientific, applied, analytical and IT research, evaluation activities, methodological developments in order to develop the national AML/CFT/FMT system",
 
-    "firstDirector": "Merzadinov",
-    "descFirstDir": "Chairman of the Financial Monitoring Agency of the Republic of Kazakhstan, Chairman The Board of Directors",
-
-    "secondDirector": "Raisov",
-    "descSecondDir": "Deputy Chairman of the State Property and Privatization Committee of the Ministry of Finance of the Republic of Kazakhstan, member of the Board of Directors from the authorized body for state property",
-
-    "therdDirector": "Sagydikov",
-    "descTherdDir": "Director General of the IFC Financial Services Regulatory Committee, Independent Director",
-
-    "fourthDirector": "Хусаинов Галим Абильжанович",
-    "descFourthDir": "Member of the Board of Directors, Independent Director of Bereke Bank JSC, Independent Director.",
-
-    "fifthDirector": "Elimanov Zhanat Kaldybekovich",
-    "descFifthDir": "Chairman of the Financial Monitoring Agency of the Republic of Kazakhstan, Chairman The Board of Directors",
-
-    "sixthDirector": "Myrzakhmetov Kairat Zhaksykulovich",
-    "descSixthDir": "Deputy Chairman of the State Property and Privatization Committee of the Ministry of Finance of the Republic of Kazakhstan, member of the Board of Directors from the authorized body for state property",
-
-    "seventhDirector": "Kushimov Nurhat Manasovich",
-    "descSeventhDir": "Director General of the IFC Financial Services Regulatory Committee, Independent Director",
-
+    "firstDirector": "Elimanov Zhanat Kaldybekovich",
+    "descFirstDir": "Chairman of the Financial Monitoring Agency of the Republic of Kazakhstan, Chairman of the Board of Directors",
+    
+    "secondDirector": "Myrzakhmetov Kairat Zhaksykulovich",
+    "descSecondDir": "Deputy Chairman of the Committee of State Property and Privatization of the Ministry of Finance of the Republic of Kazakhstan, member of the Board of Directors representing the authorized body for state property",
+    
+    "thirdDirector": "Kushimov Nurkhat Manasovich",
+    "descThirdDir": "General Director of the MFCA Committee on Regulation of Financial Services, independent director",
+    
+    "fourthDirector": "Husainov Galim Abilzhanovich",
+    "descFourthDir": "Member of the Board of Directors, independent director of AO 'Bereke Bank', independent director.",
+    
+    "fifthDirector": "Merzadinov Yergali Serikbaevich",
+    "descFifthDir": "Rector of the joint-stock company 'Financial Monitoring Academy 'AML ACADEMY', member of the Board of Directors",
+    
+    "sixthDirector": "Raisov Ulan Ermukhanovich",
+    "descSixthDir": "First Deputy Chairman of the Financial Monitoring Agency of the Republic of Kazakhstan, member of the Board of Directors",
+    
+    "seventhDirector": "Sagyndykov Amir Abayevich",
+    "descSeventhDir": "Head of the Office of the Financial Monitoring Agency of the Republic of Kazakhstan, member of the Board of Directors.",
+    
     "categories": "Categories",
     "all categories": "All categories",
 

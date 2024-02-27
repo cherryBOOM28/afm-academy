@@ -120,6 +120,7 @@
 .education {
     display: flex;
     justify-content: space-between;
+    gap:10%
     /* flex-wrap: wrap; */
 }
 
@@ -146,12 +147,8 @@
 }
 
 .advantages_box {
-    
-    min-width: 240px;
-    width: max-content;
-    max-width: 300px;
-    min-height: 105px;
-    height: max-content;
+    width: 90%;
+    height: 130px;
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.30);
     padding: 13px;

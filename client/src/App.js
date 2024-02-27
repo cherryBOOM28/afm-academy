@@ -19,6 +19,9 @@ const AboutUs = lazy(()=> import('./pages/aboutPage/aboutUs/AboutUs'))
 //import AboutUs from './pages/aboutPage/aboutUs/AboutUs';
 const Management = lazy(() => import('./pages/aboutPage/management/Management'))
 const Contacts = lazy(() => import('./pages/aboutPage/contacts/Contacts.jsx'))
+const DevelopmentOfIcps = lazy(() => import('./pages/sfm/ReadyMadeSolutionsCatalog/DevelopmentOfIcps/DevelopmentOfIcps.jsx'))
+const PreparationAndSupport = lazy(() => import('./pages/sfm/ReadyMadeSolutionsCatalog/PreparationAndSupport/PreparationAndSupport.jsx'))
+const OnlineConsultation = lazy(() => import('./pages/sfm/ReadyMadeSolutionsCatalog/OnlineConsultation/OnlineConsultation.jsx'))
 const ReadMadeSolutionsCatalog = lazy(() => import('./pages/sfm/ReadyMadeSolutionsCatalog/ReadyMadeSolutionsCatalog.jsx'))
 const AcademicCouncil = lazy(() => import('./pages/ric/academicCouncil'))
 const MainTasksAndActivities = lazy(() => import('./pages/ric/mainTasksAndActivities'))
@@ -51,9 +54,7 @@ const Eag = lazy(() => import('./pages/podft/eag/Eag'));
 const MutualEvaluation = lazy(() => import('./pages/podft/mutualEvaluation/MutualEvaluation'));
 const CalendarPage = lazy(() => import('./pages/calendar/Calendar'));
 const InfoPage = lazy(() => import('./pages/courseInfoPage/InfoPage'));
-const CoursesPage = lazy(() => import('./pages/courses/Courses'));
 const BasicCourse = lazy(() => import('./pages/courses-basic/BasicCourse'));
-const SpecializedCourse = lazy(() => import('./pages/courses-specialized/SpecializedCourse'));
 const SurveysPage = lazy(() => import('./pages/surveys/Surveys'));
 const VebinarsPage = lazy(() => import('./pages/vebinar/VebinarsPage'));
 const Catalog = lazy(() => import('./pages/courseCatalog/Catalog'));
@@ -104,6 +105,9 @@ function App() {
                             <Route path="/plans-and-reports" element={<Suspense ><PlansAndReports /></Suspense>}></Route>
                             <Route path="/main-tasks-and-activities" element={<Suspense ><MainTasksAndActivities /></Suspense>}></Route>
                             <Route path="/ready-made-solutions" element={<Suspense ><ReadMadeSolutionsCatalog /></Suspense>}></Route>
+                            <Route path="/development-of-icps" element={<Suspense ><DevelopmentOfIcps /></Suspense>}></Route>
+                            <Route path="/online-consultation" element={<Suspense ><OnlineConsultation /></Suspense>}></Route>
+                            <Route path="/preparation-and-support" element={<Suspense ><PreparationAndSupport /></Suspense>}></Route>
                             <Route path="/offer-agreement" element={<Suspense ><PublicOfferAgreement /></Suspense>}></Route>
                             <Route path="/structure" element={<Suspense ><Structure /></Suspense>}></Route>
                             <Route path="/structure/:id" element={<Suspense ><DirectorPage /></Suspense>} />

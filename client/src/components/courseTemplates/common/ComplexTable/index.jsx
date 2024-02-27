@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './style.scss';
 
-const ComplexTable = ({ columns, data }) => {
+const ComplexTable = ({ columns, data, showCollapseButton = true }) => {
     const [isCollapsed, setIsCollapsed] = useState(true);
     const [showRows, setShowRows] = useState(5); // Начальное количество отображаемых строк
 
@@ -17,9 +17,11 @@ const ComplexTable = ({ columns, data }) => {
     return (
         <div className='divkaParent'>
             <div className='divka'>
-                <button className='ComplexTableBtn' onClick={toggleCollapse}>
-                    {isCollapsed ? 'Развернуть Таблицу' : 'Свернуть Таблицу'}
-                </button>
+                 {showCollapseButton && ( // Проверяем, нужно ли отображать кнопку
+                    <button className='ComplexTableBtn' onClick={toggleCollapse}>
+                        {isCollapsed ? 'Развернуть Таблицу' : 'Свернуть Таблицу'}
+                    </button>
+                )}
                 <table className="ComplexTable">
                     <thead>
                     <tr>
@@ -33,13 +35,14 @@ const ComplexTable = ({ columns, data }) => {
                         <tr key={rowIndex}>
                             {columns.map((column, colIndex) => {
                                 const colSpan = row['colSpan'] || 1;
+                                const rowSpan = row['rowSpan'] || 1;
                                 // Проверяем, если текущая ячейка имеет colSpan и она не первая в ряду, пропускаем ее
                                 if (colSpan > 1 && colIndex > 0) {
                                     return null;
                                 }
 
                                 return (
-                                    <td key={colIndex} colSpan={colSpan}
+                                    <td key={colIndex} colSpan={colSpan} rowSpan={rowSpan}
                                         style={{
                                             textAlign: colSpan === 3 ? 'center' : 'left',
                                             fontWeight: colSpan === 3 ? 'bold' : 'normal',

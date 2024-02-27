@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import "./Contacts.scss";
+import "./DevelopmentOfIcps.scss";
 
-import Footer from "../../../components/footer/Footer";
-import igIcon from '../../../assets/images/Instagram_icon.png';
-import tgIcon from '../../../assets/images/Telegram_Messenger.png';
+import Footer from "../../../../components/footer/Footer";
+import igIcon from '../../../../assets/images/Instagram_icon.png';
+import tgIcon from '../../../../assets/images/Telegram_Messenger.png';
 
 import axios from "axios";
-import base_url from "../../../settings/base_url";
+import base_url from "../../../../settings/base_url";
 import { Box, Modal } from "@mui/material";
-import Header from "../../../components/header/Header";
+import Header from "../../../../components/header/Header";
 
 import { t } from "i18next";
 import { useTranslation } from "react-i18next";
 
-import VisualModal from "../../../components/VisualModal/VisualModal";
+import VisualModal from "../../../../components/VisualModal/VisualModal";
 
-import { useStyle } from "../../../components/VisualModal/StyleContext";
-import { BiLeftArrow } from "react-icons/bi";
+import { useStyle } from "../../../../components/VisualModal/StyleContext";
 
-function ContactsPage({ email, phoneNumber }) {
+function DevelopmentOfIcps({ email, phoneNumber }) {
   const { t } = useTranslation();
 
   const navigate = useNavigate();
@@ -142,57 +141,6 @@ const handlePhoneClick = () => {
       containerElement.classList.add(colorMode + "-mode");
     }
   };
-    const MapComponent = () => {
-        useEffect(() => {
-            const script = document.createElement('script');
-            script.charset = 'utf-8';
-            script.src = 'https://widgets.2gis.com/js/DGWidgetLoader.js';
-            document.head.appendChild(script);
-
-            script.onload = () => {
-                new window.DGWidgetLoader({
-                    width: 640,
-                    height: 600,
-                    borderColor: '#a3a3a3',
-                    pos: {
-                        lat: 51.0921218723467,
-                        lon: 71.4210891723633,
-                        zoom: 16
-                    },
-                    opt: {
-                        city: 'nur_sultan'
-                    },
-                    org: [{ id: '70000001083568354' }]
-                });
-            };
-
-            // Cleanup
-            return () => {
-                document.head.removeChild(script);
-            };
-        }, []);
-
-        return (
-            <div>
-                <a
-                    className="dg-widget-link"
-                    href="http://2gis.kz/nur_sultan/firm/70000001083568354/center/71.4210891723633,51.0921218723467/zoom/16?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap"
-                >
-                    Посмотреть на карте Астаны
-                </a>
-                <div className="dg-widget-link">
-                    <a
-                        href="http://2gis.kz/nur_sultan/center/71.421524,51.092334/zoom/16/routeTab/rsType/bus/to/71.421524,51.092334╎Aml Academy, академия финансового мониторинга ?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route"
-                    >
-                        Найти проезд до Aml Academy, академия финансового мониторинга
-                    </a>
-                </div>
-                <noscript style={{ color: '#c00', fontSize: '16px', fontWeight: 'bold' }}>
-                    Виджет карты использует JavaScript. Включите его в настройках вашего браузера.
-                </noscript>
-            </div>
-        );
-    };
 
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
@@ -271,10 +219,8 @@ const handlePhoneClick = () => {
         />
         <div className="container"></div>
       </div>
-      <div className="page-content container">
-          <div style={{display: "flex" }}>
-              <div>
 
+      <div className="page-content container">
         <div
           className="interval"
           style={{ letterSpacing: getLetterSpacing(letterInterval) }}
@@ -292,56 +238,40 @@ const handlePhoneClick = () => {
                   : "#000",
             }}
           >
-            {t("contacts")}
+            {t("Development of ICPs")}
                   </h1>
-              <div style={{display:'flex'}}>
-              <div className={''} style={{lineHeight:'2'}}>
-                        <br />
-                        <nav className={''}>
-                            <ul>
-                                <li>
-                                    <p className={`textStyle`}>{t('city')}</p>
-                              </li>
-                              <br />
-                                <li>
-                                    <p className={`textStyle`}>{t('address')}</p>
-                              </li>
-                              <br />
-                                <li>
-                                    <a className={`textStyle`} href={`tel:${phoneNumber}`} onClick={handlePhoneClick}>тел. +7 708 716 8416</a>
-                              </li>
-                              <br />
-                                <li>
-                                    <a className={`textStyle`} href={`mailto:${email}`} onClick={handleEmailClick}>aml.academy2023@gmail.com</a>
-                                </li>
-                            </ul>
-                      </nav>
-                      <br />
-                        <div className={'socialsContacts'}>
-                            <a href='https://www.instagram.com/aml_academy/' className={'roundeContacts'}>
-                                <img src={igIcon} alt="instagram" className={'iconContacts'} />
-                            </a>
-                        
-                            <a href='https://www.instagram.com/aml_academy/' className={'roundeContacts'}>
-                                <img src={tgIcon} alt="telegram" className={'iconContacts'} />
-                            </a>
-                        </div>
-              </div>
-              <div style={{marginLeft:'10%',marginBottom:'10%'}}>
-            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A4a08d0ccfef04383de3fc2bab937c2d0636fd66b16a047a660fdc1a3d634a91d&amp;source=constructor" width="700" height="400" frameBorder="0"></iframe>
-        </div>
-
-               </div>
+          <p>{t("development_PVK_AML_CFT")}</p>
+          <br />
+          <p>{t("development_documents_key_AML_CFT")}</p>
+          <br />
+          <p>{t("development_internal_control_organization_program_AML_CFT")}</p>
+          <br />
+          <p>{t("development_anti_money_laundering_risk_management_program")}</p>
+          <br />
+          <p>{t("development_customer_identification_program")}</p>
+          <br />
+          <p>{t("development_customer_transaction_monitoring_program")}</p>
+          <br />
+          <p>{t("development_training_program_AML_CFT")}</p>
+          <br />
+          <p>{t("development_information_document_management_program_AML_CFT")}</p>
+          <br />
+          <p>{t("risk_management_system_development")}</p>
+          <br />
+          <p>{t("development_internal_control_organization_documentation_AML_CFT")}</p>
+          <br />
+          <p>{t('supporting_documents_PVK_subject_control')}</p>
           
         </div>
           </div>
-</div>
-       
-        </div>
-        <br/><br/>
-          <Footer />
+          <br />
+          <br />
+          <br />
+          <br />
+
+      <Footer />
     </div>
   );
 }
 
-export default ContactsPage;
+export default DevelopmentOfIcps;
