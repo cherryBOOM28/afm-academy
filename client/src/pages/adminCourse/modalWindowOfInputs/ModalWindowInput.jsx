@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './modalWindowInput.scss'
 
+import { BsX } from "react-icons/bs";
+
 function fileToBase64(file, callback) {
   if (!file) {
     console.error("No file provided for conversion.");
@@ -39,6 +41,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
     const hasQuestions = inputs.some((x) => x.name == 'questions')
     const hasColumnsInput = inputs.some((x) => x.name == 'columns')
     const hasDataInput = inputs.some((x) => x.name == 'data')
+    const hasDataBtnInput = inputs.some((x) => x.name == 'dataBtn')
     const hasIconInput = inputs.some((x) => x.name == 'icons');
     const hasCentered = inputs.some((x) => x.name == 'isCentered');
     const adjustWidth = inputs.some((x) => x.name == 'adjustWidth');
@@ -52,20 +55,42 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
     const hasLeft = inputs.some((x) => x.name === 'left');
     const hasRight = inputs.some((x) => x.name === 'right');
 
+    const hasTest_answers = inputs.some((x) => x.type === 'test_answers');
+
+    if (inputs.some((x) => x.name === 'tableData')) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'tableData': exValues?.tableData || [
+          {
+            id: 1,
+            column1: 'Текст 1',
+            details: 'Значение 1',
+          }
+        ]
+      }))
+    }
+
     if (hasLeft) {
       setValues(prevValues => ({
         ...prevValues,
-        'adjustWidth': exValues?.left || null
+        'left': exValues?.left || null
       }))
     }
 
     if (hasRight) {
       setValues(prevValues => ({
         ...prevValues,
-        'adjustWidth': exValues?.right || null
+        'right': exValues?.right || null
       }))
     }
 
+    if (hasTest_answers) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'options': exValues?.options || [],
+        'correctOptions': exValues?.correctOptions || [],
+      }))
+    }
 
     if (adjustWidth) {
       setValues(prevValues => ({
@@ -202,6 +227,40 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
         ...prevValues,
         'isCentered': exValues?.isCentered || false
       }));
+    } else if (hasDataBtnInput && hasDataInput) {
+
+      setValues((prevValues) => ({
+        ...prevValues,
+        'data': exValues?.data || [],
+        'dataBtn': exValues?.dataBtn || [],
+      }));
+
+    } else if (hasDataInput) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'data': exValues?.data || [{ header: 'Заголовок', image: '', imageText: 'Текст изображения' }]
+      }));
+    } else if (hasQuestions) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'questions': exValues?.questions 
+          || [
+            {
+              question: 'Вопрос',
+              options: [
+                {
+                  question: 'Ответ 1',
+                  answer: 'Фидбэк к ответу (напривер, "неправильно!")',
+                },
+                {
+                  question: 'Ответ 1',
+                  answer: 'Фидбэк к ответу (напривер, "правильно!")',
+                },
+              ],
+              correctOptionIndex: 1,
+            },
+          ]
+      }))
     }
 
     if (hasItems_text) {
@@ -1326,6 +1385,480 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                     </select>
                   </div>
                 )
+                : input.type === 'carousel_items'
+                ? (
+                  <div className="carousel-input">
+                    <div className="title">{input.label}</div>
+                    <div className="list">
+                      <div className="row">
+                        <div>Иконка</div>
+                        <div>Заголовок</div>
+                        <div>Текст к изображению</div>
+                      </div>
+
+                      {
+                        values?.data?.map((item, index) => {
+                          
+                          return <div className="row">
+                            <div>
+                              <input 
+                                type="file" 
+                                // value={values.icons[index]}
+                                onChange={e => {
+                                  const file = e.target.files[0];
+
+                                  console.log(file)
+
+                                  fileToBase64(file, (base64String) => {
+                                    console.log(base64String)
+                                    setValues(prev => {
+                                      const updatedData = [...prev['data']];
+                                      updatedData[index].image = base64String;
+
+                                      return {
+                                        ...prev,
+                                        ['data']: updatedData
+                                      }
+                                    })
+                                  })
+                                }}
+                              />
+                            </div>
+                            <div>
+                              <input 
+                                value={values['data'][index]['header']}
+                                onChange={(e) => {
+                                  setValues(prev => {
+                                    const updatedData = [...prev['data']];
+                                    updatedData[index].header = e.target.value;
+
+                                    return {
+                                      ...prev,
+                                      ['data']: updatedData
+                                    }
+                                  })
+                                }}
+                                type='text'
+                              />
+                            </div>
+                            <div>
+                              <input 
+                                value={values['data'][index]['imageText']}
+                                onChange={(e) => {
+                                  setValues(prev => {
+                                    const updatedData = [...prev['data']];
+                                    updatedData[index].imageText = e.target.value;
+
+                                    return {
+                                      ...prev,
+                                      ['data']: updatedData
+                                    }
+                                  })
+                                }}
+                                type='text'
+                              />
+                            </div>
+                          </div>
+                        })
+                      }
+
+                      <div className="row-btn">
+                        <button 
+                          className='add-button' 
+                          onClick={(e) => {
+                            setValues(prev => {
+                              
+                              return {
+                                ...prev,
+                                [input.name]: [
+                                  ...prev[input.name], 
+                                  { 
+                                    header: '', 
+                                    image: '', 
+                                    imageText: '' 
+                                  }
+                                ],
+                              }
+                            })
+                          }}
+                        >Добавить</button>
+                      </div>
+                    </div>
+                  </div>
+                )
+                : input.type === 'test_answers' 
+                ? (
+                  <div className="test-options">
+                    <div className="options">
+                      {
+                        values?.options?.map((option, index) => {
+
+                          return (
+                            <div className="option" >
+                              <input 
+                                type="text"
+                                value={option} 
+                                onChange={(e) => {
+                                  setValues(prevValues => {
+                                    const updatedOptions = prevValues.options;
+                                    updatedOptions[index] = e.target.value;
+
+                                    return {
+                                      ...prevValues,
+                                      ['options']: updatedOptions
+                                    }
+                                  })
+                                }}
+                              />
+                              <input 
+                                type="checkbox"
+                                checked={values.correctOptions.includes(option)}
+                                onChange={(e) => {
+                                  if (e.target.checked) {
+                                    setValues(prevValues => {
+                                      const updatedCorrectValues = prevValues.correctOptions;
+                                      updatedCorrectValues.push(option);
+
+                                      return {
+                                        ...prevValues,
+                                        ['correctOptions']: updatedCorrectValues
+                                      }
+                                    })
+                                  } else {
+                                    setValues(prevValues => {
+                                      const updatedCorrectValues = prevValues.correctOptions;
+                                      const i = prevValues.correctOptions.indexOf(option)
+                                      updatedCorrectValues.splice(i, 1);;
+
+                                      console.log(updatedCorrectValues);
+
+                                      return {
+                                        ...prevValues,
+                                        ['correctOptions']: updatedCorrectValues
+                                      }
+                                    })
+                                  }
+                                }} 
+                              />
+                            </div>
+                          )
+                        })
+                      }
+                    </div>
+                    <button 
+                      className='add-button' 
+                      onClick={(e) => {
+                        setValues(prev => {
+                          
+                          return {
+                            ...prev,
+                            ['options']: [
+                              ...prev['options'],  
+                              'Значение' 
+                            ],
+                          }
+                        })
+                      }}
+                    >Добавить</button>
+                  </div>
+                ) 
+                : input.type === 'tableData'
+                ? (
+                  <div className="table-data-inputs">
+                    <div>
+                      <div>Видная часть</div>
+                      <div>Скрытая часть</div>
+                    </div>
+
+                    {
+                      values?.tableData?.map((item, index) => {
+
+                        return (
+                          <div key={index}>
+                            <div>
+                              <input 
+                                type="text" 
+                                value={item.column1}
+                                onChange={(e) => {
+                                  setValues(prevValues => {
+                                    const updatedTableData = prevValues['tableData'];
+                                    updatedTableData[index].column1 = e.target.value;
+
+                                    return {
+                                      ...prevValues,
+                                      ['tableData']: updatedTableData
+                                    }
+                                  })
+                                }}
+                              />
+                            </div>
+                            <div>
+                              <input 
+                                type="text" 
+                                value={item.details}
+                                onChange={(e) => {
+                                  setValues(prevValues => {
+                                    const updatedTableData = prevValues['tableData'];
+                                    updatedTableData[index].details = e.target.value;
+
+                                    return {
+                                      ...prevValues,
+                                      ['tableData']: updatedTableData
+                                    }
+                                  })
+                                }}
+                              />
+                            </div>
+                          </div>
+                        )
+                      })
+                    }
+
+                    <button 
+                      className='add-button' 
+                      onClick={(e) => {
+                        setValues(prev => {
+                          const nextId = prev['tableData'][prev['tableData'].length - 1].id + 1;
+
+                          return {
+                            ...prev,
+                            ['tableData']: [
+                              ...prev['tableData'],  
+                              {
+                                id: nextId,
+                                column1: `Текст ${nextId}`,
+                                details: `Значение ${nextId}`,
+                              }
+                            ],
+                          }
+                        })
+                      }}
+                    >Добавить</button>
+                  </div>
+                )
+                : input.type === 'list_with_tabs'
+                ? (
+                  <div className="table-data-inputs">
+                    <div>
+                      <div>Название вкладки</div>
+                      <div>Текст</div>
+                    </div>
+
+                    {
+                      values?.data?.map((item, index) => {
+
+                        return (
+                          <div key={index}>
+                            <div>
+                              <input 
+                                type="text" 
+                                value={item}
+                                onChange={(e) => {
+                                  setValues(prevValues => {
+                                    const updatedData = prevValues['data'];
+                                    updatedData[index] = e.target.value;
+
+                                    return {
+                                      ...prevValues,
+                                      ['data']: updatedData
+                                    }
+                                  })
+                                }}
+                              />
+                            </div>
+                            <div>
+                              <input 
+                                type="text" 
+                                value={values.dataBtn[index]}
+                                onChange={(e) => {
+                                  setValues(prevValues => {
+                                    const updatedData = prevValues['dataBtn'];
+                                    updatedData[index] = e.target.value;
+
+                                    return {
+                                      ...prevValues,
+                                      ['dataBtn']: updatedData
+                                    }
+                                  })
+                                }}
+                              />
+                            </div>
+                          </div>
+                        )
+                      })
+                    }
+
+                    <button 
+                      className='add-button' 
+                      onClick={(e) => {
+                        setValues(prev => {
+                          return {
+                            ...prev,
+                            ['data']: [...prev['data'], 'Текст'],
+                            ['dataBtn']: [...prev['dataBtn'], 'Вкладка'],
+                          }
+                        })
+                      }}
+                    >Добавить</button>
+                  </div>
+                )
+                : input.type === 'card_quiz_input' 
+                ? (
+                  <div className="card-quiz-input">
+                    <div className="questions">
+                      {
+                        values?.questions?.map((question, index) => {
+                          
+                          return <div className="question" key={index}>
+                            <div className="title">
+                              <div>Вопрос</div>
+                              <div>
+                                <BsX 
+                                  size={30}
+                                  onClick={(e) => {
+                                    setValues(prevValues => {
+                                      const updatedQuestions = [...prevValues.questions];
+                                      
+                                      updatedQuestions.splice(index, 1);
+                                
+                                      return {
+                                        ...prevValues,
+                                        questions: updatedQuestions
+                                      };
+                                    })
+                                  }}
+                                />
+                              </div>
+                            </div>
+                            <div className="row">
+                              <div className="question-text">
+                                <input
+                                  type="text" 
+                                  value={question.question}
+                                  onChange={e => {
+                                    setValues(prevValues => {
+                                      const updated = prevValues['questions'];
+                                      updated[index].question = e.target.value;
+                                      
+                                      return {
+                                        prevValues,
+                                        ['questions']: updated
+                                      }
+                                    })
+                                  }}
+                                />
+                              </div>
+                              <div className="question-answers">
+                                <div className="option">
+                                  <div>Ответ</div>
+                                  <div>Фидбэк</div>
+                                </div>
+                                {
+                                  question.options.map((option, _index) => {
+
+                                    return <div className="option" key={_index}>
+                                      <input 
+                                        type="text" 
+                                        value={option.question}
+                                        onChange={(e) => {
+                                          setValues(prevValues => {
+                                            const updated = prevValues['questions'];
+                                            updated[index].options[_index].question = e.target.value;
+                                            
+                                            return {
+                                              prevValues,
+                                              ['questions']: updated
+                                            }
+                                          })
+                                        }}
+                                      />
+                                      <input 
+                                        type="text" 
+                                        value={option.answer}
+                                        onChange={(e) => {
+                                          setValues(prevValues => {
+                                            const updated = prevValues['questions'];
+                                            updated[index].options[_index].answer = e.target.value;
+                                            
+                                            return {
+                                              prevValues,
+                                              ['questions']: updated
+                                            }
+                                          })
+                                        }}
+                                      />
+                                      <input 
+                                        type="checkbox" 
+                                        checked={question.correctOptionIndex === _index}
+                                        onChange={(e) => {
+                                          setValues(prevValues => {
+                                            const updated = prevValues['questions'];
+                                            
+                                            if (e.target.checked) {
+                                              updated[index].correctOptionIndex = _index;
+                                            } else {
+                                              updated[index].correctOptionIndex = -1;
+                                            }
+ 
+                                            return {
+                                              prevValues,
+                                              ['questions']: updated
+                                            }
+                                          })
+                                        }}
+                                      />
+                                    </div>
+                                  })
+                                }
+                                <button
+                                  onClick={(e) => {
+                                    const updated = values['questions']
+                                    updated[index].options = [
+                                      ...updated[index].options, 
+                                      { 
+                                        question: 'a',
+                                        answer: 'b',
+                                      }
+                                    ]
+
+                                    setValues({
+                                        values,
+                                        ['questions'] : updated
+                                      })
+                                  }}
+                                >Добавить ответ</button>
+                              </div>
+                            </div>
+                          </div>
+                        })  
+                      }
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        setValues(prevValues => {
+                          const updated = [
+                            ...prevValues['questions'], 
+                            {
+                              question: 'Вопрос',
+                              options: [
+                                {
+                                  question: '',
+                                  answer: '',
+                                },
+                              ],
+                              correctOptionIndex: -1,
+                            },
+                          ]
+
+                          return {
+                            ...prevValues,
+                            ['questions'] : updated
+                          }
+                        })
+                      }}
+                    >Добавить вопрос</button>
+                  </div>
+                ) 
                 : (
                   <div key={input.name} className='default-input'>
                     <label>{input.label}</label>

@@ -6,6 +6,10 @@ import './style.scss';
 function CustomCarousel({
     data=[]
 }) {
+    useEffect(() => {
+        console.log(data);
+
+    }, [])
 
     return (
         <div className="custom-carousel">
@@ -25,8 +29,16 @@ const Item = ({ item }) => {
         <div className="item">
             <div className="header">
                 {
-                    header && header.length !== 0 
+                    header &&
+                    Array.isArray(header) && 
+                    header.length !== 0 
                         ? header.map( (item, i) => <p key={i}>{ item }</p> ) 
+                        : null
+                }
+                {
+                    header &&
+                    typeof header === 'string' 
+                        ? <p>{header}</p>
                         : null
                 }
                 <p>{ imageText }</p>

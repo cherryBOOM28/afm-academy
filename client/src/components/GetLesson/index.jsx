@@ -6385,8 +6385,6 @@ function GetLesson({
                                     ],
                                     correctOptionIndex: 0,
                                 },
-
-                                // Добавьте сколько угодно вопросов...
                             ]}
                         />
                     </Reveal>

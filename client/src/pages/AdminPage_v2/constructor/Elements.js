@@ -36,6 +36,13 @@ import Quote from '../../../components/courseTemplates/common_v2/Quote'
 import IconDots from '../../../components/courseTemplates/common_v2/IconDots'
 import ImageAndColumns from '../../../components/courseTemplates/common_v2/ImageAndColumns'
 import ImageSequence from '../../../components/courseTemplates/common_v2/ImageSequence'
+import TwoColumnsDivider from '../../../components/courseTemplates/common_v2/TwoColumnsDivider'
+import CustomCarousel from '../../../components/courseTemplates/complex/CustomCarousel'
+import DragAndDropZone from '../../../components/courseTemplates/common/DraggableOption/DragAndDropZone'
+import TableComponent from '../../../components/courseTemplates/common/Tables/TableComponent'
+import DropdownPage from '../../../components/courseTemplates/common/Tables/TableWithData'
+import QuizWithCardComponent from '../../../components/courseTemplates/common/QuizWithCardComponent'
+
 
 import headerWithLineIcon from '../images/header-icon.svg'
 import imageWithTextIcon from '../images/textWithBackground-icon.svg'
@@ -93,7 +100,7 @@ import DataChainExample from './../../../assets/images/Template Examples/DataCha
 import FlexBoxesExample from './../../../assets/images/Template Examples/FlexBoxes.png'
 import ImageAndColumnsExample from './../../../assets/images/Template Examples/ImageAndColumns.png'
 import DragAndDropTwoSideExample from './../../../assets/images/Template Examples/DragAndDropTwoSide.png'
-import TwoColumnsDivider from '../../../components/courseTemplates/common_v2/TwoColumnsDivider'
+import CustomCarouselExample from './../../../assets/images/Template Examples/CustomCarousel.png'
 
 
 const Elements = {
@@ -195,6 +202,17 @@ const Elements = {
                 { name: 'text', label: 'Текст', type: 'text' },
                 { name: 'author', label: 'Автор', type: 'text' },
                 { name: 'img', label: 'Изображение', type: 'file' },
+            ]
+        },
+        'Вкладки с текстом': {
+            component: DropdownPage,
+            example: null,
+            name: 'DropdownPage',
+            icon: dropDownTableIcon,
+            inputs: [
+                { name: 'data', label: 'Данные', type: 'list_with_tabs' },
+                { name: 'dataBtn', label: 'Вкладки', type: 'ignore' },
+                { name: 'version', label: 'Версия', type: 'ignore' },
             ]
         }
     },
@@ -328,7 +346,15 @@ const Elements = {
             ],
               
         }, 
-    
+        'Раскрывающаяся таблица': {
+            component: TableComponent,
+            example: null,
+            name: 'TableComponent',
+            icon: dropDownTableIcon,
+            inputs: [
+                { name: 'tableData', label: 'Данные таблицы', type: 'tableData' }
+            ]
+        }
     },
     'Медиа': {
         'Текст с изображением': {
@@ -384,6 +410,15 @@ const Elements = {
             icon: imageIcon,
             inputs: [
                 { name: 'images', label: 'Иконки', type: 'files_and_list' },
+            ]
+        },
+        'Карусель изображений': {
+            component: CustomCarousel,
+            example: CustomCarouselExample,
+            name: 'CustomCarousel',
+            icon: imageIcon,
+            inputs: [
+                { name: 'data', label: 'Элементы карусели', type: 'carousel_items' }
             ]
         }
     },
@@ -498,7 +533,7 @@ const Elements = {
                 { name: 'gap', label: 'Растояние между колоннами', type: 'number'},
                 { name: 'version', label: 'Version', type: 'ignore' }
             ]
-        }
+        },
     },
     'Интерактивные': {
         'Двух вариантный': {
@@ -512,6 +547,26 @@ const Elements = {
                 { name: 'questions', label: 'Вопросы', type: 'dnd_questions'},
             ]
         },
+        'Задание с перетаскиванием': {
+            component: DragAndDropZone,
+            example: null,
+            name: DragAndDropZone,
+            icon: norNumberedDotsIcon,
+            inputs: [
+                { name: 'title', label: 'Заголовок', type: 'text' },
+                { name: 'options', label: 'Ответы', type: 'test_answers' },
+                { name: 'correctOptions', label: 'Правильные ответы', type: 'ignore' }
+            ]
+        },
+        'Карточки (тест)': {
+            component: QuizWithCardComponent,
+            example: null,
+            name: 'QuizWithCardComponent',
+            icon: dropDownListIcon,
+            inputs: [
+                { name: 'questions', label: 'Вопросы', type: 'card_quiz_input' }
+            ]
+        }
     }
 }
 
