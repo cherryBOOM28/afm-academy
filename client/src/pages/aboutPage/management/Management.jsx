@@ -7,7 +7,7 @@ import thirdDirector from "../../../assets/images/3.svg";
 import forthDirector from "../../../assets/images/4.svg";
 import fifthDirector from "../../../assets/images/5.svg";
 import sixthDirector from "../../../assets/icons/Raisov.png";
-import seventhDirector from "../../../assets/images/Sagyndykov.jpg"
+import seventhDirector from "../../../assets/images/Sagyndykov.png"
 import merzadinov from '../../../assets/images/merzadinov.png';
 import Footer from "../../../components/footer/Footer";
 import Header from "../../../components/header/Header";
