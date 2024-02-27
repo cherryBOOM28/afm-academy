@@ -352,6 +352,7 @@ function Home() {
             </p>
             <div className={cl.education}>
               <div className={cl.advantages}>
+                <div style={{display:'flex',gap:'15px'}}>
                 <div className={cl.advantages_box}>
                   {!imagesHidden && <img src={accIcon} alt="acc" />}
                   <p className={`${cl.advantages__text} text-content`}
@@ -386,6 +387,8 @@ function Home() {
                     {t("convenient learning format")}
                   </p>
                 </div>
+                </div>
+                <div style={{display:'flex', gap:'15px'}}>
                 <div className={cl.advantages_box}>
                   {!imagesHidden && <img src={realtionIcon} alt="acc" />}
                   <p className={`${cl.advantages__text} text-content`}
@@ -420,6 +423,7 @@ function Home() {
                     {t("programs")}
                   </p>
                 </div>
+               </div>
               </div>
               {!imagesHidden && <VideoPlayer />}
             </div>
