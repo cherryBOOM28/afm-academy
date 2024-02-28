@@ -7,7 +7,7 @@ import DownloadPDF from "../../../components/pdfSaver/DownloadPDF";
 import Header from "../../../components/header/Header";
 import { t } from "i18next";
 import { useTranslation } from "react-i18next";
-import FlipBook from './FlipBook.jsx'
+// import FlipBook from './FlipBook.jsx'
 
 import { useStyle } from "../../../components/VisualModal/StyleContext";
 import VisualModal from "../../../components/VisualModal/VisualModal";
@@ -194,7 +194,7 @@ function Charter() {
           <img src={pdf} alt="" />
         )}
           </div>
-          <FlipBook></FlipBook>
+          {/* <FlipBook></FlipBook> */}
       </div>
       </div>
       <Footer />

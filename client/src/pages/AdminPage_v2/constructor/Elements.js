@@ -566,6 +566,19 @@ const Elements = {
             inputs: [
                 { name: 'questions', label: 'Вопросы', type: 'card_quiz_input' }
             ]
+        },
+        'Горизонтальный список(5) с описанием': {
+            component: DropdownList_r5,
+            example: null,
+            name: 'DropdownList_r5',
+            icon: dropDownListIcon,
+            inputs: [
+                { name: 'title', label: 'Заголовок', type: 'text' },
+                { name: 'color', label: 'Цвет заголовка', type: 'color' },
+                { name: 'strokeColor', label: 'Цвет заголовка', type: 'color' },
+                { name: 'items', label: 'Элементы списка', type: 'data:5' },
+                { name: 'headers', label: 'Группы', type: 'ignore' },
+            ]
         }
     }
 }

@@ -20,7 +20,8 @@ function DropdownList_r5({
     title,
     color='#1F3C88',
     strokeColor='#CADEFC',
-    items
+    items,
+    headers
 }) {
     const row2Style = {
         borderRightColor: strokeColor
@@ -44,20 +45,20 @@ function DropdownList_r5({
                     <div className="row-1">
                         <div>
                             <div>
-                                <div className="name">Агентсво</div>
-                                <img src={icon1} alt="Агентсво" />
+                                <div className="name">{headers[0].name}</div>
+                                <img src={headers[0].icon || icon1} alt={headers[0].name} />
                             </div>
                         </div>
                         <div>
                             <div>
-                                <div className="name">Государственные органы</div>
-                                <img src={icon2} alt="Агентсво" />
+                                <div className="name">{headers[1].name}</div>
+                                <img src={headers[1].icon || icon2} alt={headers[1].name} />
                             </div>
                         </div>
                         <div>
                             <div>
-                                <div className="name">Частный сектор</div>
-                                <img src={icon3} alt="Агентсво" />
+                                <div className="name">{headers[2].name}</div>
+                                <img src={headers[2].icon || icon3} alt={headers[2].name} />
                             </div>
                         </div>
                     </div>
@@ -71,7 +72,7 @@ function DropdownList_r5({
                             />
                             <div onClick={() => handleOpen(0)}>
                                 <img src={social} alt="social" />
-                                <div className="text">Кураторство</div>
+                                <div className="text">{items[0].title}</div>
                             </div>
                         </div>
                         <div style={row2Style}>
@@ -83,7 +84,7 @@ function DropdownList_r5({
                             />
                             <div onClick={() => handleOpen(1)}>
                                 <img src={chat} alt="social" />
-                                <div className="text">Call-центр</div>
+                                <div className="text">{items[1].title}</div>
                             </div>
                         </div>
                         <div style={row2Style}>
@@ -95,7 +96,7 @@ function DropdownList_r5({
                             />
                             <div onClick={() => handleOpen(2)}>
                                 <img src={settings} alt="settings" />
-                                <div className="text">Совет-Комплаенс</div>
+                                <div className="text">{items[2].title}</div>
                             </div>
                         </div>
                         <div style={row2Style}>
@@ -107,7 +108,7 @@ function DropdownList_r5({
                             />
                             <div onClick={() => handleOpen(3)}>
                                 <img src={description} alt="description" />
-                                <div className="text">Оценка</div>
+                                <div className="text">{items[3].title}</div>
                             </div>
                         </div>
                         <div style={row2Style}>
@@ -119,7 +120,7 @@ function DropdownList_r5({
                             />
                             <div onClick={() => handleOpen(4)}>
                                 <img src={devices} alt="devices" />
-                                <div className="text">Единый портал</div>
+                                <div className="text">{items[4].title}</div>
                             </div>
                         </div>
                         <div style={row2Style}></div>
