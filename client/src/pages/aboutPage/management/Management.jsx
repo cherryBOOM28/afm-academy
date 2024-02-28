@@ -211,17 +211,23 @@ function Management() {
           className="interval"
           style={{ letterSpacing: getLetterSpacing(letterInterval) }}
         >
-          <h1
+          <p
             className={`${cl.headline} text-content caption`}
             style={{
               color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+              fontSize: '35px'
             }}
           >
             {t("board of directors")}
-          </h1>
+          </p>
+          <br />
+          <br />
+          <br />
+          <br />
           <div className={cl.boardOfDirectors}>
             <div className={cl.director}>
               {!imagesHidden && <img src={firstDirector} alt="" />}
+              <div className="InfoDir">
               <p
                 className={`${cl.name} text-content name`}
                 style={{
@@ -240,6 +246,7 @@ function Management() {
               >
                 {t("descFirstDir")}
               </p>
+              </div>
             </div>
             {/* <div className={cl.director}>
                         <img src={secondDirector} alt="" />
@@ -248,6 +255,7 @@ function Management() {
                     </div> */}
             <div className={cl.director}>
               {!imagesHidden && <img src={thirdDirector} alt="" />}
+              <div className="InfoDir">
               <p
                 className={`${cl.name} text-content name`}
                 style={{
@@ -266,9 +274,11 @@ function Management() {
               >
                 {t("descSecondDir")}
               </p>
+           </div>
             </div>
             <div className={cl.director}>
               {!imagesHidden && <img src={forthDirector} alt="" />}
+              <div className="InfoDir">
               <p
                 className={`${cl.name} text-content name`}
                 style={{
@@ -287,9 +297,11 @@ function Management() {
               >
                 {t("descTherdDir")}
               </p>
+             </div>
             </div>
             <div className={cl.director}>
               {!imagesHidden && <img src={fifthDirector} alt="" />}
+              <div className="InfoDir">
               <p
                 className={`${cl.name} text-content name`}
                 style={{
@@ -308,11 +320,13 @@ function Management() {
               >
                 {t("descFourthDir")}
               </p>
+              </div>
             </div>
           </div>
           <div className={cl.boardOfDirectors}>
             <div className={cl.director}>
-              {!imagesHidden && <img src={merzadinov} style={{width:"165px", height:"210px", borderRadius:"6px"}} alt="" />}
+              {!imagesHidden && <img src={merzadinov} style={{width:"172px", height:"217px", borderRadius:"6px"}} alt="" />}
+              <div className="InfoDir">
               <p
                 className={`${cl.name} text-content name`}
                 style={{
@@ -331,6 +345,7 @@ function Management() {
               >
                 {t("descFifthDir")}
               </p>
+             </div>
             </div>
             {/* <div className={cl.director}>
                         <img src={secondDirector} alt="" />
@@ -338,7 +353,8 @@ function Management() {
                         <p className={cl.post}>Первый заместитель Председателя Агентства Республики Казахстан по финансовому мониторингу, член Совета директоров</p>
                     </div> */}
             <div className={cl.director}>
-              {!imagesHidden && <img src={sixthDirector} style={{width:"165px", height:"210px", borderRadius:"6px"}} alt="" />}
+              {!imagesHidden && <img src={sixthDirector} style={{width:"172px", height:"217px", borderRadius:"6px"}} alt="" />}
+              <div className="InfoDir">
               <p
                 className={`${cl.name} text-content name`}
                 style={{
@@ -357,9 +373,11 @@ function Management() {
               >
                 {t("descSixthDir")}
               </p>
+             </div>
             </div>
             <div className={cl.director}>
-              {!imagesHidden && <img src={seventhDirector} style={{width:"165px", height:"210px", borderRadius:"6px"}} alt="" />}
+              {!imagesHidden && <img src={seventhDirector} style={{width:"172px", height:"217px", borderRadius:"6px"}} alt="" />}
+              <div className="InfoDir">
               <p
                 className={`${cl.name} text-content name`}
                 style={{
@@ -378,6 +396,7 @@ function Management() {
               >
                 {t("descSeventhDir")}
               </p>
+              </div>
             </div>
           </div>
 

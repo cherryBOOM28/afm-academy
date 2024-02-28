@@ -221,7 +221,7 @@ function Header(props) {
             <a target='_blank' href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
               <img src={igIcon} alt="instagram" className='icon' />
             </a>
-            <a target='_blank' href='https://t.me/s/afm_rk?before=1811' className='soc-icon blue-button'>
+            <a target='_blank' href='https://t.me/aml_academy_23' className='soc-icon blue-button'>
               <img src={tgIcon} alt="telegram" className='icon' />
             </a>
             <a target='_blank' href='https://wa.me/77087168416' className='soc-icon blue-button'>
