@@ -18,47 +18,13 @@ import CourseHeader from './../../components/courseTemplates/course-header';
 import { Module, Session, TestSession } from './../../components/sessions/Sessions';
 
 import lectorImage from './lectorImage.png';
-import RandomGlossary from '../../components/courseTemplates/common/RandomGlossary';
-import Report_Warning from './../../components/courseTemplates/common/Warnings/Report';
 import Centered from './../../components/courseTemplates/common/Centered';
-import RandomH2 from './../../components/courseTemplates/common/RandomH2';
-import TextWithTitle from './../../components/courseTemplates/common/TextWithTitle';
 import RandomParapraph from './../../components/courseTemplates/common/RandomParagraph';
-import NotNumberedDots from './../../components/courseTemplates/common/NotNumberedDots';
-import TabsGlossary from '../../components/courseTemplates/complex/TabsGlossary';
-import DropDownTextWithTabs from '../../components/courseTemplates/complex/DropDownTextWithTabs';
-import NumberedDots from './../../components/courseTemplates/common/NumberedDots';
 import ImageWithText from './../../components/courseTemplates/common/ImageWithText';
-import TextAndLink from './../../components/courseTemplates/complex/TextAndLink';
-import FlexRow from './../../components/courseTemplates/common_v2/FlexRow';
-import VideoWithTitleAndText from './../../components/courseTemplates/complex/Video/VideoWithTitleAndText';
-import VideoLine from './../../components/courseTemplates/common/VideoLine';
-import SimpleTable from './../../components/courseTemplates/common/SimpleTable';
-import FancyList from './../../components/courseTemplates/common_v2/FancyList';
-import FlexBoxes from './../../components/courseTemplates/common_v2/FlexBoxes';
-import ImageLine from './../../components/courseTemplates/common/ImageLine';
-import DotsOnRoad from './../../components/courseTemplates/common_v2/DotsOnRoad';
-import TwoColumnsDivider from './../../components/courseTemplates/common_v2/TwoColumnsDivider';
-import Image from './../../components/courseTemplates/common_v2/Image';
-import TextWithBackground from './../../components/courseTemplates/common/TextWithBackground';
-import FileDownloader from './../../components/courseTemplates/common/FileDownloader';
-import Quote from './../../components/courseTemplates/common_v2/Quote';
-import IconDots from './../../components/courseTemplates/common_v2/IconDots';
-import ImageSequence from './../../components/courseTemplates/common_v2/ImageSequence';
-import ThreeColumnsDivider from './../../components/courseTemplates/common_v2/ThreeColumnsDivider';
-import InTextFileDownloader from './../../components/courseTemplates/common_v2/InTextFileDownloader';
-import ShortBiography from './../../components/courseTemplates/complex/images/ShortBiography';
-import Report_Information from '../../components/courseTemplates/common/Warnings/Report_Information';
-import Table_1 from '../../components/courseTemplates/common/Tables/Table-1';
-import DropDownMSQ from '../../components/courseTemplates/common_v2/DropDownMSQ';
-import DropdownList from '../../components/courseTemplates/complex/interactives/DropdownList';
-import DropdownList_r5 from '../../components/courseTemplates/complex/interactives/DropdownList_r5';
-import DragAndDropTwoSide from '../../components/courseTemplates/complex/DragAndDropTwoSide';
-import DropdownGlossaryList from '../../components/courseTemplates/complex/DropdownGlossaryList';
-import DataChain from '../../components/courseTemplates/complex/DataChain';
 import TestPage from '../../components/courseTemplates/complex/Test';
 import ModalWindow from '../../components/ModalWindow/ModalWindow';
-import componentMap from '../adminCourse/tabConstructor/ComponentMap';
+// import componentMap from '../adminCourse/tabConstructor/ComponentMap';
+import componentMap from '../AdminPage_v2/constructor/ComponentMap';
 
 function ReadCourse() {
 
@@ -271,40 +237,6 @@ function ReadCourse() {
         scrollToTopAnimated();
         if (_module_id !== null) setActiveModuleId(_module_id);
         setActiveSessionId(_lesson_id);
-    };
-
-    const ComponentMapper = {
-        HeaderWithLine,
-        ImageWithText,
-        ImageLine,
-        RandomGlossary,
-        RandomH2,
-        RandomParapraph,
-        TextWithBackground,
-        TextWithTitle,
-        Report_Warning,
-        Report_Information,
-        NotNumberedDots,
-        NumberedDots,
-        Table_1,
-        FileDownloader,
-        VideoLine,
-        Sizebox,
-        TabsGlossary,
-        DropDownTextWithTabs,
-        VideoWithTitleAndText,
-        TextAndLink,
-        DropdownList,
-        DropdownList_r5,
-        ShortBiography,
-        DragAndDropTwoSide,
-        DropdownGlossaryList,
-        DataChain,
-        SimpleTable,
-        FancyList,
-        FlexBoxes,
-        FlexRow
-        // Add other mappings as needed
     };
 
     const getLesson = (isModuleQuiz) => {

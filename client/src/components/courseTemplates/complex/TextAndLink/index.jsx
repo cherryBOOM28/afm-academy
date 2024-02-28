@@ -5,7 +5,7 @@ import './style.scss'
 function TextAndLink({ children, text='Ссылка', link, linkText, textColor, linkColor, linkBackgroundColor }) {
     return (
         <div className="textAndLink">
-            <div className="text"
+            <div className="text1"
                  style={{
                      color: textColor ? textColor : '#000000',
                  }}

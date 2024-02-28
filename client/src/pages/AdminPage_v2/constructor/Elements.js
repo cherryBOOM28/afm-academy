@@ -42,7 +42,7 @@ import DragAndDropZone from '../../../components/courseTemplates/common/Draggabl
 import TableComponent from '../../../components/courseTemplates/common/Tables/TableComponent'
 import DropdownPage from '../../../components/courseTemplates/common/Tables/TableWithData'
 import QuizWithCardComponent from '../../../components/courseTemplates/common/QuizWithCardComponent'
-
+import OneToFour from '../../../components/courseTemplates/complex/interactives/OneToFour'
 
 import headerWithLineIcon from '../images/header-icon.svg'
 import imageWithTextIcon from '../images/textWithBackground-icon.svg'
@@ -225,6 +225,7 @@ const Elements = {
             inputs: [
                 { name: 'header', label: 'Заголовок', type: 'text' },
                 { name: 'list', label: 'Список', type: 'list' },
+                { name: 'gap', label: 'Растояние между элементами списка', type: 'number' },
                 { name: 'dotsColor', label: 'Цвет точек', type: 'color' },
                 { name: 'color', label: 'Цвет текста', type: 'color' },
                 { name: 'isSublist', label: 'Подсписок', type: 'checkbox' },
@@ -319,6 +320,17 @@ const Elements = {
                 { name: 'textColor', label: 'Цвет Текста', type: 'color'},
                 { name: 'tabsTextColor', label: 'Цвет Текста Вкладок', type: 'color'},
                 { name: 'tabsBackgroundColor', label: 'Цвет Фона Вкладок', type: 'color'},
+            ]
+        },
+        'Раскрывающийся списиок(4)': {
+            component: OneToFour,
+            example: null,
+            name: 'OneToFour',
+            icon: dropDownListIcon,
+            inputs: [
+                { name: 'header', label: 'Заголовок', type: 'text' },
+                { name: 'list', label: 'Элементы', type: 'Component:4' },
+                { name: 'version', label: 'Версия', type: 'ignore' }
             ]
         }
     },
@@ -565,6 +577,19 @@ const Elements = {
             icon: dropDownListIcon,
             inputs: [
                 { name: 'questions', label: 'Вопросы', type: 'card_quiz_input' }
+            ]
+        },
+        'Горизонтальный список(5) с описанием': {
+            component: DropdownList_r5,
+            example: null,
+            name: 'DropdownList_r5',
+            icon: dropDownListIcon,
+            inputs: [
+                { name: 'title', label: 'Заголовок', type: 'text' },
+                { name: 'color', label: 'Цвет заголовка', type: 'color' },
+                { name: 'strokeColor', label: 'Цвет заголовка', type: 'color' },
+                { name: 'items', label: 'Элементы списка', type: 'data:5' },
+                { name: 'headers', label: 'Группы', type: 'ignore' },
             ]
         }
     }
