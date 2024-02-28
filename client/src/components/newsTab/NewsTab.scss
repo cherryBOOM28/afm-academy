@@ -1,25 +1,39 @@
 
   .details-modal {
-    padding: 25px;
-    border-radius: 7px;
-    right: 1135px;
-    position: absolute;
+    display: block;
+
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s;
     z-index: 99999999999999999999999999999999999999999;
  
   
   
     .details-content {
       background-color: white;
+      position: absolute;
+      overflow-y: auto;
+      bottom:500px;
+      left:33%;
       padding: 20px;
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       text-align: center;
       width: 1100px !important;
       border: 7 px solid #4caf50;
-      overflow-y:visible;
       
       .details-info {
         width: 1100px !important;
+        font-size: x-large;
+        padding-top: 50px;
+        padding-bottom: 50px;
+
+      }
+      .NewsModalImg{
+        border-radius: 10px;
+        width: 1000px;
+        height: auto;
       }
   
       .details-button {
@@ -30,6 +44,7 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
+        
       }
   
       .details-button1 {
@@ -40,6 +55,7 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
+        
       }
     }
   

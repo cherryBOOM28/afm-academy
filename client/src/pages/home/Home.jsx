@@ -505,6 +505,7 @@ function Home() {
               {t("news")}
             </p>
           </div>
+          <div id="modal-root"></div>
 
           <NewsTab
             style={{
@@ -524,7 +525,6 @@ function Home() {
                   : styles.colorMode === "blue"
                   ? "#9dd1ff"
                   : "#000",
-                  
             }}
           />
         </section>
