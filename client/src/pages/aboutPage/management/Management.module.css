@@ -12,29 +12,33 @@
 }
 
 .boardOfDirectors {
-    margin: 55px 0 107px;
-    display: flex;
+    display: block;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
 .director {
-    width: 172px;
-    margin-bottom: 20px;
+    width: max-content;
+    margin-bottom: 55px;
+    display: flex;
+    gap: 35px;
 }
 
 .name {
     margin-top: 8px;
-    color: #000;
-    text-align: center;
-    font-size: 18px;
+    color: rgb(52, 52, 52);
+    font-family: Arial;
+    text-align: left;
+    font-size: 25px;
     font-weight: 500;
 }
 
 .post {
-    margin-top: 8px;
+    margin-top: 25px;
     color: #000;
-    text-align: center;
-    font-size: 13px;
+    text-align: left;
+    width: 1050px;
+    line-height: 1.5;
+    font-size: 18px;
     font-weight: 400;
 }
