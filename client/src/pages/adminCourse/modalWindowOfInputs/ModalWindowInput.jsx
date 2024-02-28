@@ -72,6 +72,13 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
       }))
     }
 
+    if (inputs.some((x) => x.name === 'gap')) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'gap': exValues?.gap || 27
+      }))
+    }
+
     if (isDropdownList_r5) {
       setValues(prevValues => ({
         ...prevValues,

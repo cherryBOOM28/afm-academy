@@ -44,7 +44,7 @@ import QuizWithCardComponent from '../../../components/courseTemplates/common/Qu
 import DropdownList_r5 from '../../../components/courseTemplates/complex/interactives/DropdownList_r5'
 import OneToFour from '../../../components/courseTemplates/complex/interactives/OneToFour'
 
-const componentMap = {
+const componentMap_level_2 = {
     HeaderWithLine,
     ImageWithText,
     ImageLine,
@@ -79,14 +79,12 @@ const componentMap = {
     IconDots,
     ImageAndColumns,
     ImageSequence,
-    TwoColumnsDivider,
     CustomCarousel,
     DragAndDropZone,
     TableComponent,
     DropdownPage,
     QuizWithCardComponent,
-    OneToFour
     // Add other components here
 };
 
-export default componentMap;
+export default componentMap_level_2;

@@ -42,7 +42,7 @@ import DragAndDropZone from '../../../components/courseTemplates/common/Draggabl
 import TableComponent from '../../../components/courseTemplates/common/Tables/TableComponent'
 import DropdownPage from '../../../components/courseTemplates/common/Tables/TableWithData'
 import QuizWithCardComponent from '../../../components/courseTemplates/common/QuizWithCardComponent'
-
+import OneToFour from '../../../components/courseTemplates/complex/interactives/OneToFour'
 
 import headerWithLineIcon from '../images/header-icon.svg'
 import imageWithTextIcon from '../images/textWithBackground-icon.svg'
@@ -225,6 +225,7 @@ const Elements = {
             inputs: [
                 { name: 'header', label: 'Заголовок', type: 'text' },
                 { name: 'list', label: 'Список', type: 'list' },
+                { name: 'gap', label: 'Растояние между элементами списка', type: 'number' },
                 { name: 'dotsColor', label: 'Цвет точек', type: 'color' },
                 { name: 'color', label: 'Цвет текста', type: 'color' },
                 { name: 'isSublist', label: 'Подсписок', type: 'checkbox' },
@@ -319,6 +320,17 @@ const Elements = {
                 { name: 'textColor', label: 'Цвет Текста', type: 'color'},
                 { name: 'tabsTextColor', label: 'Цвет Текста Вкладок', type: 'color'},
                 { name: 'tabsBackgroundColor', label: 'Цвет Фона Вкладок', type: 'color'},
+            ]
+        },
+        'Раскрывающийся списиок(4)': {
+            component: OneToFour,
+            example: null,
+            name: 'OneToFour',
+            icon: dropDownListIcon,
+            inputs: [
+                { name: 'header', label: 'Заголовок', type: 'text' },
+                { name: 'list', label: 'Элементы', type: 'Component:4' },
+                { name: 'version', label: 'Версия', type: 'ignore' }
             ]
         }
     },
