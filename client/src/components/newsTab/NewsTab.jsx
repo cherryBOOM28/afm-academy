@@ -13,7 +13,7 @@ import { unstable_ClassNameGenerator } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
-
+import './NewsTab.scss'
 const NewsTab = () => {
   const { styles } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
@@ -25,6 +25,12 @@ const NewsTab = () => {
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const jwtToken = localStorage.getItem("jwtToken");
+  const [selectedRowBtn, setSelectedRowBtn] = useState(null);
+
+  const handleShowDetailsBtn = (selectedRowBtn) => {
+    setSelectedRowBtn(selectedRowBtn);
+    console.log(selectedRowBtn);
+  };
 
   const [ settings, setSettings ] = useState({
     dots: true,
@@ -210,9 +216,25 @@ const NewsTab = () => {
                 {!imagesHidden && <img src={calendarIcon} alt="calendar" />}
                 <p className={cl.dateTime}>{formattedDate}</p>
               </div>
-              <Button className={cl.cardBtn}>{t("read more")}</Button>
+              <Button className={cl.cardBtn} onClick={() => handleShowDetailsBtn(item.id)}>{t("read more") } </Button>
+            </div>
+            {selectedRowBtn !== null && (
+            
+              <div className="details-modal">
+               <div className="details-content">
+                  <button className="details-button1" onClick={() => handleShowDetailsBtn(null)}>
+                Закрыть
+                  </button>
+                  <p className='details-info'>{data.find((item) => item.id === selectedRowBtn)?.name}</p>
+                  {!imagesHidden && (<img src={data.find((item) => item.id === selectedRowBtn)?.image} alt="" className={cl.newsImg} />)}
+                  <p className='details-info'>{data.find((item) => item.id === selectedRowBtn)?.description}</p>
+
             </div>
           </div>
+            
+        )}
+          </div>
+          
         </div>
       );
     }
