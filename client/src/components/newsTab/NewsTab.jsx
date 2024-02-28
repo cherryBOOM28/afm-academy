@@ -80,6 +80,7 @@ const NewsTab = () => {
         );
         // console.log(response.data)
         setData(response.data);
+        console.log(response.data)
       } catch (error) {
         setError(error);
         console.error(error);
@@ -299,9 +300,9 @@ const NewsTab = () => {
         {data && data.length > 0 ? (
           <Slider {...settings}>
             {data.map((item) => (
-              <div className={cl.cardContainer} key={item.id}>
-                {renderCardContent(item)}
-              </div>
+                <div className={cl.cardContainer} key={item.id}>
+                  {renderCardContent(item)}
+                </div>
             ))}
           </Slider>
         ) : (

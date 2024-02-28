@@ -50,6 +50,8 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
     const hasImages = inputs.some((x) => x.name == 'images');
     const notCrop = inputs.some((x) => x.name == 'notCrop');
 
+    const isDropdownList_r5 = inputs.some((x) => x.name == 'items' && x.type == 'data:5'); 
+
     const hasTableInput = inputs.some((x) => x.name === 'rows');
 
     const hasLeft = inputs.some((x) => x.name === 'left');
@@ -70,6 +72,41 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
       }))
     }
 
+    if (isDropdownList_r5) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'items': exValues?.items 
+          || [
+            {
+              title: 'Элемент1',
+              text: 'Элемент1 - это',
+            },
+            {
+              title: 'Элемент2',
+              text: 'Элемент2 - это',
+            },
+            {
+              title: 'Элемент3',
+              text: 'Элемент3 - это',
+            },
+            {
+              title: 'Элемент4',
+              text: 'Элемент4 - это',
+            },
+            {
+              title: 'Элемент5',
+              text: 'Элемент5 - это',
+            },
+          ],
+        'headers': exValues?.headers 
+          || [
+            { name: 'Группа 1', icon: null },
+            { name: 'Группа 2', icon: null },
+            { name: 'Группа 3', icon: null },
+          ]
+      }));
+    }
+    
     if (hasLeft) {
       setValues(prevValues => ({
         ...prevValues,
@@ -1859,6 +1896,104 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                     >Добавить вопрос</button>
                   </div>
                 ) 
+                : input.type === 'data:5'
+                ? (
+                  <div className="dropDown-r5-input">
+                    <div className="groups-input">
+                      <div className="title">Группы</div>
+                      <div>
+                        <div>Иконка</div>
+                        <div>Название</div>
+                      </div>
+                      {
+                        values?.headers?.map((header, index) => {
+
+                          return (
+                            <div key={index}>
+                              <input 
+                                type="file" 
+                                onChange={(e) => {
+                                  const file = e.target.files[0]
+                                  setValues(prevValues => {
+                                    const updated = prevValues.headers;
+                                    updated[index].icon = file;
+
+                                    return {
+                                      ...prevValues,
+                                      ['headers']: updated
+                                    }
+                                  })
+                                }}
+                              />
+                              <input 
+                                type="text" 
+                                value={header.name}
+                                onChange={(e) => {
+                                  setValues(prevValues => {
+                                    const updated = prevValues.headers;
+                                    updated[index].name = e.target.value;
+
+                                    return {
+                                      ...prevValues,
+                                      ['headers']: updated
+                                    }
+                                  })
+                                }}
+                              />
+                            </div>
+                          )
+                        })
+                      }
+                    </div>
+
+                    <div className="list-input">
+                      <div className="title">Элементы списка</div>
+                      <div>
+                        <div>Название</div>
+                        <div>Определение</div>
+                      </div>
+                      {
+                        values?.items?.map((item, index) => {
+
+                          return (
+                            <div key={index}>
+                              <input 
+                                type="text"
+                                value={item.title} 
+                                onChange={(e) => {
+                                  setValues(prevValues => {
+                                    const updated = prevValues.items;
+                                    updated[index].title = e.target.value;
+
+                                    return {
+                                      ...prevValues,
+                                      ['items']: updated
+                                    }
+                                  })
+                                }}
+                              />
+                              <input 
+                                type="text" 
+                                value={item.text}
+                                onChange={(e) => {
+                                  setValues(prevValues => {
+                                    const updated = prevValues.items;
+                                    updated[index].text = e.target.value;
+
+                                    return {
+                                      ...prevValues,
+                                      ['items']: updated
+                                    }
+                                  })
+                                }}
+                              />
+                            </div>
+                          )
+                        })
+                      }
+                    </div>
+                  </div>
+                )
                 : (
                   <div key={input.name} className='default-input'>
                     <label>{input.label}</label>

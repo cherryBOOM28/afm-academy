@@ -26,7 +26,6 @@ import TabsGlossary from '../../../components/courseTemplates/complex/TabsGlossa
 import VideoWithTitleAndText from '../../../components/courseTemplates/complex/Video/VideoWithTitleAndText'
 import TextAndLink from '../../../components/courseTemplates/complex/TextAndLink'
 import DropdownList from '../../../components/courseTemplates/complex/interactives/DropdownList'
-import DropdownList_r5 from '../../../components/courseTemplates/complex/interactives/DropdownList_r5'
 import ShortBiography from '../../../components/courseTemplates/complex/images/ShortBiography'
 import DragAndDropTwoSide from '../../../components/courseTemplates/complex/DragAndDropTwoSide'
 import DropdownGlossaryList from '../../../components/courseTemplates/complex/DropdownGlossaryList'
@@ -42,6 +41,7 @@ import DragAndDropZone from '../../../components/courseTemplates/common/Draggabl
 import TableComponent from '../../../components/courseTemplates/common/Tables/TableComponent'
 import DropdownPage from '../../../components/courseTemplates/common/Tables/TableWithData'
 import QuizWithCardComponent from '../../../components/courseTemplates/common/QuizWithCardComponent'
+import DropdownList_r5 from '../../../components/courseTemplates/complex/interactives/DropdownList_r5'
 
 const componentMap = {
     HeaderWithLine,
