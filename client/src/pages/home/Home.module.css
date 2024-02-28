@@ -65,15 +65,31 @@
 }
 
 .aboutUs__text_small {
-    color: #FFF;
     text-align: center;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 400;
     width: 463px;
     margin: 90px auto 30px;
     line-height: normal;
+    color: transparent; /* Make the text color transparent */
+    background: linear-gradient(-60deg, #00ffea, #00ec41, #aeff00, #19d5e7);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: flow 3s ease-in-out infinite;
 }
 
+@keyframes flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 .courses_boxes {
     margin-top: 30px;
     display: flex;

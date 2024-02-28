@@ -4291,6 +4291,25 @@ function GetLesson({
                     </Reveal>
 
                     <Sizebox height={80} />
+                    <Reveal>
+                        <TableWithDataWithoutFormatting
+                            data={[
+                                {
+                                    option:
+                                        <>Не выполняет Рекомендации ФАТФ <a href="https://websfm.kz/fatf">https://websfm.kz/fatf</a></>
+                                },
+                                {
+                                    option:
+                                        <>Активно работают с ФАТФ над устранением стратегических недостатков в своих режимах по ПОД/ФТ <a href="https://websfm.kz/fatf">https://websfm.kz/fatf</a></>
+                                },
+                            ]}
+                            dataBtn={[
+                                { name: 'Черный список' },
+                                { name: 'Серый список' },
+                            ]}
+                        ></TableWithDataWithoutFormatting>
+                    </Reveal>
+                    <Sizebox height={40}></Sizebox>
                     {/* <Reveal>
                     <ComplexTable
                         showCollapseButton={false}
@@ -8095,20 +8114,17 @@ function GetLesson({
                     </Reveal>
                     <Reveal>
                         <Sizebox height={60}></Sizebox>
+                        <NumberedDots dotsColor={'#CADEFC'}
+                                      header={'Для выполнения возложенных функций ответственный работник и работники подразделения по ПОД/ФТ/ФРОМУ наделяются следующими полномочиями:'}
+                        ></NumberedDots>
+                        <Sizebox height={40} />
                         <VideoLine
                             url={
                                 'https://videos.sproutvideo.com/embed/7990d6b6191be9ccf0/f2adefa00f3da451'
                             }
                         ></VideoLine>
                         <Sizebox height={40} />
-                        <NumberedDots dotsColor={'#CADEFC'}
-                                      header={'Для выполнения возложенных функций ответственный работник и работники подразделения по ПОД/ФТ/ФРОМУ наделяются следующими полномочиями:'}
-                                      list={[
-                                          'получение доступа ко всем помещениям Субъекта, информационным системам, средствам телекоммуникаций, документам и файлам в пределах, позволяющих осуществлять свои функции в полном объеме;',
-                                          'обеспечение конфиденциальности сведений, полученных при осуществлении полномочий;',
-                                          'обеспечение сохранности получаемых от подразделений Субъекта документов и файлов и т.д.'
-                                      ]}
-                        ></NumberedDots>
+
                         <Sizebox height={70} />
                     </Reveal>
                     <Reveal>
@@ -8123,12 +8139,6 @@ function GetLesson({
 
                     <Reveal>
                         <Sizebox height={70} />
-                        <TextWithTitle
-                            title={<>В целях организации управления рисками легализации ОД/ФТ/ФРОМУ, <span className="bold">Субъекты разрабатывают Программу</span> управления рисками легализации ОД/ФТ/ФРОМУ, <span className="bold">учитывающую риски клиентов</span> и <span className="bold">риски использования услуг в преступных целях</span>, включая риск использования технологических достижений.</>}
-                            fontWeight={400}
-                        >
-
-                        </TextWithTitle>
                         <NumberedDots dotsColor={'#CADEFC'}
                                       header={'Данная Программа включает в себя, но не ограничивается:'}
                                       list={[
@@ -8148,7 +8158,12 @@ function GetLesson({
                                 img={image94}
                             ></ImageLine>
                         </Centered>
-
+                        <Sizebox height={70} />
+                        <VideoLine
+                            url={
+                                'https://videos.sproutvideo.com/embed/4490d6b6191be6cacd/d4b415608a84d11d'
+                            }
+                        />
                         <Sizebox height={70} />
                         <NumberedDotsAndImage
                             imageUrl={image93}
