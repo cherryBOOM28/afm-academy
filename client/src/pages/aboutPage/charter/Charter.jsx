@@ -164,41 +164,46 @@ function Charter() {
   }, [styles.fontFamily]);
 
   return (
-    <div className={`${cl.charterWrapper} text-content`}
-    style={{
-      background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#fff" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
-    }}
-    >
-      <VisualModal
-        open={openVisualModal}
-        onRemoveImages={handleRemoveImages}
-        onShowImages={handleShowImages}
-        onFontFamily={() => {}}
-        onIntervalChange={() => {}}
-        styles={styles}
-      />
-      <Header dark={styles.colorMode == "dark" ? false : true} handleOpenVisualModal={handleOpenVisualModal} />
-      <div className={cl.container}>
-      <div
-          className="interval"
-          style={{ letterSpacing: getLetterSpacing(letterInterval) }}
-        >
-        <h1 className={`${cl.headline} text-content`}
-        style={{
-          color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
-        }}
-        >{t("corporate governance")}</h1>
-        <DownloadPDF />
-        <div className={cl.charterContent}>
-        {!imagesHidden && (
-          <img src={pdf} alt="" />
-        )}
+      <div className={`${cl.charterWrapper} text-content`}
+           style={{
+             background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#fff" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
+           }}
+      >
+        <VisualModal
+            open={openVisualModal}
+            onRemoveImages={handleRemoveImages}
+            onShowImages={handleShowImages}
+            onFontFamily={() => {}}
+            onIntervalChange={() => {}}
+            styles={styles}
+        />
+        <Header dark={styles.colorMode == "dark" ? false : true} handleOpenVisualModal={handleOpenVisualModal} />
+        <div className={cl.container}>
+          <div
+              className="interval"
+              style={{ letterSpacing: getLetterSpacing(letterInterval) }}
+          >
+            <h1 className={`${cl.headline} text-content`}
+                style={{
+                  color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
+                }}
+            >{t("corporate governance")}</h1>
+            <DownloadPDF />
+            <br />
+            <br /><br />
+
+            <div style={{marginLeft:"33%"}}>
+              <div style={{ position: 'relative', paddingTop: 0, width: '900px', height: '700px' }}><iframe style={{height:'700px',width:'500px'}} src="https://online.fliphtml5.com/ybtnz/lysw/index.html"  scrolling="no"  allowtransparency="true" allowfullscreen="true"    ></iframe></div>
+              <br />
+              <br /><br />
+            </div>
+            <br />
+            <br />
+
           </div>
-          <FlipBook></FlipBook>
+        </div>
+        <Footer />
       </div>
-      </div>
-      <Footer />
-    </div>
   );
 }
 

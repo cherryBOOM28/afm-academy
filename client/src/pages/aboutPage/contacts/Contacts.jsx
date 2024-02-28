@@ -322,7 +322,7 @@ const handlePhoneClick = () => {
                                 <img src={igIcon} alt="instagram" className={'iconContacts'} />
                             </a>
                         
-                            <a href='https://www.instagram.com/aml_academy/' className={'roundeContacts'}>
+                            <a href='https://t.me/aml_academy_23' className={'roundeContacts'}>
                                 <img src={tgIcon} alt="telegram" className={'iconContacts'} />
                             </a>
                         </div>

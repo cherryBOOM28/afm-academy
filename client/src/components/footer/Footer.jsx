@@ -61,7 +61,7 @@ function Footer({ email, phoneNumber }) {
                                 <img src={igIcon} alt="instagram" className={'icon'} />
                             </a>
                         
-                            <a href='https://www.instagram.com/aml_academy/' className={'rounde'}>
+                            <a href='https://t.me/aml_academy_23' className={'rounde'}>
                                 <img src={tgIcon} alt="telegram" className={'icon'} />
                             </a>
                         </div>
