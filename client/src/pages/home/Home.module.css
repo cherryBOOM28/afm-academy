@@ -67,12 +67,12 @@
 .aboutUs__text_small {
     text-align: center;
     font-size: 30px;
-    font-weight: 400;
-    width: 463px;
+    font-weight: 700;
+    width: 500px;
     margin: 90px auto 30px;
     line-height: normal;
     color: transparent; /* Make the text color transparent */
-    background: linear-gradient(-60deg, #00ffea, #00ec41, #aeff00, #19d5e7);
+    background: linear-gradient(-60deg, #00ffea, #178d52, #ffffff, #19d5e7);
     background-size: 300%;
     -webkit-background-clip: text;
     background-clip: text;
