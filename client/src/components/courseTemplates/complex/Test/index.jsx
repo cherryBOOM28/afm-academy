@@ -254,8 +254,8 @@ const MatchingQuestion = ({ question_id, answers, handleUpdatePairs }) => {
 
     const unmatchPairs = (id) => {
         const pair = matched.filter(item => item.id === id)[0];
-        setLeft(prev => [...prev, { id: pair.leftId, text: pair.leftPart }]);
-        setRight(prev => [...prev, { id: pair.rightId, text: pair.rightPart }]);
+        setLeft(prev => [...prev, { id: pair.leftId, text: pair.left_part }]);
+        setRight(prev => [...prev, { id: pair.rightId, text: pair.right_part }]);
         setMatched(prev => prev.filter(item => item.id !== id));
     }
 
