@@ -57,6 +57,36 @@
 
         gap: 10px;
 
+        .icon-text-innerText-input {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+
+            .items {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                > div {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+
+                    > div {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 5px;
+
+                        > * {
+                            width: 50%;
+                        }
+                    }
+                }
+
+            }
+        }
+
         .dropDown-r5-input {
             display: flex;
             flex-direction: column;

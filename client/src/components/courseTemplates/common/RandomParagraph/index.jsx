@@ -41,8 +41,6 @@ function RandomParapraph({ children, color, fontSize }) {
         return parts;
     };
 
-    
-
     if (typeof children !== 'object' && children.indexOf('\\n') !== -1) {
         return (
             <div className="randomParagraph">
