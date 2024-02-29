@@ -5,6 +5,7 @@ import DefaultHeader from "../../components/defaultHeader/DefaultHeader";
 import Footer from "../../components/footer/Footer";
 
 import './catalog.scss';
+import { useLocation } from 'react-router-dom';
 
 import course1 from "./../../assets/images/courses-1.png";
 import course2 from "./../../assets/images/courses-2.png";
@@ -102,7 +103,13 @@ function Catalog() {
                 return "1px";
         }
     };
+    const location = useLocation();
     useEffect(() => {
+        const hash = location.hash;
+        console.log(hash)
+        if (hash === '#top'){
+            window.scrollTo(0, 0); // Scrolls to the top of the page
+        }
         const textContentElement = document.querySelector(".text-content");
         const family = styles.fontFamily;
 

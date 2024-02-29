@@ -145,10 +145,11 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
                                 setAudience(e.target.value)
                             }} name="audience" id="audience">
                                 <option value="">--Выберите тип субъекта--</option>
-                                <option value="GOVERNMENT_REGULATORY_BODIES">Государственные органы-регуляторы</option>
-                                <option value="SFM">Субъект финансового мониторнга</option>
-                                <option value="LAW_ENFORCEMENT_AGENCIES">Правоохранительные органы</option>
-                                <option value="PUBLIC_ASSOCIATION">Общественное объединение</option>
+                                <option value="Государственные органы-регуляторы">Государственные органы-регуляторы</option>
+                                <option value="Субъект финансового мониторнга">Субъект финансового мониторнга</option>
+                                <option value="Правоохранительные">Правоохранительные органы</option>
+                                <option value="Общественное объединение">Общественное объединение</option>
+                                <option value="Для всех субъектов">Для всех субъектов</option>
                             </select>
                         </div>
                         <div className="input-lang">

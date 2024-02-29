@@ -254,7 +254,7 @@ function Tabs({ text }) {
               {" "}
               {t("descBasic")}
             </p>
-            <Link to="/courses/basic" style={{ textDecoration: "none" }}>
+            <Link to="/courses/8" style={{ textDecoration: "none" }}>
               <Button className={cl.more}>{t("read more")}</Button>
             </Link>
           </div>
@@ -299,7 +299,7 @@ function Tabs({ text }) {
             >
               {t("descSpec")}
             </p>
-            <Link to="/courses/specialized" style={{ textDecoration: "none" }}>
+            <Link to="/courses/catalog#top" style={{ textDecoration: "none" }}>
               <Button className={cl.more}>{t("read more")}</Button>
             </Link>
           </div>
@@ -344,7 +344,7 @@ function Tabs({ text }) {
             >
               {t("descAdv")}
             </p>
-            <Link to="/courses/basic" style={{ textDecoration: "none" }}>
+            <Link to="/courses/catalog#top" style={{ textDecoration: "none" }}>
               <Button className={cl.more}>{t("read more")}</Button>
             </Link>
           </div>
@@ -389,7 +389,7 @@ function Tabs({ text }) {
             >
               {t("descThe")}
             </p>
-            <Link to="/courses/specialized" style={{ textDecoration: "none" }}>
+            <Link to="/courses/catalog#top" style={{ textDecoration: "none" }}>
               <Button className={cl.more}>{t("read more")}</Button>
             </Link>
           </div>
