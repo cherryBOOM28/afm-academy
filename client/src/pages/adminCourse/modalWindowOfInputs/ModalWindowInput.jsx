@@ -1211,9 +1211,9 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                           {values.columns.map((column, index) => (
                               <th className='header' key={index}>
                                   <input
-                                      type="text"
-                                      value={column}
-                                      onChange={(e) => handleHeaderChange(index, e.target.value)}
+                                    type="text"
+                                    value={column}
+                                    onChange={(e) => handleHeaderChange(index, e.target.value)}
                                   />
                               </th>
                           ))}
@@ -1231,11 +1231,11 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                               <tr key={rowIndex}>
                                   {row.map((cell, cellIndex) => (
                                       <td key={cellIndex}>
-                                          <input
-                                              type="text"
-                                              value={cell}
-                                              onChange={(e) => handleInputChangeArrayInObject(cellIndex, e.target.value, rowIndex, 'simpleTable')}
-                                          />
+                                          <textarea
+                                            className='textarea-formatable'
+                                            value={cell}
+                                            onChange={(e) => handleInputChangeArrayInObject(cellIndex, e.target.value, rowIndex, 'simpleTable')}
+                                          ></textarea>
                                       </td>
                                   ))}
                               </tr>

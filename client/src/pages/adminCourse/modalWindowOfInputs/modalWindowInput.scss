@@ -786,7 +786,7 @@
             width: 100%;
             overflow-x: auto;
             position: relative;
-            overflow:visible;
+            overflow: visible;
         
             table {
                 width: 100%;
@@ -796,7 +796,13 @@
                     padding: 8px;
                     border: 1px solid #ccc;
                     text-align: left;
-        
+                    
+                    .textarea-formatable {
+                        border: none;
+                        height: 100%;
+                        width: 100%;
+                    }
+
                     input {
                         width: 100%;
                         padding: 8px;
