@@ -102,6 +102,7 @@ import ImageAndColumnsExample from './../../../assets/images/Template Examples/I
 import DragAndDropTwoSideExample from './../../../assets/images/Template Examples/DragAndDropTwoSide.png'
 import CustomCarouselExample from './../../../assets/images/Template Examples/CustomCarousel.png'
 import StageDropDown from '../../../components/courseTemplates/complex/StageDropDown'
+import ComplexTable from '../../../components/courseTemplates/common/ComplexTable'
 
 
 const Elements = {
@@ -377,6 +378,16 @@ const Elements = {
             icon: dropDownTableIcon,
             inputs: [
                 { name: 'tableData', label: 'Данные таблицы', type: 'tableData' }
+            ]
+        },
+        'Комплексная таблица': {
+            component: ComplexTable,
+            example: null,
+            name: 'ComplexTable',
+            icon: dropDownTableIcon,
+            inputs: [
+                { name: 'columns', label: 'Колонны', type: 'list' }, 
+                { name: 'data', label: 'Данные', type: 'data_rows' }
             ]
         }
     },
