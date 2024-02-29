@@ -10,6 +10,7 @@ import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion"
 
 function StageDropDown({
+    version=1,
     stages=[
         {icon: stage_1, text: 'Ст. 165 УК КазССР', innerText: 'Использование денежных средств и иного имущества, приобретенных или добытых преступным путем, для занятия предпринимательской деятельностью или иной не запрещенной законом деятельностью'},
         {icon: stage_2, text: 'Ст. 193 УК РК', innerText: 'Легализация денежных средств или иного имущества, проиобретенного незаконным путем'},
@@ -29,6 +30,7 @@ function StageDropDown({
                                 icon={item.icon}
                                 text={item.text}
                                 innerText={item.innerText}
+                                version={version}
                             />
                         ))
                     }
@@ -41,13 +43,17 @@ function StageDropDown({
 }
 
 
-const Item = ({ icon, text, innerText }) => {
+const Item = ({ icon, text, innerText, version }) => {
     const [open, setOpen] = useState(false);
 
     return (
         <div>
             <div className="icon">
-                <img src={icon} alt="stage 1" />
+                <img src={
+                    version === 1 
+                        ? icon
+                        : `${icon}`
+                } alt="stage 1" />
             </div>
             <div className="line"></div>
             <div className="open-icon">

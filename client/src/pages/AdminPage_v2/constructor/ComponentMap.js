@@ -43,6 +43,8 @@ import DropdownPage from '../../../components/courseTemplates/common/Tables/Tabl
 import QuizWithCardComponent from '../../../components/courseTemplates/common/QuizWithCardComponent'
 import DropdownList_r5 from '../../../components/courseTemplates/complex/interactives/DropdownList_r5'
 import OneToFour from '../../../components/courseTemplates/complex/interactives/OneToFour'
+import StageDropDown from '../../../components/courseTemplates/complex/StageDropDown'
+import ComplexTable from '../../../components/courseTemplates/common/ComplexTable'
 
 const componentMap = {
     HeaderWithLine,
@@ -85,7 +87,9 @@ const componentMap = {
     TableComponent,
     DropdownPage,
     QuizWithCardComponent,
-    OneToFour
+    OneToFour,
+    StageDropDown,
+    ComplexTable
     // Add other components here
 };
 

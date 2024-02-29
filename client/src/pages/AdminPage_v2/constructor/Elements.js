@@ -101,6 +101,8 @@ import FlexBoxesExample from './../../../assets/images/Template Examples/FlexBox
 import ImageAndColumnsExample from './../../../assets/images/Template Examples/ImageAndColumns.png'
 import DragAndDropTwoSideExample from './../../../assets/images/Template Examples/DragAndDropTwoSide.png'
 import CustomCarouselExample from './../../../assets/images/Template Examples/CustomCarousel.png'
+import StageDropDown from '../../../components/courseTemplates/complex/StageDropDown'
+import ComplexTable from '../../../components/courseTemplates/common/ComplexTable'
 
 
 const Elements = {
@@ -111,10 +113,11 @@ const Elements = {
             name: 'HeaderWithLine',
             icon: headerWithLineIcon,
             inputs: [
-                { name: 'children', label: 'Children', type: 'text' },
-                { name: 'header', label: 'Текст', type: 'text' },
+                // { name: 'children', label: 'Children', type: 'text' },
+                { name: 'header', label: 'Текст', type: 'formatTextarea' },
                 { name: 'headerColor', label: 'Цвет текста', type: 'color' },
                 { name: 'lineColor', label: 'Цвет полосы', type: 'color' },
+                { name: 'version', label: '', type: 'ignore' },
             ],
         }, //children (span for bold), header (for usual text), headerColor, lineColor
         'Текст': {
@@ -332,6 +335,16 @@ const Elements = {
                 { name: 'list', label: 'Элементы', type: 'Component:4' },
                 { name: 'version', label: 'Версия', type: 'ignore' }
             ]
+        },
+        'Раскрывающийся список с иконками': {
+            component: StageDropDown,
+            example: null,
+            name: 'StageDropDown',
+            icon: dropDownListIcon,
+            inputs: [
+                { name: 'stages', label: 'Элементы списка', type: 'icon:text:innerText' },
+                { name: 'version', label: '', type: 'ignore' }
+            ]
         }
     },
     'Табличные элементы': {
@@ -365,6 +378,16 @@ const Elements = {
             icon: dropDownTableIcon,
             inputs: [
                 { name: 'tableData', label: 'Данные таблицы', type: 'tableData' }
+            ]
+        },
+        'Комплексная таблица': {
+            component: ComplexTable,
+            example: null,
+            name: 'ComplexTable',
+            icon: dropDownTableIcon,
+            inputs: [
+                { name: 'columns', label: 'Колонны', type: 'list' }, 
+                { name: 'data', label: 'Данные', type: 'data_rows' }
             ]
         }
     },

@@ -72,6 +72,15 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
       }))
     }
 
+    if (inputs.some((x) => x.name === 'stages')) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'stages': exValues?.stages || [
+          {icon: '', text: 'Видная часть', innerText: 'Скрытая часть'},
+        ]
+      }))
+    }
+
     if (inputs.some((x) => x.name === 'gap')) {
       setValues(prevValues => ({
         ...prevValues,
@@ -1202,9 +1211,9 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                           {values.columns.map((column, index) => (
                               <th className='header' key={index}>
                                   <input
-                                      type="text"
-                                      value={column}
-                                      onChange={(e) => handleHeaderChange(index, e.target.value)}
+                                    type="text"
+                                    value={column}
+                                    onChange={(e) => handleHeaderChange(index, e.target.value)}
                                   />
                               </th>
                           ))}
@@ -1222,11 +1231,11 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                               <tr key={rowIndex}>
                                   {row.map((cell, cellIndex) => (
                                       <td key={cellIndex}>
-                                          <input
-                                              type="text"
-                                              value={cell}
-                                              onChange={(e) => handleInputChangeArrayInObject(cellIndex, e.target.value, rowIndex, 'simpleTable')}
-                                          />
+                                          <textarea
+                                            className='textarea-formatable'
+                                            value={cell}
+                                            onChange={(e) => handleInputChangeArrayInObject(cellIndex, e.target.value, rowIndex, 'simpleTable')}
+                                          ></textarea>
                                       </td>
                                   ))}
                               </tr>
@@ -1921,6 +1930,18 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                                 type="file" 
                                 onChange={(e) => {
                                   const file = e.target.files[0]
+                                  fileToBase64(file, (base64String) => {
+                                    setValues(prevValues => {
+                                      const updated = prevValues.headers;
+                                      updated[index].icon = base64String;
+  
+                                      return {
+                                        ...prevValues,
+                                        ['headers']: updated
+                                      }
+                                    })
+                                  })
+
                                   setValues(prevValues => {
                                     const updated = prevValues.headers;
                                     updated[index].icon = file;
@@ -1999,6 +2020,92 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                         })
                       }
                     </div>
+                  </div>
+                )
+                : input.type === 'icon:text:innerText' 
+                ? (
+                  <div className="icon-text-innerText-input">
+                    <div className='title'>Элементы списка</div>
+                    <div className="items">
+                      {
+                        values?.stages?.map((item, index) => {
+
+                          return (
+                            <div>
+                              <div>
+                                <input 
+                                  type="file"
+                                  onChange={(e) => {
+                                    const file = e.target.files[0];
+
+                                    fileToBase64(file, (base64String) => {
+                                      setValues(prev => {
+                                        const updated = prev.stages;
+                                        updated[index].icon = base64String;
+
+                                        return {
+                                          ...prev,
+                                          ['stages']: updated
+                                        }
+                                      })
+                                    })
+                                  }} 
+                                />
+                                <input 
+                                  type="text" 
+                                  value={item.text}
+                                  onChange={(e) => {
+                                    setValues(prevValues => {
+                                      const updated = prevValues.stages;
+                                      updated[index].text = e.target.value;
+  
+                                      return {
+                                        ...prevValues,
+                                        ['stages']: updated
+                                      }
+                                    })
+                                  }}
+                                />
+                              </div>
+                              <input 
+                                type="text"
+                                value={item.innerText}
+                                onChange={(e) => {
+                                  setValues(prevValues => {
+                                    const updated = prevValues.stages;
+                                    updated[index].innerText = e.target.value;
+
+                                    return {
+                                      ...prevValues,
+                                      ['stages']: updated
+                                    }
+                                  })
+                                }}
+                              />
+                            </div>
+                          )
+                        })
+                      }
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        setValues(prevValues => {
+                          const updated = [
+                            ...prevValues['stages'], 
+                            { 
+                              icon: '',
+                              text: '',
+                              innerText: ''
+                            }
+                          ]
+
+                          return {
+                            ...prevValues,
+                            ['stages'] : updated
+                          }
+                        })
+                      }}
+                    >Добавить элемент</button>
                   </div>
                 )
                 : (
