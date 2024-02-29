@@ -799,6 +799,7 @@ function GetLesson({
 
                     <Sizebox height={100} />
 
+
                     <Reveal>
                         <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
                             <>
@@ -4296,7 +4297,7 @@ function GetLesson({
                             data={[
                                 {
                                     option:
-                                        <>Не выполняет Рекомендации ФАТФ <a href="https://websfm.kz/fatf">https://websfm.kz/fatf</a></>
+                                        <>Не выполняют Рекомендации ФАТФ <a href="https://websfm.kz/fatf">https://websfm.kz/fatf</a></>
                                 },
                                 {
                                     option:
