@@ -7120,11 +7120,9 @@ function GetLesson({
                         title={'По каким фактам субъекты финансового мониторинга также предоставляют информацию в АФМ?'}
                     ></TextWithTitle>
                     <Reveal>
-                        <Centered>
                             <VideoLine
                                 url={'https://videos.sproutvideo.com/embed/7990d7b31a1be0c2f0/8621de2e0cf4f397'}
                             ></VideoLine>
-                        </Centered>
                         <Sizebox height={20}></Sizebox>
                     </Reveal>
                     <Sizebox height={40}></Sizebox>
@@ -8798,29 +8796,21 @@ function GetLesson({
 
             </LessonPage>)
         case -2: 
-            return (<LessonPage name={'Заключение'}>
+            return (<LessonPage name={'Обратная связь'}>
 
                 <Sizebox height={40} />
                 <Reveal>
                     <ImageWithText
                         color={'white'}
-                        imageText={'Дальнейших Вам профессиональных успехов и процветания!'} 
+                        imageText={'Желаем Вам профессиональных успехов и процветания!'}
                         img={'https://corporate.waterlogic.com/fileadmin/_processed_/f/4/csm_banner-hands-shaking-3_c621f2a33f.jpg'} 
                     />
                 </Reveal>
-
-                <Sizebox height={100} />
-                <Reveal>
-                    <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
-                        Завершение учебного курса
-                    </HeaderWithLine>
-                </Reveal>
-
                 <Sizebox height={100} />
 
                 <Reveal>
                     <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
-                        Сертификат можете найти в личном кабинете
+                        Сертификат Вы можете найти в личном кабинете
                     </HeaderWithLine>
                 </Reveal>
                 <Sizebox height={100} />

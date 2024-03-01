@@ -881,7 +881,7 @@ const CourseNavigation = ({
                             // course_id={course_id}
                             session={{
                                 id: -2,
-                                name: 'Заключение',
+                                name: 'Обратная связь',
                             }}
                             handleSessionClick={handleSessionClick}
                             isActive={-2 === activeSessionId}
