@@ -873,6 +873,21 @@ const CourseNavigation = ({
                     handleSessionClick={handleSessionClick}
                     isActive={999 === activeSessionId}
                 />
+                {
+                    courseProgress > 99.9 
+                    ? (
+                        <Session
+                            checked={true}
+                            // course_id={course_id}
+                            session={{
+                                id: -2,
+                                name: 'Заключение',
+                            }}
+                            handleSessionClick={handleSessionClick}
+                            isActive={-2 === activeSessionId}
+                        />
+                    ) : null
+                }
             </div>
 
         </div>

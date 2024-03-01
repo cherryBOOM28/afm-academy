@@ -1,7 +1,7 @@
 /* eslint-disable default-case */
 /* eslint-disable no-useless-concat */
 /* eslint-disable react/jsx-pascal-case */
-import React from 'react';
+import React, { useState } from 'react';
 import './style.scss';
 
 // components
@@ -177,6 +177,8 @@ import file16 from "../../assets/files/Правила проведения оц�
 import file17 from "../../assets/files/СТАНДАРТЫ_ФАТФ.pdf"
 import file18 from "../../assets/files/УК РК.pdf"
 import file19 from "../../assets/files/Рекомендации ФАТФ.pdf"
+import { FaStar } from 'react-icons/fa6';
+import { useNavigate } from 'react-router';
 
 
 
@@ -232,6 +234,9 @@ function GetLesson({
     const _handleQuizSuccesful = () => {
         handleQuizSuccesful('works');
     }
+
+    const [stars, setStars] = useState(0);
+    const navigate = useNavigate();
 
     switch (id) {
         case 1:
@@ -6929,8 +6934,6 @@ function GetLesson({
                         <Sizebox height={80} />
                     </Reveal>
 
-
-
                     <Reveal>
                         <TableWithDataWithoutFormatting
                             data={[
@@ -6950,11 +6953,6 @@ function GetLesson({
                         ></TableWithDataWithoutFormatting>
                     </Reveal>
                     <Sizebox height={40}></Sizebox>
-
-
-
-
-
 
                     <Reveal>
                         <TextWithTitle
@@ -6980,23 +6978,6 @@ function GetLesson({
                         >
                         </NumberedDots>
                     </Reveal>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                     <Sizebox height={80} />
                     <Reveal>
@@ -7159,28 +7140,6 @@ function GetLesson({
                         </Report_Warning>
                         <Sizebox height={40}></Sizebox>
                     </Reveal>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                     <Reveal>
                         <HeaderWithLine headerColor={'#1F3C88'} lineColor={'#CADEFC'}>
@@ -8838,7 +8797,76 @@ function GetLesson({
                 </Reveal>
 
             </LessonPage>)
+        case -2: 
+            return (<LessonPage name={'Заключение'}>
 
+                <Sizebox height={40} />
+                <Reveal>
+                    <ImageWithText
+                        color={'white'}
+                        imageText={'Дальнейших Вам профессиональных успехов и процветания!'} 
+                        img={'https://corporate.waterlogic.com/fileadmin/_processed_/f/4/csm_banner-hands-shaking-3_c621f2a33f.jpg'} 
+                    />
+                </Reveal>
+
+                <Sizebox height={100} />
+                <Reveal>
+                    <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
+                        Завершение учебного курса
+                    </HeaderWithLine>
+                </Reveal>
+
+                <Sizebox height={100} />
+
+                <Reveal>
+                    <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
+                        Сертификат можете найти в личном кабинете
+                    </HeaderWithLine>
+                </Reveal>
+                <Sizebox height={100} />
+
+                <div className="stars" style={{
+                    display: 'flex',
+                    width: '100%',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    gap: '10px',
+                    marginBottom: '20px',
+                }}>
+                    {
+                        [0, 0, 0, 0, 0].map((star, index) => {
+                            const active = '#1F3C88';
+                            const nonActive = '#dddddd';
+                            const _color = stars >= index+1 ? active : nonActive;
+
+                            const handleClick = () => {
+                                setStars(index+1);
+                            }
+
+                            return <FaStar size={50} style={{color: _color, cursor: 'pointer'}} onClick={handleClick}/>
+                        })
+                    }
+                </div>
+                <Centered>
+                    <RandomParapraph>
+                        Оцените курс
+                    </RandomParapraph>
+                </Centered>
+                <Sizebox height={100} />
+
+                <Reveal>
+                    <NextLesson
+                        nextLessonName={'Личный кабинет'} 
+                        handleOnClick={() => {
+                            if (stars === 0) {
+                                alert('Оцените курс');
+                                return;
+                            }
+                            navigate('/profile/sertificates')
+                        }}
+                    />
+                </Reveal>
+            </LessonPage>)
     }
 
 }

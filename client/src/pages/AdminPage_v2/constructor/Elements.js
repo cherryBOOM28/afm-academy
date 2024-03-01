@@ -399,8 +399,9 @@ const Elements = {
             icon: imageWithTextIcon,
             inputs: [
                 { name: 'img', label: 'Изображение', type: 'file' },
-                { name: 'imageText', label: 'Текст', type: 'text' },
-                { name: 'children', label: 'Children', type: 'text' },
+                { name: 'imageText', label: 'Текст', type: 'textarea' },
+                // { name: 'children', label: 'Children', type: 'text' },
+                { name: 'version', label: 'Version', type: 'ignore' },
                 { name: 'color', label: 'Цвет', type: 'color' },
               ],
         }, //img, imageText or children, color
