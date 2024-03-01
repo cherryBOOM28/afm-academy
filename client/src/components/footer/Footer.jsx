@@ -49,6 +49,9 @@ function Footer({ email, phoneNumber }) {
                                     <p className={`${cl.footer__text} text-content`}>{t('address')}</p>
                                 </li>
                                 <li>
+                                    <p className={`${cl.footer__text} text-content`}>{t('addressfact')}</p>
+                                </li>
+                                <li>
                                     <a className={`${cl.footer__text} text-content`} href={`tel:${phoneNumber}`} onClick={handlePhoneClick}>тел. +7 708 716 8416</a>
                                 </li>
                                 <li>

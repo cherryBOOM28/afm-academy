@@ -308,6 +308,10 @@ const handlePhoneClick = () => {
                               </li>
                               <br />
                                 <li>
+                                    <p className={`textStyle`}>{t('addressfact')}</p>
+                              </li>
+                              <br />
+                                <li>
                                     <a className={`textStyle`} href={`tel:${phoneNumber}`} onClick={handlePhoneClick}>тел. +7 708 716 8416</a>
                               </li>
                               <br />

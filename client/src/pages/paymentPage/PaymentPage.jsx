@@ -45,9 +45,9 @@ function PaymentPage(props) {
         <div className={cl.wrapper}>
             <div className={cl.qr_wrapper}>
                 <div className={cl.headline}>
-                    <p className={cl.headline_text}>Халықаралык экономика және қаржы академиясы қызмет ақысын қалай төлейді</p>
+                    <p className={cl.headline_text}>"AML ACADEMY" қаржы мониторингі академиясы " АҚ қызмет ақысын қалай төлейді</p>
                     <div className={cl.line}></div>
-                    <p className={cl.headline_text}>Как оплатить услугу в Международная академия экономики и финансов</p>
+                    <p className={cl.headline_text}>Как оплатить услугу в АО «Академия финансового мониторинга «AML ACADEMY»</p>
                     {data !== null ? 
                         <p className={cl.headline_text}>{data.course_name}</p>
                         : null
@@ -95,13 +95,12 @@ function PaymentPage(props) {
                     <p className={cl.payment_text}>Произведите оплату по счету</p>
                     <div>
                         <p className={cl.payment}>
-                        АО «Международная академия экономики и финансов» г. 
-                        <br></br>Астана, ул. Ш. Уалиханова, 11 
-                        <br></br>БИН 190 840 027 374 
-                        <br></br>ИИК KZ7396503F0009487605 
-                        <br></br>в АО «ForteBank» 
-                        <br></br>БИК : IRTYKZKA 
-                        <br></br>Президент АО «МАЭФ» Мерзадинов Е.С.
+                            АО «Академия финансового мониторинга «AML ACADEMY»
+                        <br></br>Юридический адрес: ул. Ш. Уалиханова, 11
+                        <br></br>БИН 190 840 027 374
+                        <br></br>ИИК KZ67601A871023277481
+                        <br></br>в АО «Народный Банк Казахстан»
+                        <br></br>БИК : HSBKKZKX
                         </p>
                     </div>
                 </div>

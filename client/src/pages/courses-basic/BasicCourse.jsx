@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 
 import Footer from '../../components/footer/Footer';
 import DefaultHeader from '../../components/defaultHeader/DefaultHeader';
@@ -88,16 +89,16 @@ function BasicCourse() {
                 <Sizebox height={20}/>
                 <div className="collapsable-blocks">
                     <Collapsable title={'Что из себя представляет данный курс?'}>
-                        <p>Базовый курс включает в себя теоретический минимум, необходимый для всех видов СФМ.</p>
+                        <p>{data ? data.what_course_represents : "Загрузка..."}</p>
                     </Collapsable>
                     <Collapsable title={'Для кого предназначен курс?'}>
                         <p>
-                            Курс предназначен для тех субъектов, кто еще не знаком со сферой ПОД/ФТ и хотел бы ознакомиться с требованиями законодательства в отношении СФМ
+                            {data ? data.who_course_intended_for : "Загрузка..."}
                         </p>
                     </Collapsable>
                     <Collapsable title={'Длительность курса'}>
                         <p>
-                            Курс состоит из 16 академических часов, которые разделены на два учебных дня.
+                            {data ? data.what_is_duration : "Загрузка..."}
                         </p>
                     </Collapsable>
                     <Collapsable title={'Стоимость курса'}>
@@ -105,26 +106,21 @@ function BasicCourse() {
                             {data ? data.course_price : ''} тенге
                         </p>
                     </Collapsable>
-                    <Collapsable title={'Дата ближайшего курса'}>
+                    <Collapsable title={'Доступность курса'}>
                         <p>
-                            21.10.2023
+                            {data ? data.what_is_availability : "Загрузка..."}
                         </p>
                     </Collapsable>
-                    { data && data.modules && data.modules.length != 0 ? <Collapsable title={'Программа курса'}>
-                        <p style={{lineHeight: '23px'}}>
-                        {
-                            data.modules.map((module, index) => {
-
-                                // console.log(module)
-                                return <>{index+1}. {module.chapter_description}<br /></>
-
-                            })
-                        }
-                        </p>
-                    </Collapsable> : null }
+                    <Collapsable title={'Программа курса'}>
+                        {data ? (
+                            <div dangerouslySetInnerHTML={{ __html: data.what_is_agenda_of_course }} />
+                        ) : (
+                            "Загрузка..."
+                        )}
+                    </Collapsable>
                     <Collapsable title={'Что вы получите?'}>
                         <p>
-                            Доступ к просмотру записи лекции на 3 месяца, раздаточный материал, а также материалы лекции в личном кабинете
+                            {data ? data.what_you_will_get : "Загрузка..."}
                         </p>
                     </Collapsable>
                 </div>
