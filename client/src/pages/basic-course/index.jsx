@@ -296,82 +296,6 @@ function Basic_course(props) {
 
     return (
         <div className="basic-course">
-            {/* {
-                openFeedbackModal ? (
-                    <div className="modal">
-                        <div className="wrapper" onClick={(e) => {
-                            if (e.target.classList.contains("wrapper")) {
-                                handleCloseFeedbackModal()
-                            }
-                        }}>
-                            <div className="body">
-                                <div className="title">
-                                    <h1>Оцените курс</h1>
-                                    <MdClose className='close' size={30}  onClick={() => { handleCloseFeedbackModal() }}/>
-                                </div>
-
-                                <div className="stars" style={{
-                                    display: 'flex',
-                                    width: '100%',
-                                    flexDirection: 'row',
-                                    justifyContent: 'center',
-                                    gap: '10px',
-                                    marginBottom: '20px',
-                                }}>
-
-                                    {
-                                        [0, 0, 0, 0, 0].map((star, index) => {
-                                            const active = '#1F3C88';
-                                            const nonActive = '#dddddd';
-                                            const _color = stars >= index ? active : nonActive;
-
-                                            const handleClick = () => {
-                                                setStars(index);
-                                            }
-
-                                            return <FaStar size={50} style={{color: _color}} onClick={handleClick}/>
-                                        })
-                                    }
-                                </div>
-
-                                <div className="send-btn" onClick={() => { handleSendFeedback() }}>
-                                    Отправить
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ) : null
-            } */}
-            {/* {
-                openSertificateModal ? (
-                    <div className="modal">
-                        <div className="wrapper" onClick={(e) => {
-                            // console.log(e.target.classList.contains("wrapper"))
-                            if (e.target.classList.contains("wrapper")) {
-                                handleCloseModal();
-                            }
-                        }}>
-                            <div className="body">
-                                <div className="title">
-                                    <h1>Вы прошли курс!</h1>
-                                    <MdClose className='close' size={30}  onClick={() => { handleCloseModal() }}/>
-                                </div>
-
-                                <p>
-                                    Скачать сертификат можно в странице профиля
-                                </p>
-
-                                <div className="send-btn" onClick={() => {
-                                    handleCloseModal();
-                                    navigate('/profile/sertificates');
-                                }}>
-                                    Перейти к сертификатам
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ) : null
-            } */}
             <div className="course-wrapper">
                 {
                     openQuizModal ? (
@@ -415,24 +339,35 @@ function Basic_course(props) {
                     handleNavOpen={handleNavOpen}
                     courseName={courseName}
                 />
-                <div className="course-body">
-                    <CourseNavigation
-                        isNavOpen={isNavOpen}
-                        activeSessionId={activeSessionId}
-                        handleSessionClick={handleSessionClick}
-                        courseProgress={courseProgress}
-                        courseName={courseName}
-                    />
-
-                    <div className={isNavOpen ? "course-content open" : "course-content"}>
-                        <div className="content">
-                            {
-                                getLesson(activeSessionId)
-                            }
+                {
+                    isLoading ? (
+                        <div
+                            className='course-body loading'
+                        >
+                            <div>Загрузка...</div>
                         </div>
-                    </div>
+                    ) : (
+                        <div className="course-body">
+                            <CourseNavigation
+                                isNavOpen={isNavOpen}
+                                activeSessionId={activeSessionId}
+                                handleSessionClick={handleSessionClick}
+                                courseProgress={courseProgress}
+                                courseName={courseName}
+                                courseModules={modules}
+                            />
 
-                </div>
+                            <div className={isNavOpen ? "course-content open" : "course-content"}>
+                                <div className="content">
+                                    {
+                                        getLesson(activeSessionId)
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                    )
+                }
 
             </div>
         </div>
@@ -445,9 +380,14 @@ const CourseNavigation = ({
     handleSessionClick,
     courseProgress,
     courseName,
+    courseModules
 }) => {
 
     const [currentModule, setCurrentModule] = useState(1);
+
+    useEffect(() => {
+        console.log(courseModules)
+    }, [])
 
     const handleModuleOpen = (id) => {
         if (currentModule === id) {
@@ -563,7 +503,7 @@ const CourseNavigation = ({
                         isActive={64 === activeSessionId}
                     />
                     <Session
-                        // checked={modules[0].quiz.quiz_max_points === 100}
+                        checked={courseModules[0]?.quiz?.quiz_max_points === 100}
                         course_id={8}
                         session={{
                             id: 8,
@@ -670,6 +610,7 @@ const CourseNavigation = ({
                         isActive={72 === activeSessionId}
                     />
                     <Session
+                        checked={courseModules[1]?.quiz?.quiz_max_points === 100}
                         course_id={8}
                         session={{
                             id: 9,
@@ -806,6 +747,7 @@ const CourseNavigation = ({
                         isActive={82 === activeSessionId}
                     />
                     <Session
+                        checked={courseModules[4]?.quiz?.quiz_max_points === 100}
                         course_id={8}
                         session={{
                             id: 10,
@@ -852,6 +794,7 @@ const CourseNavigation = ({
                         isActive={84 === activeSessionId}
                     />
                     <Session
+                        checked={courseModules[6]?.quiz?.quiz_max_points === 100}
                         course_id={8}
                         session={{
                             id: 11,

@@ -8729,6 +8729,7 @@ function GetLesson({
                     handleQuizSuccesful={_handleQuizSuccesful}
                 ></TestPage>
             );
+       
         case 999:
             return (<LessonPage name={'Заключительная часть'} lecturer={'AML Academy'}>
                 <Reveal>

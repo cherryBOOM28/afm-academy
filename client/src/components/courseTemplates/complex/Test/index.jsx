@@ -30,6 +30,9 @@ function TestPage({
     useEffect(() => {
         // console.log("Questions", questions)
         console.log("Questions", questions)
+        setCurrQuestion(0);
+
+
         let _checkedQustions = questions ? questions.filter(question => question.mcqOption.length > 0).map(question => {
             return {
                 question: question.question_id,
@@ -40,7 +43,7 @@ function TestPage({
         // console.log(_checkedQustions)
 
         setCheckedQustions(_checkedQustions)
-    }, [])
+    }, [questions])
 
     const handleUpdatePairs = (matched) => {
         console.log(matched)
@@ -54,6 +57,19 @@ function TestPage({
         setMatchingPairAnswers(_matched)
         console.log(_matched)
     }
+
+    const handleAnswerClick = (answerId) => {
+        console.log(answerId)
+        if (finished) return;
+
+        setCheckedQustions(prevQuestions => {
+            const updatedQuestions = [...prevQuestions];
+            if (updatedQuestions[currQuestion]) {
+                updatedQuestions[currQuestion].answer = answerId;
+            }
+            return updatedQuestions;
+        });
+    };
 
     const finishTest = () => {
         // console.log(checkedQustions)
@@ -97,6 +113,10 @@ function TestPage({
 
     if (!questions || questions.length === 0 && checkedQustions != undefined) return null;
 
+    const handleCheck = (isChecked) => {
+        console.log(isChecked)
+    };
+
     return ( 
         <div className="testPage">
              <div className="test-wrapper">
@@ -109,13 +129,14 @@ function TestPage({
                         </div>
                         <div className="question-text">
                             <div>{questions[currQuestion]? questions[currQuestion].question_title : null}</div>
-                            <div className="question-img">{questions[currQuestion].image
+                            <div className="question-img">{questions[currQuestion]?.image
                             ? (
                                 <img src={questions[currQuestion].image} alt={questions[currQuestion].question_title} />
                             )
                             : null}</div>
                         </div>
                     </div>
+
                     {
                         questions[currQuestion] && questions[currQuestion].mcqOption 
                         && questions[currQuestion].mcqOption.length > 0
@@ -123,17 +144,7 @@ function TestPage({
                             <div className="question-body">
                             {
                                 questions[currQuestion] ? questions[currQuestion].mcqOption.map(answer => {
-                                    const handleAnswerClick = (answerId) => {
-                                        if (finished) return;
-
-                                        setCheckedQustions(prevQuestions => {
-                                            const updatedQuestions = [...prevQuestions];
-                                            if (updatedQuestions[currQuestion]) {
-                                                updatedQuestions[currQuestion].answer = answerId;
-                                            }
-                                            return updatedQuestions;
-                                        });
-                                    };
+                                    
 
                                     let isChecked = false;
 
@@ -145,7 +156,7 @@ function TestPage({
 
                                     return (
                                         <div className="test-answer" key={answer.mcq_option_id} onClick={() => handleAnswerClick(answer.mcq_option_id)}>
-                                            <div className={`checkbox ${isChecked ? 'checked' : null}`}>
+                                            <div className={`checkbox ${isChecked ? 'checked' : null}`} onClick={handleCheck}>
                                                 {isChecked ? <FaCheck /> : null}
                                             </div>
                                             <div className="answer-text">
@@ -317,7 +328,7 @@ const MatchingQuestion = ({ question_id, answers, handleUpdatePairs, finished })
                         if (!leftText && !rightText) return null;
 
                         return ( 
-                            <div className="row" key={id}>
+                            <div className="row" key={`${id}${leftText}${rightText}`}>
                                 <div className="left">
                                     {
                                         leftText 

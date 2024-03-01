@@ -35,8 +35,6 @@ export const Session = ({course_id, title, session, handleSessionClick, isActive
                     }
                 );
 
-                console.log(session.name, response)
-
                 if (response.status === 200) {
                     const _temp = response.data.filter(_session => _session.id === session.id);
                     if (_temp.length !== 0) {
@@ -76,7 +74,7 @@ export const Session = ({course_id, title, session, handleSessionClick, isActive
     )
 }
 
-export const TestSession = ({title, session, handleSessionClick, isActive, checked}) => {
+export const TestSession = ({session, handleSessionClick, isActive, checked}) => {
     const jwtToken = localStorage.getItem('jwtToken');
 
     return (
