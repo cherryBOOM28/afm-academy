@@ -141,7 +141,7 @@ const NewsTab = ({Width}) => {
             : styles.colorMode === "blue"
             ? "#9dd1ff"
                 : "#000",
-        width: {Width},
+        width: Width
       }}
     >
         {selectedRowBtn !== null && selectedItem && (
