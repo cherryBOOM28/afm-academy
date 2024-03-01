@@ -8786,6 +8786,9 @@ function GetLesson({
                                 Благодарим за внимание!                            </p>
                         </>
                     </Report_Information>
+                    <Sizebox height={60}></Sizebox>
+
+
                 </Reveal>
 
 
