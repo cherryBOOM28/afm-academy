@@ -237,12 +237,12 @@ function Basic_course(props) {
         fetchData();
     }, [activeSessionId])
     useEffect(() => {
-        // Проверяем, есть ли сохраненный урок в localStorage
-        const currentLesson = localStorage.getItem('currentLesson');
-        if (currentLesson) {
-            setActiveSessionId(parseInt(currentLesson));
-        }
-    }, []);
+    // Проверяем, есть ли сохраненный урок в localStorage
+    const currentLesson = localStorage.getItem('currentLesson');
+    if (currentLesson) {
+        setActiveSessionId(parseInt(currentLesson));
+    }
+}, []);
 
     const handleSessionClick = (id) => {
         scrollToTopAnimated();
