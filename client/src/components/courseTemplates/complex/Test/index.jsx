@@ -28,6 +28,7 @@ function TestPage({
     const [matchingPairAnswers, setMatchingPairAnswers] = useState([]);
 
     useEffect(() => {
+        // console.log("Questions", questions)
         console.log("Questions", questions)
         setCurrQuestion(0);
 
@@ -294,7 +295,6 @@ const MatchingQuestion = ({ question_id, answers, handleUpdatePairs, finished })
                 {
                     matched.map(answer => {
                         const id = answer.id;
-                        console.log(id)
 
                         return (
                             <div className="row" key={`${id}${answer.left_part}${answer.right_part}`} onClick={() => unmatchPairs(id)}>

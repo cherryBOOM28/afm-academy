@@ -393,7 +393,7 @@ function ProfileGeneral() {
             selectItems={getItems(
               localData ? localData["member_of_the_system"] : ""
             )}
-            label={"Вид СФМ"}
+            label={"Вид"}
             hint={"Участник системы"}
             handleChange={handleInfoChange}
           />

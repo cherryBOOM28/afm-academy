@@ -71,8 +71,6 @@ function Basic_course(props) {
     const [quizStatus, setQuizStatus] = useState('');
 
     const handleQuizFail = (isFatal) => {
-        console.log("WORKRKRKKRKRS")
-
         if (isFatal) setQuizStatus('fatal');
         else setQuizStatus('fail');
     
@@ -256,8 +254,6 @@ function Basic_course(props) {
                         },
                     }
                 );
-
-
                 if (response.status === 200) {
                     // console.log(response.data);
                 } else {
@@ -828,7 +824,7 @@ const CourseNavigation = ({
                             // course_id={course_id}
                             session={{
                                 id: -2,
-                                name: 'Заключение',
+                                name: 'Обратная связь',
                             }}
                             handleSessionClick={handleSessionClick}
                             isActive={-2 === activeSessionId}
