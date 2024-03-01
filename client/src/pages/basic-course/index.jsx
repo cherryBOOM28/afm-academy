@@ -236,10 +236,18 @@ function Basic_course(props) {
 
         fetchData();
     }, [activeSessionId])
+    useEffect(() => {
+        // Проверяем, есть ли сохраненный урок в localStorage
+        const currentLesson = localStorage.getItem('currentLesson');
+        if (currentLesson) {
+            setActiveSessionId(parseInt(currentLesson));
+        }
+    }, []);
 
     const handleSessionClick = (id) => {
         scrollToTopAnimated();
         setActiveSessionId(id);
+        localStorage.setItem('currentLesson', id.toString());
     }
 
     const CheckCurrentChapter = (chapterNum, nexChapter) => {
