@@ -122,7 +122,7 @@ const Registration = () => {
                             label={t('email')} 
                             hint={t('hintEmail')}
                         />
-                      {error && <div className="failedLogin">{error}</div>}
+                     
                         <InputField 
                             formData={formData} 
                             handleChange={handleChange} 
