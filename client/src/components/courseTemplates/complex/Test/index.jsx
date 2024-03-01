@@ -290,7 +290,7 @@ const MatchingQuestion = ({ question_id, answers, handleUpdatePairs, finished })
                         const id = answer.id;
 
                         return (
-                            <div className="row" key={`${id}${answer.left_part}${answer.right_part}`} onClick={() => unmatchPairs(id)}>
+                            <div className="row" key={id} onClick={() => unmatchPairs(id)}>
                                 <div className="left">
                                     <div className={`pair`}>
                                         { answer.left_part }

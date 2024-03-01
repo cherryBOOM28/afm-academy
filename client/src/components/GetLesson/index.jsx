@@ -8787,12 +8787,7 @@ function GetLesson({
                     </Report_Information>
                 </Reveal>
 
-                <Reveal>
-                    <Sizebox height={40}/>
-                    <NextLesson handleOnClick={() => {
-                        CheckCurrentChapter(id);
-                    }}/>
-                </Reveal>
+
 
             </LessonPage>)
         case -2: 

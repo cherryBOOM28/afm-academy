@@ -6,7 +6,7 @@ const VideoPlayer = () => {
       <iframe
         width="100%"
         height="100%"
-        src="https://www.youtube-nocookie.com/embed/PtLz0ZSKmBM?controls=0&amp"
+        src="https://videos.sproutvideo.com/embed/7090d7b41f1ee9c9f9/143d80e3bde17d37"
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
