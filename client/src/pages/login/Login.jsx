@@ -80,7 +80,7 @@ const Registration = () => {
         })
         .catch(error => {
             console.error('Registration failed:', error);
-            setError('Неправильный пароль или почта!!!')
+            setError('Учетные данные не распознаны!!!')
             console.log(error);
             if (error.response) {
                 setErrorMessage(error.response.data.error)
