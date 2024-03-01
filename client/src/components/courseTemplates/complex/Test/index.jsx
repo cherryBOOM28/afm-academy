@@ -28,7 +28,7 @@ function TestPage({
     const [matchingPairAnswers, setMatchingPairAnswers] = useState([]);
 
     useEffect(() => {
-        // console.log("Questions", questions)
+        console.log("Questions", questions)
         let _checkedQustions = questions ? questions.filter(question => question.mcqOption.length > 0).map(question => {
             return {
                 question: question.question_id,
@@ -162,6 +162,7 @@ function TestPage({
                         questions[currQuestion] && questions[currQuestion].matchingPairs
                         && questions[currQuestion].matchingPairs.length > 0
                         ? <MatchingQuestion 
+                            finished={finished}
                             answers={questions[currQuestion].matchingPairs}
                             question_id={questions[currQuestion].question_id}
                             handleUpdatePairs={handleUpdatePairs}
@@ -186,7 +187,7 @@ function TestPage({
     );
 }
 
-const MatchingQuestion = ({ question_id, answers, handleUpdatePairs }) => {
+const MatchingQuestion = ({ question_id, answers, handleUpdatePairs, finished }) => {
     const [_answers, _setUnswers] = useState(answers)
     const [right, setRight] = useState([])
     const [left, setLeft] = useState([])
@@ -196,6 +197,7 @@ const MatchingQuestion = ({ question_id, answers, handleUpdatePairs }) => {
     const [currRight, setCurrRight] = useState(null);
 
     useEffect(() => {
+        console.log(answers);
         const left = answers.map(answer => {
             const id = answer['matching_pair_id']
             const text = answer['leftPart']
@@ -254,8 +256,8 @@ const MatchingQuestion = ({ question_id, answers, handleUpdatePairs }) => {
 
     const unmatchPairs = (id) => {
         const pair = matched.filter(item => item.id === id)[0];
-        setLeft(prev => [...prev, { id: pair.leftId, text: pair.leftPart }]);
-        setRight(prev => [...prev, { id: pair.rightId, text: pair.rightPart }]);
+        setLeft(prev => [...prev, { id: pair.leftId, text: pair.left_part }]);
+        setRight(prev => [...prev, { id: pair.rightId, text: pair.right_part }]);
         setMatched(prev => prev.filter(item => item.id !== id));
     }
 
@@ -285,9 +287,10 @@ const MatchingQuestion = ({ question_id, answers, handleUpdatePairs }) => {
                 {
                     matched.map(answer => {
                         const id = answer.id;
+                        console.log(id)
 
                         return (
-                            <div className="row" key={id} onClick={() => unmatchPairs(id)}>
+                            <div className="row" key={`${id}${answer.left_part}${answer.right_part}`} onClick={() => unmatchPairs(id)}>
                                 <div className="left">
                                     <div className={`pair`}>
                                         { answer.left_part }
