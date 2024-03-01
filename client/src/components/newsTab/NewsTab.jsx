@@ -143,6 +143,23 @@ const NewsTab = () => {
             : "#000",
       }}
     >
+        {selectedRowBtn !== null && selectedItem && (
+        <div>
+          <div className="details-modal">
+          <div className="details-content">
+          <div style={{display:'block',textAlign:'right',width:'100%'}}> 
+          <button className="details-button1" onClick={() => handleShowDetailsBtn(null)}>X</button>
+          </div>
+              <div style={{textAlign:'center'}}>
+              <p className='details-info'>{selectedItem.name}</p>
+            {!imagesHidden && (<img src={selectedItem.image} alt="" className={'NewsModalImg'} />)}
+            <p className='details-description'>{selectedItem.description}</p>
+            </div>
+          </div>
+        </div>
+       </div>
+      )}
+      
       <div className={cl.tabButtons}>
         <button
           className={activeTab === "events" ? cl.active : ""}
@@ -176,6 +193,7 @@ const NewsTab = () => {
         >
           {t("news")} /
         </button>
+      
         <button
           className={activeTab === "videos" ? cl.active : ""}
           style={{
@@ -218,20 +236,7 @@ const NewsTab = () => {
         )}
       </div>
 
-      {selectedRowBtn !== null && selectedItem && (
-        <div>
-          <div className="details-modal">
-          <div className="details-content">
-          <div style={{display:'block',textAlign:'right',width:'100%'}}> 
-          <button className="details-button1" onClick={() => handleShowDetailsBtn(null)}>X</button>
-          </div>
-            <p className='details-info'>{selectedItem.name}</p>
-            {!imagesHidden && (<img src={selectedItem.image} alt="" className={'NewsModalImg'} />)}
-            <p className='details-info'>{selectedItem.description}</p>
-          </div>
-        </div>
-       </div>
-      )}
+     
     </div>
   );
 };

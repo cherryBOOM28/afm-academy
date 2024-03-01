@@ -505,7 +505,7 @@ function Home() {
               {t("news")}
             </p>
           </div>
-          <div id="modal-root"></div>
+         
 
           <NewsTab
             style={{
