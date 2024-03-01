@@ -3171,6 +3171,7 @@ function GetLesson({
                 </LessonPage>
             );
         case 8:
+            console.log(modules[0].quiz.quiz_max_points)
             return (
                 <TestPage
                     finished={modules[0].quiz.quiz_max_points === 100}

@@ -71,8 +71,6 @@ function Basic_course(props) {
     const [quizStatus, setQuizStatus] = useState('');
 
     const handleQuizFail = (isFatal) => {
-        console.log("WORKRKRKKRKRS")
-
         if (isFatal) setQuizStatus('fatal');
         else setQuizStatus('fail');
     
@@ -256,8 +254,6 @@ function Basic_course(props) {
                         },
                     }
                 );
-
-
                 if (response.status === 200) {
                     // console.log(response.data);
                 } else {
@@ -420,7 +416,6 @@ function Basic_course(props) {
                     courseName={courseName}
                 />
                 <div className="course-body">
-
                     <CourseNavigation
                         isNavOpen={isNavOpen}
                         activeSessionId={activeSessionId}
@@ -568,6 +563,7 @@ const CourseNavigation = ({
                         isActive={64 === activeSessionId}
                     />
                     <Session
+                        // checked={modules[0].quiz.quiz_max_points === 100}
                         course_id={8}
                         session={{
                             id: 8,

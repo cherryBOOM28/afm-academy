@@ -17,7 +17,7 @@ import axios from 'axios';
 import base_url from '../../settings/base_url';
 import { useAnimation, motion } from 'framer-motion';
 
-export const Session = ({course_id, title, session, handleSessionClick, isActive, checked}) => {
+export const Session = ({course_id, title, session, handleSessionClick, isActive, checked }) => {
     const sessionFinished = session.progress === 100;
     const [sessionChecked, setSessionChecked] = useState(false);
 
@@ -34,6 +34,8 @@ export const Session = ({course_id, title, session, handleSessionClick, isActive
                         },
                     }
                 );
+
+                console.log(session.name, response)
 
                 if (response.status === 200) {
                     const _temp = response.data.filter(_session => _session.id === session.id);

@@ -29,6 +29,7 @@ function TestPage({
 
     useEffect(() => {
         // console.log("Questions", questions)
+        console.log(finished)
         let _checkedQustions = questions ? questions.filter(question => question.mcqOption.length > 0).map(question => {
             return {
                 question: question.question_id,
