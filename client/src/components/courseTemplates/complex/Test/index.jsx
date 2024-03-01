@@ -113,6 +113,10 @@ function TestPage({
 
     if (!questions || questions.length === 0 && checkedQustions != undefined) return null;
 
+    const handleCheck = (isChecked) => {
+        console.log(isChecked)
+    };
+
     return ( 
         <div className="testPage">
              <div className="test-wrapper">
@@ -152,7 +156,7 @@ function TestPage({
 
                                     return (
                                         <div className="test-answer" key={answer.mcq_option_id} onClick={() => handleAnswerClick(answer.mcq_option_id)}>
-                                            <div className={`checkbox ${isChecked ? 'checked' : null}`}>
+                                            <div className={`checkbox ${isChecked ? 'checked' : null}`} onClick={handleCheck}>
                                                 {isChecked ? <FaCheck /> : null}
                                             </div>
                                             <div className="answer-text">
