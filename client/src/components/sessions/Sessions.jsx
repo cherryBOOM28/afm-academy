@@ -74,7 +74,7 @@ export const Session = ({course_id, title, session, handleSessionClick, isActive
     )
 }
 
-export const TestSession = ({title, session, handleSessionClick, isActive, checked}) => {
+export const TestSession = ({session, handleSessionClick, isActive, checked}) => {
     const jwtToken = localStorage.getItem('jwtToken');
 
     return (
