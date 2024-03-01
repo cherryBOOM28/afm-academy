@@ -14,7 +14,7 @@ import VisualModal from "../../components/VisualModal/VisualModal";
 import './NewsTab.scss'
 import { Block } from "@mui/icons-material";
 
-const NewsTab = () => {
+const NewsTab = ({Width}) => {
   const { styles } = useStyle();
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("news");
@@ -140,7 +140,8 @@ const NewsTab = () => {
             ? "#fff"
             : styles.colorMode === "blue"
             ? "#9dd1ff"
-            : "#000",
+                : "#000",
+        width: {Width},
       }}
     >
         {selectedRowBtn !== null && selectedItem && (

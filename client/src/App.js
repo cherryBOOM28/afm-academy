@@ -12,6 +12,7 @@ import Login from './pages/login/Login';
 import { StyleProvider } from './/components/VisualModal/StyleContext.jsx';
 import AdminPage_Main from './pages/AdminPage_v2/main/index.jsx';
 import Registration from './pages/registration/Registration';
+import NewsPage from './pages/News/News.jsx';
 
 const Home = lazy(() => import ('./pages/home/Home'))
 const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
@@ -101,6 +102,7 @@ function App() {
                             <Route path="/about" element={<Suspense ><AboutUs /></Suspense>}></Route>
                             <Route path="/management" element={<Suspense ><Management /></Suspense>}></Route>
                             <Route path="/contacts" element={<Suspense ><Contacts /></Suspense>}></Route>
+                            <Route path="/news-page" element={<Suspense ><NewsPage /></Suspense>}></Route>
                             <Route path="/privacy-policy" element={<Suspense ><PrivacyPolicy /></Suspense>}></Route>
                             <Route path="/academic-council" element={<Suspense ><AcademicCouncil /></Suspense>}></Route>
                             <Route path="/plans-and-reports" element={<Suspense ><PlansAndReports /></Suspense>}></Route>

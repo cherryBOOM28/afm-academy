@@ -424,7 +424,7 @@ const NavigationBar = (props) => {
           </div> */}
       
           <div className={'menuBox'}>
-              <a className={`menu ${props.dark? 'dark' : ''} text-content`} onClick={() => scrollToNews()}>{t('news')}</a>
+              <a className={`menu ${props.dark? 'dark' : ''} text-content`}  href='/news-page'>{t('news')}</a>
           </div>
           <div className={'menuBox'}>
         <a className={`menu ${props.dark ? 'dark' : ''} text-content`} >{t('ric')}</a>
