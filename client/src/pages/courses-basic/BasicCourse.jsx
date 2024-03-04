@@ -127,7 +127,7 @@ function BasicCourse() {
 
                 <h2 className='section-header'>Процесс обучения</h2>
                 <RoadList items={[
-                    <>  <div className='blue-btn1'>
+                    <div>  <div className='blue-btn1'>
                     {/* <div onClick={() => setShowModal(true)}>
                         Подать заявку
                     </div> */}
@@ -149,7 +149,7 @@ function BasicCourse() {
             
                 </div>
             
-               </>,
+               </div>,
                     'Оплата',
                     'Предоставление доступа к Личному кабинету',
                     // 'Добавление в закрытый чат с лектором',
