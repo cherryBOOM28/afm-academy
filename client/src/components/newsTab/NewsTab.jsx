@@ -146,15 +146,15 @@ const NewsTab = ({Width}) => {
     >
         {selectedRowBtn !== null && selectedItem && (
         <div>
-          <div className="details-modal">
-          <div className="details-content">
+          <div className="details-modal1">
+          <div className="details-content1">
           <div style={{display:'block',textAlign:'right',width:'100%'}}> 
-          <button className="details-button1" onClick={() => handleShowDetailsBtn(null)}>X</button>
+          <button className="details-button11" onClick={() => handleShowDetailsBtn(null)}>X</button>
           </div>
               <div style={{textAlign:'center'}}>
-              <p className='details-info'>{selectedItem.name}</p>
+              <p className='details-info1'>{selectedItem.name}</p>
             {!imagesHidden && (<img src={selectedItem.image} alt="" className={'NewsModalImg'} />)}
-            <p className='details-description'>{selectedItem.description}</p>
+            <p className='details-description1'>{selectedItem.description}</p>
             </div>
           </div>
         </div>
