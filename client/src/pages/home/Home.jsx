@@ -369,7 +369,50 @@ function Home() {
                   }}
                   >
                     {t("qualified experts")}
+                    </p>
+                    <p className={`${cl.advantages__text} text-content`}
+                  style={{
+                    color:
+                      styles.colorMode === "dark"
+                        ? "#fff"
+                        : styles.colorMode === "light"
+                        ? "#fff"
+                        : styles.colorMode === "blue"
+                        ? "#063462"
+                        : "#000",
+                  }}
+                  >
+                    {t("qualified experts1")}
+                    </p>
+                    <p className={`${cl.advantages__text} text-content`}
+                  style={{
+                    color:
+                      styles.colorMode === "dark"
+                        ? "#fff"
+                        : styles.colorMode === "light"
+                        ? "#fff"
+                        : styles.colorMode === "blue"
+                        ? "#063462"
+                        : "#000",
+                  }}
+                  >
+                    {t("qualified experts2")}
+                    </p>
+                    <p className={`${cl.advantages__text} text-content`}
+                  style={{
+                    color:
+                      styles.colorMode === "dark"
+                        ? "#fff"
+                        : styles.colorMode === "light"
+                        ? "#fff"
+                        : styles.colorMode === "blue"
+                        ? "#063462"
+                        : "#000",
+                  }}
+                  >
+                    {t("qualified experts3")}
                   </p>
+                    
                 </div>
                 <div className={cl.advantages_box}>
                   {!imagesHidden && <img src={bookIcon} alt="acc" />}
@@ -386,6 +429,48 @@ function Home() {
                   }}
                   >
                     {t("convenient learning format")}
+                    </p>
+                    <p className={`${cl.advantages__text} text-content`}
+                  style={{
+                    color:
+                      styles.colorMode === "dark"
+                        ? "#fff"
+                        : styles.colorMode === "light"
+                        ? "#fff"
+                        : styles.colorMode === "blue"
+                        ? "#063462"
+                        : "#000",
+                  }}
+                  >
+                    {t("convenient learning format1")}
+                    </p>
+                    <p className={`${cl.advantages__text} text-content`}
+                  style={{
+                    color:
+                      styles.colorMode === "dark"
+                        ? "#fff"
+                        : styles.colorMode === "light"
+                        ? "#fff"
+                        : styles.colorMode === "blue"
+                        ? "#063462"
+                        : "#000",
+                  }}
+                  >
+                    {t("convenient learning format2")}
+                    </p>
+                    <p className={`${cl.advantages__text} text-content`}
+                  style={{
+                    color:
+                      styles.colorMode === "dark"
+                        ? "#fff"
+                        : styles.colorMode === "light"
+                        ? "#fff"
+                        : styles.colorMode === "blue"
+                        ? "#063462"
+                        : "#000",
+                  }}
+                  >
+                    {t("convenient learning format3")}
                   </p>
                 </div>
                 </div>
