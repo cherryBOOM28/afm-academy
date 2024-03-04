@@ -45,6 +45,7 @@ import DropdownList_r5 from '../../../components/courseTemplates/complex/interac
 import OneToFour from '../../../components/courseTemplates/complex/interactives/OneToFour'
 import StageDropDown from '../../../components/courseTemplates/complex/StageDropDown'
 import ComplexTable from '../../../components/courseTemplates/common/ComplexTable'
+import DragAndDropComponent from '../../../components/courseTemplates/common/DoubleDraggableOption'
 
 const componentMap = {
     HeaderWithLine,
@@ -89,7 +90,8 @@ const componentMap = {
     QuizWithCardComponent,
     OneToFour,
     StageDropDown,
-    ComplexTable
+    ComplexTable,
+    DragAndDropComponent
     // Add other components here
 };
 

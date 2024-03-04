@@ -782,6 +782,32 @@
             }
         }
 
+        .DragAndDropOptions-input {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            margin-bottom: 20px;
+
+            > div {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+
+                > div:nth-child(1) {
+                    width: 60%;
+                }
+
+                > div:nth-child(2) {
+                    width: 40%;
+                }
+
+                input {
+                    width: 100%;
+                }
+            }
+        }
+
         .generic-table {
             width: 100%;
             overflow-x: auto;

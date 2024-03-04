@@ -60,7 +60,6 @@ export const Session = ({course_id, title, session, handleSessionClick, isActive
             onClick={() => handleSessionClick(session.id)}
         >
 
-            {/* <img src={AiFillFile} style={{color: 'white', background: 'white'}} alt="icon" /> */}
             <VscListSelection style={{color: 'white', fontSize: '28px'}} />
             <h6>{session.name}</h6>
             <div className="sessionProgress">
