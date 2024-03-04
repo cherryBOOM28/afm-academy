@@ -148,11 +148,14 @@ const NewsTab = ({Width}) => {
         <div>
           <div className="details-modal1">
           <div className="details-content1">
-          <div style={{display:'block',textAlign:'right',width:'100%'}}> 
+          
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ display:'flex', textAlign:'left',marginTop:'25px' }}>
+                <p className='details-info1'>{selectedItem.name}</p>
+                <span style={{textAlign:'right',justifyContent:'center'}}> 
           <button className="details-button11" onClick={() => handleShowDetailsBtn(null)}>X</button>
-          </div>
-              <div style={{textAlign:'center'}}>
-              <p className='details-info1'>{selectedItem.name}</p>
+          </span>
+              </div>
             {!imagesHidden && (<img src={selectedItem.image} alt="" className={'NewsModalImg'} />)}
             <p className='details-description1'>{selectedItem.description}</p>
             </div>
