@@ -216,6 +216,172 @@ function AboutUs() {
                   />
                 )}
               </div>
+                <p className={`${cl.headline} text-content caption`}>
+                  {t("mission_academy_a")}
+                </p>
+                <p className={`${cl.purposeOfAcademy__text} text-content subtitle`}>
+                  {t("mission_academy_b")}
+                </p>
+                <p className={`${cl.subtitle} text-content`}>{t("mission_academy_c")}</p>
+                <div className={cl.mainTasks}>
+                  <div className={cl.MainTask}>
+                    <p
+                        className={cl.numberf}
+                        style={{
+                          color:
+                              styles.colorMode === "dark"
+                                  ? "#fff"
+                                  : styles.colorMode === "light"
+                                      ? "#3A3939"
+                                      : styles.colorMode === "blue"
+                                          ? "#063462"
+                                          : "#000",
+                        }}
+                    >
+                      1
+                    </p>
+                    <p className={`${cl.tasks__text} text-content`}>
+                      {t("mission_academy_d")}
+                    </p>
+                  </div>
+                  <div className={cl.tasks}>
+                    <div className={cl.MainTask}>
+                      <p
+                          className={cl.numberf}
+                          style={{
+                            color:
+                                styles.colorMode === "dark"
+                                    ? "#fff"
+                                    : styles.colorMode === "light"
+                                        ? "#3A3939"
+                                        : styles.colorMode === "blue"
+                                            ? "#063462"
+                                            : "#000",
+                          }}
+                      >
+                        2
+                      </p>
+                      <p className={`${cl.tasks__text__small} text-content`}>
+                        {t("mission_academy_e")}
+                      </p>
+                    </div>
+
+                  </div>
+                  <div className={cl.tasks}>
+
+                  <div className={cl.MainTask}>
+                    <p
+                        className={cl.numberf}
+                        style={{
+                          color:
+                              styles.colorMode === "dark"
+                                  ? "#fff"
+                                  : styles.colorMode === "light"
+                                      ? "#3A3939"
+                                      : styles.colorMode === "blue"
+                                          ? "#063462"
+                                          : "#000",
+                        }}
+                    >
+                      3
+                    </p>
+                    <p className={`${cl.tasks__text} text-content`}>
+                      {t("mission_academy_f")}
+                    </p>
+                  </div>
+                </div>
+                </div>
+
+              <div className={cl.tasks}>
+                <div className={cl.MainTask}>
+                  <p
+                      className={cl.numberf}
+                      style={{
+                        color:
+                            styles.colorMode === "dark"
+                                ? "#fff"
+                                : styles.colorMode === "light"
+                                    ? "#3A3939"
+                                    : styles.colorMode === "blue"
+                                        ? "#063462"
+                                        : "#000",
+                      }}
+                  >
+                    4
+                  </p>
+                  <p className={`${cl.tasks__text__small} text-content`}>
+                    {t("mission_academy_g")}
+                  </p>
+                </div>
+
+              </div>
+              <div className={cl.tasks}>
+
+              <div className={cl.MainTask}>
+                <p
+                    className={cl.numberf}
+                    style={{
+                      color:
+                          styles.colorMode === "dark"
+                              ? "#fff"
+                              : styles.colorMode === "light"
+                                  ? "#3A3939"
+                                  : styles.colorMode === "blue"
+                                      ? "#063462"
+                                      : "#000",
+                    }}
+                >
+                  5
+                </p>
+                <p className={`${cl.tasks__text__middle} text-content`}>
+                  {t("mission_academy_h")}
+                </p>
+              </div>
+            </div><div className={cl.tasks}>
+
+              <div className={cl.MainTask}>
+                <p
+                    className={cl.numberf}
+                    style={{
+                      color:
+                          styles.colorMode === "dark"
+                              ? "#fff"
+                              : styles.colorMode === "light"
+                                  ? "#3A3939"
+                                  : styles.colorMode === "blue"
+                                      ? "#063462"
+                                      : "#000",
+                    }}
+                >
+                  6
+                </p>
+                <p className={`${cl.tasks__text__middle} text-content`}>
+                  {t("mission_academy_i")}
+                </p>
+              </div>
+            </div><div className={cl.tasks}>
+
+              <div className={cl.MainTask}>
+                <p
+                    className={cl.numberf}
+                    style={{
+                      color:
+                          styles.colorMode === "dark"
+                              ? "#fff"
+                              : styles.colorMode === "light"
+                                  ? "#3A3939"
+                                  : styles.colorMode === "blue"
+                                      ? "#063462"
+                                      : "#000",
+                    }}
+                >
+                  7
+                </p>
+                <p className={`${cl.tasks__text__middle} text-content`}>
+                  {t("mission_academy_j")}
+                </p>
+              </div>
+            </div>
             </div>
           </div>
           <div className={cl.container}>
@@ -236,6 +402,7 @@ function AboutUs() {
                 </p>
               </div>
             </div>
+
             <div className={cl.purposeOfAcademy}>
               <p className={`${cl.headline} text-content caption`}>
                 {t("purpose and objectives of the AML ACADEMY")}
