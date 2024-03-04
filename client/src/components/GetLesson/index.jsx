@@ -87,7 +87,6 @@ import image70 from './../../assets/images/afmlogo.png';
 import image71 from './../../assets/images/71image.png';
 import image74 from './../../assets/images/mvs.png';
 import image75 from './../../assets/images/troika2.png';
-import image111113 from './../../assets/images/finalfinal.png';
 import image76 from './../../assets/images/dola.png';
 import image77 from './../../assets/images/terrari.png';
 import image78 from './../../assets/images/websfm.png';
@@ -128,12 +127,6 @@ import image85 from '../../assets/images/image_85.jpg';
 import image84 from '../../assets/images/image_84.jpg';
 import image83 from '../../assets/images/image_83.png';
 import image_82 from '../../assets/images/image_82.jpg';
-import image81 from '../../assets/images/image_81.jpg';
-import image_80 from '../../assets/images/image_80.jpg';
-import image_79 from '../../assets/images/image_79.jpg';
-import image_78 from '../../assets/images/image_78.jpg';
-import image_77 from '../../assets/images/image_77.jpg';
-import image_76 from '../../assets/images/image_76.jpg';
 import image_1111 from '../../assets/images/88888.png';
 import courseaftor from '../../assets/images/courseAftor.png';
 import pdf1 from '../../assets/video/НОР ОД откр версия РУС (1).pdf'
@@ -156,7 +149,6 @@ import TwoColumnsDivider from '../courseTemplates/common_v2/TwoColumnsDivider';
 import TextWithBold from '../courseTemplates/common/TextWithBold';
 import Image from '../courseTemplates/common_v2/Image';
 import PyramidList from '../courseTemplates/common_v2/PyramidList';
-import AFM_logo from "../../assets/images/crypto_AFM.png";
 import FancyList from "../courseTemplates/common_v2/FancyList";
 import file1 from "../../assets/files/КоАП.pdf"
 import file2 from "../../assets/files/Закон о ПОДФТ.pdf"

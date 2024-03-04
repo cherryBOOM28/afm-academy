@@ -35,6 +35,7 @@ const Registration = () => {
 
     const [rememberMe, setRememberMe] = useState(true);
     const [openModal, setOpenModal] = useState(true);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         
@@ -73,19 +74,24 @@ const Registration = () => {
 
             setIsLoggedIn(true);
             setAuthUser(res.data.body.user);
+            setError('');
 
             navigate('/');
         })
         .catch(error => {
             console.error('Registration failed:', error);
+            setError('Неправильно указан логин или пароль!!!')
+            console.log(error);
             if (error.response) {
                 setErrorMessage(error.response.data.error)
                 // console.log('Server Error:', error.response.data);
             } else if (error.request) {
                 setErrorMessage(error.request.error)
+           
                 // console.log('Request Error:', error.request);
             } else {
                 setErrorMessage(error.message.error)
+                
                 // console.log('Error:', error.message);
             }
 
@@ -105,6 +111,7 @@ const Registration = () => {
 
                 <img className='logo' src={logo} alt="academy logo"/>
                 <h1>{t('welcome')}</h1>
+             
 
                 <div className="form-body">
                     <div className='fields'>
@@ -114,7 +121,8 @@ const Registration = () => {
                             name={'email'} 
                             label={t('email')} 
                             hint={t('hintEmail')}
-                            />
+                        />
+                     
                         <InputField 
                             formData={formData} 
                             handleChange={handleChange} 
@@ -124,6 +132,7 @@ const Registration = () => {
                             isPassword={true}
                             />
                     </div>
+                    {error && <div className="failedLogin">{error}</div>}
                     <div className='actions'>
                         {/* <div className='remember-me'>
                             <div>
@@ -137,6 +146,8 @@ const Registration = () => {
                             </div>
                         </div> */}
                         <div className='reg-btn' onClick={(event) => handleSubmit(event)}>{t('login')}</div>
+                        
+
                         <div className='have-account'><Link to={'/registration'}><span>{t('newaccount')}</span></Link></div>
                     </div>
                 </div>

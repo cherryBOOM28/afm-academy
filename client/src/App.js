@@ -2,6 +2,7 @@ import { useState, useEffect,lazy,Suspense,startTransition } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import PrivateRoute from './auth/PrivateRoute';
+import AdminRoute from './auth/AdminRoute.jsx';
 import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
 import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigationCourse/index.jsx';
@@ -160,10 +161,14 @@ function App() {
 
                             {/* <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={CreateCoursePage} />}/> */}
                             {/* <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={EditCatalog} />}/> */}
-                            <Route path='/createcourse' element={<CreateCoursePage/>}/>
-                            <Route path='/manager' element={<EditCatalog/>} />
+                            {/* <Route path='/createcourse' element={<CreateCoursePage/>}/>
+                            <Route path='/manager' element={<EditCatalog />} /> */}
+                            <Route path='/manager' element={<AdminRoute component={EditCatalog} shouldBeLoggedIn={true} redirect={'/'} />} />
+                            <Route path='/createcourse' element={<AdminRoute component={CreateCoursePage} shouldBeLoggedIn={true} redirect={'/'} />}/>
+                            <Route path='/new-admin-page' element={<AdminRoute component={AdminPage_Main} shouldBeLoggedIn={true} redirect={'/'} />}/>
+                            
 
-                            <Route path='/new-admin-page' element={<AdminPage_Main/>} />
+                            {/* <Route path='/new-admin-page' element={<AdminPage_Main/>} /> */}
                         </Routes>
                     </BrowserRouter>
                 </AuthProvider>

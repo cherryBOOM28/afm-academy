@@ -1,16 +1,26 @@
-import { Route, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const MustBeAdmin = ({ component: Component, shouldBeLoggedIn, redirect='/' }) => {
     const { isLoggedIn } = useAuth();
-    const role = localStorage.getItem('role')
+    const [role, setRole] = useState(null);
 
     useEffect(() => {
+        const checkRole = async () => {
+            const userRole = localStorage.getItem('role');
+            setRole(userRole);
+        };
+        checkRole();
         // console.log(isLoggedIn, shouldBeLoggedIn)
-    }, [])
+    }, [isLoggedIn])
+    
+    if (role === null) {
+        // Роль еще не загружена, пока ждем...
+        return null;
+    }
 
-    if (role == 'ROLE_ADMIN' && isLoggedIn ) {
+    if (role === 'ROLE_ADMIN' && isLoggedIn ) {
         return <Component />
     }
     if (!isLoggedIn && shouldBeLoggedIn) {

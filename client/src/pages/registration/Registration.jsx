@@ -25,6 +25,7 @@ import base_url from '../../settings/base_url';
 import { Box, Modal } from '@mui/material';
 
 import { useTranslation } from 'react-i18next';
+import { red } from '@mui/material/colors';
 
 
 const Registration = () => {
@@ -45,6 +46,7 @@ const Registration = () => {
         member_of_the_system: 'Государственные органы-регуляторы',
         type_of_member: '',
     });
+    const [requiredFields, setRequiredFields] = useState({});
 
     useEffect(() => {
         
@@ -62,6 +64,17 @@ const Registration = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const missingFields = {};
+        if (!formData['firstname']) {
+            missingFields['firstname'] = true;
+        }
+        if (!formData['lastname']) {
+            missingFields['lastname'] = true;
+        }
+        if (Object.keys(missingFields).length > 0) {
+            setRequiredFields(missingFields);
+            return;
+        }
 
         // console.log(formData['password'], formData['confirm_password'])
 
@@ -165,8 +178,9 @@ const Registration = () => {
 
                 <div className="form-body">
                     <div className='fields'>
-                        <InputField formData={formData} handleChange={handleChange} name={'firstname'} label={t('firstname')} hint={t('hintFirstname')}/>
-                        <InputField formData={formData} handleChange={handleChange} name={'lastname'} label={t('lastname')} hint={t('hintLastname')}/>
+                        <InputField formData={formData} handleChange={handleChange} name={'firstname'} label={t('firstname')} hint={t('hintFirstname')} required={requiredFields['firstname']} />
+                        {requiredFields['firstname'] && <div className='failedLogin' style={{position:'absolute',color:'red',top:'290px',marginLeft:'10px'}}>{t('requiredField')}</div>}
+                        <InputField formData={formData} handleChange={handleChange} name={'lastname'} label={t('lastname')} hint={t('hintLastname')} required={requiredFields['lastname']} />
                         <InputField formData={formData} handleChange={handleChange} name={'patronymic'} label={t('patronymic')} hint={t('hintPatronymic')}/>
                         <InputField formData={formData} handleChange={handleChange} isPassword={true} name={'password'} label={t('password')} hint={t('hintPassword')}/>
                         <InputField formData={formData} handleChange={handleChange} isPassword={true} name={'confirm_password'} label={t('confirm_password')} hint={t('hintConfirm_password')}/>
@@ -236,7 +250,7 @@ const SelectField = ({ name, label, selectItems, formData, handleChange }) => {
     )
 }
 
-const InputField = ({ name, label, hint, isPassword, formData, handleChange }) => {
+const InputField = ({ name, label, hint, isPassword, formData, handleChange, required }) => {
     const [showPassword, setShowPassword] = useState(
         isPassword
     );
@@ -253,6 +267,7 @@ const InputField = ({ name, label, hint, isPassword, formData, handleChange }) =
                                 : 'text'}
                     name={name}
                     onChange={(e) => handleChange(e, name)}
+                    required={required}
                 />
                 {isPassword 
                     ? (
