@@ -72,6 +72,25 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
       }))
     }
 
+
+    if (inputs.some((x) => x.type === 'DragAndDropOptions')) {
+      console.log('works')
+      setValues(prevValues => {
+       
+        return {
+          ...prevValues,
+          'answerOptions': [
+            { id: 1, text: '' },
+            { id: 2, text: '' }
+          ],
+          'fieldOptions': [
+            { text: '', correctId: 1 },
+            { text: '', correctId: 2 }
+          ]
+        }
+      })
+    }
+
     if (inputs.some((x) => x.name === 'stages')) {
       setValues(prevValues => ({
         ...prevValues,
@@ -2106,6 +2125,112 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                         })
                       }}
                     >Добавить элемент</button>
+                  </div>
+                )
+                : input.type === 'DragAndDropOptions' 
+                ? (
+                  <div className="DragAndDropOptions-input">
+                    <div>
+                      <div>Ответ</div>
+                      <div>Сторона</div>
+                    </div>
+
+                    <div>
+                      <div>
+                        <input 
+                          type="text"
+                          value={
+                            values?.answerOptions 
+                              ? values?.answerOptions[0] 
+                                ? values?.answerOptions[0].text
+                                : 'text'
+                              : 'text2'
+                          }
+                          onChange={(e) => {
+                            setValues(prevValues => {
+                              const updated = prevValues.answerOptions;
+                              updated[0].text = e.target.value;
+
+                              return {
+                                ...prevValues,
+                                ['answerOptions']: updated
+                              }
+                            })
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <input 
+                          type="text"
+                          value={
+                            values?.fieldOptions 
+                              ? values?.fieldOptions[0] 
+                                ? values?.fieldOptions[0].text
+                                : 'text'
+                              : 'text2'
+                          }
+                          onChange={(e) => {
+                            setValues(prevValues => {
+                              const updated = prevValues.fieldOptions;
+                              updated[0].text = e.target.value;
+
+                              return {
+                                ...prevValues,
+                                ['fieldOptions']: updated
+                              }
+                            })
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        <input 
+                          type="text"
+                          value={
+                            values?.answerOptions 
+                              ? values?.answerOptions[1] 
+                                ? values?.answerOptions[1].text
+                                : 'text'
+                              : 'text2'
+                          }
+                          onChange={(e) => {
+                            setValues(prevValues => {
+                              const updated = prevValues.answerOptions;
+                              updated[1].text = e.target.value;
+
+                              return {
+                                ...prevValues,
+                                ['answerOptions']: updated
+                              }
+                            })
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <input 
+                          type="text"
+                          value={
+                            values?.fieldOptions 
+                              ? values?.fieldOptions[1] 
+                                ? values?.fieldOptions[1].text
+                                : 'text'
+                              : 'text2'
+                          }
+                          onChange={(e) => {
+                            setValues(prevValues => {
+                              const updated = prevValues.fieldOptions;
+                              updated[1].text = e.target.value;
+
+                              return {
+                                ...prevValues,
+                                ['fieldOptions']: updated
+                              }
+                            })
+                          }}
+                        />
+                      </div>
+                    </div>
                   </div>
                 )
                 : (

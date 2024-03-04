@@ -1,18 +1,30 @@
 // DragAndDropComponent.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.scss';
 
-const initialAnswers = [
-  { id: 1, text: 'если сумма операции равна или превышает сумму, установленную Законом о ПОД/ФТ;' },
-  { id: 2, text: 'подлежат финансовому мониторингу независимо от формы их осуществления и суммы, на которую они совершены либо могут или могли быть совершены.' }
-];
+const DragAndDropComponent = (
+  {
+    answerOptions = [
+      { id: 1, text: 'если сумма операции равна или превышает сумму, установленную Законом о ПОД/ФТ;' },
+      { id: 2, text: 'подлежат финансовому мониторингу независимо от формы их осуществления и суммы, на которую они совершены либо могут или могли быть совершены.' }
+    ],
+    fieldOptions = [
+      { text: '- пороговые операции', correctId: 1 },
+      { text: '- подозрительные операции', correctId: 2 }
+    ]
+  }
+) => {
 
-const DragAndDropComponent = () => {
-  const [answers, setAnswers] = useState(initialAnswers);
+  
+  const [answers, setAnswers] = useState(answerOptions);
   const [fields, setFields] = useState({ field1: [], field2: [] });
   const [isCorrect, setIsCorrect] = useState(false);
   const [showResetButton, setShowResetButton] = useState(false);
+  
+  const [_fieldOptions, setFieldOptions] = useState(fieldOptions);
 
+  const [isLoading, setLoading] = useState(true);
+  
   const handleDragStart = (event, answer) => {
     event.dataTransfer.setData('text/plain', answer.id.toString());
   };
@@ -34,8 +46,8 @@ const DragAndDropComponent = () => {
   const checkAnswers = () => {
     if (fields.field1.length === 1 && fields.field2.length === 1) {
       const allCorrect =
-        fields.field1[0].id === 1 &&
-        fields.field2[0].id === 2;
+        fields.field1[0].id === _fieldOptions[0].correctId &&
+        fields.field2[0].id === _fieldOptions[1].correctId;
 
       setIsCorrect(allCorrect);
       setShowResetButton(true);
@@ -51,6 +63,20 @@ const DragAndDropComponent = () => {
     setShowResetButton(false);
   };
 
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+    return array;
+  }
+
+  if (!isLoading) {
+    return (
+      <p>Загрузка...</p>
+    )
+  }
+
   return (
     <div className={`drag-and-drop-component ${isCorrect ? 'correctDouble' : ''}`}>
       <div className="description">
@@ -62,19 +88,20 @@ const DragAndDropComponent = () => {
           onDragOver={handleDragOver}
           onDrop={(event) => handleDrop(event, 'field1')}
         >
-          <div>- пороговые операции</div>
+          <div>{_fieldOptions[0]? _fieldOptions[0].text : 'Text 1'}</div>
           {fields.field1.map((answer) => (
             <div key={answer.id} className="dragged-answer">
               {answer.text}
             </div>
           ))}
         </div>
+        {console.log(_fieldOptions)}
         <div
           className={`answer-field ${fields.field2.length > 0 ? 'dropped' : ''} ${isCorrect ? 'correct' : ''}`}
           onDragOver={handleDragOver}
           onDrop={(event) => handleDrop(event, 'field2')}
         >
-          <div>- подозрительные операции </div>
+          <div>{_fieldOptions[1] ? _fieldOptions[1].text : 'Text 2'}</div>
           {fields.field2.map((answer) => (
             <div key={answer.id} className="dragged-answer">
               {answer.text}
@@ -83,7 +110,7 @@ const DragAndDropComponent = () => {
         </div>
       </div>
       <div className="options-container">
-        {answers.map((answer) => (
+        {shuffleArray([...answers]).map((answer) => (
           <div
             key={answer.id}
             className="option"

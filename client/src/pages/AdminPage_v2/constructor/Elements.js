@@ -103,6 +103,7 @@ import DragAndDropTwoSideExample from './../../../assets/images/Template Example
 import CustomCarouselExample from './../../../assets/images/Template Examples/CustomCarousel.png'
 import StageDropDown from '../../../components/courseTemplates/complex/StageDropDown'
 import ComplexTable from '../../../components/courseTemplates/common/ComplexTable'
+import DragAndDropComponent from '../../../components/courseTemplates/common/DoubleDraggableOption'
 
 
 const Elements = {
@@ -614,6 +615,15 @@ const Elements = {
                 { name: 'strokeColor', label: 'Цвет заголовка', type: 'color' },
                 { name: 'items', label: 'Элементы списка', type: 'data:5' },
                 { name: 'headers', label: 'Группы', type: 'ignore' },
+            ]
+        },
+        'Задание с перетаскиванием(2)': {
+            component: DragAndDropComponent,
+            example: null,
+            name: 'DragAndDropComponent',
+            icon: norNumberedDotsIcon,
+            inputs: [
+                { name: 'answerOptions', label: 'Ответы', type: 'DragAndDropOptions'},
             ]
         }
     }

@@ -5527,7 +5527,17 @@ function GetLesson({
                                 'Чем отличается подозрительная операция от пороговой? (Курсором мышки перенесите описания под соответствующие определения.)'
                             }
                         ></TextWithTitle>
-                        <DoubleDraggableOption></DoubleDraggableOption>
+
+                        <DoubleDraggableOption
+                            answerOptions={[
+                                { id: 1, text: 'если сумма операции равна или превышает сумму, установленную Законом о ПОД/ФТ;' },
+                                { id: 2, text: 'подлежат финансовому мониторингу независимо от формы их осуществления и суммы, на которую они совершены либо могут или могли быть совершены.' }
+                              ]}
+                              fieldOptions={[
+                                { text: '- пороговые операции', correctId: 1 },
+                                { text: '- подозрительные операции', correctId: 2 }
+                              ]}
+                        ></DoubleDraggableOption>
                         <Sizebox height={40} />
                         <TextWithTitle
                             text={
