@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -21,6 +21,7 @@ const NewsTab = ({Width}) => {
   const [newsData, setNewsData] = useState([]);
   const [imagesHidden, setImagesHidden] = useState(false);
   const [selectedRowBtn, setSelectedRowBtn] = useState(null);
+  const modalRef = useRef();
   const [settings, setSettings] = useState({
     dots: true,
     infinite: true,
@@ -28,6 +29,22 @@ const NewsTab = ({Width}) => {
     slidesToShow: 3,
     slidesToScroll: 1,
   });
+  const handleClickOutside = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      setSelectedRowBtn(null); // Закрытие модального окна
+    }
+  };
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      handleClickOutside(event);
+    };
+  
+    document.addEventListener('mousedown', handleOutsideClick);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -129,7 +129,7 @@ function LearningFormatTabs({ text }) {
           }}
           onClick={() => handleTabClick(1)}
         >
-          {!imagesHidden && <img style={{width:'20%',}} src={courseImg} alt="" />}
+          {!imagesHidden && <img style={{width:'18%',}} src={courseImg} alt="" />}
           <div className="nameTab">
           {t("remote")}
           </div>
@@ -150,7 +150,7 @@ function LearningFormatTabs({ text }) {
           }}
           onClick={() => handleTabClick(2)}
         >
-          {!imagesHidden && <img style={{width:'20%',}} src={courseImg2} alt="" />}
+          {!imagesHidden && <img style={{width:'18%',}} src={courseImg2} alt="" />}
           <div className="nameTab">
             {t("online")}
           </div>
@@ -171,7 +171,7 @@ function LearningFormatTabs({ text }) {
           }}
           onClick={() => handleTabClick(3)}
         >
-          {!imagesHidden && <img style={{width:'20%',}} src={courseImg3} alt="" />}
+          {!imagesHidden && <img style={{width:'18%',}} src={courseImg3} alt="" />}
           <div className="nameTab">
             {t("offline")}
           </div>
