@@ -127,7 +127,29 @@ function BasicCourse() {
 
                 <h2 className='section-header'>Процесс обучения</h2>
                 <RoadList items={[
-                    'Подача заявки',
+                    <>  <div className='blue-btn1'>
+                    {/* <div onClick={() => setShowModal(true)}>
+                        Подать заявку
+                    </div> */}
+                
+                    <div>
+                        {
+                            jwtToken != null
+                            ? (
+                                <Link to={`/payment/${id}`} style={{ color: 'white', textDecoration: 'none' }}>
+                                    Приобрести курс
+                                </Link>
+                            ) : (
+                                <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
+                                    Приобрести курс
+                                </Link>
+                            )
+                        }
+                    </div>
+            
+                </div>
+            
+               </>,
                     'Оплата',
                     'Предоставление доступа к Личному кабинету',
                     // 'Добавление в закрытый чат с лектором',

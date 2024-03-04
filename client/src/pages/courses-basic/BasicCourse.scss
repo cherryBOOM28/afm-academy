@@ -107,5 +107,35 @@
                 }
             }
         }
+        .blue-btn1 {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: flex-end;
+
+          
+
+            > div {
+                padding: 8px 22px;
+            
+                font-family: Inter;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 19px;
+                letter-spacing: 0em;
+                text-align: left;
+                
+                background-color: #1F3C88;
+                color: white;
+
+                border-radius: 5px;
+
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
     }
 }
