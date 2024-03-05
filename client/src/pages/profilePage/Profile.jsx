@@ -193,12 +193,13 @@ function Profile(props) {
     // handleOpenModal();
   };
 
-  const handleSendFeedback = () => {
+  const handleSendFeedback = (courseId) => {
     const fetchData = async () => {
       try {
         const data = {
           comment: feedbackText,
-          rate: 5,
+          courseId: courseId// Предполагается, что feedbackText содержит текст комментария
+          // Здесь можно добавить другие поля, если они есть в courseComments
         };
         const config = {
           headers: {
@@ -206,15 +207,16 @@ function Profile(props) {
           },
         };
 
-        // console.log(`${base_url}/api/aml/course/createCourseComments/1`, data, config)
+        console.log(`${base_url}/api/aml/course/createCourseComments/${courseId}`, data, config)
         const response = await axios.post(
-          `${base_url}/api/aml/course/createCourseComments/1`,
+          `${base_url}/api/aml/course/createCourseComments/${courseId}`,
           data,
           config
         );
+  
 
         if (response.status === 200) {
-          // console.log(response.data)
+          console.log('posted successfully'+response.status)
         } else {
           // console.log(response.statusText)
         }
@@ -326,7 +328,7 @@ function Profile(props) {
               <div
                 className="send-btn text-content"
                 onClick={() => {
-                  handleSendFeedback();
+                  handleSendFeedback(8);
                 }}
               >
                 Отправить
