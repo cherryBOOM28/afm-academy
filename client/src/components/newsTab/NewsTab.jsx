@@ -25,9 +25,12 @@ const NewsTab = ({Width}) => {
   const [settings, setSettings] = useState({
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 2000,
     slidesToShow: 3,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    pauseOnHover: true
   });
   const handleClickOutside = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -45,6 +48,25 @@ const NewsTab = ({Width}) => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, []);
+  const selectedItem = newsData.find((item) => item.id === selectedRowBtn);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const modal = document.getElementById('Modal');
+      const buttons = document.getElementsByTagName('button');// Получаем ссылку на элемент модального окна
+      if ((modal && !modal.contains(event.target)) && (!Array.from(buttons).some(button => button === event.target))) {
+        // Проверяем, был ли клик выполнен вне модального окна
+        handleShowDetailsBtn(null)
+      }
+    };
+
+    // Добавляем обработчик события клика на документе
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      // Удаляем обработчик события клика при размонтировании компонента
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [selectedItem]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -135,7 +157,7 @@ const NewsTab = ({Width}) => {
     );
   };
 
-  const selectedItem = newsData.find((item) => item.id === selectedRowBtn);
+  
 
   return (
     <div
@@ -162,7 +184,7 @@ const NewsTab = ({Width}) => {
       }}
     >
         {selectedRowBtn !== null && selectedItem && (
-        <div>
+        <div id="Modal">
           <div className="details-modal1">
           <div className="details-content1">
           
