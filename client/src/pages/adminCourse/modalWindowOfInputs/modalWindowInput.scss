@@ -618,12 +618,36 @@
                     .btn-underline {
                         text-decoration: underline;
                     }
+
+                    .btn-highlight {
+                        color: #fff;
+                        font-size: 1rem;
+                        font-weight: 600;
+                        background-color: #30abc7;
+                    }
                 }
 
                 textarea {
                     width: 100%;
                     min-height: 300px;
                     height: max-content;
+                }
+            }
+        }
+
+        .data-rows-input {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            > div {
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+
+                input, textarea {
+                    width: 100%;
+                    border: 2px solid black;
                 }
             }
         }

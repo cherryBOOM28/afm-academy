@@ -9,7 +9,7 @@ function RandomParapraph({ children, color, fontSize }) {
     // Function to parse children and wrap **text** with <span>
     const parseText = (text) => {
         // Regex to find **bold** and ||italic|| text
-        const regex = /(\|b\|(.*?)\|b\|)|(\|i\|(.*?)\|i\|)|(\|u\|(.*?)\|u\|)/g;
+        const regex = /(\|b\|(.*?)\|b\|)|(\|i\|(.*?)\|i\|)|(\|u\|(.*?)\|u\|)|(\|h\|(.*?)\|h\|)/g;
         
         // Splitting text and capturing groups for bold and italic
         let parts = [];
@@ -28,6 +28,21 @@ function RandomParapraph({ children, color, fontSize }) {
                 parts.push(<span key={parts.length} className="italic">{match[4].indexOf("\|") !== -1 ? parseText(match[4]) : match[[4]]}</span>);
             } else if (match[5]) {
                 parts.push(<span key={parts.length} className="underline">{match[6].indexOf("\|") !== -1 ? parseText(match[6]) : match[6]}</span>);
+            } else if (match[7]) {
+                parts.push(
+                <span 
+                    key={parts.length} 
+                    className="highlight" 
+                    randomtext={
+                        "(" + match[8].substring(match[8].indexOf('[')+1, match[8].indexOf(']')) + ")"
+                    }
+                >
+                    {
+                        match[8].indexOf("\|") !== -1 
+                            ? parseText(match[8]) 
+                            : match[8].substring(0, match[8].indexOf('['))
+                    }
+                </span>);
             }
             
             lastIndex = match.index + match[0].length;

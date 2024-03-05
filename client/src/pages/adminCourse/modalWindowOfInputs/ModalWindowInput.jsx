@@ -286,7 +286,9 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
       setValues((prevValues) => ({
         ...prevValues,
         'columns': exValues?.columns || ['Первая колонна', 'Вторая колонна'],
-        'data': exValues?.data || [['Значение', 'Значение']],
+        'data': exValues?.data || [
+          // {'Первая колонна': '', 'Вторая колонна': ''}
+        ],
       }));
     } else if (hasIconInput && hasDataInput) {
       setValues((prevValues) => ({
@@ -2233,6 +2235,133 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                     </div>
                   </div>
                 )
+                : input.type === 'data_rows'
+                ? (
+                  <div className="data-rows-input">
+                    {
+                      values?.data?.map((item, index) => {
+
+                        console.log(item);
+
+                        const isSpan = item.colSpan === 3 ? true : false;
+
+                        return (
+                          <div>
+                            {
+                              values?.columns?.map((key, keyIndex) => {
+
+                                if (isSpan) {
+                                  if (keyIndex === 0) {
+                                    <input 
+                                      key={index}
+                                      type='text'
+                                      value={item[key]}
+                                      onChange={(e) => {
+                                        console.log(index, key, e.target.value)
+                                        setValues(prevValues => {
+                                          const updated = prevValues.data;
+                                          updated[index][key] = e.target.value;
+
+                                          return {
+                                            ...prevValues,
+                                            ['data']: updated
+                                          }
+
+                                        })
+                                      }}
+                                    />
+                                  } else {
+                                    return null;
+                                  }
+                                }
+
+                                return (
+                                  <textarea 
+                                    key={keyIndex}
+                                    type='text'
+                                    value={item[key]}
+                                    onChange={(e) => {
+                                      let newValue = e.target.value;
+
+                                      setValues(prevValues => {
+                                        const updated = prevValues.data;
+                                        updated[index][key] = newValue;
+
+                                        return {
+                                          ...prevValues,
+                                          ['data']: updated
+                                        }
+
+                                      })
+                                    }}
+                                  />
+                                )
+                              })
+                            }
+                          </div>
+                        )
+                      })
+                    }
+                    {
+                      values?.data !== undefined && values?.data !== null
+                      && values?.data.length === 0
+                        ? <p>Перед тем как добавить ряд, добавьте и заполните все колонки</p>
+                        : null
+                    }
+                    <button
+                      onClick={e => {
+                        const newRow = values?.columns?.reduce((acc, currentValue) => {
+                          acc[currentValue] = '';
+                          return acc;
+                        }, {});
+
+                        setValues(prevValues => {
+
+                          return {
+                            ...prevValues,
+                            ['data']: [
+                              ...prevValues['data'],
+                              newRow
+                            ]
+                          }
+
+                        })
+                      }}
+                    >
+                      Добавить ряд со всеми колонками
+                    </button>
+                    <button
+                      onClick={e => {
+                        const newKey = values?.columns 
+                          ? values?.columns.length !== 0
+                            ? values?.columns[0]
+                            : 'key'
+                          : 'key1'
+
+                        console.log(newKey);
+
+                        const newRow = {
+                          colSpan: 3,
+                          [values?.columns[0]]: ''
+                        }
+
+                        setValues(prevValues => {
+
+                          return {
+                            ...prevValues,
+                            ['data']: [
+                              ...prevValues['data'],
+                              newRow
+                            ]
+                          }
+
+                        })
+                      }}
+                    >
+                      Добавить ряд с 1 колонкой
+                    </button>
+                  </div>
+                )
                 : (
                   <div key={input.name} className='default-input'>
                     <label>{input.label}</label>
@@ -2344,6 +2473,10 @@ const Formatable_Textarea = ({
             className='btn-underline'
             onClick={() => wrapSelected('|u|', '|u|')}
           >П</button>
+          <button 
+            className='btn-highlight'
+            onClick={() => wrapSelected('|h|', '[Вставьте скрытый текст сюда]|h|')}
+          >H</button>
         </div>
 
         <textarea
