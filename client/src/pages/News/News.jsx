@@ -299,18 +299,18 @@ function NewsPage() {
     >
         {selectedRowBtn !== null && selectedItem && (
         <div id='Modal'>
-          <div className="details-modal1" >
-          <div className="details-content1">
+          <div className="details-modal2" >
+          <div className="details-content2">
           
               <div style={{ textAlign: 'center' }}>
                 <div style={{ display:'flex', textAlign:'left',marginTop:'25px' }}>
-                <p className='details-info1'>{selectedItem.name}</p>
+                <p className='details-info2'>{selectedItem.name}</p>
                 <span style={{textAlign:'right',justifyContent:'center'}}> 
-          <button className="details-button11" onClick={() => handleShowDetailsBtn(null)}>X</button>
+          <button className="details-button12" onClick={() => handleShowDetailsBtn(null)}>X</button>
           </span>
               </div>
             {!imagesHidden && (<img src={selectedItem.image} alt="" className={'NewsModalImg'} />)}
-            <p className='details-description1'>{selectedItem.description}</p>
+            <p className='details-description2'>{selectedItem.description}</p>
             </div>
           </div>
         </div>
