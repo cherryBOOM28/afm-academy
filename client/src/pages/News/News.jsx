@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./News.scss";
@@ -22,6 +22,7 @@ import VisualModal from "../../components/VisualModal/VisualModal";
 
 function NewsPage() {
   const { t } = useTranslation();
+
   
 
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
@@ -94,6 +95,25 @@ function NewsPage() {
   const handleShowDetailsBtn = (selectedRowBtn) => {
     setSelectedRowBtn(selectedRowBtn);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const modal = document.getElementById('Modal');
+      const buttons = document.getElementsByTagName('button');// Получаем ссылку на элемент модального окна
+      if ((modal && !modal.contains(event.target)) && (!Array.from(buttons).some(button => button === event.target))) {
+        // Проверяем, был ли клик выполнен вне модального окна
+        handleShowDetailsBtn(null)
+      }
+    };
+
+    // Добавляем обработчик события клика на документе
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      // Удаляем обработчик события клика при размонтировании компонента
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [selectedItem]);
 
   
   useEffect(() => {
@@ -170,7 +190,7 @@ function NewsPage() {
               {!imagesHidden && <img src={calendarIcon} alt="calendar" />}
               <p className={cl.dateTime}>{formattedDate}</p>
             </div>
-            <Button className={cl.cardBtn} onClick={() => handleShowDetailsBtn(item.id)}>
+            <Button id='newsButton'className={cl.cardBtn} onClick={() => handleShowDetailsBtn(item.id)}>
               {t("read more")}
             </Button>
           </div>
@@ -278,8 +298,8 @@ function NewsPage() {
       }}
     >
         {selectedRowBtn !== null && selectedItem && (
-        <div>
-          <div className="details-modal1">
+        <div id='Modal'>
+          <div className="details-modal1" >
           <div className="details-content1">
           
               <div style={{ textAlign: 'center' }}>
