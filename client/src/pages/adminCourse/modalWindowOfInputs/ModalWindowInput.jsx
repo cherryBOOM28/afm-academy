@@ -72,6 +72,21 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
       }))
     }
 
+    if (inputs.some((x) => x.name === 'phases')) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'phases': exValues?.phases || [
+          {
+            title: 'Двухфазная модель отмывания денег',
+            phases: [
+              {title: ' ', name: 'Предикат', shortDescription: 'Доход, полученный преступным путем', longDescription: ''},
+              {title: 'I этап', name: 'Легализация', shortDescription: 'Обмен валюты или иного имущества', longDescription: 'Первый этап (легализация) - представляет собой отмывание денег, полученных непосредственно в результате совершения преступления путем обмена этих денежных средств на купюры иного достоинства, другой валюты, имущества.'},
+              {title: 'II этап', name: 'Интеграция', shortDescription: 'Вводится легальный фин. оборот', longDescription: 'Второй этап (интеграция) заключается в совершении операций, в результате которых предварительно «отмытым» деньгам придается статус, полученных законными путями, и они вводятся в легальный финансовый оборот.'}
+            ]
+          }
+        ]
+      }))
+    }
 
     if (inputs.some((x) => x.type === 'DragAndDropOptions')) {
       console.log('works')
@@ -2359,6 +2374,142 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                       }}
                     >
                       Добавить ряд с 1 колонкой
+                    </button>
+                  </div>
+                )
+                : input.type === 'phases'
+                ? (
+                  <div className="phases-input">
+                    {
+                      values?.phases?.map((phase, index) => {
+
+                        return (
+                          <div className="phase" key={index}>
+                            <div>
+                              <label>Название</label>
+                              <input 
+                                type="text" 
+                                value={phase.title}
+                                onChange={(e) => {
+                                  
+
+                                  setValues(prevValues => {
+                                    const updated = prevValues.phases;
+                                    updated[index].title = e.target.value;
+
+                                    return {
+                                      ...prevValues,
+                                      ['phases']: updated
+                                    }
+                                  })
+                                }}
+                              />
+                            </div>
+                            <div>
+                              <div>
+                                <div>title</div>
+                                <div>name</div>
+                                <div>shortDescription</div>
+                                <div>longDescription</div>
+                              </div>
+                              {
+                                phase.phases.map((item, idx) => {
+                                  const changeValue = (name, value) => {
+                                    console.log(index, name, value)
+                                    setValues(prevValues => {
+                                      const updated = prevValues.phases;
+                                      updated[index].phases[idx][name] = value;
+
+                                      return {
+                                        ...prevValues,
+                                        ['phases']: updated
+                                      }
+
+                                    })
+                                  }
+
+                                  return (
+                                    <div>
+                                      <div>
+                                        <input 
+                                          type="text" 
+                                          value={item.title}
+                                          onChange={e => changeValue('title', e.target.value)}
+                                        />
+                                      </div>
+                                      <div>
+                                        <input 
+                                          type="text" 
+                                          value={item.name}
+                                          onChange={e => changeValue('name', e.target.value)}
+                                        />
+                                      </div>
+                                      <div>
+                                        <input 
+                                          type="text" 
+                                          value={item.shortDescription}
+                                          onChange={e => changeValue('shortDescription', e.target.value)}
+                                        />
+                                      </div>
+                                      <div>
+                                        <input 
+                                          type="text" 
+                                          value={item.longDescription}
+                                          onChange={e => changeValue('longDescription', e.target.value)}
+                                        />
+                                      </div>
+                                    </div>
+                                  )
+                                })
+                              }
+                              <div>
+                                <button
+                                  onClick={e => {
+                                    const updated = values?.phases;
+                                    updated[index].phases = [
+                                      ...values?.phases[index].phases,
+                                      {
+                                        title: '', 
+                                        name: '', 
+                                        shortDescription: '', 
+                                        longDescription: ''
+                                      },
+                                    ]
+
+                                    setValues(prevValues => {
+                                      
+                                      return {
+                                        ...prevValues,
+                                        ['phases']: updated
+                                      }
+                                    })
+                                  }}
+                                >+</button>
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      })
+                    }
+                    <button
+                      onClick={e => {
+                        setValues(prevValues => {
+                          
+                          return {
+                            ...prevValues,
+                            ['phases']: [
+                              ...prevValues.phases,
+                              {
+                                title: '',
+                                phases: []
+                              }
+                            ]
+                          }
+
+                        })
+                      }}
+                    >
+                      Добавить новый элемент
                     </button>
                   </div>
                 )

@@ -104,6 +104,7 @@ import CustomCarouselExample from './../../../assets/images/Template Examples/Cu
 import StageDropDown from '../../../components/courseTemplates/complex/StageDropDown'
 import ComplexTable from '../../../components/courseTemplates/common/ComplexTable'
 import DragAndDropComponent from '../../../components/courseTemplates/common/DoubleDraggableOption'
+import InteractivePhases from '../../../components/courseTemplates/complex/interactives/InteractivePhases'
 
 
 const Elements = {
@@ -625,6 +626,16 @@ const Elements = {
             icon: norNumberedDotsIcon,
             inputs: [
                 { name: 'answerOptions', label: 'Ответы', type: 'DragAndDropOptions'},
+            ]
+        },
+        'Интерактив фазы': {
+            component: InteractivePhases,
+            example: null,
+            name: 'InteractivePhases',
+            icon: norNumberedDotsIcon,
+            inputs: [
+                { name: 'version', label: '', type: 'ignore' },
+                { name: 'phases', label: 'Объекты', type: 'phases' }
             ]
         }
     }
