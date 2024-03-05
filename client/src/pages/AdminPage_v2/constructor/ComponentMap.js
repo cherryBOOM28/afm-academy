@@ -46,6 +46,7 @@ import OneToFour from '../../../components/courseTemplates/complex/interactives/
 import StageDropDown from '../../../components/courseTemplates/complex/StageDropDown'
 import ComplexTable from '../../../components/courseTemplates/common/ComplexTable'
 import DragAndDropComponent from '../../../components/courseTemplates/common/DoubleDraggableOption'
+import InteractivePhases from '../../../components/courseTemplates/complex/interactives/InteractivePhases'
 
 const componentMap = {
     HeaderWithLine,
@@ -91,7 +92,8 @@ const componentMap = {
     OneToFour,
     StageDropDown,
     ComplexTable,
-    DragAndDropComponent
+    DragAndDropComponent,
+    InteractivePhases
     // Add other components here
 };
 
