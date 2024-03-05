@@ -65,6 +65,7 @@ const Registration = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const missingFields = {};
+        console.log(policyChecked,' adwa ',errorMessage);
         if (!formData['firstname']) {
             missingFields['firstname'] = true;
         }

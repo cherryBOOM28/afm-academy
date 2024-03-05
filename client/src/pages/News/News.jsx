@@ -4,93 +4,17 @@ import { useNavigate } from "react-router-dom";
 import "./News.scss";
 
 import Footer from "../../components/footer/Footer";
-import igIcon from '../../assets/images/Instagram_icon.png';
-import tgIcon from '../../assets/images/Telegram_Messenger.png';
-
 import axios from "axios";
-import base_url from "../../settings/base_url";
-import { Box, Modal } from "@mui/material";
 import Header from "../../components/header/Header";
-
 import { t } from "i18next";
 import { useTranslation } from "react-i18next";
-
 import VisualModal from "../../components/VisualModal/VisualModal";
-
 import { useStyle } from "../../components/VisualModal/StyleContext";
-import { BiLeftArrow } from "react-icons/bi";
 import NewsTab from "../../components/newsTab/NewsTab";
 
 function NewsPage
 ({ email, phoneNumber }) {
   const { t } = useTranslation();
-
-  const navigate = useNavigate();
-
-  const [vebinars, setVebinars] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoading, setLoading] = useState(true);
-
-  const [openModal, setOpenModal] = useState(false);
-  const handleEmailClick = () => {
-    window.location.href = `mailto:${email}`;
-};
-
-const handlePhoneClick = () => {
-    window.location.href = `tel:${phoneNumber}`;
-  };
-    const handleVebinarEnter = (webinar_id) => {
-        // Выполняем регистрацию на вебинар
-        const jwtToken = localStorage.getItem("jwtToken");
-        axios.post(
-            `${base_url}/api/aml/webinar/saveUser/webinar/${webinar_id}`,{}, {
-                headers: {
-                    Authorization: `Bearer ${jwtToken}`,
-                },
-            }).then(response => {
-            // Handle success
-            console.log("Participation added successfully", response.data);
-            // Optionally, you can refresh the data or notify the user
-        })
-            .catch(error => {
-                // Handle error
-                console.error("Error adding participation", error);
-                // Notify the user of the error
-            });;
-
-        setOpenModal(true);
-    };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${base_url}/api/aml/webinar/getWebinars`,
-          {
-            headers: {
-              Authorization: `Bearer ${jwtToken}`,
-            },
-          }
-        );
-
-        if (response.status === 200) {
-          // console.log(response.data)
-          setVebinars(response.data);
-        } else {
-          // Handle other status codes if needed
-          setError(response.statusText);
-          // console.log(response.statusText);
-        }
-      } catch (error) {
-        setError(error);
-        console.error(error);
-      }
-
-      setLoading(false);
-    };
-
-    fetchData();
-  }, []);
 
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
@@ -144,61 +68,6 @@ const handlePhoneClick = () => {
       containerElement.classList.add(colorMode + "-mode");
     }
   };
-    const MapComponent = () => {
-        useEffect(() => {
-            const script = document.createElement('script');
-            script.charset = 'utf-8';
-            script.src = 'https://widgets.2gis.com/js/DGWidgetLoader.js';
-            document.head.appendChild(script);
-
-            script.onload = () => {
-                new window.DGWidgetLoader({
-                    width: 640,
-                    height: 600,
-                    borderColor: '#a3a3a3',
-                    pos: {
-                        lat: 51.0921218723467,
-                        lon: 71.4210891723633,
-                        zoom: 16
-                    },
-                    opt: {
-                        city: 'nur_sultan'
-                    },
-                    org: [{ id: '70000001083568354' }]
-                });
-            };
-
-            // Cleanup
-            return () => {
-                document.head.removeChild(script);
-            };
-        }, []);
-
-        return (
-            <div>
-                <a
-                    className="dg-widget-link"
-                    href="http://2gis.kz/nur_sultan/firm/70000001083568354/center/71.4210891723633,51.0921218723467/zoom/16?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap"
-                >
-                    Посмотреть на карте Астаны
-                </a>
-                <div className="dg-widget-link">
-                    <a
-                        href="http://2gis.kz/nur_sultan/center/71.421524,51.092334/zoom/16/routeTab/rsType/bus/to/71.421524,51.092334╎Aml Academy, академия финансового мониторинга ?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route"
-                    >
-                        Найти проезд до Aml Academy, академия финансового мониторинга
-                    </a>
-                </div>
-                <noscript style={{ color: '#c00', fontSize: '16px', fontWeight: 'bold' }}>
-                    Виджет карты использует JavaScript. Включите его в настройках вашего браузера.
-                </noscript>
-            </div>
-        );
-    };
-
-  const handleTabClick = (tabIndex) => {
-    setActiveTab(tabIndex);
-  };
 
   const handleRemoveImages = () => {
     console.log("Images hidden");
@@ -208,15 +77,6 @@ const handlePhoneClick = () => {
 
   const handleShowImages = () => {
     setImagesHidden(false);
-  };
-
-  const handleIntervalChange = (interval) => {
-    console.log("Interval changed");
-    setLetterInterval(interval);
-  };
-
-  const getShowImage = () => {
-    return imagesHidden;
   };
 
   const getLetterSpacing = (interval) => {
@@ -232,7 +92,7 @@ const handlePhoneClick = () => {
     }
   };
 
-  const jwtToken = localStorage.getItem("jwtToken");
+  
 
   const handleOpenVisualModal = () => {
     console.log("OPEN");

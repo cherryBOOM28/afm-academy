@@ -105,6 +105,11 @@
     font-size: 64px;
     font-weight: 900;
 }
+.numberf {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 900;
+}
 
 .tasks__text {
     color: inherit;

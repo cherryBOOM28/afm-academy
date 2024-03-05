@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -21,6 +21,7 @@ const NewsTab = ({Width}) => {
   const [newsData, setNewsData] = useState([]);
   const [imagesHidden, setImagesHidden] = useState(false);
   const [selectedRowBtn, setSelectedRowBtn] = useState(null);
+  const modalRef = useRef();
   const [settings, setSettings] = useState({
     dots: true,
     infinite: true,
@@ -28,6 +29,22 @@ const NewsTab = ({Width}) => {
     slidesToShow: 3,
     slidesToScroll: 1,
   });
+  const handleClickOutside = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      setSelectedRowBtn(null); // Закрытие модального окна
+    }
+  };
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      handleClickOutside(event);
+    };
+  
+    document.addEventListener('mousedown', handleOutsideClick);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -146,15 +163,18 @@ const NewsTab = ({Width}) => {
     >
         {selectedRowBtn !== null && selectedItem && (
         <div>
-          <div className="details-modal">
-          <div className="details-content">
-          <div style={{display:'block',textAlign:'right',width:'100%'}}> 
-          <button className="details-button1" onClick={() => handleShowDetailsBtn(null)}>X</button>
-          </div>
-              <div style={{textAlign:'center'}}>
-              <p className='details-info'>{selectedItem.name}</p>
+          <div className="details-modal1">
+          <div className="details-content1">
+          
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ display:'flex', textAlign:'left',marginTop:'25px' }}>
+                <p className='details-info1'>{selectedItem.name}</p>
+                <span style={{textAlign:'right',justifyContent:'center'}}> 
+          <button className="details-button11" onClick={() => handleShowDetailsBtn(null)}>X</button>
+          </span>
+              </div>
             {!imagesHidden && (<img src={selectedItem.image} alt="" className={'NewsModalImg'} />)}
-            <p className='details-description'>{selectedItem.description}</p>
+            <p className='details-description1'>{selectedItem.description}</p>
             </div>
           </div>
         </div>
