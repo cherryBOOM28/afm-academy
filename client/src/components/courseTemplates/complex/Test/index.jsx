@@ -141,32 +141,14 @@ function TestPage({
                         questions[currQuestion] && questions[currQuestion].mcqOption 
                         && questions[currQuestion].mcqOption.length > 0
                         ? (
-                            <div className="question-body">
-                            {
-                                questions[currQuestion] ? questions[currQuestion].mcqOption.map(answer => {
-                                    
-
-                                    let isChecked = false;
-
-                                    if (finished) {
-                                        isChecked = answer.is_true;
-                                    } else {
-                                        isChecked = checkedQustions.length !== 0 && checkedQustions[currQuestion] && checkedQustions[currQuestion].answer === answer.mcq_option_id;
-                                    }
-
-                                    return (
-                                        <div className="test-answer" key={answer.mcq_option_id} onClick={() => handleAnswerClick(answer.mcq_option_id)}>
-                                            <div className={`checkbox ${isChecked ? 'checked' : null}`} onClick={handleCheck}>
-                                                {isChecked ? <FaCheck /> : null}
-                                            </div>
-                                            <div className="answer-text">
-                                                <p>{answer.mcq_option_title}</p>
-                                            </div>
-                                        </div>
-                                    );
-                                }) : null
-                            }
-                            </div>
+                            <MSQ_Body 
+                                questions={questions}
+                                checkedQustions={checkedQustions}
+                                currQuestion={currQuestion}
+                                finished={finished}
+                                handleAnswerClick={handleAnswerClick}
+                                handleCheck={handleCheck}
+                            />
                         ) : null
                     }
 
@@ -197,6 +179,54 @@ function TestPage({
             </div>
         </div>
     );
+}
+
+const MSQ_Body = ({
+    questions,
+    currQuestion,
+    checkedQustions,
+    finished,
+    handleAnswerClick,
+    handleCheck
+}) => {
+
+    const _handleAnswerClick = (answerId) => {
+        handleAnswerClick(answerId)
+    }
+
+    let correct_answer_count = 0; 
+
+    questions[currQuestion].msqOption.forEach(answer => {
+        if (answer.is_true) correct_answer_count++;
+    })
+
+    return (
+        <div className="question-body">
+            {
+                questions[currQuestion] ? questions[currQuestion].mcqOption.map(answer => {
+
+                    let isChecked = false;
+
+                    if (finished) {
+                        isChecked = answer.is_true;
+                    } else {
+                        isChecked = checkedQustions.length !== 0 && checkedQustions[currQuestion] && checkedQustions[currQuestion].answer === answer.mcq_option_id;
+                    }
+
+                    return (
+                        <div className="test-answer" key={answer.mcq_option_id} onClick={() => _handleAnswerClick(answer.mcq_option_id)}>
+                            <div className={`checkbox ${isChecked ? 'checked' : null}`} onClick={handleCheck}>
+                                {isChecked ? <FaCheck /> : null}
+                            </div>
+                            <div className="answer-text">
+                                <p>{answer.mcq_option_title}</p>
+                            </div>
+                        </div>
+                    );
+                }) : null
+            }
+            </div>
+    )
 }
 
 const MatchingQuestion = ({ question_id, answers, handleUpdatePairs, finished }) => {

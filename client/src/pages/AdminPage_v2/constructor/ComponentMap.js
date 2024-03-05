@@ -47,6 +47,9 @@ import StageDropDown from '../../../components/courseTemplates/complex/StageDrop
 import ComplexTable from '../../../components/courseTemplates/common/ComplexTable'
 import DragAndDropComponent from '../../../components/courseTemplates/common/DoubleDraggableOption'
 import InteractivePhases from '../../../components/courseTemplates/complex/interactives/InteractivePhases'
+import Component52 from '../../../components/courseTemplates/complex/Component52';
+import LupaZone from '../../../components/courseTemplates/common/Lupa/LupaDragZone'
+import ImageWithPoints from '../../../components/courseTemplates/complex/interactives/ImageWithPoints'
 
 const componentMap = {
     HeaderWithLine,
@@ -93,7 +96,10 @@ const componentMap = {
     StageDropDown,
     ComplexTable,
     DragAndDropComponent,
-    InteractivePhases
+    InteractivePhases,
+    Component52,
+    LupaZone,
+    ImageWithPoints
     // Add other components here
 };
 

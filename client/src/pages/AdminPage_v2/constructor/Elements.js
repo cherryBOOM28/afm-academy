@@ -105,6 +105,9 @@ import StageDropDown from '../../../components/courseTemplates/complex/StageDrop
 import ComplexTable from '../../../components/courseTemplates/common/ComplexTable'
 import DragAndDropComponent from '../../../components/courseTemplates/common/DoubleDraggableOption'
 import InteractivePhases from '../../../components/courseTemplates/complex/interactives/InteractivePhases'
+import Component52 from '../../../components/courseTemplates/complex/Component52'
+import LupaZone from '../../../components/courseTemplates/common/Lupa/LupaDragZone'
+import ImageWithPoints from '../../../components/courseTemplates/complex/interactives/ImageWithPoints'
 
 
 const Elements = {
@@ -459,6 +462,17 @@ const Elements = {
             inputs: [
                 { name: 'data', label: 'Элементы карусели', type: 'carousel_items' }
             ]
+        },
+        'Текст + Изображение': {
+            component: Component52,
+            example: null,
+            name: 'Component52',
+            icon: imageIcon,
+            inputs: [
+                { name: 'title', label: 'Заголовок', type: 'text' },
+                { name: 'img', label: 'Изображение', type: 'file' },
+                { name: 'version', label: '', type: 'ignore' },
+            ]
         }
     },
     'Элементы вида': {
@@ -594,7 +608,21 @@ const Elements = {
             inputs: [
                 { name: 'title', label: 'Заголовок', type: 'text' },
                 { name: 'options', label: 'Ответы', type: 'test_answers' },
-                { name: 'correctOptions', label: 'Правильные ответы', type: 'ignore' }
+                { name: 'correctOptions', label: 'Правильные ответы', type: 'ignore' },
+                // { name: 'img', label: 'Изображение', type: 'file'}
+            ]
+        },
+        'Задание с перетаскиванием с картинкой': {
+            component: LupaZone,
+            example: null,
+            name: 'LupaZone',
+            icon: norNumberedDotsIcon,
+            inputs: [
+                { name: 'options', label: 'Ответы', type: 'test_answers' },
+                { name: 'correctOptions', label: 'Правильные ответы', type: 'ignore' },
+                { name: 'img', label: 'Изображение', type: 'file' },
+                { name: 'Width', label: 'Ширина изображения', type: 'number' },
+                { name: 'Height', label: 'Высота изображения', type: 'number' },
             ]
         },
         'Карточки (тест)': {
@@ -637,6 +665,24 @@ const Elements = {
                 { name: 'version', label: '', type: 'ignore' },
                 { name: 'phases', label: 'Объекты', type: 'phases' }
             ]
+        },
+        'Картинка с точками': {
+            component: ImageWithPoints,
+            example: null,
+            name: 'ImageWithPoints',
+            icons: imageIcon,
+            inputs: [
+
+            ]
+        }
+    },
+    'Компоненты базового курса': {
+        'Запутывание следов': {
+            component: Component52,
+            example: null,
+            name: 'Component52',
+            icon: norNumberedDotsIcon,
+            inputs: []
         }
     }
 }
