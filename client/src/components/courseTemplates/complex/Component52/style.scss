@@ -7,6 +7,9 @@
 
     padding: 0px 70px;
 
+    &.v2 {
+        gap: 20px;
+    }
 
     .text {
         color: #3A3939;
@@ -39,6 +42,11 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+
+        &.v2 {
+            align-items: center;
+            justify-content: center;
+        }
 
         .row1 > div, 
         .row3 > div {

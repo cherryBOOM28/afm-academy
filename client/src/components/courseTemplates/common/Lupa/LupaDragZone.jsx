@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './LupaZone.scss'
 import Lupa from './index.jsx';
 
-const LupaZone = ({ options, correctOptions, imgUrl, Width, Height, another }) => {
+const LupaZone = ({ options, correctOptions, imgUrl, Width, Height, another, img }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [showResults, setShowResults] = useState(false);
 
@@ -48,7 +48,7 @@ const LupaZone = ({ options, correctOptions, imgUrl, Width, Height, another }) =
             className={`drop-zone ${isCorrectAns ? 'correct-lupa' : isIncorrectSelectionAns ? 'incorrect-lupa' : ''}`}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
-            style={{ backgroundImage: `url(${imgUrl})`, width: Width, height: Height }}
+            style={{ backgroundImage: `url(${imgUrl || img})`, width: Width, height: Height }}
           >
             {isCorrectAns && another === 'true' && <span className="check-mark">✔</span>}
             <br />

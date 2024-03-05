@@ -4,7 +4,7 @@ import DraggableOption from './index';
 import Centered from '../Centered';
 import './DragAndDropZone.scss';
 
-const DragAndDropZone = ({options, correctOptions, title}) => {
+const DragAndDropZone = ({options, correctOptions, title, img=null}) => {
   
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [showResults, setShowResults] = useState(false);
@@ -54,6 +54,7 @@ const DragAndDropZone = ({options, correctOptions, title}) => {
               className={`drop-area ${isCorrect ? 'theCorrect' : isIncorrectSelection ? 'theIncorrect' : ''}`}
               onDrop={handleDrop}
               onDragOver={handleDragOver}
+              style={{ backgroundImage: `url(${img})` }}
           >
             <p>Перетащите ответы внутрь квадрата:</p>
             <br/>

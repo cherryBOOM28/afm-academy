@@ -4,7 +4,28 @@ import icon from './static/stage.svg'
 import line from './static/line.png'
 import './style.scss'
 
-function Component52() {
+function Component52({
+    title,
+    img,
+    version=1
+}) {
+
+    if (version === 2) {
+        return (
+            <div className="component52 v2">
+                <div className="text">
+                    {
+                        title
+                    }
+                </div>
+
+                <div className="scheme v2">
+                    <img src={img} alt={title} />
+                </div>
+            </div>
+        )
+    }
+
     return ( 
         <div className="component52">
             <div className="text">
