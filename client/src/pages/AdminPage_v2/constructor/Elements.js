@@ -388,7 +388,8 @@ const Elements = {
             icon: dropDownTableIcon,
             inputs: [
                 { name: 'columns', label: 'Колонны', type: 'list' }, 
-                { name: 'data', label: 'Данные', type: 'data_rows' }
+                { name: 'data', label: 'Данные', type: 'data_rows' },
+                { name: 'version', label: '', type: 'ignore' }
             ]
         }
     },
