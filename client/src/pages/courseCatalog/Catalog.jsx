@@ -212,7 +212,9 @@ function Catalog() {
     const jwtToken = localStorage.getItem("jwtToken");
 
     const [categoryOpen, setCategoryOpen] = useState(false);
+    const [categoryFormatOpen, setCategoryFormatOpen] = useState(false);
     const [filterOpen, setFilterOpen] = useState(false);
+    const [filterFormatOpen, setFilterFormatOpen] = useState(false);
     const [categoryFilter, setCategoryFilter] = useState(["Все категории"]);
     const [searchValue, setSearchValue] = useState("");
 
@@ -675,6 +677,102 @@ function Catalog() {
                                     </div>
                                 </div> */}
                             </div>
+                            <div className="filters">
+                                <div>
+                                    <div
+                                        onClick={() => {
+                                            setCategoryFormatOpen((prev) => !prev);
+                                            setFilterFormatOpen(false);
+                                        }}
+                                    >
+                                        <AiFillFolder size={20} className="icon" />
+                                        <span
+                                            className="inline-text"
+                                            style={{
+                                                color:
+                                                    styles.colorMode === "dark"
+                                                        ? "#fff"
+                                                        : styles.colorMode === "light"
+                                                            ? "#343434"
+                                                            : styles.colorMode === "blue"
+                                                                ? "#063462"
+                                                                : "#000",
+                                            }}
+                                        >
+                      {t("format")}
+                    </span>
+                                    </div>
+                                    <div
+                                        className="categories"
+                                        style={{
+                                            display: categoryFormatOpen ? "flex" : "none",
+                                        }}
+                                        onMouseLeave={() => {
+                                            setCategoryFormatOpen(false);
+                                        }}
+                                    >
+                                        
+                                        <div>
+                                            <input
+                                                onChange={handleCheckAllCategories}
+                                                checked={categoryFilter.includes("")}
+                                                type="checkbox"
+                                                value={""}
+                                            />
+                                            <label className="inline-text">
+                                            {t("online")}
+                                            </label>
+                                        </div>
+                                            
+                                        <div>
+                                            <input
+                                                onChange={handleCheckAllCategories}
+                                                checked={categoryFilter.includes("")}
+                                                type="checkbox"
+                                                value={""}
+                                            />
+                                            <label className="inline-text">
+                                                {t("remote")}
+                                            </label>
+                                        </div>
+                                        
+                                        <div>
+                                            <input
+                                                onChange={handleCheckAllCategories}
+                                                checked={categoryFilter.includes("")}
+                                                type="checkbox"
+                                                value={""}
+                                            />
+                                            <label className="inline-text">
+                                            {t("offline")}
+                                            </label>
+                                        </div>
+                                     
+                                    </div>
+                                </div>
+                                {/* <div>
+                                    <div onClick={() => {
+                                        setFilterOpen(prev => !prev);
+                                        setCategoryOpen(false);
+                                    }}>
+                                        <BsFilter size={20} className='icon'/>
+                                        <span className='inline-text'>Фильтр</span>
+                                    </div>
+                                    <div 
+                                        className="filter" 
+                                        style={{
+                                            display: filterOpen ? 'flex' : 'none',
+                                        }}
+                                        onMouseLeave={() => {
+                                            setFilterOpen(false);
+                                        }}
+                                    >
+                                        <div>Category 1</div>
+                                        <div>Category 2</div>
+                                        <div>Category 3</div>
+                                    </div>
+                                </div> */}
+                            </div>
                             <div
                                 className="search"
                                 style={{
@@ -829,7 +927,7 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                                             <AiFillStar className="star-icon" size={23} />
                                             <AiFillStar className="star-icon" size={23} />
                                         </div>
-                                        <span>{course.courseDTO.rating}.0</span>
+                                        <span>{course.courseDTO.rating}</span>
                                     </div>
                                     <div className="type">
                                         <MdOndemandVideo size={23} />

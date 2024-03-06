@@ -22,6 +22,7 @@ import base_url from "../../settings/base_url";
 import Header from "../../components/header/Header";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
+import Rating from "react-rating-stars-component";
 
 import { useTranslation } from "react-i18next";
 
@@ -31,9 +32,13 @@ function Profile(props) {
   const [letterInterval, setLetterInterval] = useState("standard");
   const { t } = useTranslation();
   const { i18n } = useTranslation();
+  const [stars, setStars] = useState(0);
   const currentLanguage = i18n.language;
 
   const [activeTab, setActiveTab] = useState(1);
+  const handleStarRatingChange = (newRating) => {
+    setStars(newRating);
+  };
 
   const fontSizes = {
     small: {
@@ -193,13 +198,13 @@ function Profile(props) {
     // handleOpenModal();
   };
 
-  const handleSendFeedback = (courseId) => {
+  const handleSendFeedback = (courseId,rating) => {
     const fetchData = async () => {
       try {
         const data = {
           comment: feedbackText,
-          courseId: courseId// Предполагается, что feedbackText содержит текст комментария
-          // Здесь можно добавить другие поля, если они есть в courseComments
+          courseId: courseId,
+          rate: rating// Предполагается, что feedbackText содержит текст комментария// Здесь можно добавить другие поля, если они есть в courseComments
         };
         const config = {
           headers: {
@@ -216,7 +221,7 @@ function Profile(props) {
   
 
         if (response.status === 200) {
-          console.log('posted successfully'+response.status)
+          console.log(data + response.data.rate)
         } else {
           // console.log(response.statusText)
         }
@@ -230,8 +235,6 @@ function Profile(props) {
   };
 
   const [feedbackText, setFeedbackText] = useState("");
-
-  const [stars, setStars] = useState(0);
 
   const [editedGeneralInfo, setEditedGeneralInfo] = useState({});
 
@@ -315,6 +318,15 @@ function Profile(props) {
                 Мы стремимся предоставить наилучший опыт обучения. <br />
                 Обратная связь помогает постоянно улучшать наши курсы.
               </p>
+              <div className="star-rating" style={{display:'flex', justifyContent:'center', alignItems:'center' }}>
+              <Rating
+                count={5}
+                size={50}
+                value={stars}
+                onChange={handleStarRatingChange}
+                activeColor="#ffd700"
+              />
+            </div>
 
               <div className="feedback text-content">
                 <textarea
@@ -324,11 +336,12 @@ function Profile(props) {
                   onChange={(e) => setFeedbackText(e.target.value)}
                 ></textarea>
               </div>
+              
 
               <div
                 className="send-btn text-content"
                 onClick={() => {
-                  handleSendFeedback(8);
+                  handleSendFeedback(8, stars);
                 }}
               >
                 Отправить
