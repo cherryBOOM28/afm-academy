@@ -927,7 +927,7 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                                             <AiFillStar className="star-icon" size={23} />
                                             <AiFillStar className="star-icon" size={23} />
                                         </div>
-                                        <span>{course.courseDTO.rating}</span>
+                                        <span>{course.courseDTO.rating.toFixed(1)}</span>
                                     </div>
                                     <div className="type">
                                         <MdOndemandVideo size={23} />
