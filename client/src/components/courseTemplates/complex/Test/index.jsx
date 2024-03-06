@@ -18,13 +18,9 @@ function TestPage({
     const jwtToken = localStorage.getItem('jwtToken');
 
     const [currQuestion, setCurrQuestion] = useState(0)
-    const [checkedQustions, setCheckedQustions] = useState([
-        {
-            question: 0,
-            answer: 0
-        }
-    ])
+    const [checkedQustions, setCheckedQustions] = useState({ '123': 0 })
 
+    const [isLoading, setLoading] = useState(true);
     const [matchingPairAnswers, setMatchingPairAnswers] = useState([]);
 
     useEffect(() => {
@@ -33,16 +29,15 @@ function TestPage({
         setCurrQuestion(0);
 
 
-        let _checkedQustions = questions ? questions.filter(question => question.mcqOption.length > 0).map(question => {
-            return {
-                question: question.question_id,
-                answer: 0
-            }
-        }) : null;
+        let _checkedQustions = {}; 
+        questions.filter(question => question.mcqOption.length > 0).map(question => {
+            _checkedQustions[question.question_id] = 0;
+        })
 
-        // console.log(_checkedQustions)
+        console.log(_checkedQustions);
 
         setCheckedQustions(_checkedQustions)
+        setLoading(false);
     }, [questions])
 
     const handleUpdatePairs = (matched) => {
@@ -58,16 +53,47 @@ function TestPage({
         console.log(_matched)
     }
 
-    const handleAnswerClick = (answerId) => {
+    const handleAnswerClick = (answerId, question_id) => {
         console.log(answerId)
-        if (finished) return;
+        // if (finished) return;
 
         setCheckedQustions(prevQuestions => {
-            const updatedQuestions = [...prevQuestions];
-            if (updatedQuestions[currQuestion]) {
-                updatedQuestions[currQuestion].answer = answerId;
-            }
-            return updatedQuestions;
+            console.log(prevQuestions, question_id)
+            
+            return {
+                ...prevQuestions,
+                [question_id]: answerId
+            };
+        });
+    };
+
+    const handleAnswerClick_2 = (answerId, question_id) => {
+        console.log(answerId)
+        // if (finished) return;
+
+        if (answerId === null) {
+            setCheckedQustions(prevQuestions => {
+                console.log(prevQuestions, question_id)
+                
+                return {
+                    ...prevQuestions,
+                    [question_id]: []
+                };
+            });
+
+            return
+        }
+
+        setCheckedQustions(prevQuestions => {
+            console.log(prevQuestions, question_id)
+            
+            return {
+                ...prevQuestions,
+                [question_id]: [
+                    ...prevQuestions[question_id],
+                    answerId
+                ]
+            };
         });
     };
 
@@ -75,15 +101,34 @@ function TestPage({
         // console.log(checkedQustions)
 
         const fetchData = async () => {
+            let newCheckedQuestions = []
+            Object.keys(checkedQustions).map(key => {
+                const value = checkedQustions[key];
+
+                if (!Array.isArray(value)) {
+                    newCheckedQuestions.push({
+                        question: key,
+                        answer: value
+                    })
+                } else {
+                    value.map(answerId => {
+                        newCheckedQuestions.push({
+                            question: key,
+                            answer: answerId
+                        })  
+                    })
+                }
+            })
+
             console.log({
-                'mcqQuestionAnswerList': checkedQustions,
+                'mcqQuestionAnswerList': newCheckedQuestions,
                 'matchingPairAnswers': matchingPairAnswers
             })
             try {
                 const response = await axios.post(
                     `${base_url}/api/aml/quiz/checkQuiz/${quizId}`, 
                     {
-                        'mcqQuestionAnswerList': checkedQustions,
+                        'mcqQuestionAnswerList': newCheckedQuestions,
                         'matchingPairAnswers': matchingPairAnswers
                     }, 
                     {
@@ -117,6 +162,12 @@ function TestPage({
         console.log(isChecked)
     };
 
+    if (isLoading) {
+        return (
+            <div>Загрузка...</div>
+        )
+    }
+
     return ( 
         <div className="testPage">
              <div className="test-wrapper">
@@ -139,7 +190,7 @@ function TestPage({
 
                     {
                         questions[currQuestion] && questions[currQuestion].mcqOption 
-                        && questions[currQuestion].mcqOption.length > 0
+                        && questions[currQuestion].mcqOption.filter(option => option.is_true === true).length < 2
                         ? (
                             <MSQ_Body 
                                 questions={questions}
@@ -147,6 +198,21 @@ function TestPage({
                                 currQuestion={currQuestion}
                                 finished={finished}
                                 handleAnswerClick={handleAnswerClick}
+                                handleCheck={handleCheck}
+                            />
+                        ) : null
+                    }
+
+                    { 
+                        questions[currQuestion] && questions[currQuestion].mcqOption 
+                        && questions[currQuestion].mcqOption.filter(option => option.is_true === true).length >= 2
+                        ? (
+                            <MSQ_Body_2 
+                                questions={questions}
+                                checkedQustions={checkedQustions}
+                                currQuestion={currQuestion}
+                                finished={finished}
+                                handleAnswerClick={handleAnswerClick_2}
                                 handleCheck={handleCheck}
                             />
                         ) : null
@@ -191,14 +257,8 @@ const MSQ_Body = ({
 }) => {
 
     const _handleAnswerClick = (answerId) => {
-        handleAnswerClick(answerId)
+        handleAnswerClick(answerId, questions[currQuestion].question_id)
     }
-
-    let correct_answer_count = 0; 
-
-    questions[currQuestion].msqOption.forEach(answer => {
-        if (answer.is_true) correct_answer_count++;
-    })
 
     return (
         <div className="question-body">
@@ -210,7 +270,7 @@ const MSQ_Body = ({
                     if (finished) {
                         isChecked = answer.is_true;
                     } else {
-                        isChecked = checkedQustions.length !== 0 && checkedQustions[currQuestion] && checkedQustions[currQuestion].answer === answer.mcq_option_id;
+                        isChecked = checkedQustions[questions[currQuestion].question_id] === answer.mcq_option_id;
                     }
 
                     return (
@@ -220,6 +280,53 @@ const MSQ_Body = ({
                             </div>
                             <div className="answer-text">
                                 <p>{answer.mcq_option_title}</p>
+                            </div>
+                        </div>
+                    );
+                }) : null
+            }
+            </div>
+    )
+}
+
+const MSQ_Body_2 = ({
+    questions,
+    currQuestion,
+    checkedQustions,
+    finished,
+    handleAnswerClick,
+    handleCheck
+}) => {
+
+    const _handleAnswerClick = (answerId) => {
+        handleAnswerClick(answerId, questions[currQuestion].question_id)
+    }
+
+    return (
+        <div className="question-body">
+            {
+                questions[currQuestion] ? questions[currQuestion].mcqOption.map(answer => {
+
+                    let isChecked = false;
+
+                    if (finished) {
+                        isChecked = answer.is_true;
+                    } else {
+                        if (!Array.isArray(checkedQustions[questions[currQuestion].question_id])) {
+                            handleAnswerClick(null, questions[currQuestion].question_id);
+                        } else {
+                            isChecked = checkedQustions[questions[currQuestion].question_id].includes(answer.mcq_option_id);
+                        }
+                        // isChecked = checkedQustions.length !== 0 && checkedQustions[currQuestion] && checkedQustions[currQuestion].answer === answer.mcq_option_id;
+                    }
+
+                    return (
+                        <div className="test-answer" key={answer.mcq_option_id} onClick={() => _handleAnswerClick(answer.mcq_option_id)}>
+                            <div className={`checkbox ${isChecked ? 'checked' : null}`} onClick={handleCheck}>
+                                {isChecked ? <FaCheck /> : null}
+                            </div>
+                            <div className="answer-text">
+                                <p>{answer.mcq_option_title} мультичойс</p>
                             </div>
                         </div>
                     );
