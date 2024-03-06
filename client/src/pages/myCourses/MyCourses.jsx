@@ -470,7 +470,7 @@ function MyCourses() {
                                   className="star-icon text-content"
                                   size={23}
                                 />
-                                <span>{courseDTO.rating}.0</span>
+                                <span>{courseDTO.rating}</span>
                               </div>
                             </div>
                           </div>
