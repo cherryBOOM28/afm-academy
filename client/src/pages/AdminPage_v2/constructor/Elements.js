@@ -43,6 +43,14 @@ import TableComponent from '../../../components/courseTemplates/common/Tables/Ta
 import DropdownPage from '../../../components/courseTemplates/common/Tables/TableWithData'
 import QuizWithCardComponent from '../../../components/courseTemplates/common/QuizWithCardComponent'
 import OneToFour from '../../../components/courseTemplates/complex/interactives/OneToFour'
+import StageDropDown from '../../../components/courseTemplates/complex/StageDropDown'
+import ComplexTable from '../../../components/courseTemplates/common/ComplexTable'
+import DragAndDropComponent from '../../../components/courseTemplates/common/DoubleDraggableOption'
+import InteractivePhases from '../../../components/courseTemplates/complex/interactives/InteractivePhases'
+import Component52 from '../../../components/courseTemplates/complex/Component52'
+import LupaZone from '../../../components/courseTemplates/common/Lupa/LupaDragZone'
+import ImageWithPoints from '../../../components/courseTemplates/complex/interactives/ImageWithPoints'
+
 
 import headerWithLineIcon from '../images/header-icon.svg'
 import imageWithTextIcon from '../images/textWithBackground-icon.svg'
@@ -101,13 +109,7 @@ import FlexBoxesExample from './../../../assets/images/Template Examples/FlexBox
 import ImageAndColumnsExample from './../../../assets/images/Template Examples/ImageAndColumns.png'
 import DragAndDropTwoSideExample from './../../../assets/images/Template Examples/DragAndDropTwoSide.png'
 import CustomCarouselExample from './../../../assets/images/Template Examples/CustomCarousel.png'
-import StageDropDown from '../../../components/courseTemplates/complex/StageDropDown'
-import ComplexTable from '../../../components/courseTemplates/common/ComplexTable'
-import DragAndDropComponent from '../../../components/courseTemplates/common/DoubleDraggableOption'
-import InteractivePhases from '../../../components/courseTemplates/complex/interactives/InteractivePhases'
-import Component52 from '../../../components/courseTemplates/complex/Component52'
-import LupaZone from '../../../components/courseTemplates/common/Lupa/LupaDragZone'
-import ImageWithPoints from '../../../components/courseTemplates/complex/interactives/ImageWithPoints'
+
 
 
 const Elements = {
@@ -672,7 +674,7 @@ const Elements = {
             name: 'ImageWithPoints',
             icons: imageIcon,
             inputs: [
-
+                
             ]
         }
     },
