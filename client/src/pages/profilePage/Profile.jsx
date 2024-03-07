@@ -26,9 +26,7 @@ import Rating from "react-rating-stars-component";
 
 import { useTranslation } from "react-i18next";
 
-const Rating1 = () => {
-  return <Rating />;
-};
+
 
 function Profile(props) {
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
@@ -292,6 +290,13 @@ function Profile(props) {
 
     return null;
   };
+  const Rating1 = () => {
+    return <Rating count={5}
+    size={50}
+    value={stars}
+    onChange={handleStarRatingChange}
+    activeColor="#ffd700"/>;
+  };
 
   return (
     <div className="profile-page text-content">
@@ -324,11 +329,6 @@ function Profile(props) {
               </p>
               <div id={'StarRating'} className="star-rating" style={{display:'flex', justifyContent:'center', alignItems:'center' }}>
               <Rating1
-                count={5}
-                size={50}
-                value={stars}
-                onChange={handleStarRatingChange}
-                activeColor="#ffd700"
               />
             </div>
 
