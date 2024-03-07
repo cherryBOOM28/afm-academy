@@ -159,6 +159,7 @@ const EditCatalog = () => {
                                             <h2>{x.course_name}</h2>
                                             <a>Цена: {x.course_price}₸</a>
                                             <a>Аудитория: {x.course_for_member_of_the_system}</a>
+                                            <a>Тип: {x.type_of_study}</a>
                                         </div>
                                         <div className="action-of-card">
                                             <div onClick={()=> {
