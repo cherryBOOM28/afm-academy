@@ -26,6 +26,10 @@ import Rating from "react-rating-stars-component";
 
 import { useTranslation } from "react-i18next";
 
+const Rating1 = () => {
+  return <Rating />;
+};
+
 function Profile(props) {
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
@@ -319,7 +323,7 @@ function Profile(props) {
                 Обратная связь помогает постоянно улучшать наши курсы.
               </p>
               <div id={'StarRating'} className="star-rating" style={{display:'flex', justifyContent:'center', alignItems:'center' }}>
-              <Rating
+              <Rating1
                 count={5}
                 size={50}
                 value={stars}
