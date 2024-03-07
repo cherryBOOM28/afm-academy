@@ -1,48 +1,99 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-import DefaultHeader from "../../components/defaultHeader/DefaultHeader";
 import Footer from "../../components/footer/Footer";
-
 import './catalog.scss';
 import { useLocation } from 'react-router-dom';
-
-import course1 from "./../../assets/images/courses-1.png";
-import course2 from "./../../assets/images/courses-2.png";
-import course3 from "./../../assets/images/courses-3.png";
-import course4 from "./../../assets/images/courses-4.png";
-import course5 from "./../../assets/images/courses-5.png";
-import course6 from "./../../assets/images/courses-6.png";
-import course7 from "./../../assets/images/courses-7.png";
-import course8 from "./../../assets/images/courses-8.png";
-
 import { AiFillFolder } from "react-icons/ai";
 import { BsFilter } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
 import { AiFillStar } from "react-icons/ai";
 import { MdOndemandVideo } from "react-icons/md";
-
 import base_url from "../../settings/base_url";
 import axios from "axios";
 import Header from "../../components/header/Header";
+import { useCategoryFormat } from '../Context/Context.jsx';
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material';
 
 import { t } from "i18next";
 import { useTranslation } from "react-i18next";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
 
+
+
 function Catalog() {
 
     const { styles, open, setOpen, userEntry, checkStyle } = useStyle();
     const [imagesHidden, setImagesHidden] = useState(false);
     const [letterInterval, setLetterInterval] = useState("standard");
+    const [isReload, setIsReload] = useState(false);
     const { t } = useTranslation();
     const { i18n } = useTranslation();
     const currentLanguage = i18n.language;
+    const [modalOpen, setModalOpen] = useState(false);
 
+    const handleOpenModal = () => {
+        setModalOpen(true);
+    };
+    const handleCloseModal = () => {
+        setModalOpen(false);
+        handleReload(true)
+    };
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const url = "/api/aml/course/getUserCourses";
+                const url1 = "/api/aml/course/getUserCoursesNoPr";
+                let response = null; // Use let instead of const for response to allow reassignment
+                if (jwtToken != null) {
+                    response = await axios.get(`${base_url}${url}`, {
+                        headers: {
+                            Authorization: `Bearer ${jwtToken}`,
+                        },
+                    });
+                } else {
+                    response = await axios.get(`${base_url}${url1}`);
+                }
+                console.log(response.data);
+              
+    
+                let courses = [
+                    ...response.data,
+                ];
+                const _coursesByCategory = {};
+                if (response.status === 200) {
+                    courses.forEach((course) => {
+                        if (course.courseDTO.type_of_study === 'дистанционное') { // Добавляем проверку на тип обучения
+                            const categoryName = course.courseDTO.courseCategory.category_name;
+                            if (!_coursesByCategory[categoryName]) {
+                                _coursesByCategory[categoryName] = [];
+                            }
+                            _coursesByCategory[categoryName].push(course);
+                        }
+                    });
+    
+                    // console.log(_coursesByCategory)
+                    setCoursesByCategory(_coursesByCategory);
+                    setData(response.data);
+                } else {
+                    // Handle other status codes if needed
+                    setError(response.statusText);
+                    // console.log(response.statusText);
+                }
+    
+                // Iterate through the courses and categorize them
+            } catch (error) {
+                setError(error);
+                console.error(error);
+            }
+    
+            setLoading(false);
+        };
+    
+        fetchData();
+    }, [isReload]);
+   
     const [activeTab, setActiveTab] = useState(1);
-
-
     const handleColorModeChange = (mode) => {
         // Remove previous color mode classes
         const containerElement = document.querySelector(".text-content");
@@ -80,28 +131,6 @@ function Catalog() {
 
     const handleShowImages = () => {
         setImagesHidden(false);
-    };
-
-    const handleIntervalChange = (interval) => {
-        console.log("Interval changed");
-        setLetterInterval(interval);
-    };
-
-    const getShowImage = () => {
-        return imagesHidden;
-    };
-
-    const getLetterSpacing = (interval) => {
-        interval = styles.letterInterval;
-
-        switch (interval) {
-            case "medium":
-                return "2px";
-            case "large":
-                return "4px";
-            default:
-                return "1px";
-        }
     };
     const location = useLocation();
     useEffect(() => {
@@ -200,16 +229,114 @@ function Catalog() {
             textContentElement.style.fontFamily = family;
         }
     }, []);
+    const handleReload = () => {
+        setIsReload(true)
+    }
 
     const navigate = useNavigate();
     const handleApplication = (rowId) => {
         // Handle application submission for the row with ID 'rowId'
         console.log('Application submitted for row:', rowId);
-      };
+    };
+    const ApplicationModal = ({ open, handleClose,courseId, courseName }) => {
+
+        const [fullName, setFullName] = useState('');
+        const [contacts, setContacts] = useState('');
+        const [email, setEmail] = useState('');
+        
+    
+        const handleSubmit = () => {
+            setLoading(true);
+            console.log('clicked')
+    
+            const fetchData = async () => {
+                const formData = new FormData();
+                formData.append('userCourse', JSON.stringify({
+                    fio: fullName,
+                    phone_number: contacts,
+                    email: email,
+                    progress_percentage: 0.0
+                }));
+              
+    
+                try {
+                    const response = await axios.post(
+                        `${base_url}/api/aml/course/saveUserRequest/course/${selectedCourseId}`, 
+                        formData, 
+                        {
+                        }
+                    );
+                    console.log(fullName);
+    
+                    alert("Заявка отправлена!!!");
+                    handleCloseModal()
+                    
+                } catch (error) {
+                    console.log(error);
+                    alert("Ошибка")
+                }
+            };
+            
+            fetchData();
+            setLoading(false);
+        }
+    
+    
+    
+        return (
+            <Dialog open={open} onClose={handleClose} BackdropProps={{ style: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } }}>
+                <DialogTitle>Подать заявку на курс</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        label="ФИО"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Контакты"
+                        value={contacts}
+                        onChange={(e) => setContacts(e.target.value)}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Электронная почта"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        fullWidth
+                        margin="normal"
+                    />
+                     <TextField
+                        label="Курс"
+                        value={courseName}
+                        readOnly={true}
+                        fullWidth
+                        margin="normal"
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Отмена
+                    </Button>
+                    <Button onClick={handleSubmit} color="primary">
+                        Отправить
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        );
+    };
+    
+    
     
 
     const [data, setData] = useState(null);
     console.log(data);
+    useEffect(() => {
+        // Этот код будет выполнен при каждом изменении числа
+        console.log('Число изменилось:', data);
+      }, [data]);
     const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(true);
 
@@ -217,6 +344,8 @@ function Catalog() {
     console.log(coursesByCategory);
 
     const jwtToken = localStorage.getItem("jwtToken");
+    const [selectedCourseId, setSelectedCourseId] = useState(null);
+    const [selectedCourseName, setSelectedCourseName] = useState(null);
 
     const [categoryOpen, setCategoryOpen] = useState(false);
     const [categoryFormatOpen, setCategoryFormatOpen] = useState(false);
@@ -224,8 +353,8 @@ function Catalog() {
     const [filterFormatOpen, setFilterFormatOpen] = useState(false);
     const [categoryFilter, setCategoryFilter] = useState(["Все категории"]);
     const [searchValue, setSearchValue] = useState("");
-    const [categoryFormat, setCategoryFormat] = useState('Дистанционно');
-
+    const { categoryFormat, handleChangeCategoryFormat } = useCategoryFormat();
+    console.log(categoryFormat)
     const handleCheckCategory = (e) => {
         const selectedCategory = e.target.value;
         setCategoryFilter((prevFilters) => {
@@ -247,12 +376,9 @@ function Catalog() {
             setCategoryFilter(["Все категории"]);
         }
     };
-
+    
     const handleChangeSearchValue = (e) => {
         setSearchValue(e.target.value);
-    };
-    const handleChangeCategoryFormat = (format) => {
-        setCategoryFormat(format);
     };
 
     useEffect(() => {
@@ -312,10 +438,7 @@ function Catalog() {
                 let courses = [
                     ...response.data,
                 ];
-                // courses = response.data
-
                 const _coursesByCategory = {};
-
                 if (response.status === 200) {
                     courses.forEach((course) => {
                         if (course.courseDTO.type_of_study === 'дистанционное') { // Добавляем проверку на тип обучения
@@ -330,11 +453,13 @@ function Catalog() {
                     // console.log(_coursesByCategory)
                     setCoursesByCategory(_coursesByCategory);
                     setData(response.data);
+                    
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
                     // console.log(response.statusText);
                 }
+                checkHandler(response.data)
 
                 // Iterate through the courses and categorize them
             } catch (error) {
@@ -347,6 +472,11 @@ function Catalog() {
 
         fetchData();
     }, []);
+    const [uniquePrices, setUniquePrices] = useState([""]);
+    const checkHandler = (data) => {
+        setUniquePrices([...new Set(data.filter(course => course.courseDTO.type_of_study === 'онлайн').map(course => course.courseDTO.course_image))])
+    }
+    
 
     return (
         <div
@@ -494,31 +624,10 @@ function Catalog() {
                                         })}
                                     </div>
                                 </div>
-                                {/* <div>
-                                    <div onClick={() => {
-                                        setFilterOpen(prev => !prev);
-                                        setCategoryOpen(false);
-                                    }}>
-                                        <BsFilter size={20} className='icon'/>
-                                        <span className='inline-text'>Фильтр</span>
-                                    </div>
-                                    <div 
-                                        className="filter" 
-                                        style={{
-                                            display: filterOpen ? 'flex' : 'none',
-                                        }}
-                                        onMouseLeave={() => {
-                                            setFilterOpen(false);
-                                        }}
-                                    >
-                                        <div>Category 1</div>
-                                        <div>Category 2</div>
-                                        <div>Category 3</div>
-                                    </div>
-                                </div> */}
+                               
                             </div>
                             <div className="filters">
-                                <div>
+                                <div> 
                                     <div
                                         onClick={() => {
                                             setCategoryFormatOpen((prev) => !prev);
@@ -590,28 +699,7 @@ function Catalog() {
                                      
                                     </div>
                                 </div>
-                                {/* <div>
-                                    <div onClick={() => {
-                                        setFilterOpen(prev => !prev);
-                                        setCategoryOpen(false);
-                                    }}>
-                                        <BsFilter size={20} className='icon'/>
-                                        <span className='inline-text'>Фильтр</span>
-                                    </div>
-                                    <div 
-                                        className="filter" 
-                                        style={{
-                                            display: filterOpen ? 'flex' : 'none',
-                                        }}
-                                        onMouseLeave={() => {
-                                            setFilterOpen(false);
-                                        }}
-                                    >
-                                        <div>Category 1</div>
-                                        <div>Category 2</div>
-                                        <div>Category 3</div>
-                                    </div>
-                                </div> */}
+                           
                             </div>
                             <div
                                 className="search"
@@ -658,43 +746,52 @@ function Catalog() {
             {coursesByCategory !== null && (
                 <>
                     {categoryFormat === "Онлайн" && (
-                        <div className="TableMain">
-                            <table className="CategoryTable">
-                            <div className="TableMain">
-                    <table className="CategoryTable">
-                      <thead>
-                        <tr className="ColumnNames">
-                          <th>Курсы</th>
-                          <th>Аудитория</th>
-                          <th>Формат</th>
-                          <th>Группа</th>
-                          <th>Стоимость</th>
-                          <th>Стоимость с учетом корпоративной скидки</th>
-                          <th>Заявка</th>
-                          <th>Количество поданных заявок</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {data.filter(course => course.courseDTO.type_of_study === 'онлайн').map((course) => (
-                          <tr className="Rows" key={course.courseDTO.course_id}>
-                            <td>{course.courseDTO.course_name}</td>
-                            <td>{course.courseDTO.course_for_member_of_the_system}</td>
-                            <td>{course.courseDTO.type_of_study}</td>
-                            <td>{course.courseDTO.group_of_person}</td>
-                            <td>{course.courseDTO.course_price}</td>
-                            <td>{course.courseDTO.course_price_sale}</td>
-                            <td>
-                              <button onClick={() => handleApplication(course.id)}>Подать заявку</button>
-                                </td>
-                                <td>{'0'}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                            </table>
-                        </div>
-                    )}
+                     <div className="TableMain">
+                     {uniquePrices.map(image => (
+                         <React.Fragment key={image}>
+                             <table className="CategoryTable">
+                                 <thead>
+                                     
+                                     <tr className="ColumnNames">
+                                         <th>Курсы</th>
+                                         <th>Аудитория</th>
+                                         <th>Формат</th>
+                                         <th>Группа</th>
+                                         <th>Стоимость</th>
+                                         <th>Стоимость с учетом корпоративной скидки</th>
+                                         <th>Заявка</th>
+                                         <th>Количество поданных заявок</th>
+                                     </tr>
+                                     <tr className="ColumnNames">
+                                         <th colSpan="8">{image}</th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                                     {data.filter(course => course.courseDTO.type_of_study === 'онлайн' && course.courseDTO.course_image === image).map((course) => (
+                                         <tr className="Rows" key={course.courseDTO.course_id}>
+                                             <td>{course.courseDTO.course_name}</td>
+                                             <td>{course.courseDTO.course_for_member_of_the_system}</td>
+                                             <td>{course.courseDTO.type_of_study}</td>
+                                             <td>{course.courseDTO.group_of_person}</td>
+                                             <td>{course.courseDTO.course_price}</td>
+                                             <td>{course.courseDTO.course_price_sale}</td>
+                                             <td>
+                                                 <Button onClick={() => { setSelectedCourseId(course.courseDTO.course_id); setSelectedCourseName(course.courseDTO.course_name); handleOpenModal(); }}>Подать заявку</Button >
+                                             </td>
+                                             <td>{course.courseDTO.rating}</td>
+                                         </tr>
+                                     ))}
+                                 </tbody>
+                             </table>
+                         </React.Fragment>
+                     ))}
+                 </div>               )}
+                                     <ApplicationModal
+                                        open={modalOpen}
+                                        handleClose={handleCloseModal}
+                                        courseId={selectedCourseId}
+                                        courseName={selectedCourseName}
+                                    />
 
                     {categoryFormat === "Дистанционно" && (
                         <>
