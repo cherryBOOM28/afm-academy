@@ -14,6 +14,7 @@ import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
 import './LearningFormat.scss';
 
+
 function LearningFormatTabs({ text }) {
   const { styles } = useStyle();
 
