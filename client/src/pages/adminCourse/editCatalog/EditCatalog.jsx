@@ -168,7 +168,7 @@ const EditCatalog = () => {
         <div>
             <BuilderNavbar/>
             <div className="tab-content">
-                {deletingCourse ? 
+                {deletingCourse ?
                     <Confirm course_title={selectedCourse.course_name} course_id={selectedCourse.course_id} closeModal={closeModal} deleteCourse={deleteCourse}/>
                     : ""
                 }
@@ -192,15 +192,15 @@ const EditCatalog = () => {
                         </div>
                         <div onClick={() => {
                             navigate(
-                                selectedPage === 'newsPage' 
-                                    ? "/create-news" 
+                                selectedPage === 'newsPage'
+                                    ? "/create-news"
                                     : '/new-admin-page'
-                            )    
+                            )
                         }} className='create-course-button'>
                             <a>
                                 {
-                                    selectedPage === 'newsPage' 
-                                        ? "Добавить новость" 
+                                    selectedPage === 'newsPage'
+                                        ? "Добавить новость"
                                         : "Создать курс"
                                 }
                             </a>
@@ -212,8 +212,8 @@ const EditCatalog = () => {
                         <div className="drafts">
                             <h1>
                                 {
-                                    selectedPage === 'draftPage' 
-                                        ? "Архив курсов" 
+                                    selectedPage === 'draftPage'
+                                        ? "Архив курсов"
                                         : selectedPage === 'coursesPage'
                                             ? "Курсы"
                                             : "Новости"
@@ -221,85 +221,85 @@ const EditCatalog = () => {
                             </h1>
                             <div className="course-grid">
 
-                            {
-                            isLoading ? "Загрузка..." 
-                            : (selectedPage === 'draftPage' || selectedPage === 'coursesPage') 
-                                ? (
-                                    courses.filter((x) => x.draft === (selectedPage === 'draftPage')).map((x, index) => {
-                                        return (
-                                            <div className="course-card" key={index}>
-                                                <div className="img-course">
-                                                    <img src={x.course_image} alt="img"></img>
-                                                </div>
-                                                <div className="text-of-card">
-                                                    <h2>{x.course_name}</h2>
-                                                    <a>Цена: {x.course_price}₸</a>
-                                                    <a>Аудитория: {x.course_for_member_of_the_system}</a>
-                                                </div>
-                                                <div className="action-of-card">
-                                                    <div 
-                                                        onClick={()=> {
-                                                            setDeletingCourse(true)
-                                                            setCourse(x.course_id, x.course_name)
-                                                        }} 
-                                                        className="delete"
-                                                    >
-                                                        <img src={deletIcon} alt="del"></img>
-                                                    </div>
-                                                    <div onClick={() => {navigate('/new-admin-page/?id=' + x.course_id)}} className="edit">
-                                                        <img src={editIcon} alt="edit"></img>
-                                                    </div>
-                                                    {/* onClick={publishCourse(x.course_id)}  */}
-                                                    <a onClick={() => publishCourse(x.course_id)} className="publish">Опубликовать</a>
-                                                </div>
-        
-                                            </div>
-        
-                                        )
-                                    })
-                                ) 
-                                : (
-                                    newsData.map((x, index) => {
-                                        return (
-                                            <div 
-                                                className="news-card"
-                                                key={index}
-                                            >
-                                                <div className="img-course">
-                                                    <img src={x.image} alt="img"/>
-                                                </div>
-                                                <div className="text-of-card">
-                                                    <h2>{x.name}</h2>
-                                                    <a>Дата: {getDate(x.date)}</a>
-                                                </div>
-                                                <div className="action-of-card">
-                                                    <div 
-                                                        onClick={()=> {
-                                                            // setDeletingCourse(true)
-                                                            // setCourse(x.course_id, x.course_name)
-                                                        }} 
-                                                        className="delete"
-                                                    >
-                                                        <img src={deletIcon} alt="del"/>
-                                                    </div>
-                                                    <div 
-                                                        onClick={() => {
-                                                                // navigate('/new-admin-page/?id=' + x.course_id)
-                                                            }
-                                                        } 
-                                                        className="edit"
-                                                    >
-                                                        <img src={editIcon} alt="edit"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        )
-                                    })
-                                ) 
-                            
-                            }
+                                {
+                                    isLoading ? "Загрузка..."
+                                        : (selectedPage === 'draftPage' || selectedPage === 'coursesPage')
+                                            ? (
+                                                courses.filter((x) => x.draft === (selectedPage === 'draftPage')).map((x, index) => {
+                                                    return (
+                                                        <div className="course-card" key={index}>
+                                                            <div className="img-course">
+                                                                <img src={x.course_image} alt="img"></img>
+                                                            </div>
+                                                            <div className="text-of-card">
+                                                                <h2>{x.course_name}</h2>
+                                                                <a>Цена: {x.course_price}₸</a>
+                                                                <a>Аудитория: {x.course_for_member_of_the_system}</a>
+                                                            </div>
+                                                            <div className="action-of-card">
+                                                                <div
+                                                                    onClick={()=> {
+                                                                        setDeletingCourse(true)
+                                                                        setCourse(x.course_id, x.course_name)
+                                                                    }}
+                                                                    className="delete"
+                                                                >
+                                                                    <img src={deletIcon} alt="del"></img>
+                                                                </div>
+                                                                <div onClick={() => {navigate('/new-admin-page/?id=' + x.course_id)}} className="edit">
+                                                                    <img src={editIcon} alt="edit"></img>
+                                                                </div>
+                                                                {/* onClick={publishCourse(x.course_id)}  */}
+                                                                <a onClick={() => publishCourse(x.course_id)} className="publish">Опубликовать</a>
+                                                            </div>
+
+                                                        </div>
+
+                                                    )
+                                                })
+                                            )
+                                            : (
+                                                newsData.map((x, index) => {
+                                                    return (
+                                                        <div
+                                                            className="news-card"
+                                                            key={index}
+                                                        >
+                                                            <div className="img-course">
+                                                                <img src={x.image} alt="img"/>
+                                                            </div>
+                                                            <div className="text-of-card">
+                                                                <h2>{x.name}</h2>
+                                                                <a>Дата: {getDate(x.date)}</a>
+                                                            </div>
+                                                            <div className="action-of-card">
+                                                                <div
+                                                                    onClick={()=> {
+                                                                        // setDeletingCourse(true)
+                                                                        // setCourse(x.course_id, x.course_name)
+                                                                    }}
+                                                                    className="delete"
+                                                                >
+                                                                    <img src={deletIcon} alt="del"/>
+                                                                </div>
+                                                                <div
+                                                                    onClick={() => {
+                                                                        // navigate('/new-admin-page/?id=' + x.course_id)
+                                                                    }
+                                                                    }
+                                                                    className="edit"
+                                                                >
+                                                                    <img src={editIcon} alt="edit"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })
+                                            )
+
+                                }
                             </div>
-                            
+
                             {
                                 (selectedPage === 'draftPage' || selectedPage === 'coursesPage') ? (
                                     <div>
