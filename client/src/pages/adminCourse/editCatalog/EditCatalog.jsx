@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 import { useNavigate } from "react-router"
 import { BuilderNavbar } from "../builderNavbar/BuilderNavbar"
@@ -23,10 +23,13 @@ const EditCatalog = () => {
     const [selectedCourses, setSelectedCourses] = useState('');
     const jwtToken = localStorage.getItem('jwtToken');
 
-    const [draftPage, setDraftPage] = useState(true)
+    const [selectedPage, setSelectedPage] = useState('draftPage');
 
     const [userData, setUserData] = useState([]);
+    const [newsData, setNewsData] = useState([]);
     const [courseData, setCourseData] = useState([]);
+
+    const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
         axios
@@ -34,12 +37,41 @@ const EditCatalog = () => {
             .then((res) => {
                 // console.log(res.data)
                 setCourses(res.data)
+                setLoading(false);
             })
     }, [])
+
+    useMemo(() => {
+        const fetchData = async () => {
+            setLoading(true);
+
+            try {
+                const response = await axios.get(
+                    `${base_url}/api/aml/course/getAllNews`,
+                    {
+                        params: {
+                            type: 'news',
+                        },
+                    }
+                );
+
+                setNewsData(response.data);
+                console.log(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        if (selectedPage === 'newsPage') {
+            fetchData();
+            setLoading(false);
+        }
+    }, [selectedPage])
 
     const closeModal = () => {
         setDeletingCourse(false)
     }
+
     const handleAddClick = () => {
         // Ensure both user and course are selected
         if (!selectedUser || !selectedCourse) {
@@ -78,6 +110,7 @@ const EditCatalog = () => {
                 console.error("Error fetching data: ", error);
             });
     };
+
     const deleteCourse = (course_id) => {
         axios
             .post(base_url + '/api/aml/course/deleteCourse', null, {
@@ -92,9 +125,11 @@ const EditCatalog = () => {
                 // alert(error)
             })
     }
+
     useEffect(() => {
         setUser();
     }, []);
+
     const setCourse = (course_id, course_name) => {
         setSelectedCourse({course_id, course_name})
     }
@@ -116,11 +151,24 @@ const EditCatalog = () => {
             })
     }
 
+    const getDate = (date) => {
+        const _date = new Date(date);
+
+        const day = String(_date.getDate()).padStart(2, '0');
+        const month = String(_date.getMonth() + 1).padStart(2, '0'); // JavaScript months are 0-based
+        const year = _date.getFullYear();
+
+        // Assemble the components into the desired format
+        const formattedDate = `${day}.${month}.${year}`;
+
+        return formattedDate;
+    }
+
     return (
         <div>
             <BuilderNavbar/>
             <div className="tab-content">
-                {deletingCourse ? 
+                {deletingCourse ?
                     <Confirm course_title={selectedCourse.course_name} course_id={selectedCourse.course_id} closeModal={closeModal} deleteCourse={deleteCourse}/>
                     : ""
                 }
@@ -129,87 +177,160 @@ const EditCatalog = () => {
                     <div className='creation-left-bar'>
                         <a className='title'>Админ панель</a>
                         <div className='folders'>
-                            <div onClick={() => setDraftPage(!draftPage)} className={`folder ${draftPage ? "active" : ""}`}>
+                            <div onClick={() => setSelectedPage('draftPage')} className={`folder ${selectedPage === 'draftPage' ? "active" : ""}`}>
                                 <img src={archiveIcon} alt="arch" />
                                 <a>Архив курсов</a>
                             </div>
-                            <div onClick={() => setDraftPage(!draftPage)} className={`folder ${draftPage ? "" : "active"}`}>
+                            <div onClick={() => setSelectedPage('coursesPage')} className={`folder ${selectedPage === 'coursesPage' ? "active" : ""}`}>
                                 <img src={folderIcon} alt="" />
                                 <a>Курсы</a>
                             </div>
+                            <div onClick={() => setSelectedPage('newsPage')} className={`folder ${selectedPage === 'newsPage' ? "active" : ""}`}>
+                                <img src={folderIcon} alt="" />
+                                <a>Новости</a>
+                            </div>
                         </div>
-                        <div onClick={() => {navigate('/new-admin-page')}} className='create-course-button'>
-                            <a>Создать курс</a>
+                        <div onClick={() => {
+                            navigate(
+                                selectedPage === 'newsPage'
+                                    ? "/create-news"
+                                    : '/new-admin-page'
+                            )
+                        }} className='create-course-button'>
+                            <a>
+                                {
+                                    selectedPage === 'newsPage'
+                                        ? "Добавить новость"
+                                        : "Создать курс"
+                                }
+                            </a>
                         </div>
                     </div>
                 </div>
                 <div className="builder-body">
                     <div className="catalog">
                         <div className="drafts">
-                            <h1>{draftPage ? "Архив курсов" : "Курсы"}</h1>
+                            <h1>
+                                {
+                                    selectedPage === 'draftPage'
+                                        ? "Архив курсов"
+                                        : selectedPage === 'coursesPage'
+                                            ? "Курсы"
+                                            : "Новости"
+                                }
+                            </h1>
                             <div className="course-grid">
 
-                            {courses.filter((x) => x.draft == draftPage).map((x) => {
-                                return (
-                                    <div className="course-card">
-                                        <div className="img-course">
-                                            <img src={x.course_image} alt="img"></img>
-                                        </div>
-                                        <div className="text-of-card">
-                                            <h2>{x.course_name}</h2>
-                                            <a>Цена: {x.course_price}₸</a>
-                                            <a>Аудитория: {x.course_for_member_of_the_system}</a>
-                                            <a>Тип: {x.type_of_study}</a>
-                                        </div>
-                                        <div className="action-of-card">
-                                            <div onClick={()=> {
-                                                setDeletingCourse(true)
-                                                setCourse(x.course_id, x.course_name)
-                                                }}className="delete">
-                                                <img src={deletIcon} alt="del"></img>
-                                            </div>
-                                            <div onClick={() => {navigate('/new-admin-page/?id=' + x.course_id)}} className="edit">
-                                                <img src={editIcon} alt="edit"></img>
-                                            </div>
-                                            {/* onClick={publishCourse(x.course_id)}  */}
-                                            <a onClick={() => publishCourse(x.course_id)} className="publish">Опубликовать</a>
-                                        </div>
+                                {
+                                    isLoading ? "Загрузка..."
+                                        : (selectedPage === 'draftPage' || selectedPage === 'coursesPage')
+                                            ? (
+                                                courses.filter((x) => x.draft === (selectedPage === 'draftPage')).map((x, index) => {
+                                                    return (
+                                                        <div className="course-card" key={index}>
+                                                            <div className="img-course">
+                                                                <img src={x.course_image} alt="img"></img>
+                                                            </div>
+                                                            <div className="text-of-card">
+                                                                <h2>{x.course_name}</h2>
+                                                                <a>Цена: {x.course_price}₸</a>
+                                                                <a>Аудитория: {x.course_for_member_of_the_system}</a>
+                                                            </div>
+                                                            <div className="action-of-card">
+                                                                <div
+                                                                    onClick={()=> {
+                                                                        setDeletingCourse(true)
+                                                                        setCourse(x.course_id, x.course_name)
+                                                                    }}
+                                                                    className="delete"
+                                                                >
+                                                                    <img src={deletIcon} alt="del"></img>
+                                                                </div>
+                                                                <div onClick={() => {navigate('/new-admin-page/?id=' + x.course_id)}} className="edit">
+                                                                    <img src={editIcon} alt="edit"></img>
+                                                                </div>
+                                                                {/* onClick={publishCourse(x.course_id)}  */}
+                                                                <a onClick={() => publishCourse(x.course_id)} className="publish">Опубликовать</a>
+                                                            </div>
 
-                                    </div>
+                                                        </div>
 
-                                )
-                            })}
+                                                    )
+                                                })
+                                            )
+                                            : (
+                                                newsData.map((x, index) => {
+                                                    return (
+                                                        <div
+                                                            className="news-card"
+                                                            key={index}
+                                                        >
+                                                            <div className="img-course">
+                                                                <img src={x.image} alt="img"/>
+                                                            </div>
+                                                            <div className="text-of-card">
+                                                                <h2>{x.name}</h2>
+                                                                <a>Дата: {getDate(x.date)}</a>
+                                                            </div>
+                                                            <div className="action-of-card">
+                                                                <div
+                                                                    onClick={()=> {
+                                                                        // setDeletingCourse(true)
+                                                                        // setCourse(x.course_id, x.course_name)
+                                                                    }}
+                                                                    className="delete"
+                                                                >
+                                                                    <img src={deletIcon} alt="del"/>
+                                                                </div>
+                                                                <div
+                                                                    onClick={() => {
+                                                                        // navigate('/new-admin-page/?id=' + x.course_id)
+                                                                    }
+                                                                    }
+                                                                    className="edit"
+                                                                >
+                                                                    <img src={editIcon} alt="edit"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })
+                                            )
+
+                                }
                             </div>
-                            <div>
-                                {/* ... existing JSX ... */}
 
-                                {/* Dropdowns for users and courses */}
-                                <div className="dropdown-container">
-                                    <select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
-                                        <option value="">Выбрать Пользователя</option>
-                                        {userData.map(user => (
-                                            <option key={user.user_id} value={user.user_id}>{user.firstname + ' ' + user.lastname}</option>
-                                        ))}
-                                    </select>
-
-                                    <select value={selectedCourses} onChange={(e) => setSelectedCourses(e.target.value)}>
-                                        <option value="">Выбрать Курс</option>
-                                        {courseData.map(course => (
-                                            <option key={course.course_id} value={course.course_id}>{course.course_name + " " + course.course_id}</option>
-                                        ))}
-                                    </select>
-
+                            {
+                                (selectedPage === 'draftPage' || selectedPage === 'coursesPage') ? (
                                     <div>
-                                        {/* ... existing JSX ... */}
                                         <div className="dropdown-container">
-                                            {/* ... existing dropdowns ... */}
-                                            <button onClick={handleAddClick}>Добавить</button>
-                                        </div>
-                                        {/* ... rest of your JSX ... */}
-                                    </div>                                </div>
+                                            <select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)}>
+                                                <option value="">Выбрать Пользователя</option>
+                                                {userData.map(user => (
+                                                    <option key={user.user_id} value={user.user_id}>{user.firstname + ' ' + user.lastname}</option>
+                                                ))}
+                                            </select>
 
-                                {/* ... rest of your JSX ... */}
-                            </div>
+                                            <select value={selectedCourses} onChange={(e) => setSelectedCourses(e.target.value)}>
+                                                <option value="">Выбрать Курс</option>
+                                                {courseData.map(course => (
+                                                    <option key={course.course_id} value={course.course_id}>{course.course_name + " " + course.course_id}</option>
+                                                ))}
+                                            </select>
+
+                                            <div>
+                                                {/* ... existing JSX ... */}
+                                                <div className="dropdown-container">
+                                                    {/* ... existing dropdowns ... */}
+                                                    <button onClick={handleAddClick}>Добавить</button>
+                                                </div>
+                                                {/* ... rest of your JSX ... */}
+                                            </div>                                </div>
+
+                                        {/* ... rest of your JSX ... */}
+                                    </div>
+                                ) : null
+                            }
                         </div>
                     </div>
                 </div>
