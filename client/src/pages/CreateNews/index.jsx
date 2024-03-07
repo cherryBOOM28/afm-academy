@@ -51,8 +51,6 @@ function CreateNews() {
             }));
             formData.append('file', image);
 
-            console.log(name, description, date, type, image, formData);
-
             try {
                 const response = await axios.post(
                     `${base_url}/api/aml/course/createNews`, 
@@ -64,11 +62,9 @@ function CreateNews() {
                         },
                     }
                 );
-        
-                if (response.statusCode === 200) {
-                    alert("Новость создана");
-                    navigate('/manager');
-                }
+
+                alert("Новость создана");
+                navigate('/manager');
             } catch (error) {
                 console.log(error);
                 alert("Ошибка")
@@ -142,7 +138,11 @@ function CreateNews() {
                                 handleSaveCourse();
                             }}
                         >Сохранить</div>
-                        <div>Отменить</div>
+                        <div
+                            onClick={(e) => {
+                                navigate('/manager');
+                            }}
+                        >Отменить</div>
                     </div>
                 </div>
             </div>
