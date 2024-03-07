@@ -318,7 +318,7 @@ function Profile(props) {
                 Мы стремимся предоставить наилучший опыт обучения. <br />
                 Обратная связь помогает постоянно улучшать наши курсы.
               </p>
-              <div className="star-rating" style={{display:'flex', justifyContent:'center', alignItems:'center' }}>
+              <div id={'StarRating'} className="star-rating" style={{display:'flex', justifyContent:'center', alignItems:'center' }}>
               <Rating
                 count={5}
                 size={50}
@@ -494,5 +494,5 @@ function Profile(props) {
     </div>
   );
 }
-
+document.getElementById("StarRating")
 export default Profile;
