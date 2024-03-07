@@ -72,6 +72,15 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
       }))
     }
 
+    if (inputs.some((x) => x.name === 'points')) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'points': exValues?.points || [
+          { id: 0, x: 720, y: 380, name: 'ГО регуляторы (государтсвенные органы-регуляторы)' },
+        ]
+      }))
+    }
+
     if (inputs.some((x) => x.name === 'phases')) {
       setValues(prevValues => ({
         ...prevValues,
@@ -2511,6 +2520,17 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                     >
                       Добавить новый элемент
                     </button>
+                  </div>
+                )
+                : input.type === 'points_list' 
+                ? (
+                  <div className='points_list-input'>
+                    <div>Введите координаты, названия точек</div>
+                    {
+                      values?.points?.map((point, index) => {
+                        
+                      })
+                    }
                   </div>
                 )
                 : (

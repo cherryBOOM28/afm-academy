@@ -4528,7 +4528,7 @@ function GetLesson({
                     <Sizebox height={40} />
                     <Reveal>
                         <ImageWithPoints
-                            imageUrl={image3m1}
+                            img={image3m1}
                             points={[
                                 {
                                     id: 0,

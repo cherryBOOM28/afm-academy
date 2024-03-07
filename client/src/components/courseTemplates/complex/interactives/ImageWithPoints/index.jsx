@@ -5,7 +5,7 @@ import './style.scss';
 import { MdOutlineClose } from "react-icons/md";
 
 function ImageWithPoints({
-    imageUrl,
+    img,
     points = [
         { id: 0, x: 720, y: 380, name: 'ГО регуляторы (государтсвенные органы-регуляторы)' },
         { id: 1, x: 720, y: 640, name: 'БВУ'  },
@@ -101,13 +101,13 @@ function ImageWithPoints({
         image.onload = () => {
             drawImageAndPoints(); // Draw when image is loaded
         };
-        image.src = imageUrl;
+        image.src = img;
 
         // Cleanup the effect
         return () => {
             image.onload = null;
         };
-    }, [imageUrl]);
+    }, [img]);
 
     // Effect for attaching event listeners
     useEffect(() => {

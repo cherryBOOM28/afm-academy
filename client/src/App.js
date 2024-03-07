@@ -14,6 +14,7 @@ import { StyleProvider } from './/components/VisualModal/StyleContext.jsx';
 import AdminPage_Main from './pages/AdminPage_v2/main/index.jsx';
 import Registration from './pages/registration/Registration';
 import NewsPage from './pages/News/News.jsx';
+import CreateNews from './pages/CreateNews/index.jsx';
 
 const Home = lazy(() => import ('./pages/home/Home'))
 const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
@@ -167,7 +168,7 @@ function App() {
                             <Route path='/createcourse' element={<AdminRoute component={CreateCoursePage} shouldBeLoggedIn={true} redirect={'/'} />}/>
                             <Route path='/new-admin-page' element={<AdminRoute component={AdminPage_Main} shouldBeLoggedIn={true} redirect={'/'} />}/>
                             
-
+                            <Route path='/create-news' element={<AdminRoute component={CreateNews} shouldBeLoggedIn={true} />} />
                             {/* <Route path='/new-admin-page' element={<AdminPage_Main/>} /> */}
                         </Routes>
                     </BrowserRouter>
