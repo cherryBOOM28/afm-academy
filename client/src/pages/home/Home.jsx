@@ -22,25 +22,14 @@ import { Link } from "react-router-dom";
 import basicCourse from "../../assets/icons/mdi_world-wide-web.svg";
 import proCourse from "../../assets/icons/subway_book.svg";
 import deepCourse from "../../assets/icons/simple-icons_progress.svg";
-import upCourse from "../../assets/icons/ep_menu.svg";
-import Navigation from "../../components/navigation/Navigation";
 import VisualModal from "../../components/VisualModal/VisualModal";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 
 import { useTranslation } from "react-i18next";
 import { IoMdReturnLeft } from "react-icons/io";
 import LearningFormatTabs from "../../components/LearningFormatTab/LearningFormatTabs";
-
 function Home() {
   const navigate = useNavigate();
-  const imageList = [
-    { src: FirstPartner, alt: "Image 1" },
-    { src: FirstPartner, alt: "Image 2" },
-    { src: FirstPartner, alt: "Image 3" },
-    { src: FirstPartner, alt: "Image 4" },
-    { src: FirstPartner, alt: "Image 5" },
-    { src: FirstPartner, alt: "Image 6" },
-  ];
   const [removeBackground, setRemoveBackground] = useState(false);
   const toggleRemoveBackground = () => {
     setRemoveBackground((prevValue) => !prevValue);

@@ -1,35 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-import DefaultHeader from "../../components/defaultHeader/DefaultHeader";
 import Footer from "../../components/footer/Footer";
-
 import './catalog.scss';
 import { useLocation } from 'react-router-dom';
-
-import course1 from "./../../assets/images/courses-1.png";
-import course2 from "./../../assets/images/courses-2.png";
-import course3 from "./../../assets/images/courses-3.png";
-import course4 from "./../../assets/images/courses-4.png";
-import course5 from "./../../assets/images/courses-5.png";
-import course6 from "./../../assets/images/courses-6.png";
-import course7 from "./../../assets/images/courses-7.png";
-import course8 from "./../../assets/images/courses-8.png";
-
 import { AiFillFolder } from "react-icons/ai";
 import { BsFilter } from "react-icons/bs";
 import { BiSearch } from "react-icons/bi";
 import { AiFillStar } from "react-icons/ai";
 import { MdOndemandVideo } from "react-icons/md";
-
 import base_url from "../../settings/base_url";
 import axios from "axios";
 import Header from "../../components/header/Header";
+import { useCategoryFormat } from '../Context/Context.jsx';
 
 import { t } from "i18next";
 import { useTranslation } from "react-i18next";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
+
 
 function Catalog() {
 
@@ -41,8 +29,6 @@ function Catalog() {
     const currentLanguage = i18n.language;
 
     const [activeTab, setActiveTab] = useState(1);
-
-
     const handleColorModeChange = (mode) => {
         // Remove previous color mode classes
         const containerElement = document.querySelector(".text-content");
@@ -80,28 +66,6 @@ function Catalog() {
 
     const handleShowImages = () => {
         setImagesHidden(false);
-    };
-
-    const handleIntervalChange = (interval) => {
-        console.log("Interval changed");
-        setLetterInterval(interval);
-    };
-
-    const getShowImage = () => {
-        return imagesHidden;
-    };
-
-    const getLetterSpacing = (interval) => {
-        interval = styles.letterInterval;
-
-        switch (interval) {
-            case "medium":
-                return "2px";
-            case "large":
-                return "4px";
-            default:
-                return "1px";
-        }
     };
     const location = useLocation();
     useEffect(() => {
@@ -224,8 +188,8 @@ function Catalog() {
     const [filterFormatOpen, setFilterFormatOpen] = useState(false);
     const [categoryFilter, setCategoryFilter] = useState(["Все категории"]);
     const [searchValue, setSearchValue] = useState("");
-    const [categoryFormat, setCategoryFormat] = useState('Дистанционно');
-
+    const { categoryFormat, handleChangeCategoryFormat } = useCategoryFormat();
+    console.log(categoryFormat)
     const handleCheckCategory = (e) => {
         const selectedCategory = e.target.value;
         setCategoryFilter((prevFilters) => {
@@ -250,9 +214,6 @@ function Catalog() {
 
     const handleChangeSearchValue = (e) => {
         setSearchValue(e.target.value);
-    };
-    const handleChangeCategoryFormat = (format) => {
-        setCategoryFormat(format);
     };
 
     useEffect(() => {
@@ -312,10 +273,7 @@ function Catalog() {
                 let courses = [
                     ...response.data,
                 ];
-                // courses = response.data
-
                 const _coursesByCategory = {};
-
                 if (response.status === 200) {
                     courses.forEach((course) => {
                         if (course.courseDTO.type_of_study === 'дистанционное') { // Добавляем проверку на тип обучения
@@ -494,28 +452,7 @@ function Catalog() {
                                         })}
                                     </div>
                                 </div>
-                                {/* <div>
-                                    <div onClick={() => {
-                                        setFilterOpen(prev => !prev);
-                                        setCategoryOpen(false);
-                                    }}>
-                                        <BsFilter size={20} className='icon'/>
-                                        <span className='inline-text'>Фильтр</span>
-                                    </div>
-                                    <div 
-                                        className="filter" 
-                                        style={{
-                                            display: filterOpen ? 'flex' : 'none',
-                                        }}
-                                        onMouseLeave={() => {
-                                            setFilterOpen(false);
-                                        }}
-                                    >
-                                        <div>Category 1</div>
-                                        <div>Category 2</div>
-                                        <div>Category 3</div>
-                                    </div>
-                                </div> */}
+                               
                             </div>
                             <div className="filters">
                                 <div>
@@ -590,28 +527,7 @@ function Catalog() {
                                      
                                     </div>
                                 </div>
-                                {/* <div>
-                                    <div onClick={() => {
-                                        setFilterOpen(prev => !prev);
-                                        setCategoryOpen(false);
-                                    }}>
-                                        <BsFilter size={20} className='icon'/>
-                                        <span className='inline-text'>Фильтр</span>
-                                    </div>
-                                    <div 
-                                        className="filter" 
-                                        style={{
-                                            display: filterOpen ? 'flex' : 'none',
-                                        }}
-                                        onMouseLeave={() => {
-                                            setFilterOpen(false);
-                                        }}
-                                    >
-                                        <div>Category 1</div>
-                                        <div>Category 2</div>
-                                        <div>Category 3</div>
-                                    </div>
-                                </div> */}
+                           
                             </div>
                             <div
                                 className="search"
