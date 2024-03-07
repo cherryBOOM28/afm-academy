@@ -472,7 +472,7 @@ function Catalog() {
 
         fetchData();
     }, []);
-    const [uniquePrices, setUniquePrices] = useState("");
+    const [uniquePrices, setUniquePrices] = useState([""]);
     const checkHandler = (data) => {
         setUniquePrices([...new Set(data.filter(course => course.courseDTO.type_of_study === 'онлайн').map(course => course.courseDTO.course_image))])
     }
