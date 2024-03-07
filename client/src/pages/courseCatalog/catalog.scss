@@ -224,6 +224,50 @@
             align-items: center;
             justify-content: center;
         }
+        .TableMain{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .CategoryTable {
+                width: 83%;
+                border-radius: 5px;
+                border-collapse: collapse;
+                
+                th, td {
+                  border: 1px solid #ddd;
+                  padding: 8px;
+                  text-align: left;
+                }
+              
+                th {
+                  background-color: blue;
+                  color: white;
+                }
+              
+                tr:nth-child(even) {
+                  background-color: #f2f2f2;
+                }
+              
+                .ColumnNames {
+                  font-weight: bold;
+                }
+                .Rows td {
+                    &:not(:last-child) {
+                      border-right: none; // Убираем правую границу для всех столбцов, кроме последнего
+                    }
+                  }
+              
+                .Rows {
+                  &:not(:last-child) {
+                    border-bottom: 1px dotted #ddd;
+                  }             
+                  &:hover {
+                    background-color: #e9e9e9;
+                  }
+                }
+              }
+        }
+          
         
         @keyframes loadingAnimation {
             0% {

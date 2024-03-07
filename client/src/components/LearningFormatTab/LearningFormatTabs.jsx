@@ -14,6 +14,7 @@ import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
 import './LearningFormat.scss';
 
+
 function LearningFormatTabs({ text }) {
   const { styles } = useStyle();
 
@@ -242,7 +243,7 @@ function LearningFormatTabs({ text }) {
               {" "}
               {t("descRemote")}
             </p>
-            <Link to="/courses/catalog" style={{ textDecoration: "none" }}>
+            <Link to="/courses/catalog#top" style={{ textDecoration: "none" }}>
               <Button className={cl.more}>{t("go to catalog")}</Button>
             </Link>
           </div>
@@ -287,7 +288,7 @@ function LearningFormatTabs({ text }) {
             >
               {t("descOnline")}
             </p>
-            <Link to="/courses/catalog" style={{ textDecoration: "none" }}>
+            <Link to="/courses/catalog#top" style={{ textDecoration: "none" }}>
               <Button className={cl.more}>{t("go to catalog")}</Button>
             </Link>
           </div>
@@ -332,7 +333,7 @@ function LearningFormatTabs({ text }) {
             >
               {t("descOffline")}
             </p>
-            <Link to="/courses/catalog" style={{ textDecoration: "none" }}>
+            <Link to="/courses/catalog#top" style={{ textDecoration: "none" }}>
               <Button className={cl.more}>{t("go to catalog")}</Button>
             </Link>
           </div>
