@@ -672,9 +672,11 @@ const Elements = {
             component: ImageWithPoints,
             example: null,
             name: 'ImageWithPoints',
-            icons: imageIcon,
+            icon: imageIcon,
             inputs: [
-                
+                { name: 'img', label: 'Изображение', type: 'file' },
+                { name: 'points', label: 'Точки', type: 'points_list' },
+                { name: 'list', label: 'Лист', type: 'list_of_list' },
             ]
         }
     },
