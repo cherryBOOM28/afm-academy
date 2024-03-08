@@ -133,24 +133,6 @@ function VisualModal({
               item.style.fontSize = fontSizes[size].fontSize;
               item.style.lineHeight = fontSizes[size].lineHeight;
             }
-  
-        //     // Use different sizes for different elements in standard mode
-        //     if (item.classList.contains("caption")) {
-        //       item.style.fontSize = fontSizes[size].caption.fontSize;
-        //       item.style.lineHeight = fontSizes[size].caption.lineHeight;
-        //     } else if (item.classList.contains("subtitle")) {
-        //       item.style.fontSize = fontSizes[size].subtitle.fontSize;
-        //       item.style.lineHeight = fontSizes[size].subtitle.lineHeight;
-        //     } else {
-        //       // Default size for other elements
-        //       item.style.fontSize = fontSizes[size].fontSize;
-        //       item.style.lineHeight = fontSizes[size].lineHeight;
-        //     }
-        //     break;
-  
-        //   default:
-        //     break;
-        // }
       });
     }
   };

@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import cl from "./Home.module.css";
 
-import aboutUsPic from "../../assets/images/main.svg";
 import accIcon from "../../assets/icons/pacc.svg";
 import bookIcon from "../../assets/icons/book.svg";
 import realtionIcon from "../../assets/icons/relation.svg";
 import laptopIcon from "../../assets/icons/laptop.svg";
 import backgroundVideoLight from "../../assets/video/bgvideo.mov";
 import backgroundVideoDark from "../../assets/video/bgvideoDark.mov";
-import Button from "../../components/UI/button/Button";
 import Header from "../../components/header/Header";
 import VideoPlayer from "../../components/player/VideoPlayer";
 import Tabs from "../../components/tab/Tabs";
 import NewsTab from "../../components/newsTab/NewsTab";
-import FirstPartner from "../../assets/images/partner1.png";
 import Footer from "../../components/footer/Footer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
@@ -26,7 +23,6 @@ import VisualModal from "../../components/VisualModal/VisualModal";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 
 import { useTranslation } from "react-i18next";
-import { IoMdReturnLeft } from "react-icons/io";
 import LearningFormatTabs from "../../components/LearningFormatTab/LearningFormatTabs";
 function Home() {
   const navigate = useNavigate();
