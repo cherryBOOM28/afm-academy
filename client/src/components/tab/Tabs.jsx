@@ -53,30 +53,6 @@ function Tabs({ text }) {
     setImagesHidden(false);
   };
 
-  // useEffect(() => {
-  //   const textContentElement = document.querySelectorAll(".text-content");
-  //   const size = styles.fontSize;
-  //   if (textContentElement) {
-  //     textContentElement.forEach((item) => {
-  //       switch (size) {
-  //         case "small":
-  //           item.style.fontSize = "15px";
-  //           item.style.lineHeight = "18px";
-  //           break;
-  //         case "standard":
-  //           item.style.fontSize = "20px";
-  //           item.style.lineHeight = "23px";
-  //           break;
-  //         case "large":
-  //           item.style.fontSize = "24px";
-  //           item.style.lineHeight = "27px";
-  //           break;
-  //         default:
-  //           break;
-  //       }
-  //     });
-  //   }
-  // }, []);
 
   useEffect(() => {
     setImagesHidden(!styles.showImage);
@@ -118,8 +94,11 @@ function Tabs({ text }) {
             activeTab === 1 ? cl.btnTab + " " + cl.activeTab : cl.btnTab
           }
           style={{
+            color: activeTab === 1 ? "#03094e" : "",
+            fontWeight: activeTab === 1 ? "600" : "",
+            
             background:
-              styles.colorMode === "dark"
+                  styles.colorMode === "dark"
                 ? "#000"
                 : styles.colorMode === "light"
                 ? "#fff"
@@ -134,9 +113,11 @@ function Tabs({ text }) {
         </div>
         <div
           className={
-            activeTab === 1 ? cl.btnTab + " " + cl.activeTab : cl.btnTab
+            activeTab === 2 ? cl.btnTab + " " + cl.activeTab : cl.btnTab
           }
           style={{
+            color: activeTab === 2 ? "#03094e" : "",
+            fontWeight: activeTab === 2 ? "600" : "",
             background:
               styles.colorMode === "dark"
                 ? "#000"
@@ -153,9 +134,11 @@ function Tabs({ text }) {
         </div>
         <div
           className={
-            activeTab === 1 ? cl.btnTab + " " + cl.activeTab : cl.btnTab
+            activeTab === 3 ? cl.btnTab + " " + cl.activeTab : cl.btnTab
           }
           style={{
+            color: activeTab === 3 ? "#03094e" : "",
+            fontWeight: activeTab === 3 ? "600" : "",
             background:
               styles.colorMode === "dark"
                 ? "#000"
@@ -172,9 +155,11 @@ function Tabs({ text }) {
         </div>
         <div
           className={
-            activeTab === 1 ? cl.btnTab + " " + cl.activeTab : cl.btnTab
+            activeTab === 4 ? cl.btnTab + " " + cl.activeTab : cl.btnTab
           }
           style={{
+            color: activeTab === 4 ? "#03094e" : "",
+            fontWeight: activeTab === 4 ? "600" : "",
             background:
               styles.colorMode === "dark"
                 ? "#000"
