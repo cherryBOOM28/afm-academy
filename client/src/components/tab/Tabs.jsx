@@ -95,6 +95,7 @@ function Tabs({ text }) {
           }
           style={{
             color: activeTab === 1 ? "#03094e" : "",
+            width: activeTab === 1 ? "104%" : "",
             fontWeight: activeTab === 1 ? "600" : "",
             
             background:
@@ -117,6 +118,7 @@ function Tabs({ text }) {
           }
           style={{
             color: activeTab === 2 ? "#03094e" : "",
+            width: activeTab === 2 ? "104%" : "",
             fontWeight: activeTab === 2 ? "600" : "",
             background:
               styles.colorMode === "dark"
@@ -138,6 +140,7 @@ function Tabs({ text }) {
           }
           style={{
             color: activeTab === 3 ? "#03094e" : "",
+            width: activeTab === 3 ? "104%" : "",
             fontWeight: activeTab === 3 ? "600" : "",
             background:
               styles.colorMode === "dark"
@@ -159,6 +162,7 @@ function Tabs({ text }) {
           }
           style={{
             color: activeTab === 4 ? "#03094e" : "",
+            width: activeTab === 4 ? "104%" : "",
             fontWeight: activeTab === 4 ? "600" : "",
             background:
               styles.colorMode === "dark"
