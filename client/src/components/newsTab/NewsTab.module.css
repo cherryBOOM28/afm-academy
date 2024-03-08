@@ -4,6 +4,7 @@
     flex-direction: column;
     z-index: 1000000;
     /* gap: 20px; */
+    width: 80%;
 }
 
 .tabButtons {
@@ -65,7 +66,7 @@
     width: 100%;
     cursor: pointer;
     /* height: 347px; */
-    overflow-x: auto;
+    overflow-x: none;
     flex-wrap: wrap;
 }
 .btnTab {

@@ -24,7 +24,10 @@ const NewsTab = ({Width}) => {
   const modalRef = useRef();
   const [settings, setSettings] = useState({
     dots: true,
+    focusOnSelect: true,
     infinite: true,
+    adaptiveHeight: true,
+    arrows: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,

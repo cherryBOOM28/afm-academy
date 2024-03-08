@@ -650,7 +650,6 @@ function Home() {
                   ? "#9dd1ff"
                   : "#000",
             }}
-            Width={'80%'}
           />
         </section>
         {/* <section className={cl.partnersWrapper}>
