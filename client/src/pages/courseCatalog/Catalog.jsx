@@ -26,7 +26,7 @@ function Catalog() {
     const { styles, open, setOpen, userEntry, checkStyle } = useStyle();
     const [imagesHidden, setImagesHidden] = useState(false);
     const [letterInterval, setLetterInterval] = useState("standard");
-    const [isReload, setIsReload] = useState(false);
+    const [isReload, setIsReload] = useState(0);
     const { t } = useTranslation();
     const { i18n } = useTranslation();
     const currentLanguage = i18n.language;
@@ -37,7 +37,7 @@ function Catalog() {
     };
     const handleCloseModal = () => {
         setModalOpen(false);
-        handleReload(true)
+        handleReload()
     };
     useEffect(() => {
         const fetchData = async () => {
@@ -230,7 +230,7 @@ function Catalog() {
         }
     }, []);
     const handleReload = () => {
-        setIsReload(true)
+        setIsReload(isReload+1)
     }
 
     const navigate = useNavigate();
@@ -270,6 +270,7 @@ function Catalog() {
     
                     alert("Заявка отправлена!!!");
                     handleCloseModal()
+                    handleReload()
                     
                 } catch (error) {
                     console.log(error);
@@ -376,7 +377,7 @@ function Catalog() {
             setCategoryFilter(["Все категории"]);
         }
     };
-    
+
     const handleChangeSearchValue = (e) => {
         setSearchValue(e.target.value);
     };
@@ -453,13 +454,11 @@ function Catalog() {
                     // console.log(_coursesByCategory)
                     setCoursesByCategory(_coursesByCategory);
                     setData(response.data);
-                    
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
                     // console.log(response.statusText);
                 }
-                checkHandler(response.data)
 
                 // Iterate through the courses and categorize them
             } catch (error) {
@@ -472,11 +471,6 @@ function Catalog() {
 
         fetchData();
     }, []);
-    const [uniquePrices, setUniquePrices] = useState([""]);
-    const checkHandler = (data) => {
-        setUniquePrices([...new Set(data.filter(course => course.courseDTO.type_of_study === 'онлайн').map(course => course.courseDTO.course_image))])
-    }
-    
 
     return (
         <div
@@ -746,46 +740,44 @@ function Catalog() {
             {coursesByCategory !== null && (
                 <>
                     {categoryFormat === "Онлайн" && (
-                     <div className="TableMain">
-                     {uniquePrices.map(image => (
-                         <React.Fragment key={image}>
-                             <table className="CategoryTable">
-                                 <thead>
-                                     
-                                     <tr className="ColumnNames">
-                                         <th>Курсы</th>
-                                         <th>Аудитория</th>
-                                         <th>Формат</th>
-                                         <th>Группа</th>
-                                         <th>Стоимость</th>
-                                         <th>Стоимость с учетом корпоративной скидки</th>
-                                         <th>Заявка</th>
-                                         <th>Количество поданных заявок</th>
-                                     </tr>
-                                     <tr className="ColumnNames">
-                                         <th colSpan="8">{image}</th>
-                                     </tr>
-                                 </thead>
-                                 <tbody>
-                                     {data.filter(course => course.courseDTO.type_of_study === 'онлайн' && course.courseDTO.course_image === image).map((course) => (
-                                         <tr className="Rows" key={course.courseDTO.course_id}>
-                                             <td>{course.courseDTO.course_name}</td>
-                                             <td>{course.courseDTO.course_for_member_of_the_system}</td>
-                                             <td>{course.courseDTO.type_of_study}</td>
-                                             <td>{course.courseDTO.group_of_person}</td>
-                                             <td>{course.courseDTO.course_price}</td>
-                                             <td>{course.courseDTO.course_price_sale}</td>
-                                             <td>
-                                                 <Button onClick={() => { setSelectedCourseId(course.courseDTO.course_id); setSelectedCourseName(course.courseDTO.course_name); handleOpenModal(); }}>Подать заявку</Button >
-                                             </td>
-                                             <td>{course.courseDTO.rating}</td>
-                                         </tr>
-                                     ))}
-                                 </tbody>
-                             </table>
-                         </React.Fragment>
-                     ))}
-                 </div>               )}
+                        <div className="TableMain">
+                            <table className="CategoryTable">
+                            <div className="TableMain">
+                    <table className="CategoryTable">
+                      <thead>
+                        <tr className="ColumnNames">
+                          <th>Курсы</th>
+                          <th>Аудитория</th>
+                          <th>Формат</th>
+                          <th>Группа</th>
+                          <th>Стоимость</th>
+                          <th>Стоимость с учетом корпоративной скидки</th>
+                          <th>Заявка</th>
+                          <th>Количество поданных заявок</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {data.filter(course => course.courseDTO.type_of_study === 'онлайн').map((course) => (
+                            
+                          <tr className="Rows" key={course.courseDTO.course_id}>
+                            <td>{course.courseDTO.course_name}</td>
+                            <td>{course.courseDTO.course_for_member_of_the_system}</td>
+                            <td>{course.courseDTO.type_of_study}</td>
+                            <td>{course.courseDTO.group_of_person}</td>
+                            <td>{course.courseDTO.course_price}</td>
+                            <td>{course.courseDTO.course_price_sale}</td>
+                            <td>
+                                    <Button onClick={() => { setSelectedCourseId(course.courseDTO.course_id); setSelectedCourseName(course.courseDTO.course_name); handleOpenModal(); }}>Подать заявку</Button >
+                                </td>
+                                <td>{course.courseDTO.rating}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                            </table>
+                        </div>
+                                    )}
                                      <ApplicationModal
                                         open={modalOpen}
                                         handleClose={handleCloseModal}
