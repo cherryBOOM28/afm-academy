@@ -2525,12 +2525,86 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                 : input.type === 'points_list' 
                 ? (
                   <div className='points_list-input'>
-                    <div>Введите координаты, названия точек</div>
+                    <div>Введите данные</div>
+
+                    <div>
+                      <div>Координаты X</div>
+                      <div>Координаты Y</div>
+                      <div>Названия точек</div>
+                    </div>
                     {
                       values?.points?.map((point, index) => {
                         
+                        return (
+                          <div key={index}>
+                            <input 
+                              type="number" 
+                              value={point.x}
+                              onChange={(e) => {
+                                setValues(prevValues => {
+                                  const updated = prevValues.points;
+                                  updated[index].x = parseInt(e.target.value, 10);
+
+                                  return {
+                                    ...prevValues,
+                                    ['points']: updated,
+                                  }
+                                })
+                              }}
+                            />
+                            <input 
+                              type="number" 
+                              value={point.y}
+                              onChange={(e) => {
+                                setValues(prevValues => {
+                                  const updated = prevValues.points;
+                                  updated[index].y = parseInt(e.target.value, 10);
+
+                                  return {
+                                    ...prevValues,
+                                    ['points']: updated,
+                                  }
+                                })
+                              }}
+                            />
+                            <input 
+                              type="text" 
+                              value={point.name}
+                              onChange={(e) => {
+                                setValues(prevValues => {
+                                  const updated = prevValues.points;
+                                  updated[index].name = e.target.value;
+
+                                  return {
+                                    ...prevValues,
+                                    ['points']: updated,
+                                  }
+                                })
+                              }}
+                            />
+                          </div>
+                        )
                       })
                     }
+                    <button
+                      onClick={e => {
+                        setValues(prevValues => {
+
+                          return {
+                            ...prevValues,
+                            ['points']: [
+                              ...prevValues['points'],
+                              { 
+                                id: prevValues['points'][prevValues['points'].length - 1].id + 1,
+                                x: 0,
+                                y: 0,
+                                name: ''
+                              }
+                            ]
+                          }
+                        })
+                      }}
+                    >Добавить точку</button>
                   </div>
                 )
                 : (
