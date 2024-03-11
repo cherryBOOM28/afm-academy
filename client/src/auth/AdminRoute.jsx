@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import { useEffect, useState } from 'react';
 
-const MustBeAdmin = ({ component: Component, shouldBeLoggedIn, redirect='/' }) => {
+const MustBeAdmin = ({ component: Component, shouldBeLoggedIn, redirect='/', shouldBeAdmin = false }) => {
     const { isLoggedIn } = useAuth();
     const [role, setRole] = useState(null);
 
@@ -19,10 +19,17 @@ const MustBeAdmin = ({ component: Component, shouldBeLoggedIn, redirect='/' }) =
         // Роль еще не загружена, пока ждем...
         return null;
     }
-
-    if (role === 'ROLE_ADMIN' && isLoggedIn ) {
-        return <Component />
+    if (shouldBeAdmin === false) {
+        if ( isLoggedIn ) {
+            return <Component />
+        }
+    } else {
+        if (role === 'ROLE_ADMIN' && isLoggedIn ) {
+            return <Component />
+        }
     }
+
+    
     if (!isLoggedIn && shouldBeLoggedIn) {
         return <Navigate to="/login" />
     }

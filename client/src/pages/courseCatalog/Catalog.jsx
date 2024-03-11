@@ -71,6 +71,23 @@ function Catalog() {
                             _coursesByCategory[categoryName].push(course);
                         }
                     });
+                    const _groupedCourses = {};
+                    courses.forEach(course => {
+                        if (course.courseDTO.type_of_study === 'онлайн') {
+                            const group = course.courseDTO.course_image; // Проверяем наличие свойства перед его использованием
+                            if (!_groupedCourses[group]) {
+                                _groupedCourses[group] = [];
+                            }
+                            _groupedCourses[group].push(course);
+                        }
+                    });
+                    console.log(_groupedCourses);
+                   
+
+                    // console.log(_coursesByCategory)
+                    setCoursesByCategory(_coursesByCategory);
+                    setGroupedCourses(_groupedCourses)
+                    setData(response.data);
     
                     // console.log(_coursesByCategory)
                     setCoursesByCategory(_coursesByCategory);
@@ -333,7 +350,7 @@ function Catalog() {
     
 
     const [data, setData] = useState(null);
-    console.log(data);
+
     useEffect(() => {
         // Этот код будет выполнен при каждом изменении числа
         console.log('Число изменилось:', data);
@@ -354,6 +371,7 @@ function Catalog() {
     const [filterFormatOpen, setFilterFormatOpen] = useState(false);
     const [categoryFilter, setCategoryFilter] = useState(["Все категории"]);
     const [searchValue, setSearchValue] = useState("");
+    const [groupedCourses, setGroupedCourses] = useState("");
     const { categoryFormat, handleChangeCategoryFormat } = useCategoryFormat();
     console.log(categoryFormat)
     const handleCheckCategory = (e) => {
@@ -450,9 +468,22 @@ function Catalog() {
                             _coursesByCategory[categoryName].push(course);
                         }
                     });
+                    const _groupedCourses = {};
+                    courses.forEach(course => {
+                        if (course.courseDTO.type_of_study === 'онлайн') {
+                            const group = course.courseDTO.course_image; // Проверяем наличие свойства перед его использованием
+                            if (!_groupedCourses[group]) {
+                                _groupedCourses[group] = [];
+                            }
+                            _groupedCourses[group].push(course);
+                        }
+                    });
+                    console.log(_groupedCourses);
+                   
 
                     // console.log(_coursesByCategory)
                     setCoursesByCategory(_coursesByCategory);
+                    setGroupedCourses(_groupedCourses)
                     setData(response.data);
                 } else {
                     // Handle other status codes if needed
@@ -471,6 +502,9 @@ function Catalog() {
 
         fetchData();
     }, []);
+   
+   
+
 
     return (
         <div
@@ -755,24 +789,38 @@ function Catalog() {
                           <th>Заявка</th>
                           <th>Количество поданных заявок</th>
                         </tr>
-                      </thead>
-                      <tbody>
-                        {data.filter(course => course.courseDTO.type_of_study === 'онлайн').map((course) => (
-                            
-                          <tr className="Rows" key={course.courseDTO.course_id}>
-                            <td>{course.courseDTO.course_name}</td>
-                            <td>{course.courseDTO.course_for_member_of_the_system}</td>
-                            <td>{course.courseDTO.type_of_study}</td>
-                            <td>{course.courseDTO.group_of_person}</td>
-                            <td>{course.courseDTO.course_price}</td>
-                            <td>{course.courseDTO.course_price_sale}</td>
-                            <td>
-                                    <Button onClick={() => { setSelectedCourseId(course.courseDTO.course_id); setSelectedCourseName(course.courseDTO.course_name); handleOpenModal(); }}>Подать заявку</Button >
-                                </td>
-                                <td>{course.courseDTO.rating}</td>
-                          </tr>
-                        ))}
-                      </tbody>
+                                                        </thead>
+                                                        <tbody>
+                    {data && data.length > 0 ? (
+                        // Группируем курсы по типу
+                        Object.entries(groupedCourses).map(([group, courses]) => (
+                            <React.Fragment key={group}>
+                                <tr>
+                                    <td colSpan="8" className={"groups"}>{group}</td>
+                                </tr>
+                                {courses.filter(course => course.courseDTO.type_of_study === 'онлайн').map((course) => (
+                                    <tr className="Rows" key={course.courseDTO.course_id}>
+                                        <td>{course.courseDTO.course_name}</td>
+                                        <td>{course.courseDTO.course_for_member_of_the_system}</td>
+                                        <td>{course.courseDTO.type_of_study}</td>
+                                        <td>{course.courseDTO.group_of_person}</td>
+                                        <td>{course.courseDTO.course_price}</td>
+                                        <td>{course.courseDTO.course_price_sale}</td>
+                                        <td>
+                                            <Button onClick={() => { setSelectedCourseId(course.courseDTO.course_id); setSelectedCourseName(course.courseDTO.course_name); handleOpenModal(); }}>Подать заявку</Button>
+                                        </td>
+                                        <td>{course.courseDTO.rating}</td>
+                                    </tr>
+                                ))}
+                            </React.Fragment>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="8">Нет данных для отображения</td>
+                        </tr>
+                    )}
+                </tbody>
+
                     </table>
                   </div>
                             </table>
