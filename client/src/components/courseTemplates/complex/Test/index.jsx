@@ -325,6 +325,9 @@ const MSQ_Body_2 = ({
                             <div className={`checkbox ${isChecked ? 'checked' : null}`} onClick={handleCheck}>
                                 {isChecked ? <FaCheck /> : null}
                             </div>
+                            <div className="answer-text">
+                                <p>{answer.mcq_option_title} </p>
+                            </div>
                         </div>
                     );
                 }) : null

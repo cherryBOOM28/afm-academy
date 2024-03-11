@@ -95,7 +95,8 @@ function Tabs({ text }) {
           }
           style={{
             color: activeTab === 1 ? "#03094e" : "",
-            width: activeTab === 1 ? "104%" : "",
+            width: activeTab === 1 ? "100%" : "",
+            boxShadow: activeTab === 1 ? "4px 4px 4px 4px rgba(1, 1, 0.25, 0.25)" : "",
             fontWeight: activeTab === 1 ? "600" : "",
             
             background:
@@ -118,7 +119,8 @@ function Tabs({ text }) {
           }
           style={{
             color: activeTab === 2 ? "#03094e" : "",
-            width: activeTab === 2 ? "104%" : "",
+            width: activeTab === 2 ? "100%" : "",
+            boxShadow: activeTab === 2 ? "4px 4px 4px 4px rgba(1, 1, 0.25, 0.25)" : "",
             fontWeight: activeTab === 2 ? "600" : "",
             background:
               styles.colorMode === "dark"
@@ -140,7 +142,8 @@ function Tabs({ text }) {
           }
           style={{
             color: activeTab === 3 ? "#03094e" : "",
-            width: activeTab === 3 ? "104%" : "",
+            width: activeTab === 3 ? "100%" : "",
+            boxShadow: activeTab === 3 ? "4px 4px 4px 4px rgba(1, 1, 0.25, 0.25)" : "",
             fontWeight: activeTab === 3 ? "600" : "",
             background:
               styles.colorMode === "dark"
@@ -162,8 +165,10 @@ function Tabs({ text }) {
           }
           style={{
             color: activeTab === 4 ? "#03094e" : "",
-            width: activeTab === 4 ? "104%" : "",
+            width: activeTab === 4 ? "100%" : "",
             fontWeight: activeTab === 4 ? "600" : "",
+            boxShadow: activeTab === 4 ? "4px 4px 4px 4px rgba(1, 1, 0.25, 0.25)" : "",
+            border: activeTab === 4 ? "4px black" : "",
             background:
               styles.colorMode === "dark"
                 ? "#000"
