@@ -326,7 +326,7 @@ const MSQ_Body_2 = ({
                                 {isChecked ? <FaCheck /> : null}
                             </div>
                             <div className="answer-text">
-                                <p>{answer.mcq_option_title} </p>
+                                <p>{answer.mcq_option_title}</p>
                             </div>
                         </div>
                     );
