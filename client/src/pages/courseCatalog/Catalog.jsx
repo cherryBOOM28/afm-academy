@@ -71,6 +71,23 @@ function Catalog() {
                             _coursesByCategory[categoryName].push(course);
                         }
                     });
+                    const _groupedCourses = {};
+                    courses.forEach(course => {
+                        if (course.courseDTO.type_of_study === 'онлайн') {
+                            const group = course.courseDTO.course_image; // Проверяем наличие свойства перед его использованием
+                            if (!_groupedCourses[group]) {
+                                _groupedCourses[group] = [];
+                            }
+                            _groupedCourses[group].push(course);
+                        }
+                    });
+                    console.log(_groupedCourses);
+                   
+
+                    // console.log(_coursesByCategory)
+                    setCoursesByCategory(_coursesByCategory);
+                    setGroupedCourses(_groupedCourses)
+                    setData(response.data);
     
                     // console.log(_coursesByCategory)
                     setCoursesByCategory(_coursesByCategory);
