@@ -152,7 +152,7 @@ function App() {
                                 <Suspense><Basic_course /></Suspense>
                                 // } redirect={'/courses/catalog'}/>
                             } /> */}
-                             <Route path="/courses/8/read" element={<Suspense><PrivateRoute shouldBeLoggedIn={true} component={Basic_course} redirect={'/login'}/></Suspense>} />
+                             <Route path="/courses/8/read" element={<Suspense><AdminRoute shouldBeLoggedIn={true} shouldBeAdmin={false} component={Basic_course} redirect={'/login'}/></Suspense>} />
                             <Route path='/courses/100/read' element={<Suspense ><CryptoCourse /></Suspense>}/>
                             <Route path='/courses/101/read' element={<Suspense ><PlanningInvestigationCourse /></Suspense>}/>
 
