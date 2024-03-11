@@ -237,7 +237,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
       }))
     }
 
-    if (hasListInput) {
+    if (hasListInput && !inputs.some((x) => x.name === 'points')) {
       // Update the 'list' property in the values state to an empty string
       setValues((prevValues) => ({
         ...prevValues,
@@ -358,6 +358,15 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
               correctOptionIndex: 1,
             },
           ]
+      }))
+    }
+
+    if (hasListInput && inputs.some((x) => x.name === 'points')) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'list': exValues?.list || [
+          [ 'Текст' ],
+        ]
       }))
     }
 
@@ -2525,7 +2534,16 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                 : input.type === 'points_list' 
                 ? (
                   <div className='points_list-input'>
-                    <div>Введите данные</div>
+                    {
+                      values?.img ? (
+                        <div className="img-points">
+                          <img src={values?.img} />
+                        </div>
+                      ) : null
+                    }
+
+                    <div>Нажмите картинку, чтобы увидеть координаты: x: 0, y: 0</div>
+                    <div className='input-title'>Введите данные точек</div>
 
                     <div>
                       <div>Координаты X</div>
@@ -2600,11 +2618,69 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                                 y: 0,
                                 name: ''
                               }
+                            ],
+                            ['list']: [
+                              ...prevValues['list'],
+                              ['Текст']
                             ]
                           }
                         })
                       }}
                     >Добавить точку</button>
+                  </div>
+                )
+                : input.type === 'list_of_list'
+                ? (
+                  <div className="list-of-list-input">
+                    <div className="input-title">Введите лист значений для точек</div>
+                    {
+                      values?.list?.map((list_item, index) => {
+
+                        return (
+                          <div className="list-item" key={index}>
+                            <div><p>{index + 1}</p></div>
+                            <div className="list-inputs">
+                              {
+                                list_item.map((item, idx) => {
+
+                                  return (
+                                    <input 
+                                      type="text" 
+                                      key={idx}
+                                      value={item}
+                                      onChange={(e) => {
+                                        setValues(prevValues => {
+                                          const updated = prevValues.list;
+                                          updated[index][idx] = e.target.value;
+
+                                          return {
+                                            ...prevValues,
+                                            ['list']: updated
+                                          }
+                                        })
+                                      }}
+                                    />
+                                  )
+                                })
+                              }
+                              <button
+                                onClick={e => {
+                                  const updated = values.list;
+                                  updated[index] = [...updated[index], 'Текст'];
+
+                                  setValues(prevValues => {
+                                    return {
+                                      ...prevValues,
+                                      ['list']: updated
+                                    }
+                                  })
+                                }}
+                              >Добавить новый элемент в лист</button>
+                            </div>
+                          </div>
+                        )
+                      })
+                    }
                   </div>
                 )
                 : (
