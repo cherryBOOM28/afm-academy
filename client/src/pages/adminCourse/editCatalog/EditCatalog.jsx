@@ -102,17 +102,15 @@ const EditCatalog = () => {
             try {
                 const response = await  axios
                     .get(base_url + "/api/aml/course/getRequest")
-                    .then((res) => {
+                    .then((res) => { setRequestData(res.data)
             })
-
-                setRequestData(response.data)
                 console.log(response.data);
             } catch (error) {
                 console.error(error);
             }
         };
 
-        if (selectedPage === 'newsPage') {
+        if (selectedPage === 'requestPage') {
             fetchData();
             setLoading(false);
         }
@@ -363,8 +361,9 @@ const EditCatalog = () => {
                                                       <TableCell>ФИО</TableCell>
                                                       <TableCell align="right">Email</TableCell>
                                                       <TableCell align="right">Номер телефона</TableCell>
-                                                      <TableCell align="right">ID Курса</TableCell>
                                                       <TableCell align="right">Название курса</TableCell>
+                                                      <TableCell align="right">ID Курса</TableCell>
+                                                      
                                                     </TableRow>
                                                   </TableHead>
                                                   <TableBody>
@@ -378,8 +377,8 @@ const EditCatalog = () => {
                                                         </TableCell>
                                                         <TableCell align="right">{course.email}</TableCell>
                                                         <TableCell align="right">{course.phone_number}</TableCell>
+                                                        <TableCell align="right">{course.course.course_name}</TableCell>    
                                                         <TableCell align="right">{course.course.course_id}</TableCell>
-                                                        <TableCell align="right">{course.course.course_name}</TableCell>
                                                       </TableRow>
                                                     ))}
                                                   </TableBody>
