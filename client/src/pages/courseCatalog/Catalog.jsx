@@ -13,11 +13,20 @@ import axios from "axios";
 import Header from "../../components/header/Header";
 import { useCategoryFormat } from '../Context/Context.jsx';
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material';
-
+import Alert from '@mui/material/Alert';
+import CheckIcon from '@mui/icons-material/Check';
 import { t } from "i18next";
 import { useTranslation } from "react-i18next";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
+
+function SimpleAlert() {
+    return (
+      <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
+        Here is a gentle confirmation that your action was successful.
+      </Alert>
+    );
+  }
 
 
 
