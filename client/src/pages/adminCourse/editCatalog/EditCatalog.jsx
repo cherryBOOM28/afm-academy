@@ -15,9 +15,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 import archiveIcon from '../images/archive-icon.svg'
 import folderIcon from '../images/folder-icon.png'
+import { useSearchParams } from "react-router-dom"
 
 
 
@@ -37,6 +40,7 @@ const EditCatalog = () => {
     const [requestData, setRequestData] = useState([]);
     const [newsData, setNewsData] = useState([]);
     const [courseData, setCourseData] = useState([]);
+    const [dataReload, setDataReload] = useState(0);
 
     const [isLoading, setLoading] = useState(true);
 
@@ -59,7 +63,10 @@ const EditCatalog = () => {
                 console.log(res.data)
                 setRequestData(res.data)
             })
-    }, [])
+    }, [dataReload])
+    const handleReloadData = () => {
+        setDataReload(dataReload+1)
+    }
 
     useMemo(() => {
         const fetchData = async () => {
@@ -323,7 +330,10 @@ const EditCatalog = () => {
                                                         </div>
                                                     )
                                                 })
-                                            ):(<div style={{position:'absolute',fontSize:'30px'}}> <TableContainer component={Paper}>
+                                            ) : (<div className="tableDiv" style={{}}> <TableContainer component={Paper}>
+                                                     <Stack direction="row" spacing={2}>
+                                                        <Button onClick={handleReloadData}>Обнавить список</Button>
+                                                    </Stack>
                                                 <Table sx={{ minWidth: 1450 }} aria-label="simple table">
                                                   <TableHead>
                                                     <TableRow>
