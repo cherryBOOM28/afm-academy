@@ -359,7 +359,8 @@ const EditCatalog = () => {
                                                     </Stack>
                                                 <Table sx={{ minWidth: 900 }} aria-label="simple table">
                                                   <TableHead>
-                                                    <TableRow>
+                                                      <TableRow>
+                                                      <TableCell>Дата и время</TableCell>
                                                       <TableCell>ФИО</TableCell>
                                                       <TableCell align="right">Email</TableCell>
                                                       <TableCell align="right">Номер телефона</TableCell>
@@ -373,7 +374,8 @@ const EditCatalog = () => {
                                                       <TableRow
                                                         key={course.id}
                                                         sx={{ '&:last-child td, &:last-child th': { border: 0 }, fontSize:'25px' }}
-                                                      >
+                                                        >
+                                                        <TableCell>{getDate(course.payment_date)}</TableCell>
                                                         <TableCell component="th" scope="course">
                                                           {course.fio}
                                                         </TableCell>
