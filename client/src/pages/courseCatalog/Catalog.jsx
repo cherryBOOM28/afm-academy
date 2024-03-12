@@ -302,29 +302,53 @@ function Catalog() {
     
     
         return (
-            <Dialog open={open} onClose={handleClose} BackdropProps={{ style: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } }}>
+            <Dialog open={open} onClose={handleClose}  PaperProps={{
+                component: 'form',
+                onSubmit: (event) => {
+                  event.preventDefault();
+                  const formData = new FormData(event.currentTarget);
+                  const formJson = Object.fromEntries(formData.entries());
+                  const email = formJson.email;
+                  const fio = formJson.fio;
+                  const contacts = formJson.contacts;
+                    console.log(email);
+                    handleSubmit();
+                  handleClose();
+                },
+              }}>
                 <DialogTitle>Подать заявку на курс</DialogTitle>
                 <DialogContent>
                     <TextField
+                        autoFocus
                         label="ФИО"
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
                         fullWidth
+                        required
+                        id="fio"
                         margin="normal"
+
                     />
                     <TextField
+                        autoFocus
                         label="Контакты"
                         value={contacts}
                         onChange={(e) => setContacts(e.target.value)}
                         fullWidth
+                        id="contacts"
+                        required
                         margin="normal"
                     />
                     <TextField
+                        autoFocus
+                        required
+                        margin="normal"
+                        id="email"
                         label="Электронная почта"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         fullWidth
-                        margin="normal"
+                        type="email"
                     />
                      <TextField
                         label="Курс"
@@ -338,7 +362,7 @@ function Catalog() {
                     <Button onClick={handleClose} color="primary">
                         Отмена
                     </Button>
-                    <Button onClick={handleSubmit} color="primary">
+                    <Button type="submit" color="primary">
                         Отправить
                     </Button>
                 </DialogActions>

@@ -14,6 +14,27 @@ import VisualModal from "../../components/VisualModal/VisualModal";
 import './NewsTab.scss'
 import { Block } from "@mui/icons-material";
 
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "black",borderRadius:"1000px" }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "black",borderRadius:"1000px" }}
+      onClick={onClick}
+    />
+  );
+}
 const NewsTab = ({Width}) => {
   const { styles } = useStyle();
   const { t } = useTranslation();
@@ -33,7 +54,9 @@ const NewsTab = ({Width}) => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    pauseOnHover: true
+    pauseOnHover: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
   });
   const handleClickOutside = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
