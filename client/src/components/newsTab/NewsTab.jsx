@@ -215,7 +215,7 @@ const NewsTab = ({Width}) => {
           <div className="details-content1">
           
               <div style={{ textAlign: 'center' }}>
-                <div style={{ display:'flex', textAlign:'left',marginTop:'25px',justifyContent:"space-around" }}>
+                <div style={{ display:'flex', textAlign:'left',marginTop:'25px',justifyContent:"space-between" }}>
                 <p className='details-info1'>{selectedItem.name}</p>
                 <span style={{textAlign:'right',justifyContent:'center'}}> 
           <button className="details-button11" onClick={() => handleShowDetailsBtn(null)}>X</button>
