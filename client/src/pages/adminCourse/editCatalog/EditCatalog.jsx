@@ -8,6 +8,14 @@ import './editCatalog.scss'
 import editIcon from '../images/edit-catalog.svg'
 import deletIcon from '../images/delete.svg'
 
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
 import archiveIcon from '../images/archive-icon.svg'
 import folderIcon from '../images/folder-icon.png'
 
@@ -26,10 +34,13 @@ const EditCatalog = () => {
     const [selectedPage, setSelectedPage] = useState('draftPage');
 
     const [userData, setUserData] = useState([]);
+    const [requestData, setRequestData] = useState([]);
     const [newsData, setNewsData] = useState([]);
     const [courseData, setCourseData] = useState([]);
 
     const [isLoading, setLoading] = useState(true);
+
+    
 
     useEffect(() => {
         axios
@@ -38,6 +49,15 @@ const EditCatalog = () => {
                 // console.log(res.data)
                 setCourses(res.data)
                 setLoading(false);
+            })
+    }, [])
+    
+    useEffect(() => {
+        axios
+            .get(base_url + "/api/aml/course/getRequest")
+            .then((res) => {
+                console.log(res.data)
+                setRequestData(res.data)
             })
     }, [])
 
@@ -189,6 +209,10 @@ const EditCatalog = () => {
                                 <img src={folderIcon} alt="" />
                                 <a>Новости</a>
                             </div>
+                            <div onClick={() => setSelectedPage('requestPage')} className={`folder ${selectedPage === 'requestPage' ? "active" : ""}`}>
+                                <img src={folderIcon} alt="" />
+                                <a>Заявки</a>
+                            </div>
                         </div>
                         <div onClick={() => {
                             navigate(
@@ -201,6 +225,8 @@ const EditCatalog = () => {
                                 {
                                     selectedPage === 'newsPage'
                                         ? "Добавить новость"
+                                        : selectedPage === 'requestPage'
+                                        ? ''
                                         : "Создать курс"
                                 }
                             </a>
@@ -216,7 +242,9 @@ const EditCatalog = () => {
                                         ? "Архив курсов"
                                         : selectedPage === 'coursesPage'
                                             ? "Курсы"
-                                            : "Новости"
+                                            : selectedPage === 'newsPage'
+                                                ? "Новости"
+                                                : "Заявки на курсы"
                                 }
                             </h1>
                             <div className="course-grid">
@@ -258,7 +286,7 @@ const EditCatalog = () => {
                                                     )
                                                 })
                                             )
-                                            : (
+                                            : (selectedPage === 'newsPage') ? (
                                                 newsData.map((x, index) => {
                                                     return (
                                                         <div
@@ -295,7 +323,35 @@ const EditCatalog = () => {
                                                         </div>
                                                     )
                                                 })
-                                            )
+                                            ):(<div style={{position:'absolute',fontSize:'30px'}}> <TableContainer component={Paper}>
+                                                <Table sx={{ minWidth: 1450 }} aria-label="simple table">
+                                                  <TableHead>
+                                                    <TableRow>
+                                                      <TableCell>ФИО</TableCell>
+                                                      <TableCell align="right">Email</TableCell>
+                                                      <TableCell align="right">Номер телефона</TableCell>
+                                                      <TableCell align="right">ID Курса</TableCell>
+                                                      <TableCell align="right">Название курса</TableCell>
+                                                    </TableRow>
+                                                  </TableHead>
+                                                  <TableBody>
+                                                    {requestData.map((course) => (
+                                                      <TableRow
+                                                        key={course.id}
+                                                        sx={{ '&:last-child td, &:last-child th': { border: 0 }, fontSize:'25px' }}
+                                                      >
+                                                        <TableCell component="th" scope="course">
+                                                          {course.fio}
+                                                        </TableCell>
+                                                        <TableCell align="right">{course.email}</TableCell>
+                                                        <TableCell align="right">{course.phone_number}</TableCell>
+                                                        <TableCell align="right">{course.course.course_id}</TableCell>
+                                                        <TableCell align="right">{course.course.course_name}</TableCell>
+                                                      </TableRow>
+                                                    ))}
+                                                  </TableBody>
+                                                </Table>
+                                              </TableContainer></div>)
 
                                 }
                             </div>
