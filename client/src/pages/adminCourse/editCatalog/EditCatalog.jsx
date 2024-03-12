@@ -246,6 +246,8 @@ const EditCatalog = () => {
                             navigate(
                                 selectedPage === 'newsPage'
                                     ? "/create-news"
+                                    : selectedPage === 'requestPage'
+                                    ? ""
                                     : '/new-admin-page'
                             )
                         }} className='create-course-button'>
@@ -254,7 +256,7 @@ const EditCatalog = () => {
                                     selectedPage === 'newsPage'
                                         ? "Добавить новость"
                                         : selectedPage === 'requestPage'
-                                        ? ''
+                                        ? null
                                         : "Создать курс"
                                 }
                             </a>

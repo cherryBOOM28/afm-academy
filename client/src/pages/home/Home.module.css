@@ -230,6 +230,9 @@
     .container {
         width: 90%;
     }
+    .advantages_box {
+        width: 250px;
+    }
 
     .aboutUs__headline {
         font-size: 40px;
@@ -269,10 +272,22 @@
         flex-wrap: wrap;
         justify-content: center;
     }
+    .advantages_box {
+        width: 230px;
+        height: 160px;
+    }
+    .advantages__text {
+        font-size: 12px;
+        line-height: 12px; /* 93.75% */
+    }
 
     .aml_box {
          /* Set the width for two columns */
         margin-bottom: 20px; /* Adjust spacing between boxes */
+    }
+    .advantages__text__last {
+        font-size: 12px;
+        line-height: 12px; /* 93.75% */
     }
 }
 
