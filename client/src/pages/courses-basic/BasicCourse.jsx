@@ -84,7 +84,31 @@ function BasicCourse() {
 
 
             <div className="page-content container">
-                <h1>{data ? data.course_name : "Загрузка..."}</h1>
+                <div style={{display:'flex',justifyContent:'space-between'}}>
+                    <h1>{data ? data.course_name : "Загрузка..."}</h1>
+                    <div className='blue-btn2'>
+                        {/* <div onClick={() => setShowModal(true)}>
+                            Подать заявку
+                        </div> */}
+                    
+                        <div>
+                            {
+                                jwtToken != null
+                                ? (
+                                    <Link to={`/payment/${id}`} style={{ color: 'white', textDecoration: 'none' }}>
+                                        Приобрести курс
+                                    </Link>
+                                ) : (
+                                    <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
+                                        Приобрести курс
+                                    </Link>
+                                )
+                            }
+                        </div>
+                
+                    </div>
+                
+                </div>
 
                 <Sizebox height={20}/>
                 <div className="collapsable-blocks">
