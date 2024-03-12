@@ -95,6 +95,29 @@ const EditCatalog = () => {
         }
     }, [selectedPage])
 
+    useMemo(() => {
+        const fetchData = async () => {
+            setLoading(true);
+
+            try {
+                const response = await  axios
+                    .get(base_url + "/api/aml/course/getRequest")
+                    .then((res) => {
+            })
+
+                setRequestData(response.data)
+                console.log(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        if (selectedPage === 'newsPage') {
+            fetchData();
+            setLoading(false);
+        }
+    }, [selectedPage])
+
     const closeModal = () => {
         setDeletingCourse(false)
     }
