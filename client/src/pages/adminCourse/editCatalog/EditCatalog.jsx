@@ -355,7 +355,7 @@ const EditCatalog = () => {
                                                      <Stack direction="row" spacing={2}>
                                                         <Button onClick={handleReloadData}>Обнавить список</Button>
                                                     </Stack>
-                                                <Table sx={{ minWidth: 1450 }} aria-label="simple table">
+                                                <Table sx={{ minWidth: 900 }} aria-label="simple table">
                                                   <TableHead>
                                                     <TableRow>
                                                       <TableCell>ФИО</TableCell>
