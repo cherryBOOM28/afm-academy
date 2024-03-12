@@ -205,9 +205,13 @@ const EditCatalog = () => {
         const day = String(_date.getDate()).padStart(2, '0');
         const month = String(_date.getMonth() + 1).padStart(2, '0'); // JavaScript months are 0-based
         const year = _date.getFullYear();
+        const hour = _date.getHours();
+        const minutes = _date.getMinutes();
 
         // Assemble the components into the desired format
-        const formattedDate = `${day}.${month}.${year}`;
+        const formattedDate = `${hour
+            .toString()
+            .padStart(2, "0")}:${minutes.toString().padStart(2, "0")},  ${day}.${month}.${year}`;
 
         return formattedDate;
     }
