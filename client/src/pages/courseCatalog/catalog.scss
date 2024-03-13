@@ -300,6 +300,43 @@
             justify-content: center; /* Center horizontally */
             align-content: center;
             
+            .course-card.soon {
+                background-color: #848484; /* серый цвет */
+                text-align: center;
+                position: relative;
+            }
+            .course-card.soon .image {
+                background-color: #1f1e1e;
+                opacity: 0.3; /* серый цвет */
+            }
+            
+            .course-card.soon .soon-text {
+                position: relative;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-family: "Ubuntu";
+                font-size: 35px;
+                font-weight: 500;
+                color: #ffffff;
+            }
+            
+            .soon-text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-family: "Ubuntu";
+                font-size: 20px;
+                font-weight: 500;
+                display: none;
+                color: #656678;
+            }
+            .soon-text.soon{
+                display: block;
+            }
+            
+            
             
             > .course-card {
                 width: 100%;

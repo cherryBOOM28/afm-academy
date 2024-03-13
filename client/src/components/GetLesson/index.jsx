@@ -55,11 +55,7 @@ import TooltipComponent2 from '../courseTemplates/common/ToolTipComponents/ToolT
 import TooltipComponent1 from '../courseTemplates/common/ToolTipComponents/ToolTipComponent1';
 import ToolTipComponentWithLupa from '../courseTemplates/common/ToolTipComponents/ToolTipComponentWithLupa';
 import TableWithTable from '../courseTemplates/common/Tables/TableWithTable';
-// import { Tooltip } from 'react-tooltip';
-// import 'react-tooltip/dist/react-tooltip.css';
 
-// default images
-// if the images is not given
 import lectorImage from './lectorImage.png';
 import image1 from './../../assets/images/Lesson_2_img_1.png';
 import image2 from './../../assets/images/Lesson_3_img_1.png';

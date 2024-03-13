@@ -13,11 +13,14 @@ import axios from "axios";
 import Header from "../../components/header/Header";
 import { useCategoryFormat } from '../Context/Context.jsx';
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material';
-
+import Alert from '@mui/material/Alert';
+import CheckIcon from '@mui/icons-material/Check';
 import { t } from "i18next";
 import { useTranslation } from "react-i18next";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
+
+
 
 
 
@@ -26,18 +29,18 @@ function Catalog() {
     const { styles, open, setOpen, userEntry, checkStyle } = useStyle();
     const [imagesHidden, setImagesHidden] = useState(false);
     const [letterInterval, setLetterInterval] = useState("standard");
-    const [isReload, setIsReload] = useState(0);
     const { t } = useTranslation();
     const { i18n } = useTranslation();
     const currentLanguage = i18n.language;
     const [modalOpen, setModalOpen] = useState(false);
+    const [coursesData, setCoursesData] = useState("");
+
 
     const handleOpenModal = () => {
         setModalOpen(true);
     };
     const handleCloseModal = () => {
         setModalOpen(false);
-        handleReload()
     };
     useEffect(() => {
         const fetchData = async () => {
@@ -108,7 +111,7 @@ function Catalog() {
         };
     
         fetchData();
-    }, [isReload]);
+    }, []);
    
     const [activeTab, setActiveTab] = useState(1);
     const handleColorModeChange = (mode) => {
@@ -128,10 +131,6 @@ function Catalog() {
         if (containerElement) {
             containerElement.classList.add(colorMode + "-mode");
         }
-    };
-
-    const handleTabClick = (tabIndex) => {
-        setActiveTab(tabIndex);
     };
     const handleOpenVisualModal = () => {
         console.log("OPEN");
@@ -246,16 +245,13 @@ function Catalog() {
             textContentElement.style.fontFamily = family;
         }
     }, []);
-    const handleReload = () => {
-        setIsReload(isReload+1)
-    }
 
     const navigate = useNavigate();
     const handleApplication = (rowId) => {
         // Handle application submission for the row with ID 'rowId'
         console.log('Application submitted for row:', rowId);
     };
-    const ApplicationModal = ({ open, handleClose,courseId, courseName }) => {
+    const ApplicationModal = ({ open, handleClose, courseId, courseName }) => {
 
         const [fullName, setFullName] = useState('');
         const [contacts, setContacts] = useState('');
@@ -284,17 +280,25 @@ function Catalog() {
                         }
                     );
                     console.log(fullName);
-    
                     alert("Заявка отправлена!!!");
                     handleCloseModal()
-                    handleReload()
+                   
                     
                 } catch (error) {
                     console.log(error);
                     alert("Ошибка")
                 }
             };
-            
+            const updatedCoursesData = { ...coursesData };
+            Object.keys(updatedCoursesData).forEach(group => {
+                updatedCoursesData[group].forEach(course => {
+                    if (course.courseDTO.course_id === selectedCourseId) {
+                        course.courseDTO.rating += 1;// Увеличение рейтинга на 1
+                    }
+                })
+            });
+            setCoursesData(updatedCoursesData);
+        
             fetchData();
             setLoading(false);
         }
@@ -302,7 +306,16 @@ function Catalog() {
     
     
         return (
-            <Dialog open={open} onClose={handleClose} BackdropProps={{ style: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } }}>
+            <Dialog open={open} onClose={handleClose}  PaperProps={{
+                component: 'form',
+                onSubmit: (event) => {
+                  event.preventDefault();
+                  const formData = new FormData(event.currentTarget);
+                  const formJson = Object.fromEntries(formData.entries());
+                    handleSubmit();
+                    handleClose();
+                },
+              }}>
                 <DialogTitle>Подать заявку на курс</DialogTitle>
                 <DialogContent>
                     <TextField
@@ -310,21 +323,29 @@ function Catalog() {
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
                         fullWidth
+                        required
+                        id="fio"
                         margin="normal"
+
                     />
                     <TextField
                         label="Контакты"
                         value={contacts}
                         onChange={(e) => setContacts(e.target.value)}
                         fullWidth
+                        id="contacts"
+                        required
                         margin="normal"
                     />
                     <TextField
+                        required
+                        margin="normal"
+                        id="email"
                         label="Электронная почта"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         fullWidth
-                        margin="normal"
+                        type="email"
                     />
                      <TextField
                         label="Курс"
@@ -338,7 +359,7 @@ function Catalog() {
                     <Button onClick={handleClose} color="primary">
                         Отмена
                     </Button>
-                    <Button onClick={handleSubmit} color="primary">
+                    <Button type="submit" color="primary">
                         Отправить
                     </Button>
                 </DialogActions>
@@ -484,6 +505,7 @@ function Catalog() {
                     // console.log(_coursesByCategory)
                     setCoursesByCategory(_coursesByCategory);
                     setGroupedCourses(_groupedCourses)
+                    setCoursesData(_groupedCourses)
                     setData(response.data);
                 } else {
                     // Handle other status codes if needed
@@ -799,7 +821,7 @@ function Catalog() {
                                     <td colSpan="8" className={"groups"}>{group}</td>
                                 </tr>
                                 {courses.filter(course => course.courseDTO.type_of_study === 'онлайн').map((course) => (
-                                    <tr className="Rows" key={course.courseDTO.course_id}>
+                                    <tr className="Rows" key={course.courseDTO.course_id} style={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                         <td>{course.courseDTO.course_name}</td>
                                         <td>{course.courseDTO.course_for_member_of_the_system}</td>
                                         <td>{course.courseDTO.type_of_study}</td>
@@ -917,22 +939,28 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                         const courseDTO = course.courseDTO;
                         const { course_image, course_name } = courseDTO;
                         const { paymentInfo } = course;
+                        const availability = courseDTO.group_of_person;
 
                         const status =
                             paymentInfo === null ? "available" : paymentInfo.status;
-
                         return (
                             <div
-                                className="course-card"
+                                className={`course-card ${availability === "soon" ? "soon" : ""}`}
                                 key={index}
                                 onClick={() => {
-                                    if (status === "process" || status === "finished") {
+                                    if ((status === "process" || status === "finished") && (availability !== "soon")) {
                                         navigate(`/courses/${course.courseDTO.course_id}/read`);
-                                    } else {
+                                    }
+                                    else
+                                    if (availability === "soon") {
+                                        navigate(`/courses/catalog`);
+                                    }
+                                    else {
                                         navigate(`/courses/${course.courseDTO.course_id}`);
                                     }
                                 }}
                             >
+                                <div className={`soon-text ${availability === "soon" ? "soon" : ""}`}>Скоро . . .</div> 
                                 <div className="image">
                                     <img src={course_image} alt={course_name} />
                                     <div className={`status ${status}`}>

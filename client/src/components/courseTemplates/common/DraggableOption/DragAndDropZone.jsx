@@ -1,7 +1,6 @@
 // DragAndDropZone.js
 import React, { useState } from 'react';
 import DraggableOption from './index';
-import Centered from '../Centered';
 import './DragAndDropZone.scss';
 import parseText from '../../../../util/ParseTextFromFormatTextarea';
 

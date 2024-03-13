@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import DOMPurify from 'dompurify';
+
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import PaymentHalyk from '../paymentPage/PaymentHalyk';
 
 import Footer from '../../components/footer/Footer';
-import DefaultHeader from '../../components/defaultHeader/DefaultHeader';
 
 import './BasicCourse.scss';
 import Collapsable from '../../components/UI/collapsable-block/Collapsable';
 import RoadList from '../../components/UI/roadList/RoadList';
 import Lectors from '../../components/lectors-block/Lectors';
 
-import lectorImg from './../../assets/images/avatar-img.png';
 import lector1 from './../../assets/images/Lector_1_cropped.png';
 import lector2 from './../../assets/images/Lector_2_cropped.png';
 import lector3 from './../../assets/images/Lector_3_cropped.png';
@@ -43,8 +48,43 @@ function BasicCourse() {
             {...request, [key]: value}
         )
     }
-
-    const navigate = useNavigate();
+    const [open, setOpen] = useState(false);
+      
+        const handleClickOpen = () => {
+          setOpen(true);
+        };
+      
+        const handleClose = () => {
+          setOpen(false);
+        };
+    function AlertDialog() {
+      
+        return (
+          <React.Fragment>
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"Способ оплаты"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                Каким способом хотели оплатить курс?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+              <Link to={`/payment/${id}`} style={{ colortextDecoration: 'none' }}><Button onClick={handleClose}>Kaspi Bank</Button></Link>
+                <Button onClick={handleClose}>
+                  <PaymentHalyk />
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </React.Fragment>
+        );
+      }
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -84,7 +124,32 @@ function BasicCourse() {
 
 
             <div className="page-content container">
-                <h1>{data ? data.course_name : "Загрузка..."}</h1>
+                <div style={{display:'flex',justifyContent:'space-between'}}>
+                    <h1>{data ? data.course_name : "Загрузка..."}</h1>
+                    <div className='blue-btn2'>
+                        {/* <div onClick={() => setShowModal(true)}>
+                            Подать заявку
+                        </div> */}
+                    
+                        <div>
+                            {
+                                jwtToken != null
+                                ? (
+                                    <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
+                                        Приобрести курс
+                                    </Link>
+                                ) : (
+                                    <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
+                                        Приобрести курс
+                                    </Link>
+                                )
+                            }
+                        </div>
+                        <AlertDialog/>
+                
+                    </div>
+                
+                </div>
 
                 <Sizebox height={20}/>
                 <div className="collapsable-blocks">
@@ -136,7 +201,7 @@ function BasicCourse() {
                         {
                             jwtToken != null
                             ? (
-                                <Link to={`/payment/${id}`} style={{ color: 'white', textDecoration: 'none' }}>
+                                <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
                                     Приобрести курс
                                 </Link>
                             ) : (
@@ -195,7 +260,7 @@ function BasicCourse() {
                             {
                                 jwtToken != null
                                 ? (
-                                    <Link to={`/payment/${id}`} style={{ color: 'white', textDecoration: 'none' }}>
+                                    <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
                                         Приобрести курс
                                     </Link>
                                 ) : (

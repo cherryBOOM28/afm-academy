@@ -3,17 +3,35 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import cl from "./NewsTab.module.css";
-import data from "../data/data.json";
 import Button from "../UI/button/Button";
 import calendarIcon from "../../assets/icons/calendar.svg";
 import axios from "axios";
 import base_url from "../../settings/base_url";
 import { useTranslation } from "react-i18next";
 import { useStyle } from "../../components/VisualModal/StyleContext";
-import VisualModal from "../../components/VisualModal/VisualModal";
 import './NewsTab.scss'
-import { Block } from "@mui/icons-material";
 
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "black",borderRadius:"1000px" }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "black",borderRadius:"1000px" }}
+      onClick={onClick}
+    />
+  );
+}
 const NewsTab = ({Width}) => {
   const { styles } = useStyle();
   const { t } = useTranslation();
@@ -33,7 +51,9 @@ const NewsTab = ({Width}) => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    pauseOnHover: true
+    pauseOnHover: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
   });
   const handleClickOutside = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -192,7 +212,7 @@ const NewsTab = ({Width}) => {
           <div className="details-content1">
           
               <div style={{ textAlign: 'center' }}>
-                <div style={{ display:'flex', textAlign:'left',marginTop:'25px',justifyContent:"space-around" }}>
+                <div style={{ display:'flex', textAlign:'left',marginTop:'25px',justifyContent:"space-between" }}>
                 <p className='details-info1'>{selectedItem.name}</p>
                 <span style={{textAlign:'right',justifyContent:'center'}}> 
           <button className="details-button11" onClick={() => handleShowDetailsBtn(null)}>X</button>
@@ -277,7 +297,7 @@ const NewsTab = ({Width}) => {
           </Slider>
         ) : (
           <div style={{ width: "100%", textAlign: "center", paddingTop: "20px" }}>
-            <a style={{ fontSize: "24px", fontWeight: "600", opacity: "0.3" }}>Нет недавних новостей</a>
+            <p style={{ fontSize: "24px", fontWeight: "600", opacity: "0.3" }}>Нет недавних новостей</p>
           </div> 
         )}
       </div>
