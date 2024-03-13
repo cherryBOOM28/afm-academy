@@ -4,10 +4,8 @@
     import Button from '@mui/material/Button';
 
     const PaymentHalyk = ({}) => {
-        
         const [accessToken, setAccessToken] = useState('');
-    
-        const mesto = useLocation()
+        const [previousUrl, setPreviousUrl] = useState('');
 
         function halyk (halyk) {
     
@@ -18,7 +16,7 @@
             origin: "https://test-epay.homebank.kz",
             TokenAPIConfig : {
                 url: "https://testoauth.homebank.kz/epay2/oauth2/token",
-                clientId: "test"
+                clientId: "AMLACADEMY.KZ"
             }
         };
 
@@ -27,7 +25,7 @@
             origin: "https://epay.homebank.kz",
             TokenAPIConfig : {
                 url: "https://epay-oauth.homebank.kz/oauth2/token",
-                clientId: "uberflower"
+                clientId: "AMLACADEMY.KZ"
             }
         };
 
@@ -43,7 +41,7 @@
         var paymentPageOrigin = halyk.Config().origin;
 
         function pay(params) {
-            mesto.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params));
+            window.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params));
         }
         var paymentWidgedCallBack = undefined;
         var widgetNode = undefined;
@@ -84,8 +82,10 @@
 
         function onCloseDialog(result) {
             paymentWidgedCallBack({success: result});
-            document.getElementsByTagName("body")[0].removeChild(widgetNode);
-            widgetNode = undefined;
+            if (widgetNode && widgetNode.parentNode) {
+                widgetNode.parentNode.removeChild(widgetNode);
+                widgetNode = undefined;
+            }
         }
         
         function onCommandRecieved(evnt) {
@@ -103,22 +103,22 @@
                 widgetNode = document.createElement("DIV");
                 widgetNode.className = "widgetScreen";
                 var iframeBox = document.createElement("DIV");
-                //var iframeBoxHeader = document.createElement("DIV");
-                //var iframeBoxLabel = document.createElement("DIV");
-                //var iframeBoxCloseButton = document.createElement("DIV");
-                //iframeBoxLabel.className = "iframeBoxHeaderLabel";
-                //iframeBoxCloseButton.className = "iframeBoxHeaderCloseButton";
-                //iframeBoxLabel.innerHTML = "";
-                //var iframeBoxHeaderCloseButtonText = document.createElement("DIV");
-                //iframeBoxHeaderCloseButtonText.innerHTML = "X";
-                //iframeBoxHeaderCloseButtonText.className = "iframeBoxHeaderCloseButtonText";
-                //iframeBoxCloseButton.appendChild(iframeBoxHeaderCloseButtonText);
-                // iframeBoxCloseButton.addEventListener("click", function(){
-                //     onCloseDialog(false)
-                // });
-                //iframeBoxHeader.appendChild(iframeBoxLabel);
-                //iframeBoxHeader.appendChild(iframeBoxCloseButton);
-                //iframeBoxHeader.className = "iframeBoxHeader";
+                var iframeBoxHeader = document.createElement("DIV");
+                var iframeBoxLabel = document.createElement("DIV");
+                var iframeBoxCloseButton = document.createElement("DIV");
+                iframeBoxLabel.className = "iframeBoxHeaderLabel";
+                iframeBoxCloseButton.className = "iframeBoxHeaderCloseButton";
+                iframeBoxLabel.innerHTML = "";
+                var iframeBoxHeaderCloseButtonText = document.createElement("DIV");
+                iframeBoxHeaderCloseButtonText.innerHTML = "X";
+                iframeBoxHeaderCloseButtonText.className = "iframeBoxHeaderCloseButtonText";
+                iframeBoxCloseButton.appendChild(iframeBoxHeaderCloseButtonText);
+                iframeBoxCloseButton.addEventListener("click", function(){
+                    onCloseDialog(false)
+                });
+                iframeBoxHeader.appendChild(iframeBoxLabel);
+                iframeBoxHeader.appendChild(iframeBoxCloseButton);
+                iframeBoxHeader.className = "iframeBoxHeader";
                 iframeBox.className = "iframeBox";
                 var iframe = document.createElement("IFRAME");
                 var iframeHolder = document.createElement("DIV");
@@ -136,13 +136,13 @@
     
 
         function p2p(params) { 
-                mesto.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isTransfer=true'; 
+                window.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isTransfer=true'; 
             }
         function aft(params) {  
-                mesto.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isAFT=true';  
+                window.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isAFT=true';  
             }
         function oct(params) {  
-                mesto.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isOCT=true';  
+                window.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isOCT=true';  
             }
         halyk.p2p = p2p;
         halyk.aft = aft;

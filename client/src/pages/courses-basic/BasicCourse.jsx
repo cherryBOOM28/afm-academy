@@ -78,7 +78,7 @@ function BasicCourse() {
               <DialogActions>
               <Link to={`/payment/${id}`} style={{ colortextDecoration: 'none' }}><Button onClick={handleClose}>Kaspi Bank</Button></Link>
                 <Button onClick={handleClose}>
-                  <PaymentHalyk/>
+                  <PaymentHalyk />
                 </Button>
               </DialogActions>
             </Dialog>
