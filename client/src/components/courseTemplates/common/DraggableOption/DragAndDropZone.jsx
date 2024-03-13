@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import DraggableOption from './index';
 import Centered from '../Centered';
 import './DragAndDropZone.scss';
+import parseText from '../../../../util/ParseTextFromFormatTextarea';
 
-const DragAndDropZone = ({options, correctOptions, title, img=null}) => {
+const DragAndDropZone = ({options, correctOptions, title='', img=null, version=1}) => {
   
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [showResults, setShowResults] = useState(false);
@@ -35,6 +36,7 @@ const DragAndDropZone = ({options, correctOptions, title, img=null}) => {
   const isCorrect = correctOptions.every((option) => selectedOptions.includes(option));
   const isIncorrectSelection = selectedOptions.some((option) => !correctOptions.includes(option));
   const isTitleLong = title.length > 30;
+
   return (
     <div>
       <div className="options-container">
@@ -42,7 +44,7 @@ const DragAndDropZone = ({options, correctOptions, title, img=null}) => {
           
           <div className='optionsWrapper'>
             {options.map((option, index) => (
-                <DraggableOption key={index} option={option} onDragStart={handleDragStart} />
+              <DraggableOption version={version} key={index} option={option} onDragStart={handleDragStart} />
             ))}
           </div>
         </div>
@@ -60,7 +62,7 @@ const DragAndDropZone = ({options, correctOptions, title, img=null}) => {
             <br/>
             <ul>
               {selectedOptions.map((option, index) => (
-                  <li key={index}>{option}</li>
+                <li key={index}>{parseText(option)}</li>
               ))}
             </ul>
 

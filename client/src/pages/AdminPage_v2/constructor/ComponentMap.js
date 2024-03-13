@@ -37,7 +37,6 @@ import Report_Warning from '../../../components/courseTemplates/common/Warnings/
 import ImageAndColumns from '../../../components/courseTemplates/common_v2/ImageAndColumns'
 import TwoColumnsDivider from '../../../components/courseTemplates/common_v2/TwoColumnsDivider'
 import CustomCarousel from '../../../components/courseTemplates/complex/CustomCarousel'
-import DragAndDropZone from '../../../components/courseTemplates/common/DraggableOption/DragAndDropZone'
 import TableComponent from '../../../components/courseTemplates/common/Tables/TableComponent'
 import DropdownPage from '../../../components/courseTemplates/common/Tables/TableWithData'
 import QuizWithCardComponent from '../../../components/courseTemplates/common/QuizWithCardComponent'
@@ -48,7 +47,8 @@ import ComplexTable from '../../../components/courseTemplates/common/ComplexTabl
 import DragAndDropComponent from '../../../components/courseTemplates/common/DoubleDraggableOption'
 import InteractivePhases from '../../../components/courseTemplates/complex/interactives/InteractivePhases'
 import Component52 from '../../../components/courseTemplates/complex/Component52';
-import LupaZone from '../../../components/courseTemplates/common/Lupa/LupaDragZone'
+import DragAndDropZone from '../../../components/courseTemplates/common/DraggableOption/DragAndDropZone'
+import LupaZone from '../../../components/courseTemplates/common/Lupa/LupaDragZone';
 import ImageWithPoints from '../../../components/courseTemplates/complex/interactives/ImageWithPoints'
 
 const componentMap = {

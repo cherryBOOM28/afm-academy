@@ -29,11 +29,17 @@
 
             box-sizing: border-box;
 
+            div {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
             p {
                 font-family: Ubuntu;
                 font-size: 18px;
                 font-style: normal;
-                font-weight: 500;
+                font-weight: 400;
                 line-height: 140%; /* 25.2px */
 
                 > * {

@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import './LupaZone.scss'
 import Lupa from './index.jsx';
+import parseText from '../../../../util/ParseTextFromFormatTextarea.js';
 
-const LupaZone = ({ options, correctOptions, imgUrl, Width, Height, another, img }) => {
+const LupaZone = ({ options, correctOptions, imgUrl, Width, Height, another, img, version=1 }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [showResults, setShowResults] = useState(false);
 
@@ -38,7 +39,7 @@ const LupaZone = ({ options, correctOptions, imgUrl, Width, Height, another, img
       <div className="options-container">
         <div className="options">
           {options.map((option, index) => (
-            <Lupa key={index} option={option} onDragStart={handleDragStart} />
+            <Lupa version={version} key={index} option={option} onDragStart={handleDragStart} />
           ))}
         </div>
         <b className='B'></b>
@@ -54,7 +55,7 @@ const LupaZone = ({ options, correctOptions, imgUrl, Width, Height, another, img
             <br />
             <ul>
               {selectedOptions.map((option, index) => (
-                <li key={index}>{option.length > 40 ? option.slice(0, 40) + "......" : option}</li>
+                <li key={index}>{parseText(option)}</li>
               ))}
             </ul>
           </div>
