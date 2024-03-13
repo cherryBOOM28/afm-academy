@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import PaymentHalyk from '../paymentPage/PaymentHalyk';
 
 import Footer from '../../components/footer/Footer';
 
@@ -41,6 +48,43 @@ function BasicCourse() {
             {...request, [key]: value}
         )
     }
+    const [open, setOpen] = useState(false);
+      
+        const handleClickOpen = () => {
+          setOpen(true);
+        };
+      
+        const handleClose = () => {
+          setOpen(false);
+        };
+    function AlertDialog() {
+      
+        return (
+          <React.Fragment>
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"Способ оплаты"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                Каким способом хотели оплатить курс?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+              <Link to={`/payment/${id}`} style={{ colortextDecoration: 'none' }}><Button onClick={handleClose}>Kaspi Bank</Button></Link>
+                <Button onClick={handleClose}>
+                  <PaymentHalyk/>
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </React.Fragment>
+        );
+      }
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -91,7 +135,7 @@ function BasicCourse() {
                             {
                                 jwtToken != null
                                 ? (
-                                    <Link to={`/payment/${id}`} style={{ color: 'white', textDecoration: 'none' }}>
+                                    <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
                                         Приобрести курс
                                     </Link>
                                 ) : (
@@ -101,6 +145,7 @@ function BasicCourse() {
                                 )
                             }
                         </div>
+                        <AlertDialog/>
                 
                     </div>
                 
@@ -156,7 +201,7 @@ function BasicCourse() {
                         {
                             jwtToken != null
                             ? (
-                                <Link to={`/payment/${id}`} style={{ color: 'white', textDecoration: 'none' }}>
+                                <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
                                     Приобрести курс
                                 </Link>
                             ) : (
@@ -215,7 +260,7 @@ function BasicCourse() {
                             {
                                 jwtToken != null
                                 ? (
-                                    <Link to={`/payment/${id}`} style={{ color: 'white', textDecoration: 'none' }}>
+                                    <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
                                         Приобрести курс
                                     </Link>
                                 ) : (

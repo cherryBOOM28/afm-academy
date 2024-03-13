@@ -1,9 +1,10 @@
     import React, { useState, useEffect } from 'react';
     import { useLocation } from 'react-router';
     import LZString from 'lz-string';
+    import Button from '@mui/material/Button';
 
-    const PaymentHalyk = ({ halykConfig }) => {
-        const { pageUrl, origin } = halykConfig;
+    const PaymentHalyk = ({}) => {
+        
         const [accessToken, setAccessToken] = useState('');
     
         const mesto = useLocation()
@@ -92,8 +93,8 @@
                 const resultObject = JSON.parse(evnt.data);
                 onCloseDialog(resultObject.success === true);
             }
-        }
-
+            }
+        
         function showPaymentWidget(params, callBack) {
             paymentWidgedCallBack = callBack;
             const { accessToken } = params;
@@ -193,17 +194,26 @@
                 // Cleanup code if needed
             };
         }, []);
+        const handlePaymentResult = (result) => {
+            if (result.success) {
+                // Оплата прошла успешно
+                console.log('Оплата прошла успешно');
+            } else {
+                // Оплата завершилась с ошибкой
+                console.error('Ошибка при оплате');
+            }
+        };
 
         const makePayment = async () => {
-            halykInstance.showPaymentWidget({ accessToken: accessToken })
+            halykInstance.showPaymentWidget({ accessToken: accessToken }, handlePaymentResult)
 
     
         };
 
         return (
-            <div>
-                <button onClick={makePayment}>Make Payment</button>
-            </div>
+
+                <Button onClick={makePayment}>HalykBank</Button>
+           
         );
     };
 
