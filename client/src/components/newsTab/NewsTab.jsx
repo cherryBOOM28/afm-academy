@@ -3,16 +3,13 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import cl from "./NewsTab.module.css";
-import data from "../data/data.json";
 import Button from "../UI/button/Button";
 import calendarIcon from "../../assets/icons/calendar.svg";
 import axios from "axios";
 import base_url from "../../settings/base_url";
 import { useTranslation } from "react-i18next";
 import { useStyle } from "../../components/VisualModal/StyleContext";
-import VisualModal from "../../components/VisualModal/VisualModal";
 import './NewsTab.scss'
-import { Block } from "@mui/icons-material";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -300,7 +297,7 @@ const NewsTab = ({Width}) => {
           </Slider>
         ) : (
           <div style={{ width: "100%", textAlign: "center", paddingTop: "20px" }}>
-            <a style={{ fontSize: "24px", fontWeight: "600", opacity: "0.3" }}>Нет недавних новостей</a>
+            <p style={{ fontSize: "24px", fontWeight: "600", opacity: "0.3" }}>Нет недавних новостей</p>
           </div> 
         )}
       </div>

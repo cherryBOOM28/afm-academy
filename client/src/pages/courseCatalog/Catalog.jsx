@@ -20,13 +20,7 @@ import { useTranslation } from "react-i18next";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
 
-function SimpleAlert() {
-    return (
-      <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
-        Here is a gentle confirmation that your action was successful.
-      </Alert>
-    );
-  }
+
 
 
 
@@ -137,10 +131,6 @@ function Catalog() {
         if (containerElement) {
             containerElement.classList.add(colorMode + "-mode");
         }
-    };
-
-    const handleTabClick = (tabIndex) => {
-        setActiveTab(tabIndex);
     };
     const handleOpenVisualModal = () => {
         console.log("OPEN");
@@ -322,10 +312,6 @@ function Catalog() {
                   event.preventDefault();
                   const formData = new FormData(event.currentTarget);
                   const formJson = Object.fromEntries(formData.entries());
-                  const email = formJson.email;
-                  const fio = formJson.fio;
-                  const contacts = formJson.contacts;
-                    console.log(email);
                     handleSubmit();
                     handleClose();
                 },
@@ -333,7 +319,6 @@ function Catalog() {
                 <DialogTitle>Подать заявку на курс</DialogTitle>
                 <DialogContent>
                     <TextField
-                        autoFocus
                         label="ФИО"
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
@@ -344,7 +329,6 @@ function Catalog() {
 
                     />
                     <TextField
-                        autoFocus
                         label="Контакты"
                         value={contacts}
                         onChange={(e) => setContacts(e.target.value)}
@@ -354,7 +338,6 @@ function Catalog() {
                         margin="normal"
                     />
                     <TextField
-                        autoFocus
                         required
                         margin="normal"
                         id="email"

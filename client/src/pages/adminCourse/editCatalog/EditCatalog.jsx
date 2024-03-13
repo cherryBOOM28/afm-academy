@@ -102,8 +102,7 @@ const EditCatalog = () => {
             try {
                 const response = await  axios
                     .get(base_url + "/api/aml/course/getRequest")
-                    .then((res) => { setRequestData(res.data)
-            })
+                    .then((res) => { setRequestData(res.data)})
                 console.log(response.data);
             } catch (error) {
                 console.error(error);

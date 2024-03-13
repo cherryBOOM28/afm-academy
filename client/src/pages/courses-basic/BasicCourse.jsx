@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import DOMPurify from 'dompurify';
+
 
 import Footer from '../../components/footer/Footer';
-import DefaultHeader from '../../components/defaultHeader/DefaultHeader';
 
 import './BasicCourse.scss';
 import Collapsable from '../../components/UI/collapsable-block/Collapsable';
 import RoadList from '../../components/UI/roadList/RoadList';
 import Lectors from '../../components/lectors-block/Lectors';
 
-import lectorImg from './../../assets/images/avatar-img.png';
 import lector1 from './../../assets/images/Lector_1_cropped.png';
 import lector2 from './../../assets/images/Lector_2_cropped.png';
 import lector3 from './../../assets/images/Lector_3_cropped.png';
@@ -43,8 +41,6 @@ function BasicCourse() {
             {...request, [key]: value}
         )
     }
-
-    const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo(0, 0);

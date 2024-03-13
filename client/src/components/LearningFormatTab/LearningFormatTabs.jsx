@@ -56,31 +56,6 @@ function LearningFormatTabs({ text }) {
     setImagesHidden(false);
   };
 
-  // useEffect(() => {
-  //   const textContentElement = document.querySelectorAll(".text-content");
-  //   const size = styles.fontSize;
-  //   if (textContentElement) {
-  //     textContentElement.forEach((item) => {
-  //       switch (size) {
-  //         case "small":
-  //           item.style.fontSize = "15px";
-  //           item.style.lineHeight = "18px";
-  //           break;
-  //         case "standard":
-  //           item.style.fontSize = "20px";
-  //           item.style.lineHeight = "23px";
-  //           break;
-  //         case "large":
-  //           item.style.fontSize = "24px";
-  //           item.style.lineHeight = "27px";
-  //           break;
-  //         default:
-  //           break;
-  //       }
-  //     });
-  //   }
-  // }, []);
-
   useEffect(() => {
     setImagesHidden(!styles.showImage);
   }, [styles.showImage]);
