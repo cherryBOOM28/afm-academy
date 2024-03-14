@@ -55,10 +55,8 @@ const PaymentHalyk = () => {
             terminal: 'a5e958ad-b799-41ff-9be9-f6d20ddc61a6',
             amount: amount,
             name:"",
-            data: "{\"statement\":{\"name\":\"Arman Ali\",\"invoiceID\":\"80000016\"}}",
+            data: "{\"statement\":{\"name\":\"\",\"invoiceID\":\"\"}}",
             currency: "KZT",
-            phone: "+77777777777",
-            email: "Maef_kz@mail.ru",
             cardSave: true,
             auth: auth
         };
