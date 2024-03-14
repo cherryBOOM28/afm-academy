@@ -31,7 +31,7 @@ const PaymentHalyk = () => {
             setAccessToken(data.access_token);
             const paymentObject = createPaymentObject(data, 3517453235, 30000);
             console.log(paymentObject,callBk);
-            halyk.showPaymentWidget(paymentObject,callBk)
+            halyk.showPaymentWidget(paymentObject, callBk)
             // halyk.pay(paymentObject)
             
         } catch (error) {

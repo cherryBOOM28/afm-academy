@@ -94,7 +94,7 @@ var halyk; (function(halyk) {
             // });
             iframeBoxHeader.appendChild(iframeBoxLabel);
             //iframeBoxHeader.appendChild(iframeBoxCloseButton);
-            iframeBoxHeader.className = "iframeBoxHeader";
+            //iframeBoxHeader.className = "iframeBoxHeader";
             iframeBox.className = "iframeBox";
             var iframe = document.createElement("IFRAME");
             var iframeHolder = document.createElement("DIV");
