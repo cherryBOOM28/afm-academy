@@ -11,16 +11,16 @@ const PaymentHalyk = () => {
             const auth = new FormData();
             auth.append('grant_type', 'client_credentials');
             auth.append('scope', 'webapi usermanagement email_send verification statement statistics payment');
-            auth.append('client_id', 'test');
-            auth.append('client_secret', 'yF587AV9Ms94qN2QShFzVR3vFnWkhjbAK3sG');
-            auth.append('invoiceID', 351745632);
+            auth.append('client_id', 'AMLACADEMY.KZ');
+            auth.append('client_secret', 'JYbXA8cJt(L24ffo');
+            auth.append('invoiceID', 3517453235);
             auth.append('amount', 100);
             auth.append('currency', 'KZT');
-            auth.append('terminal', '67e34d63-102f-4bd1-898e-370781d0074d');
+            auth.append('terminal', 'a5e958ad-b799-41ff-9be9-f6d20ddc61a6');
             auth.append('postLink', '');
             auth.append('failurePostLink', '');
 
-            const response = await fetch('https://testoauth.homebank.kz/epay2/oauth2/token', {
+            const response = await fetch('https://epay-oauth.homebank.kz/oauth2/token', {
                 method: 'POST',
                 body: auth,
             });
@@ -28,7 +28,7 @@ const PaymentHalyk = () => {
             const data = await response.json();
             console.log(data);
             setAccessToken(data.access_token);
-            const paymentObject = createPaymentObject(data, 351745632, 100);
+            const paymentObject = createPaymentObject(data, 3517453235, 100);
             console.log(paymentObject);
             halyk.showPaymentWidget(paymentObject)
             // halyk.pay(paymentObject)
@@ -50,7 +50,7 @@ const PaymentHalyk = () => {
             failurePostLink: "https://example.kz/order/1123/fail",
             language: "rus",
             description: "Оплата в интернет магазине",
-            terminal: '67e34d63-102f-4bd1-898e-370781d0074d',
+            terminal: 'a5e958ad-b799-41ff-9be9-f6d20ddc61a6',
             amount: amount,
             currency: "KZT",
             cardSave: false,

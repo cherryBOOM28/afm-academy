@@ -1,10 +1,8 @@
 import LZString from 'lz-string';
 var halyk;
 
-(function(halyk) {
-
-    var isTest = true;
-
+var halyk; (function(halyk) {
+    var isTest = false;
     var testConfig = {
         pageUrL : "https://test-epay.homebank.kz/payform/",
         origin: "https://test-epay.homebank.kz",
@@ -13,52 +11,38 @@ var halyk;
             clientId: "test"
         }
     };
-
     var prodConfig = {
         pageUrL : "https://epay.homebank.kz/payform/",
         origin: "https://epay.homebank.kz",
         TokenAPIConfig : {
             url: "https://epay-oauth.homebank.kz/oauth2/token",
-            clientId: "AMLACADEMY.KZ"
+            clientId: "uberflower"
         }
     };
-
     halyk.Config = function Config() {
         if (isTest)
             return testConfig;
         else
             return prodConfig;
     }
-
     var pageUrl = halyk.Config().pageUrL;
-
     var paymentPageOrigin = halyk.Config().origin;
-    
-
     function pay(params) {
         window.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params));
     }
     var paymentWidgedCallBack = undefined;
     var widgetNode = undefined;
-    
     function encodeParams(params) {
-
         if (params === undefined || params === null) { return ""; }
-
         if (typeof params !== "object") { return "" + params; }
-
         var result = [];
-
         for (var name in params) {
             if(name){
                result.push(name + "=" + encodeURIComponent(encodeParams(params[name])));
             }
         }
-
         return result.join("&");
     }
-
-
     function addCssClass() {
         var style = document.createElement("style");
         style.type = "text/css";
@@ -76,12 +60,9 @@ var halyk;
     };
 
     function onCloseDialog(result) {
-        //paymentWidgedCallBack({ success: result });
-        if (widgetNode && widgetNode.parentNode) {
-            widgetNode.parentNode.removeChild(widgetNode);
-            widgetNode = undefined;
-        }
-     
+       // paymentWidgedCallBack({success: result});
+        document.getElementsByTagName("body")[0].removeChild(widgetNode);
+        widgetNode = undefined;
     }
     
     function onCommandRecieved(evnt) {
@@ -128,23 +109,19 @@ var halyk;
             document.getElementsByTagName("body")[0].appendChild(widgetNode);
         }
     }
-
-function p2p(params) { 
-        window.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isTransfer=true'; 
+    function p2p(params) {
+        window.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isTransfer=true';
     }
-function aft(params) {  
-        window.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isAFT=true';  
+    function aft(params) {
+        window.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isAFT=true';
     }
-function oct(params) {  
-        window.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isOCT=true';  
+    function oct(params) {
+        window.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isOCT=true';
     }
-halyk.p2p = p2p;
-halyk.aft = aft;
-halyk.oct = oct;
-
+    halyk.aft = aft;
+    halyk.p2p = p2p;
+    halyk.oct = oct;
     halyk.pay = pay;
     halyk.showPaymentWidget = showPaymentWidget;
-
 })(halyk || (halyk = {}));
-
 export default halyk;
