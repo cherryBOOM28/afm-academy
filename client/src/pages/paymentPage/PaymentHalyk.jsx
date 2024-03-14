@@ -4,7 +4,7 @@ import halyk from "./halyk"
 
 const PaymentHalyk = () => {
     const [accessToken, setAccessToken] = useState('');
-
+    const token = localStorage.getItem('jwtToken');
     // Функция для получения токена доступа
     const fetchToken = async () => {
         try {
@@ -26,13 +26,17 @@ const PaymentHalyk = () => {
             });
 
             const data = await response.json();
-            const callBk = {success:true}
             console.log(data);
             setAccessToken(data.access_token);
             const paymentObject = createPaymentObject(data, 3517453235, 30000);
-            console.log(paymentObject,callBk);
-            halyk.showPaymentWidget(paymentObject, callBk)
-            // halyk.pay(paymentObject)
+            halyk.showPaymentWidget(paymentObject, handlePaymentResult)
+
+            // const responseTOBack = await axios.post(
+            //     `${base_url}/api/aml/course/saveUserRequest/course/${selectedCourseId}`, 
+            //     formData, 
+            //     {
+            //     }
+            // );
             
         } catch (error) {
             console.error('Error fetching token:', error);

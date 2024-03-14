@@ -60,7 +60,7 @@ var halyk; (function(halyk) {
     };
 
     function onCloseDialog(result) {
-       // paymentWidgedCallBack({success: result});
+        paymentWidgedCallBack({success: result});
         document.getElementsByTagName("body")[0].removeChild(widgetNode);
         widgetNode = undefined;
     }
