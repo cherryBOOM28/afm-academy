@@ -14,7 +14,7 @@ const PaymentHalyk = () => {
             auth.append('client_id', 'AMLACADEMY.KZ');
             auth.append('client_secret', 'JYbXA8cJt(L24ffo');
             auth.append('invoiceID', 3517453235);
-            auth.append('amount', 100);
+            auth.append('amount', 30000);
             auth.append('currency', 'KZT');
             auth.append('terminal', 'a5e958ad-b799-41ff-9be9-f6d20ddc61a6');
             auth.append('postLink', '');
@@ -26,11 +26,12 @@ const PaymentHalyk = () => {
             });
 
             const data = await response.json();
+            const callBk = {success:true}
             console.log(data);
             setAccessToken(data.access_token);
-            const paymentObject = createPaymentObject(data, 3517453235, 100);
-            console.log(paymentObject);
-            halyk.showPaymentWidget(paymentObject)
+            const paymentObject = createPaymentObject(data, 3517453235, 30000);
+            console.log(paymentObject,callBk);
+            halyk.showPaymentWidget(paymentObject,callBk)
             // halyk.pay(paymentObject)
             
         } catch (error) {
@@ -50,10 +51,15 @@ const PaymentHalyk = () => {
             failurePostLink: "https://example.kz/order/1123/fail",
             language: "rus",
             description: "Оплата в интернет магазине",
+            accountId: "testuser1",
             terminal: 'a5e958ad-b799-41ff-9be9-f6d20ddc61a6',
             amount: amount,
+            name:"",
+            data: "{\"statement\":{\"name\":\"Arman Ali\",\"invoiceID\":\"80000016\"}}",
             currency: "KZT",
-            cardSave: false,
+            phone: "+77777777777",
+            email: "Maef_kz@mail.ru",
+            cardSave: true,
             auth: auth
         };
     };

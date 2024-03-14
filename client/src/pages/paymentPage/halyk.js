@@ -54,7 +54,7 @@ var halyk; (function(halyk) {
         styleClasses += ".iframeBoxHeaderCloseButtonText{font-size: 10px; font-family: sans-serif; font-weight: bold; color: #fff; padding-top: 2px;}";
         styleClasses += ".iframeBoxHeaderLabel{height:30px; text-align: center; float: left;}";
         styleClasses += ".iframeClass{ width: 100%; height: 90vh; border: none; }";
-        //styleClasses += ".iframeHolder{ width: 100%; height: 100%; }";
+        styleClasses += ".iframeHolder{ width: 100%; height: 100%; }";
         style.innerHTML = styleClasses;
         document.getElementsByTagName("head")[0].appendChild(style);
     };
@@ -79,10 +79,10 @@ var halyk; (function(halyk) {
             widgetNode = document.createElement("DIV");
             widgetNode.className = "widgetScreen";
             var iframeBox = document.createElement("DIV");
-            //var iframeBoxHeader = document.createElement("DIV");
-            //var iframeBoxLabel = document.createElement("DIV");
+            var iframeBoxHeader = document.createElement("DIV");
+            var iframeBoxLabel = document.createElement("DIV");
             //var iframeBoxCloseButton = document.createElement("DIV");
-            //iframeBoxLabel.className = "iframeBoxHeaderLabel";
+            iframeBoxLabel.className = "iframeBoxHeaderLabel";
             //iframeBoxCloseButton.className = "iframeBoxHeaderCloseButton";
             //iframeBoxLabel.innerHTML = "";
             //var iframeBoxHeaderCloseButtonText = document.createElement("DIV");
@@ -92,15 +92,15 @@ var halyk; (function(halyk) {
             // iframeBoxCloseButton.addEventListener("click", function(){
             //     onCloseDialog(false)
             // });
-            //iframeBoxHeader.appendChild(iframeBoxLabel);
+            iframeBoxHeader.appendChild(iframeBoxLabel);
             //iframeBoxHeader.appendChild(iframeBoxCloseButton);
-            //iframeBoxHeader.className = "iframeBoxHeader";
+            iframeBoxHeader.className = "iframeBoxHeader";
             iframeBox.className = "iframeBox";
             var iframe = document.createElement("IFRAME");
             var iframeHolder = document.createElement("DIV");
             iframeHolder.className = "iframeHolder";
             iframeHolder.appendChild(iframe);
-            //iframeBox.appendChild(iframeBoxHeader);
+            iframeBox.appendChild(iframeBoxHeader);
             iframeBox.appendChild(iframeHolder);
             iframe.src = halyk.Config().pageUrL + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isShortForm=true';
             iframe.className = "iframeClass";
