@@ -60,7 +60,10 @@ var halyk; (function(halyk) {
     };
 
     function onCloseDialog(result) {
-        paymentWidgedCallBack({success: result});
+        paymentWidgedCallBack({ success: result });
+        if (result === true) {
+            window.parent.postMessage({ success: true }, "*");
+        }
         document.getElementsByTagName("body")[0].removeChild(widgetNode);
         widgetNode = undefined;
     }
@@ -81,7 +84,7 @@ var halyk; (function(halyk) {
             var iframeBox = document.createElement("DIV");
             var iframeBoxHeader = document.createElement("DIV");
             var iframeBoxLabel = document.createElement("DIV");
-            //var iframeBoxCloseButton = document.createElement("DIV");
+            var iframeBoxCloseButton = document.createElement("DIV");
             iframeBoxLabel.className = "iframeBoxHeaderLabel";
             //iframeBoxCloseButton.className = "iframeBoxHeaderCloseButton";
             //iframeBoxLabel.innerHTML = "";
@@ -89,9 +92,9 @@ var halyk; (function(halyk) {
             //iframeBoxHeaderCloseButtonText.innerHTML = "X";
             //iframeBoxHeaderCloseButtonText.className = "iframeBoxHeaderCloseButtonText";
             //iframeBoxCloseButton.appendChild(iframeBoxHeaderCloseButtonText);
-            // iframeBoxCloseButton.addEventListener("click", function(){
-            //     onCloseDialog(false)
-            // });
+            iframeBoxCloseButton.addEventListener("click", function(){
+                 onCloseDialog(false)
+             });
             iframeBoxHeader.appendChild(iframeBoxLabel);
             //iframeBoxHeader.appendChild(iframeBoxCloseButton);
             //iframeBoxHeader.className = "iframeBoxHeader";
