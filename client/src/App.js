@@ -144,7 +144,8 @@ function App() {
 
                             {/* <Route path='/courses' element={<CoursesPage />}/> */}
                             <Route path="/courses/catalog" element={<Suspense ><Catalog /></Suspense>}/>
-                            <Route path="/courses/myCourses" element={<Suspense><PrivateRoute shouldBeLoggedIn={true} component={MyCourses}/></Suspense>}/>
+                            <Route path="/courses/myCourses" element={<Suspense><PrivateRoute shouldBeLoggedIn={true} component={MyCourses} /></Suspense>} />
+                            <Route path="/courses/myCourses/success" element={<Suspense><PrivateRoute shouldBeLoggedIn={true} component={MyCourses}/></Suspense>}/>
                             <Route path="/courses/info" element={<Suspense ><InfoPage /></Suspense>}/>
                             {/* <Route path='/courses/basic' element={<BasicCourse />}/> */}
                             {/* <Route path='/courses/specialized' element={<SpecializedCourse />}/> */}

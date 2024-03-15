@@ -1,7 +1,7 @@
 import LZString from 'lz-string';
 var halyk;
 
-var halyk; (function(halyk) {
+(function(halyk) {
     var isTest = false;
     var testConfig = {
         pageUrL : "https://test-epay.homebank.kz/payform/",
@@ -16,7 +16,7 @@ var halyk; (function(halyk) {
         origin: "https://epay.homebank.kz",
         TokenAPIConfig : {
             url: "https://epay-oauth.homebank.kz/oauth2/token",
-            clientId: "uberflower"
+            clientId: "AMLACADEMY.KZ"
         }
     };
     halyk.Config = function Config() {
@@ -61,9 +61,6 @@ var halyk; (function(halyk) {
 
     function onCloseDialog(result) {
         paymentWidgedCallBack({ success: result });
-        if (result === true) {
-            window.parent.postMessage({ success: true }, "*");
-        }
         document.getElementsByTagName("body")[0].removeChild(widgetNode);
         widgetNode = undefined;
     }
@@ -82,20 +79,20 @@ var halyk; (function(halyk) {
             widgetNode = document.createElement("DIV");
             widgetNode.className = "widgetScreen";
             var iframeBox = document.createElement("DIV");
-            var iframeBoxHeader = document.createElement("DIV");
-            var iframeBoxLabel = document.createElement("DIV");
-            var iframeBoxCloseButton = document.createElement("DIV");
-            iframeBoxLabel.className = "iframeBoxHeaderLabel";
+            // var iframeBoxHeader = document.createElement("DIV");
+            // var iframeBoxLabel = document.createElement("DIV");
+            // var iframeBoxCloseButton = document.createElement("DIV");
+            // iframeBoxLabel.className = "iframeBoxHeaderLabel";
             //iframeBoxCloseButton.className = "iframeBoxHeaderCloseButton";
             //iframeBoxLabel.innerHTML = "";
             //var iframeBoxHeaderCloseButtonText = document.createElement("DIV");
             //iframeBoxHeaderCloseButtonText.innerHTML = "X";
             //iframeBoxHeaderCloseButtonText.className = "iframeBoxHeaderCloseButtonText";
             //iframeBoxCloseButton.appendChild(iframeBoxHeaderCloseButtonText);
-            iframeBoxCloseButton.addEventListener("click", function(){
-                 onCloseDialog(false)
-             });
-            iframeBoxHeader.appendChild(iframeBoxLabel);
+            // iframeBoxCloseButton.addEventListener("click", function(){
+            //      onCloseDialog(false)
+            //  });
+            // iframeBoxHeader.appendChild(iframeBoxLabel);
             //iframeBoxHeader.appendChild(iframeBoxCloseButton);
             //iframeBoxHeader.className = "iframeBoxHeader";
             iframeBox.className = "iframeBox";
@@ -103,7 +100,7 @@ var halyk; (function(halyk) {
             var iframeHolder = document.createElement("DIV");
             iframeHolder.className = "iframeHolder";
             iframeHolder.appendChild(iframe);
-            iframeBox.appendChild(iframeBoxHeader);
+            //iframeBox.appendChild(iframeBoxHeader);
             iframeBox.appendChild(iframeHolder);
             iframe.src = halyk.Config().pageUrL + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isShortForm=true';
             iframe.className = "iframeClass";
