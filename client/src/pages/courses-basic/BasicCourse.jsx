@@ -18,6 +18,8 @@ import Lectors from '../../components/lectors-block/Lectors';
 import lector1 from './../../assets/images/Lector_1_cropped.png';
 import lector2 from './../../assets/images/Lector_2_cropped.png';
 import lector3 from './../../assets/images/Lector_3_cropped.png';
+import qr from './../../assets/icons/cashless-payment.png';
+import creditCard from './../../assets/icons/credit-card.png';
 
 import FeedBacks from '../../components/feedbackBlock/FeedBacks';
 import ModalWindow from '../../components/ModalWindow/ModalWindow';
@@ -175,10 +177,15 @@ const PaymentHalyk = () => {
     const makePayment = async () => {
         await fetchToken()
     };
-
+    const [isHovered, setIsHovered] = useState(false);
     return (
         <div>
-            <Button onClick={makePayment}>Halyk Bank</Button>
+            <Button onClick={makePayment}><img src={creditCard} style={{
+                    width: '225px',
+                    height: '225px',
+                    filter: isHovered ? 'brightness(60%)' : 'none', // Применяем эффект затемнения при наведении
+                    transition: 'filter 0.3s ease', // Добавляем плавное изменение стиля при наведении
+                }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} alt="" /></Button>
         </div>
     );
 };
@@ -193,6 +200,7 @@ function BasicCourse() {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(true);
+    
 
     const [request, setRequest] = useState({
         email: '',
@@ -216,7 +224,7 @@ function BasicCourse() {
           setOpen(false);
         };
     function AlertDialog() {
-      
+        const [isHovered, setIsHovered] = useState(false);
         return (
           <React.Fragment>
             <Dialog
@@ -234,9 +242,14 @@ function BasicCourse() {
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-              <Link to={`/payment/${id}`} style={{ colortextDecoration: 'none' }}><Button onClick={handleClose}>Kaspi Bank</Button></Link>
+              <Link to={`/payment/${id}`} style={{ colortextDecoration: 'none' }}><Button onClick={handleClose}><img src={qr} style={{
+                    width: '225px',
+                    height: '225px',
+                    filter: isHovered ? 'brightness(60%)' : 'none', // Применяем эффект затемнения при наведении
+                    transition: 'filter 0.3s ease', // Добавляем плавное изменение стиля при наведении
+                }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} alt="QR Code" /></Button></Link>
                 <Button onClick={handleClose}>
-                            <PaymentHalyk id={id} />
+                    <PaymentHalyk id={id} />
                 </Button>
               </DialogActions>
             </Dialog>

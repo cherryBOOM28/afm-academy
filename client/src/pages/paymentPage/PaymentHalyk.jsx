@@ -12,7 +12,6 @@ const PaymentHalyk = (id) => {
     const [dataBack, setDataBack] = useState('');
     const [paymentData, setPaymentData] = useState('');
     const [invoiceID, setInvoiceID] = useState('');
-    console.log(id);
 
        
 
