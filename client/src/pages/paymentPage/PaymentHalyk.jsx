@@ -4,6 +4,7 @@ import halyk from "./halyk"
 import axios from "axios";
 import base_url from '../../settings/base_url';
 import { useParams } from 'react-router-dom';
+import creditCard from './../../assets/icons/credit-card.png';
 
 
 const PaymentHalyk = (id) => {
@@ -42,8 +43,8 @@ const PaymentHalyk = (id) => {
             });
 
             const data = await response.json();
-            console.log(data);
-            console.log(responseData.data);
+            //console.log(data);
+            //console.log(responseData.data);
             setAccessToken(data.access_token);
             setInvoiceID(responseData.data.invoice_id)
             const paymentObject = createPaymentObject(data, responseData.data.invoice_id, 50, responseData.data.email);
@@ -55,7 +56,7 @@ const PaymentHalyk = (id) => {
             
                 // Затем, если условие подходит (например, если оплата прошла успешно), вызовите handlePaymentResultFromBack
                 if (result.code === undefined) {
-                    handlePaymentResultFromBack(responseData.data.invoice_id,id,responseData.data.user_id,token);
+                    handlePaymentResultFromBack(responseData.data.invoice_id,id.id,responseData.data.user_id,token);
                 }
             });
 
@@ -120,7 +121,7 @@ const PaymentHalyk = (id) => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                console.log(responseData.data);
+                //console.log(responseData.data);
                 if (responseData.data.code === "ok") {
                     addUserToCourse(course_id, user_id, token)
                 }
@@ -145,7 +146,7 @@ const PaymentHalyk = (id) => {
            
         }
     };
-
+    const [isHovered, setIsHovered] = useState(false);
     // Функция для проведения платежа
     const makePayment = async () => {
         await fetchToken()
@@ -153,8 +154,13 @@ const PaymentHalyk = (id) => {
 
     return (
         <div>
-            <Button onClick={makePayment}>Halyk Bank</Button>
-        </div>
+                   <Button onClick={makePayment}><img src={creditCard} style={{
+                             width: '225px',
+                             height: '225px',
+                             filter: isHovered ? 'brightness(60%)' : 'none', // Применяем эффект затемнения при наведении
+                             transition: 'filter 0.3s ease', // Добавляем плавное изменение стиля при наведении
+                     }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} alt="" /></Button>
+                 </div>
     );
 };
 
