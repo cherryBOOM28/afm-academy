@@ -7,6 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Divider from '@mui/material/Divider';
 
 import Footer from '../../components/footer/Footer';
 
@@ -185,7 +186,7 @@ const PaymentHalyk = () => {
                     height: '225px',
                     filter: isHovered ? 'brightness(60%)' : 'none', // Применяем эффект затемнения при наведении
                     transition: 'filter 0.3s ease', // Добавляем плавное изменение стиля при наведении
-                }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} alt="" /></Button>
+            }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} alt="" /></Button>
         </div>
     );
 };
@@ -247,7 +248,8 @@ function BasicCourse() {
                     height: '225px',
                     filter: isHovered ? 'brightness(60%)' : 'none', // Применяем эффект затемнения при наведении
                     transition: 'filter 0.3s ease', // Добавляем плавное изменение стиля при наведении
-                }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} alt="QR Code" /></Button></Link>
+                        }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} alt="QR Code" /></Button></Link>
+                         <Divider orientation="vertical" flexItem sx={{ height: '225px',borderWidth:'3px' }}/>
                 <Button onClick={handleClose}>
                     <PaymentHalyk id={id} />
                 </Button>
