@@ -3,15 +3,16 @@ import Button from '@mui/material/Button';
 import halyk from "./halyk"
 import axios from "axios";
 import base_url from '../../settings/base_url';
+import { useParams } from 'react-router-dom';
 
-const PaymentHalyk = () => {
+
+const PaymentHalyk = (id) => {
     const [accessToken, setAccessToken] = useState('');
     const token = localStorage.getItem('jwtToken');
     const [dataBack, setDataBack] = useState('');
     const [paymentData, setPaymentData] = useState('');
     const [invoiceID, setInvoiceID] = useState('');
-
-   
+    console.log(id);
 
        
 
@@ -30,7 +31,7 @@ const PaymentHalyk = () => {
             auth.append('client_id', 'AMLACADEMY.KZ');
             auth.append('client_secret', 'JYbXA8cJt(L24ffo');
             auth.append('invoiceID', responseData.data.invoice_id);
-            auth.append('amount', 30000);
+            auth.append('amount', 50);
             auth.append('currency', 'KZT');
             auth.append('terminal', 'a5e958ad-b799-41ff-9be9-f6d20ddc61a6');
             auth.append('postLink', `${base_url}/api/aml/course/createPostLink`);
@@ -46,7 +47,7 @@ const PaymentHalyk = () => {
             console.log(responseData.data);
             setAccessToken(data.access_token);
             setInvoiceID(responseData.data.invoice_id)
-            const paymentObject = createPaymentObject(data, responseData.data.invoice_id, 30000, responseData.data.email);
+            const paymentObject = createPaymentObject(data, responseData.data.invoice_id, 50, responseData.data.email);
             halyk.showPaymentWidget(paymentObject, (result) => {
                 // В этом колбэке обработайте результат показа виджета оплаты
             
@@ -55,7 +56,7 @@ const PaymentHalyk = () => {
             
                 // Затем, если условие подходит (например, если оплата прошла успешно), вызовите handlePaymentResultFromBack
                 if (result.code === undefined) {
-                    handlePaymentResultFromBack(responseData.data.invoice_id,8,responseData.data.user_id,token);
+                    handlePaymentResultFromBack(responseData.data.invoice_id,id,responseData.data.user_id,token);
                 }
             });
 

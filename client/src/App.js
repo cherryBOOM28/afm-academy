@@ -73,11 +73,6 @@ const CryptoCourse = lazy(() => import('./pages/ReadCourses/CryptoCourse'));
 
 function App() {
     const [jwtToken, setJwtToken] = useState('');
-    const halykConfig = {
-        pageUrL: "https://example.com/payform/",
-        origin: "https://example.com",
-        // other configuration properties
-    };
 
     useEffect(() => {
 
@@ -108,7 +103,7 @@ function App() {
                             <Route path="/" element={<Suspense ><Home /></Suspense>}></Route>
                             <Route path="/:scroll" element={<Suspense ><Home /></Suspense>}></Route>
                             <Route path="/about" element={<Suspense ><AboutUs /></Suspense>}></Route>
-                            <Route path="/payment-halyk" element={<Suspense ><PaymentHalyk halykConfig={halykConfig} /></Suspense>}></Route>
+                            <Route path="/payment-halyk" element={<Suspense ><PaymentHalyk /></Suspense>}></Route>
                             <Route path="/management" element={<Suspense ><Management /></Suspense>}></Route>
                             <Route path="/contacts" element={<Suspense ><Contacts /></Suspense>}></Route>
                             <Route path="/news-page" element={<Suspense ><NewsPage /></Suspense>}></Route>
