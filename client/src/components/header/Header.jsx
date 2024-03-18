@@ -233,9 +233,9 @@ function Header(props) {
             <input type='search' className={`search-input ${props.dark? 'dark' : ''}`} />
           </div>
           {jwtToken ? 
-            <div className='user-actions'>
-              <div onClick={() => toggleMenu()} className='user-icon toggle-user-button'>
-                <a className='toggle-user-button'>{pfp.toUpperCase()}</a>
+            <div className='user-actions' onClick={() => toggleMenu()} >
+              <div className='user-icon toggle-user-button'>
+                <p className='toggle-user-button'>{pfp.toUpperCase()}</p>
               </div>
               <div className='user-toggle' 
                 style={{

@@ -31,7 +31,7 @@ const PaymentHalyk = (id) => {
             auth.append('client_id', 'AMLACADEMY.KZ');
             auth.append('client_secret', 'JYbXA8cJt(L24ffo');
             auth.append('invoiceID', responseData.data.invoice_id);
-            auth.append('amount', 50);
+            auth.append('amount', 30000);
             auth.append('currency', 'KZT');
             auth.append('terminal', 'a5e958ad-b799-41ff-9be9-f6d20ddc61a6');
             auth.append('postLink', `${base_url}/api/aml/course/createPostLink`);
@@ -47,7 +47,7 @@ const PaymentHalyk = (id) => {
             //console.log(responseData.data);
             setAccessToken(data.access_token);
             setInvoiceID(responseData.data.invoice_id)
-            const paymentObject = createPaymentObject(data, responseData.data.invoice_id, 50, responseData.data.email);
+            const paymentObject = createPaymentObject(data, responseData.data.invoice_id, 30000, responseData.data.email);
             halyk.showPaymentWidget(paymentObject, (result) => {
                 // В этом колбэке обработайте результат показа виджета оплаты
             
