@@ -16,18 +16,31 @@ const DropdownPage = ({data, dataBtn, version=1}) => {
           <div className="buttons-container">
             
             {dataBtn.map((item, index) => (
-            <DropdownButton key={index} label={item} onClick={() => handleButtonClick(index)} isOpen={openDropdown === index}/>
-          ))}
+              <DropdownButton key={index} label={item} onClick={() => handleButtonClick(index)} isOpen={openDropdown === index}/>
+            ))}
           </div>
   
           <div
             className="dropdown-container"
           >
-            {data.map((item, index) => (
-              <DropdownContent isOpen={index === openDropdown} key={index}>
-                {item}
-              </DropdownContent>
-            ))}
+            {data.map((item, index) => {
+
+              if (typeof item === 'string') return (
+                <DropdownContent isOpen={index === openDropdown} key={index}>
+                  {item}
+                </DropdownContent>
+              ) 
+              else {
+                return (
+                  <DropdownContent 
+                    isOpen={index === openDropdown} 
+                    key={index}
+                    content={item}
+                  >
+                  </DropdownContent>
+                )
+              }
+            })}
           </div>
         </div>
       </div>

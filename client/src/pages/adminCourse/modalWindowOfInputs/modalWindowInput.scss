@@ -18,7 +18,7 @@
     padding: 100px;
 
     overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-x: scroll;
     
     .title-example {
         display: flex;
@@ -51,11 +51,50 @@
     .modal-content {
         padding-top: 25px;
         width: 100% !important;
+        position: relative;
 
         display: flex;
         flex-direction: column;
 
         gap: 10px;
+
+        .tabs-glossary-input {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            > label {
+                font-size: 20px ;
+                font-weight: 600;
+            }
+
+            .rows {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+
+                > div {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    &+div {
+                        border-top: 3px solid black;
+                        padding-top: 10px;
+                    }
+
+                    > div:nth-child(1) {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+    
+                        label {
+                            padding-left: 5px;
+                        }
+                    }
+                }
+            }
+        }
 
         .icon-text-innerText-input {
             display: flex;
@@ -184,7 +223,7 @@
         .table-data-inputs {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 15px;
 
             button {
                 margin-top: 20px;
@@ -193,19 +232,21 @@
 
             > div {
                 display: flex;
-                flex-direction: row;
+                flex-direction: column;
                 gap: 10px;
 
-                > div:nth-child(1) {
-                    width: 40%;
+                border: 1px solid black;
+                padding: 16px;
+                border-radius: 4px;
+
+                > div {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
                 }
 
-                > div:nth-child(2) {
-                    width: 60%;
-                }
-
-                input {
-                    width: 100%
+                label {
+                    padding-left: 5px;
                 }
             }
         }
@@ -732,8 +773,12 @@
             flex-direction: column;
             gap: 10px;
 
+            > label {
+                padding-left: 5px;
+            }
+
             .inner {
-                width: 100%;
+                width: 500px;
                 
                 .actions {
                     display: flex;
@@ -1014,6 +1059,33 @@
         
                 .add-drop-button {
                     cursor: pointer;
+                }
+            }
+        }
+
+        .test-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            label {
+                padding-left: 5px;
+            }
+
+            .options {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                .option {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 10px;
+
+                    > *:nth-child(1) {
+                        width: 80%;
+                    }
                 }
             }
         }

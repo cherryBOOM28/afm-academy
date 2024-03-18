@@ -35,14 +35,11 @@ import DropDownTextWithTabs from '../../../components/courseTemplates/complex/Dr
 import IconDots from '../../../components/courseTemplates/common_v2/IconDots'
 import Report_Warning from '../../../components/courseTemplates/common/Warnings/Report'
 import ImageAndColumns from '../../../components/courseTemplates/common_v2/ImageAndColumns'
-import TwoColumnsDivider from '../../../components/courseTemplates/common_v2/TwoColumnsDivider'
 import CustomCarousel from '../../../components/courseTemplates/complex/CustomCarousel'
 import DragAndDropZone from '../../../components/courseTemplates/common/DraggableOption/DragAndDropZone'
 import TableComponent from '../../../components/courseTemplates/common/Tables/TableComponent'
-import DropdownPage from '../../../components/courseTemplates/common/Tables/TableWithData'
 import QuizWithCardComponent from '../../../components/courseTemplates/common/QuizWithCardComponent'
 import DropdownList_r5 from '../../../components/courseTemplates/complex/interactives/DropdownList_r5'
-import OneToFour from '../../../components/courseTemplates/complex/interactives/OneToFour'
 
 const componentMap_level_2 = {
     HeaderWithLine,
@@ -82,7 +79,6 @@ const componentMap_level_2 = {
     CustomCarousel,
     DragAndDropZone,
     TableComponent,
-    DropdownPage,
     QuizWithCardComponent,
     // Add other components here
 };

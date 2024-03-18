@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './modalWindowInput.scss'
 
+import AdvancedInput from './AdvancedInput';
+
 import { BsX } from "react-icons/bs";
 
 function fileToBase64(file, callback) {
@@ -1026,35 +1028,32 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                 </div> 
                 :
                 input.type == 'tabs' && values.tabs && Array.isArray(values.tabsGlossary) ? 
-                <div key={input.name}>
+                <div key={input.name} className='tabs-glossary-input'>
                     <label>Разделы</label>
-                    <div className='columns'>
-                      <div className='first-column'>
+                    <div className="rows">
                       {values.tabs.map((x, index) => {
                         return (
                           <div key={index}>
-                            <input
-                              type="text"
-                              value={x || ''}
-                              onChange={(e) => handleInputChange(index, e.target.value, 'tabs-for-glossary')}
+                            <div>
+                              <label>Название раздела</label>
+                              <input
+                                type="text"
+                                valvvvvvue={x || ''}
+                                onChange={(e) => handleInputChange(index, e.target.value, 'tabs-for-glossary')}
                               />
+                            </div>
+
+                            <Formatable_Textarea 
+                              handleChange={(_, newValue, __) => {
+                                handleInputChange(index, newValue, 'tabsGlossary')
+                              }}
+                              label={'Текст раздела'}
+                              type={'tabsGlossary'}
+                              value={values.tabsGlossary[index] || ''}
+                            />
                           </div>
                         )
                       })}
-                      </div>
-                      <div className='second-column'>
-                      {values.tabsGlossary.map((x, index) => {
-                        return (
-                          <div key={index}>
-                            <input
-                              type="text"
-                              value={x || ''}
-                              onChange={(e) => handleInputChange(index, e.target.value, 'tabsGlossary')}
-                              />
-                          </div>
-                        )
-                      })}
-                      </div>
                     </div>
                     <div className='add-button-div'>
                       <button className='add-button' onClick={() => handleAddToList(input.name)}>Добавить</button>
@@ -1596,19 +1595,19 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                 : input.type === 'test_answers' 
                 ? (
                   <div className="test-options">
+                    <label>Ответы</label>
                     <div className="options">
                       {
                         values?.options?.map((option, index) => {
 
                           return (
                             <div className="option" >
-                              <input 
-                                type="text"
-                                value={option} 
-                                onChange={(e) => {
+                              <Formatable_Textarea 
+                                minHeight={200}
+                                handleChange={(_, newValue, __) => {
                                   setValues(prevValues => {
                                     const updatedOptions = prevValues.options;
-                                    updatedOptions[index] = e.target.value;
+                                    updatedOptions[index] = newValue;
 
                                     return {
                                       ...prevValues,
@@ -1616,6 +1615,9 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                                     }
                                   })
                                 }}
+                                name={'options'}
+                                type={'options'}
+                                value={option}
                               />
                               <input 
                                 type="checkbox"
@@ -1746,37 +1748,16 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                 : input.type === 'list_with_tabs'
                 ? (
                   <div className="table-data-inputs">
-                    <div>
-                      <div>Название вкладки</div>
-                      <div>Текст</div>
-                    </div>
-
                     {
-                      values?.data?.map((item, index) => {
+                      values?.dataBtn?.map((item, index) => {
 
                         return (
                           <div key={index}>
                             <div>
+                              <label>Название вкладки</label>
                               <input 
                                 type="text" 
                                 value={item}
-                                onChange={(e) => {
-                                  setValues(prevValues => {
-                                    const updatedData = prevValues['data'];
-                                    updatedData[index] = e.target.value;
-
-                                    return {
-                                      ...prevValues,
-                                      ['data']: updatedData
-                                    }
-                                  })
-                                }}
-                              />
-                            </div>
-                            <div>
-                              <input 
-                                type="text" 
-                                value={values.dataBtn[index]}
                                 onChange={(e) => {
                                   setValues(prevValues => {
                                     const updatedData = prevValues['dataBtn'];
@@ -1790,6 +1771,20 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                                 }}
                               />
                             </div>
+                            <AdvancedInput
+                              content={values?.data[index]} 
+                              handleSave={(content) => {
+                                setValues(prevValues => {
+                                  const updatedData = prevValues['data'];
+                                  updatedData[index] = content;
+
+                                  return {
+                                    ...prevValues,
+                                    ['data']: updatedData
+                                  }
+                                })
+                              }}
+                            />
                           </div>
                         )
                       })
@@ -1801,7 +1796,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                         setValues(prev => {
                           return {
                             ...prev,
-                            ['data']: [...prev['data'], 'Текст'],
+                            ['data']: [...prev['data'], []],
                             ['dataBtn']: [...prev['dataBtn'], 'Вкладка'],
                           }
                         })
@@ -2534,15 +2529,6 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                 : input.type === 'points_list' 
                 ? (
                   <div className='points_list-input'>
-                    {
-                      values?.img ? (
-                        <div className="img-points">
-                          <img src={values?.img} />
-                        </div>
-                      ) : null
-                    }
-
-                    <div>Нажмите картинку, чтобы увидеть координаты: x: 0, y: 0</div>
                     <div className='input-title'>Введите данные точек</div>
 
                     <div>
@@ -2709,6 +2695,7 @@ const Formatable_Textarea = ({
   name,
   type,
   value,
+  minHeight=300
 }) => {
 
   const textAreaRef = useRef(null);
@@ -2775,7 +2762,7 @@ const Formatable_Textarea = ({
 
   return (
     <div className="format-textarea">
-      <label>{label}</label>
+      {label ? <label>{label}</label> : null}
       <div className="inner">
         <div className="actions">
           <button 
@@ -2798,9 +2785,11 @@ const Formatable_Textarea = ({
             className='btn-highlight'
             onClick={() => wrapSelected('|h|', '[Вставьте скрытый текст сюда]|h|')}
           >H</button>
+
         </div>
 
         <textarea
+          style={{ minHeight: `${minHeight}px` }}
           ref={textAreaRef}
           type="text"
           value={value}

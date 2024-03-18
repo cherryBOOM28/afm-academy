@@ -11,8 +11,6 @@ import RandomParapraph from '../../../components/courseTemplates/common/RandomPa
 import Sizebox from '../../../components/courseTemplates/common/Sizebox'
 import SmallNotNuberedDots from '../../../components/courseTemplates/common/SmallNotNuberedDots'
 
-import Table_1 from '../../../components/courseTemplates/common/Tables/Table-1'
-
 import FlexRow from '../../../components/courseTemplates/common_v2/FlexRow'
 import FlexBoxes from '../../../components/courseTemplates/common_v2/FlexBoxes'
 import FancyList from '../../../components/courseTemplates/common_v2/FancyList'
@@ -38,7 +36,6 @@ import ImageAndColumns from '../../../components/courseTemplates/common_v2/Image
 import ImageSequence from '../../../components/courseTemplates/common_v2/ImageSequence'
 import TwoColumnsDivider from '../../../components/courseTemplates/common_v2/TwoColumnsDivider'
 import CustomCarousel from '../../../components/courseTemplates/complex/CustomCarousel'
-import DragAndDropZone from '../../../components/courseTemplates/common/DraggableOption/DragAndDropZone'
 import TableComponent from '../../../components/courseTemplates/common/Tables/TableComponent'
 import DropdownPage from '../../../components/courseTemplates/common/Tables/TableWithData'
 import QuizWithCardComponent from '../../../components/courseTemplates/common/QuizWithCardComponent'
@@ -48,7 +45,6 @@ import ComplexTable from '../../../components/courseTemplates/common/ComplexTabl
 import DragAndDropComponent from '../../../components/courseTemplates/common/DoubleDraggableOption'
 import InteractivePhases from '../../../components/courseTemplates/complex/interactives/InteractivePhases'
 import Component52 from '../../../components/courseTemplates/complex/Component52'
-import LupaZone from '../../../components/courseTemplates/common/Lupa/LupaDragZone'
 import ImageWithPoints from '../../../components/courseTemplates/complex/interactives/ImageWithPoints'
 
 
@@ -109,6 +105,9 @@ import FlexBoxesExample from './../../../assets/images/Template Examples/FlexBox
 import ImageAndColumnsExample from './../../../assets/images/Template Examples/ImageAndColumns.png'
 import DragAndDropTwoSideExample from './../../../assets/images/Template Examples/DragAndDropTwoSide.png'
 import CustomCarouselExample from './../../../assets/images/Template Examples/CustomCarousel.png'
+import DragAndDropZone from '../../../components/courseTemplates/common/DraggableOption/DragAndDropZone'
+import LupaZone from '../../../components/courseTemplates/common/Lupa/LupaDragZone'
+import Table_1 from '../../../components/courseTemplates/common/Tables/Table-1'
 
 
 
@@ -214,7 +213,7 @@ const Elements = {
                 { name: 'img', label: 'Изображение', type: 'file' },
             ]
         },
-        'Вкладки с текстом': {
+        'Вкладки с элементами': {
             component: DropdownPage,
             example: null,
             name: 'DropdownPage',
@@ -313,7 +312,8 @@ const Elements = {
                 { name: 'color', label: 'Цвет', type: 'color' },
                 { name: 'tabsBackgroundColor', label: 'Цвет фона названии разделов', type: 'color' },
                 { name: 'tabsActiveBackgroundColor', label: 'Фон активного названия раздела', type: 'color' },
-                { name: 'glossaryBackgroundColor', label: 'Фон раздела', type: 'color' }
+                { name: 'glossaryBackgroundColor', label: 'Фон раздела', type: 'color' },
+                { name: 'version', label: '', type: 'ignore' }
                 // Add more inputs as needed based on the TabsGlossary component's props
             ],
         },
@@ -361,6 +361,7 @@ const Elements = {
             name: 'Table_1',
             icon: table1Icon,
             inputs: [
+                { name: 'header', label: 'Заголовок', type: 'text' },
                 { name: 'rows', label: 'Строки', type: 'rows' },
                 { name: 'borderColor', label: 'Цвет границы', type: 'color' },
                 { name: 'color', label: 'Цвет текста', type: 'color' },
@@ -605,12 +606,13 @@ const Elements = {
         'Задание с перетаскиванием': {
             component: DragAndDropZone,
             example: null,
-            name: DragAndDropZone,
+            name: 'DragAndDropZone',
             icon: norNumberedDotsIcon,
             inputs: [
                 { name: 'title', label: 'Заголовок', type: 'text' },
                 { name: 'options', label: 'Ответы', type: 'test_answers' },
                 { name: 'correctOptions', label: 'Правильные ответы', type: 'ignore' },
+                { name: 'version', label: '', type: 'ignore' },
                 // { name: 'img', label: 'Изображение', type: 'file'}
             ]
         },
@@ -625,6 +627,7 @@ const Elements = {
                 { name: 'img', label: 'Изображение', type: 'file' },
                 { name: 'Width', label: 'Ширина изображения', type: 'number' },
                 { name: 'Height', label: 'Высота изображения', type: 'number' },
+                { name: 'version', label: '', type: 'ignore' },
             ]
         },
         'Карточки (тест)': {

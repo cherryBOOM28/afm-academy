@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './style.scss';
 
-function Table_1({ rows, borderColor, color }) {
+function Table_1({ rows, borderColor, color, header='Разберем список следующих сокращений:' }) {
     const defaultBorderColor = '#CADEFC';
     const defaultColor = '#000000'
 
@@ -47,7 +47,7 @@ function Table_1({ rows, borderColor, color }) {
                     marginTop: '50px',
                 }}
             >
-                Разберем список следующих сокращений:
+                {header}
             </p>
             <div className="columnless-table">
                 <div className="table-wrapper">

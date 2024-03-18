@@ -56,13 +56,14 @@ function BasicCourse() {
     }
     const [open, setOpen] = useState(false);
       
-        const handleClickOpen = () => {
-          setOpen(true);
-        };
-      
-        const handleClose = () => {
-          setOpen(false);
-        };
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     function AlertDialog() {
         const [isHovered, setIsHovered] = useState(false);
         return (
@@ -76,11 +77,13 @@ function BasicCourse() {
               <DialogTitle id="alert-dialog-title">
                 {"Способ оплаты"}
               </DialogTitle>
+
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
                 Каким способом хотели оплатить курс?
                 </DialogContentText>
               </DialogContent>
+
               <DialogActions>
               <Link to={`/payment/${id}`} style={{ colortextDecoration: 'none' }}><Button onClick={handleClose}><img src={qr} style={{
                     width: '225px',
@@ -93,6 +96,7 @@ function BasicCourse() {
                     <PaymentHalyk id={id} />
                 </Button>
               </DialogActions>
+
             </Dialog>
           </React.Fragment>
         );
