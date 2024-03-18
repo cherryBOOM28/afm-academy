@@ -76,7 +76,6 @@ function App() {
     const halykConfig = {
         pageUrL: "https://example.com/payform/",
         origin: "https://example.com",
-        // other configuration properties
     };
 
     useEffect(() => {

@@ -1749,7 +1749,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                 ? (
                   <div className="table-data-inputs">
                     {
-                      values?.data?.map((item, index) => {
+                      values?.dataBtn?.map((item, index) => {
 
                         return (
                           <div key={index}>
@@ -1760,18 +1760,31 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                                 value={item}
                                 onChange={(e) => {
                                   setValues(prevValues => {
-                                    const updatedData = prevValues['data'];
+                                    const updatedData = prevValues['dataBtn'];
                                     updatedData[index] = e.target.value;
 
                                     return {
                                       ...prevValues,
-                                      ['data']: updatedData
+                                      ['dataBtn']: updatedData
                                     }
                                   })
                                 }}
                               />
                             </div>
-                            <AdvancedInput />
+                            <AdvancedInput
+                              content={values?.data[index]} 
+                              handleSave={(content) => {
+                                setValues(prevValues => {
+                                  const updatedData = prevValues['data'];
+                                  updatedData[index] = content;
+
+                                  return {
+                                    ...prevValues,
+                                    ['data']: updatedData
+                                  }
+                                })
+                              }}
+                            />
                           </div>
                         )
                       })
@@ -1783,7 +1796,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                         setValues(prev => {
                           return {
                             ...prev,
-                            ['data']: [...prev['data'], 'Текст'],
+                            ['data']: [...prev['data'], []],
                             ['dataBtn']: [...prev['dataBtn'], 'Вкладка'],
                           }
                         })

@@ -50,13 +50,14 @@ function BasicCourse() {
     }
     const [open, setOpen] = useState(false);
       
-        const handleClickOpen = () => {
-          setOpen(true);
-        };
-      
-        const handleClose = () => {
-          setOpen(false);
-        };
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     function AlertDialog() {
       
         return (
@@ -70,17 +71,20 @@ function BasicCourse() {
               <DialogTitle id="alert-dialog-title">
                 {"Способ оплаты"}
               </DialogTitle>
+
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
                 Каким способом хотели оплатить курс?
                 </DialogContentText>
               </DialogContent>
+
               <DialogActions>
-              <Link to={`/payment/${id}`} style={{ colortextDecoration: 'none' }}><Button onClick={handleClose}>Kaspi Bank</Button></Link>
+                <Link to={`/payment/${id}`} style={{ colortextDecoration: 'none' }}><Button onClick={handleClose}>Kaspi Bank</Button></Link>
                 <Button onClick={handleClose}>
                   <PaymentHalyk />
                 </Button>
               </DialogActions>
+
             </Dialog>
           </React.Fragment>
         );

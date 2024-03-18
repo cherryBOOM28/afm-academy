@@ -213,7 +213,7 @@ const Elements = {
                 { name: 'img', label: 'Изображение', type: 'file' },
             ]
         },
-        'Вкладки с текстом': {
+        'Вкладки с элементами': {
             component: DropdownPage,
             example: null,
             name: 'DropdownPage',

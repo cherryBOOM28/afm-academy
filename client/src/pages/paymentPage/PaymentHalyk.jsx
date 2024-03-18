@@ -1,220 +1,167 @@
-    import React, { useState, useEffect } from 'react';
-    import { useLocation } from 'react-router';
-    import LZString from 'lz-string';
-    import Button from '@mui/material/Button';
+import React, { useState } from 'react';
+import Button from '@mui/material/Button';
+import halyk from "./halyk"
+import axios from "axios";
+import base_url from '../../settings/base_url';
+import { useParams } from 'react-router-dom';
+import creditCard from './../../assets/icons/credit-card.png';
 
-    const PaymentHalyk = ({}) => {
-        const [accessToken, setAccessToken] = useState('');
-        const [previousUrl, setPreviousUrl] = useState('');
 
-        function halyk (halyk) {
-    
-        var isTest = true;
+const PaymentHalyk = (id) => {
+    const [accessToken, setAccessToken] = useState('');
+    const token = localStorage.getItem('jwtToken');
+    const [dataBack, setDataBack] = useState('');
+    const [paymentData, setPaymentData] = useState('');
+    const [invoiceID, setInvoiceID] = useState('');
 
-        var testConfig = {
-            pageUrL : "https://test-epay.homebank.kz/payform/",
-            origin: "https://test-epay.homebank.kz",
-            TokenAPIConfig : {
-                url: "https://testoauth.homebank.kz/epay2/oauth2/token",
-                clientId: "AMLACADEMY.KZ"
-            }
-        };
+       
 
-        var prodConfig = {
-            pageUrL : "https://epay.homebank.kz/payform/",
-            origin: "https://epay.homebank.kz",
-            TokenAPIConfig : {
-                url: "https://epay-oauth.homebank.kz/oauth2/token",
-                clientId: "AMLACADEMY.KZ"
-            }
-        };
+    // Функция для получения токена доступа
+    const fetchToken = async () => {
+        try {
+            const responseData = await axios.get(`${base_url}/api/aml/course/invoiceID`, {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+            });
+            setDataBack(responseData.data)
+            const auth = new FormData();
+            auth.append('grant_type', 'client_credentials');
+            auth.append('scope', 'webapi usermanagement email_send verification statement statistics payment');
+            auth.append('client_id', 'AMLACADEMY.KZ');
+            auth.append('client_secret', 'JYbXA8cJt(L24ffo');
+            auth.append('invoiceID', responseData.data.invoice_id);
+            auth.append('amount', 50);
+            auth.append('currency', 'KZT');
+            auth.append('terminal', 'a5e958ad-b799-41ff-9be9-f6d20ddc61a6');
+            auth.append('postLink', `${base_url}/api/aml/course/createPostLink`);
+            auth.append('failurePostLink', '');
 
-        halyk.Config = function Config() {
-            if (isTest)
-                return testConfig;
-            else
-                return prodConfig;
-        }
+            const response = await fetch('https://epay-oauth.homebank.kz/oauth2/token', {
+                method: 'POST',
+                body: auth,
+            });
 
-        var pageUrl = halyk.Config().pageUrL;
-
-        var paymentPageOrigin = halyk.Config().origin;
-
-        function pay(params) {
-            window.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params));
-        }
-        var paymentWidgedCallBack = undefined;
-        var widgetNode = undefined;
-        // eslint-disable-next-line no-unused-expressions
-        function encodeParams(params) {
-
-            if (params === undefined || params === null) { return ""; }
-
-            if (typeof params !== "object") { return "" + params; }
-
-            var result = [];
-
-            for (var name in params) {
-                if(name){
-                result.push(name + "=" + encodeURIComponent(encodeParams(params[name])));
+            const data = await response.json();
+            //console.log(data);
+            //console.log(responseData.data);
+            setAccessToken(data.access_token);
+            setInvoiceID(responseData.data.invoice_id)
+            const paymentObject = createPaymentObject(data, responseData.data.invoice_id, 50, responseData.data.email);
+            halyk.showPaymentWidget(paymentObject, (result) => {
+                // В этом колбэке обработайте результат показа виджета оплаты
+            
+                // Сначала вызовите ваш обработчик handlePaymentResult
+                handlePaymentResult(result);
+            
+                // Затем, если условие подходит (например, если оплата прошла успешно), вызовите handlePaymentResultFromBack
+                if (result.code === undefined) {
+                    handlePaymentResultFromBack(responseData.data.invoice_id,id.id,responseData.data.user_id,token);
                 }
-            }
+            });
 
-            return result.join("&");
+            setPaymentData(paymentObject);
+            console.log(paymentObject);
+        } catch (error) {
+            console.error('Error fetching token:', error);
         }
-
-
-        function addCssClass() {
-            var style = document.createElement("style");
-            style.type = "text/css";
-            var styleClasses = ".widgetScreen {position: fixed; top: 0; bottom: 0; left: 0; right: 0; z-index: 1000; background-color: rgba(5, 5, 5, 0.5); display: flex; justify-content: center; align-items: center;}";
-            styleClasses += ".iframeBox{border-radius: 4px; position: relative; width: 400px; z-index: 1010; background-color: #fff; -ms-overflow-style: none; scrollbar-width: none;}";
-            styleClasses += `.iframeHolder::-webkit-scrollbar {display: none;}`;
-            styleClasses += ".iframeBoxHeader{padding: 0px;}";
-            styleClasses += ".iframeBoxHeaderCloseButton{border-radius: 8px; cursor: pointer; width: 15px; height: 15px; content: 'X'; text-align: center; float: right; background-color: #ccc; font-family: Arial;}";
-            styleClasses += ".iframeBoxHeaderCloseButtonText{font-size: 10px; font-family: sans-serif; font-weight: bold; color: #fff; padding-top: 2px;}";
-            styleClasses += ".iframeBoxHeaderLabel{height:30px; text-align: center; float: left;}";
-            styleClasses += ".iframeClass{ width: 100%; height: 90vh; border: none; }";
-            //styleClasses += ".iframeHolder{ width: 100%; height: 100%; }";
-            style.innerHTML = styleClasses;
-            document.getElementsByTagName("head")[0].appendChild(style);
-        };
-
-        function onCloseDialog(result) {
-            paymentWidgedCallBack({success: result});
-            if (widgetNode && widgetNode.parentNode) {
-                widgetNode.parentNode.removeChild(widgetNode);
-                widgetNode = undefined;
-            }
-        }
-        
-        function onCommandRecieved(evnt) {
-        if (evnt.origin.indexOf(paymentPageOrigin) === 0) {
-                const resultObject = JSON.parse(evnt.data);
-                onCloseDialog(resultObject.success === true);
-            }
-            }
-        
-        function showPaymentWidget(params, callBack) {
-            paymentWidgedCallBack = callBack;
-            const { accessToken } = params;
-            if (!widgetNode) {
-                addCssClass();
-                widgetNode = document.createElement("DIV");
-                widgetNode.className = "widgetScreen";
-                var iframeBox = document.createElement("DIV");
-                var iframeBoxHeader = document.createElement("DIV");
-                var iframeBoxLabel = document.createElement("DIV");
-                var iframeBoxCloseButton = document.createElement("DIV");
-                iframeBoxLabel.className = "iframeBoxHeaderLabel";
-                iframeBoxCloseButton.className = "iframeBoxHeaderCloseButton";
-                iframeBoxLabel.innerHTML = "";
-                var iframeBoxHeaderCloseButtonText = document.createElement("DIV");
-                iframeBoxHeaderCloseButtonText.innerHTML = "X";
-                iframeBoxHeaderCloseButtonText.className = "iframeBoxHeaderCloseButtonText";
-                iframeBoxCloseButton.appendChild(iframeBoxHeaderCloseButtonText);
-                iframeBoxCloseButton.addEventListener("click", function(){
-                    onCloseDialog(false)
-                });
-                iframeBoxHeader.appendChild(iframeBoxLabel);
-                iframeBoxHeader.appendChild(iframeBoxCloseButton);
-                iframeBoxHeader.className = "iframeBoxHeader";
-                iframeBox.className = "iframeBox";
-                var iframe = document.createElement("IFRAME");
-                var iframeHolder = document.createElement("DIV");
-                iframeHolder.className = "iframeHolder";
-                iframeHolder.appendChild(iframe);
-                //iframeBox.appendChild(iframeBoxHeader);
-                iframeBox.appendChild(iframeHolder);
-                iframe.src = halyk.Config().pageUrL + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isShortForm=true';
-                iframe.className = "iframeClass";
-                window.addEventListener("message", onCommandRecieved, false);
-                widgetNode.appendChild(iframeBox);
-                document.getElementsByTagName("body")[0].appendChild(widgetNode);
-            }
-        }
+    };
     
 
-        function p2p(params) { 
-                window.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isTransfer=true'; 
-            }
-        function aft(params) {  
-                window.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isAFT=true';  
-            }
-        function oct(params) {  
-                window.location.href = pageUrl + "?params=" + LZString.compressToEncodedURIComponent(encodeParams(params)) + '&isOCT=true';  
-            }
-        halyk.p2p = p2p;
-        halyk.aft = aft;
-        halyk.oct = oct;
-
-            halyk.pay = pay;
-            halyk.showPaymentWidget = showPaymentWidget;
-            return {
-                pay: pay,
-                showPaymentWidget: showPaymentWidget
-                // Добавьте другие методы, если необходимо
-            };
-
-        }
-        const halykInstance = halyk({});
-
-        useEffect(() => {
-            const fetchToken = async () => {
-                try {
-                    const auth = new URLSearchParams({
-                        grant_type: "client_credentials",
-                        scope: "webapi usermanagement email_send verification statement statistics payment",
-                        client_id: "test",
-                        client_secret: "yF587AV9Ms94qN2QShFzVR3vFnWkhjbAK3sG",
-                        invoiceID: "Номер заказа",
-                        amount: 100,
-                        currency: "KZT",
-                        terminal: "98339891",
-                        postLink:       "",
-                        failurePostLink: ""
-                    });
-
-                    const response = await fetch('https://testoauth.homebank.kz/epay2/oauth2/token', {
-                        method: 'POST', 
-                        body: auth,
-                    });
-
-                    const data = await response.json();
-                    setAccessToken(data.access_token);
-                    console.log(data);
-                } catch (error) {
-                    console.error('Error fetching token:', error);
-                }   
-            };
-
-            fetchToken();
-
-            return () => {
-                // Cleanup code if needed
-            };
-        }, []);
-        const handlePaymentResult = (result) => {
-            if (result.success) {
-                // Оплата прошла успешно
-                console.log('Оплата прошла успешно');
-            } else {
-                // Оплата завершилась с ошибкой
-                console.error('Ошибка при оплате');
-            }
+    const createPaymentObject = (auth, invoiceId, amount, email) => {
+        return {
+            invoiceId: invoiceId,
+            invoiceIdAlt: 43790622,
+            backLink: "http://localhost:3000/courses/myCourses",
+            failureBackLink: "http://localhost:3000/courses/myCourses",
+            postLink: `${base_url}/api/aml/course/createPostLink`,
+            failurePostLink: `${base_url}/api/aml/course/createPostLink`,
+            language: "rus",
+            description: "Оплата в интернет магазине",
+            accountId: email,
+            terminal: 'a5e958ad-b799-41ff-9be9-f6d20ddc61a6',
+            amount: amount,
+            name:email,
+            data: "{\"statement\":{\"name\":\"\",\"invoiceID\":\"\"}}",
+            currency: "KZT",
+            cardSave: true,
+            auth: auth
         };
-
-        const makePayment = async () => {
-            halykInstance.showPaymentWidget({ accessToken: accessToken }, handlePaymentResult)
-
+    };
+    const addUserToCourse = async (courseId, userId, token) => {
+        try {
+            const data = {
+                paymentType: 'HALYK',
+                course_id: courseId,
+                user_id: userId
+            };
     
-        };
-
-        return (
-
-                <Button onClick={makePayment}>HalykBank</Button>
-           
-        );
+            // Выполняем PUT-запрос с помощью axios.put
+            const response = await axios.put(`${base_url}/api/aml/course/saveUser/${userId}/course/${courseId}`, data, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+    
+            // Обрабатываем успешный ответ от сервера
+            console.log("Пользователь успешно добавлен курс:", response);
+        } catch (error) {
+            // Обрабатываем ошибку
+            console.error("Ошибка при добавлении пользователя курсу:", error);
+        }
     };
 
-    export default PaymentHalyk;
+
+    const handlePaymentResultFromBack = (invoice_id, course_id, user_id) => {
+        console.log(invoice_id);
+        const fetchPostLink = async () => {
+            try {
+                const responseData = await axios.get(`https://amlacademy.kz/api/aml/course/getPostLink/${invoice_id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                //console.log(responseData.data);
+                if (responseData.data.code === "ok") {
+                    addUserToCourse(course_id, user_id, token)
+                }
+            } catch (error) {
+                
+                console.error('Error fetching post link:', error);
+            }
+        };
+        fetchPostLink()
+    }
+ 
+    // Функция для обработки результатов платежа
+    const handlePaymentResult = (result) => {
+    
+        
+        if (result.code === "ok") {
+            console.log('Оплата прошла успешно');
+            
+            //addUserToCourse(8,dataBack.user_id,token)
+        } else {
+            console.error("Проверка..........");
+           
+        }
+    };
+    const [isHovered, setIsHovered] = useState(false);
+    // Функция для проведения платежа
+    const makePayment = async () => {
+        await fetchToken()
+    };
+
+    return (
+        <div>
+                   <Button onClick={makePayment}><img src={creditCard} style={{
+                             width: '225px',
+                             height: '225px',
+                             filter: isHovered ? 'brightness(60%)' : 'none', // Применяем эффект затемнения при наведении
+                             transition: 'filter 0.3s ease', // Добавляем плавное изменение стиля при наведении
+                     }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} alt="" /></Button>
+                 </div>
+    );
+};
+
+export default PaymentHalyk;
