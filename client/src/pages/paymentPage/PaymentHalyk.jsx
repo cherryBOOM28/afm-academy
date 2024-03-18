@@ -154,13 +154,13 @@ const PaymentHalyk = (id) => {
 
     return (
         <div>
-                   <Button onClick={makePayment}><img src={creditCard} style={{
-                             width: '225px',
-                             height: '225px',
-                             filter: isHovered ? 'brightness(60%)' : 'none', // Применяем эффект затемнения при наведении
-                             transition: 'filter 0.3s ease', // Добавляем плавное изменение стиля при наведении
-                     }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} alt="" /></Button>
-                 </div>
+            <Button onClick={makePayment}><img src={creditCard} style={{
+                width: '225px',
+                height: '225px',
+                filter: isHovered ? 'brightness(60%)' : 'none', // Применяем эффект затемнения при наведении
+                transition: 'filter 0.3s ease', // Добавляем плавное изменение стиля при наведении
+            }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} alt="" /></Button>
+        </div>
     );
 };
 

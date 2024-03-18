@@ -277,13 +277,13 @@ function ReadCourse() {
                     </HeaderWithLine>
                 </Reveal>
 
-                <Sizebox height={100} />
-
+                {/* <Sizebox height={100} /> */}
+{/* 
                 <Reveal>
                     <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
                         Сертификат можете найти в личном кабинете
                     </HeaderWithLine>
-                </Reveal>
+                </Reveal> */}
                 <Sizebox height={100} />
 
                 <div className="stars" style={{
