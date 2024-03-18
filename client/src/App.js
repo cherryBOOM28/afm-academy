@@ -73,10 +73,6 @@ const CryptoCourse = lazy(() => import('./pages/ReadCourses/CryptoCourse'));
 
 function App() {
     const [jwtToken, setJwtToken] = useState('');
-    const halykConfig = {
-        pageUrL: "https://example.com/payform/",
-        origin: "https://example.com",
-    };
 
     useEffect(() => {
 
@@ -107,7 +103,6 @@ function App() {
                             <Route path="/" element={<Suspense ><Home /></Suspense>}></Route>
                             <Route path="/:scroll" element={<Suspense ><Home /></Suspense>}></Route>
                             <Route path="/about" element={<Suspense ><AboutUs /></Suspense>}></Route>
-                            <Route path="/payment-halyk" element={<Suspense ><PaymentHalyk halykConfig={halykConfig} /></Suspense>}></Route>
                             <Route path="/management" element={<Suspense ><Management /></Suspense>}></Route>
                             <Route path="/contacts" element={<Suspense ><Contacts /></Suspense>}></Route>
                             <Route path="/news-page" element={<Suspense ><NewsPage /></Suspense>}></Route>
@@ -143,7 +138,8 @@ function App() {
 
                             {/* <Route path='/courses' element={<CoursesPage />}/> */}
                             <Route path="/courses/catalog" element={<Suspense ><Catalog /></Suspense>}/>
-                            <Route path="/courses/myCourses" element={<Suspense><PrivateRoute shouldBeLoggedIn={true} component={MyCourses}/></Suspense>}/>
+                            <Route path="/courses/myCourses" element={<Suspense><PrivateRoute shouldBeLoggedIn={true} component={MyCourses} /></Suspense>} />
+                            <Route path="/courses/myCourses/success" element={<Suspense><PrivateRoute shouldBeLoggedIn={true} component={MyCourses}/></Suspense>}/>
                             <Route path="/courses/info" element={<Suspense ><InfoPage /></Suspense>}/>
                             {/* <Route path='/courses/basic' element={<BasicCourse />}/> */}
                             {/* <Route path='/courses/specialized' element={<SpecializedCourse />}/> */}

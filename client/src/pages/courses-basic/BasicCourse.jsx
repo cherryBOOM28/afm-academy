@@ -7,7 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import PaymentHalyk from '../paymentPage/PaymentHalyk';
+import Divider from '@mui/material/Divider';
 
 import Footer from '../../components/footer/Footer';
 
@@ -19,6 +19,8 @@ import Lectors from '../../components/lectors-block/Lectors';
 import lector1 from './../../assets/images/Lector_1_cropped.png';
 import lector2 from './../../assets/images/Lector_2_cropped.png';
 import lector3 from './../../assets/images/Lector_3_cropped.png';
+import qr from './../../assets/icons/cashless-payment.png';
+
 
 import FeedBacks from '../../components/feedbackBlock/FeedBacks';
 import ModalWindow from '../../components/ModalWindow/ModalWindow';
@@ -26,6 +28,8 @@ import axios from 'axios';
 import base_url from '../../settings/base_url';
 import Sizebox from '../../components/courseTemplates/common/Sizebox';
 import Header from '../../components/header/Header';
+import PaymentHalyk from '../paymentPage/PaymentHalyk';
+
 
 function BasicCourse() {
     const jwtToken = localStorage.getItem('jwtToken');
@@ -36,12 +40,14 @@ function BasicCourse() {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(true);
+    
 
     const [request, setRequest] = useState({
         email: '',
         name: '',
         phone: ''
     })
+    
 
     const requestOnchange = (key, value) => {
         setRequest(
@@ -59,7 +65,7 @@ function BasicCourse() {
     };
 
     function AlertDialog() {
-      
+        const [isHovered, setIsHovered] = useState(false);
         return (
           <React.Fragment>
             <Dialog
@@ -79,9 +85,15 @@ function BasicCourse() {
               </DialogContent>
 
               <DialogActions>
-                <Link to={`/payment/${id}`} style={{ colortextDecoration: 'none' }}><Button onClick={handleClose}>Kaspi Bank</Button></Link>
+              <Link to={`/payment/${id}`} style={{ colortextDecoration: 'none' }}><Button onClick={handleClose}><img src={qr} style={{
+                    width: '225px',
+                    height: '225px',
+                    filter: isHovered ? 'brightness(60%)' : 'none', // Применяем эффект затемнения при наведении
+                    transition: 'filter 0.3s ease', // Добавляем плавное изменение стиля при наведении
+                        }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} alt="QR Code" /></Button></Link>
+                         <Divider orientation="vertical" flexItem sx={{ height: '225px',borderWidth:'3px' }}/>
                 <Button onClick={handleClose}>
-                  <PaymentHalyk />
+                    <PaymentHalyk id={id} />
                 </Button>
               </DialogActions>
 
