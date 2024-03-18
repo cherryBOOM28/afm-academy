@@ -52,6 +52,7 @@ const EditCatalog = () => {
             .then((res) => {
                 // console.log(res.data)
                 setCourses(res.data)
+                console.log(res.data);
                 setLoading(false);
             })
     }, [])

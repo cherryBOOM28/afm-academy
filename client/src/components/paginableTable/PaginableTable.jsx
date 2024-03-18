@@ -94,7 +94,7 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
 
     return (
         <TableContainer component={Paper} style={{backgroundColor: 'transparent', border: 'none', boxShadow: 'none', padding: '0', boxSizing: 'border-box'}}>
-            <Table>
+            <Table style={{width:'100%'}}>
                 <TableHead > 
                     <TableRow style={{border: 'none'}}>
                         {columns.map((column, index) => {
