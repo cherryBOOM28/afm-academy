@@ -24,8 +24,6 @@ function TestPage({
     const [matchingPairAnswers, setMatchingPairAnswers] = useState([]);
 
     useEffect(() => {
-        // console.log("Questions", questions)
-        console.log("Questions", questions)
         setCurrQuestion(0);
 
 
@@ -34,14 +32,13 @@ function TestPage({
             _checkedQustions[question.question_id] = 0;
         })
 
-        console.log(_checkedQustions);
+        
 
         setCheckedQustions(_checkedQustions)
         setLoading(false);
     }, [questions])
 
     const handleUpdatePairs = (matched) => {
-        console.log(matched)
         const _matched = matched.map(answer => {
             return {
                 'question': answer.question,
@@ -50,15 +47,12 @@ function TestPage({
             }
         })
         setMatchingPairAnswers(_matched)
-        console.log(_matched)
+
     }
 
     const handleAnswerClick = (answerId, question_id) => {
-        console.log(answerId)
-        // if (finished) return;
-
         setCheckedQustions(prevQuestions => {
-            console.log(prevQuestions, question_id)
+        
             
             return {
                 ...prevQuestions,
@@ -68,12 +62,10 @@ function TestPage({
     };
 
     const handleAnswerClick_2 = (answerId, question_id) => {
-        console.log(answerId)
-        // if (finished) return;
 
         if (answerId === null) {
             setCheckedQustions(prevQuestions => {
-                console.log(prevQuestions, question_id)
+                
                 
                 return {
                     ...prevQuestions,
@@ -85,8 +77,17 @@ function TestPage({
         }
 
         setCheckedQustions(prevQuestions => {
-            console.log(prevQuestions, question_id)
             
+            if (prevQuestions[question_id].includes(answerId)) {
+               
+                const updatedQuestion = prevQuestions[question_id].filter(id => id !== answerId);
+
+                return {
+                    ...prevQuestions,
+                    [question_id]: updatedQuestion
+                };
+            }
+        
             return {
                 ...prevQuestions,
                 [question_id]: [
@@ -98,7 +99,7 @@ function TestPage({
     };
 
     const finishTest = () => {
-        // console.log(checkedQustions)
+
 
         const fetchData = async () => {
             let newCheckedQuestions = []
@@ -120,10 +121,6 @@ function TestPage({
                 }
             })
 
-            console.log({
-                'mcqQuestionAnswerList': newCheckedQuestions,
-                'matchingPairAnswers': matchingPairAnswers
-            })
             try {
                 const response = await axios.post(
                     `${base_url}/api/aml/quiz/checkQuiz/${quizId}`, 
@@ -148,7 +145,7 @@ function TestPage({
                 }
 
             } catch (error) {
-                console.log(error)
+                
             }
         };
         
@@ -159,7 +156,7 @@ function TestPage({
     if (!questions || questions.length === 0 && checkedQustions != undefined) return null;
 
     const handleCheck = (isChecked) => {
-        console.log(isChecked)
+        
     };
 
     if (isLoading) {
@@ -346,7 +343,7 @@ const MatchingQuestion = ({ question_id, answers, handleUpdatePairs, finished })
     const [currRight, setCurrRight] = useState(null);
 
     useEffect(() => {
-        console.log(answers);
+        
         const left = answers.map(answer => {
             const id = answer['matching_pair_id']
             const text = answer['leftPart']
