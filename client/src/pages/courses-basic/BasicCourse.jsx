@@ -96,7 +96,6 @@ function BasicCourse() {
                     <PaymentHalyk id={id} />
                 </Button>
               </DialogActions>
-
             </Dialog>
           </React.Fragment>
         );
@@ -114,6 +113,7 @@ function BasicCourse() {
 
                 if (response.status === 200) {
                     setData(response.data);
+                    console.log(response.data)
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);

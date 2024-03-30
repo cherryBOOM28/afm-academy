@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { FaSpinner } from 'react-icons/fa';
 
 import './style.scss';
 
@@ -42,6 +43,7 @@ function ReadCourse() {
     const [activeModuleId, setActiveModuleId] = useState(1);
     const [activeQuizId, setActiveQuizId] = useState(1);
     const [isModuleQuiz, setIsModuleQuiz] = useState(false);
+    const [isLoadInfo, setIsLoadInfo] = useState(false);
 
     const [openQuizModal, setOpenQuizModal] = useState(false);
     const [quizStatus, setQuizStatus] = useState('');
@@ -85,6 +87,8 @@ function ReadCourse() {
             setCourseModules(res.data.course.modules);
             setCourseProgress(res.data.progress_percentage)
             console.log(res);
+            setIsLoadInfo(true)
+            
         } catch (e) {
             setError(e);
             console.log(e);
@@ -373,12 +377,7 @@ function ReadCourse() {
         </LessonPage>)
     }
 
-    if (isLoading) {
-        return <div className="loading">
-            ...Loading
-        </div>
-    }
-
+    
     return ( 
         <div className="read-course">
             <div className="course-wrapper">
@@ -425,6 +424,7 @@ function ReadCourse() {
                     courseName={courseName}
                 />
                 <div className="course-body">
+                  
                     <CourseNavigation
                         course_id={id}
                         isNavOpen={isNavOpen}
@@ -440,6 +440,9 @@ function ReadCourse() {
 
                     <div className={isNavOpen ? "course-content open" : "course-content"}>
                         <div className="content">
+                        {isLoadInfo === false && (<div className="loading-icon">
+                                <FaSpinner className="spinner" /> Загрузка ...
+                                </div>)}
                             {
                                 getLesson(isModuleQuiz)
                             }
