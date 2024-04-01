@@ -135,44 +135,21 @@ function App() {
                             <Route path="/vebinars/calendar" element={<Suspense ><CalendarPage /></Suspense>}/>
                             <Route path="/vebinars/surveys" element={<Suspense ><SurveysPage /></Suspense>} />
                             <Route path="/vebinars/:id" element={<></>} />
-
-                            {/* <Route path='/courses' element={<CoursesPage />}/> */}
                             <Route path="/courses/catalog" element={<Suspense ><Catalog /></Suspense>}/>
                             <Route path="/courses/myCourses" element={<Suspense><PrivateRoute shouldBeLoggedIn={true} component={MyCourses} /></Suspense>} />
                             <Route path="/courses/myCourses/success" element={<Suspense><PrivateRoute shouldBeLoggedIn={true} component={MyCourses}/></Suspense>}/>
                             <Route path="/courses/info" element={<Suspense ><InfoPage /></Suspense>}/>
-                            {/* <Route path='/courses/basic' element={<BasicCourse />}/> */}
-                            {/* <Route path='/courses/specialized' element={<SpecializedCourse />}/> */}
-
-                            {/* <Route path='/courses/testCourse' element={<TestCourse />}/> */}
-
                             <Route path='/courses/:id/read' element={<Suspense ><ReadCourse/></Suspense>} />
-
                             <Route path='/courses/:id/' element={<Suspense ><BasicCourse /></Suspense>}/>
-                            {/* <Route path='/courses/8/read' element={
-                                // <PrivateRoute shouldBeLoggedIn={true} component={
-                                <Suspense><Basic_course /></Suspense>
-                                // } redirect={'/courses/catalog'}/>
-                            } /> */}
-                             <Route path="/courses/8/read" element={<Suspense><AdminRoute shouldBeLoggedIn={true} shouldBeAdmin={false} component={Basic_course} redirect={'/login'}/></Suspense>} />
+                            <Route path="/courses/8/read" element={<Suspense><AdminRoute shouldBeLoggedIn={true} shouldBeAdmin={false} component={Basic_course} redirect={'/login'}/></Suspense>} />
                             <Route path='/courses/100/read' element={<Suspense ><CryptoCourse /></Suspense>}/>
                             <Route path='/courses/101/read' element={<Suspense ><PlanningInvestigationCourse /></Suspense>}/>
-
-                            {/* <Route path='/payment' element={<PaymentPage />}/> */}
                             <Route path='/payment/:id' element={<Suspense ><PaymentPage /></Suspense>} />
-
                             <Route path='/sandbox' element={<Suspense ><Sandbox /></Suspense>}/>'
-
-                            {/* <Route path='/createcourse' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={CreateCoursePage} />}/> */}
-                            {/* <Route path='/manager' element={<PrivateRoute shouldBeLoggedIn={true} mustBeAdmin={true} component={EditCatalog} />}/> */}
-                            {/* <Route path='/createcourse' element={<CreateCoursePage/>}/>
-                            <Route path='/manager' element={<EditCatalog />} /> */}
                             <Route path='/manager' element={<AdminRoute component={EditCatalog} shouldBeLoggedIn={true} redirect={'/'} />} />
                             <Route path='/createcourse' element={<AdminRoute component={CreateCoursePage} shouldBeLoggedIn={true} redirect={'/'} />}/>
                             <Route path='/new-admin-page' element={<AdminRoute component={AdminPage_Main} shouldBeLoggedIn={true} redirect={'/'} />}/>
-                            
                             <Route path='/create-news' element={<AdminRoute component={CreateNews} shouldBeLoggedIn={true} />} />
-                            {/* <Route path='/new-admin-page' element={<AdminPage_Main/>} /> */}
                         </Routes>
                     </BrowserRouter>
                 </AuthProvider>
