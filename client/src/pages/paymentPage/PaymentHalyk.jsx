@@ -26,6 +26,7 @@ const PaymentHalyk = (id) => {
                 },
             });
             setDataBack(responseData.data)
+            console.log(responseData.data);
             const auth = new FormData();
             auth.append('grant_type', 'client_credentials');
             auth.append('scope', 'webapi usermanagement email_send verification statement statistics payment');
