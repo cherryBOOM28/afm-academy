@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaSpinner } from 'react-icons/fa';
+import ContentLoader from "react-content-loader"
 
 import './style.scss';
 
@@ -440,7 +441,8 @@ function ReadCourse() {
 
                     <div className={isNavOpen ? "course-content open" : "course-content"}>
                         <div className="content">
-                        {isLoadInfo === false && (<div className="loading-icon">
+                            {isLoadInfo === false && (<div className="loading-icon">
+                                
                                 <FaSpinner className="spinner" /> Загрузка ...
                                 </div>)}
                             {

@@ -238,9 +238,7 @@
         font-size: 40px;
     }
 
-    .aml_box {
-        width: 100%; /* Adjust the width for smaller screens */
-    }
+  
 
     /* Add more styles as needed for smaller screens */
 }
@@ -250,14 +248,21 @@
     .container {
         width: 95%;
     }
+    .newsWrapper {
+        display: none;
+    }
+    
+    .news__headline {
+        display: none;
+    }
 
     .aboutUs__headline {
         font-size: 30px;
     }
 
     .aml_box {
-        width: 100%;
-        margin-bottom: 20px; /* Adjust the width for even smaller screens */
+        width: 270px;
+        margin-bottom: 10px; /* Adjust the width for even smaller screens */
     }
     .courses_boxes {
         flex-direction: column;
@@ -282,8 +287,8 @@
     }
 
     .aml_box {
-         /* Set the width for two columns */
-        margin-bottom: 20px; /* Adjust spacing between boxes */
+        width: 270px; /* Set the width for two columns */
+        margin-bottom: 10px; /* Adjust spacing between boxes */
     }
     .advantages__text__last {
         font-size: 12px;
@@ -302,8 +307,8 @@
     }
 
     .aml_box {
-        width: 100%;
-        margin-bottom: 20px; /* Adjust the width for even smaller screens */
+        width: 270px;
+        margin-bottom: 10px; /* Adjust the width for even smaller screens */
     }
     .courses_boxes {
         flex-direction: column;

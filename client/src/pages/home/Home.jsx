@@ -627,7 +627,7 @@ function Home() {
           </div>
          
 
-          <NewsTab
+          <NewsTab className={'newsTab'}
             style={{
               color:
                 styles.colorMode === "dark"

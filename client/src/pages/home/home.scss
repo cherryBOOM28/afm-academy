@@ -194,3 +194,9 @@
     display: flex;
     justify-content: space-between;
 }
+@media (max-width: 500px) {
+    /* При вертикальной ориентации фоновым цветом сайта будет чёрный */
+  .newsTab{
+    display: none;
+  }
+  }
