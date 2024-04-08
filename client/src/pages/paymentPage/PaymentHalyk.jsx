@@ -13,6 +13,7 @@ const PaymentHalyk = (id) => {
     const [dataBack, setDataBack] = useState('');
     const [paymentData, setPaymentData] = useState('');
     const [invoiceID, setInvoiceID] = useState('');
+    
 
        
 
@@ -25,6 +26,7 @@ const PaymentHalyk = (id) => {
                 },
             });
             setDataBack(responseData.data)
+            console.log(responseData.data);
             const auth = new FormData();
             auth.append('grant_type', 'client_credentials');
             auth.append('scope', 'webapi usermanagement email_send verification statement statistics payment');

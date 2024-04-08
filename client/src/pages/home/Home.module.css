@@ -153,7 +153,10 @@
     font-size: 18px;
     font-weight: 700;
 }
-
+.groupAdvantages{
+    display: flex;
+    gap: 15px;
+}
 .advantages {
     /* max-width: 950px; */
     /* max-width: 45%; */
@@ -238,26 +241,63 @@
         font-size: 40px;
     }
 
-    .aml_box {
-        width: 100%; /* Adjust the width for smaller screens */
-    }
+  
 
     /* Add more styles as needed for smaller screens */
 }
 
 /* Styles for screens with a maximum width of 480px */
 @media screen and (max-width: 480px) {
+    .education{
+        display: block;
+    }
+    .groupAdvantages{
+        display: block;
+    }
     .container {
         width: 95%;
+    }
+    .subtitle {
+        text-align: center;
+    }
+    .newsWrapper {
+        display: none;
+    }
+    
+    .news__headline {
+        display: none;
     }
 
     .aboutUs__headline {
         font-size: 30px;
     }
+    
+    .aboutUs__section {
+        height: 753px;
+        justify-content: center;
+        
+    }
+    .aboutUs__text_small {
+        width: auto;
+        margin-bottom: 50px;
+        margin-top: 50px
+    }
+    .advantages{
+        justify-content: center;
+        gap: 0px;
+    }
+    .advantages_box{
+        margin-bottom: 15px;
+    }
+    .videoPlayer{
+        width: 350px;
+        height: 200px;
+    }
+    
 
     .aml_box {
-        width: 100%;
-        margin-bottom: 20px; /* Adjust the width for even smaller screens */
+        width: 270px;
+        margin-bottom: 10px; /* Adjust the width for even smaller screens */
     }
     .courses_boxes {
         flex-direction: column;
@@ -282,8 +322,8 @@
     }
 
     .aml_box {
-         /* Set the width for two columns */
-        margin-bottom: 20px; /* Adjust spacing between boxes */
+        width: 270px; /* Set the width for two columns */
+        margin-bottom: 10px; /* Adjust spacing between boxes */
     }
     .advantages__text__last {
         font-size: 12px;
@@ -302,8 +342,8 @@
     }
 
     .aml_box {
-        width: 100%;
-        margin-bottom: 20px; /* Adjust the width for even smaller screens */
+        width: 270px;
+        margin-bottom: 10px; /* Adjust the width for even smaller screens */
     }
     .courses_boxes {
         flex-direction: column;

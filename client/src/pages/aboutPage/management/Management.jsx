@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import cl from "./Management.module.css";
 import DefaultHeader from "../../../components/defaultHeader/DefaultHeader";
-import firstDirector from "../../../assets/images/1.svg";
+import firstDirector from "../../../assets/images/Malakhov.jpg";
 import secondDirector from "../../../assets/images/2.svg";
 import thirdDirector from "../../../assets/images/3.svg";
 import forthDirector from "../../../assets/images/4.svg";
@@ -226,7 +226,7 @@ function Management() {
           <br />
           <div className={cl.boardOfDirectors}>
             <div className={cl.director}>
-              {!imagesHidden && <img src={firstDirector} alt="" />}
+              {!imagesHidden && <img style={{width:"172px", height:"217px", borderRadius:"5px"}} src={firstDirector} alt="" />}
               <div className="InfoDir">
               <p
                 className={`${cl.name} text-content name`}

@@ -154,6 +154,13 @@
         width: 100%;
         display: flex;
         flex-direction: row;
+        
+     
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
         .course-nav {
             width: 300px;
@@ -241,6 +248,8 @@
 
         .course-content {
             overflow-y: scroll;
+           
+       
 
             &::-webkit-scrollbar {
                 display: none;
@@ -266,6 +275,18 @@
             box-sizing: border-box;
 
             > .content {
+                
+                .loading-icon {
+                    display: flex;
+                    margin-top: 21%;
+                    justify-content: center;
+                    font-size: 29px;
+                         
+                .spinner {
+                    animation: spin 2s linear infinite;
+                    margin-right: 10px;
+                }
+                }
 
 
                 margin: 0;
@@ -396,3 +417,4 @@
 
     border-bottom: 2px solid #1F3C88;
 }
+

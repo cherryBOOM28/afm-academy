@@ -258,7 +258,7 @@
                 }
                 .Rows td {
                     &:not(:last-child) {
-                      border-right: none; // Убираем правую границу для всех столбцов, кроме последнего
+                      border-right: none;
                     }
                   }
               
