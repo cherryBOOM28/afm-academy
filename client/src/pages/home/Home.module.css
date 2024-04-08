@@ -259,6 +259,18 @@
     .aboutUs__headline {
         font-size: 30px;
     }
+    
+    .aboutUs__section {
+        height: 753px;
+        justify-content: center;
+        
+    }
+    .aboutUs__text_small {
+        width: auto;
+        margin-bottom: 50px;
+        margin-top: 50px
+    }
+    
 
     .aml_box {
         width: 270px;
