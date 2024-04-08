@@ -153,7 +153,10 @@
     font-size: 18px;
     font-weight: 700;
 }
-
+.groupAdvantages{
+    display: flex;
+    gap: 15px;
+}
 .advantages {
     /* max-width: 950px; */
     /* max-width: 45%; */
@@ -245,6 +248,12 @@
 
 /* Styles for screens with a maximum width of 480px */
 @media screen and (max-width: 480px) {
+    .education{
+        display: block;
+    }
+    .groupAdvantages{
+        display: block;
+    }
     .container {
         width: 95%;
     }
@@ -269,6 +278,17 @@
         width: auto;
         margin-bottom: 50px;
         margin-top: 50px
+    }
+    .advantages{
+        justify-content: center;
+        gap: 0px;
+    }
+    .advantages_box{
+        margin-bottom: 15px;
+    }
+    .videoPlayer{
+        width: 350px;
+        height: 200px;
     }
     
 
