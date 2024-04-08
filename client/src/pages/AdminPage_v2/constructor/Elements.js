@@ -155,6 +155,7 @@ const Elements = {
             icon: randomParagraphIcon,
             inputs: [
               { name: 'children', label: 'Текст (Children)', type: 'formatTextarea' },
+              { name: 'isCentered', label: 'Централизировать', type: 'checkbox' },
               { name: 'color', label: 'Цвет', type: 'color' },
               { name: 'fontSize', label: 'Размер шрифта', type: 'number' },
             ],
@@ -690,7 +691,16 @@ const Elements = {
             name: 'Component52',
             icon: norNumberedDotsIcon,
             inputs: []
-        }
+        },
+        'Іздерді шатастыру': {
+            component: Component52,
+            example: null,
+            name: 'Component52',
+            icon: norNumberedDotsIcon,
+            inputs: [
+                { name: 'isKazakh', label: '', type: 'ignore' }
+            ]
+        },
     }
 }
 

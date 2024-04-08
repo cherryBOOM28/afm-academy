@@ -80,7 +80,7 @@ function BasicCourse() {
 
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                Каким способом хотели оплатить курс?
+                Каким способом хотели оплатить {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}?
                 </DialogContentText>
               </DialogContent>
 
@@ -139,10 +139,81 @@ function BasicCourse() {
             </div>
 
 
-            <div className="page-content container">
-                <div style={{display:'flex',justifyContent:'space-between'}}>
-                    <h1>{data ? data.course_name : "Загрузка..."}</h1>
-                    <div className='blue-btn2'>
+            {
+                isLoading ? <div className="page-content container" style={{
+                    padding: '80px 0px'
+                }}>Загрузка...</div>
+                : (
+                <div className="page-content container">
+                    <div style={{display:'flex',justifyContent:'space-between'}}>
+                        <h1>{data ? data.course_name : "Загрузка..."}</h1>
+                        <div className='blue-btn2'>
+                            {/* <div onClick={() => setShowModal(true)}>
+                                Подать заявку
+                            </div> */}
+                        
+                            <div>
+                                {
+                                    jwtToken != null
+                                    ? (
+                                        <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
+                                            Приобрести {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}
+                                        </Link>
+                                    ) : (
+                                        <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
+                                            Приобрести {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}
+                                        </Link>
+                                    )
+                                }
+                            </div>
+                            <AlertDialog/>
+                    
+                        </div>
+                    
+                    </div>
+
+                    <Sizebox height={20}/>
+                    <div className="collapsable-blocks">
+                        <Collapsable title={`Что из себя представляет данный ${data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}?`}>
+                            <p>{data ? data.what_course_represents : "Загрузка..."}</p>
+                        </Collapsable>
+                        <Collapsable title={`Для кого предназначен ${data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}?`}>
+                            <p>
+                                {data ? data.who_course_intended_for : "Загрузка..."}
+                            </p>
+                        </Collapsable>
+                        <Collapsable title={`Длительность ${data != null && [41, 47].includes(data.course_id) ? 'модуля' : 'курса'}`}>
+                            <p>
+                                {data ? data.what_is_duration : "Загрузка..."}
+                            </p>
+                        </Collapsable>
+                        <Collapsable title={`Стоимость ${data != null && [41, 47].includes(data.course_id) ? 'модуля' : 'курса'}`}>
+                            <p>
+                                {data ? data.course_price : ''} тенге
+                            </p>
+                        </Collapsable>
+                        <Collapsable title={`Доступность ${data != null && [41, 47].includes(data.course_id) ? 'модуля' : 'курса'}`}>
+                            <p>
+                                {data ? data.what_is_availability : "Загрузка..."}
+                            </p>
+                        </Collapsable>
+                        <Collapsable title={`Программа ${data != null && [41, 47].includes(data.course_id) ? 'модуля' : 'курса'}`}>
+                            {data ? (
+                                <div dangerouslySetInnerHTML={{ __html: data.what_is_agenda_of_course }} />
+                            ) : (
+                                "Загрузка..."
+                            )}
+                        </Collapsable>
+                        <Collapsable title={'Что вы получите?'}>
+                            <p>
+                                {data ? data.what_you_will_get : "Загрузка..."}
+                            </p>
+                        </Collapsable>
+                    </div>
+
+                    <h2 className='section-header'>Процесс обучения</h2>
+                    <RoadList items={[
+                        <div>  <div className='blue-btn1'>
                         {/* <div onClick={() => setShowModal(true)}>
                             Подать заявку
                         </div> */}
@@ -152,120 +223,54 @@ function BasicCourse() {
                                 jwtToken != null
                                 ? (
                                     <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
-                                        Приобрести курс
+                                        Приобрести {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}
                                     </Link>
                                 ) : (
                                     <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
-                                        Приобрести курс
+                                        Приобрести {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}
                                     </Link>
                                 )
                             }
                         </div>
-                        <AlertDialog/>
                 
                     </div>
                 
-                </div>
+                </div>,
+                        'Оплата',
+                        'Предоставление доступа к Личному кабинету',
+                        // 'Добавление в закрытый чат с лектором',
+                        'Обучение',
+                        'Выдача сертификатов'
+                    ]}/>
 
-                <Sizebox height={20}/>
-                <div className="collapsable-blocks">
-                    <Collapsable title={'Что из себя представляет данный курс?'}>
-                        <p>{data ? data.what_course_represents : "Загрузка..."}</p>
-                    </Collapsable>
-                    <Collapsable title={'Для кого предназначен курс?'}>
-                        <p>
-                            {data ? data.who_course_intended_for : "Загрузка..."}
-                        </p>
-                    </Collapsable>
-                    <Collapsable title={'Длительность курса'}>
-                        <p>
-                            {data ? data.what_is_duration : "Загрузка..."}
-                        </p>
-                    </Collapsable>
-                    <Collapsable title={'Стоимость курса'}>
-                        <p>
-                            {data ? data.course_price : ''} тенге
-                        </p>
-                    </Collapsable>
-                    <Collapsable title={'Доступность курса'}>
-                        <p>
-                            {data ? data.what_is_availability : "Загрузка..."}
-                        </p>
-                    </Collapsable>
-                    <Collapsable title={'Программа курса'}>
-                        {data ? (
-                            <div dangerouslySetInnerHTML={{ __html: data.what_is_agenda_of_course }} />
-                        ) : (
-                            "Загрузка..."
-                        )}
-                    </Collapsable>
-                    <Collapsable title={'Что вы получите?'}>
-                        <p>
-                            {data ? data.what_you_will_get : "Загрузка..."}
-                        </p>
-                    </Collapsable>
-                </div>
+                    <h2 className='section-header'>Лекторы</h2>
+                    <Lectors 
+                        lectors={[
+                            { img: lector1, name: 'Махметов Муратбек', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
+                            { img: lector2, name: 'Махашева Асем', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
+                            { img: lector3, name: 'Шагатаев Даурен', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
+                            // { img: lectorImg, name: 'Larry W.', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
+                            // { img: lectorImg, name: 'Larry W.', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
+                        ]}
+                    />
 
-                <h2 className='section-header'>Процесс обучения</h2>
-                <RoadList items={[
-                    <div>  <div className='blue-btn1'>
-                    {/* <div onClick={() => setShowModal(true)}>
-                        Подать заявку
-                    </div> */}
-                
-                    <div>
-                        {
-                            jwtToken != null
-                            ? (
-                                <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
-                                    Приобрести курс
-                                </Link>
-                            ) : (
-                                <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
-                                    Приобрести курс
-                                </Link>
-                            )
-                        }
-                    </div>
-            
-                </div>
-            
-               </div>,
-                    'Оплата',
-                    'Предоставление доступа к Личному кабинету',
-                    // 'Добавление в закрытый чат с лектором',
-                    'Обучение',
-                    'Выдача сертификатов'
-                ]}/>
-
-                <h2 className='section-header'>Лекторы</h2>
-                <Lectors 
-                    lectors={[
-                        { img: lector1, name: 'Махметов Муратбек', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
-                        { img: lector2, name: 'Махашева Асем', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
-                        { img: lector3, name: 'Шагатаев Даурен', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
-                        // { img: lectorImg, name: 'Larry W.', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
-                        // { img: lectorImg, name: 'Larry W.', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
-                    ]}
-                />
-
-                {!isLoading 
-                    ? (
-                        <>
-                            <h2 className='section-header'>Отзывы</h2>
-                            <FeedBacks 
-                                feedBacks={data !== null ? data.courseComments : []}
-                            />
-                        </> ) 
-                    : <div style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                    }}>
-                        <div>
-                            Загрузка...
+                    {!isLoading 
+                        ? (
+                            <>
+                                <h2 className='section-header'>Отзывы</h2>
+                                <FeedBacks 
+                                    feedBacks={data !== null ? data.courseComments : []}
+                                />
+                            </> ) 
+                        : <div style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'center',
+                        }}>
+                            <div>
+                                Загрузка...
+                            </div>
                         </div>
-                    </div>
                     }
                     <div className='blue-btn'>
                         {/* <div onClick={() => setShowModal(true)}>
@@ -277,19 +282,21 @@ function BasicCourse() {
                                 jwtToken != null
                                 ? (
                                     <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
-                                        Приобрести курс
+                                        Приобрести {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}
                                     </Link>
                                 ) : (
                                     <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
-                                        Приобрести курс
+                                        Приобрести {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}
                                     </Link>
                                 )
                             }
                         </div>
                 
                     </div>
-                
+                    
                 </div>
+                )
+            }
   
             <Footer />
             {

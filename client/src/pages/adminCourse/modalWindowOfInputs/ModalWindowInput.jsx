@@ -61,6 +61,13 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
 
     const hasTest_answers = inputs.some((x) => x.type === 'test_answers');
 
+    if (inputs.some((x) => x.name === 'isKazakh')) {
+      setValues(prevValues => ({
+        ...prevValues,
+        'isKazakh': exValues?.isKazakh || true
+      }))
+    }
+
     if (inputs.some((x) => x.name === 'tableData')) {
       setValues(prevValues => ({
         ...prevValues,

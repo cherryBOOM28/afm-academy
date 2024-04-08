@@ -7,7 +7,8 @@ import './style.scss'
 function Component52({
     title,
     img,
-    version=1
+    version=1,
+    isKazakh=false
 }) {
 
     if (version === 2) {
@@ -29,17 +30,21 @@ function Component52({
     return ( 
         <div className="component52">
             <div className="text">
-                “Запутывание следов - направлено на маскировку проверяемого следа происхождения “грязных” денег в преддверии возможного расследования”
+                {
+                    !isKazakh 
+                        ? '“Запутывание следов - направлено на маскировку проверяемого следа происхождения “грязных” денег в преддверии возможного расследования”'
+                        : '“Іздерді шатастыру – ықтимал тергеу қарсаңында «лас» ақшаның пайда болуының тексерілетін ізін жасыруға бағытталған”'
+                }
             </div>
 
             <div className="scheme">
                 <div className="row1">
-                    <div>Оборот</div>
+                    <div>{!isKazakh ? 'Оборот' : 'Айналым'}</div>
                 </div>
                 <div className="row2">
                     <div>
                         <div>
-                            <div>Законные</div>
+                            <div>{!isKazakh ? 'Законные' : 'Заңды'}</div>
                             <img src={line} alt="line" />
                         </div>
                     </div>
@@ -49,12 +54,12 @@ function Component52({
                     <div>
                         <div>
                             <img src={line} alt="line" />
-                            <div>Незаконные</div>
+                            <div>{!isKazakh ? 'Незаконные' : 'Заңсыз'}</div>
                         </div>
                     </div>
                 </div>
                 <div className="row3">
-                    <div>Смешивается</div>
+                    <div>{!isKazakh ? 'Смешивается' : 'Араласады'}</div>
                 </div>
             </div>
         </div>
