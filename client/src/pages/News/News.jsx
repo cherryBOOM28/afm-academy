@@ -77,7 +77,8 @@ function NewsPage() {
     }
     handleColorModeChange();
   }, []);
-  const formattedLastDate = format(new Date(latestNews.date), 'dd MMMM yyyy HH:mm', { locale: ruLocale });
+  const formattedLastDate = latestNews ? format(new Date(latestNews.date), 'dd MMMM yyyy HH:mm', { locale: ruLocale }) : '';
+
   const handleColorModeChange = (mode) => {
     // Remove previous color mode classes
     const containerElement = document.querySelector(".text-content");
@@ -318,7 +319,6 @@ function NewsPage() {
                     </div>
                   </div>
                     )}
-      
                   <div
                     className={cl.sliderContainer}
                     style={{
