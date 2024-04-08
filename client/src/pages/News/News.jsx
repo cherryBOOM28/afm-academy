@@ -268,7 +268,82 @@ function NewsPage() {
         <div
           className="interval"
           style={{ letterSpacing: getLetterSpacing(letterInterval) }}
-        >
+            >
+                  <h1
+                className="text-content"
+                style={{
+                color:
+                  styles.colorMode === "dark"
+                    ? "#fff"
+                    : styles.colorMode === "light"
+                    ? "#343434"
+                    : styles.colorMode === "blue"
+                    ? "#063462"
+                    : "#000",
+                      }}
+                  >
+                   {t("news")}
+              </h1>
+                <div>
+                  <div
+                    id="newsSection"
+                    className={cl.tabSliderContainer}
+                    style={{
+                      color:
+                        styles.colorMode === "dark"
+                          ? "#fff"
+                          : styles.colorMode === "light"
+                          ? "#3A3939"
+                          : styles.colorMode === "blue"
+                          ? "#063462"
+                          : "#000",
+                          background:'rgb(242, 242, 242)'
+                          }}
+                    >
+                    {selectedRowBtn !== null && selectedItem && (
+                   <div id='Modal'>
+                    <div className="details-modal2" >
+                      <div className="details-content2"> 
+                        <div style={{ textAlign: 'center' }}>
+                          <div style={{ display:'flex', textAlign:'left',marginTop:'25px',justifyContent:'space-between' }}>
+                           <p className='details-info2'>{selectedItem.name}</p>
+                           <span style={{textAlign:'right',justifyContent:'center'}}> 
+                            <button className="details-button12" onClick={() => handleShowDetailsBtn(null)}>X</button>
+                           </span>
+                          </div>
+                           {!imagesHidden && (<img src={selectedItem.image} alt="" className={'NewsModalImg'} />)}
+                           <p className='details-description2'>{selectedItem.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    )}
+      
+                  <div
+                    className={cl.sliderContainer}
+                    style={{
+                      color:
+                        styles.colorMode === "dark"
+                          ? "#fff"
+                          : styles.colorMode === "light"
+                          ? "#000"
+                          : styles.colorMode === "blue"
+                          ? "#063462"
+                          : "#000",
+                    }}
+                  >
+                    {newsData && newsData.length > 0 ? (
+                      <div className="NewsWrapper">
+                        {newsData.map((item) => renderCardContent(item))}
+                      </div>
+                    ) : (
+                      <div style={{ width: "100%", textAlign: "center", paddingTop: "20px" }}>
+                        <a style={{ fontSize: "24px", fontWeight: "600", opacity: "0.3" }}>Нет недавних новостей</a>
+                      </div> 
+                    )}
+                  </div>
+                </div>
+             </div>
           <h1
             className="text-content"
             style={{
@@ -310,140 +385,9 @@ function NewsPage() {
                 </p>
               </div>
               )}
-              <h1
-            className="text-content"
-            style={{
-              color:
-                styles.colorMode === "dark"
-                  ? "#fff"
-                  : styles.colorMode === "light"
-                  ? "#343434"
-                  : styles.colorMode === "blue"
-                  ? "#063462"
-                  : "#000",
-            }}
-          >
-            {t("news")}
-              </h1>
-              <div>
-    <div
-      id="newsSection"
-      className={cl.tabSliderContainer}
-      style={{
-        color:
-          styles.colorMode === "dark"
-            ? "#fff"
-            : styles.colorMode === "light"
-            ? "#3A3939"
-            : styles.colorMode === "blue"
-            ? "#063462"
-            : "#000",
-        background:'rgb(242, 242, 242)'
-      }}
-    >
-        {selectedRowBtn !== null && selectedItem && (
-        <div id='Modal'>
-          <div className="details-modal2" >
-          <div className="details-content2">
-          
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ display:'flex', textAlign:'left',marginTop:'25px',justifyContent:'space-between' }}>
-                <p className='details-info2'>{selectedItem.name}</p>
-                <span style={{textAlign:'right',justifyContent:'center'}}> 
-          <button className="details-button12" onClick={() => handleShowDetailsBtn(null)}>X</button>
-          </span>
-              </div>
-            {!imagesHidden && (<img src={selectedItem.image} alt="" className={'NewsModalImg'} />)}
-            <p className='details-description2'>{selectedItem.description}</p>
-            </div>
-          </div>
-        </div>
-       </div>
-      )}
-      
-      {/* <div className={cl.tabButtons}>
-        <button
-          className={activeTab === "events" ? cl.active : ""}
-          style={{
-            color:
-              styles.colorMode === "dark"
-                ? "#fff"
-                : styles.colorMode === "light"
-                ? "#000"
-                : styles.colorMode === "blue"
-                ? "#063462"
-                : "#000",
-          }}
-          onClick={() => handleTabChange("events")}
-        >
-          {t("events")} /
-        </button>
-        <button
-          className={activeTab === "news" ? cl.active : ""}
-          style={{
-            color:
-              styles.colorMode === "dark"
-                ? "#fff"
-                : styles.colorMode === "light"
-                ? "#000"
-                : styles.colorMode === "blue"
-                ? "#063462"
-                : "#000",
-          }}
-          onClick={() => handleTabChange("news")}
-        >
-          {t("news")} /
-        </button>
-      
-        <button
-          className={activeTab === "videos" ? cl.active : ""}
-          style={{
-            color:
-              styles.colorMode === "dark"
-                ? "#fff"
-                : styles.colorMode === "light"
-                ? "#000"
-                : styles.colorMode === "blue"
-                ? "#063462"
-                : "#000",
-          }}
-          onClick={() => handleTabChange("videos")}
-        >
-          {t("video")}
-        </button>
-      </div> */}
-
-      <div
-        className={cl.sliderContainer}
-        style={{
-          color:
-            styles.colorMode === "dark"
-              ? "#fff"
-              : styles.colorMode === "light"
-              ? "#000"
-              : styles.colorMode === "blue"
-              ? "#063462"
-              : "#000",
-        }}
-      >
-        {newsData && newsData.length > 0 ? (
-          <div className="NewsWrapper">
-            {newsData.map((item) => renderCardContent(item))}
-          </div>
-        ) : (
-          <div style={{ width: "100%", textAlign: "center", paddingTop: "20px" }}>
-            <a style={{ fontSize: "24px", fontWeight: "600", opacity: "0.3" }}>Нет недавних новостей</a>
-          </div> 
-        )}
-      </div>
-
-     
-    </div>
-             </div>
               </div>
             </div>
           </div>
-       
         </div>
         <br/><br/>
           <Footer />
