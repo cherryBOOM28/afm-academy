@@ -383,9 +383,9 @@ function NewsPage() {
         }}
       >
         {newsData && newsData.length > 0 ? (
-          <Slider {...settings}>
+          <div className="NewsWrapper">
             {newsData.map((item) => renderCardContent(item))}
-          </Slider>
+          </div>
         ) : (
           <div style={{ width: "100%", textAlign: "center", paddingTop: "20px" }}>
             <a style={{ fontSize: "24px", fontWeight: "600", opacity: "0.3" }}>Нет недавних новостей</a>
