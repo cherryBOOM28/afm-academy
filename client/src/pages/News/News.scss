@@ -301,3 +301,30 @@
     display: grid;
     grid-template-columns: 418px 418px 418px;
 }
+@media screen and (max-width: 480px) {
+    .NewsWrapper{
+        display: block;
+     
+    }
+}
+.last-news-name{
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.last-news-img{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    .last-news-img-component{
+        border-radius: 15px;
+    }
+}
+.last-news-time{
+    font-size: 23px;
+    font-weight: 500;
+}
+.last-news-description{
+    font-size: 21px;
+    line-height: 1.5;
+}

@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import "./News.scss";
 
 import { Link } from "react-router-dom";
+import { format } from 'date-fns';
+import ruLocale from 'date-fns/locale/ru';
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -44,9 +47,8 @@ function NewsPage() {
   const selectedItem = newsData.find((item) => item.id === selectedRowBtn);
 
   const [activeTab, setActiveTab] = useState('news');
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-  };
+  const latestNews = newsData.length > 0 ? newsData.slice().sort((a, b) => new Date(b.date) - new Date(a.date))[0] : null;
+
 
   useEffect(() => {
     if (!checkStyle) return;
@@ -75,6 +77,7 @@ function NewsPage() {
     }
     handleColorModeChange();
   }, []);
+  const formattedLastDate = format(new Date(latestNews.date), 'dd MMMM yyyy HH:mm', { locale: ruLocale });
   const handleColorModeChange = (mode) => {
     // Remove previous color mode classes
     const containerElement = document.querySelector(".text-content");
@@ -141,22 +144,22 @@ function NewsPage() {
 
     setImagesHidden(true);
   };
+  const months = {
+    0: "января",
+    1: "февраля",
+    2: "марта",
+    3: "апреля",
+    4: "мая",
+    5: "июня",
+    6: "июля",
+    7: "августа",
+    8: "сентября",
+    9: "октября",
+    10: "ноября",
+    11: "декабря",
+  };
   const renderCardContent = (item) => {
     const datee = new Date(item.date);
-    const months = {
-      0: "января",
-      1: "февраля",
-      2: "марта",
-      3: "апреля",
-      4: "мая",
-      5: "июня",
-      6: "июля",
-      7: "августа",
-      8: "сентября",
-      9: "октября",
-      10: "ноября",
-      11: "декабря",
-    };
     const day = datee.getDate();
     const monthIndex = datee.getMonth();
     const month = months[monthIndex];
@@ -279,6 +282,47 @@ function NewsPage() {
                   : "#000",
             }}
           >
+            Последние новости
+              </h1>
+              <h2
+            className="text-content"
+            style={{
+              color:
+                styles.colorMode === "dark"
+                  ? "#fff"
+                  : styles.colorMode === "light"
+                  ? "#343434"
+                  : styles.colorMode === "blue"
+                  ? "#063462"
+                  : "#000",
+            }}
+          >
+                <p className="last-news-time">{formattedLastDate}</p>
+              </h2>
+              {newsData.length > 0 && (
+              <div style={{ textAlign: "left" }}>
+                <p className="last-news-info">
+                    <p className="last-news-name">{latestNews.name}</p>
+                    <p className="last-news-img"><img className="last-news-img-component" src={latestNews.image} alt="" /></p>
+                    <p className="last-news-description">{latestNews.description}</p>
+                    
+                 
+                </p>
+              </div>
+              )}
+              <h1
+            className="text-content"
+            style={{
+              color:
+                styles.colorMode === "dark"
+                  ? "#fff"
+                  : styles.colorMode === "light"
+                  ? "#343434"
+                  : styles.colorMode === "blue"
+                  ? "#063462"
+                  : "#000",
+            }}
+          >
             {t("news")}
               </h1>
               <div>
@@ -303,7 +347,7 @@ function NewsPage() {
           <div className="details-content2">
           
               <div style={{ textAlign: 'center' }}>
-                <div style={{ display:'flex', textAlign:'left',marginTop:'25px' }}>
+                <div style={{ display:'flex', textAlign:'left',marginTop:'25px',justifyContent:'space-between' }}>
                 <p className='details-info2'>{selectedItem.name}</p>
                 <span style={{textAlign:'right',justifyContent:'center'}}> 
           <button className="details-button12" onClick={() => handleShowDetailsBtn(null)}>X</button>
