@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import "./News.scss";
 
 import { Link } from "react-router-dom";
-import { format } from 'date-fns';
-import ruLocale from 'date-fns/locale/ru';
+// import { format } from 'date-fns';
+// import ruLocale from 'date-fns/locale/ru';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -25,8 +25,6 @@ import VisualModal from "../../components/VisualModal/VisualModal";
 
 function NewsPage() {
   const { t } = useTranslation();
-
-  
 
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
@@ -77,7 +75,8 @@ function NewsPage() {
     }
     handleColorModeChange();
   }, []);
-  const formattedLastDate = latestNews ? format(new Date(latestNews.date), 'dd MMMM yyyy HH:mm', { locale: ruLocale }) : '';
+
+  // const formattedLastDate = latestNews ? format(new Date(latestNews.date), 'dd MMMM yyyy HH:mm', { locale: ruLocale }) : '';
 
   const handleColorModeChange = (mode) => {
     // Remove previous color mode classes
@@ -372,7 +371,13 @@ function NewsPage() {
                   : "#000",
             }}
           >
-                <p className="last-news-time">{formattedLastDate}</p>
+                <p className="last-news-time">
+                  {
+                    // formattedLastDate && 
+                    false 
+                    ? '' : ''
+                  }
+                </p>
               </h2>
               {newsData.length > 0 && (
               <div style={{ textAlign: "left" }}>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaSpinner } from 'react-icons/fa';
-import ContentLoader from "react-content-loader"
+// import ContentLoader from "react-content-loader"
 
 import './style.scss';
 

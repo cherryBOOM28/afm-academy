@@ -510,7 +510,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
         // Clone the tabsData array and update the relevant item
         const updatedTabsData = prevValues.tabsData.map(item => {
             if (item.id === idOrIndex) {
-                return { ...item, [name === 'tabsDataHeader' ? 'header' : 'data']: newValue };
+              return { ...item, [name === 'tabsDataHeader' ? 'header' : 'data']: newValue };
             }
             return item;
         });
@@ -1079,34 +1079,68 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                                 type="text"
                                 value={tabObject.tab || ''}
                                 onChange={(e) => handleInputChange(tabObject.id, e.target.value, 'tabs')}
-                                />
+                              />
                           </div>
                           <div className='dropd-content'>
                             <div className='first-column'>
-                            {values.tabsData.filter(x => x.tabsIndex == tabObject.id).map((x, index) => {
-                              return (
-                                <div key={index}>
-                                  <input
-                                    type="text"
-                                    value={x.header || ''}
-                                    onChange={(e) => handleInputChange(x.id, e.target.value, 'tabsDataHeader')}
-                                    />
-                                </div>
-                              )
-                            })}
+                              {
+                                values.tabsData.map((x, index) => {
+                                  if (x.tabsIndex == tabObject.id) {
+                                    return (
+                                      <div key={index}>
+                                        <input
+                                          type="text"
+                                          value={x.header || ''}
+                                          onChange={(e) => {
+                                            setValues(prevValues => {
+                                              let updatedTabsData = prevValues.tabsData;
+                                              updatedTabsData[index] = {
+                                                ...prevValues.tabsData[index],
+                                                ['header']: e.target.value
+                                              };
+
+                                              return {
+                                                ...prevValues,
+                                                ['tabsData']: updatedTabsData
+                                              }
+                                            })
+                                          }
+                                        }/>
+                                      </div>
+                                    ) 
+                                  } else return null;
+                                })
+                              }
                             </div>
                             <div className='second-column'>
-                            {values.tabsData.filter(x => x.tabsIndex == tabObject.id).map((x, index) => {
-                              return (
-                                <div key={index}>
-                                  <input
-                                    type="text"
-                                    value={x.data || ''}
-                                    onChange={(e) => handleInputChange(x.id, e.target.value, 'tabsDataData')}
-                                    />
-                                </div>
-                              )
-                            })}
+                              {
+                                values.tabsData.map((x, index) => {
+                                  if (x.tabsIndex == tabObject.id) {
+                                    return (
+                                      <div key={index}>
+                                        <input
+                                          type="text"
+                                          value={x.data || ''}
+                                          onChange={(e) => {
+                                            setValues(prevValues => {
+                                              let updatedTabsData = prevValues.tabsData;
+                                              updatedTabsData[index] = {
+                                                ...prevValues.tabsData[index],
+                                                ['data']: e.target.value
+                                              };
+
+                                              return {
+                                                ...prevValues,
+                                                ['tabsData']: updatedTabsData
+                                              }
+                                            })
+                                          }}
+                                          />
+                                      </div>
+                                    )
+                                  } else return null;
+                                })
+                              }
                             </div>
                           </div> 
                           <div className='add-drop'>

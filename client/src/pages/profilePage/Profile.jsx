@@ -26,8 +26,6 @@ import Rating from "react-rating-stars-component";
 
 import { useTranslation } from "react-i18next";
 
-
-
 function Profile(props) {
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);

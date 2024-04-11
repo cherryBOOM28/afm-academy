@@ -146,7 +146,10 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
                                 <ImCancelCircle style={{color: headCellColor, cursor: 'pointer'}} size={23} onClick={() => _handleCancel()}/> 
                         </TableCell>
                     </TableRow> : null}
-                    {Array.isArray(rows) ? rows.slice(page * rowsPerPage, (page + 1) * rowsPerPage).map((row, index) => (
+                    {Array.isArray(rows) ? rows.slice(page * rowsPerPage, (page + 1) * rowsPerPage).filter(row => {
+                        console.log(row);
+                        return !([47, 41].includes(row.id));
+                    }).map((row, index) => (
                         <TableRow key={index} id={row.job_ex_id}>
                             <TableCell style={{ minWidth: '200px', padding: cellPadding, font: cellFont, color: cellColor, letterSpacing: 'inherit' }}>
                                 <div 

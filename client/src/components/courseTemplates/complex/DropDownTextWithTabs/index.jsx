@@ -119,11 +119,44 @@ const  DropDownData = ({ header, data, children, headerColor, headerActiveColor,
                 </div>
             </div>
             <div className={`data ${!isOpen ? 'hide' : ''}`}>
-                <p
-                    style={{
-                        color: dataColor ? dataColor : defaultDataColor
-                    }}
-                >{data}</p>
+                {
+                    typeof data === 'string' && data.indexOf('\\n') !== - 1
+                        ? (
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '10px'
+                            }}>
+                                {
+                                    data.split('\\n').map((text, index) => {
+                                        if (text === '') {
+                                            // Render a space or specific styling to create a visible break
+                                            return <div key={index} style={{ height: '16px' }}></div>; // Adjust the height as needed
+                                        } else {
+                                            return (
+                                                <p
+                                                    key={index}
+                                                    style={{
+                                                        color: dataColor ? dataColor : defaultDataColor,
+                                                    }}
+                                                >
+                                                    {text}
+                                                </p>
+                                            );
+                                        }
+                                    })
+                                }
+                            </div>
+
+                        )
+                        : (
+                            <p
+                                style={{ 
+                                    color: dataColor ? dataColor : defaultDataColor
+                                }}
+                            >{data}</p>
+                        )
+                }
             </div>
         </div>
     )
