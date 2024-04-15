@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.scss'
 import { motion, useAnimation, whileHover } from 'framer-motion';
 
 import { BsArrowClockwise } from "react-icons/bs";
+import { useLocation } from 'react-router';
 
 const QuestionContainer = ({ questions, leftAnswer, rightAnswer }) => {
-    
+    const location = useLocation();
+    const [isKazakh, setKazakh] = useState(false);
+
+    useEffect(() => {
+        if (
+            (location.search.indexOf('79') !== -1 || location.pathname.indexOf('79') !== -1)
+        ) {
+            setKazakh(true);
+        }
+    }, [])
 
     const [currentQuestion, setCurrentQuestion] = useState(0);
 
@@ -38,9 +48,23 @@ const QuestionContainer = ({ questions, leftAnswer, rightAnswer }) => {
                         <div 
                             className="question-card" 
                             draggable
-                            onDragStart={(e) => handleOnDragStart(e, 'Вопросы закончились', 'Вопросы закончились')}
+                            onDragStart={(e) => {
+                                const endText = isKazakh 
+                                    ? 'Сұрақтар бітті'
+                                    : 'Вопросы закончились';
+
+                                handleOnDragStart(
+                                    e, 
+                                    { endText }, 
+                                    { endText }, 
+                                )
+                            }}
                         >
-                            {'Вопросы закончились'}
+                            {
+                                isKazakh 
+                                    ? 'Сұрақтар бітті'
+                                    : 'Вопросы закончились'
+                            }
                         </div>
                     )
                 }
@@ -56,7 +80,13 @@ const QuestionContainer = ({ questions, leftAnswer, rightAnswer }) => {
 
             <div className="actions">
                 <div onClick={() => setCurrentQuestion(0)}>
-                    Начать заново
+                    <span>
+                        { 
+                            isKazakh 
+                                ? 'Басынан бастау'
+                                : 'Начать заново' 
+                        }
+                    </span>
                     <BsArrowClockwise size={25} />
                 </div>
             </div>

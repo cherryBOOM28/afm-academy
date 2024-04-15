@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { FaSpinner } from 'react-icons/fa';
 // import ContentLoader from "react-content-loader"
 
@@ -54,6 +54,18 @@ function ReadCourse() {
     const [courseModules, setCourseModules] = useState([]);
 
     const [stars, setStars] = useState(0);
+
+    const location = useLocation();
+    const [isKazakh, setKazakh] = useState(false);
+
+    useEffect(() => {
+        console.log(location);
+        if (
+            (location.search.indexOf('79') !== -1 || location.pathname.indexOf('79') !== -1)
+        ) {
+            setKazakh(true);
+        }
+    }, [])
 
     useEffect(() => {
         handleWindowResolution();
@@ -392,7 +404,11 @@ function ReadCourse() {
                                 quizStatus === 'fatal' ? (
                                     <div className='modal-fatal'>
                                         <p>
-                                            Вы провалили тест трижды. Рекомендуем перепройти модуль.
+                                            {
+                                                isKazakh 
+                                                    ? 'Тестті үш рет сәтсіз аяқтадыңыз. Модульді қайта өтуге ұсынамыз.'
+                                                    : 'Вы провалили тест трижды. Рекомендуем перепройти модуль.'
+                                            }
                                         </p>
                                     </div>
                                 ) : null
@@ -402,7 +418,11 @@ function ReadCourse() {
                                 quizStatus === 'fail' ? (
                                     <div className='modal-fail'>
                                         <p>
-                                            Вы провалили тест. Пройдите заново.
+                                            {
+                                                isKazakh 
+                                                    ? 'Тестті сәтсіз аяқтадыңыз. Қайта өтіңіз.'
+                                                    : 'Вы провалили тест. Пройдите заново.'
+                                            }
                                         </p>
                                     </div>
                                 ) : null
@@ -412,7 +432,11 @@ function ReadCourse() {
                                 quizStatus === 'successful' ? (
                                     <div className='modal-successful'>
                                         <p>
-                                            Вы успешно прошли тест.
+                                            {
+                                                isKazakh 
+                                                    ? 'Тестті сәтті аяқтадыңыз.'
+                                                    : 'Вы успешно прошли тест.'
+                                            }
                                         </p>
                                     </div>
                                 ) : null

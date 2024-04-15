@@ -5,6 +5,7 @@ import './style.scss'
 import { FaCheck } from "react-icons/fa6";
 import axios from 'axios';
 import base_url from '../../../../settings/base_url';
+import { useLocation } from 'react-router';
 
 function TestPage({ 
     name, 
@@ -15,6 +16,20 @@ function TestPage({
     handleQuizFail,  
     finished
 }) {
+
+    const location = useLocation();
+    const [isKazakh, setKazakh] = useState(false);
+
+    useEffect(() => {
+        console.log(location);
+        if (
+            (location.search.indexOf('79') !== -1 || location.pathname.indexOf('79') !== -1)
+        ) {
+            setKazakh(true);
+        }
+    }, [])
+
+
     const jwtToken = localStorage.getItem('jwtToken');
 
     const [currQuestion, setCurrQuestion] = useState(0)
@@ -172,7 +187,7 @@ function TestPage({
                 <div className="test">
                     <div className="question-header">
                         <div className="question-num">
-                            <div>Вопрос</div>
+                            <div>{ isKazakh ? 'Сұрақ' : 'Вопрос' }</div>
                             <div>{currQuestion+1}/{questions.length}</div>
                         </div>
                         <div className="question-text">
@@ -228,15 +243,15 @@ function TestPage({
                 </div>
 
                 <div className="actions">
-                    {currQuestion !== 0 ? <div className="prev"  onClick={() => { setCurrQuestion(currQuestion - 1) }}>Предыдущий вопрос</div> : null}
-                    {currQuestion !== questions.length-1 ? <div className="next" onClick={() => { setCurrQuestion(currQuestion + 1) }}>Следующий вопрос</div> : null}
+                    {currQuestion !== 0 ? <div className="prev"  onClick={() => { setCurrQuestion(currQuestion - 1) }}>{ isKazakh ? 'Алдыңғы сұрақ' : 'Предыдущий вопрос' }</div> : null}
+                    {currQuestion !== questions.length-1 ? <div className="next" onClick={() => { setCurrQuestion(currQuestion + 1) }}>{ isKazakh ? 'Келесі сұрақ' : 'Следующий вопрос' }</div> : null}
                     {currQuestion === questions.length-1 
                         ? <div className={`finish ${finished ? 'disabled' : null}`} 
                             onClick={() => {
                                 if (finished) return;
                                 finishTest()
                             }
-                        }>Завершить тест</div> 
+                        }>{isKazakh ? 'Тестілеуді аяқтау' : 'Завершить тест'}</div> 
                         : null}
                 </div>
             </div>

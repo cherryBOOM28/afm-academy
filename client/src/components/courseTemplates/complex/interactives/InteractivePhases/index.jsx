@@ -98,7 +98,7 @@ function InteractivePhases({
                                         <Phases 
                                             title={item.title}
                                             phases={item.phases}
-                                        />, 
+                                        />
                                     </div>
                                 )
                             })

@@ -17,12 +17,12 @@ function StageDropDown({
         {icon: stage_3, text: 'Ст. 218 УК РК', innerText: 'Легализация (отмывание) денег и (или) иного имущества, полученных преступным путем'},
     ],
 }) {
+
     return ( 
         <div className="stage-dropdown">
             <div className="wrapper">
 
                 <div className="body">
-
                     {
                         stages && stages.map((item, index) => (
                             <Item 

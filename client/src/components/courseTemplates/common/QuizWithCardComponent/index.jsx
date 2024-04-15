@@ -1,11 +1,25 @@
 // QuizApp.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import QuizQuestion from './QuizQuestion';
 
 import './QuizApp.scss';
+import { useLocation } from 'react-router';
 
 const QuizApp = ({ questions }) => {
+
+  const location = useLocation();
+  const [isKazakh, setKazakh] = useState(false);
+
+  useEffect(() => {
+      console.log(location);
+      if (
+          (location.search.indexOf('79') !== -1 || location.pathname.indexOf('79') !== -1)
+      ) {
+          setKazakh(true);
+      }
+  }, [])
+
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [showNextQuestionButton, setShowNextQuestionButton] = useState(false);
@@ -53,7 +67,11 @@ const QuizApp = ({ questions }) => {
 
       {showNextQuestionButton && !isLastQuestion && (
         <button className='buttonQuiz'onClick={handleNextQuestionButtonClick}>
-          Следующий вопрос
+          {
+            isKazakh 
+              ? 'Келесі сұрақ'
+              : 'Следующий вопрос'
+          }
         </button>
       )}
     </div>

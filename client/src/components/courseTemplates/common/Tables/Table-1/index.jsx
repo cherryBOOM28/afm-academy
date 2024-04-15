@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from 'react';
 
 import './style.scss';
+import { useLocation } from 'react-router';
 
 function Table_1({ rows, borderColor, color, header='Разберем список следующих сокращений:' }) {
+    const location = useLocation();
+    const [isKazakh, setKazakh] = useState(false);
+
+    useEffect(() => {
+        if (
+            (location.search.indexOf('79') !== -1 || location.pathname.indexOf('79') !== -1)
+        ) {
+            setKazakh(true);
+        }
+    }, [])
+
     const defaultBorderColor = '#CADEFC';
     const defaultColor = '#000000'
 
     const _borderColor = borderColor || defaultBorderColor;
-    const _color = color || defaultColor;
+    const _color = color || defaultColor;  
 
     const cellStyle = {
         borderColor: _borderColor,
         color: _color,
     }
-
+ 
     const [open, setOpen] = useState(false);
     const maxDisplayedRows = 10;
     const [displayedRows, setDisplayedRows] = useState(rows.slice(0, maxDisplayedRows));
@@ -83,8 +95,8 @@ function Table_1({ rows, borderColor, color, header='Разберем списо
                             <div style={cellStyle}></div>
                             <div style={cellStyle} className='showAll'>
                                 {open 
-                                    ? <div onClick={handleClose}>Свернуть</div>
-                                    : <div onClick={handleOpen}>Посмотреть все</div>
+                                    ? <div onClick={handleClose}>{ isKazakh ? 'Жабу' : 'Свернуть' }</div>
+                                    : <div onClick={handleOpen}>{ isKazakh ? 'Барлығын көру' : 'Посмотреть все' }</div>
                                 }
                             </div>
                             <div style={cellStyle}></div>
