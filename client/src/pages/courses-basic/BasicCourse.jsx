@@ -66,6 +66,8 @@ function BasicCourse() {
 
     function AlertDialog() {
         const [isHovered, setIsHovered] = useState(false);
+        const [isAgreementChecked, setIsAgreementChecked] = useState(false);
+
         return (
           <React.Fragment>
             <Dialog
@@ -80,21 +82,63 @@ function BasicCourse() {
 
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                Каким способом хотели оплатить {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}?
+                    Каким способом хотели оплатить {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}?
                 </DialogContentText>
+
+                <div className='offer-contract-wrapper'>
+                    <input 
+                        onChange={(e) => {
+                            setIsAgreementChecked(e.target.checked);
+                        }}
+                        checked={isAgreementChecked}
+                        type="checkbox" 
+                        name='offer-contract' 
+                        id='offer-contract'
+                    />
+                    <label htmlFor="offer-contract">Прочитал, и согласен с <Link to={'/offer-agreement'}>публичным договором-оферта</Link></label>
+                </div>
               </DialogContent>
 
-              <DialogActions>
-              <Link to={`/payment/${id}`} style={{ colortextDecoration: 'none' }}><Button onClick={handleClose}><img src={qr} style={{
-                    width: '225px',
-                    height: '225px',
-                    filter: isHovered ? 'brightness(60%)' : 'none', // Применяем эффект затемнения при наведении
-                    transition: 'filter 0.3s ease', // Добавляем плавное изменение стиля при наведении
-                        }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} alt="QR Code" /></Button></Link>
-                         <Divider orientation="vertical" flexItem sx={{ height: '225px',borderWidth:'3px' }}/>
+              <DialogActions style={{ position: 'relative', overflow: 'hidden' }}>
+
+                {
+                    !isAgreementChecked 
+                        ? (
+                            <div 
+                                style={{
+                                    position: 'absolute',
+                                    width: '100%',
+                                    height: '100%',
+                                    zIndex: '10',
+                                    cursor: 'not-allowed'
+                                }}
+                            >
+                            </div>
+                        ) : null
+                }
+
+                <Link to={`/payment/${id}`} style={{ colortextDecoration: 'none' }}>
+                    <Button onClick={handleClose}>
+                        <img 
+                            src={qr} 
+                            style={{
+                                width: '225px',
+                                height: '225px',
+                                filter: isHovered ? 'brightness(60%)' : 'none', // Применяем эффект затемнения при наведении
+                                transition: 'filter 0.3s ease', // Добавляем плавное изменение стиля при наведении
+                            }} 
+                            onMouseEnter={() => setIsHovered(true)} 
+                            onMouseLeave={() => setIsHovered(false)} 
+                            alt="QR Code" />
+                    </Button>
+                </Link>
+
+                <Divider orientation="vertical" flexItem sx={{ height: '225px', borderWidth:'3px' }}/>
+                
                 <Button onClick={handleClose}>
                     <PaymentHalyk id={id} />
                 </Button>
+
               </DialogActions>
             </Dialog>
           </React.Fragment>
