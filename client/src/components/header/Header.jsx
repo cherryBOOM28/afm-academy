@@ -1,33 +1,25 @@
-import React, { useState, useEffect, useRef, forwardRef  } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 // import cl from './Header.module.css';
-import './Header.scss'
-import './Navigation.scss'
 import { useLocation, useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
-import logo from '../../assets/images/logo.svg';
-import language from '../../assets/icons/lang.svg';
 import igIcon from '../../assets/icons/ig.svg';
-import waIcon from '../../assets/icons/waIcon.svg';
-import fbIcon from '../../assets/icons/fb.svg';
+import language from '../../assets/icons/lang.svg';
 import tgIcon from '../../assets/icons/tg.svg';
+import waIcon from '../../assets/icons/waIcon.svg';
+import logo from '../../assets/images/logo.svg';
+import './Header.scss';
+import './Navigation.scss';
 // import searchIcon from '../../assets/icons/search.svg';
-import search_icon from '../../assets/icons/search-light.svg';
-import Button from '../UI/button/Button';
-import Navigation from '../navigation/Navigation';
-import { Link } from 'react-router-dom';
-import { FaUser } from "react-icons/fa";
 import SearchIcon from '@mui/icons-material/Search';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../auth/AuthContext';
 
-import { Email } from '@mui/icons-material';
-import { useTranslation } from 'react-i18next';
 import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
-import VisualModal from '../../components/VisualModal/VisualModal';
 import { useStyle } from '../VisualModal/StyleContext';
 
-import navbar_items from './navbar_items';
 import { FaCaretLeft } from "react-icons/fa";
+import navbar_items from './navbar_items';
 
 function Header(props) {
 
@@ -520,6 +512,13 @@ const Hamburger = forwardRef(({
   const changeLanguage = (language) => {
     i18n.changeLanguage(language);
   };
+  useEffect(() => {
+    // Проверяем, содержит ли текущий маршрут "/courses/79"
+    if (location.pathname.includes("/courses/79")) {
+      // Если да, то устанавливаем язык по умолчанию на казахский
+      changeLanguage('kz');
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     console.log(location)
