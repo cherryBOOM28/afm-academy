@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -8,32 +8,35 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Divider from '@mui/material/Divider';
-
+import { useTranslation } from "react-i18next";
 import Footer from '../../components/footer/Footer';
 
-import './BasicCourse.scss';
+import { t } from "i18next";
 import Collapsable from '../../components/UI/collapsable-block/Collapsable';
 import RoadList from '../../components/UI/roadList/RoadList';
 import Lectors from '../../components/lectors-block/Lectors';
+import './BasicCourse.scss';
 
+import qr from './../../assets/icons/cashless-payment.png';
 import lector1 from './../../assets/images/Lector_1_cropped.png';
 import lector2 from './../../assets/images/Lector_2_cropped.png';
 import lector3 from './../../assets/images/Lector_3_cropped.png';
-import qr from './../../assets/icons/cashless-payment.png';
 
 
-import FeedBacks from '../../components/feedbackBlock/FeedBacks';
-import ModalWindow from '../../components/ModalWindow/ModalWindow';
 import axios from 'axios';
-import base_url from '../../settings/base_url';
+import ModalWindow from '../../components/ModalWindow/ModalWindow';
 import Sizebox from '../../components/courseTemplates/common/Sizebox';
+import FeedBacks from '../../components/feedbackBlock/FeedBacks';
 import Header from '../../components/header/Header';
+import base_url from '../../settings/base_url';
 import PaymentHalyk from '../paymentPage/PaymentHalyk';
 
+console.log(t);
 
 function BasicCourse() {
     const jwtToken = localStorage.getItem('jwtToken');
-
+    const { t } = useTranslation();
+    console.log(t);
     const {id} = useParams();
 
     const [showModal, setShowModal] = useState(false);
@@ -82,7 +85,7 @@ function BasicCourse() {
 
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                    Каким способом хотели оплатить {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}?
+                Каким способом хотели оплатить {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}?
                 </DialogContentText>
 
                 <div className='offer-contract-wrapper'>
@@ -201,11 +204,11 @@ function BasicCourse() {
                                     jwtToken != null
                                     ? (
                                         <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
-                                            Приобрести {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}
+                                            {data != null && [41, 47].includes(data.course_id) ? t("buy a module") : t("buy a course")}
                                         </Link>
                                     ) : (
                                         <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
-                                            Приобрести {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}
+                                            {data != null && [41, 47].includes(data.course_id) ? t("buy a module") : t("buy a course")}
                                         </Link>
                                     )
                                 }
@@ -218,44 +221,44 @@ function BasicCourse() {
 
                     <Sizebox height={20}/>
                     <div className="collapsable-blocks">
-                        <Collapsable title={`Что из себя представляет данный ${data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}?`}>
+                        <Collapsable title={`${data != null && [41, 47].includes(data.course_id) ? t("what is this module about?") : t("what is this course about?")}`}>
                             <p>{data ? data.what_course_represents : "Загрузка..."}</p>
                         </Collapsable>
-                        <Collapsable title={`Для кого предназначен ${data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}?`}>
+                        <Collapsable title={`${data != null && [41, 47].includes(data.course_id) ? t("who is the module intended for?") : t("who is the course intended for?")}`}>
                             <p>
                                 {data ? data.who_course_intended_for : "Загрузка..."}
                             </p>
                         </Collapsable>
-                        <Collapsable title={`Длительность ${data != null && [41, 47].includes(data.course_id) ? 'модуля' : 'курса'}`}>
+                        <Collapsable title={`${data != null && [41, 47].includes(data.course_id) ? t("module duration") : t("course duration")}`}>
                             <p>
                                 {data ? data.what_is_duration : "Загрузка..."}
                             </p>
                         </Collapsable>
-                        <Collapsable title={`Стоимость ${data != null && [41, 47].includes(data.course_id) ? 'модуля' : 'курса'}`}>
+                        <Collapsable title={`${data != null && [41, 47].includes(data.course_id) ? t("module fee") : t("course fee")}`}>
                             <p>
                                 {data ? data.course_price : ''} тенге
                             </p>
                         </Collapsable>
-                        <Collapsable title={`Доступность ${data != null && [41, 47].includes(data.course_id) ? 'модуля' : 'курса'}`}>
+                        <Collapsable title={`${data != null && [41, 47].includes(data.course_id) ? t("accessibility of the module") : t("accessibility of the course")}`}>
                             <p>
                                 {data ? data.what_is_availability : "Загрузка..."}
                             </p>
                         </Collapsable>
-                        <Collapsable title={`Программа ${data != null && [41, 47].includes(data.course_id) ? 'модуля' : 'курса'}`}>
+                        <Collapsable title={`${data != null && [41, 47].includes(data.course_id) ? t("module program") : t("course program")}`}>
                             {data ? (
                                 <div dangerouslySetInnerHTML={{ __html: data.what_is_agenda_of_course }} />
                             ) : (
                                 "Загрузка..."
                             )}
                         </Collapsable>
-                        <Collapsable title={'Что вы получите?'}>
+                        <Collapsable title={t("What do you get?")}>
                             <p>
                                 {data ? data.what_you_will_get : "Загрузка..."}
                             </p>
                         </Collapsable>
                     </div>
 
-                    <h2 className='section-header'>Процесс обучения</h2>
+                            <h2 className='section-header'>{ t("learning process")}</h2>
                     <RoadList items={[
                         <div>  <div className='blue-btn1'>
                         {/* <div onClick={() => setShowModal(true)}>
@@ -267,11 +270,11 @@ function BasicCourse() {
                                 jwtToken != null
                                 ? (
                                     <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
-                                        Приобрести {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}
+                                        {data != null && [41, 47].includes(data.course_id) ? t("buy a module") : t("buy a course")}
                                     </Link>
                                 ) : (
                                     <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
-                                        Приобрести {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}
+                                        {data != null && [41, 47].includes(data.course_id) ? t("buy a module") : t("buy a course")}
                                     </Link>
                                 )
                             }
@@ -280,19 +283,19 @@ function BasicCourse() {
                     </div>
                 
                 </div>,
-                        'Оплата',
-                        'Предоставление доступа к Личному кабинету',
+                        t("payment"),
+                        t("providing access to the personal account"),
                         // 'Добавление в закрытый чат с лектором',
-                        'Обучение',
-                        'Выдача сертификатов'
+                        t("training"),
+                        t("issuance of certificates")
                     ]}/>
 
-                    <h2 className='section-header'>Лекторы</h2>
+                            <h2 className='section-header'>{ t("lectors")}</h2>
                     <Lectors 
                         lectors={[
-                            { img: lector1, name: 'Махметов Муратбек', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
-                            { img: lector2, name: 'Махашева Асем', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
-                            { img: lector3, name: 'Шагатаев Даурен', text: 'Лектор по обучению и повышению квалификации по финансовому мониторингу.'},
+                            { img: lector1, name: 'Махметов Муратбек', text: t("makhmetov")},
+                            { img: lector2, name: 'Махашева Асем', text: t("makhmetov")},
+                            { img: lector3, name: 'Шагатаев Даурен', text: t("makhmetov")},
                             // { img: lectorImg, name: 'Larry W.', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
                             // { img: lectorImg, name: 'Larry W.', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
                         ]}
@@ -326,11 +329,11 @@ function BasicCourse() {
                                 jwtToken != null
                                 ? (
                                     <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
-                                        Приобрести {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}
+                                        {data != null && [41, 47].includes(data.course_id) ? t("buy a module") : t("buy a course")}
                                     </Link>
                                 ) : (
                                     <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
-                                        Приобрести {data != null && [41, 47].includes(data.course_id) ? 'модуль' : 'курс'}
+                                        {data != null && [41, 47].includes(data.course_id) ? t("buy a module") : t("buy a course")}
                                     </Link>
                                 )
                             }

@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import Footer from '../../components/footer/Footer';
 import DefaultHeader from '../../components/defaultHeader/DefaultHeader';
+import Footer from '../../components/footer/Footer';
 
-import './SpecializedCourse.scss';
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
+import ModalWindow from '../../components/ModalWindow/ModalWindow';
 import Collapsable from '../../components/UI/collapsable-block/Collapsable';
 import RoadList from '../../components/UI/roadList/RoadList';
-import Lectors from '../../components/lectors-block/Lectors';
-
-import lectorImg from './../../assets/images/avatar-img.png';
 import FeedBacks from '../../components/feedbackBlock/FeedBacks';
-import ModalWindow from '../../components/ModalWindow/ModalWindow';
-
+import Lectors from '../../components/lectors-block/Lectors';
+import lectorImg from './../../assets/images/avatar-img.png';
+import './SpecializedCourse.scss';
+console.log(t);
 function SpecializedCourse() {
     const [showModal, setShowModal] = useState(false);
-
+    const { t } = useTranslation();
     const [request, setRequest] = useState({
         email: '',
         name: '',
@@ -85,7 +86,7 @@ function SpecializedCourse() {
                     </Collapsable>
                 </div>
 
-                <h2 >Процесс обучения</h2>
+                <h2 >{ t("learning process") }</h2>
                 <RoadList items={[
                     'Подача заявки',
                     'Оплата',
