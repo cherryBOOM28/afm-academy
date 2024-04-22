@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import halyk from "./halyk"
 import axios from "axios";
+import React, { useState } from 'react';
 import base_url from '../../settings/base_url';
-import { useParams } from 'react-router-dom';
 import creditCard from './../../assets/icons/credit-card.png';
+import halyk from "./halyk";
 
 
 const PaymentHalyk = (id) => {
@@ -25,6 +24,12 @@ const PaymentHalyk = (id) => {
                   Authorization: `Bearer ${token}`,
                 },
             });
+            const courseData = await axios.get(`${base_url}/api/aml/course/justGetCourseById/${id.id}`, {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+            });
+            const price = courseData.data.course_price;
             setDataBack(responseData.data)
             console.log(responseData.data);
             const auth = new FormData();
@@ -33,7 +38,7 @@ const PaymentHalyk = (id) => {
             auth.append('client_id', 'AMLACADEMY.KZ');
             auth.append('client_secret', 'JYbXA8cJt(L24ffo');
             auth.append('invoiceID', responseData.data.invoice_id);
-            auth.append('amount', 30000);
+            auth.append('amount', price);
             auth.append('currency', 'KZT');
             auth.append('terminal', 'a5e958ad-b799-41ff-9be9-f6d20ddc61a6');
             auth.append('postLink', `${base_url}/api/aml/course/createPostLink`);
@@ -49,7 +54,7 @@ const PaymentHalyk = (id) => {
             //console.log(responseData.data);
             setAccessToken(data.access_token);
             setInvoiceID(responseData.data.invoice_id)
-            const paymentObject = createPaymentObject(data, responseData.data.invoice_id, 30000, responseData.data.email);
+            const paymentObject = createPaymentObject(data, responseData.data.invoice_id, price, responseData.data.email);
             halyk.showPaymentWidget(paymentObject, (result) => {
                 // В этом колбэке обработайте результат показа виджета оплаты
             
