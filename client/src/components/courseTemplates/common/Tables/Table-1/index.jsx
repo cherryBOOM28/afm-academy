@@ -59,7 +59,11 @@ function Table_1({ rows, borderColor, color, header='Разберем списо
                     marginTop: '50px',
                 }}
             >
-                {header}
+                {
+                    isKazakh 
+                        ? 'Келесі қысқартулардың тізімін талдайық:'
+                        : 'Разберем список следующих сокращений:'
+                }
             </p>
             <div className="columnless-table">
                 <div className="table-wrapper">
