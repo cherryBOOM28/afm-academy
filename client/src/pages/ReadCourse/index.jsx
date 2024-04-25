@@ -290,7 +290,7 @@ function ReadCourse() {
                 <Sizebox height={100} />
                 <Reveal>
                     <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
-                        Завершение учебного курса
+                        Завершение учебного модуля
                     </HeaderWithLine>
                 </Reveal>
 
@@ -327,7 +327,7 @@ function ReadCourse() {
                 </div>
                 <Centered>
                     <RandomParapraph>
-                        Оцените курс
+                        Оцените модуль
                     </RandomParapraph>
                 </Centered>
                 <Sizebox height={100} />
