@@ -7158,6 +7158,17 @@ function GetLesson({
                     />
                 </LessonPage>
             );
+        case 12:
+            return (
+                <TestPage
+                    finished={modules[2].quiz.quiz_max_points === 100}
+                    name={'ТЕСТИРОВАНИЕ 3'}
+                    questions={modules[2].quiz.quizList || []}
+                    quizId={30}
+                    handleQuizFail={_handleQuizFail}
+                    handleQuizSuccesful={_handleQuizSuccesful}
+                ></TestPage>
+            );
         case 80:
             return (<LessonPage name={'Государственный контроль'} lecturer={'AML Academy'}>
                 <Reveal>

@@ -11,7 +11,12 @@
     font-weight: 700;
     margin-top: 121px;
 }
-
+.headline99 {
+    color: #343434;
+    font-size: 26px;
+    font-weight: 700;
+    margin-top: 60px;
+}
 .subjectsText {
     margin-top: 23px;
     color: #000;

@@ -24,10 +24,10 @@ function AboutUs() {
 
   const fontSizes = {
     small: {
-      fontSize: "15px",
-      lineHeight: "17px",
-      caption: { fontSize: "18px", lineHeight: "20px" },
-      subtitle: { fontSize: "14px", lineHeight: "16px" },
+      fontSize: "24px",
+      lineHeight: "26px",
+      caption: { fontSize: "32px", lineHeight: "34px" },
+      subtitle: { fontSize: "22px", lineHeight: "24px" },
     },
     standard: {
       fontSize: "16px",
@@ -219,10 +219,10 @@ function AboutUs() {
                 <p className={`${cl.headline} text-content caption`}>
                   {t("mission_academy_a")}
                 </p>
-                <p className={`${cl.purposeOfAcademy__text} text-content subtitle`}>
+                <p className={`${cl.academy__p} text-content subtitle`}>
                   {t("mission_academy_b")}
                 </p>
-                <p className={`${cl.subtitle} text-content`}>{t("mission_academy_c")}</p>
+                <p className={`${cl.academy__p} text-content`}>{t("mission_academy_c")}</p>
                 <div className={cl.mainTasks}>
                   <div className={cl.MainTask}>
                     <p
@@ -240,7 +240,7 @@ function AboutUs() {
                     >
                       1
                     </p>
-                    <p className={`${cl.tasks__text} text-content`}>
+                    <p className={`${cl.academy__p} text-content`}>
                       {t("mission_academy_d")}
                     </p>
                   </div>
@@ -261,7 +261,7 @@ function AboutUs() {
                       >
                         2
                       </p>
-                      <p className={`${cl.tasks__text__small} text-content`}>
+                      <p className={`${cl.academy__p} text-content`}>
                         {t("mission_academy_e")}
                       </p>
                     </div>
@@ -285,7 +285,7 @@ function AboutUs() {
                     >
                       3
                     </p>
-                    <p className={`${cl.tasks__text} text-content`}>
+                    <p className={`${cl.academy__p} text-content`}>
                       {t("mission_academy_f")}
                     </p>
                   </div>
@@ -309,7 +309,7 @@ function AboutUs() {
                   >
                     4
                   </p>
-                  <p className={`${cl.tasks__text__small} text-content`}>
+                  <p className={`${cl.academy__p} text-content`}>
                     {t("mission_academy_g")}
                   </p>
                 </div>
@@ -333,7 +333,7 @@ function AboutUs() {
                 >
                   5
                 </p>
-                <p className={`${cl.tasks__text__middle} text-content`}>
+                <p className={`${cl.academy__p} text-content`}>
                   {t("mission_academy_h")}
                 </p>
               </div>
@@ -355,7 +355,7 @@ function AboutUs() {
                 >
                   6
                 </p>
-                <p className={`${cl.tasks__text__middle} text-content`}>
+                <p className={`${cl.academy__p} text-content`}>
                   {t("mission_academy_i")}
                 </p>
               </div>
@@ -377,7 +377,7 @@ function AboutUs() {
                 >
                   7
                 </p>
-                <p className={`${cl.tasks__text__middle} text-content`}>
+                <p className={`${cl.academy__p} text-content`}>
                   {t("mission_academy_j")}
                 </p>
               </div>
@@ -397,7 +397,7 @@ function AboutUs() {
                 <p className={`${cl.headline} text-content caption`}>
                   {t("about shareholder")}
                 </p>
-                <p className={`${cl.aboutTheFounder__p} text-content`}>
+                <p className={`${cl.academy__p} text-content`}>
                   {t("descShareholder")}
                 </p>
               </div>
@@ -407,7 +407,7 @@ function AboutUs() {
               <p className={`${cl.headline} text-content caption`}>
                 {t("purpose and objectives of the AML ACADEMY")}
               </p>
-              <p className={`${cl.purposeOfAcademy__text} text-content subtitle`}>
+              <p className={`${cl.academy__p} text-content subtitle`}>
                 {t("descPurpose")}
               </p>
               <p className={`${cl.subtitle} text-content`}>{t("main Task")}</p>
@@ -428,7 +428,7 @@ function AboutUs() {
                   >
                     1
                   </p>
-                  <p className={`${cl.tasks__text} text-content`}>
+                  <p className={`${cl.academy__p} text-content`}>
                     {t("firstTask")}
                   </p>
                 </div>
@@ -449,7 +449,7 @@ function AboutUs() {
                     >
                       2
                     </p>
-                    <p className={`${cl.tasks__text__small} text-content`}>
+                    <p className={`${cl.academy__p} text-content`}>
                       {t("secondTask")}
                     </p>
                   </div>
@@ -469,7 +469,7 @@ function AboutUs() {
                     >
                       3
                     </p>
-                    <p className={`${cl.tasks__text__middle} text-content`}>
+                    <p className={`${cl.academy__p} text-content`}>
                       {t("therdTask")}
                     </p>
                   </div>

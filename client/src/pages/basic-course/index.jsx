@@ -710,6 +710,18 @@ const CourseNavigation = ({
                     handleSessionClick={handleSessionClick}
                     isActive={79 === activeSessionId}
                 />
+                    <Session
+                        checked={courseModules[2]?.quiz?.quiz_max_points === 100}
+                        course_id={8}
+                        session={{
+                            id: 12,
+                            group: 'introduction',
+                            name: 'Тестирование 3',
+                            progress: 0,
+                        }}
+                        handleSessionClick={handleSessionClick}
+                        isActive={12 === activeSessionId}
+                    />
                 </Module>
                 <Module
                     name={'Государственный контроль за соблюдением законодательства Республики Казахстан о ПОД/ФТ'}

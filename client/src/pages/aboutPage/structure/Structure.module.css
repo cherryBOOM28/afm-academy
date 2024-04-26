@@ -79,9 +79,11 @@
 
 .card__text {
     margin-top: 16px;
-    color: #3A3939;
-    font-size: 16px;
+    color: #000;
+    font-size: 18px;
     font-weight: 500;
+    text-decoration: none;
+
 }
 
 .accordion {

@@ -194,7 +194,7 @@ function Subjects() {
           >
             {t("types of subjects of financial monitoring")}
           </h1>
-          <p className={`${cl.subjectsText} text-content`}
+          <p className={`${cl.headline99} text-content`}
            style={{
             color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#000" : styles.colorMode === "blue" ? "#063462" : "#000",          }}
 

@@ -208,17 +208,14 @@ function AntiLaundering() {
               ))}
             <p
               className={`${cl.text} text-content`}
-              style={{
-                color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
-              }}
+              style={{ fontSize: "18px" }}
             >
               {t("AntiLaunderingText1")}{" "}
             </p>
             <p
               className={`${cl.text} text-content`}
-              style={{
-                color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
-              }}
+              style={{ fontSize: "18px" }}
+
             >
               {t("AntiLaunderingText2")}
             </p>
@@ -298,6 +295,7 @@ function AntiLaundering() {
                       {t("firstStage")}
                     </span>
                     <br></br>
+
                     {t("descFirstStage")}
                   </p>
                 )}

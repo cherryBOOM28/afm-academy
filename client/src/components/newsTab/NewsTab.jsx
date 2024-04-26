@@ -274,6 +274,7 @@ const NewsTab = ({Width}) => {
           }}
           onClick={() => handleTabChange("videos")}
         >
+
           {t("video")}
         </button>
       </div>
