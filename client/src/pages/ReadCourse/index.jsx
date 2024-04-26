@@ -276,13 +276,13 @@ function ReadCourse() {
         }
 
         if (activeSessionId === -2) {
-            return (<LessonPage name={'Заключение'}>
+            return (<LessonPage name={isKazakh ? 'Қорытынды' : 'Заключение'}>
 
                 <Sizebox height={40} />
                 <Reveal>
                     <ImageWithText
                         color={'white'}
-                        imageText={'Дальнейших Вам профессиональных успехов и процветания!'} 
+                        imageText={isKazakh ? 'Сізге одан әрі кәсіби табыс пен өркендеу тілейміз!' : 'Дальнейших Вам профессиональных успехов и процветания!'} 
                         img={'https://corporate.waterlogic.com/fileadmin/_processed_/f/4/csm_banner-hands-shaking-3_c621f2a33f.jpg'} 
                     />
                 </Reveal>
@@ -290,7 +290,9 @@ function ReadCourse() {
                 <Sizebox height={100} />
                 <Reveal>
                     <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
-                        Завершение учебного курса
+                        {
+                            isKazakh ? 'Оқу модульдің соңы' : 'Завершение учебного курса' 
+                        }
                     </HeaderWithLine>
                 </Reveal>
 
@@ -327,17 +329,19 @@ function ReadCourse() {
                 </div>
                 <Centered>
                     <RandomParapraph>
-                        Оцените курс
+                        {
+                            isKazakh ? 'Модульді бағалаңыз' : 'Оцените курс'
+                        }
                     </RandomParapraph>
                 </Centered>
                 <Sizebox height={100} />
 
                 <Reveal>
                     <NextLesson
-                        nextLessonName={'Личный кабинет'} 
+                        nextLessonName={isKazakh ? 'Жеке кабинет' : 'Личный кабинет'} 
                         handleOnClick={() => {
                             if (stars === 0) {
-                                alert('Оцените курс');
+                                alert(isKazakh ? 'Модульді бағалаңыз' : 'Оцените курс');
                                 return;
                             }
                             navigate('/profile/sertificates')
@@ -493,6 +497,18 @@ const CourseNavigation = ({
     handleTestSessionClick
 }) => {
 
+    const location = useLocation();
+    const [isKazakh, setKazakh] = useState(false);
+
+    useEffect(() => {
+        console.log(location);
+        if (
+            (location.search.indexOf('79') !== -1 || location.pathname.indexOf('79') !== -1)
+        ) {
+            setKazakh(true);
+        }
+    }, [])
+
     const [currentModule, setCurrentModule] = useState(
         courseModules.length > 0 ? courseModules[0].module_id : -1
     );
@@ -588,7 +604,7 @@ const CourseNavigation = ({
                             course_id={course_id}
                             session={{
                                 id: -2,
-                                name: 'Заключение',
+                                name: isKazakh ? 'Қорытынды' : 'Заключение',
                             }}
                             handleSessionClick={_handleSessionClick}
                             isActive={-2 === activeSessionId}
