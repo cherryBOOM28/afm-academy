@@ -5,61 +5,135 @@ import React, { useState } from 'react';
 import './style.scss';
 
 // components
-import Sizebox from '../courseTemplates/common/Sizebox';
 import Reveal from '../Reveal';
-import HeaderWithLine from '../courseTemplates/common/HeaderWithLine';
-import Table_1 from '../courseTemplates/common/Tables/Table-1';
-import Report_Warning from '../courseTemplates/common/Warnings/Report';
-import NumberedDots from '../courseTemplates/common/NumberedDots';
-import ImageLine from '../courseTemplates/common/ImageLine';
-import DropDownTextWithTabs from '../courseTemplates/complex/DropDownTextWithTabs';
-import TextAndLink from '../courseTemplates/complex/TextAndLink';
-import NextLesson from '../courseTemplates/complex/NextLesson';
-import ImageWithText from '../courseTemplates/common/ImageWithText';
-import DropdownList from '../courseTemplates/complex/interactives/DropdownList';
-import RandomParapraph from '../courseTemplates/common/RandomParagraph';
-import DropdownList_r5 from '../courseTemplates/complex/interactives/DropdownList_r5';
-import RandomH2 from '../courseTemplates/common/RandomH2';
-import VideoLine from '../courseTemplates/common/VideoLine';
-import NotNumberedDots from '../courseTemplates/common/NotNumberedDots';
-import RandomGlossary from '../courseTemplates/common/RandomGlossary';
-import OneToFour from '../courseTemplates/complex/interactives/OneToFour';
-import TextWithTitle from '../courseTemplates/common/TextWithTitle';
-import TextWithLink from '../courseTemplates/common/TextWithLink';
-import FileDownloader from '../courseTemplates/common/FileDownloader';
-import TextWithBackground from '../courseTemplates/common/TextWithBackground';
-import ShortBiography from '../courseTemplates/complex/images/ShortBiography';
+import BoxOfThree from '../courseTemplates/common/BoxOfThree';
 import Centered from '../courseTemplates/common/Centered';
-import VideoWithTitleAndText from '../courseTemplates/complex/Video/VideoWithTitleAndText';
+import ComplexTable from '../courseTemplates/common/ComplexTable';
+import DoubleDraggableOption from '../courseTemplates/common/DoubleDraggableOption';
+import DragAndDropZone from '../courseTemplates/common/DraggableOption/DragAndDropZone';
+import FileDownloader from '../courseTemplates/common/FileDownloader';
+import HeaderWithLine from '../courseTemplates/common/HeaderWithLine';
+import ImageLine from '../courseTemplates/common/ImageLine';
+import ImageWithText from '../courseTemplates/common/ImageWithText';
+import JustTextWithP from '../courseTemplates/common/JustTextWithP';
+import LupaDragZone from '../courseTemplates/common/Lupa/LupaDragZone';
+import NotNumberedDots from '../courseTemplates/common/NotNumberedDots';
+import NumberedDots from '../courseTemplates/common/NumberedDots';
+import RandomGlossary from '../courseTemplates/common/RandomGlossary';
+import RandomH2 from '../courseTemplates/common/RandomH2';
+import RandomParapraph from '../courseTemplates/common/RandomParagraph';
+import SimpleTable from '../courseTemplates/common/SimpleTable';
+import Sizebox from '../courseTemplates/common/Sizebox';
+import Table_1 from '../courseTemplates/common/Tables/Table-1';
+import TableWithTable from '../courseTemplates/common/Tables/TableWithTable';
+import TextWithBackground from '../courseTemplates/common/TextWithBackground';
+import TextWithLink from '../courseTemplates/common/TextWithLink';
+import TextWithTitle from '../courseTemplates/common/TextWithTitle';
+import ToolTipComponent from '../courseTemplates/common/ToolTipComponents/ToolTipComponent';
+import TooltipComponent1 from '../courseTemplates/common/ToolTipComponents/ToolTipComponent1';
+import TooltipComponent2 from '../courseTemplates/common/ToolTipComponents/ToolTipComponent2';
+import ToolTipComponentWithLupa from '../courseTemplates/common/ToolTipComponents/ToolTipComponentWithLupa';
+import VideoLine from '../courseTemplates/common/VideoLine';
+import Report_Warning from '../courseTemplates/common/Warnings/Report';
+import Report_Information from '../courseTemplates/common/Warnings/Report_Information';
+import ImageAndColumns from '../courseTemplates/common_v2/ImageAndColumns';
+import Component52 from '../courseTemplates/complex/Component52';
+import CustomCarousel from '../courseTemplates/complex/CustomCarousel';
+import DataChain from '../courseTemplates/complex/DataChain';
+import DragAndDropTwoSide from '../courseTemplates/complex/DragAndDropTwoSide';
+import DropDownTextWithTabs from '../courseTemplates/complex/DropDownTextWithTabs';
+import DropdownGlossaryList from '../courseTemplates/complex/DropdownGlossaryList';
+import NextLesson from '../courseTemplates/complex/NextLesson';
+import StageDropDown from '../courseTemplates/complex/StageDropDown';
 import TabsGlossary from '../courseTemplates/complex/TabsGlossary';
 import TestPage from '../courseTemplates/complex/Test';
-import LupaDragZone from '../courseTemplates/common/Lupa/LupaDragZone';
-import DropdownGlossaryList from '../courseTemplates/complex/DropdownGlossaryList';
-import DragAndDropZone from '../courseTemplates/common/DraggableOption/DragAndDropZone';
-import DragAndDropTwoSide from '../courseTemplates/complex/DragAndDropTwoSide';
-import ComplexTable from '../courseTemplates/common/ComplexTable';
-import Report_Information from '../courseTemplates/common/Warnings/Report_Information';
-import StageDropDown from '../courseTemplates/complex/StageDropDown';
-import InteractivePhases from '../courseTemplates/complex/interactives/InteractivePhases';
-import Component52 from '../courseTemplates/complex/Component52';
-import DataChain from '../courseTemplates/complex/DataChain';
-import SimpleTable from '../courseTemplates/common/SimpleTable';
+import TextAndLink from '../courseTemplates/complex/TextAndLink';
+import VideoWithTitleAndText from '../courseTemplates/complex/Video/VideoWithTitleAndText';
+import ShortBiography from '../courseTemplates/complex/images/ShortBiography';
+import DropdownList from '../courseTemplates/complex/interactives/DropdownList';
+import DropdownList_r5 from '../courseTemplates/complex/interactives/DropdownList_r5';
 import ImageWithPoints from '../courseTemplates/complex/interactives/ImageWithPoints';
-import CustomCarousel from '../courseTemplates/complex/CustomCarousel';
-import ImageAndColumns from '../courseTemplates/common_v2/ImageAndColumns';
-import DoubleDraggableOption from '../courseTemplates/common/DoubleDraggableOption';
-import JustTextWithP from '../courseTemplates/common/JustTextWithP';
-import BoxOfThree from '../courseTemplates/common/BoxOfThree';
-import ToolTipComponent from '../courseTemplates/common/ToolTipComponents/ToolTipComponent';
-import TooltipComponent2 from '../courseTemplates/common/ToolTipComponents/ToolTipComponent2';
-import TooltipComponent1 from '../courseTemplates/common/ToolTipComponents/ToolTipComponent1';
-import ToolTipComponentWithLupa from '../courseTemplates/common/ToolTipComponents/ToolTipComponentWithLupa';
-import TableWithTable from '../courseTemplates/common/Tables/TableWithTable';
+import InteractivePhases from '../courseTemplates/complex/interactives/InteractivePhases';
+import OneToFour from '../courseTemplates/complex/interactives/OneToFour';
 
-import lectorImage from './lectorImage.png';
+import { FaStar } from 'react-icons/fa6';
+import { useNavigate } from 'react-router';
+import file2 from "../../assets/files/Закон о ПОДФТ.pdf";
+import file1 from "../../assets/files/КоАП.pdf";
+import file3 from "../../assets/files/НОР_ОД.docx";
+import file4 from "../../assets/files/НОР_ФТ.docx";
+import file6 from "../../assets/files/ПВК для МФО.pdf";
+import file10 from "../../assets/files/ПВК для ПУРЦБ.pdf";
+import file5 from "../../assets/files/ПВК для игорного бизнеса.pdf";
+import file7 from "../../assets/files/ПВК для не финансового сектора.pdf";
+import file8 from "../../assets/files/ПВК для нотариусов.pdf";
+import file9 from "../../assets/files/ПВК для оператора почты.pdf";
+import file11 from "../../assets/files/ПВК для страховых орг.pdf";
+import file12 from "../../assets/files/ПВК для товарных бирж.pdf";
+import file14 from "../../assets/files/ПП_915_от_20122021.pdf";
+import file13 from "../../assets/files/По подготовке и обучению.docx";
+import file15 from "../../assets/files/Правила предоставления информации и КППО.pdf";
+import file16 from "../../assets/files/Правила проведения оценки рисков.pdf";
+import file19 from "../../assets/files/Рекомендации ФАТФ.pdf";
+import file17 from "../../assets/files/СТАНДАРТЫ_ФАТФ.pdf";
+import file18 from "../../assets/files/УК РК.pdf";
+import image_1111 from '../../assets/images/88888.png';
+import imgLupa from '../../assets/images/Lupa.jpg';
+import MoneyImage from '../../assets/images/Money.jpg';
+import courseaftor from '../../assets/images/courseAftor.png';
+import dangerImage from '../../assets/images/danger.jpg';
+import image_82 from '../../assets/images/image_82.jpg';
+import image83 from '../../assets/images/image_83.png';
+import image84 from '../../assets/images/image_84.jpg';
+import image85 from '../../assets/images/image_85.jpg';
+import image86 from '../../assets/images/image_86.jpg';
+import image87 from '../../assets/images/image_87.jpg';
+import image88 from '../../assets/images/image_88.jpg';
+import image89 from '../../assets/images/image_89.webp';
+import image90 from '../../assets/images/image_90.jpg';
+import image91 from '../../assets/images/image_91.jpg';
+import image92 from '../../assets/images/image_92.jpg';
+import image93 from '../../assets/images/image_93.jpg';
+import image94 from '../../assets/images/image_94.jpeg';
+import image95 from '../../assets/images/image_95.jpeg';
+import image96 from '../../assets/images/image_96.jpg';
+import image97 from '../../assets/images/image_97.jpg';
+import image98 from '../../assets/images/image_98.jpg';
+import image99 from '../../assets/images/image_99.png';
+import stopSign from '../../assets/images/stopSign.jpg';
+import strelka from '../../assets/images/strelka.jpg';
+import timeImage from '../../assets/images/time.jpg';
+import pdf1 from '../../assets/video/НОР ОД откр версия РУС (1).pdf';
+import pdf2 from '../../assets/video/НОР ФТ публич версия рус.pdf';
+import NumberedDotsAndImage from '../courseTemplates/common/NumberedDotsAndImage';
+import QuizWithCardComponent from '../courseTemplates/common/QuizWithCardComponent';
+import TableComponent from '../courseTemplates/common/Tables/TableComponent';
+import TableWithData from '../courseTemplates/common/Tables/TableWithData';
+import TableWithDataWithoutFormatting from '../courseTemplates/common/Tables/TableWithDataWithoutFormatting';
+import TextWithBold from '../courseTemplates/common/TextWithBold';
+import FancyList from "../courseTemplates/common_v2/FancyList";
+import Image from '../courseTemplates/common_v2/Image';
+import PyramidList from '../courseTemplates/common_v2/PyramidList';
+import TwoColumnsDivider from '../courseTemplates/common_v2/TwoColumnsDivider';
+import image71 from './../../assets/images/71image.png';
+import image80 from './../../assets/images/81.png';
+import image82 from './../../assets/images/85.png';
+import image63 from './../../assets/images/BLACKLISTTTT.png';
+import image3 from './../../assets/images/Capone.png';
+import carousel_11 from './../../assets/images/Carousel_11.png';
+import carousel_110 from './../../assets/images/Carousel_110.png';
+import carousel_111 from './../../assets/images/Carousel_111.png';
+import carousel_12 from './../../assets/images/Carousel_12.png';
+import carousel_13 from './../../assets/images/Carousel_13.png';
+import carousel_14 from './../../assets/images/Carousel_14.png';
+import carousel_15 from './../../assets/images/Carousel_15.png';
+import carousel_16 from './../../assets/images/Carousel_16.png';
+import carousel_17 from './../../assets/images/Carousel_17.png';
+import carousel_18 from './../../assets/images/Carousel_18.png';
+import carousel_19 from './../../assets/images/Carousel_19.png';
+import image59 from './../../assets/images/FATF.jpg';
 import image1 from './../../assets/images/Lesson_2_img_1.png';
 import image2 from './../../assets/images/Lesson_3_img_1.png';
-import image3 from './../../assets/images/Capone.png';
 import image4 from './../../assets/images/Lesson_3_img_2.png';
 import image51 from './../../assets/images/Lesson_5_img_1.png';
 import image52 from './../../assets/images/Lesson_5_img_2.png';
@@ -69,104 +143,30 @@ import image55 from './../../assets/images/Lesson_5_img_5.png';
 import image56 from './../../assets/images/Lesson_5_img_6.png';
 import image57 from './../../assets/images/Lesson_5_img_7.png';
 import image58 from './../../assets/images/Lesson_5_img_8.png';
-import image59 from './../../assets/images/FATF.jpg';
-import theendbaza from './../../assets/images/theendBaza.png';
-import image60 from './../../assets/images/oonn.png';
-import image61 from './../../assets/images/fatff.png';
-import image62 from './../../assets/images/eagg.png';
-import image63 from './../../assets/images/BLACKLISTTTT.png';
-import image65 from './../../assets/images/terer.jpg';
-import image66 from './../../assets/images/earth.jpg';
-import image67 from './../../assets/images/lawyer.png';
-import image69 from './../../assets/images/blackimage.png';
-import image70 from './../../assets/images/afmlogo.png';
-import image71 from './../../assets/images/71image.png';
-import image74 from './../../assets/images/mvs.png';
-import image75 from './../../assets/images/troika2.png';
-import image76 from './../../assets/images/dola.png';
-import image77 from './../../assets/images/terrari.png';
-import image78 from './../../assets/images/websfm.png';
-import image79 from './../../assets/images/erorrr.png';
-import image3m1 from './../../assets/images/module-3-img-1.png';
-import carousel_11 from './../../assets/images/Carousel_11.png';
-import carousel_12 from './../../assets/images/Carousel_12.png';
-import image80 from './../../assets/images/81.png'
-import image82 from './../../assets/images/85.png'
-import module_5_2_img from './../../assets/images/module_5_2.png'
-import module_5_21_img from './../../assets/images/module_5_21.png'
-import module_5_22_img from './../../assets/images/module_5_22.png'
-import module_7_12_img from './../../assets/images/module_7_12.png'
-import module_7_13_img from './../../assets/images/module_7_13.png'
-import carousel_13 from './../../assets/images/Carousel_13.png';
-import carousel_14 from './../../assets/images/Carousel_14.png';
-import carousel_15 from './../../assets/images/Carousel_15.png';
-import carousel_16 from './../../assets/images/Carousel_16.png';
-import carousel_17 from './../../assets/images/Carousel_17.png';
-import carousel_18 from './../../assets/images/Carousel_18.png';
-import carousel_19 from './../../assets/images/Carousel_19.png';
 import MessageImage from './../../assets/images/Message.jpg';
-import image99 from '../../assets/images/image_99.png';
-import image98 from '../../assets/images/image_98.jpg';
-import image97 from '../../assets/images/image_97.jpg';
-import image96 from '../../assets/images/image_96.jpg';
-import image95 from '../../assets/images/image_95.jpeg';
-import image94 from '../../assets/images/image_94.jpeg';
-import image93 from '../../assets/images/image_93.jpg';
-import image92 from '../../assets/images/image_92.jpg';
-import image91 from '../../assets/images/image_91.jpg';
-import image90 from '../../assets/images/image_90.jpg';
-import image89 from '../../assets/images/image_89.webp';
-import image88 from '../../assets/images/image_88.jpg';
-import image87 from '../../assets/images/image_87.jpg';
-import image86 from '../../assets/images/image_86.jpg';
-import image85 from '../../assets/images/image_85.jpg';
-import image84 from '../../assets/images/image_84.jpg';
-import image83 from '../../assets/images/image_83.png';
-import image_82 from '../../assets/images/image_82.jpg';
-import image_1111 from '../../assets/images/88888.png';
-import courseaftor from '../../assets/images/courseAftor.png';
-import pdf1 from '../../assets/video/НОР ОД откр версия РУС (1).pdf'
-import pdf2 from '../../assets/video/НОР ФТ публич версия рус.pdf'
-import stopSign from '../../assets/images/stopSign.jpg'
-import imgLupa from '../../assets/images/Lupa.jpg';
-import carousel_110 from './../../assets/images/Carousel_110.png';
-import carousel_111 from './../../assets/images/Carousel_111.png';
+import image70 from './../../assets/images/afmlogo.png';
+import image69 from './../../assets/images/blackimage.png';
 import imageAndColumns_1 from './../../assets/images/columnsImage_1.png';
-import TableComponent from '../courseTemplates/common/Tables/TableComponent';
-import TableWithData from '../courseTemplates/common/Tables/TableWithData';
-import TableWithDataWithoutFormatting from '../courseTemplates/common/Tables/TableWithDataWithoutFormatting';
-import strelka from '../../assets/images/strelka.jpg';
-import timeImage from '../../assets/images/time.jpg';
-import MoneyImage from '../../assets/images/Money.jpg';
-import dangerImage from '../../assets/images/danger.jpg';
-import QuizWithCardComponent from '../courseTemplates/common/QuizWithCardComponent';
-import NumberedDotsAndImage from '../courseTemplates/common/NumberedDotsAndImage';
-import TwoColumnsDivider from '../courseTemplates/common_v2/TwoColumnsDivider';
-import TextWithBold from '../courseTemplates/common/TextWithBold';
-import Image from '../courseTemplates/common_v2/Image';
-import PyramidList from '../courseTemplates/common_v2/PyramidList';
-import FancyList from "../courseTemplates/common_v2/FancyList";
-import file1 from "../../assets/files/КоАП.pdf"
-import file2 from "../../assets/files/Закон о ПОДФТ.pdf"
-import file3 from "../../assets/files/НОР_ОД.docx"
-import file4 from "../../assets/files/НОР_ФТ.docx"
-import file5 from "../../assets/files/ПВК для игорного бизнеса.pdf"
-import file6 from "../../assets/files/ПВК для МФО.pdf"
-import file7 from "../../assets/files/ПВК для не финансового сектора.pdf"
-import file8 from "../../assets/files/ПВК для нотариусов.pdf"
-import file9 from "../../assets/files/ПВК для оператора почты.pdf"
-import file10 from "../../assets/files/ПВК для ПУРЦБ.pdf"
-import file11 from "../../assets/files/ПВК для страховых орг.pdf"
-import file12 from "../../assets/files/ПВК для товарных бирж.pdf"
-import file13 from "../../assets/files/По подготовке и обучению.docx"
-import file14 from "../../assets/files/ПП_915_от_20122021.pdf"
-import file15 from "../../assets/files/Правила предоставления информации и КППО.pdf"
-import file16 from "../../assets/files/Правила проведения оценки рисков.pdf"
-import file17 from "../../assets/files/СТАНДАРТЫ_ФАТФ.pdf"
-import file18 from "../../assets/files/УК РК.pdf"
-import file19 from "../../assets/files/Рекомендации ФАТФ.pdf"
-import { FaStar } from 'react-icons/fa6';
-import { useNavigate } from 'react-router';
+import image76 from './../../assets/images/dola.png';
+import image62 from './../../assets/images/eagg.png';
+import image66 from './../../assets/images/earth.jpg';
+import image79 from './../../assets/images/erorrr.png';
+import image61 from './../../assets/images/fatff.png';
+import image67 from './../../assets/images/lawyer.png';
+import image3m1 from './../../assets/images/module-3-img-1.png';
+import module_5_2_img from './../../assets/images/module_5_2.png';
+import module_5_21_img from './../../assets/images/module_5_21.png';
+import module_5_22_img from './../../assets/images/module_5_22.png';
+import module_7_12_img from './../../assets/images/module_7_12.png';
+import module_7_13_img from './../../assets/images/module_7_13.png';
+import image74 from './../../assets/images/mvs.png';
+import image60 from './../../assets/images/oonn.png';
+import image65 from './../../assets/images/terer.jpg';
+import image77 from './../../assets/images/terrari.png';
+import theendbaza from './../../assets/images/theendBaza.png';
+import image75 from './../../assets/images/troika2.png';
+import image78 from './../../assets/images/websfm.png';
+import lectorImage from './lectorImage.png';
 
 
 
@@ -8684,30 +8684,6 @@ function GetLesson({
                         </>
                     </Report_Information>
                 </Reveal>
-                {/*<Reveal>*/}
-                {/*    <TextWithTitle title={"В настоящее время процедура прохождения тестирования проходит следующим образом:"}*/}
-                {/*    />*/}
-
-                {/*    <Sizebox height={40} />*/}
-                {/*    <NumberedDots*/}
-                {/*        dotsColor={'#CADEFC'}*/}
-                {/*        list={[*/}
-                {/*            'Войти на портал Агентства websfm.kz;',*/}
-                {/*            'Выбрать раздел «Обучение», затем вкладку «Тестирование»;',*/}
-                {/*            'Заполнить Заявку для прохождения тестирования на знание законодательства и оценки личных качеств;',*/}
-                {/*        ]}*/}
-                {/*    />*/}
-                {/*    <Sizebox height={40}/>*/}
-                {/*</Reveal>*/}
-                {/*<Reveal>*/}
-                {/*    <Sizebox height={40}/>*/}
-                {/*    <TextWithTitle*/}
-                {/*        title={"При этом в Заявке тестируемый указывает свой ИИН и БИН организации (при наличии) и выбирает зал тестирования Центра, который имеется во всех регионах Казахстана, дату, а также время прохождения тестирования.\n"}*/}
-                {/*        text={[*/}
-                {/*            "Сами вопросы разрабатываются АФМ, распределение по ним происходит на основании вида СФМ, указанного в Заявке, то есть 80% – общие вопросы/20% – профильные вопросы по виду СФМ.",*/}
-                {/*        ]}*/}
-                {/*    />*/}
-                {/*</Reveal>*/}
                 <Reveal>
                     <Sizebox height={40}/>
                     <Report_Information>

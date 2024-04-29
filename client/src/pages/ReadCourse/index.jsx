@@ -1,30 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { FaSpinner } from 'react-icons/fa';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 // import ContentLoader from "react-content-loader"
 
 import './style.scss';
 
 import axios from 'axios';
-import base_url from './../../settings/base_url';
 import { FaStar } from "react-icons/fa";
+import base_url from './../../settings/base_url';
 
-/* 
-   course Templates 
-*/
-import Sizebox from './../../components/courseTemplates/common/Sizebox';
 import Reveal from './../../components/Reveal';
 import HeaderWithLine from './../../components/courseTemplates/common/HeaderWithLine';
+import Sizebox from './../../components/courseTemplates/common/Sizebox';
 import NextLesson from './../../components/courseTemplates/complex/NextLesson';
 import CourseHeader from './../../components/courseTemplates/course-header';
 import { Module, Session, TestSession } from './../../components/sessions/Sessions';
 
-import lectorImage from './lectorImage.png';
-import Centered from './../../components/courseTemplates/common/Centered';
-import RandomParapraph from './../../components/courseTemplates/common/RandomParagraph';
-import ImageWithText from './../../components/courseTemplates/common/ImageWithText';
-import TestPage from '../../components/courseTemplates/complex/Test';
 import ModalWindow from '../../components/ModalWindow/ModalWindow';
+import TestPage from '../../components/courseTemplates/complex/Test';
+import Centered from './../../components/courseTemplates/common/Centered';
+import ImageWithText from './../../components/courseTemplates/common/ImageWithText';
+import RandomParapraph from './../../components/courseTemplates/common/RandomParagraph';
+import lectorImage from './lectorImage.png';
 // import componentMap from '../adminCourse/tabConstructor/ComponentMap';
 import componentMap from '../AdminPage_v2/constructor/ComponentMap';
 

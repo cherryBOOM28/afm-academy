@@ -1,49 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, Children } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
-import { useMotionValueEvent, useScroll } from 'framer-motion';
-
-import { FaStar } from "react-icons/fa";
 
 
-import './style.scss'
-import HeaderWithLine from '../../components/courseTemplates/common/HeaderWithLine';
-import { BiSolidObjectsHorizontalRight } from 'react-icons/bi';
-import { MdClose } from "react-icons/md";
 
-import Table_1 from '../../components/courseTemplates/common/Tables/Table-1';
-import Report_Warning from '../../components/courseTemplates/common/Warnings/Report';
-import Sizebox from '../../components/courseTemplates/common/Sizebox';
-import NumberedDots from '../../components/courseTemplates/common/NumberedDots';
-import ImageLine from '../../components/courseTemplates/common/ImageLine';
-import DropDownTextWithTabs from '../../components/courseTemplates/complex/DropDownTextWithTabs';
-import TextAndLink from '../../components/courseTemplates/complex/TextAndLink';
-import ImageWithText from '../../components/courseTemplates/common/ImageWithText';
-import NotNumberedDots from '../../components/courseTemplates/common/NotNumberedDots';
-import TextWithTitle from './../../components/courseTemplates/common/TextWithTitle';
+import './style.scss';
 
-import NextLesson from '../../components/courseTemplates/complex/NextLesson';
-import { Module, Session } from '../../components/sessions/Sessions';
-import RandomGlossary from '../../components/courseTemplates/common/RandomGlossary';
-import RandomParapraph from '../../components/courseTemplates/common/RandomParagraph';
-import FileDownloader from '../../components/courseTemplates/common/FileDownloader';
-import TextWithBackground from '../../components/courseTemplates/common/TextWithBackground';
-import ShortBiography from '../../components/courseTemplates/complex/images/ShortBiography';
-import Centered from '../../components/courseTemplates/common/Centered';
-import TabsGlossary from '../../components/courseTemplates/complex/TabsGlossary';
-import CourseHeader from '../../components/courseTemplates/course-header';
-import Reveal from '../../components/Reveal';
-import DropdownList_r5 from '../../components/courseTemplates/complex/interactives/DropdownList_r5';
-import DropdownList from '../../components/courseTemplates/complex/interactives/DropdownList';
-import VideoLine from '../../components/courseTemplates/common/VideoLine';
-import OneToFour from '../../components/courseTemplates/complex/interactives/OneToFour';
-import VideoWithTitleAndText from '../../components/courseTemplates/complex/Video/VideoWithTitleAndText';
-import RandomH2 from '../../components/courseTemplates/common/RandomH2';
+
 import axios from 'axios';
-import base_url from '../../settings/base_url';
-import TestPage from '../../components/courseTemplates/complex/Test';
 import GetLesson from '../../components/GetLesson';
+import CourseHeader from '../../components/courseTemplates/course-header';
+import { Module, Session } from '../../components/sessions/Sessions';
+import base_url from '../../settings/base_url';
 import ModalWindow from './../../components/ModalWindow/ModalWindow';
 
 
@@ -835,6 +804,16 @@ const CourseNavigation = ({
                     }}
                     handleSessionClick={handleSessionClick}
                     isActive={999 === activeSessionId}
+                />
+                <Session
+                     course_id={112}
+                     session={{
+                         id: 111,
+                         name: 'Заключительная часть',
+                         progress: 0,
+                     }}
+                     handleSessionClick={handleSessionClick}
+                     isActive={111 === activeSessionId}
                 />
                 {
                     courseProgress > 99.9 

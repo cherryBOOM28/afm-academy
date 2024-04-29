@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from "react";
 import cl from "./Home.module.css";
 
-import accIcon from "../../assets/icons/pacc.svg";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import bookIcon from "../../assets/icons/book.svg";
-import realtionIcon from "../../assets/icons/relation.svg";
 import laptopIcon from "../../assets/icons/laptop.svg";
-import backgroundVideoLight from "../../assets/video/bgvideo.mov";
+import accIcon from "../../assets/icons/pacc.svg";
+import realtionIcon from "../../assets/icons/relation.svg";
+import backgroundVideoLight from "../../assets/video/bgvideo.mp4";
 import backgroundVideoDark from "../../assets/video/bgvideoDark.mov";
+import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
+import NewsTab from "../../components/newsTab/NewsTab";
 import VideoPlayer from "../../components/player/VideoPlayer";
 import Tabs from "../../components/tab/Tabs";
-import NewsTab from "../../components/newsTab/NewsTab";
-import Footer from "../../components/footer/Footer";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 
 import basicCourse from "../../assets/icons/mdi_world-wide-web.svg";
-import proCourse from "../../assets/icons/subway_book.svg";
 import deepCourse from "../../assets/icons/simple-icons_progress.svg";
-import VisualModal from "../../components/VisualModal/VisualModal";
+import proCourse from "../../assets/icons/subway_book.svg";
 import { useStyle } from "../../components/VisualModal/StyleContext";
+import VisualModal from "../../components/VisualModal/VisualModal";
 
 import { useTranslation } from "react-i18next";
 import LearningFormatTabs from "../../components/LearningFormatTab/LearningFormatTabs";
