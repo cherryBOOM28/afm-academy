@@ -240,35 +240,35 @@ function Fatf() {
                   color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
                 }}
               >
-                {t("descFatf4")}
+              <p style={{ fontSize: "18px" }}> {t("descFatf4")}</p>
               </li>
               <li className="text-content"
                 style={{
                   color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
                 }}
               >
-                {t("descFatf5")}
+                <p style={{ fontSize: "18px" }}> {t("descFatf5")}</p>
               </li>
               <li className="text-content"
                 style={{
                   color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
                 }}
               >
-                {t("descFatf6")}
+                <p style={{ fontSize: "18px" }}> {t("descFatf6")}</p>
               </li>
               <li className="text-content"
                 style={{
                   color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
                 }}
               >
-                {t("descFatf7")}
+                <p style={{ fontSize: "18px" }}> {t("descFatf7")}</p>
               </li> 
               <li className="text-content"
                 style={{
                   color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
                 }}
               >
-                {t("descFatf8")}
+                <p style={{ fontSize: "18px" }}> {t("descFatf8")}</p>
               </li>
             </ul>
           </div>
@@ -294,7 +294,7 @@ function Fatf() {
                 color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000",
               }}
             >
-              {t("linkFatf")}
+              <p style={{ fontSize: "18px" }}> {t("linkFatf")}</p>
             </a>
           </div>
         </div>

@@ -204,11 +204,11 @@ function BasicCourse() {
                                     jwtToken != null
                                     ? (
                                         <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
-                                            {data != null && [41, 47].includes(data.course_id) ? t("buy a module") : t("buy a course")}
+                                            {data != null && [41, 47,79].includes(data.course_id) ? t("buy a module") : t("buy a course")}
                                         </Link>
                                     ) : (
                                         <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
-                                            {data != null && [41, 47].includes(data.course_id) ? t("buy a module") : t("buy a course")}
+                                            {data != null && [41, 47, 79].includes(data.course_id) ? t("buy a module") : t("buy a course")}
                                         </Link>
                                     )
                                 }
@@ -221,30 +221,30 @@ function BasicCourse() {
 
                     <Sizebox height={20}/>
                     <div className="collapsable-blocks">
-                        <Collapsable title={`${data != null && [41, 47].includes(data.course_id) ? t("what is this module about?") : t("what is this course about?")}`}>
+                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("what is this module about?") : t("what is this course about?")}`}>
                             <p>{data ? data.what_course_represents : "Загрузка..."}</p>
                         </Collapsable>
-                        <Collapsable title={`${data != null && [41, 47].includes(data.course_id) ? t("who is the module intended for?") : t("who is the course intended for?")}`}>
+                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("who is the module intended for?") : t("who is the course intended for?")}`}>
                             <p>
                                 {data ? data.who_course_intended_for : "Загрузка..."}
                             </p>
                         </Collapsable>
-                        <Collapsable title={`${data != null && [41, 47].includes(data.course_id) ? t("module duration") : t("course duration")}`}>
+                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("module duration") : t("course duration")}`}>
                             <p>
                                 {data ? data.what_is_duration : "Загрузка..."}
                             </p>
                         </Collapsable>
-                        <Collapsable title={`${data != null && [41, 47].includes(data.course_id) ? t("module fee") : t("course fee")}`}>
+                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("module fee") : t("course fee")}`}>
                             <p>
                                 {data ? data.course_price : ''} тенге
                             </p>
                         </Collapsable>
-                        <Collapsable title={`${data != null && [41, 47].includes(data.course_id) ? t("accessibility of the module") : t("accessibility of the course")}`}>
+                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("accessibility of the module") : t("accessibility of the course")}`}>
                             <p>
                                 {data ? data.what_is_availability : "Загрузка..."}
                             </p>
                         </Collapsable>
-                        <Collapsable title={`${data != null && [41, 47].includes(data.course_id) ? t("module program") : t("course program")}`}>
+                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("module program") : t("course program")}`}>
                             {data ? (
                                 <div dangerouslySetInnerHTML={{ __html: data.what_is_agenda_of_course }} />
                             ) : (
@@ -270,11 +270,11 @@ function BasicCourse() {
                                 jwtToken != null
                                 ? (
                                     <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
-                                        {data != null && [41, 47].includes(data.course_id) ? t("buy a module") : t("buy a course")}
+                                        {data != null && [41, 47, 79].includes(data.course_id) ? t("buy a module") : t("buy a course")}
                                     </Link>
                                 ) : (
                                     <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
-                                        {data != null && [41, 47].includes(data.course_id) ? t("buy a module") : t("buy a course")}
+                                        {data != null && [41, 47, 79].includes(data.course_id) ? t("buy a module") : t("buy a course")}
                                     </Link>
                                 )
                             }
@@ -287,11 +287,11 @@ function BasicCourse() {
                         t("providing access to the personal account"),
                         // 'Добавление в закрытый чат с лектором',
                         t("training"),
-                        t("issuance of certificates")
-                    ]}/>
+                        data != null && [41, 47, 79].includes(data.course_id) ? t("test") : t("issuance of certificates")
+                        ]}/>
 
                             <h2 className='section-header'>{ t("lectors")}</h2>
-                    <Lectors 
+                    <Lectors
                         lectors={[
                             { img: lector1, name: 'Махметов Муратбек', text: t("makhmetov")},
                             { img: lector2, name: 'Махашева Асем', text: t("makhmetov")},
@@ -301,7 +301,7 @@ function BasicCourse() {
                         ]}
                     />
 
-                    {!isLoading 
+                    {!isLoading
                         ? (
                             <>
                                 <h2 className='section-header'>Отзывы</h2>
@@ -329,11 +329,11 @@ function BasicCourse() {
                                 jwtToken != null
                                 ? (
                                     <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
-                                        {data != null && [41, 47].includes(data.course_id) ? t("buy a module") : t("buy a course")}
+                                        {data != null && [41, 47, 79].includes(data.course_id) ? t("buy a module") : t("buy a course")}
                                     </Link>
                                 ) : (
                                     <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
-                                        {data != null && [41, 47].includes(data.course_id) ? t("buy a module") : t("buy a course")}
+                                        {data != null && [41, 47, 79].includes(data.course_id) ? t("buy a module") : t("buy a course")}
                                     </Link>
                                 )
                             }
