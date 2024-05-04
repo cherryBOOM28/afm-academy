@@ -201,70 +201,98 @@ function BasicCourse() {
                         
                             <div>
                                 {
-                                    jwtToken != null
-                                    ? (
-                                        <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
-                                            {data != null && [41, 47,79].includes(data.course_id) ? t("buy a module") : t("buy a course")}
-                                        </Link>
-                                    ) : (
+                                    jwtToken !== null
+                                        ? (
+                                            data !== null && [41, 47, 79].includes(data.course_id)
+                                                ? (
+                                                    <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
+                                                        {t("buy a module")}
+                                                    </Link>
+                                                )
+                                                : (
+                                                    data !== null && data.course_id === 86
+                                                        ? (
+                                                            <Link to={`/courses/86/read`} style={{ color: 'white', textDecoration: 'none' }}>
+                                                                Пройти урок
+                                                            </Link>
+                                                        ): <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
+                                                            {t("buy a course")}
+                                                        </Link>
+                                                )
+                                        )
+                                        : (
+                                            data != null && data.course_id === 86
+                                        ? (
+
+                                                <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
+                                                    Пройти урок
+                                                </Link>
+                                        ) :
+                                    (
                                         <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
-                                            {data != null && [41, 47, 79].includes(data.course_id) ? t("buy a module") : t("buy a course")}
+                                            {t("buy a course")}
                                         </Link>
-                                    )
+                            ))
                                 }
                             </div>
                             <AlertDialog/>
-                    
                         </div>
                     
                     </div>
 
                     <Sizebox height={20}/>
                     <div className="collapsable-blocks">
-                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("what is this module about?") : t("what is this course about?")}`}>
+                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("what is this module about?") : data.course_id === 86 ? t("what is this lesson about?"): t("what is this course about?")}`}>
                             <p>{data ? data.what_course_represents : "Загрузка..."}</p>
                         </Collapsable>
-                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("who is the module intended for?") : t("who is the course intended for?")}`}>
+                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("who is the module intended for?") : data.course_id === 86 ? t("who is the lesson intended for?") : t("who is the course intended for?")}`}>
                             <p>
                                 {data ? data.who_course_intended_for : "Загрузка..."}
                             </p>
                         </Collapsable>
-                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("module duration") : t("course duration")}`}>
+                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("module duration"): data.course_id === 86 ? t("lesson duration") : t("course duration")}`}>
                             <p>
                                 {data ? data.what_is_duration : "Загрузка..."}
                             </p>
                         </Collapsable>
-                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("module fee") : t("course fee")}`}>
+                        {data != null && data.course_id !==  86 ?
+                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("module fee"): data.course_id === 86 ? t("lesson fee") : t("course fee")}`}>
                             <p>
                                 {data ? data.course_price : ''} тенге
                             </p>
                         </Collapsable>
-                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("accessibility of the module") : t("accessibility of the course")}`}>
+                        : ''}
+                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("accessibility of the module") : data.course_id === 86 ? t("accessibility of the lesson") : t("accessibility of the course")}`}>
                             <p>
                                 {data ? data.what_is_availability : "Загрузка..."}
                             </p>
                         </Collapsable>
-                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("module program") : t("course program")}`}>
+                        {data.course_id !== 86 ?
+                        <Collapsable title={`${data != null && [41, 47, 79].includes(data.course_id) ? t("module program")  : t("course program")}`}>
                             {data ? (
                                 <div dangerouslySetInnerHTML={{ __html: data.what_is_agenda_of_course }} />
                             ) : (
                                 "Загрузка..."
                             )}
                         </Collapsable>
+                            :
+                            ''
+                        }
                         <Collapsable title={t("What do you get?")}>
                             <p>
                                 {data ? data.what_you_will_get : "Загрузка..."}
                             </p>
                         </Collapsable>
                     </div>
-
+                    {data != null && data.course_id !== 86 ?
+                        <div>
                             <h2 className='section-header'>{ t("learning process")}</h2>
                     <RoadList items={[
                         <div>  <div className='blue-btn1'>
                         {/* <div onClick={() => setShowModal(true)}>
                             Подать заявку
                         </div> */}
-                    
+
                         <div>
                             {
                                 jwtToken != null
@@ -279,16 +307,19 @@ function BasicCourse() {
                                 )
                             }
                         </div>
-                
+
                     </div>
-                
+
                 </div>,
                         t("payment"),
                         t("providing access to the personal account"),
                         // 'Добавление в закрытый чат с лектором',
                         t("training"),
                         data != null && [41, 47, 79].includes(data.course_id) ? t("test") : t("issuance of certificates")
-                        ]}/>
+                        ]}/> </div>
+                        :
+                        ""
+                    }
 
                             <h2 className='section-header'>{ t("lectors")}</h2>
                     <Lectors
@@ -326,16 +357,38 @@ function BasicCourse() {
                     
                         <div>
                             {
-                                jwtToken != null
-                                ? (
-                                    <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
-                                        {data != null && [41, 47, 79].includes(data.course_id) ? t("buy a module") : t("buy a course")}
-                                    </Link>
-                                ) : (
-                                    <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
-                                        {data != null && [41, 47, 79].includes(data.course_id) ? t("buy a module") : t("buy a course")}
-                                    </Link>
-                                )
+                                jwtToken !== null
+                                    ? (
+                                        data !== null && [41, 47, 79].includes(data.course_id)
+                                            ? (
+                                                <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
+                                                    {t("buy a module")}
+                                                </Link>
+                                            )
+                                            : (
+                                                data !== null && data.course_id === 86
+                                                    ? (
+                                                        <Link to={`/courses/86/read`} style={{ color: 'white', textDecoration: 'none' }}>
+                                                            Пройти урок
+                                                        </Link>
+                                                    ): <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
+                                                        {t("buy a course")}
+                                                    </Link>
+                                            )
+                                    )
+                                    : (
+                                        data != null && data.course_id === 86
+                                            ? (
+
+                                                <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
+                                                    Пройти модуль
+                                                </Link>
+                                            ) :
+                                            (
+                                                <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
+                                                    {t("buy a course")}
+                                                </Link>
+                                            ))
                             }
                         </div>
                 
