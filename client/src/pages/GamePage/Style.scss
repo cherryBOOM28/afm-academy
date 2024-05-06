@@ -44,6 +44,24 @@
                 }
                 .WelcomeRightPartBottom{
                     margin-top: 50px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    .WelcomeRightPartBottom1{
+                        background-color: #5C6687;
+                        border-radius: 15px;
+                        display: flex;
+                        width: 490px;
+                        align-items: center;
+                        margin-bottom: 20px;
+                    }
+                    .WelcomeRightPartBottom2{
+                        background-color: #eceef2 ;
+                        border-radius: 15px;
+                        display: flex;
+                        width: 490px;
+                        align-items: center;
+                    }
                 }
 
             }

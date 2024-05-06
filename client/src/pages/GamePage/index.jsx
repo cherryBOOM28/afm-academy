@@ -3,6 +3,8 @@ import NavbarGame from './NavbarGame';
 import './Style.scss';
 import WelcomeImg from './assets/png/WelcomeIMG.png';
 import WelcomeImg2 from './assets/png/WelcomeIMG2.png';
+import WelcomeImg3 from './assets/png/WelcomeIMG3.png';
+import WelcomeImg4 from './assets/png/WelcomeIMG4.png';
 
 
 function GamePage() {
@@ -32,7 +34,15 @@ function GamePage() {
                 <p style={{color:"#4D70CC", padding:"20px", textAlign:'left'}}>Удобный формат обучения и интерактивная среда</p>
               </div>
             </div>
-          <div className='WelcomeRightPartBottom'>
+            <div className='WelcomeRightPartBottom'>
+              <div className='WelcomeRightPartBottom1'>
+              <img src={WelcomeImg3}  style={{width:"auto", height:"130px", padding:"5px", paddingTop:"5px"}} alt="WelcomeImg" />
+                <p style={{color:"white", padding:"20px", textAlign:'left'}}>Тесное взаимодействие с АФМ для получения обратной связи</p>
+              </div>
+              <div className='WelcomeRightPartBottom2'>
+              <img src={WelcomeImg4}  style={{width:"auto", height:"130px", padding:"5px", paddingTop:"5px"}} alt="WelcomeImg" />
+                <p style={{color:"#1A2751", padding:"20px", textAlign:'left'}}>Разные уровни обучения и практические задания</p>
+              </div>
           </div>
         </div>
         </div>
