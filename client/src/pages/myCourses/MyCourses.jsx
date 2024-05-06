@@ -1,27 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import DefaultHeader from "../../components/defaultHeader/DefaultHeader";
 import Footer from "../../components/footer/Footer";
 
 import "./myCourses.scss";
 
-import course1 from "./../../assets/images/courses-1.png";
-import course2 from "./../../assets/images/courses-2.png";
-import course3 from "./../../assets/images/courses-3.png";
-import course4 from "./../../assets/images/courses-4.png";
-
-import bookIcon from "./../../assets/icons/book.svg";
 import axios from "axios";
 import base_url from "../../settings/base_url";
 
+import { useTranslation } from "react-i18next";
 import { AiFillStar } from "react-icons/ai";
 import { MdOndemandVideo } from "react-icons/md";
-import Header from "../../components/header/Header";
-import base64Course from "../courseCatalog/course-default";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
-import { useTranslation } from "react-i18next";
+import Header from "../../components/header/Header";
+import base64Course from "../courseCatalog/course-default";
 
 function MyCourses() {
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
@@ -122,10 +114,6 @@ function MyCourses() {
       containerElement.classList.add(colorMode + "-mode");
     }
   };
-
-  const handleTabClick = (tabIndex) => {
-    setActiveTab(tabIndex);
-  };
   const handleOpenVisualModal = () => {
     console.log("OPEN");
     setOpenVisualModal((prev) => !prev);
@@ -141,15 +129,6 @@ function MyCourses() {
 
   const handleShowImages = () => {
     setImagesHidden(false);
-  };
-
-  const handleIntervalChange = (interval) => {
-    console.log("Interval changed");
-    setLetterInterval(interval);
-  };
-
-  const getShowImage = () => {
-    return imagesHidden;
   };
 
   const getLetterSpacing = (interval) => {
@@ -197,7 +176,7 @@ function MyCourses() {
         //     response = await axios.get(`${base_url}${url1}`);
         // }
 
-        if (response.status == 200) {
+        if (response.status === 200) {
           // console.log(response.data)
           setCourses([
             ...response.data,
@@ -335,7 +314,7 @@ function MyCourses() {
           styles={styles}
         />
         <Header
-          dark={styles.colorMode == "dark" ? false : true}
+          dark={styles.colorMode === "dark" ? false : true}
           handleOpenVisualModal={handleOpenVisualModal}
           style={{ letterSpacing: getLetterSpacing(letterInterval) }}
         />
@@ -478,7 +457,7 @@ function MyCourses() {
                                   ? "Доступно"
                                   : status === "process"
                                       ? "В процессе"
-                                      : status == "free" ? "Бесплатно" : "Завершен"}
+                                      : status === "free" ? "Бесплатно" : "Завершен"}
                             </div>
                             <div className="info-row text-content">
                               <div

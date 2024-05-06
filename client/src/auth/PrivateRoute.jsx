@@ -1,7 +1,6 @@
-import Cookies from 'js-cookie';
-import { Route, Navigate } from 'react-router-dom';
-import { useAuth } from './AuthContext';
 import { useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 const PrivateRoute = ({ component: Component, shouldBeLoggedIn, redirect, mustBeAdmin=false }) => {
     const { isLoggedIn } = useAuth();
@@ -10,7 +9,7 @@ const PrivateRoute = ({ component: Component, shouldBeLoggedIn, redirect, mustBe
         // console.log(isLoggedIn, shouldBeLoggedIn)
     }, [])
 
-    if (!mustBeAdmin && ( Component.name == 'CreateCoursePage' || Component.name == 'EditCatalog' )) {
+    if (!mustBeAdmin && ( Component.name === 'CreateCoursePage' || Component.name === 'EditCatalog' )) {
         return <Navigate to={'/'} />
     }
 
