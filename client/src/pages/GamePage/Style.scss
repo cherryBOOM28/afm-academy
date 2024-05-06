@@ -1,0 +1,15 @@
+.HomeGame{
+    justify-content: center;
+    .WelcomeGame{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        .WelcomeGameWrapper{
+            display: flex;
+            width: 80%;
+            .WelcomeLeftPart{
+                width: 50%;
+            }
+        }
+    }
+}

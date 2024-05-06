@@ -1,0 +1,40 @@
+// Navbar.scss
+
+.navbarGame {
+    background-color: #1A2751;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  
+  .navWrapperGame{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+  
+  .left-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    .textGame{
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.3;
+      width: 300px;
+      color: white;
+    }
+  }
+  
+  .logoGame {
+    width: 100px; /* Adjust according to your logo size */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 100%; 
+  }
+  
+  .right-section {
+    display: flex;
+    align-items: center;
+    width: 100px;
+  }
+}
