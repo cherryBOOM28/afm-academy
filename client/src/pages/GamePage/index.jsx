@@ -16,11 +16,11 @@ function GamePage() {
         <div className='WelcomeLeftPart'>
           <div className='WelcomeLeftPartTop'>
           <p style={{fontSize:"50px", marginBottom:"50px", marginTop:"120px", fontWeight:"500", fontStyle:"Maitree"}}>Добро пожаловать в</p>
-          <p style={{fontSize:"80px", fontWeight:"800", color:"#1A2751", width:"300px"}}>AML GAME!</p>
+          <p style={{fontSize:"80px", fontWeight:"800", color:"#1A2751", width:"300px", fontStyle:"Verdana"}}>AML GAME!</p>
           </div>
           <div className='WelcomeLeftPartBottom'>
-            <p style={{padding: "17px 25px 0px 35px", fontWeight:"600", color:"#193685b2", fontSize:"23px", fontStyle:"Maitree"}}>МИССИЯ</p>
-            <p style={{padding:"35px", color:"rgba(0, 0, 0, 0.755)"}}>Обучение субъектов финансового мониторинга, предоставляя им возможность получить знания и навыки, необходимые для эффективного выполнения требований законодательства о противодействии легализации доходов, полученных преступным путем (ПОД/ФТ), а также подготовки к различным ситуациям, с которыми они могут столкнуться в реальной жизни.</p>
+            <p style={{padding: "30px 25px 0px 35px", fontWeight:"600", color:"#193685b2", fontSize:"23px", fontStyle:"Maitree"}}>МИССИЯ</p>
+            <p style={{padding:"35px", color:"rgba(0, 0, 0, 0.755)", fontStyle:""}}>Обучение субъектов финансового мониторинга, предоставляя им возможность получить знания и навыки, необходимые для эффективного выполнения требований законодательства о противодействии легализации доходов, полученных преступным путем (ПОД/ФТ), а также подготовки к различным ситуациям, с которыми они могут столкнуться в реальной жизни.</p>
           </div>
         </div>
         <div className='WelcomeRightPart'>
