@@ -1,20 +1,21 @@
-import { useState, useEffect,lazy,Suspense,startTransition } from 'react';
+import { Suspense, lazy, startTransition, useEffect, useState } from 'react';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { StyleProvider } from './/components/VisualModal/StyleContext.jsx';
+import VisualModal from './/components/VisualModal/VisualModal.jsx';
 import './App.css';
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import PrivateRoute from './auth/PrivateRoute';
 import AdminRoute from './auth/AdminRoute.jsx';
+import { AuthProvider } from './auth/AuthContext';
+import PrivateRoute from './auth/PrivateRoute';
+import AdminPage_Main from './pages/AdminPage_v2/main/index.jsx';
+import CreateNews from './pages/CreateNews/index.jsx';
+import GamePage from './pages/GamePage/index.jsx';
+import NewsPage from './pages/News/News.jsx';
+import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigationCourse/index.jsx';
 import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
-import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigationCourse/index.jsx';
-import { AuthProvider, useAuth } from './auth/AuthContext';
-import './settings/i18n.js';
-import VisualModal from './/components/VisualModal/VisualModal.jsx'
 import Login from './pages/login/Login';
-import { StyleProvider } from './/components/VisualModal/StyleContext.jsx';
-import AdminPage_Main from './pages/AdminPage_v2/main/index.jsx';
 import Registration from './pages/registration/Registration';
-import NewsPage from './pages/News/News.jsx';
-import CreateNews from './pages/CreateNews/index.jsx';
+import './settings/i18n.js';
 
 const Home = lazy(() => import ('./pages/home/Home'))
 const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
@@ -103,6 +104,7 @@ function App() {
                             <Route path="/" element={<Suspense ><Home /></Suspense>}></Route>
                             <Route path="/:scroll" element={<Suspense ><Home /></Suspense>}></Route>
                             <Route path="/about" element={<Suspense ><AboutUs /></Suspense>}></Route>
+                            <Route path="/aml-games/:1" element={<Suspense ><GamePage /></Suspense>}></Route>
                             <Route path="/management" element={<Suspense ><Management /></Suspense>}></Route>
                             <Route path="/contacts" element={<Suspense ><Contacts /></Suspense>}></Route>
                             <Route path="/news-page" element={<Suspense ><NewsPage /></Suspense>}></Route>
