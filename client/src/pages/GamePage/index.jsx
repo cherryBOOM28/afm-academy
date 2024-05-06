@@ -14,7 +14,7 @@ function GamePage() {
         <div className='WelcomeLeftPart'>
           <div className='WelcomeLeftPartTop'>
           <p style={{fontSize:"50px", marginBottom:"50px", marginTop:"120px", fontWeight:"500", fontStyle:"Maitree"}}>Добро пожаловать в</p>
-          <p style={{fontSize:"100px", fontWeight:"800", color:"#1A2751", width:"300px"}}>AML GAME!</p>
+          <p style={{fontSize:"80px", fontWeight:"800", color:"#1A2751", width:"300px"}}>AML GAME!</p>
           </div>
           <div className='WelcomeLeftPartBottom'>
             <p style={{padding: "17px 25px 0px 30px", fontWeight:"600", color:"#193685b2", fontSize:"21px", fontStyle:"Maitree"}}>МИССИЯ</p>
@@ -24,11 +24,11 @@ function GamePage() {
         <div className='WelcomeRightPart'>
             <div className='WelcomeRightPartTop'>
               <div className='WelcomeRightPartTop1'>
-                <img src={WelcomeImg}  style={{width:"auto", height:"130px", padding:"5px"}} alt="WelcomeImg" />
+                <img src={WelcomeImg}  style={{width:"auto", height:"130px", padding:"5px", paddingTop:"25px"}} alt="WelcomeImg" />
                 <p style={{color:"white", padding:"20px", textAlign:'left'}}>Систематическое улучшение знаний и навыков</p>
               </div>
               <div className='WelcomeRightPartTop2'>
-              <img src={WelcomeImg2}  style={{width:"auto", height:"130px", padding:"5px"}} alt="WelcomeImg" />
+              <img src={WelcomeImg2}  style={{width:"auto", height:"130px", padding:"5px", paddingTop:"25px"}} alt="WelcomeImg" />
                 <p style={{color:"#4D70CC", padding:"20px", textAlign:'left'}}>Удобный формат обучения и интерактивная среда</p>
               </div>
             </div>
