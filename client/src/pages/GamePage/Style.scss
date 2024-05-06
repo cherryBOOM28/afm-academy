@@ -9,6 +9,13 @@
             width: 80%;
             .WelcomeLeftPart{
                 width: 50%;
+
+                .WelcomeLeftPartBottom{
+                    margin-top: 50px;
+                    border-radius: 15px;
+                    border: 3px #193685b2 solid;
+                    width: 430px;
+                }
             }
         }
     }
