@@ -9,13 +9,40 @@
             width: 80%;
             .WelcomeLeftPart{
                 width: 50%;
-
                 .WelcomeLeftPartBottom{
                     margin-top: 50px;
                     border-radius: 15px;
                     border: 3px #193685b2 solid;
-                    width: 430px;
+                    width: 470px;
                 }
+            }
+            .WelcomeRightPart{
+                display: block;
+                width: 50%;
+                .WelcomeRightPartTop{
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+                    margin-top: 120px;
+                    gap: 20px;
+                    .WelcomeRightPartTop1{
+                        display: block;
+                        text-align: center;
+                        background-color: #4D70CC;
+                        border-radius: 15px;
+                        width: 230px;
+                    } 
+                    .WelcomeRightPartTop2{
+                        display: block;
+                        text-align: center;
+                        background-color: white;
+                        border:  4px #4D70CC solid;
+                        border-radius: 15px;
+                        width: 230px;
+
+                    }
+                }
+
             }
         }
     }
