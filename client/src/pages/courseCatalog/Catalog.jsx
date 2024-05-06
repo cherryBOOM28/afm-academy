@@ -941,8 +941,12 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                         const { paymentInfo } = course;
                         const availability = courseDTO.group_of_person;
 
-                        const status =
+                        var status =
                             paymentInfo === null ? "available" : paymentInfo.status;
+                        if(courseDTO.course_id === 86){
+                            status = "free";
+                        }
+
                         return (
                             <div
                                 className={`course-card ${availability === "soon" ? "soon" : ""}`}
@@ -968,7 +972,7 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                                             ? "Доступно"
                                             : status === "process"
                                                 ? "В процессе"
-                                                : "Завершен"}
+                                                : status == "free" ? "Бесплатно" : "Завершен"}
                                     </div>
                                 </div>
                                 <div className="info">

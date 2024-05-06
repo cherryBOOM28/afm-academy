@@ -201,65 +201,96 @@ function MyCourses() {
           // console.log(response.data)
           setCourses([
             ...response.data,
-            // {
-            //   id: 0,
-            //   courseDTO: {
-            //     course_id: 100,
-            //     course_name:
-            //       "Учебный курс по навыкам работы с виртуальными активами",
-            //     course_price: 29000,
-            //     course_image: base64Course,
-            //     course_for_member_of_the_system: "СФМ",
-            //     duration: "19ч 45мин",
-            //     rating: 5,
-            //     type_of_study: "Электронное обучение",
-            //     courseCategory: {
-            //       category_id: 1,
-            //       category_image: base64Course,
-            //       minio_image_name: "Screenshot 2023-11-04 at 23.43.20.png",
-            //       category_name: "AML ACADEMY",
-            //     },
-            //     courseComments: [
-            //       {
-            //         course_comment_id: 27,
-            //         comment: "Очень интересный курс",
-            //         rate: 5,
-            //         user: {
-            //           user_id: 30,
-            //           firstname: "Дамир",
-            //           lastname: "Бегенов",
-            //           patronymic: "Арманович",
-            //           email: "damir_ps@mail.ru",
-            //           phone_number: "87707707581",
-            //           password:
-            //             "$2a$10$ztyuWcAYW6eMvxDX1AfWU.py/EeNqA2gAWQGjD7zPQ7q1ZblqpSI.",
-            //           member_of_the_system: null,
-            //           type_of_member: null,
-            //           job_name: null,
-            //           verificationCode: "c25d302b-59fb-4416-aa25-947c9129c7e7",
-            //           enabled: true,
-            //           accountNonExpired: true,
-            //           accountNonLocked: true,
-            //           credentialsNonExpired: true,
-            //           username: "damir_ps@mail.ru",
-            //           authorities: [
-            //             {
-            //               authority: "ROLE_STUDENT",
-            //             },
-            //           ],
-            //           _active: true,
-            //         },
-            //       },
-            //     ],
-            //   },
-            //   paymentInfo: {
-            //     progress_percentage: 0,
-            //     payment_type: "KASPI.KZ",
-            //     payment_date: null,
-            //     status: "process",
-            //   },
-            //   shortStatus: 0,
-            // },
+            {
+              id: 0,
+              courseDTO: {
+                course_id: 100,
+                course_name:
+                  "Учебный курс по навыкам работы с виртуальными активами",
+                course_price: 29000,
+                course_image: base64Course,
+                course_for_member_of_the_system: "СФМ",
+                duration: "19ч 45мин",
+                rating: 5,
+                type_of_study: "Электронное обучение",
+                courseCategory: {
+                  category_id: 1,
+                  category_image: base64Course,
+                  minio_image_name: "Screenshot 2023-11-04 at 23.43.20.png",
+                  category_name: "AML ACADEMY",
+                },
+                courseComments: [
+                  {
+                    course_comment_id: 27,
+                    comment: "Очень интересный курс",
+                    rate: 5,
+                    user: {
+                      user_id: 30,
+                      firstname: "Дамир",
+                      lastname: "Бегенов",
+                      patronymic: "Арманович",
+                      email: "damir_ps@mail.ru",
+                      phone_number: "87707707581",
+                      password:
+                        "$2a$10$ztyuWcAYW6eMvxDX1AfWU.py/EeNqA2gAWQGjD7zPQ7q1ZblqpSI.",
+                      member_of_the_system: null,
+                      type_of_member: null,
+                      job_name: null,
+                      verificationCode: "c25d302b-59fb-4416-aa25-947c9129c7e7",
+                      enabled: true,
+                      accountNonExpired: true,
+                      accountNonLocked: true,
+                      credentialsNonExpired: true,
+                      username: "damir_ps@mail.ru",
+                      authorities: [
+                        {
+                          authority: "ROLE_STUDENT",
+                        },
+                      ],
+                      _active: true,
+                    },
+                  },
+                ],
+              },
+              paymentInfo: {
+                progress_percentage: 0,
+                payment_type: "KASPI.KZ",
+                payment_date: null,
+                status: "process",
+              },
+              shortStatus: 0,
+            },
+            {
+              id: 0,
+              courseDTO: {
+                course_id: 86,
+                course_name: "Регистрация на Портале WEB SFM",
+                course_price: 0.0,
+                course_image: "https://amlacademy.kz/aml//dddddddd.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20240504%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240504T123753Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=277ff7363ac75192549f06bc1457906790f307f707ca9f4c192bcc5620ad027c",
+                course_for_member_of_the_system: "Для всех субъектов",
+                duration: "1 академический час",
+                rating: 5.0,
+                type_of_study: "дистанционное",
+                courseCategory: {
+                  category_id: 1,
+                  category_image: "https://amlacademy.kz/aml/Screenshot%202023-11-04%20at%2023.43.20.png",
+                  minio_image_name: "https://amlacademy.kz/aml/Screenshot%202023-11-04%20at%2023.43.20.png",
+                  category_name: "AML ACADEMY"
+                },
+                courseComments: [],
+                course_price_sale: null,
+                group_of_person: null,
+                applied_for_study: null,
+                who_course_intended_for: "Для всех представителей видов субъекта финансового мониторинга и иных участников антиотмывочной системы."
+              },
+              paymentInfo: {
+                progress_percentage: 100.0,
+                payment_type: "KASPI",
+                payment_date: 1714127498784,
+                status: "free"
+              },
+              shortStatus: 3
+            },
           ]);
         } else {
           // Handle other status codes if needed
@@ -444,10 +475,10 @@ function MyCourses() {
                               }}
                             >
                               {status === "available"
-                                ? "Доступно"
-                                : status === "process"
-                                ? "В процессе"
-                                : "Завершен"}
+                                  ? "Доступно"
+                                  : status === "process"
+                                      ? "В процессе"
+                                      : status == "free" ? "Бесплатно" : "Завершен"}
                             </div>
                             <div className="info-row text-content">
                               <div

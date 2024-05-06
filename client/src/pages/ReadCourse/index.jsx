@@ -272,7 +272,8 @@ function ReadCourse() {
             />)
         }
 
-        if (activeSessionId === -2) {
+        if (activeSessionId === -2 ) {
+            if(id !== '86'){
             return (<LessonPage name={isKazakh ? 'Қорытынды' : 'Заключение'}>
 
                 <Sizebox height={40} />
@@ -345,8 +346,84 @@ function ReadCourse() {
                         }}
                     />
                 </Reveal>
-            </LessonPage>)
-        }
+            </LessonPage>)}
+            else {
+                return(
+                <LessonPage name={isKazakh ? 'Қорытынды' : 'Заключение'}>
+
+                    <Sizebox height={40} />
+                    <Reveal>
+                        <ImageWithText
+                            color={'white'}
+                            imageText={isKazakh ? 'Сізге одан әрі кәсіби табыс пен өркендеу тілейміз!' : 'Дальнейших Вам профессиональных успехов и процветания!'}
+                            img={'https://corporate.waterlogic.com/fileadmin/_processed_/f/4/csm_banner-hands-shaking-3_c621f2a33f.jpg'}
+                        />
+                    </Reveal>
+
+                    <Sizebox height={100} />
+                    <Reveal>
+                        <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
+                            {
+                                isKazakh ? 'Оқу сабақтың соңы' : 'Завершение учебного урока'
+                            }
+                        </HeaderWithLine>
+                    </Reveal>
+
+                    {/* <Sizebox height={100} /> */}
+                    {/*
+                <Reveal>
+                    <HeaderWithLine headerColor={'#3A3939'} lineColor={'#CADEFC'}>
+                        Сертификат можете найти в личном кабинете
+                    </HeaderWithLine>
+                </Reveal> */}
+                    <Sizebox height={100} />
+
+                    <div className="stars" style={{
+                        display: 'flex',
+                        width: '100%',
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        gap: '10px',
+                        marginBottom: '20px',
+                    }}>
+                        {
+                            [0, 0, 0, 0, 0].map((star, index) => {
+                                const active = '#1F3C88';
+                                const nonActive = '#dddddd';
+                                const _color = stars >= index+1 ? active : nonActive;
+
+                                const handleClick = () => {
+                                    setStars(index+1);
+                                }
+
+                                return <FaStar size={50} style={{color: _color, cursor: 'pointer'}} onClick={handleClick}/>
+                            })
+                        }
+                    </div>
+                    <Centered>
+                        <RandomParapraph>
+                            {
+                                isKazakh ? 'Сабақты бағалаңыз' : 'Оцените урок'
+                            }
+                        </RandomParapraph>
+                    </Centered>
+                    <Sizebox height={100} />
+
+                    <Reveal>
+                        <NextLesson
+                            nextLessonName={isKazakh ? 'Жеке кабинет' : 'Личный кабинет'}
+                            handleOnClick={() => {
+                                if (stars === 0) {
+                                    alert(isKazakh ? 'Модульді бағалаңыз' : 'Оцените курс');
+                                    return;
+                                }
+                                navigate('/profile/sertificates')
+                            }}
+                        />
+                    </Reveal>
+                </LessonPage>)}
+            }
+
 
         if (!activeLesson) {
             return null;
