@@ -37,11 +37,11 @@ function GamePage() {
             <div className='WelcomeRightPartBottom'>
               <div className='WelcomeRightPartBottom1'>
               <img src={WelcomeImg3}  style={{width:"auto", height:"130px", padding:"5px", paddingTop:"5px"}} alt="WelcomeImg" />
-                <p style={{color:"white", padding:"20px", textAlign:'left'}}>Тесное взаимодействие с АФМ для получения обратной связи</p>
+                <p style={{color:"white", padding:"19px", textAlign:'left'}}>Тесное взаимодействие с АФМ для получения обратной связи</p>
               </div>
               <div className='WelcomeRightPartBottom2'>
               <img src={WelcomeImg4}  style={{width:"auto", height:"130px", padding:"5px", paddingTop:"5px"}} alt="WelcomeImg" />
-                <p style={{color:"#1A2751", padding:"20px", textAlign:'left'}}>Разные уровни обучения и практические задания </p>
+                <p style={{color:"#1A2751", padding:"19px", textAlign:'left'}}>Разные уровни обучения и практические задания </p>
               </div>
           </div>
         </div>
