@@ -4,7 +4,7 @@
     justify-content: center;
     margin-top: 100px;
     .ChooseRoleWrapper{
-        width: 1106px;
+        width: 1015px;
         .ChooseRole1{
             font-weight: 450;
             font-size: 32px;    
@@ -28,6 +28,11 @@
                 
                 img{
                     filter: brightness(70%);
+                    user-drag: none; /* Запретить перетаскивание изображения */
+                    -moz-user-select: none; /* Для Firefox */
+                    -webkit-user-drag: none; /* Для WebKit-браузеров */
+                    -webkit-user-select: none; /* Для WebKit-браузеров */
+                    -ms-user-select: none; /* Для IE/Edge */
                 }
                 &.active img {
                     filter: brightness(110%);
@@ -46,6 +51,29 @@
                     left: 27px;
                     width: 200px;
                 } 
+            }
+        }
+    }
+}
+.SelectedRoleDetails{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .SelectedRoleDetailsWrapper{
+        width: 1015px;
+        .ChooseCharacterWrapper{
+            .Characters{
+                display: flex;
+                gap: 32px;
+                width: 925px;
+                background-color:#D9D9D9;
+                border-radius: 20px;
+                padding: 44px;
+                .CharacterImg{
+                    img{
+                        border-radius: 11px;
+                    }
+                }
             }
         }
     }

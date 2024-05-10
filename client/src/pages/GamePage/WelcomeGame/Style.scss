@@ -6,7 +6,7 @@
         justify-content: center;
         .WelcomeGameWrapper{
             display: flex;
-            width: 1106px;
+            width: 1015px;
             .WelcomeLeftPart{
                 width: 543px;
                 .WelcomeLeftPartBottom{
@@ -19,6 +19,7 @@
             .WelcomeRightPart{
                 display: block;
                 width: 543px;
+                margin-left: 64px;
                 .WelcomeRightPartTop{
                     display: flex;
                     justify-content: center;
@@ -67,7 +68,13 @@
                         align-items: center;
                     }
                 }
-
+                img{
+                    user-drag: none; /* Запретить перетаскивание изображения */
+                    -moz-user-select: none; /* Для Firefox */
+                    -webkit-user-drag: none; /* Для WebKit-браузеров */
+                    -webkit-user-select: none; /* Для WebKit-браузеров */
+                    -ms-user-select: none; /* Для IE/Edge */
+                }
             }
         }
     }

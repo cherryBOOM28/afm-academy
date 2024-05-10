@@ -6,7 +6,7 @@
     justify-content: center;
     width: 100%;
     position: fixed;
-  
+    z-index: 1;
   .navWrapperGame{
     width: 80%;
     display: flex;
@@ -31,6 +31,11 @@
     width: 50px; /* Adjust according to your logo size */
     height: auto; /* Maintain aspect ratio */
     border-radius: 100%; 
+    user-drag: none; /* Запретить перетаскивание изображения */
+    -moz-user-select: none; /* Для Firefox */
+    -webkit-user-drag: none; /* Для WebKit-браузеров */
+    -webkit-user-select: none; /* Для WebKit-браузеров */
+    -ms-user-select: none; /* Для IE/Edge */
   }
   
   .right-section {

@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import NavbarGame from './NavbarGame';
 import WelcomeGame from './WelcomeGame';
+import Character1 from './assets/svg/Character1.svg';
+import Character2 from './assets/svg/Character2.svg';
+import Character3 from './assets/svg/Character3.svg';
+import Character4 from './assets/svg/Character4.svg';
 import ChooseRoleImg1 from './assets/svg/ChooseRole1.svg';
 import ChooseRoleImg2 from './assets/svg/ChooseRole2.svg';
 import ChooseRoleImg3 from './assets/svg/ChooseRole3.svg';
@@ -10,9 +14,11 @@ import './index.scss';
 function GamePage() {
   const [open, setOpen] = useState(false)
   const [selectedRole, setSelectedRole] = useState(null);
-  function openHandler(){
-    setOpen(true)
+  const [selectedCharacter, setSelectedCharacter] = useState('1');
+  function characterHandler(character){
+    setSelectedCharacter(character)
   }
+
   function openHandler(role, event) {
     setSelectedRole(role);
     setOpen(true);
@@ -51,8 +57,29 @@ function GamePage() {
       </div>
       {open && selectedRole && (
         <div className="SelectedRoleDetails">
-          <p>Details for {selectedRole}</p>
-          {/* Add more details or components related to the selected role */}
+          <div className='SelectedRoleDetailsWrapper'>
+            <div className='GameStepper'>
+              <div className='GameStepperInterface'></div>
+              <div className='GameStepperCounter'></div>
+            </div>
+            <div className='ChooseCharacterWrapper'>
+              <div className='ChooseCharacter1'>Выберите своего персонажа для начала игры</div>
+              <div className='Characters'>
+              <div className='CharacterImg' onClick={() => characterHandler('1',)}>
+                <img src={Character1} alt="" />
+              </div>
+              <div className='CharacterImg' onClick={() => characterHandler('2', )}>
+                <img src={Character2} alt="" />
+              </div>
+              <div className='CharacterImg' onClick={() => characterHandler('3', )}>
+                <img src={Character3} alt="" />
+              </div>
+              <div className='CharacterImg' onClick={() => characterHandler('4', )}>
+                <img src={Character4} alt="" />
+              </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
