@@ -72,6 +72,11 @@
                 .CharacterImg{
                     img{
                         border-radius: 11px;
+                        user-drag: none; /* Запретить перетаскивание изображения */
+                        -moz-user-select: none; /* Для Firefox */
+                        -webkit-user-drag: none; /* Для WebKit-браузеров */
+                        -webkit-user-select: none; /* Для WebKit-браузеров */
+                        -ms-user-select: none; /* Для IE/Edge */
                     }
                 }
             }
