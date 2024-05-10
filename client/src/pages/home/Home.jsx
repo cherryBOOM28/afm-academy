@@ -12,7 +12,7 @@ import Header from "../../components/header/Header";
 import NewsTab from "../../components/newsTab/NewsTab";
 import VideoPlayer from "../../components/player/VideoPlayer";
 import Tabs from "../../components/tab/Tabs";
-import backgroundVideoLight from "C:/Users/daule/Desktop/ATM/afm-academy/client/src/assets/video/bgvideo.webm";
+import backgroundVideoLight from "../../assets/video/bgvideo.webm";
 
 import { Link } from "react-router-dom";
 
