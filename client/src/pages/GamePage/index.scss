@@ -1,0 +1,48 @@
+.ChooseRole{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    .ChooseRoleWrapper{
+        width: 1106px;
+        .ChooseRole1{
+            font-weight: 450;
+            font-size: 32px;    
+        }
+        .ChooseRole2{
+            margin-top: 40px;
+            display: flex;
+            gap: 23px;
+            .ChooseRoleImgWrap{
+                position: relative;
+                .Uvelirny{
+                    position: absolute;
+                    top: 365px;
+                    font-size: 29px;
+                    color: white;
+                    font-weight: 600;
+                    line-height: 1.1;
+                    left: 25px;
+                    width: 200px;
+                } 
+                
+                img{
+                    filter: brightness(70%);
+                }
+                img:hover {
+                    filter: brightness(110%);
+                }
+                .NeUvelirny{
+                    position: absolute;
+                    top: 365px;
+                    font-size: 25px;
+                    color: white;
+                    font-weight: 600;
+                    line-height: 1.1;
+                    left: 27px;
+                    width: 200px;
+                } 
+            }
+        }
+    }
+}
