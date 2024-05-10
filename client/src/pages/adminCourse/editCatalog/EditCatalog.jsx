@@ -1,26 +1,25 @@
 import { useEffect, useMemo, useState } from "react"
 
-import { useNavigate } from "react-router"
-import { BuilderNavbar } from "../builderNavbar/BuilderNavbar"
 import axios from "axios"
+import { useNavigate } from "react-router"
 import base_url from "../../../settings/base_url"
-import './editCatalog.scss'
-import editIcon from '../images/edit-catalog.svg'
+import { BuilderNavbar } from "../builderNavbar/BuilderNavbar"
 import deletIcon from '../images/delete.svg'
+import editIcon from '../images/edit-catalog.svg'
+import './editCatalog.scss'
 
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button'
+import Paper from '@mui/material/Paper'
+import Stack from '@mui/material/Stack'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
 
 import archiveIcon from '../images/archive-icon.svg'
 import folderIcon from '../images/folder-icon.png'
-import { useSearchParams } from "react-router-dom"
 
 
 
