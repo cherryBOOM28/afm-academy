@@ -3,6 +3,7 @@ import WelcomeImg2 from './../assets/png/WelcomeIMG2.png';
 import WelcomeImg3 from './../assets/png/WelcomeIMG3.png';
 import WelcomeImg4 from './../assets/png/WelcomeIMG4.png';
 import './Style.scss';
+
 function WelcomeGame() {
     return (
         <div className='WelcomeGame'>

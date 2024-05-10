@@ -29,9 +29,13 @@
                 img{
                     filter: brightness(70%);
                 }
-                img:hover {
+                &.active img {
                     filter: brightness(110%);
-                }
+                  }
+                
+                  &:not(.active):hover img {
+                    filter: brightness(110%);
+                  }
                 .NeUvelirny{
                     position: absolute;
                     top: 365px;
