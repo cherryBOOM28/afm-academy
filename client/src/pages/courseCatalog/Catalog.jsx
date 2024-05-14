@@ -929,7 +929,7 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                         color: "#656678",
                     }}
                 >
-                    {categoryDesc}
+                    Для участников системы ПОД/ФТ
                 </p>
             </div>
             <div className="courses-block container">
