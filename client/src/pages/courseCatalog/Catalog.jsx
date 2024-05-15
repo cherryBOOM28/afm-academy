@@ -894,8 +894,12 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
     const navigate = useNavigate();
 
     const filteredCourses = courses.filter(
-        (course) => course.courseDTO.courseCategory.category_name === categoryName
+        (course) => course.courseDTO.courseCategory.category_name === categoryName && course.courseDTO.course_for_member_of_the_system !== 'Для правоохранительных органов'
     );
+    const filteredProCourses = courses.filter(
+        (course) => course.courseDTO.course_for_member_of_the_system === 'Для правоохранительных органов'
+    );
+
 
     // if (filteredCourses.length === 0) {
     //     return null;
@@ -1000,7 +1004,105 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                     })}
               
             </div>
-        </>
+        <div className="container">
+            <h1
+                className="inline-text"
+                style={{
+                    fontFamily: "Ubuntu",
+                    fontSize: "20px",
+                    fontWeight: "500",
+                    lineHeight: "23px",
+                    letterSpacing: "0em",
+                    textAlign: "left",
+                }}
+            >
+                {categoryName}
+            </h1>
+            <p
+                className="inline-text"
+                style={{
+                    fontFamily: "Ubuntu",
+                    fontSize: "16px",
+                    fontWeight: "400",
+                    lineHeight: "19px",
+                    letterSpacing: "0em",
+                    textAlign: "left",
+                    color: "#656678",
+                }}
+            >
+                Для правоохранительных органов
+            </p>
+        </div>
+        <div className="courses-block container">
+            {filteredProCourses
+                .sort((a, b) => a.shortStatus - b.shortStatus )
+                .map((course, index) => {
+                    const courseDTO = course.courseDTO;
+                    const { course_image, course_name } = courseDTO;
+                    const { paymentInfo } = course;
+                    const availability = courseDTO.group_of_person;
+                    const law_enforcement_agencies = courseDTO.course_for_member_of_the_system;
+
+                    var status =
+                        paymentInfo === null ? "available" : paymentInfo.status;
+                    if(courseDTO.course_id === 86){
+                        status = "free";
+                    }
+
+                    return (
+                        <div
+                            className={`course-card ${law_enforcement_agencies === "Для правоохранительных органов" ? "soon" : ""}`}
+                            key={index}
+                            onClick={() => {
+                                if ((status === "process" || status === "finished") && (law_enforcement_agencies !== "Для правоохранительных органов")) {
+                                    navigate(`/courses/${course.courseDTO.course_id}/read`);
+                                }
+                                else
+                                if (law_enforcement_agencies === "Для правоохранительных органов") {
+                                    navigate(`/courses/catalog`);
+                                }
+                                else {
+                                    navigate(`/courses/${course.courseDTO.course_id}`);
+                                }
+                            }}
+                        >
+                            <div className={`soon-text ${law_enforcement_agencies === "Для правоохранительных органов" ? "soon" : ""}`}>Для правоохранительных органов</div>
+                            <div className="image">
+                                <img src={course_image} alt={course_name} />
+                                <div className={`status ${status}`}>
+                                    {status === "available"
+                                        ? "Доступно"
+                                        : status === "process"
+                                            ? "В процессе"
+                                            : status == "free" ? "Бесплатно" : "Завершен"}
+                                </div>
+                            </div>
+                            <div className="info">
+                                <div className="course-name">{course_name}</div>
+                                <div className="langAndDuration">
+                                    {"РУС"} | {course.courseDTO.duration}
+                                </div>
+                                <div className="rating">
+                                    <div className="stars">
+                                        <AiFillStar className="star-icon" size={23} />
+                                        <AiFillStar className="star-icon" size={23} />
+                                        <AiFillStar className="star-icon" size={23} />
+                                        <AiFillStar className="star-icon" size={23} />
+                                        <AiFillStar className="star-icon" size={23} />
+                                    </div>
+                                    <span>{(course.courseDTO.rating % 1 === 0 ? course.courseDTO.rating.toFixed(1) + '.0' : course.courseDTO.rating.toFixed(1)).replace(/\.0$/, '')}</span>
+                                </div>
+                                <div className="type">
+                                    <MdOndemandVideo size={23} />
+                                    <span>{course.courseDTO.course_for_member_of_the_system}</span>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })}
+
+        </div>
+    </>
     );
 };
 
