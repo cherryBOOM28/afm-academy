@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import NavbarGame from './NavbarGame';
+import SecondPage from './SecondPage';
 import WelcomeGame from './WelcomeGame';
 import Character1 from './assets/svg/Character1.svg';
 import Character2 from './assets/svg/Character2.svg';
@@ -82,6 +83,8 @@ function GamePage() {
           </div>
         </div>
       )}
+      <SecondPage />
+      
     </div>
   );
 }
