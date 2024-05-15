@@ -245,7 +245,7 @@ function MyCourses() {
                 course_id: 86,
                 course_name: "Регистрация на Портале WEB SFM",
                 course_price: 0.0,
-                course_image: "https://amlacademy.kz/aml//dddddddd.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20240504%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240504T123753Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=277ff7363ac75192549f06bc1457906790f307f707ca9f4c192bcc5620ad027c",
+                course_image: "https://amlacademy.kz/aml//dddddddd.jpeg",
                 course_for_member_of_the_system: "Для всех субъектов",
                 duration: "1 академический час",
                 rating: 5.0,
