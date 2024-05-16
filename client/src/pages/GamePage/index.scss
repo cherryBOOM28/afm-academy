@@ -36,11 +36,11 @@
                 }
                 &.active img {
                     filter: brightness(110%);
-                  }
+                }
                 
-                  &:not(.active):hover img {
+                &:not(.active):hover img {
                     filter: brightness(110%);
-                  }
+                }
                 .NeUvelirny{
                     position: absolute;
                     top: 365px;
@@ -62,6 +62,33 @@
     .SelectedRoleDetailsWrapper{
         width: 1015px;
         .ChooseCharacterWrapper{
+            .StepperWrapper{
+                .StepperUI{
+                    margin-top: 80px;
+                    display: flex;
+                    gap: 16px;
+                    .StepperComponent1{
+                        width: 53px;
+                        background-color: blue;
+                        height: 16px;
+                        border: 2px solid blue;
+                        border-radius: 30px;
+                    }
+                }
+                .StepperCounter{
+                    margin-top: 20px;
+                    font-weight: 500;
+                    font-size: 19px;
+                }
+            }
+            .ChooseCharacter1{
+                padding: 30px;
+                padding-left: 0px;
+                padding-top: 40px;
+                font-size: 30px;
+                font-weight: 500;
+                width: 491px;
+            }
             .Characters{
                 display: flex;
                 gap: 32px;
@@ -71,6 +98,24 @@
                 padding: 44px;
                 .CharacterImg{
                     img{
+                        filter: brightness(70%);
+                        border-radius: 11px;
+                        user-drag: none; /* Запретить перетаскивание изображения */
+                        -moz-user-select: none; /* Для Firefox */
+                        -webkit-user-drag: none; /* Для WebKit-браузеров */
+                        -webkit-user-select: none; /* Для WebKit-браузеров */
+                        -ms-user-select: none; /* Для IE/Edge */
+                    }
+                    &.active img {
+                        filter: brightness(110%);
+                    }
+                    
+                    &:not(.active):hover img {
+                        filter: brightness(110%);
+                    }
+                }
+                .CharacterImgStep2{
+                    .imgStep2{
                         border-radius: 11px;
                         user-drag: none; /* Запретить перетаскивание изображения */
                         -moz-user-select: none; /* Для Firefox */
