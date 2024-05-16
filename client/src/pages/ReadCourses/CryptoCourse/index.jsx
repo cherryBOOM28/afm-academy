@@ -61,7 +61,7 @@ import telegramSell2 from '../../../assets/images/telegramSell2.png';
 
 
 function CryptoCourse() {
-    const [courseName, setCourseName] = useState('Учебный курс по навыкам работы с виртуальными активами');
+    const [courseName, setCourseName] = useState('Учебный модуль по навыкам работы с виртуальными активами');
     const [isNavOpen, setIsNavOpen] = useState(true);
     const [activeSessionId, setActiveSessionId] = useState(1);
 
@@ -220,7 +220,7 @@ function CryptoCourse() {
         // console.log('getLesson', quizQuestions)
         switch (id) {
             case 1:
-                return (<LessonPage name={'О курсе'}>
+                return (<LessonPage name={'О модуле'}>
                     <Sizebox height={30}/>
 
                     <Reveal>
