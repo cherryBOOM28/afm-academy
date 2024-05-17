@@ -18,6 +18,7 @@ import { useTranslation } from "react-i18next";
 import VisualModal from "../../components/VisualModal/VisualModal";
 
 import { useStyle } from "../../components/VisualModal/StyleContext";
+import timeImagef from '../../assets/images/BLACKLISTTTT.png';
 
 function VebinarsPage() {
   const { t } = useTranslation();
@@ -414,17 +415,22 @@ const VebinarCard = (props) => {
             <p>Аудитория (для кого): {webinar_for_member_of_the_system}</p>
             <p>Формат: {type}</p>
             <p>Стоимость: бесплатно</p>
-            <p>Ограничения: До 30 человек</p>
+            <p>Представители АФМ РК, AML ACADEMY и Комитета МФЦА</p>
 
             <div className="date">{formattedDate}</div>
           </div>
+            <img src="timeImagef" alt=""/>
           <div className="lector-info">
-            <div className="lector-title">Лектор</div>
-            <div className="lector-name">Шагатаев Даурен</div>
-            <div className="lector-text">
-              Лектор по обучению и повышению квалификации по финансовому
-              мониторингу
-            </div>
+            <div className="lector-title">Обсуждаемые вопросы:</div>
+            <div className="lector-name">1. Охват и вовлеченность участников МФЦА</div>
+            <div className="lector-name">2. Осуществление надзора по вопросам ПОД/ФТ</div>
+            <div className="lector-name">3. Внесение изменений в «Требования к ПВК»</div>
+            {/*<div className="lector-text">*/}
+            {/*    2. Осуществление надзора по вопросам ПОД/ФТ*/}
+            {/*</div>*/}
+            {/*  <div className="lector-text">*/}
+            {/*      3. Внесение изменений в «Требования к ПВК»*/}
+            {/*</div>*/}
             <div
               className="action-btn"
              onClick={() => props.handleVebinarEnter(webinar_id)}
