@@ -103,7 +103,7 @@ function App() {
                             <Route path="/" element={<Suspense ><Home /></Suspense>}></Route>
                             <Route path="/:scroll" element={<Suspense ><Home /></Suspense>}></Route>
                             <Route path="/about" element={<Suspense ><AboutUs /></Suspense>}></Route>
-                            <Route path="/aml-games/:1" element={<Suspense ><GamePage /></Suspense>}></Route>
+                            <Route path="/aml-games/1" element={<Suspense ><GamePage /></Suspense>}></Route>
                             <Route path="/management" element={<Suspense ><Management /></Suspense>}></Route>
                             <Route path="/contacts" element={<Suspense ><Contacts /></Suspense>}></Route>
                             <Route path="/news-page" element={<Suspense ><NewsPage /></Suspense>}></Route>
