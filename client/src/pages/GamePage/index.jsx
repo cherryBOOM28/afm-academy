@@ -111,7 +111,7 @@ function GamePage() {
               )}
               {step === 2 && ( // Добавлен новый шаг для вопроса
                 <div>
-                         <div style={{display:"flex"}}>
+                <div style={{display:"flex", justifyContent:"space-between"}}>
                   
                   <div>
                   <p style={{marginTop:"20px", fontSize:"25px"}}>Являетесь ли вы субьектом?</p> 
@@ -131,18 +131,33 @@ function GamePage() {
                     <img className='imgStep2' style={{border:"8px solid #1F3C88", borderRadius:"11px"}} src={selectedCharacter}/>
                   </div>
                 </div>
-                 <div>
-                 <button style={{ borderRadius: "15px", color: "#5792EB", backgroundColor: "white", width: "78px", height: "32px", marginTop: "10px" }} onClick={() => setStep(1)}>Назад</button>
-                 <button style={{borderRadius:"15px", color:"white", backgroundColor:"#5792EB", width:"78px", height:"32px", border:"none", marginTop:"10px"}} onClick={() => setStep(3)}>Далее</button>
-                 </div>
-         </div>
+                  <div style={{display:"flex", gap:"10px"}}>
+                    <button style={{ borderRadius: "15px", color: "#5792EB", backgroundColor: "white", width: "78px", height: "32px", marginTop: "10px" }} onClick={() => setStep(1)}>Назад</button>
+                    <button style={{borderRadius:"15px", color:"white", backgroundColor:"#5792EB", width:"78px", height:"32px", border:"none", marginTop:"10px"}} onClick={() => setStep(3)}>Далее</button>
+                  </div>
+                </div>
             )}
   
             {step === 3 && ( // Финальный шаг
-              <div>
-                <h3>{selectedCharacter.name}</h3>
-                <img src={selectedCharacter}/>
-                <p>Ответ: {answer ? 'Да' : 'Нет'}</p>
+                <div>
+                  <div>
+                <div style={{display:"flex", justifyContent:"space-between"}}>
+                      <div style={{}}>
+                      <p style={{marginTop:"20px", fontSize:"25px"}}>Входной контроль</p> 
+                      <p style={{marginTop:"20px"}}>Ответ: {answer ? 'Да' : 'Нет'}</p>
+                      <p>Роль: {selectedRole}</p>
+                        <div>
+                  </div>
+                  </div>
+                  <div className='CharacterImgStep2' style={{marginTop:"20px"}}>
+                    <img className='imgStep2' style={{border:"8px solid #1F3C88", borderRadius:"11px", marginTop:"20px"}} src={selectedCharacter}/>
+                  </div>
+                </div>
+                  <div style={{display:"flex", gap:"10px"}}>
+                  <button style={{ borderRadius: "15px", color: "#5792EB", backgroundColor: "white", width: "78px", height: "32px", marginTop: "10px" }} onClick={() => setStep(2)}>Назад</button>
+                  <button style={{borderRadius:"15px", color:"white", backgroundColor:"#5792EB", width:"78px", height:"32px", border:"none", marginTop:"10px"}} onClick={() => setStep(3)}>Далее</button>
+                  </div>
+              </div>
               </div>
             )}
             </div>
