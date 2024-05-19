@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import NavbarGame from './NavbarGame';
+import MainContent from './SecondPage/MainContent';
+import Practika from './SecondPage/Practika';
+import Quiz from './SecondPage/Quiz';
 import WelcomeGame from './WelcomeGame';
 import Character1 from './assets/svg/Character1.svg';
 import Character2 from './assets/svg/Character2.svg';
@@ -17,11 +20,14 @@ function GamePage() {
   const [selectedCharacter, setSelectedCharacter] = useState('1');
   const [step, setStep] = useState(1);  // Новый шаг для игровой логики
   const [answer, setAnswer] = useState(null);  // Ответ на вопрос (если есть)
+  const [page, setPage] = useState(3);
   useEffect(() => {
     // Логика, выполняемая при изменении шага (например, скроллинг к началу)
     window.scrollTo(0, 0);
   }, [step, selectedRole]);
-
+  function PageHandler (page) {
+    setPage(page);
+  }
   const handleAnswer = (yes) => {  // Обработчик ответа на вопрос (если нужен)
     setAnswer(yes);
     };
@@ -47,7 +53,9 @@ function GamePage() {
   return (
     <div className='HomeGame'>
       <NavbarGame />
-      <WelcomeGame />
+      {page === 1 && (
+        <div>
+           <WelcomeGame />
       <div className='ChooseRole'>
         <div className="ChooseRoleWrapper">
           <div className='ChooseRole1'>Выберите свою роль</div>
@@ -131,7 +139,7 @@ function GamePage() {
                     <img className='imgStep2' style={{border:"8px solid #1F3C88", borderRadius:"11px"}} src={selectedCharacter}/>
                   </div>
                 </div>
-                  <div style={{display:"flex", gap:"10px"}}>
+                  <div style={{display:"flex", gap:"10px", marginBottom:"40px"}}>
                     <button style={{ borderRadius: "15px", color: "#5792EB", backgroundColor: "white", width: "78px", height: "32px", marginTop: "10px" }} onClick={() => setStep(1)}>Назад</button>
                     <button style={{borderRadius:"15px", color:"white", backgroundColor:"#5792EB", width:"78px", height:"32px", border:"none", marginTop:"10px"}} onClick={() => setStep(3)}>Далее</button>
                   </div>
@@ -153,9 +161,9 @@ function GamePage() {
                     <img className='imgStep2' style={{border:"8px solid #1F3C88", borderRadius:"11px", marginTop:"20px"}} src={selectedCharacter}/>
                   </div>
                 </div>
-                  <div style={{display:"flex", gap:"10px"}}>
+                  <div style={{display:"flex", gap:"10px", marginBottom:"40px"}}>
                   <button style={{ borderRadius: "15px", color: "#5792EB", backgroundColor: "white", width: "78px", height: "32px", marginTop: "10px" }} onClick={() => setStep(2)}>Назад</button>
-                  <button style={{borderRadius:"15px", color:"white", backgroundColor:"#5792EB", width:"78px", height:"32px", border:"none", marginTop:"10px"}} onClick={() => setStep(3)}>Далее</button>
+                  <button style={{borderRadius:"15px", color:"white", backgroundColor:"#5792EB", width:"fit-content", height:"32px", border:"none", marginTop:"10px"}} onClick={() => PageHandler(3)}>Подтвердить</button>
                   </div>
               </div>
               </div>
@@ -164,7 +172,26 @@ function GamePage() {
           </div>
         </div>
       )}
-      
+        </div>
+      )}
+      {page === 2 && (
+        <div>
+          
+        </div>
+      )}
+      {page === 3 && (
+        <div>
+        <div className="main" style={{}}>
+        <div style={{marginTop:"70px", display:"flex", width:"1015px" }}>
+            <MainContent />
+        <div className="sidebar">
+          <Quiz />
+          <Practika />
+        </div>
+        </div>
+      </div>
+        </div>
+      )}
     </div>
   );
 }
