@@ -14,17 +14,141 @@ import ChooseRoleImg3 from './assets/svg/ChooseRole3.svg';
 import ChooseRoleImg4 from './assets/svg/ChooseRole4.svg';
 import './index.scss';
 
+const questions = [
+  {
+    question: "1. Кода и кем была создана Группа разработки финансовых мер борьбы с отмыванием денег (ФАТФ)?",
+    options: [
+      "в 1989 году по решению стран Большой семерки",
+      "США",
+      "Франция",
+      "ОАЭ"
+    ],
+    correct: "в 1989 году по решению стран Большой семерки"
+  },
+  {
+    question: "2. ФАТФ уделяет значительно внимание сотрудничеству с этими организациями, назовите их.",
+    options: [
+      "МВ, ВБ, УНП ООН",
+      "Интерпол",
+      "ОБСЕ",
+      "СРПФР"
+    ],
+    correct: "МВ, ВБ, УНП ООН"
+  },
+  {
+    question: "3. Какой документ ФАТФ представляет собой всеобъемлющий свод организационно-правовых мер по созданию эффективного режима ПОД/ФТ в каждой стране?",
+    options: [
+      "40 Рекомендаций",
+      "Пояснительные записки ФАТФ",
+      "Руководящие принципы",
+      "нет верного ответа"
+    ],
+    correct: "40 Рекомендаций"
+  },
+  {
+    question: "4. Какие страны входят в «черный список» ФАТФ?",
+    options: [
+      "Корейская Народно-Демократическая Республика (КНДР) и Иран",
+      "Российская Федерация и Украина",
+      "Франция и Италия",
+      "Испания, ОАЭ"
+    ],
+    correct: "Корейская Народно-Демократическая Республика (КНДР) и Иран"
+  },
+  {
+    question: "5. Какие страны входят в состав ЕАГ?",
+    options: [
+      "Беларусь, Китай, Индия, Казахстан, Кыргызская Республика, Россия, Таджикистан, Туркменистан, Узбекистан",
+      "Россия, Франция, Армения",
+      "Молдова, Турция, Сирия",
+      "все ответы верны"
+    ],
+    correct: "Беларусь, Китай, Индия, Казахстан, Кыргызская Республика, Россия, Таджикистан, Туркменистан, Узбекистан"
+  },
+  {
+    question: "6. Сколько видов субъектов установлено Законом о ПОД/ФТ?",
+    options: [
+      "18",
+      "24",
+      "36",
+      "21"
+    ],
+    correct: "18"
+  },
+  {
+    question: "7. Кто из нижеперечисленных не относится к субъектам финансового мониторинга?",
+    options: [
+      "нотариусы",
+      "государственные органы",
+      "обменные пункты",
+      "оператор почты"
+    ],
+    correct: "государственные органы"
+  },
+  {
+    question: "8. Для каких видов субъектов финансового мониторинга распространяются требования Закона Республики Казахстан от 16 мая 2014 года № 202-V ЗРК «О разрешениях и уведомлениях» в части направления в АФМ уведомления о начале или прекращении деятельности?",
+    options: [
+      "юридических консультантов и других независимых специалистов по юридическим вопросам, ИП и ЮЛ, осуществляющих лизинговую деятельность в качестве лизингодателя без лицензии, ИП и ЮЛ, осуществляющих операции с драгоценными металлами и драгоценными камнями, ювелирными изделиями из них и ИП и ЮЛ, оказывающих посреднические услуги при осуществлении сделок купли-продажи недвижимого имущества",
+      "банки второго уровня, обменные пункты, кредитные товарищества",
+      "микрофинансовые организации, нотариусы, адвокаты",
+      "нет верного ответа"
+    ],
+    correct: "юридических консультантов и других независимых специалистов по юридическим вопросам, ИП и ЮЛ, осуществляющих лизинговую деятельность в качестве лизингодателя без лицензии, ИП и ЮЛ, осуществляющих операции с драгоценными металлами и драгоценными камнями, ювелирными изделиями из них и ИП и ЮЛ, оказывающих посреднические услуги при осуществлении сделок купли-продажи недвижимого имущества"
+  },
+  {
+    question: "9. Какие операции подлежат финансовому мониторингу?",
+    options: [
+      "пороговые",
+      "подозрительные",
+      "операции, имеющие характеристики, соответствующие типологиям, схемам и способам легализации ОД/ФТ",
+      "все ответы верны"
+    ],
+    correct: "все ответы верны"
+  },
+  {
+    question: "10. Какие меры должны принимать субъекты финансового мониторинга в отношении своих клиентов (их представителей) и бенефициарных собственников в соответствии с законодательством Республики Казахстан о ПОД/ФТ?",
+    options: [
+      "меры по надлежащей проверке клиентов (НПК)",
+      "меры по системе управления рисками",
+      "меры по риск-ориентированному подходу",
+      "все ответы верны"
+    ],
+    correct: "меры по надлежащей проверке клиентов (НПК)"
+  }
+];
+
+
+
 function GamePage() {
   const [open, setOpen] = useState(false)
   const [selectedRole, setSelectedRole] = useState(null);
   const [selectedCharacter, setSelectedCharacter] = useState('1');
   const [step, setStep] = useState(1);  // Новый шаг для игровой логики
   const [answer, setAnswer] = useState(null);  // Ответ на вопрос (если есть)
-  const [page, setPage] = useState(3);
+  const [page, setPage] = useState(1);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [userAnswer, setUserAnswer] = useState(null);
+  const [userAnswer1, setUserAnswer1] = useState(null);
+  const handleAnswerSelection = (answer) => {
+      setUserAnswer(answer);
+  };
+  const handleAnswerSelection1 = (answer) => {
+    setUserAnswer1(answer);
+};
+
+
   useEffect(() => {
     // Логика, выполняемая при изменении шага (например, скроллинг к началу)
-    window.scrollTo(0, 0);
-  }, [step, selectedRole]);
+    if (page === 1 || page) {
+      window.scrollTo(0, 0);
+    }
+    
+  }, [page]);
+  useEffect(() => {
+    if (selectedRole !== null) {
+      window.scrollTo({ top: window.scrollY + 3500, behavior: 'smooth' });
+    }
+  },[selectedRole])
   function PageHandler (page) {
     setPage(page);
   }
@@ -146,28 +270,74 @@ function GamePage() {
                 </div>
             )}
   
-            {step === 3 && ( // Финальный шаг
+              {step === 3 && (
+              <div>
                 <div>
-                  <div>
-                <div style={{display:"flex", justifyContent:"space-between"}}>
-                      <div style={{}}>
+                        <div style={{ display: "flex", justifyContent: "space-between" }}>
+                          <div>
                       <p style={{marginTop:"20px", fontSize:"25px"}}>Входной контроль</p> 
-                      <p style={{marginTop:"20px"}}>Ответ: {answer ? 'Да' : 'Нет'}</p>
-                      <p>Роль: {selectedRole}</p>
-                        <div>
+                      <p style={{ marginTop: "20px", fontSize: "19px" }}>
+                        {questions[currentQuestion].question}
+                      </p>
+                      <div style={{marginTop:"10px"}}>
+                        {questions[currentQuestion].options.map((option, index) => (
+                          <div key={index} onClick={() => handleAnswerSelection(option)} style={{ display: 'block', marginBottom: '10px', cursor: 'pointer' }}>
+                            <div style={{ width: '20px', height: '20px', borderRadius: '50%', border: "2px solid blue", backgroundColor: userAnswer === option ? 'blue' : 'grey', display: 'inline-block', marginRight: '5px' }}></div>
+                            <span>{option}</span>
+                          </div>
+                        ))}
+                            </div>
+                            <p style={{ marginTop: "20px", fontSize: "19px" }}>
+                        {questions[currentQuestion+1].question}
+                      </p>
+                      <div style={{ marginTop: "10px" }}>
+                            {questions[currentQuestion + 1].options.map((option1, index) => (
+                              <div
+                                key={index}
+                                onClick={() => handleAnswerSelection1(option1)}
+                                style={{
+                                  display: "block",
+                                  marginBottom: "10px",
+                                  cursor: "pointer",
+                                }}
+                              >
+                                <div
+                                  style={{
+                                    width: "20px",
+                                    height: "20px",
+                                    borderRadius: "50%",
+                                    border: "2px solid blue",
+                                    backgroundColor:
+                                      userAnswer1 === option1 ? "blue" : "grey", // Используем userAnswer1
+                                    display: "inline-block",
+                                    marginRight: "5px",
+                                  }}
+                                ></div>
+                                <span>{option1}</span>
+                              </div>
+                            ))}
+                          </div>
+                    </div>
+                    <div className='CharacterImgStep2' style={{ marginTop: "20px" }}>
+                      <img className='imgStep2' style={{ border: "8px solid #1F3C88", borderRadius: "11px", marginTop: "20px" }} src={selectedCharacter} />
+                    </div>
                   </div>
-                  </div>
-                  <div className='CharacterImgStep2' style={{marginTop:"20px"}}>
-                    <img className='imgStep2' style={{border:"8px solid #1F3C88", borderRadius:"11px", marginTop:"20px"}} src={selectedCharacter}/>
+                  <div style={{ display: "flex", gap: "10px", marginBottom: "40px" }}>
+                    <button style={{ borderRadius: "15px", color: "#5792EB", backgroundColor: "white", width: "78px", height: "32px", marginTop: "10px" }} onClick={() => setStep(2)}>Назад</button>
+                    <button style={{ borderRadius: "15px", color: "white", backgroundColor: "#5792EB", width: "78px", height: "32px", border: "none", marginTop: "10px" }} onClick={() => {
+                      if (currentQuestion < (questions.length / 2) + 2) {
+                        setCurrentQuestion(currentQuestion + 2);
+                        setUserAnswer(null); // Сбросить ответ пользователя
+                        setUserAnswer1(null)
+                      } else {
+                        PageHandler(3); // Переход на следующую страницу или завершение
+                      }
+                    }}>Далее</button>
                   </div>
                 </div>
-                  <div style={{display:"flex", gap:"10px", marginBottom:"40px"}}>
-                  <button style={{ borderRadius: "15px", color: "#5792EB", backgroundColor: "white", width: "78px", height: "32px", marginTop: "10px" }} onClick={() => setStep(2)}>Назад</button>
-                  <button style={{borderRadius:"15px", color:"white", backgroundColor:"#5792EB", width:"fit-content", height:"32px", border:"none", marginTop:"10px"}} onClick={() => PageHandler(3)}>Подтвердить</button>
-                  </div>
-              </div>
               </div>
             )}
+
             </div>
           </div>
         </div>
