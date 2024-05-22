@@ -1,11 +1,12 @@
 import React from 'react';
+import egovIMG from './../assets/svg/egov.svg';
 import './Style.scss';
 
 function Practika() {
   return (
     <div className="practika">
       <h3>Практика</h3>
-      <img src="path/to/your/image.png" alt="e.license screenshot" />
+      <img src={egovIMG} alt="e.license screenshot" />
       <h4>Подать уведомление</h4>
       <nav>
         <a href="#">Транскрипт</a>

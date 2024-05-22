@@ -175,7 +175,7 @@ function GamePage() {
   const [selectedCharacter, setSelectedCharacter] = useState('1');
   const [step, setStep] = useState(1);  // Новый шаг для игровой логики
   const [answer, setAnswer] = useState(null);  // Ответ на вопрос (если есть)
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [userAnswer, setUserAnswer] = useState(null);
   const [userAnswer1, setUserAnswer1] = useState(null);
