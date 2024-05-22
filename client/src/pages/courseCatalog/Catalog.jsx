@@ -842,7 +842,6 @@ function Catalog() {
                           <th>Стоимость</th>
                           <th>Стоимость с учетом корпоративной скидки</th>
                           <th>Заявка</th>
-                          <th>Количество поданных заявок</th>
                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -864,7 +863,6 @@ function Catalog() {
                                         <td>
                                             <Button onClick={() => { setSelectedCourseId(course.courseDTO.course_id); setSelectedCourseName(course.courseDTO.course_name); handleOpenModal(); }}>Подать заявку</Button>
                                         </td>
-                                        <td>{course.courseDTO.rating}</td>
                                     </tr>
                                 ))}
                             </React.Fragment>
