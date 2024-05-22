@@ -1,6 +1,6 @@
 const parseText = (text) => {
     // Extend the regex to find "--" prefixed text along with other formats
-    const regex = /(<--(.*?)-->)|(\|b\|(.*?)\|b\|)|(\|i\|(.*?)\|i\|)|(\|u\|(.*?)\|u\|)|(\|h\|(.*?)\|h\|)/g;
+    const regex = /(<--(.*?)-->)|(\|b\|(.*?)\|b\|)|(\|i\|(.*?)\|i\|)|(\|u\|(.*?)\|u\|)|(\|h\|(.*?)\|h\|)|(\|r\|(.*?)\|r\|)/g;
 
     let parts = [];
     let match;
@@ -31,6 +31,8 @@ const parseText = (text) => {
                         {match[10].indexOf("\|") !== -1 ? parseText(match[10]) : match[10].substring(0, match[10].indexOf('['))}
                 </span>
             );
+        } else if (match[11]) {
+            parts.push(<span key={parts.length} className="red">{match[12].indexOf("\|") !== -1 ? parseText(match[12]) : match[12]}</span>);
         }
 
         lastIndex = match.index + match[0].length;

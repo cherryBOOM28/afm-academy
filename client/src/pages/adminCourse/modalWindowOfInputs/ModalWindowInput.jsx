@@ -2835,7 +2835,10 @@ const Formatable_Textarea = ({
             className='btn-highlight'
             onClick={() => wrapSelected('|h|', '[Вставьте скрытый текст сюда]|h|')}
           >H</button>
-
+          <button 
+            className='btn-red'
+            onClick={() => wrapSelected('|r|', '|r|')}
+          >r</button>
         </div>
 
         <textarea
