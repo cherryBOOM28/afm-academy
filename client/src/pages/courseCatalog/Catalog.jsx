@@ -483,7 +483,7 @@ function Catalog() {
                         "id": 0,
                         "courseDTO": {
                             "course_id": 100,
-                            "course_name": "Учебный курс по навыкам работы с виртуальными активами",
+                            "course_name": "Учебный модуль по навыкам работы с виртуальными активами",
                             "course_price": 20001.0,
                             "course_image": "https://amlacademy.kz/aml//cum.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20240515%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240515T133226Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=6b8b1e7d7ba9bee62d2255e729457eace4caeb65bf6d6df62542e0e73e8729ee",
                             "course_for_member_of_the_system": "Для правоохранительных органов",

@@ -2986,7 +2986,7 @@ const CourseNavigation = ({
                     session={{
                         id: 1,
                         group: 'О курсе',
-                        name: 'О курсе',
+                        name: 'О модуле',
                         progress: 0,
                     }}
                     handleSessionClick={handleSessionClick}

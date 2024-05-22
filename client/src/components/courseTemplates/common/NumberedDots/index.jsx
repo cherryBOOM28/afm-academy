@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './style.scss'
 import Sizebox from '../Sizebox';
+import parseText from '../../../../util/ParseTextFromFormatTextarea';
 
 const NumberedDots = ({ list, dotsColor, color, header, gap=20 }) => {
     const defaultDotsColor = '#F9CB36';
@@ -40,11 +41,19 @@ const NumberedDots = ({ list, dotsColor, color, header, gap=20 }) => {
                                     }}
                                 >{i}</span>
                                 <div>
-                                    <p
-                                        style={{
-                                            color: color ? color : defaultColor,
-                                        }}      
-                                    >{item}</p>
+                                    {
+                                        item.split('\\n').map((child, index) => {
+                                            return (
+                                                <p
+                                                    style={{
+                                                        color: color ? color : defaultColor,
+                                                        fontWeight: 200
+                                                    }}
+                                                
+                                                > {parseText(child)}</p>
+                                            );
+                                        })
+                                    }
                                 </div>
                             </div>
                         )

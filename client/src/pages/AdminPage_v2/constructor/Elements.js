@@ -9,7 +9,6 @@ import RandomGlossary from '../../../components/courseTemplates/common/RandomGlo
 import RandomH2 from '../../../components/courseTemplates/common/RandomH2'
 import RandomParapraph from '../../../components/courseTemplates/common/RandomParagraph'
 import Sizebox from '../../../components/courseTemplates/common/Sizebox'
-import SmallNotNuberedDots from '../../../components/courseTemplates/common/SmallNotNuberedDots'
 
 import FlexRow from '../../../components/courseTemplates/common_v2/FlexRow'
 import FlexBoxes from '../../../components/courseTemplates/common_v2/FlexBoxes'

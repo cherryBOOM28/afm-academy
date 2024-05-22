@@ -185,7 +185,7 @@ function MyCourses() {
               courseDTO: {
                 course_id: 100,
                 course_name:
-                  "Учебный курс по навыкам работы с виртуальными активами",
+                  "Учебный модуль по навыкам работы с виртуальными активами",
                 course_price: 29000,
                 course_image: base64Course,
                 course_for_member_of_the_system: "СФМ",

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './style.scss';
+import parseText from '../../../../util/ParseTextFromFormatTextarea';
 
 const ComplexTable = ({ columns, data, showCollapseButton=true, version=1 }) => {
     const [isCollapsed, setIsCollapsed] = useState(true);
@@ -25,11 +26,22 @@ const ComplexTable = ({ columns, data, showCollapseButton=true, version=1 }) => 
                     )}
                     <table className="ComplexTable">
                         <thead>
-                        <tr>
-                            {columns.map((column, index) => (
-                                <th key={index}>{column}</th>
-                            ))}
-                        </tr>
+                            <tr>
+                                {columns.map((column, index) => (
+                                    <th key={index}>{
+                                        column.split('\\n').map((child, index) => {
+                                            return (
+                                                <p
+                                                    key={index}
+                                                    style={{
+                                                    }}
+                                                
+                                                > {parseText(child)}</p>
+                                            );
+                                        })
+                                    }</th>
+                                ))}
+                            </tr>
                         </thead>
                         <tbody>
                         {data.slice(0, showRows).map((row, rowIndex) => (
@@ -83,7 +95,18 @@ const ComplexTable = ({ columns, data, showCollapseButton=true, version=1 }) => 
                         <thead>
                         <tr>
                             {columns.map((column, index) => (
-                                <th key={index}>{column}</th>
+                                <th key={index}>{
+                                    column.split('\\n').map((child, index) => {
+                                        return (
+                                            <p
+                                                key={index}
+                                                style={{
+                                                }}
+                                            
+                                            > {parseText(child)}</p>
+                                        );
+                                    })
+                                }</th>
                             ))}
                         </tr>
                         </thead>

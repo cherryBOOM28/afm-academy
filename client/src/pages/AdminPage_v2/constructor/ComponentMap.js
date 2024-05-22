@@ -4,13 +4,11 @@ import FileDownloader from '../../../components/courseTemplates/common/FileDownl
 import HeaderWithLine from '../../../components/courseTemplates/common/HeaderWithLine'
 import ImageLine from '../../../components/courseTemplates/common/ImageLine'
 import ImageWithText from '../../../components/courseTemplates/common/ImageWithText'
-import NotNumberedDots from '../../../components/courseTemplates/common/NotNumberedDots'
 import NumberedDots from '../../../components/courseTemplates/common/NumberedDots'
 import RandomGlossary from '../../../components/courseTemplates/common/RandomGlossary'
 import RandomH2 from '../../../components/courseTemplates/common/RandomH2'
 import RandomParapraph from '../../../components/courseTemplates/common/RandomParagraph'
 import Sizebox from '../../../components/courseTemplates/common/Sizebox'
-import SmallNotNuberedDots from '../../../components/courseTemplates/common/SmallNotNuberedDots'
 import ImageSequence from '../../../components/courseTemplates/common_v2/ImageSequence'
 
 import Table_1 from '../../../components/courseTemplates/common/Tables/Table-1'
@@ -50,6 +48,7 @@ import Component52 from '../../../components/courseTemplates/complex/Component52
 import DragAndDropZone from '../../../components/courseTemplates/common/DraggableOption/DragAndDropZone'
 import LupaZone from '../../../components/courseTemplates/common/Lupa/LupaDragZone';
 import ImageWithPoints from '../../../components/courseTemplates/complex/interactives/ImageWithPoints'
+import NotNumberedDots from '../../../components/courseTemplates/common/NotNumberedDots'
 
 const componentMap = {
     HeaderWithLine,
@@ -62,8 +61,8 @@ const componentMap = {
     TextWithTitle,
     Report_Warning,
     Report_Information,
-    NotNumberedDots,
     NumberedDots,
+    NotNumberedDots,
     Table_1,
     FileDownloader,
     VideoLine,

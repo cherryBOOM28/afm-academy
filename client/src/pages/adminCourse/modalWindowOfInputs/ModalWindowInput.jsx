@@ -991,6 +991,15 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                   <label>{input.label}</label>
                     <div className='list-column'>
                     {values[input.name].map((x, index) => {
+                      return <Formatable_Textarea 
+                        handleChange={(_, value, __) => handleInputChange(index, value, input.name)}
+                        label={''}
+                        name={input.name}
+                        type={'list'}
+                        value={x || ''}
+                        minHeight={100}
+                      />
+
                       return (
                         <div key={index}>
                           <input

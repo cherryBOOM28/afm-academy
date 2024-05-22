@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import './style.scss'
 import Sizebox from '../Sizebox';
+import parseText from '../../../../util/ParseTextFromFormatTextarea';
 
 const NotNumberedDots = ({ 
     list, 
@@ -50,13 +51,21 @@ const NotNumberedDots = ({
                                         color: color ? color : defaultColor,
                                     }}
                                 ></span> 
-                                <p
-                                    style={{
-                                        color: color ? color : defaultColor,
-                                        fontWeight: 200
-                                    }}
-                                  
-                                >  {item}</p>
+                                <div>
+                                    {
+                                        item.split('\\n').map((child, index) => {
+                                            return (
+                                                <p
+                                                    style={{
+                                                        color: color ? color : defaultColor,
+                                                        fontWeight: 200
+                                                    }}
+                                                
+                                                > {parseText(child)}</p>
+                                            );
+                                        })
+                                    }
+                                </div>
                             </div>
                         )
                     })

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './style.scss';
+import parseText from '../../../../util/ParseTextFromFormatTextarea';
 
 function FancyList({
     list,
@@ -36,7 +37,13 @@ function FancyList({
                                     color: textColor,
                                 }}
 
-                            >{item}</div>
+                            >{
+                                item.split('\\n').map((child, index) => {
+                                    return (
+                                        <p>{parseText(child)}</p>
+                                    );
+                                })
+                            }</div>
                         </div>
                     )
                 })

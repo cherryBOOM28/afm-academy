@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './style.scss';
+import parseText from '../../../../util/ParseTextFromFormatTextarea';
 
 function ImageAndColumns({
     image,
@@ -23,7 +24,17 @@ function ImageAndColumns({
                                return (
                                 <div className="column" key={index} style={{ color: listColor }}>
                                     {
-                                        item
+                                        item.split('\\n').map((child, index) => {
+                                            return (
+                                                <p
+                                                    key={index}
+                                                    style={{
+                                                        fontWeight: 200
+                                                    }}
+                                                
+                                                > {parseText(child)}</p>
+                                            );
+                                        })
                                     }
                                 </div>
                                )

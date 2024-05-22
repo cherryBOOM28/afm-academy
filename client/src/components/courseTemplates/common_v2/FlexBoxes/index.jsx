@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './style.scss';
+import parseText from '../../../../util/ParseTextFromFormatTextarea';
 
 function FlexBoxes({
     list,
@@ -20,7 +21,19 @@ function FlexBoxes({
                             backgroundColor: backgroundColor 
                         }}
                     >
-                        { item }
+                        {
+                            item.split('\\n').map((child, index) => {
+                                return (
+                                    <p
+                                        key={index}
+                                        style={{
+                                            fontWeight: 200
+                                        }}
+                                    
+                                    > {parseText(child)}</p>
+                                );
+                            })
+                        }
                     </div>
 
                 ))
