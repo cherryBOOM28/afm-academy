@@ -305,11 +305,11 @@ function GamePage() {
                   <p style={{marginTop:"20px", fontSize:"20px"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
                   <div style={{marginTop:"10px"}}>
                     <div onClick={() => handleAnswer(true)} style={{ display: 'block', marginRight: '10px', cursor: 'pointer' }}>
-                      <div style={{ width: '20px', height: '20px', borderRadius: '50%', border:"2px solid blue", backgroundColor: answer === true ? 'blue' : 'grey', display: 'inline-block', marginRight: '5px' }}></div>
+                      <div style={{ width: '20px', height: '20px', borderRadius: '50%', border:"1px solid #5792EB", backgroundColor: answer === true ? '#5792EB' : '#D9D9D9', display: 'inline-block', marginRight: '5px' }}></div>
                       <span>Да</span>
                     </div>
                     <div onClick={() => handleAnswer(false)} style={{ display: 'inline-block', cursor: 'pointer' }}>
-                      <div style={{ width: '20px', height: '20px', borderRadius: '50%', border:"2px solid blue", backgroundColor: answer === false ? 'blue' : 'grey', display: 'inline-block', marginRight: '5px' }}></div>
+                      <div style={{ width: '20px', height: '20px', borderRadius: '50%', border:"1px solid #5792EB", backgroundColor: answer === false ? '#5792EB' : '#D9D9D9', display: 'inline-block', marginRight: '5px' }}></div>
                       <span>Нет</span>
                     </div>
                   </div>
@@ -337,7 +337,7 @@ function GamePage() {
                       <div style={{marginTop:"10px"}}>
                         {questions[currentQuestion].options.map((option, index) => (
                           <div key={index} onClick={() => handleAnswerSelection(option)} style={{ display: 'block', marginBottom: '10px', cursor: 'pointer' }}>
-                            <div style={{ width: '20px', height: '20px', borderRadius: '50%', border: "2px solid blue", backgroundColor: userAnswer === option ? 'blue' : 'grey', display: 'inline-block', marginRight: '5px' }}></div>
+                            <div style={{ width: '20px', height: '20px', borderRadius: '50%', border: "1px solid #5792EB", backgroundColor: userAnswer === option ? '#5792EB' : '#D9D9D9', display: 'inline-block', marginRight: '5px' }}></div>
                             <span>{option}</span>
                           </div>
                         ))}
@@ -361,9 +361,9 @@ function GamePage() {
                                     width: "20px",
                                     height: "20px",
                                     borderRadius: "50%",
-                                    border: "2px solid blue",
+                                    border: "1px solid #5792EB",
                                     backgroundColor:
-                                      userAnswer1 === option1 ? "blue" : "grey", // Используем userAnswer1
+                                      userAnswer1 === option1 ? '#5792EB' : '#D9D9D9', // Используем userAnswer1
                                     display: "inline-block",
                                     marginRight: "5px",
                                   }}
