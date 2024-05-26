@@ -14,6 +14,7 @@
     "@fullcalendar/react": "^6.1.8",
     "@googlemaps/react-wrapper": "^1.1.35",
     "@mui/icons-material": "^5.14.18",
+    "@mui/joy": "^5.0.0-beta.36",
     "@mui/material": "^5.15.12",
     "@nplus.tech/ktwidget-client": "^1.0.5",
     "@testing-library/jest-dom": "^5.17.0",
