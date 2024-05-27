@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Inter);
 .aml-game-2-main{
     width: 100%;
+    display: flex;
     font-family: Inter;
     .aml-game-sidebar{
         width: 27%;
@@ -19,6 +20,27 @@
                 color: rgba(255, 255, 255, 0.648);
                 font-weight: 600;
                 margin-bottom: 20px;
+            }
+        }
+    }
+    .aml-game-right{
+        width:73%;
+        .aml-game-right-container{
+            padding: 4%;
+            .aml-game-right-header{
+               .aml-game-right-header-topic{
+                color:#1A2751;
+                font-size: 23px;
+                font-weight: 600;
+                margin-bottom: 20px;
+               } 
+               .aml-game-testing{
+                margin-top:80px;
+                .testingP{
+                    font-size: 23px;
+                    color:#1a27512d;
+                }
+               }
             }
         }
     }

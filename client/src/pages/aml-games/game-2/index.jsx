@@ -2,6 +2,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
+import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import React from 'react';
@@ -60,53 +61,91 @@ function Game_2() {
     };
     
     return (
-        <div className="aml-game-2-main">
+        <div>
             <NavbarGame />
-            <div className='aml-game-sidebar'>
-                <div className='sidebar-container'>
-                    <h1 className='aml-game-level'>{level}</h1>
-                    <div>
-                        <p className='aml-game-task'>Задание 1.1.1</p>
-                        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-                            <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                            <Typography>Описание текущей ситуации</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography>
-                                    {testText}
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-                            <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                            <Typography>Ваша задача</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography>
-                                    {testText}
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-                            <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                            <Typography>Шаги выполнения задания</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography>
-                                    {testText}
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
-                            <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                            <Typography>Риск не исполнения</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography>
-                                    {testText}
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
+            <div className="aml-game-2-main">
+                <div className='aml-game-sidebar'>
+                    <div className='sidebar-container'>
+                        <h1 className='aml-game-level'>{level}</h1>
+                        <div>
+                            <p className='aml-game-task'>Задание 1.1.1</p>
+                            <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                                <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+                                <Typography>Описание текущей ситуации</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Typography>
+                                        {testText}
+                                    </Typography>
+                                </AccordionDetails>
+                            </Accordion>
+                            <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+                                <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+                                <Typography>Ваша задача</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Typography>
+                                        {testText}
+                                    </Typography>
+                                </AccordionDetails>
+                            </Accordion>
+                            <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+                                <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+                                <Typography>Шаги выполнения задания</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Typography>
+                                        {testText}
+                                    </Typography>
+                                </AccordionDetails>
+                            </Accordion>
+                            <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+                                <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+                                <Typography>Риск не исполнения</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Typography>
+                                        {testText}
+                                    </Typography>
+                                </AccordionDetails>
+                            </Accordion>
+                        </div>
+                    </div>
+                </div>
+                <div className='aml-game-right'>
+                    <div className='aml-game-right-container'>
+                        <div className='aml-game-right-header'>
+                            <p className='aml-game-right-header-topic'>Уровень 1.1 : Подача уведомления СФМ</p>
+                            <Divider sx={{backgroundColor:"#1A2751", borderBottomWidth:"2px"}} />
+                        </div>
+                        <div className='aml-game-testing'>
+                            <p className='testingP'>Тестирование</p>
+                            <form>
+                                <p>Нужно ли вам подавать уведомление?</p>
+                                <label>
+                                <input type="radio" name="notify" value="yes" />
+                                Да
+                                </label>
+                                <label>
+                                <input type="radio" name="notify" value="no" />
+                                Нет
+                                </label>
+                                <p>Выберите систему, через которую будете подавать уведомление</p>
+                                <label>
+                                <input type="radio" name="system" value="websfm" />
+                                WEB SFM
+                                </label>
+                                <label>
+                                <input type="radio" name="system" value="kgd" />
+                                КГД
+                                </label>
+                                <label>
+                                <input type="radio" name="system" value="egov" />
+                                EGOV(elicense)
+                                </label>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>
