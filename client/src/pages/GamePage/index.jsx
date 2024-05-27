@@ -10,6 +10,9 @@ import NavbarGame from './NavbarGame';
 import MainContent from './SecondPage/MainContent';
 import Practika from './SecondPage/Practika';
 import Quiz from './SecondPage/Quiz';
+import MainContent3 from './ThirdPage/MainContent3';
+import Practika3 from './ThirdPage/Practika3';
+import Quiz3 from './ThirdPage/Quiz3';
 import WelcomeGame from './WelcomeGame';
 import Character1 from './assets/svg/Character1.svg';
 import Character2 from './assets/svg/Character2.svg';
@@ -172,7 +175,7 @@ const questions = [
 function GamePage() {
   const [open, setOpen] = useState(false)
   const [selectedRole, setSelectedRole] = useState('Ювелирный магазин');
-  const [selectedCharacter, setSelectedCharacter] = useState('1');
+  const [selectedCharacter, setSelectedCharacter] = useState(Character3);
   const [step, setStep] = useState(1);  // Новый шаг для игровой логики
   const [answer, setAnswer] = useState(null);  // Ответ на вопрос (если есть)
   const [page, setPage] = useState(1);
@@ -274,7 +277,7 @@ function GamePage() {
                 </div>
                 <div className='StepperCounter'> {step} из 3</div>
               </div>
-              {step === 1 && (
+              {step === 2 && (
               <div className='ChooseCharacterWrapper1step'>
                     <div className='ChooseCharacter1'>Выберите своего персонажа для начала игры</div>
                       <div className='Characters'>
@@ -291,12 +294,13 @@ function GamePage() {
                         <img src={Character4} alt="" />
                       </div>
                       </div>
-                  <div style={{display: "flex", width: "1015px", marginBottom:"100px", justifyContent:"flex-end"}}>
-                  <button style={{borderRadius:"15px", color:"white", backgroundColor:"#5792EB", width:"78px", height:"32px", border:"none", marginTop:"10px"}} onClick={() => setStep(2)}>Далее</button>
+                      <div style={{ display: "flex", width: "1015px", marginBottom: "100px", justifyContent: "flex-end", gap:"10px" }}>
+                      <button style={{ borderRadius: "15px", color: "#5792EB", backgroundColor: "white", width: "78px", height: "32px", marginTop: "10px" }} onClick={() => setStep(1)}>Назад</button>
+                  <button style={{borderRadius:"15px", color:"white", backgroundColor:"#5792EB", width:"78px", height:"32px", border:"none", marginTop:"10px"}} onClick={() => setStep(3)}>Далее</button>
                   </div> {/* Кнопка для перехода к шагу 2 */}
                       </div>
               )}
-              {step === 2 && ( // Добавлен новый шаг для вопроса
+              {step === 1 && ( // Добавлен новый шаг для вопроса
                 <div>
                 <div style={{display:"flex", justifyContent:"space-between"}}>
                   
@@ -319,8 +323,7 @@ function GamePage() {
                   </div>
                 </div>
                   <div style={{display:"flex", gap:"10px", marginBottom:"40px"}}>
-                    <button style={{ borderRadius: "15px", color: "#5792EB", backgroundColor: "white", width: "78px", height: "32px", marginTop: "10px" }} onClick={() => setStep(1)}>Назад</button>
-                    <button style={{borderRadius:"15px", color:"white", backgroundColor:"#5792EB", width:"78px", height:"32px", border:"none", marginTop:"10px"}} onClick={() => setStep(3)}>Далее</button>
+                    <button style={{borderRadius:"15px", color:"white", backgroundColor:"#5792EB", width:"78px", height:"32px", border:"none", marginTop:"10px"}} onClick={() => setStep(2)}>Далее</button>
                   </div>
                 </div>
             )}
@@ -572,7 +575,25 @@ function GamePage() {
             <MainContent />
         <div className="sidebar">
           <Quiz />
-          <Practika />
+                <Practika />
+                <div style={{ display: "flex", marginBottom: "100px", justifyContent: "flex-end", gap:"10px" }}>
+                      <button style={{ borderRadius: "15px", color: "#5792EB", backgroundColor: "white", width: "78px", height: "32px", marginTop: "10px" }} onClick={() => PageHandler(2)}>Назад</button>
+                  <button style={{borderRadius:"15px", color:"white", backgroundColor:"#5792EB", width:"78px", height:"32px", border:"none", marginTop:"10px"}} onClick={() => PageHandler(4)}>Далее</button>
+                  </div>
+              </div>
+        
+        </div>
+      </div>
+        </div>
+      )}
+      {page === 4 && (
+        <div>
+        <div className="main" style={{}}>
+        <div style={{marginTop:"70px", display:"flex", width:"1015px" }}>
+            <MainContent3 />
+        <div className="sidebar">
+          <Quiz3 />
+          <Practika3 />
         </div>
         </div>
       </div>
