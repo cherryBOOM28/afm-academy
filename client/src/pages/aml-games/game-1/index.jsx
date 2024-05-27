@@ -9,6 +9,10 @@ import role_2 from './../assets/role-2.png';
 import role_3 from './../assets/role-3.png';
 import role_4 from './../assets/role-4.png';
 import avatarImage from './../assets/avatar-image.png';
+import whiteMan from './../assets/white-man.png';
+import whiteWoman from './../assets/white-woman.png';
+import asianMan from './../assets/asian-man.png';
+import asianWoman from './../assets/asian-woman.png';
 
 import { FaQuestion } from "react-icons/fa6";
 import { IoCheckmark } from "react-icons/io5";
@@ -20,7 +24,10 @@ function Game_1() {
     const [chosenCharacterId, setCharacterId] = useState(1);
     const [quizPage, setQuizPage] = useState(1);
     const [isSubject, setIsSubject] = useState(false);
-
+    const avatars = [
+        whiteMan, asianMan, asianWoman, whiteWoman
+    ]
+    
     const [userAnswers, setUserAnswers] = useState([
         {
             question: '1. Когда и кем была создана Группа разработки финансовых мер борьбы с отмыванием денег (ФАТФ)?',
@@ -48,7 +55,11 @@ function Game_1() {
                     "answer": answer
                 }
             }
+
+            return item;
         })
+
+        console.log(newUserAnswers);
 
         if (!found) {
             newUserAnswers.push({
@@ -56,6 +67,8 @@ function Game_1() {
                 "answer": answer,
             })
         }
+
+        console.log(newUserAnswers);
 
         setUserAnswers(newUserAnswers);
     }
@@ -199,23 +212,23 @@ function Game_1() {
                                             <div className="question">Выберите своего персонажа для начала игры</div>
 
                                             <div className='avatars'>
-                                                <div>
-                                                    <img src={avatarImage} alt="" className='chosen' />
+                                                <div onClick={(e) => setCharacterId(1)}>
+                                                    <img src={whiteMan} alt="" className='chosen' />
                                                     {chosenCharacterId === 1 ? <div className="icon"><IoCheckmark /></div> : null} 
                                                     {chosenCharacterId !== 1 ? <div className="overlay"></div> : null}
                                                 </div>
-                                                <div>
-                                                    <img src={avatarImage} alt="" />
+                                                <div onClick={(e) => setCharacterId(2)}>
+                                                    <img src={asianMan} alt="" />
                                                     {chosenCharacterId !== 2 ? <div className="overlay"></div> : null}
                                                     {chosenCharacterId === 2 ? <div className="icon"><IoCheckmark /></div> : null} 
                                                 </div>
-                                                <div>
-                                                    <img src={avatarImage} alt="" />
+                                                <div onClick={(e) => setCharacterId(3)}>
+                                                    <img src={asianWoman} alt="" />
                                                     {chosenCharacterId !== 3 ? <div className="overlay"></div> : null}
                                                     {chosenCharacterId === 3 ? <div className="icon"><IoCheckmark /></div> : null} 
                                                 </div>
-                                                <div>
-                                                    <img src={avatarImage} alt="" />
+                                                <div onClick={(e) => setCharacterId(4)}>
+                                                    <img src={whiteWoman} alt="" />
                                                     {chosenCharacterId !== 4 ? <div className="overlay"></div> : null}
                                                     {chosenCharacterId === 4 ? <div className="icon"><IoCheckmark /></div> : null} 
                                                 </div>
@@ -238,8 +251,7 @@ function Game_1() {
                                                                     <div className="answers">
                                                                         {
                                                                             question.options.map((option, idx) => {
-                                                                                let userAnswer = userAnswers.filter(item => item.question === question);
-                                                                                console.log(userAnswer);
+                                                                                let userAnswer = userAnswers.filter(item => item.question === question.question);
                                                                                 if (userAnswer.length === 0) {
                                                                                     userAnswer.push({
                                                                                         'answer': '',
@@ -250,11 +262,11 @@ function Game_1() {
                                                                                 return (
                                                                                     <div key={idx}>
                                                                                         <span
-                                                                                            className={userAnswer.answer === option ? 'active' : ''}
+                                                                                            className={userAnswer[0].answer === option ? 'active' : ''}
                                                                                             onClick={(e) => checkAnswer(question.question, option)}
                                                                                         >
                                                                                             {
-                                                                                                userAnswer.answer === option ? <IoCheckmark /> : null
+                                                                                                userAnswer[0].answer === option ? <IoCheckmark /> : null
                                                                                             }
                                                                                         </span>
                                                                                         <div>{option}</div>
@@ -272,7 +284,7 @@ function Game_1() {
                                             </div>
                                             <div className="right">
                                                 <div className="avatar">
-                                                    <img src={avatarImage} alt="" />
+                                                    <img src={avatars[chosenCharacterId-1]} alt="" />
                                                 </div>
                                             </div>
                                         </div>
@@ -306,7 +318,7 @@ function Game_1() {
                             <div
                                 onClick={() => {
                                     if (quizPage === 5 && step === 3) {
-                                        // finish
+                                        console.log(userAnswers);
                                     }
 
                                     if (step === 3) {
