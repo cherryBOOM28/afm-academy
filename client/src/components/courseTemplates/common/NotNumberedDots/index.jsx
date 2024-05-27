@@ -53,6 +53,7 @@ const NotNumberedDots = ({
                                 ></span> 
                                 <div>
                                     {
+                                        typeof item === 'string' ? 
                                         item.split('\\n').map((child, index) => {
                                             return (
                                                 <p
@@ -63,7 +64,14 @@ const NotNumberedDots = ({
                                                 
                                                 > {parseText(child)}</p>
                                             );
-                                        })
+                                        }) 
+                                        : (<p
+                                        style={{
+                                            color: color ? color : defaultColor,
+                                            fontWeight: 200
+                                        }}
+                                    
+                                    >{item}</p>)
                                     }
                                 </div>
                             </div>

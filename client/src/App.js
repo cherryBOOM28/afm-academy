@@ -70,6 +70,7 @@ const Sandbox = lazy(() => import('./pages/Sandbox'));
 const Basic_course = lazy(() => import('./pages/basic-course'));
 
 const CryptoCourse = lazy(() => import('./pages/ReadCourses/CryptoCourse'));
+const AmlGamesProfiile = lazy(() => import('./pages/aml-games/profile'));
 
 function App() {
     const [jwtToken, setJwtToken] = useState('');
@@ -103,8 +104,10 @@ function App() {
                             <Route path="/" element={<Suspense ><Home /></Suspense>}></Route>
                             <Route path="/:scroll" element={<Suspense ><Home /></Suspense>}></Route>
                             <Route path="/about" element={<Suspense ><AboutUs /></Suspense>}></Route>
+
                             <Route path="/courses/aml-games/:id" element={<Suspense ><GamePage /></Suspense>}></Route>
-                            <Route path="/courses/test-games/:id" element={<Suspense ><GamePage /></Suspense>}></Route>
+                            <Route path='/aml-games/profile' element={<Suspense><AmlGamesProfiile /></Suspense>}></Route>
+
                             <Route path="/management" element={<Suspense ><Management /></Suspense>}></Route>
                             <Route path="/contacts" element={<Suspense ><Contacts /></Suspense>}></Route>
                             <Route path="/news-page" element={<Suspense ><NewsPage /></Suspense>}></Route>

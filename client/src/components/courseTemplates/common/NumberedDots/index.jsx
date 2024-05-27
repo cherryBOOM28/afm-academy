@@ -42,6 +42,7 @@ const NumberedDots = ({ list, dotsColor, color, header, gap=20 }) => {
                                 >{i}</span>
                                 <div>
                                     {
+                                        typeof item === 'string' ?
                                         item.split('\\n').map((child, index) => {
                                             return (
                                                 <p
@@ -53,6 +54,15 @@ const NumberedDots = ({ list, dotsColor, color, header, gap=20 }) => {
                                                 > {parseText(child)}</p>
                                             );
                                         })
+                                        : (
+                                            <p
+                                                style={{
+                                                    color: color ? color : defaultColor,
+                                                    fontWeight: 200
+                                                }}
+                                                
+                                            > {item}</p>
+                                        )
                                     }
                                 </div>
                             </div>

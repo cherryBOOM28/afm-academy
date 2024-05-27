@@ -1,0 +1,148 @@
+.game-profile {
+    font-family: 'Inter', sans-serif;
+
+    .nav-bar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 45px;
+
+        background-color: #1A2751;
+
+        .logo {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+
+            > div {
+                color: #FFFFFF;
+                font-weight: 500;
+                font-size: 16px;
+            }
+        }
+
+        .navigation {
+            display: flex;
+            flex-direction: row;
+            color: #8C9BB5;
+
+            .lang {
+
+                font-size: 20px;
+                font-weight: 500;
+                
+                border-right: 1px solid #8C9BB5;
+                padding: 15px;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .profile {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 25px;
+
+                padding-left: 15px;
+
+                .icon {
+                    width: 40px;
+                    height: 40px;
+                    box-sizing: border-box;
+                    padding: 8px;
+
+                    color: #1A2751;
+                    background-color: #FFF;
+                    border-radius: 50%;
+
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+                    > * {
+                        font-size: 20px;
+                    }
+                }
+
+                span {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+    
+    .container {
+        display: flex;
+        flex-direction: row;
+        width: unset;
+        max-width: unset;
+    }
+
+    .main {
+        flex: 1;
+
+        padding: 22px 43px 120px 73px;
+        border: 1px solid red;
+
+        .nav-back-btn {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+
+            padding: 7px 17px 7px 10px;
+            border-radius: 50px;
+    
+            background-color: #1A2751;
+            color: #fff;
+
+            border: none;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.02);
+            }
+    
+            > div {
+                color: #1A2751;
+                background-color: #FFF;
+
+                border-radius: 50%;
+                width: 21px;
+                height: 21px;
+                box-sizing: border-box;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                * {
+                    font-size: 12px;
+                }
+            }
+
+            > span {
+                font-size: 12px;
+            }
+        }
+
+        .header {
+            margin-top: 68px;
+            height: 100px;
+        }
+
+
+    }
+
+    .right-bar {
+        width: 330px;
+        border: 1px solid green;
+    }
+}
