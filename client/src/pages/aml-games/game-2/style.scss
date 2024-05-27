@@ -1,0 +1,26 @@
+@import url(https://fonts.googleapis.com/css?family=Inter);
+.aml-game-2-main{
+    width: 100%;
+    font-family: Inter;
+    .aml-game-sidebar{
+        width: 22%;
+        height: 100vh;
+        background-color: #1A2751;
+        color: white;
+        .sidebar-container{
+            padding: 10%;
+            .aml-game-level{
+                font-size: 25px;
+                margin-bottom: 20px;
+                font-weight: 600;
+            }
+            .aml-game-task{
+                font-size: 23px;
+                color: rgba(255, 255, 255, 0.648);
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+        }
+    }
+    
+}

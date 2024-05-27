@@ -12,10 +12,11 @@ import NewsPage from './pages/News/News.jsx';
 import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigationCourse/index.jsx';
 import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
+import Game_1 from './pages/aml-games/game-1/index.jsx';
+import Game_2 from './pages/aml-games/game-2/index.jsx';
 import Login from './pages/login/Login';
 import Registration from './pages/registration/Registration';
 import './settings/i18n.js';
-import Game_1 from './pages/aml-games/game-1/index.jsx';
 const GamePage = lazy(()=>import ('./pages/GamePage/index.jsx'))
 const Home = lazy(() => import ('./pages/home/Home'))
 const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
@@ -108,6 +109,7 @@ function App() {
 
                             <Route path="/courses/aml-games/:id" element={<Suspense ><GamePage /></Suspense>}></Route>
                             <Route path='/aml-games/game/:id/read' element={<Suspense><Game_1 /></Suspense>}></Route>
+                            <Route path='/aml-games/game/:id/read/:id' element={<Suspense><Game_2 /></Suspense>}></Route>
                             <Route path='/aml-games/game/:id/profile' element={<Suspense><AmlGamesProfiile /></Suspense>}></Route>
 
                             <Route path="/management" element={<Suspense ><Management /></Suspense>}></Route>

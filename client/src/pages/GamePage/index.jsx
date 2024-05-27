@@ -576,7 +576,7 @@ function GamePage() {
         <div className="sidebar">
           <Quiz />
                 <Practika />
-                <div style={{ display: "flex", marginBottom: "100px", justifyContent: "flex-end", gap:"10px" }}>
+                <div style={{ display: "flex", width: "1015px", marginBottom: "100px", justifyContent: "flex-end", gap:"10px" }}>
                       <button style={{ borderRadius: "15px", color: "#5792EB", backgroundColor: "white", width: "78px", height: "32px", marginTop: "10px" }} onClick={() => PageHandler(2)}>Назад</button>
                   <button style={{borderRadius:"15px", color:"white", backgroundColor:"#5792EB", width:"78px", height:"32px", border:"none", marginTop:"10px"}} onClick={() => PageHandler(4)}>Далее</button>
                   </div>

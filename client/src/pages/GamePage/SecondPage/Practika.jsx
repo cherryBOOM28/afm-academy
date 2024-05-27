@@ -4,7 +4,8 @@ import './Style.scss';
 
 function Practika() {
   return (
-    <div className="practika">
+    <div className='right-side'>
+      <div className="practika">
       <h3>Практика</h3>
       <img src={egovIMG} alt="e.license screenshot" />
       <h4>Подать уведомление</h4>
@@ -14,6 +15,7 @@ function Practika() {
         <a href="#">Загрузки</a>
       </nav>
       <p>Переходят сдать уведомление: Егов - войти - электронное лицензирование - финансы - уведомительный порядок...</p>
+    </div>
     </div>
   );
 }
