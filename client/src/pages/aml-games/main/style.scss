@@ -289,21 +289,28 @@
                         flex-direction: column;
                         gap: 21px;
 
-                        > div:first-child(1) {
+                        padding: 0px 28px;
+
+                        > .header-row {
                             margin-bottom: 11px;
+
+                            > div {
+                                font-size: 18px;
+                                font-weight: 600;
+                            }
                         } 
 
                         > div {
                             display: flex;
                             flex-direction: row;
                             align-items: center;
-                            gap: 50px;
+                            gap: 30px;
 
                             > div:first-child {
                                 flex: 1;
                                 display: flex;
                                 flex-direction: column;
-                                gap: 5px;
+                                gap: 3px;
 
                                 > div:first-child {
                                     font-size: 18px;
@@ -321,15 +328,187 @@
                             > div:nth-child(2) {
                                 width: 145px;
                                 text-align: center;
+                                font-size: 15px;
+                                line-height: 110%;
+
+                                span {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    gap: 5px;
+
+                                    > * {
+                                        font-size: 18px;
+                                    }
+                                }
                             }
 
                             > div:nth-child(3) {
                                 width: 65px;
                                 text-align: center;
-
+                                font-size: 15px;
+                                line-height: 110%;
                             }
 
                             
+                        }
+                    }
+
+                    .game-info {
+                        
+                        p {
+                            color: #000000;
+                            font-size: 16px;
+                            line-height: 20px;
+                            
+                            padding: 0px 28px;
+                            margin-bottom: 30px;
+                        }
+
+                        .bold {
+                            font-weight: 600;
+                        }
+
+                        .underlined {
+                            text-decoration: underline;
+                        }
+
+                        .dropDownContent {
+                            border: 1px solid black;
+                            border-radius: 5px;
+
+                            padding: 15px 18px;
+
+                            .title {
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                                gap: 21px;
+
+                                cursor: pointer;
+
+                                &.open > *:first-child {
+                                    transform: rotate(90deg);
+                                }
+
+                                >*:first-child {
+                                    font-size: 22px;
+                                    // cursor: pointer;
+                                    transition: transform 200ms ease-in-out;
+                                }
+
+                                >*:last-child {
+                                    font-size: 16px;
+                                    font-weight: 600;
+                                }
+                            }
+
+                            .goal {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 5px;
+
+                                font-size: 16px;
+                                line-height: 26px;
+
+                                padding: 20px 28px;
+
+                                > div {
+                                    display: flex;
+                                    flex-direction: row;
+                                    gap: 5px;
+
+                                    > span:first-child {
+                                        width: 20px;
+                                    }
+
+                                    > span:last-child {
+                                        flex: 1;
+                                    }
+                                }
+                            }
+
+                            .statement {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 5px;
+
+                                font-size: 16px;
+                                line-height: 26px;
+
+                                padding: 20px 28px;
+
+                                > div {
+                                    display: flex;
+                                    flex-direction: row;
+                                    gap: 10px;
+
+                                    > span:first-child {
+                                        width: 5px;
+                                        height: 5px;
+                                        padding: 2.5px;
+                                        box-sizing: border-box;
+
+                                        background-color: #000000;
+                                        border-radius: 50%;
+
+                                        margin-top: 10px;
+                                    }
+
+                                    > span:last-child {
+                                        flex: 1;
+                                    }
+                                }
+                            }
+
+                            .normative {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 10px;
+
+                                font-size: 16px;
+                                line-height: 26px;
+
+                                padding: 20px 0px;
+
+                                p {
+                                    margin: 0;
+                                }
+
+                                > div {
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 5px;
+
+                                    > div {
+                                        display: flex;
+                                        flex-direction: row;
+                                        gap: 10px;
+
+                                        padding: 0px 28px;
+    
+                                        > span:first-child {
+                                            width: 5px;
+                                            height: 5px;
+                                            padding: 2.5px;
+                                            box-sizing: border-box;
+    
+                                            background-color: #000000;
+                                            border-radius: 50%;
+    
+                                            margin-top: 10px;
+                                        }
+    
+                                        > span:last-child {
+                                            flex: 1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .dropDownContent+.dropDownContent {
+                            margin-top: 17px;
                         }
                     }
                 }

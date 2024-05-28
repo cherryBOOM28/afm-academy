@@ -5,13 +5,14 @@ import ringImage from './../assets/ring-image.png';
 import headerBg from './../assets/main-header-background.png';
 import { NavbarProfile } from '../navbar';
 import { FaChevronRight  } from "react-icons/fa6";
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 import { levels } from './mockDatas';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 
 function GameMain() {
     const [tabIndex, setTabIndex] = useState(1);
-    const tabNames = ['Материал курса', 'Отметки', 'Информация о курсе'];
+    const tabNames = ['Материал курса', 'Отметки', 'AML GAME'];
 
     return ( 
         <div className="game-main">
@@ -84,7 +85,7 @@ function GameMain() {
                                 : tabIndex === 2 
                                     ? (
                                         <div className='level-statuses'>
-                                            <div>
+                                            <div className='header-row'>
                                                 <div>Элемент</div>
                                                 <div>Статус</div>
                                                 <div>Оценка</div>
@@ -99,10 +100,16 @@ function GameMain() {
                                                                 <div>{level.name}</div>
                                                             </div>
                                                             <div>
-                                                                {level.status}
+                                                                {
+                                                                    level.status === 'finished'
+                                                                        ? "Пройден"
+                                                                    : level.status === 'closed'
+                                                                        ? <span><AiOutlineExclamationCircle/> Заблокирован</span>
+                                                                    : ''
+                                                                }
                                                             </div>
                                                             <div>
-                                                                {level.grade ?? '--'}
+                                                                {level.grade ? `${level.grade}%` : '--'}
                                                             </div>
                                                         </div>
                                                     )
@@ -112,7 +119,43 @@ function GameMain() {
                                     )
                                 : tabIndex === 3
                                     ? (
-                                        <div></div>
+                                        <div className='game-info'>
+                                            <p><span className="bold">Цель игры "AML GAME"</span> заключается в обучении субъектов финансового мониторинга через интерактивные задания и симуляции, предоставляя им возможность получить знания и навыки, необходимые для эффективного выполнения требований законодательства о противодействии легализации доходов, полученных преступным путем (ПОД/ФТ), а также подготовки к различным реальным ситуациям. Игра способствует систематическому улучшению компетентности участников, повышению их уровня знаний и практическому применению этих знаний в профессиональной деятельности.</p>
+                                            
+                                            <DropDownContent title={'Цель и задачи игры'}>
+                                                <div className='goal'>
+                                                    <div><span>1.</span><span>Обучение субъектов финансового мониторинга основам ПОД/ФТ.</span></div>
+                                                    <div><span>2.</span><span>Практическое применение полученных знаний через интерактивные задания и симуляции.</span></div>
+                                                    <div><span>3.</span><span>Оценка и управление рисками, связанными с клиентами и операциями.</span></div>
+                                                    <div><span>4.</span><span>Мониторинг операций и подготовка отчетов.</span></div>
+                                                    <div><span>5.</span><span>Повышение профессиональной компетентности через постепенное усложнение заданий.</span></div>
+                                                </div>
+                                            </DropDownContent>
+                                            <DropDownContent title={'Условия прохождения игры'}>
+                                                <div className='statement'>
+                                                    <div><span></span><span>Сроки прохождения игры: Время, отведенное на завершение всех уровней игры – 30 дней.</span></div>
+                                                    <div><span></span><span>Длительность обучения: Общая продолжительность времени, необходимая для прохождения всех этапов определены на каждом уровне игры.</span></div>
+                                                    <div><span></span><span>Условия прохождения игры: Для успешного прохождения уровней игроку необходимо выполнить задания с результатом не менее 70%.</span></div>
+                                                    <div><span></span><span>Количество попыток: Игроку предоставляется 3 попытки для выполнения заданий и прохождения уровней. При превышении 3 попыток, необходимо начать уровень заново.</span></div>
+                                                    <div><span></span><span>Оценка и обратная связь: Система автоматически оценивает правильность выполнения заданий и отображает процент выполнения. Игрокам также доступна обратная связь. В чате можно задать вопросы, и мы обязательно предоставим ответ.</span></div>
+                                                    <div><span></span><span>Сертификация: После успешного выполнения всех заданий в игре вам будет предоставлен сертификат, который можно будет найти в вашем личном кабинете.</span></div>
+                                                    <div><span></span><span>Технические требования: Необходимые технические условия для прохождения игры (хорошее интернет-соединение и компьютер).</span></div>
+                                                    <div><span></span><span>Поддержка и помощь: Вы можете обратиться в чат «Обратной связи» или по тел. +7 708 716 84 16, для получения помощи в случае возникновения вопросов или проблем.</span></div>
+                                                </div>
+                                            </DropDownContent>
+                                            <DropDownContent title={'Нормативная основа игры'}>
+                                                <div className="normative">
+                                                    <p>При формировании материалов курса были использованы следующие нормативные правовые акты:</p>
+                                                    <div>
+                                                        <div><span></span><span className='underlined'>Закон РК «О противодействии легализации (отмыванию) доходов, полученных преступным путем, и финансированию терроризма»;</span></div>
+                                                        <div><span></span><span>Приказ Председателя АФМ РК от 22.02.2022 года № 13 «Об утверждении Правил представления субъектами финансового мониторинга сведений и информации об операциях, подлежащих финансовому мониторингу, и признаков определения подозрительной операции»;</span></div>
+                                                        <div><span></span><span>Приказ Председателя АФМ РК от 06.08.2021 года № 4 «Об утверждении Требований к правилам внутреннего контроля в целях противодействия легализации (отмыванию) доходов, полученных преступным путем, финансированию терроризма и финансированию распространения оружия массового уничтожения для не финансового сектора»;</span></div>
+                                                        <div><span></span><span>Международные стандарты в сфере ПОД/ФТ и др.</span></div>
+                                                    </div>
+                                                </div>
+                                            </DropDownContent>
+
+                                        </div>
                                     )
                                 : null
                             }
@@ -122,6 +165,27 @@ function GameMain() {
             </div>
         </div>
     );
+}
+
+const DropDownContent = ({
+    title,
+    children
+}) => {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <div className="dropDownContent" >
+            <div className={`title ${open ? 'open' : ''}`} onClick={(e) => setOpen(prev => !prev)}>
+                <FaChevronRight />
+                <div>{title}</div>
+            </div>
+            {
+                open 
+                    ? <div className="inner">{children}</div>
+                    : null
+            }
+        </div>
+    )
 }
 
 const LevelCard = ({
