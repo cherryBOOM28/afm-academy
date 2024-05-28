@@ -10,6 +10,7 @@ import { MdOutlineAlternateEmail } from 'react-icons/md';
 
 function GameMain() {
     const [tabIndex, setTabIndex] = useState(1);
+    const tabNames = ['Материал курса', 'Отметки', 'Информация о курсе'];
 
     return ( 
         <div className="game-main">
@@ -62,18 +63,32 @@ function GameMain() {
 
                         <div className="tab">
                             <div className="title">
-                                <div className="inner">Уровни обучения</div>
+                                <div className="inner">{tabNames[tabIndex-1]}</div>
                             </div>
 
-                            <div className="levels">
-                                {
-                                    levels.map((level, index) => {
+                            {
+                                tabIndex === 1 
+                                    ? (
+                                        <div className="levels">
+                                            {
+                                                levels.map((level, index) => {
 
-                                        return <LevelCard level={level} index={index} />;
-                                    })
-                                }
-                                
-                            </div>
+                                                    return <LevelCard level={level} index={index} />;
+                                                })
+                                            }
+                                            
+                                        </div>
+                                    )
+                                : tabIndex === 2 
+                                    ? (
+                                        <div></div>
+                                    )
+                                : tabIndex === 3
+                                    ? (
+                                        <div></div>
+                                    )
+                                : null
+                            }
                         </div>
                     </div>
                 </section>
