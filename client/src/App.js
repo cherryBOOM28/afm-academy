@@ -17,6 +17,7 @@ import Game_2 from './pages/aml-games/game-2/index.jsx';
 import Login from './pages/login/Login';
 import Registration from './pages/registration/Registration';
 import './settings/i18n.js';
+import GameMain from './pages/aml-games/main/index.jsx';
 const GamePage = lazy(()=>import ('./pages/GamePage/index.jsx'))
 const Home = lazy(() => import ('./pages/home/Home'))
 const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
@@ -108,7 +109,8 @@ function App() {
                             <Route path="/about" element={<Suspense ><AboutUs /></Suspense>}></Route>
 
                             <Route path="/courses/aml-games/:id" element={<Suspense ><GamePage /></Suspense>}></Route>
-                            <Route path='/aml-games/game/:id/read' element={<Suspense><Game_1 /></Suspense>}></Route>
+                            <Route path='/aml-games/game/:id/survey' element={<Suspense><Game_1 /></Suspense>}></Route>
+                            <Route path='/aml-games/game/:id/main' element={<Suspense><GameMain /></Suspense>}></Route>
                             <Route path='/aml-games/game/:id/read/:id' element={<Suspense><Game_2 /></Suspense>}></Route>
                             <Route path='/aml-games/game/:id/profile' element={<Suspense><AmlGamesProfiile /></Suspense>}></Route>
 

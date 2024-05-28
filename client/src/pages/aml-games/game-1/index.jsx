@@ -18,8 +18,10 @@ import { FaQuestion } from "react-icons/fa6";
 import { IoCheckmark } from "react-icons/io5";
 
 import { questions } from './questions';
+import { useNavigate } from 'react-router';
 
 function Game_1() {
+    const navigate = useNavigate();
     const [step, setStep] = useState(1);
     const [chosenCharacterId, setCharacterId] = useState(1);
     const [quizPage, setQuizPage] = useState(1);
@@ -318,7 +320,7 @@ function Game_1() {
                             <div
                                 onClick={() => {
                                     if (quizPage === 5 && step === 3) {
-                                        console.log(userAnswers);
+                                        navigate('/aml-games/game/1/main');
                                     }
 
                                     if (step === 3) {
