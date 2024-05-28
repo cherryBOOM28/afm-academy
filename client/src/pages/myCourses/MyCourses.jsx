@@ -187,7 +187,7 @@ function MyCourses() {
                 course_name:
                     "AML GAME",
                 course_price: 29000,
-                course_image: "https://amlacademy.kz/aml/amlgame.jpeg",
+                course_image: "https://amlacademy.kz/aml/Снимок экрана 2024-05-28 144703.png",
                 course_for_member_of_the_system: "СФМ",
                 duration: "19ч 45мин",
                 rating: 5,
