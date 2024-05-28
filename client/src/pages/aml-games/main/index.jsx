@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './style.scss';
 import ringImage from './../assets/ring-image.png';
+import headerBg from './../assets/main-header-background.png';
 import { NavbarProfile } from '../navbar';
 import { FaChevronRight  } from "react-icons/fa6";
 
@@ -18,6 +19,7 @@ function GameMain() {
             <div className="container">
 
                 <div className="header">
+                    <img src={headerBg} alt="" className="background" />
                     <img src={ringImage} alt="" />
                     <h1>Добро пожаловать в симулятор компании в сфере ПОД/ФТ!</h1>
                     <div className="desc">

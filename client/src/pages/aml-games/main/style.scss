@@ -10,10 +10,26 @@
             align-items: center;
 
             padding: 30px 20px 0 50px;
+            background-size: cover;
 
-            img {
+            position: relative;
+            // overflow: hidden;
+
+            img:not(.background) {
                 width: 250px;
                 transform: rotate(-17.73deg);
+            }
+
+            .background {
+                position: absolute;
+                top: 0px;
+                
+                // border: 1px solid red;
+                height: 100%;
+                width: 95vw;
+                box-sizing: border-box;
+                user-select: none;
+                pointer-events: none;
             }
 
             h1 {
