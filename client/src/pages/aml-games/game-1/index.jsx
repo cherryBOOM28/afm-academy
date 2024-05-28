@@ -332,7 +332,7 @@ function Game_1() {
                             <div
                                 onClick={() => {
                                     if (quizPage === 5 && step === 3) {
-                                        navigate('/aml-games/game/1/main');
+                                        navigate('/courses/aml-games/game/main/1');
                                     }
 
                                     if (step === 3) {

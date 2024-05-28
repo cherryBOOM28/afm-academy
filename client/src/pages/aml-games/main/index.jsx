@@ -81,7 +81,32 @@ function GameMain() {
                                     )
                                 : tabIndex === 2 
                                     ? (
-                                        <div></div>
+                                        <div className='level-statuses'>
+                                            <div>
+                                                <div>Элемент</div>
+                                                <div>Статус</div>
+                                                <div>Оценка</div>
+                                            </div>
+                                            {
+                                                levels.map((level, index) => {
+
+                                                    return (
+                                                        <div>
+                                                            <div>
+                                                                <div>{index+1} уровень</div>
+                                                                <div>{level.name}</div>
+                                                            </div>
+                                                            <div>
+                                                                {level.status}
+                                                            </div>
+                                                            <div>
+                                                                {level.grade ?? '--'}
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
                                     )
                                 : tabIndex === 3
                                     ? (

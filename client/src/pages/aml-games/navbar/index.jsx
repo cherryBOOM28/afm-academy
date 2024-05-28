@@ -17,8 +17,8 @@ export const NavbarProfile = () => {
                     <div className="icon">
                         <FiUser />
                     </div>
-                    <span><a href="/aml-games/game/1/profile">Профиль</a></span>
-                    <span><a href="/aml-games/game/1/survey">Домой</a></span>
+                    <span><a href="/courses/aml-games/game/profile/1">Профиль</a></span>
+                    <span><a href="/courses/aml-games/game/survey/1">Домой</a></span>
                 </div>
             </div>
         </div>

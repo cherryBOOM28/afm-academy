@@ -183,7 +183,7 @@ function MyCourses() {
             {
               id: 0,
               courseDTO: {
-                course_id: 'aml-games/game/1/survey',
+                course_id: 'courses/aml-games/game/survey/1',
                 course_name:
                     "AML GAME",
                 course_price: 29000,
