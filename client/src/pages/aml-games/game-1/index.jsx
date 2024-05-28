@@ -37,6 +37,14 @@ function Game_1() {
         }
     ])
 
+    function scrollToTopAnimated() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const courseContent = document.querySelector('.aml-game-1-main');
+        if (courseContent) {
+            courseContent.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+
     const getDotColor = (num) => {
         return step === num 
         ? '#1F3C88'
@@ -74,6 +82,10 @@ function Game_1() {
 
         setUserAnswers(newUserAnswers);
     }
+
+    useEffect(() => {
+        scrollToTopAnimated();
+    }, [])
 
     return ( 
         <div className="aml-game-1-main">
