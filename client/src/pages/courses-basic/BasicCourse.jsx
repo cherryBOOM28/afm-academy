@@ -35,15 +35,18 @@ console.log(t);
 
 function BasicCourse() {
     const jwtToken = localStorage.getItem('jwtToken');
+    let user_id = localStorage.getItem("user_id");
     const { t } = useTranslation();
     console.log(t);
     const {id} = useParams();
+    let user_idd = parseInt(user_id,10)
 
     const [showModal, setShowModal] = useState(false);
     const [data, setData] = useState(null);
+    const [data2, setData2] = useState(null);
     const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(true);
-    
+
 
     const [request, setRequest] = useState({
         email: '',
@@ -156,11 +159,17 @@ function BasicCourse() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`${base_url}/api/aml/course/justGetCourseById/${id}`);
-
-
+                const responseUserCourse = await axios.get(`${base_url}/api/aml/course/getUserBazovii`);
+                console.log(jwtToken)
                 if (response.status === 200) {
                     setData(response.data);
+                    setData2(responseUserCourse.data)
                     console.log(response.data)
+                    // console.log(parseInt(user_id,10))
+                    console.log('user_id:', user_id); // Should log: 30
+                    console.log('responseList:', data2); // Should log the entire array
+                    console.log('responseList.includes(user_id):', data2.includes(user_idd)); // Should log: true if 30 is in the list
+
                 } else {
                     // Handle other status codes if needed
                     setError(response.statusText);
@@ -176,8 +185,7 @@ function BasicCourse() {
         
         fetchData();
       }, []);
-
-    return ( 
+    return (
         <div className={`basic-course-page`}>
             <Header dark={true}  />
             <div>
@@ -203,12 +211,18 @@ function BasicCourse() {
                                 {
                                     jwtToken !== null
                                         ? (
-                                            data !== null && [41, 47, 79].includes(data.course_id)
+                                            data !== null && [41, 47, 79].includes(data.course_id) && !data2.includes(user_idd)
                                                 ? (
                                                     <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
                                                         {t("buy a module")}
                                                     </Link>
-                                                )
+                                                ) :
+                                                    data !== null && data2.includes(user_idd)
+                                                    ? (
+                                                        <Link to={`/courses/8/read`} style={{ color: 'white', textDecoration: 'none' }}>
+                                                            Пройти урок
+                                                        </Link>
+                                                    )
                                                 : (
                                                     data !== null && data.course_id === 86
                                                         ? (
@@ -219,6 +233,7 @@ function BasicCourse() {
                                                             {t("buy a course")}
                                                         </Link>
                                                 )
+
                                         )
                                         : (
                                             data != null && data.course_id === 86
