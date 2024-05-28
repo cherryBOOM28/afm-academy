@@ -25,7 +25,7 @@ export default function MessagesPane(props: MessagesPaneProps) {
   return (
     <Sheet
       sx={{
-        height: "550px",
+        height: "602px",
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: 'background.level1',

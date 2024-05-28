@@ -32,7 +32,7 @@ export default function ChatsPane(props: ChatsPaneProps) {
         p={2}
         pb={1.5}
       >
-        <div style={{ height: "227px" }}>
+        <div style={{ height: "280px" }}>
         <div className="info-block">
                         <div className="avatar" >
                             <img className="avatarIMG" src={avatarImg} alt="" />
