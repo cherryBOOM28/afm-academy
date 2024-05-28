@@ -13,11 +13,12 @@ import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigati
 import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
 import Game_1 from './pages/aml-games/game-1/index.jsx';
+import PageWithChat from './pages/aml-games/game-2/PageWithChat.jsx';
 import Game_2 from './pages/aml-games/game-2/index.jsx';
+import GameMain from './pages/aml-games/main/index.jsx';
 import Login from './pages/login/Login';
 import Registration from './pages/registration/Registration';
 import './settings/i18n.js';
-import GameMain from './pages/aml-games/main/index.jsx';
 const GamePage = lazy(()=>import ('./pages/GamePage/index.jsx'))
 const Home = lazy(() => import ('./pages/home/Home'))
 const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
@@ -113,6 +114,7 @@ function App() {
                             <Route path='/courses/aml-games/game/main/:id' element={<GameMain />}></Route>
                             <Route path='/courses/aml-games/game/profile/:id' element={<AmlGamesProfiile />}></Route>
                             <Route path='/courses/aml-games/game/read/:id/:taskId' element={<Game_2 />}></Route>
+                            <Route path='/courses/aml-games/game/read/page-with-chat' element={<PageWithChat />}></Route>
 
                             <Route path="/management" element={<Suspense ><Management /></Suspense>}></Route>
                             <Route path="/contacts" element={<Suspense ><Contacts /></Suspense>}></Route>

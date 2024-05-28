@@ -5,7 +5,7 @@
     font-family: Inter;
     .aml-game-sidebar{
         width: 27%;
-        height: 100vh;
+        height: 160vh;
         background-color: #1A2751;
         color: white;
         .sidebar-container{
@@ -42,6 +42,9 @@
                 }
                }
             }
+            .message-page{
+                margin-top: 60px;
+               }
         }
     }
     
