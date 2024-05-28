@@ -13,7 +13,7 @@ import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigati
 import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
 import Game_1 from './pages/aml-games/game-1/index.jsx';
-import Game_2 from './pages/aml-games/game-2/index.jsx';
+import GameReader from './pages/aml-games/game-2/index.jsx';
 import Login from './pages/login/Login';
 import Registration from './pages/registration/Registration';
 import './settings/i18n.js';
@@ -112,7 +112,7 @@ function App() {
                             <Route path='/courses/aml-games/game/survey/:id' element={<Game_1 />}></Route>
                             <Route path='/courses/aml-games/game/main/:id' element={<GameMain />}></Route>
                             <Route path='/courses/aml-games/game/profile/:id' element={<AmlGamesProfiile />}></Route>
-                            <Route path='/courses/aml-games/game/read/:id/:taskId' element={<Game_2 />}></Route>
+                            <Route path='/courses/aml-games/game/read/:id/:level/:subLevel' element={<GameReader />}></Route>
 
                             <Route path="/management" element={<Suspense ><Management /></Suspense>}></Route>
                             <Route path="/contacts" element={<Suspense ><Contacts /></Suspense>}></Route>

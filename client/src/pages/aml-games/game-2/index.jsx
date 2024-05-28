@@ -1,151 +1,61 @@
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import MuiAccordion from '@mui/material/Accordion';
-import MuiAccordionDetails from '@mui/material/AccordionDetails';
-import MuiAccordionSummary from '@mui/material/AccordionSummary';
-import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
-import React from 'react';
-import { NavbarGame } from '../navbar';
+
+import React, { useEffect, useState } from 'react';
+import { NavbarProfile } from '../navbar';
 import './style.scss';
+import { useNavigate, useParams } from 'react-router';
+import { mockTasks } from './mockData';
+import Level_1_1 from './TaskMocks/level_1_1';
+import SideBar from '../components/sideBar';
+import Level_1_2 from './TaskMocks/level_1_2';
 
-const level = 'Уровень 1';
-const testText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. lobortis eget.';
-const Accordion = styled((props) => (
-    <MuiAccordion disableGutters elevation={0} square {...props} />
-    ))(({ theme }) => ({
-        border: `1px solid ${theme.palette.divider}`,
-                '&:not(:last-child)': {
-        borderBottom: 0,
-        },
-        '&::before': {
-        display: 'none',
-        },
-        borderRadius: "16px",
-        backgroundColor: "#303F6E",
-        color:"white",
-        padding:"0px",
-        marginTop: "4px",
-        fontSize:"20px"
-    }));
-    const AccordionSummary = styled((props) => (
-        <MuiAccordionSummary
-            expandIcon={<ArrowRightIcon sx={{ fontSize: '40px', color:"white", padding:"0px" }} />}
-            {...props}
-        />
-        ))(({ theme }) => ({
-            backgroundColor: '#303F6E',
-            color: "white",
-            padding: "0 0 0 0",
-            borderRadius: "16px",
-            flexDirection: 'row-reverse',
-                '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
-            transform: 'rotate(90deg)',
-            },
-                '& .MuiAccordionSummary-content': {
-            marginLeft: theme.spacing(1),
-        },
-    }));
 
-    const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-            padding: theme.spacing(2),
-        borderTop: '1px solid rgba(0, 0, 0, .125)',
-        borderRadius: "16px",
-    }));
+function GameReader() {
+    const navigate = useNavigate();
 
-function Game_2() {
-    const [expanded, setExpanded] = React.useState('panel1');
+    const [response, setResponse] = useState(null);
+    const { level, subLevel } = useParams();
+    const [ _level, setLevel ] = useState(level);
+    const [ _subLevel, setSubLevel ] = useState(subLevel);
 
-    const handleChange = (panel) => (event, newExpanded) => {
-        setExpanded(newExpanded ? panel : false);
-    };
+    useEffect(() => {
+        // Mock API call to get tasks of level/subLevel
+        console.log("Fetching tasks for level:", _level, "subLevel:", _subLevel);
+
+        const res = mockTasks.filter(task => {
+            return `${task.level}` === `${_level}` && `${task.subLevel}` === `${_subLevel}`;
+        })
+
+        setResponse(res[0]);
+    }, [_level, _subLevel]);
     
+
     return (
         <div>
-            <NavbarGame />
+            <NavbarProfile />
             <div className="aml-game-2-main">
-                <div className='aml-game-sidebar'>
-                    <div className='sidebar-container'>
-                        <h1 className='aml-game-level'>{level}</h1>
-                        <div>
-                            <p className='aml-game-task'>Задание 1.1.1</p>
-                            <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-                                <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                                <Typography>Описание текущей ситуации</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        {testText}
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
-                            <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-                                <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                                <Typography>Ваша задача</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        {testText}
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
-                            <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-                                <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                                <Typography>Шаги выполнения задания</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        {testText}
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
-                            <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
-                                <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                                <Typography>Риск не исполнения</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                    <Typography>
-                                        {testText}
-                                    </Typography>
-                                </AccordionDetails>
-                            </Accordion>
-                        </div>
-                    </div>
-                </div>
+                <SideBar response={response}/>
                 <div className='aml-game-right'>
                     <div className='aml-game-right-container'>
-                        <div className='aml-game-right-header'>
-                            <p className='aml-game-right-header-topic'>Уровень 1.1 : Подача уведомления СФМ</p>
-                            <Divider sx={{backgroundColor:"#1A2751", borderBottomWidth:"2px"}} />
-                        </div>
-                        <div className='aml-game-testing'>
-                            <p className='testingP'>Тестирование</p>
-                            <form>
-                                <p>Нужно ли вам подавать уведомление?</p>
-                                <label>
-                                <input type="radio" name="notify" value="yes" />
-                                Да
-                                </label>
-                                <label>
-                                <input type="radio" name="notify" value="no" />
-                                Нет
-                                </label>
-                                <p>Выберите систему, через которую будете подавать уведомление</p>
-                                <label>
-                                <input type="radio" name="system" value="websfm" />
-                                WEB SFM
-                                </label>
-                                <label>
-                                <input type="radio" name="system" value="kgd" />
-                                КГД
-                                </label>
-                                <label>
-                                <input type="radio" name="system" value="egov" />
-                                EGOV(elicense)
-                                </label>
-                            </form>
-                        </div>
+                        
+                        <div className="sublevel-title">Уровень {level}.{subLevel} : {response ? response.name : ''}</div>
 
+                        <div className="content">
+                            
+                            <GetTaskPage 
+                                level={_level}
+                                subLevel={_subLevel}
+                            />               
+
+                            <div className="page-actions">
+                                <button className='blue'
+                                    onClick={(e) => {
+                                        // saving
+                                        navigate(`/courses/aml-games/game/read/1/1/${Number(subLevel) + 1}`);
+                                        setSubLevel(prev => Number(prev) + 1);
+                                    }}
+                                >Далее</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -153,4 +63,20 @@ function Game_2() {
     );
 }
 
-export default Game_2;
+const GetTaskPage = ({
+    level,
+    subLevel
+}) => {
+    level = Number(level);
+    subLevel = Number(subLevel);
+
+
+    if (level === 1 && subLevel === 1) return <Level_1_1 />
+    if (level === 1 && subLevel === 2) return <Level_1_2 />
+
+    return null;
+}
+
+
+
+export default GameReader;
