@@ -246,14 +246,14 @@ function MyCourses() {
                 course_name:
                   "Учебный модуль по навыкам работы с виртуальными активами",
                 course_price: 29000,
-                course_image: base64Course,
+                course_image: "https://amlacademy.kz/aml/Screenshot 2024-05-28 at 16.59.37.png\n",
                 course_for_member_of_the_system: "СФМ",
                 duration: "19ч 45мин",
                 rating: 5,
                 type_of_study: "Электронное обучение",
                 courseCategory: {
                   category_id: 1,
-                  category_image: base64Course,
+                  category_image: "https://amlacademy.kz/aml/Screenshot 2024-05-28 at 16.11.12.png",
                   minio_image_name: "Screenshot 2023-11-04 at 23.43.20.png",
                   category_name: "AML ACADEMY",
                 },

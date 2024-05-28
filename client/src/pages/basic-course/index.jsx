@@ -805,16 +805,16 @@ const CourseNavigation = ({
                     handleSessionClick={handleSessionClick}
                     isActive={999 === activeSessionId}
                 />
-                <Session
-                     course_id={112}
-                     session={{
-                         id: 111,
-                         name: 'Заключительная часть',
-                         progress: 0,
-                     }}
-                     handleSessionClick={handleSessionClick}
-                     isActive={111 === activeSessionId}
-                />
+                {/*<Session*/}
+                {/*     course_id={112}*/}
+                {/*     session={{*/}
+                {/*         id: 111,*/}
+                {/*         name: 'Заключительная часть',*/}
+                {/*         progress: 0,*/}
+                {/*     }}*/}
+                {/*     handleSessionClick={handleSessionClick}*/}
+                {/*     isActive={111 === activeSessionId}*/}
+                {/*/>*/}
                 {
                     courseProgress > 99.9 
                     ? (
