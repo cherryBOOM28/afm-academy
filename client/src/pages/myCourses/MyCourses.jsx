@@ -475,17 +475,18 @@ function MyCourses() {
                               navigate(
                                 `/courses/${course.courseDTO.course_id}/read`
                               );
-                            } if(status === 'game'){
-                              navigate(
-                                  `/${course.courseDTO.course_id}`
-                              )
-                            } 
+                            }
                             else {
                               navigate(
                                 `/courses/${course.courseDTO.course_id}`
                               );
-                            } 
-                          }}
+                            }
+                              if(status === 'game'){
+                                navigate(
+                                    `/${course.courseDTO.course_id}`
+                                )
+                              }
+                            }}
                         >
                           {!imagesHidden && (
                             <img src={course_image} alt={course_name} />
