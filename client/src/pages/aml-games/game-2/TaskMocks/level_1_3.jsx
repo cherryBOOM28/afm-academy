@@ -1,7 +1,7 @@
 import Sizebox from "../../../../components/courseTemplates/common/Sizebox";
 import TagQuiz from "../../components/tagQuiz";
 
-function Level_1_2() {
+function Level_1_3() {
     return ( 
         <>
             <h2>Задача 1</h2>
@@ -44,4 +44,4 @@ function Level_1_2() {
     );
 }
 
-export default Level_1_2;
+export default Level_1_3;

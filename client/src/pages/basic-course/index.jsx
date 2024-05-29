@@ -3,10 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
-
-
 import './style.scss';
-
 
 import axios from 'axios';
 import GetLesson from '../../components/GetLesson';

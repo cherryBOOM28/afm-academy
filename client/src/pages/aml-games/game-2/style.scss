@@ -145,6 +145,32 @@
                     margin-top: 100px;
                 }
 
+                .custom-carousel {
+                    padding: 0px;
+                    box-sizing: border-box;
+
+                    > * {
+                        box-sizing: border-box;
+                    }
+
+                    .item {
+                        box-sizing: border-box;
+                    }
+
+                    .item > div:not(.header) {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        width: 98%;
+
+                        > img {
+                            width: 100%;
+                        }
+
+                    }
+                }
+
                 .vertical-tabs-form-quiz {
                     border-radius: 10px;
                     padding: 0px 20px;
