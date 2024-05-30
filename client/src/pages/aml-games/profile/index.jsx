@@ -187,7 +187,7 @@ const LevelCard = ({
             <div className="left">
                 <img src={levelLogo} alt="" />
                 <div className="info">
-                    <div className="name">Организация внутреннего контроля</div>
+                    <div className="name"><a href="/courses/aml-games/game/read/1/1/1/">Организация внутреннего контроля</a></div>
                     <div className="step">Уровень 1</div>
                 </div>
             </div>
