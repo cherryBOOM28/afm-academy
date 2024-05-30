@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Sizebox from "../../../../components/courseTemplates/common/Sizebox";
 import CustomCarousel from "../../../../components/courseTemplates/complex/CustomCarousel";
 import FinishSuccess from "../../components/finish-success";
@@ -15,7 +16,15 @@ import carousel_17 from './../../../../assets/images/Carousel_17.png';
 import carousel_18 from './../../../../assets/images/Carousel_18.png';
 import carousel_19 from './../../../../assets/images/Carousel_19.png';
 
+import { mockTasks } from './../mockData';
+
 function Level_1_1() {
+    const [finished, setFinished] = useState(false);
+
+    useEffect(() => {
+        setFinished(mockTasks[0].status === 'finished' ? true : false);
+    }, [])
+
     return ( 
         <>
             <h2>Тестирование</h2>
@@ -184,13 +193,24 @@ function Level_1_1() {
                     </div>
                 </div>
                 <div className="actions">
-                    <button className='blue'>Подтвердить</button>
+                    <button 
+                        className='blue'
+                        onClick={(e) => {
+                            setFinished(true);
+                        }}
+                    >Подтвердить</button>
                 </div>
             </div>
             
-            <FinishSuccess>
-                Вы успешно получили свой талон!
-            </FinishSuccess>
+            {
+                finished 
+                    ? (
+                        <FinishSuccess>
+                            Вы успешно получили свой талон!
+                        </FinishSuccess>
+                    ) 
+                    : null
+            }
         </>
     );
 }

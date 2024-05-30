@@ -18,6 +18,7 @@ function GameReader() {
     const [ _subLevel, setSubLevel ] = useState(subLevel);
 
     useEffect(() => {
+        scrollToTopAnimated();
         // Mock API call to get tasks of level/subLevel
         console.log("Fetching tasks for level:", _level, "subLevel:", _subLevel);
 
@@ -27,7 +28,14 @@ function GameReader() {
 
         setResponse(res[0]);
     }, [_level, _subLevel]);
-    
+
+    function scrollToTopAnimated() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const courseContent = document.querySelector('.aml-game-2-main');
+        if (courseContent) {
+            courseContent.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
 
     return (
         <div>

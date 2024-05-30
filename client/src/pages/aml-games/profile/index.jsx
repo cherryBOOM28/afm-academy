@@ -10,6 +10,7 @@ import levelLogo from './level-logo.png';
 import ringImg from './ring-image.png';
 import avatarImg from './avatar-image.png';
 import { NavbarProfile } from '../navbar';
+import { Link, useNavigate } from 'react-router-dom';
 
 function GameProfile() {
     return ( 
@@ -51,7 +52,7 @@ function GameProfile() {
                                         <div className="logo">
                                             <FaCheckCircle />
                                         </div>
-                                        <div>Уровни</div>
+                                        <div>Завершенные</div>
                                         <div>6</div>
                                     </div>
                                 </div>
@@ -71,9 +72,27 @@ function GameProfile() {
                         </div>
 
                         <div className="levels">
-                            <LevelCard color="#80D473" progress={20}/>
-                            <LevelCard color="#1F3C88" progress={100}/>
-                            <LevelCard color="#E16666" progress={50}/>
+                            <LevelCard 
+                                color="#80D473" 
+                                progress={20}
+                                name={'Организация внутреннего контроля'}
+                                level={1}
+                                logo={levelLogo}
+                            />
+                            <LevelCard 
+                                color="#1F3C88" 
+                                progress={100}
+                                name={'Риск-ориентированный подход'}
+                                level={2}
+                                logo={levelLogo}
+                            />
+                            <LevelCard 
+                                color="#E16666" 
+                                progress={50}
+                                name={'Надлежащая проверка клиента'}
+                                level={3}
+                                logo={levelLogo}
+                            />
                         </div>
 
                         <div className="recomendations-block">
@@ -179,16 +198,24 @@ function GameProfile() {
 
 const LevelCard = ({
     color,
-    progress
+    progress,
+    name,
+    level,
+    logo
 }) => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate(`/courses/aml-games/game/read/${1}/${level}/1/`);
+    }
 
     return (
-        <div className="level-card">
+        <div className="level-card" onClick={(e) => handleClick()}>
             <div className="left">
-                <img src={levelLogo} alt="" />
+                <img src={logo} alt="" />
                 <div className="info">
-                    <div className="name"><a href="/courses/aml-games/game/read/1/1/1/">Организация внутреннего контроля</a></div>
-                    <div className="step">Уровень 1</div>
+                    <div className="name">{name}</div>
+                    <div className="step">Уровень {level}</div>
                 </div>
             </div>
             <div className="progress-bar-container">

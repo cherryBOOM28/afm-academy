@@ -5,6 +5,7 @@ export const mockTasks = [
         level: 1,
         subLevel: 1,
         taskCount: 1,
+        status: 'proccess',
         name: 'Подача уведомления СФМ',
         tasks: [
             {
