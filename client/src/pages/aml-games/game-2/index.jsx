@@ -7,6 +7,7 @@ import { mockTasks } from './mockData';
 import Level_1_1 from './TaskMocks/level_1_1';
 import SideBar from '../components/sideBar';
 import Level_1_3 from './TaskMocks/level_1_3';
+import Level_1_4 from './TaskMocks/level_1_4';
 
 
 function GameReader() {
@@ -81,6 +82,7 @@ const GetTaskPage = ({
 
     if (level === 1 && subLevel === 1) return <Level_1_1 />
     if (level === 1 && subLevel === 3) return <Level_1_3 />
+    if (level === 1 && subLevel === 4) return <Level_1_4 />
 
     return null;
 }

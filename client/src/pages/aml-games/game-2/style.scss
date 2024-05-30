@@ -118,6 +118,16 @@
                     line-height: 110%;
                 }
 
+                p {
+                    font-size: 14px;
+                    font-weight: 300;
+                    line-height: 18px;
+
+                    &+p {
+                        margin-top: 20px;
+                    }
+                }
+
                 button.blue {
                     background-color: #B3C9EA;
                     border: 1px solid rgba($color: #7A8199, $alpha: .50);
