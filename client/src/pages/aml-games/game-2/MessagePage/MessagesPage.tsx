@@ -8,7 +8,7 @@ export default function JoyMessagesTemplate() {
   return (
     <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', border:"0.5px solid gray", borderRadius:"8px", overflow:"hidden"}}>
         <Box component="main" className="MainContent" sx={{ flex: 1 }}>
           <MyMessages />
         </Box>

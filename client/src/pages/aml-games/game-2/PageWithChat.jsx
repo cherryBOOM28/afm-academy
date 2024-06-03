@@ -163,7 +163,9 @@ function PageWithChat() {
                             <Divider sx={{backgroundColor:"#1A2751", borderBottomWidth:"2px"}} />
                         </div>
                         <div className='message-page'>
-                            <MessagePage />
+                            <div className='message-page-container'>
+                                <MessagePage />
+                            </div>
                         </div>
                     </div>
                 </div>

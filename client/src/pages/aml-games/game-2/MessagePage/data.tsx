@@ -1,22 +1,25 @@
+import Character3 from './../../assets/asian-man.png';
+import Character1 from './../../assets/asian-woman.png';
+import Character2 from './../../assets/white-woman.png';
 import { ChatProps, UserProps } from './types';
 
 export const users: UserProps[] = [
   {
-    name: 'Damir B.',
-    username: '@Kachok',
-    avatar: './../../assets/svg/Character1.svg',
+    name: 'Айжан',
+    username: '',
+    avatar: Character1,
     online: true,
   },
   {
-    name: 'Dilnaz A.',
-    username: '@dina',
-    avatar: '/static/images/avatar/3.jpg',
-    online: false,
+    name: 'Дамир',
+    username: '',
+    avatar: Character2,
+    online: true,
   },
   {
-    name: 'Daulet A.',
-    username: '@phoenix',
-    avatar: '/static/images/avatar/1.jpg',
+    name: 'Дархан',
+    username: '',
+    avatar: Character3,
     online: true,
   }
 ];
@@ -28,27 +31,51 @@ export const chats: ChatProps[] = [
     messages: [
       {
         id: '1',
-        content: 'Hi ',
-        timestamp: 'Wednesday 9:00am',
-        sender: users[0],
+        content: 'Какое у вас образование?',
+        timestamp: 'среда 9:00',
+        sender: 'You',
       },
       {
         id: '2',
-        content: 'That ',
-        timestamp: 'Wednesday 9:10am',
-        sender: 'You',
+        content: 'Высшее образование по специальности юриспруденция.',
+        timestamp: 'среда 9:02',
+        sender: users[0],
       },
       {
         id: '3',
-        timestamp: 'Wednesday 11:30am',
-        sender: users[0],
-        content: 'f the day.',
+        timestamp: 'среда 9:05',
+        sender: 'You',
+        content: 'Какой у вас опыт в ювелирном секторе?',
       },
       {
         id: '4',
-        timestamp: 'Wednesday 2:00pm',
+        timestamp: 'среда 9:07',
+        sender: users[0],
+        content: 'В ювелирном секторе отсутствует стаж работы, при этом имеется юристом в финансовых компаниях более трех лет, включая работу с вопросами ПОД/ФТ и соблюдение законодательства.',
+      },
+      {
+        id: '5',
+        timestamp: 'среда 9:10',
         sender: 'You',
-        content: ' for it.',
+        content: 'Расскажите о Вашей деловой репутации?',
+      },
+      {
+        id: '6',
+        timestamp: 'среда 9:12',
+        sender: users[0],
+        content: 'Положительные рекомендации от предыдущих работодателей, в том числе за высокий уровень профессионализма и четкое понимание требований в сфере ПОД/ФТ.',
+      },
+      {
+        id: '7',
+        timestamp: 'среда 9:16',
+        sender: 'You',
+        content: 'Имеется ли у вас неснятая или непогашенная судимость?',
+      },
+      {
+        id: '8',
+        timestamp: 'среда 9:20',
+        sender: users[0],
+        content: 'Отсутствует неснятая или непогашенная судимость. Также, отсутствует решения суда о применении уголовного наказания в виде лишения права занимать должность руководящего работника.',
       },
     ],
   },
@@ -92,7 +119,6 @@ export const chats: ChatProps[] = [
         content: 'Hey!',
         timestamp: '5 mins ago',
         sender: users[2],
-        unread: true,
       },
     ],
   },

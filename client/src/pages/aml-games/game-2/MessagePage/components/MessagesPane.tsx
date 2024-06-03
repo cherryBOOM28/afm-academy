@@ -2,6 +2,7 @@ import Box from '@mui/joy/Box';
 import Sheet from '@mui/joy/Sheet';
 import Stack from '@mui/joy/Stack';
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { ChatProps, MessageProps } from '../types.tsx';
 import AvatarWithStatus from './AvatarWithStatus.tsx';
 import ChatBubble from './ChatBubble.tsx';
@@ -14,18 +15,54 @@ type MessagesPaneProps = {
 
 export default function MessagesPane(props: MessagesPaneProps) {
   const { chat } = props;
-  const [chatMessages, setChatMessages] = React.useState(chat.messages);
-  const [textAreaValue, setTextAreaValue] = React.useState('');
-  const [recipient, setRecipient] = React.useState('9umLzZWFyVSAagEU2xLcNikCqef1');
+  const [chatMessages, setChatMessages] = useState<MessageProps[]>([]);
+  const [textAreaValue, setTextAreaValue] = useState('');
+  const [recipient, setRecipient] = useState('9umLzZWFyVSAagEU2xLcNikCqef1');
+  const [typing, setTyping] = useState(false);
+  const [messageIndex, setMessageIndex] = useState(0);
 
-  React.useEffect(() => {
-    setChatMessages(chat.messages);
+  useEffect(() => {
+    setChatMessages([]);
+    setMessageIndex(0);
+
+    const timers = chat.messages.map((message, index) => {
+      return setTimeout(() => {
+        if (index % 2 !== 0) {
+          setTyping(true);
+          setTimeout(() => {
+            setChatMessages(prevMessages => [...prevMessages, message]);
+            setTyping(false);
+            setMessageIndex(index + 1);
+          }, 2000); // 5000ms typing animation
+        } else {
+          setChatMessages(prevMessages => [...prevMessages, message]);
+          setMessageIndex(index + 1);
+        }
+      }, index * 7000); // Adjust this to have a consistent delay between messages
+    });
+
+    return () => {
+      timers.forEach(clearTimeout); // Clean up timeouts on unmount or chat change
+    };
   }, [chat.messages]);
+
+  const handleSubmit = () => {
+    const newId = chatMessages.length + 1;
+    const newIdString = newId.toString();
+    const newMessage: MessageProps = {
+      id: newIdString,
+      sender: 'You',
+      content: textAreaValue,
+      timestamp: 'Just now',
+    };
+    setChatMessages([...chatMessages, newMessage]);
+    setTextAreaValue('');
+  };
 
   return (
     <Sheet
       sx={{
-        height: "602px",
+        height: "571.5px",
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: 'background.level1',
@@ -63,24 +100,30 @@ export default function MessagesPane(props: MessagesPaneProps) {
               </Stack>
             );
           })}
+          {typing && (
+            <Stack direction="row" spacing={2}>
+              <AvatarWithStatus
+                online={chat.sender.online}
+                src={chat.sender.avatar}
+              />
+              <Box
+                sx={{
+                  backgroundColor: 'background.level2',
+                  borderRadius: '16px',
+                  padding: '8px 12px',
+                  color: 'text.secondary',
+                }}
+              >
+                Печатает...
+              </Box>
+            </Stack>
+          )}
         </Stack>
       </Box>
       <MessageInput
         textAreaValue={textAreaValue}
         setTextAreaValue={setTextAreaValue}
-        onSubmit={() => {
-          const newId = chatMessages.length + 1;
-          const newIdString = newId.toString();
-          setChatMessages([
-            ...chatMessages,
-            {
-              id: newIdString,
-              sender: 'You',
-              content: textAreaValue,
-              timestamp: 'Just now',
-            },
-          ]);
-        }}
+        onSubmit={handleSubmit}
         recipient={recipient}
       />
     </Sheet>

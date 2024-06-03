@@ -90,6 +90,14 @@
 
                 border-bottom: rgba($color: #1F3C88, $alpha: .70) 1px solid;
             }
+            .message-page{
+                display: flex;
+                justify-content: center;
+                .message-page-container{
+                    margin-top: 80px;
+                    width: 85%;
+                }
+            }
 
             .content {
                 padding-top: 20px;

@@ -1,6 +1,5 @@
 import Sheet from '@mui/joy/Sheet';
 import * as React from 'react';
-
 import { useEffect, useState } from 'react';
 import { chats } from '../data.tsx';
 import { ChatProps } from '../types';
@@ -9,16 +8,16 @@ import MessagesPane from './MessagesPane.tsx';
 
 export default function MyProfile() {
   const [selectedChat, setSelectedChat] = useState<ChatProps>(chats[0]);
- 
+
   useEffect(() => {
     const fetchChats = async () => {
       try {
-        // setChats(chatsArray);
+        // Fetch chats if necessary
       } catch (error) {
         console.error('Error fetching chats:', error);
       }
     };
-  
+
     fetchChats();
   }, []);
 
@@ -55,7 +54,7 @@ export default function MyProfile() {
           setSelectedChat={setSelectedChat}
         />
       </Sheet>
-      <MessagesPane chat={selectedChat} />
+      <MessagesPane key={selectedChat.id} chat={selectedChat} />
     </Sheet>
   );
 }

@@ -1,15 +1,11 @@
-import { IconButton, Stack } from '@mui/joy';
+import { Stack } from '@mui/joy';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import FormControl from '@mui/joy/FormControl';
 import Textarea from '@mui/joy/Textarea';
 import * as React from 'react';
 
-import FormatBoldRoundedIcon from '@mui/icons-material/FormatBoldRounded';
-import FormatItalicRoundedIcon from '@mui/icons-material/FormatItalicRounded';
-import FormatListBulletedRoundedIcon from '@mui/icons-material/FormatListBulletedRounded';
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
-import StrikethroughSRoundedIcon from '@mui/icons-material/StrikethroughSRounded';
 
 export type MessageInputProps = {
   textAreaValue: string;
@@ -28,22 +24,20 @@ export default function MessageInput(props: MessageInputProps) {
     }
   };
   return (
-    <Box sx={{ px: 2, pb: 3 }}>
+    <Box sx={{ px: 1, pb: 2 }}>
       <FormControl>
         <Textarea
-          placeholder="Type something here…"
+          placeholder="Ваше сообщение …"
           aria-label="Message"
           ref={textAreaRef}
           onChange={(e) => {
             setTextAreaValue(e.target.value);
           }}
           value={textAreaValue}
-          minRows={4}
-          maxRows={10}
           endDecorator={
             <Stack
               direction="row"
-              justifyContent="space-between"
+              justifyContent="right"
               alignItems="center"
               flexGrow={1}
               sx={{
@@ -53,20 +47,6 @@ export default function MessageInput(props: MessageInputProps) {
                 borderColor: 'divider',
               }}
             >
-              <div>
-                <IconButton size="sm" variant="plain" color="neutral">
-                  <FormatBoldRoundedIcon />
-                </IconButton>
-                <IconButton size="sm" variant="plain" color="neutral">
-                  <FormatItalicRoundedIcon />
-                </IconButton>
-                <IconButton size="sm" variant="plain" color="neutral">
-                  <StrikethroughSRoundedIcon />
-                </IconButton>
-                <IconButton size="sm" variant="plain" color="neutral">
-                  <FormatListBulletedRoundedIcon />
-                </IconButton>
-              </div>
               <Button
                 size="sm"
                 color="primary"
@@ -74,7 +54,7 @@ export default function MessageInput(props: MessageInputProps) {
                 endDecorator={<SendRoundedIcon />}
                 onClick={handleClick}
               >
-                Send
+                Отправить
               </Button>
             </Stack>
           }
@@ -85,7 +65,7 @@ export default function MessageInput(props: MessageInputProps) {
           }}
           sx={{
             '& textarea:first-of-type': {
-              minHeight: 72,
+              minHeight: 36,
             },
           }}
         />
