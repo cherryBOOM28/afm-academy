@@ -101,7 +101,18 @@
                         color:black;
                         font-weight: 500;
                     }
+                    .chat-user-name{
+                        p {
+                            font-weight: var(--joy-fontWeight-md, 500);
+                            font-size: var(--Typography-fontSize, var(--joy-fontSize-sm, 0.875rem));
+                            line-height: var(--joy-lineHeight-sm, 1.42858);
+                        }
+                        &+p {
+                            margin-top: 0px;
+                        }
+                    }
                 }
+
             }
 
             .content {

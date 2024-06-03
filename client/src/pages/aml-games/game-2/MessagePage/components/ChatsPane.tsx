@@ -32,17 +32,17 @@ export default function ChatsPane(props: ChatsPaneProps) {
         p={2}
         pb={1.5}
       >
-        <div style={{ height: "280px" }}>
+        <div style={{ height: "180px", justifyContent:"center", display:"flex", width:"100%" }}>
         <div className="info-block">
-                        <div className="avatar" >
-                            <img className="avatarIMG" src={avatarImg} alt="" />
-                        </div>
-                        <div className="info">
-                            <div className="name">
-                                Индира
-                            </div>
-                        </div>
-                    </div>
+            <div className="avatar" >
+                <img className="avatarIMG" src={avatarImg} alt="" style={{height:"120px"}} />
+            </div>
+            <div className="info">
+              <div className="name">
+                Индира
+              </div>
+            </div>
+          </div>
         </div>
       </Stack>
       <List
