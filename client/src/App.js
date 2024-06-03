@@ -14,7 +14,6 @@ import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
 import Game_1 from './pages/aml-games/game-1/index.jsx';
 import GameReader from './pages/aml-games/game-2/index.jsx';
-import PageWithChat from './pages/aml-games/game-2/PageWithChat.jsx';
 import GameMain from './pages/aml-games/main/index.jsx';
 import Login from './pages/login/Login';
 import Registration from './pages/registration/Registration';
@@ -114,7 +113,6 @@ function App() {
                             <Route path='/courses/aml-games/game/main/:id' element={<GameMain />}></Route>
                             <Route path='/courses/aml-games/game/profile/:id' element={<AmlGamesProfiile />}></Route>
                             <Route path='/courses/aml-games/game/read/:id/:level/:subLevel' element={<GameReader />}></Route>
-                            <Route path='/courses/aml-games/game/read/page-with-chat' element={<PageWithChat />}></Route>
 
                             <Route path="/management" element={<Suspense ><Management /></Suspense>}></Route>
                             <Route path="/contacts" element={<Suspense ><Contacts /></Suspense>}></Route>
