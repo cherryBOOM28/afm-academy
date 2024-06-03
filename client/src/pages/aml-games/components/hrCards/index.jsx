@@ -1,6 +1,5 @@
-import characterImg from "./../../assets/asian-woman.png";
 import './style.scss';
-export default function HrCards({name, date, number}) {
+export default function HrCards({name, date, id, characterImg}) {
     return (
         <div>
             <div className="info-card-container">
@@ -16,7 +15,7 @@ export default function HrCards({name, date, number}) {
                             <div className="info-card-personal-info">
                                 <span>{ name }</span>
                                 <span>{ date }</span>
-                                <span>{ number }</span> 
+                                <span>{ id }</span> 
                                 </div>
                             </div>
                         </div>
