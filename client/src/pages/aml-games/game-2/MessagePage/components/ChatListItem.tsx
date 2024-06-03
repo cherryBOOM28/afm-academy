@@ -53,13 +53,6 @@ export default function ChatListItem(props: ChatListItemProps) {
               {messages[0].unread && (
                 <CircleIcon sx={{ fontSize: 12 }} color="primary" />
               )}
-              <Typography
-                level="body-xs"
-                display={{ xs: 'none', md: 'block' }}
-                noWrap
-              >
-                11 mins ago
-              </Typography>
             </Box>
           </Stack>
           <Typography
