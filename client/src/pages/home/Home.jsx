@@ -6,13 +6,13 @@ import bookIcon from "../../assets/icons/book.svg";
 import laptopIcon from "../../assets/icons/laptop.svg";
 import accIcon from "../../assets/icons/pacc.svg";
 import realtionIcon from "../../assets/icons/relation.svg";
-import backgroundVideoDark from "../../assets/video/bgvideoDark.mov";
+import backgroundVideoDark from "../../assets/video/alpaca.mp4";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import NewsTab from "../../components/newsTab/NewsTab";
 import VideoPlayer from "../../components/player/VideoPlayer";
 import Tabs from "../../components/tab/Tabs";
-import backgroundVideoLight from "../../assets/video/bgvideo.webm";
+import backgroundVideoLight from "../../assets/video/alpaca.mp4";
 
 import { Link } from "react-router-dom";
 
