@@ -63,6 +63,7 @@ const CalendarPage = lazy(() => import('./pages/calendar/Calendar'));
 const InfoPage = lazy(() => import('./pages/courseInfoPage/InfoPage'));
 const BasicCourse = lazy(() => import('./pages/courses-basic/BasicCourse'));
 const SurveysPage = lazy(() => import('./pages/surveys/Surveys'));
+const DictionaryPage = lazy(() => import('./pages/DictionaryPage/Dictionary'));
 const VebinarsPage = lazy(() => import('./pages/vebinar/VebinarsPage'));
 const Catalog = lazy(() => import('./pages/courseCatalog/Catalog'));
 const MyCourses = lazy(() => import('./pages/myCourses/MyCourses'));
@@ -145,6 +146,7 @@ function App() {
                             <Route path="/vebinars" element={<Suspense ><VebinarsPage /></Suspense>}/>
                             <Route path="/vebinars/calendar" element={<Suspense ><CalendarPage /></Suspense>}/>
                             <Route path="/vebinars/surveys" element={<Suspense ><SurveysPage /></Suspense>} />
+                            <Route path="/vebinars/dictionary" element={<Suspense ><DictionaryPage /></Suspense>} />
                             <Route path="/vebinars/:id" element={<></>} />
                             <Route path="/courses/catalog" element={<Suspense ><Catalog /></Suspense>}/>
                             <Route path="/courses/myCourses" element={<Suspense><PrivateRoute shouldBeLoggedIn={true} component={MyCourses} /></Suspense>} />

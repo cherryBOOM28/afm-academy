@@ -12,7 +12,7 @@ import Header from "../../components/header/Header";
 import NewsTab from "../../components/newsTab/NewsTab";
 import VideoPlayer from "../../components/player/VideoPlayer";
 import Tabs from "../../components/tab/Tabs";
-import backgroundVideoLight from "../../assets/video/alpaca.mp4";
+import backgroundVideoLight from "../../assets/video/sssssssss.mp4";
 
 import { Link } from "react-router-dom";
 
@@ -235,24 +235,16 @@ function Home() {
                 imagesHidden ? cl.darkBlueBackground : ""
               }`}
             >
-              {!imagesHidden ? (
-                <div className={cl.videoContainer}>
+                <div className={cl.videoContainer} style={{backgroundColor: "red"}}>
                   <video
                     autoPlay
                     loop
                     muted
                     className={`videoBackground ${cl.videoBackground}`}
                   >
-                    {!styles.colorMode === "dark" ? (
-                      <source src={'https://videos.sproutvideo.com/embed/1190dab4111ee4ca98/d11b3769a6e19444?autoPlay=true&amp;showControls=false&amp;loop=true'} type="video/mp4" />
-                    ) : (
-                      <source src={backgroundVideoLight} type="video/mp4" />
-                    )}
+                      <source src={backgroundVideoLight}  type="video/mp4" />
                   </video>
                 </div>
-              ) : (
-                <div className={cl.darkBackground}></div>
-              )}
               {/* <img src={aboutUsPic} alt="About us" /> */}
               <div className={cl.aboutUs__content}>
                 <p className={`${cl.aboutUs__headline} text-contnet`}
