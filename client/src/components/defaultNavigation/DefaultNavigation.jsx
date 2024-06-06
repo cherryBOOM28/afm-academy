@@ -85,6 +85,7 @@ function DefaultNavigation() {
                             <li>
                                 <Link to="/vebinars/surveys" className={cl.links}>Опросы</Link>
                             </li>
+
                         </ul>
                     </li>
                     <li className={cl.dropdown}>
