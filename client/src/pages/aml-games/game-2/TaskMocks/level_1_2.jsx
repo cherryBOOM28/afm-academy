@@ -27,7 +27,9 @@ function Level_1_3() {
                 <h2>
                     Задача 1
                 </h2>
-                <div>
+                <div className='task1-national-id-card'>
+                    <p className='task1-national-id-card-p-text'>Назначьте на должность сотрудника, который наилучшим образом соответствует требованиям ПОД/ФТ и потребностям вашей организации.</p>
+
                     <VerticalCarousel cards={cardData} />
                 </div>
             </div>

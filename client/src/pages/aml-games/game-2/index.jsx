@@ -30,6 +30,7 @@ function GameReader() {
 
         setResponse(res[0]);
     }, [_level, _subLevel]);
+    
 
     function scrollToTopAnimated() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
