@@ -244,9 +244,9 @@ function Home() {
                     className={`videoBackground ${cl.videoBackground}`}
                   >
                     {!styles.colorMode === "dark" ? (
-                      <source src={'https://videos.sproutvideo.com/embed/1190dab4111ee4ca98/d11b3769a6e19444?autoPlay=true&amp;showControls=false&amp;loop=true'} type="video/mp4" />
+                      <source src={'https://videos.sproutvideo.com/embed/ea90dab4171ee2c563/58e1409b851fd2ce?showControls=false&amp;loop=true'} type="video/mp4" />
                     ) : (
-                      <source src={backgroundVideoLight} type="video/mp4" />
+                      <source src={'https://videos.sproutvideo.com/embed/ea90dab4171ee2c563/58e1409b851fd2ce?showControls=false&amp;loop=true'} type="video/mp4" />
                     )}
                   </video>
                 </div>
