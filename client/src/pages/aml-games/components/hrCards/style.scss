@@ -1,6 +1,6 @@
 .info-card-container{
-    width: 270px;
-    height: 165px;
+    width: 360px;
+    height: 220px;
     background-color: #1F3C88;
     border: 1px black solid;
     border-radius: 10px;
@@ -9,8 +9,8 @@
     align-content: center;
     flex-wrap: wrap;
     .info-card{
-        width: 255px;
-        height: 155px;
+        width: 340px;
+        height: 207px;
         border: 1px black solid;
         background-color: white;
         border-radius: 10px;
@@ -20,8 +20,8 @@
         flex-wrap: wrap;
         .info-card-wrapper{
             border-radius: 10px;
-            width: 215px;
-            height: 110px;
+            width: 286px;
+            height: 147px;
             .info-card-header{
                 border: 1px black solid;
                 border-radius: 5px;
@@ -36,7 +36,7 @@
                 justify-content: space-between;
                 .info-card-img{
                     img{
-                        height: 80px;
+                        height: 107px;
                         border-radius: 8px;
                     }
                 }
