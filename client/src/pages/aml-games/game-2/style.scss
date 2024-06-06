@@ -301,3 +301,13 @@
     }
     
 }
+
+.task1-national-id-card{
+    display: flex;
+    justify-content: space-around;
+    .task1-national-id-card-p-text{
+        width: 40%;
+        font-size: 22px;
+        line-height: 1.5;
+    }
+}
