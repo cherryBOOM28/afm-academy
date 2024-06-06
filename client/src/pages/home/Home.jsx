@@ -12,7 +12,7 @@ import Header from "../../components/header/Header";
 import NewsTab from "../../components/newsTab/NewsTab";
 import VideoPlayer from "../../components/player/VideoPlayer";
 import Tabs from "../../components/tab/Tabs";
-import backgroundVideoLight from "../../assets/video/gggg.mp4";
+import backgroundVideoLight from "../../assets/video/sssssssss.mp4";
 
 import { Link } from "react-router-dom";
 
