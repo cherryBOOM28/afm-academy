@@ -90,6 +90,7 @@
 
                 border-bottom: rgba($color: #1F3C88, $alpha: .70) 1px solid;
             }
+            
             .message-page{
                 display: flex;
                 justify-content: center;
@@ -101,7 +102,7 @@
                         color:black;
                         font-weight: 500;
                     }
-                    .chat-user-name{
+                    .chat-user-name {
                         p {
                             font-weight: var(--joy-fontWeight-md, 500);
                             font-size: var(--Typography-fontSize, var(--joy-fontSize-sm, 0.875rem));

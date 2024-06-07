@@ -8,7 +8,7 @@ import accIcon from "../../assets/icons/pacc.svg";
 import realtionIcon from "../../assets/icons/relation.svg";
 import backgroundVideoDark from "../../assets/video/alpaca.mp4";
 import Footer from "../../components/footer/Footer";
-import Header from "../../components/header/Header";
+import Header from "../../components/header/v2";
 import NewsTab from "../../components/newsTab/NewsTab";
 import VideoPlayer from "../../components/player/VideoPlayer";
 import Tabs from "../../components/tab/Tabs";
@@ -222,11 +222,14 @@ function Home() {
           styles={styles}
           dark={removeBackground}
         />
-        <Header
+        {/* <Header
           dark={false}
           handleOpenVisualModal={handleOpenVisualModal}
           style={{ letterSpacing: getLetterSpacing(letterInterval) }}
-        />{" "}
+        /> */}
+        <Header
+          handleOpenVisualModal={handleOpenVisualModal}
+        />
         <section className={`${cl.aboutUs} text-content`}>
           <div className={cl.container}>
             
