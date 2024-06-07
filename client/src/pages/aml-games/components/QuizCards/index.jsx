@@ -22,13 +22,13 @@ const QuizCard = ({ logo, text }) => {
     };
 
     return (
-        <div className='Quizcard-container'>
-            <div className="Quizcard-wrapper" onClick={handleFlip}>
-                <div className={`Quizcard ${flipped ? 'flipped' : ''}`}>
-                    <div className="Quizcard-face front">
+        <div className='QuizCard-container'>
+            <div className="QuizCard-wrapper" onClick={handleFlip}>
+                <div className={`QuizCard ${flipped ? 'flipped' : ''}`}>
+                    <div className="QuizCard-face front">
                         <img src={logo} alt="logo" className="logo large" />
                     </div>
-                    <div className="Quizcard-face back">
+                    <div className="QuizCard-face back">
                         <img src={displayContent.logo} alt="logo" className="logo small" />
                         <p>{displayContent.text}</p>
                         <div className="buttons">
