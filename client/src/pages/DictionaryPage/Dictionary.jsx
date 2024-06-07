@@ -11,6 +11,11 @@ import { useTranslation } from "react-i18next";
 import VisualModal from "../../components/VisualModal/VisualModal";
 
 import { useStyle } from "../../components/VisualModal/StyleContext";
+import imgage1 from './../../assets/images/Rectangle5155.png';
+import imgage2 from './../../assets/images/Rectangle 5147.png';
+import imgage3 from './../../assets/images/Rectangle 5149.png';
+import imgage4 from './../../assets/images/Rectangle 5151.png';
+import imgage5 from './../../assets/images/Rectangle 5153.png';
 
 function DictionaryPage() {
     const { styles, open, setOpen, userEntry, checkStyle } = useStyle();
@@ -241,14 +246,77 @@ function DictionaryPage() {
                     <main className="page-content container">
                     <div className="main-pon" style={{marginTop:"100px",display: "grid", justifyContent:"center"}}>
                         <div >
-                            <h1 style={{textAlign: "center",fontSize:"30px"}}>ЧАСТО ВСТРЕЧАМЫЕ ПОНЯТИЯ</h1>
+                            <h1 style={{textAlign: "center",fontSize:"30px", marginBottom: "30px"}}>ЧАСТО ВСТРЕЧАМЫЕ ПОНЯТИЯ</h1>
                         </div>
                         <div>
-                            <p style={{padding: "20px 50px", backgroundColor: "#1A2751",color: "white", borderRadius:"30px",fontSize: "18px", textAlign:"center"}}>из сферы противодействия отмывания доходов и финансирование терроризма</p>
+                            <p style={{padding: "20px 50px", backgroundColor: "#1A2751",color: "white", borderRadius:"30px",fontSize: "18px", textAlign:"center", marginBottom: "100px"}}>из сферы противодействия отмывания доходов и финансирование терроризма</p>
                         </div>
                     </div>
+                        <div class={"main-content-container"} style={{backgroundColor:"#F9F9F9", display: "flex", marginBottom: "100px",borderRadius: "15px"}}>
+                            <div class={"text-content-c"} style={{flex: "1",padding: "55px 70px"}}>
+                            <div class={"first-p"} style={{fontSize: "25px", color:"#1F3C88", fontWeight: "700", fontFamily:"Arial", marginBottom:"20px"}}>
+                                ЛЕГАЛИЗАЦИЯ (ОТМЫВАНИЕ) ДОХОДОВ,
+                                ПОЛУЧЕННЫХ ПРЕСТУПНЫМ ПУТЕМ
+                            </div>
+                            <div class={"second-p"} style={{fontSize: "18px", color:"black", fontFamily:"Arial",fontWeight: "400",lineHeight: "21px" }}>
+                                вовлечение в законный оборот денег и (или) иного имущества, полученных преступным путем, посредством совершения сделок в виде конверсии или перевода имущества, представляющего доходы от уголовных правонарушений, либо владение и использование такого имущества, сокрытие или утаивание его подлинного характера, источника, места нахождения, способа распоряжения, перемещения, прав на имущество или его принадлежности, если известно, что такое имущество представляет доходы от уголовных правонарушений, а равно посредничество в легализации денег и (или) иного имущества, полученных преступным путем
+                            </div>
+                            </div>
+                            <div style={{flex:".7", display:"flex", position: "relative", justifyContent:"center"}}>
+                                <img style={{width: "250px", position: "absolute", bottom: "0px"}} src={imgage1} alt=""/>
+                            </div>
+                        </div>
+                        <div className={"main-content-container"} style={{backgroundColor:"#F9F9F9", display: "flex", marginBottom: "100px",borderRadius: "15px"}}>
+                            <div className={"text-content-c"} style={{flex: "1",padding: "55px 70px"}}>
+                                <div className={"first-p"} style={{fontSize: "25px", color:"#1F3C88", fontWeight: "700", fontFamily:"Arial", marginBottom:"20px"}}>
+                                    ФИНАНСИРОВАНИЕ ТЕРРОРИЗМА
+                                </div>
+                                <div className={"second-p"} style={{fontSize: "18px", color:"black", fontFamily:"Arial",fontWeight: "400",lineHeight: "21px" }}>
+                                    предоставление или сбор денег и (или) иного имущества, права на имущество или выгод имущественного характера, а также дарение, мена, пожертвования, благотворительная помощь, оказание информационных и иного рода услуг либо оказание финансовых услуг физическому лицу либо группе лиц, либо юридическому лицу, совершенные лицом, заведомо осознававшим террористический характер их деятельности либо то, что предоставленное имущество, оказанные информационные, финансовые и иного рода услуги будут использованы для осуществления террористической деятельности либо обеспечения террористической группы, террористической организации, незаконного военизированного формирования   </div>
+                            </div>
+                            <div style={{flex:".7", display:"flex", position: "relative", justifyContent:"center"}}>
+                                <img style={{width: "250px", position: "absolute", bottom: "0px"}} src={imgage2} alt=""/>
+                            </div>
+                        </div>
+                        <div className={"main-content-container"} style={{backgroundColor:"#F9F9F9", display: "flex", marginBottom: "100px",borderRadius: "15px"}}>
+                            <div className={"text-content-c"} style={{flex: "1",padding: "55px 70px"}}>
+                                <div className={"first-p"} style={{fontSize: "25px", color:"#1F3C88", fontWeight: "700", fontFamily:"Arial", marginBottom:"20px"}}>
+                                    ФИНАНСОВЫЙ МОНИТОРИНГ
+                                </div>
+                                <div className={"second-p"} style={{fontSize: "18px", color:"black", fontFamily:"Arial",fontWeight: "400",lineHeight: "21px" }}>
+                                    совокупность мер по сбору, обработке, анализу и использованию сведений и информации об операциях с деньгами и (или) иным имуществом, осуществляемых уполномоченным органом и субъектом финансового мониторинга в соответствии Законом о ПОД/ФТ                                </div>
+                            </div>
+                            <div style={{flex:".7", display:"flex", position: "relative", justifyContent:"center"}}>
+                                <img style={{width: "200px", position: "absolute", bottom: "0px"}} src={imgage3} alt=""/>
+                            </div>
+                        </div>
+                        <div className={"main-content-container"} style={{backgroundColor:"#F9F9F9", display: "flex", marginBottom: "100px",borderRadius: "15px"}}>
+                            <div className={"text-content-c"} style={{flex: "1",padding: "55px 70px"}}>
+                                <div className={"first-p"} style={{fontSize: "25px", color:"#1F3C88", fontWeight: "700", fontFamily:"Arial", marginBottom:"20px"}}>
+                                    СУБЪЕКТ ФИНАНСОВОГО МОНИТОРИНГА
+                                </div>
+                                <div className={"second-p"} style={{fontSize: "18px", color:"black", fontFamily:"Arial",fontWeight: "400",lineHeight: "21px" }}>
+                                    лица чья деятельность может быть использована в целях отмывания доходов и (или) финансировании терроризма;                                </div>
+                            </div>
+                            <div style={{flex:".7", display:"flex", position: "relative", justifyContent:"center"}}>
+                                <img style={{width: "200px", position: "absolute", bottom: "0px"}} src={imgage4} alt=""/>
+                            </div>
+                        </div>
+                        <div className={"main-content-container"} style={{backgroundColor:"#F9F9F9", display: "flex", marginBottom: "100px",borderRadius: "15px"}}>
+                            <div className={"text-content-c"} style={{flex: "1",padding: "55px 70px"}}>
+                                <div className={"first-p"} style={{fontSize: "25px", color:"#1F3C88", fontWeight: "700", fontFamily:"Arial", marginBottom:"20px"}}>
+                                    КОМПЛАЕНС-КОНТРОЛЕР
+                                </div>
+                                <div className={"second-p"} style={{fontSize: "18px", color:"black", fontFamily:"Arial",fontWeight: "400",lineHeight: "21px" }}>
+                                    это специалист, в обязанности которого входит обеспечение соблюдения субъектом финансового мониторинга законодательства Республики Казахстан о противодействии легализации (отмыванию) доходов, полученных преступным путем, и финансированию терроризма.                                </div>
+                            </div>
+                            <div style={{flex:".7", display:"flex", position: "relative", justifyContent:"center"}}>
+                                <img style={{width: "200px", position: "absolute", bottom: "0px"}} src={imgage5} alt=""/>
+                            </div>
+                        </div>
                     </main>
-                    </div>
+
+                </div>
             </div>
             <Footer />
         </div>
