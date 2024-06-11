@@ -1,4 +1,5 @@
 import Divider from '@mui/material/Divider';
+import { useEffect, useState } from 'react';
 import Sizebox from "../../../../components/courseTemplates/common/Sizebox/index.jsx";
 import AsianMan from "../../assets/asian-man.png";
 import AsianWomen from "../../assets/asian-woman.png";
@@ -19,7 +20,12 @@ const quizCardsData = [
 ];
 
 
-function Level_1_3() {
+function Level_1_2() {
+    const [finished, setFinished] = useState(false);
+
+    useEffect(() => {
+    }, [finished])
+
     return ( 
         <>
             <div className='message-page'>
@@ -36,6 +42,14 @@ function Level_1_3() {
                 <div className='task1-national-id-card'>
                     <p className='task1-national-id-card-p-text'>Назначьте на должность сотрудника, который наилучшим образом соответствует требованиям ПОД/ФТ и потребностям вашей организации.</p>
                     <VerticalCarousel cards={cardData} />
+                </div>
+                <div className="actions">
+                    <button 
+                        className='blue'
+                        onClick={() => {
+                            setFinished(true);
+                        }}
+                    >Подтвердить</button>
                 </div>
             </div>
             
@@ -58,4 +72,4 @@ function Level_1_3() {
     );
 }
 
-export default Level_1_3;
+export default Level_1_2;

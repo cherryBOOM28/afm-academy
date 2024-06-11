@@ -38,13 +38,12 @@ export default function MessagesPane(props: MessagesPaneProps) {
           setChatMessages(prevMessages => [...prevMessages, message]);
           setMessageIndex(index + 1);
         }
-      }, index * 7000); // Adjust this to have a consistent delay between messages
+      }, index * 6000); // Adjust this to have a consistent delay between messages
     });
-
     return () => {
       timers.forEach(clearTimeout); // Clean up timeouts on unmount or chat change
     };
-  }, [chat.messages]);
+  }, []);
 
   const handleSubmit = () => {
     const newId = chatMessages.length + 1;
