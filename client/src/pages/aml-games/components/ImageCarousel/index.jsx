@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
-<<<<<<< HEAD
-=======
 
->>>>>>> da9d31865f56db13f9a7f7abd148e15c23c4d7bd
 const ImageCarousel = ({ images = [], transcript }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(0);
@@ -35,22 +32,13 @@ const ImageCarousel = ({ images = [], transcript }) => {
   }
 
   return (
-<<<<<<< HEAD
     <div className="carousel-wrapper">
       <div className="carousel-header">{images[currentIndex].header}</div>
-=======
-    <div>
->>>>>>> da9d31865f56db13f9a7f7abd148e15c23c4d7bd
       <div className="carousel-container">
         <button className="carousel-button left" onClick={handlePrev}>
           &lt;
         </button>
-<<<<<<< HEAD
         <div className="carousel-image-container" key={animationKey}>
-=======
-        <div className="carousel-image-container">
-          <div className="carousel-header">{images[currentIndex].header}</div>
->>>>>>> da9d31865f56db13f9a7f7abd148e15c23c4d7bd
           <img
             src={images[prevIndex].src}
             alt={`Slide ${prevIndex}`}
@@ -74,7 +62,6 @@ const ImageCarousel = ({ images = [], transcript }) => {
           ))}
         </div>
         <div className="carousel-counter">
-<<<<<<< HEAD
           {currentIndex + 1} / {images.length}
         </div>
       </div>
@@ -83,14 +70,6 @@ const ImageCarousel = ({ images = [], transcript }) => {
       </div>
       <div className="carousel-transcript">
         {transcript}
-=======
-          {currentIndex + 1}/{images.length}
-        </div>
-      </div>
-      <div className="divider-container">
-        <div className="divider"></div>
-        <div className="transcript-text">{transcript}</div>
->>>>>>> da9d31865f56db13f9a7f7abd148e15c23c4d7bd
       </div>
     </div>
   );
