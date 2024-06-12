@@ -60,6 +60,7 @@ const LevelSummary = ({ percentage, score, description, recommendations }) => {
                 width: "100%",
                 display: "flex",
                 justifyContent:"center"
+
             }}>
             <button className="reset-button">
                 <span className="icon">⟳</span>
