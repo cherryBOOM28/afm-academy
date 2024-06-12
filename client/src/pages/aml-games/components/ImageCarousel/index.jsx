@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
 
-const ImageCarousel = ({ images = [], transcript }) => {
+const ImageCarousel = ({ images = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(0);
   const [direction, setDirection] = useState('next');
@@ -64,12 +64,6 @@ const ImageCarousel = ({ images = [], transcript }) => {
         <div className="carousel-counter">
           {currentIndex + 1} / {images.length}
         </div>
-      </div>
-      <div className="carousel-divider">
-        <span>Транскрипт</span>
-      </div>
-      <div className="carousel-transcript">
-        {transcript}
       </div>
     </div>
   );

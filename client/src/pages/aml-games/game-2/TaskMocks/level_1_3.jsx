@@ -1,5 +1,6 @@
 import Sizebox from "../../../../components/courseTemplates/common/Sizebox";
 import ImageCarousel from "../../components/ImageCarousel";
+import Transcript from "../../components/Transcript";
 import TagQuiz from "../../components/tagQuiz";
 import carousel_11 from './../../../../assets/images/Carousel_11.png';
 import carousel_110 from './../../../../assets/images/Carousel_110.png';
@@ -60,12 +61,20 @@ const images = [
         src: carousel_111,
     },
 ]
+const transcripts = [
+    { title: 'Транскрипт 1', content: 'Переходит сдавать уведомление: Егов – войти – электронное лицензирование – Финансы – Уведомительный порядок (Уведомление о начале или прекращении деятельности лица, являющегося субъектом финансового мониторинга в соответствии с Законом Республики Казахстан «О противодействии легализации (отмыванию) доходов, полученных преступным путем, и финансированию терроризма») – заполняет форму – подписывает – скачивает уведомление' },
+    { title: 'Транскрипт 2', content: 'Содержание транскрипта 2' },
+    { title: 'Транскрипт 3', content: 'Содержание транскрипта 3' },
+];
+  
 function Level_1_3() {
     return ( 
         <>
             <h2>Задача 1</h2>
 
-            <ImageCarousel images={images}/>
+            <ImageCarousel images={images} />
+            <Transcript transcripts={transcripts} />
+            <Sizebox height={60} />
 
             <TagQuiz 
                 title={'Отметьте категории доступные в открытой версии Личного кабинета'}
