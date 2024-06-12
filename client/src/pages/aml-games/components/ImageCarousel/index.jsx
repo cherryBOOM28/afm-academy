@@ -32,12 +32,12 @@ const ImageCarousel = ({ images = [], transcript }) => {
 
   return (
     <div className="carousel-wrapper">
-      <div className="carousel-header">{images[currentIndex].header}</div>
       <div className="carousel-container">
         <button className="carousel-button left" onClick={handlePrev}>
           &lt;
         </button>
-        <div className="carousel-image-container" key={animationKey}>
+        <div className="carousel-header">{images[currentIndex].header}</div>
+        <div className="carousel-image-container">
           <img
             src={images[prevIndex].src}
             alt={`Slide ${prevIndex}`}
@@ -60,15 +60,14 @@ const ImageCarousel = ({ images = [], transcript }) => {
             ></div>
           ))}
         </div>
-        <div className="carousel-counter">
-          {currentIndex + 1} / {images.length}
+      </div>
+      <div className="carousel-transcript-wrapper">
+        <div className="carousel-counter">{`${currentIndex + 1} / ${images.length}`}</div>
+        <div className="carousel-transcript">
+          <div className="transcript-header">Транскрипт</div>
+          <div className="transcript-divider"></div>
+          <div className="transcript-text">{transcript}</div>
         </div>
-      </div>
-      <div className="carousel-divider">
-        <span>Транскрипт</span>
-      </div>
-      <div className="carousel-transcript">
-        {transcript}
       </div>
     </div>
   );
