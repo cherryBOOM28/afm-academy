@@ -70,11 +70,10 @@ const transcripts = [
 function Level_1_3() {
     return ( 
         <>
-            <h2>Задача 1</h2>
-
             <ImageCarousel images={images} />
             <Transcript transcripts={transcripts} />
             <Sizebox height={60} />
+            <h2>Задача 1</h2>
 
             <TagQuiz 
                 title={'Отметьте категории доступные в открытой версии Личного кабинета'}

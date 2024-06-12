@@ -25,8 +25,13 @@
     background-color: #1A2751;
     transition: all 0.3s ease;
 }
+.transcript-content-container{
+    display: flex;
+    justify-content: center;
+}
 
 .transcript-content {
+    width: 90%;
     margin-top: 1.5rem;
     padding: 1rem;
     border: 1px solid #d1d5db;
