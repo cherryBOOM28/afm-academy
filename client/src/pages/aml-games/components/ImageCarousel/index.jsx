@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
-
-
 const ImageCarousel = ({ images = [], transcript }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(0);
   const [direction, setDirection] = useState('next');
+  const [animationKey, setAnimationKey] = useState(0);
 
   useEffect(() => {
     if (images.length === 0) {
@@ -17,12 +16,14 @@ const ImageCarousel = ({ images = [], transcript }) => {
     setPrevIndex(currentIndex);
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
     setDirection('prev');
+    setAnimationKey((prevKey) => prevKey + 1); // Force re-render for animation reset
   };
 
   const handleNext = () => {
     setPrevIndex(currentIndex);
     setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
     setDirection('next');
+    setAnimationKey((prevKey) => prevKey + 1); // Force re-render for animation reset
   };
 
   if (images.length === 0) {
@@ -31,12 +32,12 @@ const ImageCarousel = ({ images = [], transcript }) => {
 
   return (
     <div className="carousel-wrapper">
+      <div className="carousel-header">{images[currentIndex].header}</div>
       <div className="carousel-container">
         <button className="carousel-button left" onClick={handlePrev}>
           &lt;
         </button>
-        <div className="carousel-header">{images[currentIndex].header}</div>
-        <div className="carousel-image-container">
+        <div className="carousel-image-container" key={animationKey}>
           <img
             src={images[prevIndex].src}
             alt={`Slide ${prevIndex}`}
@@ -59,14 +60,15 @@ const ImageCarousel = ({ images = [], transcript }) => {
             ></div>
           ))}
         </div>
-      </div>
-      <div className="carousel-transcript-wrapper">
-        <div className="carousel-counter">{`${currentIndex + 1} / ${images.length}`}</div>
-        <div className="carousel-transcript">
-          <div className="transcript-header">Транскрипт</div>
-          <div className="transcript-divider"></div>
-          <div className="transcript-text">{transcript}</div>
+        <div className="carousel-counter">
+          {currentIndex + 1} / {images.length}
         </div>
+      </div>
+      <div className="carousel-divider">
+        <span>Транскрипт</span>
+      </div>
+      <div className="carousel-transcript">
+        {transcript}
       </div>
     </div>
   );

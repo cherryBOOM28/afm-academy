@@ -1,12 +1,23 @@
 .carousel-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: relative;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .carousel-header {
+    font-size: 1.5em;
+    height: 50px; /* Fixed height for the header */
+    line-height: 50px; /* Align text vertically in the center */
+    overflow: hidden; /* Ensure text doesn't overflow */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+    margin-bottom: 20px;
   }
   
   .carousel-container {
     position: relative;
-    width: 80%;
+    width: 100%;
     height: 600px;
     margin: auto;
     overflow: hidden;
@@ -14,24 +25,13 @@
     border-radius: 8px;
   }
   
-  .carousel-header {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 10px;
-    z-index: 1;
-    border-radius: 8px;
-    width: calc(100% - 20px);
-    text-align: center;
-  }
-  
   .carousel-image-container {
     position: relative;
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .carousel-image {
@@ -115,6 +115,11 @@
     cursor: pointer;
     z-index: 2;
     border-radius: 50%;
+    transition: background-color 0.3s;
+  }
+  
+  .carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
   }
   
   .carousel-button.left {
@@ -133,7 +138,6 @@
     display: flex;
     gap: 10px;
   }
-
   
   .indicator {
     width: 12px;
@@ -146,5 +150,45 @@
   
   .indicator.active {
     opacity: 1;
+  }
+  
+  .carousel-counter {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 1em;
+  }
+  
+  .carousel-divider {
+    margin-top: 100px;
+    position: relative;
+    text-align: left;
+  }
+  
+  .carousel-divider span {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    background-color: white;
+    padding: 0 10px;
+  }
+  
+  .carousel-divider::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: blue;
+    border-radius: 4px;
+    margin-top: 20px;
+  }
+  
+  .carousel-transcript {
+    margin-top: 20px;
   }
   
