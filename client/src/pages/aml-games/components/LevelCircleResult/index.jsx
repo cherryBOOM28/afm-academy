@@ -19,6 +19,9 @@ const LevelSummary = ({ percentage, score, description, recommendations }) => {
         return () => clearInterval(timer);
     }, [percentage]);
 
+    const isHighScore = currentPercentage > 70;
+    const circleColor = isHighScore ? '#1F3C88' : '#ff4d4d';
+
     return (
         <div className="level-summary-container">
             <div className="header" style={{ backgroundColor: 'rgba(31, 60, 136, 0.7)' }}>
@@ -27,32 +30,34 @@ const LevelSummary = ({ percentage, score, description, recommendations }) => {
             <div className="circle-container">
                 <div className="circle">
                     <div className="circle-inner">
-                        <div className="circle-percentage">{currentPercentage}%</div>
+                        <div className="circle-percentage" style={{ color: circleColor }}>
+                            {currentPercentage}%
+                        </div>
                     </div>
                 </div>
-                <svg className="progress-ring" width="120" height="120">
+                <svg className="progress-ring" width="180" height="180">
                     <circle
                         className="progress-ring__circle"
                         stroke="#E4E4E4"
-                        strokeWidth="20"
+                        strokeWidth="30"
                         fill="transparent"
-                        r="50"
-                        cx="60"
-                        cy="60"
+                        r="75"
+                        cx="90"
+                        cy="90"
                     />
                     <circle
                         className="progress-ring__circle"
-                        stroke="#1F3C88"
-                        strokeWidth="20"
+                        stroke={circleColor}
+                        strokeWidth="30"
                         fill="transparent"
-                        r="50"
-                        cx="60"
-                        cy="60"
-                        style={{ strokeDasharray: '314', strokeDashoffset: 314 - (314 * currentPercentage) / 100 }}
+                        r="75"
+                        cx="90"
+                        cy="90"
+                        style={{ strokeDasharray: '471', strokeDashoffset: 471 - (471 * currentPercentage) / 100 }}
                     />
                 </svg>
             </div>
-            <div className="score">Баллы: {score}</div>
+            <div className="score" style={{ color: circleColor }}>Баллы: {score}</div>
             <div className="description">{description}</div>
             <div className="recommendations-title">Рекомендации:</div>
             <div className="recommendations">{recommendations}</div>
@@ -60,7 +65,6 @@ const LevelSummary = ({ percentage, score, description, recommendations }) => {
                 width: "100%",
                 display: "flex",
                 justifyContent:"center"
-
             }}>
             <button className="reset-button">
                 <span className="icon">⟳</span>
