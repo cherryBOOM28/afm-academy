@@ -1,26 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
+import { Provider } from 'react-redux';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import SideBar from '../components/sideBar';
 import { NavbarProfile } from '../navbar';
-import Level_1_1 from './TaskMocks/level_1_1';
-import Level_1_2 from './TaskMocks/level_1_2';
-import Level_1_3 from './TaskMocks/level_1_3';
-import Level_1_4 from './TaskMocks/level_1_4';
-import Level_1_Result from './TaskMocks/level_1_result';
 import { mockTasks } from './mockData';
+import { store } from './store/index.ts';
 import './style.scss';
+
+const Level_1_1 = lazy(() => import('./TaskMocks/level_1_1'));
+const Level_1_2 = lazy(() => import('./TaskMocks/level_1_2'));
+const Level_1_3 = lazy(() => import('./TaskMocks/level_1_3'));
+const Level_1_4 = lazy(() => import('./TaskMocks/level_1_4'));
+const Level_1_Result = lazy(() => import('./TaskMocks/level_1_result'));
 
 const GameReader = () => {
     const navigate = useNavigate();
     const { level, subLevel } = useParams();
-    const [_level, setLevel] = useState(level);
-    const [_subLevel, setSubLevel] = useState(subLevel);
-    const [response, setResponse] = useState(mockTasks.find(task => `${task.level}` === `${level}` && `${task.subLevel}` === `${subLevel}`) || null);
+    const location = useLocation();
+
+    const [response, setResponse] = useState(
+        mockTasks.find(task => `${task.level}` === `${level}` && `${task.subLevel}` === `${subLevel}`) || null
+    );
 
     useEffect(() => {
         scrollToTopAnimated();
-        setResponse(mockTasks.find(task => `${task.level}` === `${_level}` && `${task.subLevel}` === `${_subLevel}`) || null);
-    }, [_level, _subLevel]);
+        setResponse(
+            mockTasks.find(task => `${task.level}` === `${level}` && `${task.subLevel}` === `${subLevel}`) || null
+        );
+    }, [level, subLevel, location]);
 
     const scrollToTopAnimated = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -30,34 +37,40 @@ const GameReader = () => {
         }
     };
 
-    const isResultPage = _subLevel === '5';
+    const isResultPage = subLevel === '5';
 
     return (
-        <div>
+        <Provider store={store}>
+            <div>
             <NavbarProfile />
             {!isResultPage && (
                 <div className="aml-game-2-main">
                     <SideBar response={response} />
-                    <div className='aml-game-right'>
-                        <div className='aml-game-right-container'>
-                            <div className="sublevel-title">Уровень {level}.{subLevel} : {response ? response.name : ''}</div>
+                    <div className="aml-game-right">
+                        <div className="aml-game-right-container">
+                            <div className="sublevel-title">
+                                Уровень {level}.{subLevel} : {response ? response.name : ''}
+                            </div>
                             <div className="content">
-                                <GetTaskPage level={_level} subLevel={_subLevel} />
+                                <GetTaskPage level={level} subLevel={subLevel} />
                                 <div className="page-actions">
-                                    <button className='blue'
+                                    <button
+                                        className="blue"
                                         onClick={() => {
                                             navigate(`/courses/aml-games/game/read/1/1/${Number(subLevel) + 1}`);
-                                            setSubLevel(prev => `${Number(prev) + 1}`);
                                         }}
-                                    >Далее</button>
+                                    >
+                                        Далее
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             )}
-            {isResultPage && <GetTaskPage level={_level} subLevel={_subLevel} />}
+            {isResultPage && <GetTaskPage level={level} subLevel={subLevel} />}
         </div>
+        </Provider>
     );
 };
 
@@ -65,11 +78,11 @@ const GetTaskPage = ({ level, subLevel }) => {
     const levelNum = Number(level);
     const subLevelNum = Number(subLevel);
 
-    if (levelNum === 1 && subLevelNum === 1) return <Level_1_1 />;
-    if (levelNum === 1 && subLevelNum === 2) return <Level_1_2 />;
-    if (levelNum === 1 && subLevelNum === 3) return <Level_1_3 />;
-    if (levelNum === 1 && subLevelNum === 4) return <Level_1_4 />;
-    if (levelNum === 1 && subLevelNum === 5) return <Level_1_Result />;
+    if (levelNum === 1 && subLevelNum === 1) return <Suspense><Level_1_1 /></Suspense>;
+    if (levelNum === 1 && subLevelNum === 2) return <Suspense><Level_1_2 /></Suspense>;
+    if (levelNum === 1 && subLevelNum === 3) return <Suspense><Level_1_3 /></Suspense>;
+    if (levelNum === 1 && subLevelNum === 4) return <Suspense><Level_1_4 /></Suspense>;
+    if (levelNum === 1 && subLevelNum === 5) return <Suspense><Level_1_Result /></Suspense>;
 
     return null;
 };

@@ -3,6 +3,11 @@
 
 .App {
     font-family: 'Inter', sans-serif;
+    
+}
+.App img {
+  -webkit-user-drag: none; /* Для WebKit браузеров (Chrome, Safari) */
+  user-drag: none; /* Для остальных браузеров */
 }
 
 .timesNewRoman {
