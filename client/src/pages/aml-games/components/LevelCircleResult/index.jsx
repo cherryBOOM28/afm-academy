@@ -34,7 +34,7 @@ const LevelSummary = ({ percentage, score, description, recommendations }) => {
                     <circle
                         className="progress-ring__circle"
                         stroke="#E4E4E4"
-                        strokeWidth="10"
+                        strokeWidth="20"
                         fill="transparent"
                         r="50"
                         cx="60"
@@ -43,7 +43,7 @@ const LevelSummary = ({ percentage, score, description, recommendations }) => {
                     <circle
                         className="progress-ring__circle"
                         stroke="#1F3C88"
-                        strokeWidth="10"
+                        strokeWidth="20"
                         fill="transparent"
                         r="50"
                         cx="60"
