@@ -209,9 +209,9 @@ const LevelCard = ({
                         {
                             level.subLevels.map((subLevel, idx) => {
 
-                                return <div>
+                                return <div onClick={()=>{navigate(`/courses/aml-games/game/read/1/${index + 1}/${idx + 1}`)}}>
                                     <MdOutlineAlternateEmail />
-                                    <div className="sublevel-name" onClick={()=>{navigate(`/courses/aml-games/game/read/1/${index + 1}/${idx + 1}`)}}>Уровень {index + 1}.{idx + 1} : {subLevel.name}</div>
+                                    <div className="sublevel-name">Уровень {index + 1}.{idx + 1} : {subLevel.name}</div>
                                 </div>
                             })
                         }
