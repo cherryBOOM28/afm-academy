@@ -28,13 +28,16 @@
 }
 
 .cardContent {
-    height: auto;
+    height: 90%;
+    margin-top: 5px;
     /* width: 320px; */
     width: 85%;
+    margin-left: 12px;
     border-radius: 10px;
     background: inherit;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    padding: 22px;
+    border: 1px solid rgba(176, 176, 176, 0.437);
+    padding: 25px 22px 15px 22px;
     display: flex;
     flex-direction: column;
 }
@@ -169,7 +172,6 @@
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     padding: 15px;
     border-radius: 10px;
-    /* max-width:1209px; */
     width: 97.5%;
     min-height: 253px;
 }
@@ -191,10 +193,6 @@
     font-size: 18px;
     font-weight: 400;
     line-height: 21px;
-    
-    /* overflow: hidden; Hide the overflowing text */
-    /* text-overflow: ellipsis; Add the ellipsis (...) */
-    /* white-space: nowrap; Prevent the text from wrapping */
 }
 
 .btnTab {
@@ -231,7 +229,8 @@
 }
 
 .cardContainer {
-    height: auto;
+    height: 510px;
+    border: 1px rgba(0, 0, 0, 0) solid;
     background-color: inherit;
 }
 

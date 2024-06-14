@@ -1,24 +1,26 @@
-import React, { useEffect, useState, useRef } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import cl from "./NewsTab.module.css";
-import Button from "../UI/button/Button";
-import calendarIcon from "../../assets/icons/calendar.svg";
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import axios from "axios";
-import base_url from "../../settings/base_url";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import calendarIcon from "../../assets/icons/calendar.svg";
 import { useStyle } from "../../components/VisualModal/StyleContext";
-import './NewsTab.scss'
+import base_url from "../../settings/base_url";
+import Button from "../UI/button/Button";
+import cl from "./NewsTab.module.css";
+import './NewsTab.scss';
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "black",borderRadius:"1000px" }}
+      style={{ ...style, display: "flex", boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)", borderRadius:"1000px" }}
       onClick={onClick}
-    />
+    ><ArrowCircleRightIcon style={{right:"15px"}}/></div>
   );
 }
 
@@ -27,9 +29,9 @@ function SamplePrevArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "black",borderRadius:"1000px" }}
+      style={{ ...style, display: "block", boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",borderRadius:"1000px" }}
       onClick={onClick}
-    />
+    ><ArrowCircleLeftIcon/></div>
   );
 }
 const NewsTab = ({Width}) => {
@@ -50,7 +52,7 @@ const NewsTab = ({Width}) => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 200000,
     pauseOnHover: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -77,7 +79,6 @@ const NewsTab = ({Width}) => {
       const modal = document.getElementById('Modal');
       const buttons = document.getElementsByTagName('button');// Получаем ссылку на элемент модального окна
       if ((modal && !modal.contains(event.target)) && (!Array.from(buttons).some(button => button === event.target))) {
-        // Проверяем, был ли клик выполнен вне модального окна
         handleShowDetailsBtn(null)
       }
     };
