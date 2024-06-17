@@ -209,21 +209,23 @@ const NewsTab = ({Width}) => {
     >
         {selectedRowBtn !== null && selectedItem && (
         <div id="Modal">
-          <div className="details-modal1">
-          <div className="details-content1">
-          
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ display:'flex', textAlign:'left',marginTop:'25px',justifyContent:"space-between" }}>
-                <p className='details-info1'>{selectedItem.name}</p>
-                <span style={{textAlign:'right',justifyContent:'center'}}> 
-          <button className="details-button11" onClick={() => handleShowDetailsBtn(null)}>X</button>
-          </span>
+          <div className='modal-wrapper'>
+            <div className="details-modal1">
+            <div className="details-content1">
+            
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ display:'flex', textAlign:'left',marginTop:'25px',justifyContent:"space-between" }}>
+                  <p className='details-info1'>{selectedItem.name}</p>
+                  <span style={{textAlign:'right',justifyContent:'center'}}> 
+            <button className="details-button11" onClick={() => handleShowDetailsBtn(null)}>X</button>
+            </span>
+                </div>
+              {!imagesHidden && (<img src={selectedItem.image} alt="" className={'NewsModalImg'} />)}
+              <p className='details-description1'>{selectedItem.description}</p>
               </div>
-            {!imagesHidden && (<img src={selectedItem.image} alt="" className={'NewsModalImg'} />)}
-            <p className='details-description1'>{selectedItem.description}</p>
             </div>
-          </div>
         </div>
+         </div>
        </div>
       )}
       
