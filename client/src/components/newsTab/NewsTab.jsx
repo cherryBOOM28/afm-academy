@@ -10,17 +10,17 @@ import calendarIcon from "../../assets/icons/calendar.svg";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 import base_url from "../../settings/base_url";
 import Button from "../UI/button/Button";
+import NewsModal from './NewsModal';
 import cl from "./NewsTab.module.css";
-import './NewsTab.scss';
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
       className={className}
-      style={{ ...style, display: "flex", boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)", borderRadius:"1000px" }}
+      style={{ ...style, display: "flex", boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)", borderRadius: "1000px" }}
       onClick={onClick}
-    ><ArrowCircleRightIcon style={{right:"15px"}}/></div>
+    ><ArrowCircleRightIcon style={{ right: "15px" }} /></div>
   );
 }
 
@@ -29,12 +29,12 @@ function SamplePrevArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",borderRadius:"1000px" }}
+      style={{ ...style, display: "block", boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)", borderRadius: "1000px" }}
       onClick={onClick}
-    ><ArrowCircleLeftIcon/></div>
+    ><ArrowCircleLeftIcon /></div>
   );
 }
-const NewsTab = ({Width}) => {
+const NewsTab = ({ Width }) => {
   const { styles } = useStyle();
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("news");
@@ -42,18 +42,20 @@ const NewsTab = ({Width}) => {
   const [imagesHidden, setImagesHidden] = useState(false);
   const [selectedRowBtn, setSelectedRowBtn] = useState(null);
   const modalRef = useRef();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [settings, setSettings] = useState({
     dots: true,
     focusOnSelect: true,
     infinite: true,
     adaptiveHeight: true,
     arrows: true,
-    speed: 500,
+    speed: 800,
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
-    pauseOnHover: true,
+    autoplaySpeed: 6000,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   });
@@ -66,9 +68,9 @@ const NewsTab = ({Width}) => {
     const handleOutsideClick = (event) => {
       handleClickOutside(event);
     };
-  
+
     document.addEventListener('mousedown', handleOutsideClick);
-    
+
     return () => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
@@ -159,10 +161,10 @@ const NewsTab = ({Width}) => {
                 styles.colorMode === "dark"
                   ? "#fff"
                   : styles.colorMode === "light"
-                  ? "#000"
-                  : styles.colorMode === "blue"
-                  ? "#063462"
-                  : "#000",
+                    ? "#000"
+                    : styles.colorMode === "blue"
+                      ? "#063462"
+                      : "#000",
             }}
           >
             {item.name}
@@ -172,7 +174,7 @@ const NewsTab = ({Width}) => {
               {!imagesHidden && <img src={calendarIcon} alt="calendar" />}
               <p className={cl.dateTime}>{formattedDate}</p>
             </div>
-            <Button className={cl.cardBtn} onClick={() => handleShowDetailsBtn(item.id)}>
+            <Button className={cl.cardBtn} onClick={() => { handleShowDetailsBtn(item.id); handleOpen(true)}}>
               {t("read more")}
             </Button>
           </div>
@@ -181,7 +183,7 @@ const NewsTab = ({Width}) => {
     );
   };
 
-  
+
 
   return (
     <div
@@ -192,43 +194,25 @@ const NewsTab = ({Width}) => {
           styles.colorMode === "dark"
             ? "#fff"
             : styles.colorMode === "light"
-            ? "#3A3939"
-            : styles.colorMode === "blue"
-            ? "#063462"
-            : "#000",
+              ? "#3A3939"
+              : styles.colorMode === "blue"
+                ? "#063462"
+                : "#000",
         background:
           styles.colorMode === "dark"
             ? "#000"
             : styles.colorMode === "light"
-            ? "#fff"
-            : styles.colorMode === "blue"
-            ? "#9dd1ff"
+              ? "#fff"
+              : styles.colorMode === "blue"
+                ? "#9dd1ff"
                 : "#000",
         width: Width
       }}
     >
-        {selectedRowBtn !== null && selectedItem && (
-        <div id="Modal">
-          <div className='modal-wrapper'>
-            <div className="details-modal1">
-            <div className="details-content1">
-            
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{ display:'flex', textAlign:'left',marginTop:'25px',justifyContent:"space-between" }}>
-                  <p className='details-info1'>{selectedItem.name}</p>
-                  <span style={{textAlign:'right',justifyContent:'center'}}> 
-            <button className="details-button11" onClick={() => handleShowDetailsBtn(null)}>X</button>
-            </span>
-                </div>
-              {!imagesHidden && (<img src={selectedItem.image} alt="" className={'NewsModalImg'} />)}
-              <p className='details-description1'>{selectedItem.description}</p>
-              </div>
-            </div>
-        </div>
-         </div>
-       </div>
+      {selectedRowBtn !== null && selectedItem && (
+
+      <NewsModal name={selectedItem.name} image={selectedItem.image} description={selectedItem.description} imagesHidden={imagesHidden} open={open} handleClose={handleClose}></NewsModal>
       )}
-      
       <div className={cl.tabButtons}>
         <button
           className={activeTab === "events" ? cl.active : ""}
@@ -237,10 +221,10 @@ const NewsTab = ({Width}) => {
               styles.colorMode === "dark"
                 ? "#fff"
                 : styles.colorMode === "light"
-                ? "#000"
-                : styles.colorMode === "blue"
-                ? "#063462"
-                : "#000",
+                  ? "#000"
+                  : styles.colorMode === "blue"
+                    ? "#063462"
+                    : "#000",
           }}
           onClick={() => handleTabChange("events")}
         >
@@ -253,16 +237,16 @@ const NewsTab = ({Width}) => {
               styles.colorMode === "dark"
                 ? "#fff"
                 : styles.colorMode === "light"
-                ? "#000"
-                : styles.colorMode === "blue"
-                ? "#063462"
-                : "#000",
+                  ? "#000"
+                  : styles.colorMode === "blue"
+                    ? "#063462"
+                    : "#000",
           }}
           onClick={() => handleTabChange("news")}
         >
           {t("news")} /
         </button>
-      
+
         <button
           className={activeTab === "videos" ? cl.active : ""}
           style={{
@@ -270,10 +254,10 @@ const NewsTab = ({Width}) => {
               styles.colorMode === "dark"
                 ? "#fff"
                 : styles.colorMode === "light"
-                ? "#000"
-                : styles.colorMode === "blue"
-                ? "#063462"
-                : "#000",
+                  ? "#000"
+                  : styles.colorMode === "blue"
+                    ? "#063462"
+                    : "#000",
           }}
           onClick={() => handleTabChange("videos")}
         >
@@ -289,10 +273,10 @@ const NewsTab = ({Width}) => {
             styles.colorMode === "dark"
               ? "#fff"
               : styles.colorMode === "light"
-              ? "#000"
-              : styles.colorMode === "blue"
-              ? "#063462"
-              : "#000",
+                ? "#000"
+                : styles.colorMode === "blue"
+                  ? "#063462"
+                  : "#000",
         }}
       >
         {newsData && newsData.length > 0 ? (
@@ -302,11 +286,11 @@ const NewsTab = ({Width}) => {
         ) : (
           <div style={{ width: "100%", textAlign: "center", paddingTop: "20px" }}>
             <p style={{ fontSize: "24px", fontWeight: "600", opacity: "0.3" }}>Нет недавних новостей</p>
-          </div> 
+          </div>
         )}
       </div>
 
-     
+
     </div>
   );
 };
