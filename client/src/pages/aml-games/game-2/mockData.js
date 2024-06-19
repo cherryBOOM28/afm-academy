@@ -1,4 +1,4 @@
-const testText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. lobortis eget.';
+const testText = 'Вы направили уведомление, в результате получили талон. Следующим этапом необходимо принять на работу ответственного сотрудника по ПОД/ФТ, который будет внедрять и реализовывать политику ПОД/ФТ в вашей организации. Вам предстоит провести собеседование с кандидатами и выбрать наиболее подходящего работника. Учтите их образование, опыт работы и навыки для принятия правильного решения.';
 
 export const mockTasks = [
     {
