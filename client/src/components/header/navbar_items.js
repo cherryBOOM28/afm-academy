@@ -6,7 +6,7 @@ const navbar_items = [
     },
     {
       name: 'about us',
-      route: null,
+      route: null, 
       subItems: [
         {
           name: 'about the academy',
@@ -34,10 +34,6 @@ const navbar_items = [
       name: 'training',
       route: null,
       subItems: [
-        {
-          name: 'types of courses',
-          route: '/#coursesSection'
-        },
         {
           name: 'course catalog',
           route: '/courses/catalog'
@@ -68,7 +64,7 @@ const navbar_items = [
     },
     {
       name: 'news',
-      route: '/#newsSection',
+      route: '/news-page',
       subItems: [
         
       ]
