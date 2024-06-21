@@ -7,9 +7,7 @@ import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/v2";
 import cl from "./Home.module.css";
 import AboutUsSection from "./sections/AboutUsSection";
-import CoursesSection from "./sections/CoursesSection";
-import EducationSection from "./sections/EducationSection";
-import NewsSection from "./sections/NewsSection";
+import SecondSection from "./sections/second-section";
 
 function Home() {
   const navigate = useNavigate();
@@ -177,9 +175,10 @@ function Home() {
         <VisualModal open={openVisualModal} onRemoveImages={handleRemoveImages} onShowImages={handleShowImages} onFontFamily={() => {}} onIntervalChange={() => {}} styles={styles} dark={removeBackground} />
         <Header handleOpenVisualModal={handleOpenVisualModal} />
         <AboutUsSection imagesHidden={imagesHidden} />
-        <EducationSection imagesHidden={imagesHidden} styles={styles} />
+        <SecondSection></SecondSection>
+        {/* <EducationSection imagesHidden={imagesHidden} styles={styles} />
         <CoursesSection styles={styles} />
-        <NewsSection styles={styles} />
+        <NewsSection styles={styles} /> */}
         <Footer />
       </div>
     </div>

@@ -175,7 +175,7 @@ function Header(props) {
       case "medium":
         return "2px";
       case "large":
-        return "4px";
+        return "4px"; 
       default:
         return "1px";
     }

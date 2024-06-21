@@ -66,8 +66,20 @@
     text-align: center;
     font-size: 30px;
     font-weight: 700;
-    width: 500px;
+    width: 450px;
     margin: 90px auto 30px;
+    line-height: normal;
+    color: transparent; /* Make the text color transparent */
+    background: linear-gradient(-60deg, #00ffea, #178d52, #ffffff, #19d5e7);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: flow 3s ease-in-out infinite;
+}
+.aboutUs__text_small1 {
+    text-align: center;
+    font-size: 19px;
+    width: 450px;
     line-height: normal;
     color: transparent; /* Make the text color transparent */
     background: linear-gradient(-60deg, #00ffea, #178d52, #ffffff, #19d5e7);

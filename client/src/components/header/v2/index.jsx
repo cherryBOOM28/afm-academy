@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import logo from './logo.svg';
-import navbar_items from '../navbar_items';
-import './style.scss';
-import { IoMdEye } from "react-icons/io";
-import { FaChevronDown } from "react-icons/fa6";
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { FaChevronDown } from "react-icons/fa6";
+import { IoMdEye } from "react-icons/io";
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+import navbar_items from '../navbar_items';
+import logo from './logo.svg';
+import './style.scss';
 
 function Header({
     handleOpenVisualModal
@@ -14,7 +14,7 @@ function Header({
     return ( 
         <div className="header-v2">
             <div className="row">
-                <div className="logo">
+                <div className="logo"> 
                     <img src={logo} alt="" />
                     <span>Академия финансового мониторинга</span>
                 </div>
