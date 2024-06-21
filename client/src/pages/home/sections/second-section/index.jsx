@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import CoursesComponent from '../../components/courses-component';
 import EventsComponent from '../../components/event-component';
 import './style.css';
 
@@ -8,7 +9,8 @@ const SecondSection = ({ imagesHidden, styles }) => {
 
     return (
         <section className='second-section'>
-            <EventsComponent/>
+            <EventsComponent />
+            <CoursesComponent />
         </section>
     );
 };
