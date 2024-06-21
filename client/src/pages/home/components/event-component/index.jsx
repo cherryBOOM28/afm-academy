@@ -1,5 +1,5 @@
 import React from 'react';
-import eventImg from '../../assets/svg/event.svg';
+import eventImg from '../../assets/jpg/test.jpg';
 import EventCard from '../event-card';
 import './style.css';
 
