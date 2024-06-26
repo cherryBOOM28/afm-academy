@@ -5,7 +5,6 @@ import deepCourse from "../../../assets/icons/simple-icons_progress.svg";
 import proCourse from "../../../assets/icons/subway_book.svg";
 import backgroundVideoLight from "../../../assets/video/sssssssss.mp4";
 import cl from "../Home.module.css";
-import povish from '../assets/svg/povyshenyeKvalifikasi.svg';
 import CourseBox from "../components/CourseBox";
 const AboutUsSection = ({ imagesHidden }) => {
   const { t } = useTranslation();
@@ -23,15 +22,12 @@ const AboutUsSection = ({ imagesHidden }) => {
             <div style={{display:'flex', flexDirection:"column", width:"100%", justifyContent:'center'}}>
               <p className={`${cl.aboutUs__headline} text-content`}>AML ACADEMY</p>
               <p className={`${cl.aboutUs__text_small} text-content`}>{t("our courses")}</p>
-              <div style={{display:'flex', width:"100%", justifyContent:'center'}}>
-                <p className={`${cl.aboutUs__text_small1} text-content`}>{t("our courses 2")}</p>
-              </div>
             </div>
             <div className={`${cl.courses_boxes} text-content`}>
               <CourseBox link="/courses/catalog" imgSrc={basicCourse} text={t('education')} imagesHidden={imagesHidden} />
               <CourseBox link="/ready-made-solutions" imgSrc={proCourse} text={t('ric')} imagesHidden={imagesHidden} />
               <CourseBox link="/#" imgSrc={deepCourse} text={t('it')} imagesHidden={imagesHidden} />
-              <CourseBox link="/#" imgSrc={povish} text={"Повышение квалификации"} imagesHidden={imagesHidden} />
+              
             </div>
           </div>
         </div>

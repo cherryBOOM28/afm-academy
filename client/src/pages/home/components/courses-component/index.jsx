@@ -1,28 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import cardImg from '../../assets/jpg/test.jpg';
+import advancedCourseImg from '../../assets/svg/advanced_course.svg';
+import baseCourseImg from '../../assets/svg/base_course.svg';
+import profileCourseImg from '../../assets/svg/profile_course.svg';
+import tematicCourseImg from '../../assets/svg/tematic_course.svg';
 import Card from '../courses-card';
-import '../courses-card/style.css';
+import SectionTitles from '../section-titles';
+import './style.css';
 
 const CoursesComponent = () => {
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
         const fetchedCourses = [
-            { name: 'Базовый', imageSrc: cardImg },
-            { name: 'Профильный', imageSrc: cardImg },
-            { name: 'Продвинутый', imageSrc: cardImg },
-            { name: 'Тематический', imageSrc: cardImg },
-            { name: 'Дополнительный', imageSrc: cardImg }
+            { name: 'Базовый', imageSrc: baseCourseImg },
+            { name: 'Профильный', imageSrc: profileCourseImg },
+            { name: 'Продвинутый', imageSrc: advancedCourseImg },
+            { name: 'Тематический', imageSrc: tematicCourseImg }
         ];
 
         setCourses(fetchedCourses);
     }, []);
 
     return (
-        <div className="courses-grid">
-            {courses.slice(-4).map((course, index) => (
-                <Card key={index} name={course.name} imageSrc={course.imageSrc} />
-            ))}
+        <div>
+            <SectionTitles title={'Курсы в сфере ПОД/ФТ'}/>
+            <div className='courses-grid-wrapper'>
+                <div className="courses-grid">
+                    {courses.slice(-4).map((course, index) => (
+                        <Card key={index} name={course.name} imageSrc={course.imageSrc} />
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };

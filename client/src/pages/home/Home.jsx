@@ -8,6 +8,7 @@ import Header from "../../components/header/v2";
 import cl from "./Home.module.css";
 import AboutUsSection from "./sections/AboutUsSection";
 import SecondSection from "./sections/second-section";
+import ThirdSection from "./sections/third-section";
 
 function Home() {
   const navigate = useNavigate();
@@ -175,7 +176,8 @@ function Home() {
         <VisualModal open={openVisualModal} onRemoveImages={handleRemoveImages} onShowImages={handleShowImages} onFontFamily={() => {}} onIntervalChange={() => {}} styles={styles} dark={removeBackground} />
         <Header handleOpenVisualModal={handleOpenVisualModal} />
         <AboutUsSection imagesHidden={imagesHidden} />
-        <SecondSection></SecondSection>
+        <SecondSection />
+        <ThirdSection />
         {/* <EducationSection imagesHidden={imagesHidden} styles={styles} />
         <CoursesSection styles={styles} />
         <NewsSection styles={styles} /> */}

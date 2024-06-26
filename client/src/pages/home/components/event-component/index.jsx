@@ -1,6 +1,7 @@
 import React from 'react';
 import eventImg from '../../assets/jpg/test.jpg';
 import EventCard from '../event-card';
+import SectionTitles from '../section-titles';
 import './style.css';
 
 export const mockEvents = [
@@ -42,14 +43,16 @@ const EventsComponent = () => {
     if (events.length < 3) return <div>Loading...</div>;
 
     return (
-        <div className='events-page-container'>
-            <div className="events-page">
-                <h2 className="page-title">Будущие мероприятия</h2>
-                <div className="cards-container">
-                    <EventCard event={events[0]} type="main" />
-                    <div className="secondary-cards">
-                        <EventCard event={events[1]} type="secondary" />
-                        <EventCard event={events[2]} type="secondary" />
+        <div style={{paddingTop:"40px"}}>
+            <SectionTitles title={'Будущие мероприятия'}/>
+            <div className='events-page-container'>
+                <div className="events-page">
+                    <div className="cards-container">
+                        <EventCard event={events[0]} type="main" />
+                        <div className="secondary-cards">
+                            <EventCard event={events[1]} type="secondary" />
+                            <EventCard event={events[2]} type="secondary" />
+                        </div>
                     </div>
                 </div>
             </div>
