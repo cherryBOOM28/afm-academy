@@ -5,7 +5,6 @@ import deepCourse from "../../../assets/icons/simple-icons_progress.svg";
 import proCourse from "../../../assets/icons/subway_book.svg";
 import backgroundVideoLight from "../../../assets/video/sssssssss.mp4";
 import cl from "../Home.module.css";
-import povish from '../assets/svg/povyshenyeKvalifikasi.svg';
 import CourseBox from "../components/CourseBox";
 const AboutUsSection = ({ imagesHidden }) => {
   const { t } = useTranslation();
@@ -26,7 +25,6 @@ const AboutUsSection = ({ imagesHidden }) => {
               <CourseBox link="/courses/catalog" imgSrc={basicCourse} text={t('education')} imagesHidden={imagesHidden} />
               <CourseBox link="/ready-made-solutions" imgSrc={proCourse} text={t('ric')} imagesHidden={imagesHidden} />
               <CourseBox link="/#" imgSrc={deepCourse} text={t('it')} imagesHidden={imagesHidden} />
-              <CourseBox link="/#" imgSrc={povish} text={"Повышение квалификации"} imagesHidden={imagesHidden} />
             </div>
           </div>
         </div>

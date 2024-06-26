@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
 import HtmlContent from 'dangerously-set-html-content';
+import React from 'react';
 
 import { BsFillExclamationOctagonFill } from "react-icons/bs";
 import './../../../../../styles/parseTextStyles.scss';
 
-import './style.scss'
-import Sizebox from '../../Sizebox';
+import './style.scss';
 
 import parseText from '../../../../../util/ParseTextFromFormatTextarea';
 
@@ -14,8 +13,7 @@ function Report_Warning({
     backgroundColor='rgba(202, 222, 252, 0.22)',
     borderColor='#A7CAFF',
     version = '1'
- }) {
-
+}) {
     if (version === 2) {
         return (
             <div className="reportWarning">
