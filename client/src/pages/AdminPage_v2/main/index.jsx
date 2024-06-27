@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-import './style.scss';
-import { BuilderNavbar } from '../../adminCourse/builderNavbar/BuilderNavbar';
 import { useLocation } from 'react-router';
-import saveButton from '../images/save-button.svg'
 import TabBasicInfo from '../../adminCourse/TabBasicInfo/TabBasicInfo';
 import FAQStep from '../../adminCourse/TabFAQ/FaqStep';
+import { BuilderNavbar } from '../../adminCourse/builderNavbar/BuilderNavbar';
 import NewTabConstructor from '../constructor';
+import saveButton from '../images/save-button.svg';
+import Notification from './notification-component';
+import './style.scss';
 
 import { FaChevronRight } from "react-icons/fa";
 
@@ -18,6 +19,7 @@ function AdminPage_Main() {
     const [currentStep, setCurrentStep] = useState("basic-info")
 
     const [save, setSave] = useState(false)
+    const [showNotification, setShowNotification] = useState(false);
 
     const toFAQ = (id) => {
         setCurrentID(id)
@@ -31,6 +33,12 @@ function AdminPage_Main() {
     const saveCancel = () => {
         setSave(false)
     }
+
+    const handleSave = () => {
+        setSave(true);
+        setShowNotification(true);
+        setTimeout(() => setShowNotification(false), 3000); // Hide notification after 3 seconds
+      };
 
     return ( 
         <div className="admin-page-main">
@@ -56,7 +64,7 @@ function AdminPage_Main() {
                         </div>
                     </div>
                     {currentStep === 'constructor' ? 
-                        <div onClick={() => setSave(true)} className='save-course-button'>
+                        <div onClick={handleSave} className='save-course-button'>
                             <img src={saveButton} alt="save"/>
                             <a>Сохранить изменения</a>
                         </div> : ''
@@ -79,6 +87,7 @@ function AdminPage_Main() {
                 </div>
 
             </div>
+            {showNotification && <Notification message="Изменения сохранены" onClose={() => setShowNotification(false)} />}
         </div>
     );
 }

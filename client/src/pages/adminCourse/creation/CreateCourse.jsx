@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState } from 'react'
 import { useLocation } from 'react-router'
-import './creation.scss'
-import {BuilderNavbar} from '../builderNavbar/BuilderNavbar'
-import saveButton from '../images/save-button.svg'
 import TabBasicInfo from '../TabBasicInfo/TabBasicInfo'
 import FAQStep from '../TabFAQ/FaqStep'
+import { BuilderNavbar } from '../builderNavbar/BuilderNavbar'
+import saveButton from '../images/save-button.svg'
 import TabConstructor from '../tabConstructor/tabConstructor'
+import './creation.scss'
 
 
 const CreateCoursePage = () => {
