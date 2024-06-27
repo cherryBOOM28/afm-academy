@@ -1,13 +1,13 @@
 // TableWithDetails.scss
 .table-container {
   display: flex;
-  margin-left: 15%;
+  width: 70%;
   font-family: Ubuntu, Montserrat;
 }
 
 .table {
   border-collapse: collapse;
-  
+  width: 100%;
 
   td {
     border: 1px solid #ddd;
