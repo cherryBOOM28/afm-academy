@@ -107,6 +107,7 @@ import Table_1Example from './../../../assets/images/Template Examples/Table_1.p
 import TabsGlossaryExample from './../../../assets/images/Template Examples/TabsGlossary.png'
 import TextAndLinkExample from './../../../assets/images/Template Examples/TextAndLink.png'
 import TextWithBackgroundExample from './../../../assets/images/Template Examples/TextWithBackground.png'
+import PyramidList from '../../../components/courseTemplates/common_v2/PyramidList'
 
 
 
@@ -358,6 +359,15 @@ const Elements = {
             inputs: [
                 { name: 'stages', label: 'Элементы списка', type: 'icon:text:innerText' },
                 { name: 'version', label: '', type: 'ignore' }
+            ]
+        },
+        'Список пирамида': {
+            component: PyramidList,
+            example: null,
+            name: 'PyramidList',
+            icon: listIcon,
+            inputs: [
+                { name: 'list', label: 'Список', type: 'list' },
             ]
         }
     },
