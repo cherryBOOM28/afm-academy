@@ -49,6 +49,7 @@ import DropdownList_r5 from '../../../components/courseTemplates/complex/interac
 import ImageWithPoints from '../../../components/courseTemplates/complex/interactives/ImageWithPoints'
 import InteractivePhases from '../../../components/courseTemplates/complex/interactives/InteractivePhases'
 import OneToFour from '../../../components/courseTemplates/complex/interactives/OneToFour'
+import PyramidList from '../../../components/courseTemplates/common_v2/PyramidList'
 
 const componentMap = {
     HeaderWithLine,
@@ -99,7 +100,8 @@ const componentMap = {
     Component52,
     LupaZone,
     ImageWithPoints,
-    JustTextWithP
+    JustTextWithP,
+    PyramidList
     // Add other components here
 };
 
