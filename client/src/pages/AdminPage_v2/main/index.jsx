@@ -6,7 +6,6 @@ import FAQStep from '../../adminCourse/TabFAQ/FaqStep';
 import { BuilderNavbar } from '../../adminCourse/builderNavbar/BuilderNavbar';
 import NewTabConstructor from '../constructor';
 import saveButton from '../images/save-button.svg';
-import Notification from './notification-component';
 import './style.scss';
 
 import { FaChevronRight } from "react-icons/fa";
@@ -87,7 +86,7 @@ function AdminPage_Main() {
                 </div>
 
             </div>
-            {showNotification && <Notification message="Изменения сохранены" onClose={() => setShowNotification(false)} />}
+            {/* {showNotification && <Notification message="Изменения сохранены" onClose={() => setShowNotification(false)} />} */}
         </div>
     );
 }

@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import base_url from '../../../settings/base_url';
-import { useNavigate } from 'react-router'
 
-import Elements from './Elements'
-import componentMap from './ComponentMap'
 
 import './style.scss';
 
-import saveButton from '../images/save-button.svg'
-import hatIcon from '../images/hat-light-icon.svg'
-import { IoMdArrowDown, IoMdArrowUp } from "react-icons/io";
-import { BiCopyAlt } from "react-icons/bi";
 import QuestionnaireForm from '../../adminCourse/fillQuestionnaire/Questionnaire';
-import ModuleStructure from '../ModuleStructure';
 import ContentConstructor from '../ContentConstructor';
+import ModuleStructure from '../ModuleStructure';
+import saveButton from '../images/save-button.svg';
+import Notification from '../main/notification-component';
 
 function NewTabConstructor({saveCancel, save, id}) {
 
@@ -25,7 +20,8 @@ function NewTabConstructor({saveCancel, save, id}) {
     const [lesson, setLesson] = useState(0)
     const [title, setTitle] = useState("")
     const [previous, setPrevious] = useState("structure")
-
+    const [notification, setNotification] = useState({ show: false, message: '', type: '' });
+    const [loading, setLoading] = useState(false);
     
     // Try to fetch data of Course using Id propery 
     // if not set modules as empty list and after PRESSING BUTTON of entering into different step
@@ -53,9 +49,10 @@ function NewTabConstructor({saveCancel, save, id}) {
                     setAddingNewModule(false)
                     setCurrentModules(res.data)
                     setNewModuleName("Модуль №" + (res.data.length + 1))
+                    setNotification({ show: true, message: 'Модуль успешно добавлен', type: 'success' });
                 })
                 .catch(function (error) {
-                    // alert(error)
+                    setNotification({ show: true, message: error.message, type: 'error' });
                 })
             
         } else {
@@ -73,10 +70,14 @@ function NewTabConstructor({saveCancel, save, id}) {
             .then((res) => {
                 setCurrentModules(res.data)
                 setNewModuleName("Модуль №" + (res.data.length + 1))
+                setNotification({ show: true, message: 'Модуль успешно удалён', type: 'success' });
             })
             .catch(function (error) {
-                // alert(error)
+                setNotification({ show: true, message: error.message, type: 'error' });
             })
+            .finally(() => {
+                setLoading(false);
+            });
     };
 
 
@@ -270,6 +271,8 @@ function NewTabConstructor({saveCancel, save, id}) {
                     : null
                 }
             </div>
+            {loading && <div className="loading-spinner">Loading...</div>}
+            {notification.show && <Notification message={notification.message} type={notification.type} onClose={() => setNotification({ ...notification, show: false })} />}
 
         </div>
     );

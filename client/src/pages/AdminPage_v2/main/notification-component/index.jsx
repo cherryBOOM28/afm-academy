@@ -1,9 +1,20 @@
 import React from 'react';
-import './style.css'; // Make sure to create and style this file
+import './style.css';
 
-const Notification = ({ message, onClose }) => {
+const Notification = ({ message, type, onClose }) => {
+    const getNotificationStyle = () => {
+        switch (type) {
+            case 'success':
+                return 'notification-success';
+            case 'error':
+                return 'notification-error';
+            default:
+                return '';
+        }
+    };
+
     return (
-        <div className="notification">
+        <div className={`notification ${getNotificationStyle()}`}>
             <span>{message}</span>
             <button onClick={onClose}>X</button>
         </div>
