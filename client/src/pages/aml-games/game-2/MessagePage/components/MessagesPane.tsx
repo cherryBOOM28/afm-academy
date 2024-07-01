@@ -33,12 +33,12 @@ export default function MessagesPane(props: MessagesPaneProps) {
             setChatMessages(prevMessages => [...prevMessages, message]);
             setTyping(false);
             setMessageIndex(index + 1);
-          }, 2000); // 5000ms typing animation
+          }, 1000); // 5000ms typing animation
         } else {
           setChatMessages(prevMessages => [...prevMessages, message]);
           setMessageIndex(index + 1);
         }
-      }, index * 6000); // Adjust this to have a consistent delay between messages
+      }, index * 2000); // Adjust this to have a consistent delay between messages
     });
     return () => {
       timers.forEach(clearTimeout); // Clean up timeouts on unmount or chat change
