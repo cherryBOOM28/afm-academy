@@ -10,16 +10,18 @@ const JustTextWithP = ({ textData }) => {
   };
 
   return (
-    <div>
-      {dataArray.map((text, index) => { // Use dataArray here
-        return (
-          <div key={index}>
-            {/* Применяем стили в зависимости от того, является ли текст жирным */}
-            <p className={'abzac'} dangerouslySetInnerHTML={{ __html: formatText(text) }}></p>
-            <br />
-          </div>
-        );
-      })}
+    <div style={{display:'flex', justifyContent:"center", width:"100%"}}>
+      <div style={{width:"70%"}}>
+        {dataArray.map((text, index) => { // Use dataArray here
+          return (
+            <div key={index}>
+              {/* Применяем стили в зависимости от того, является ли текст жирным */}
+              <p className={'abzac'} dangerouslySetInnerHTML={{ __html: formatText(text) }}></p>
+              <br />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

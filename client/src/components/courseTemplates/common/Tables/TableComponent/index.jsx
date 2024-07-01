@@ -1,6 +1,6 @@
   // TableComponent.js
   import React, { useState } from 'react';
-  import './style.scss';
+import './style.scss';
 
   const TableComponent = ({
     tableData=null
@@ -28,7 +28,8 @@
     };
 
     return (
-      <div className="table-container">
+      <div style={{width:"100%", display:"flex", justifyContent:"center"}}>
+         <div className="table-container">
         <table className="table">
           <thead>
             <tr>
@@ -65,6 +66,7 @@
           </div>
         )}
       </div>
+     </div>
     );
   };
 

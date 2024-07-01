@@ -1,24 +1,18 @@
-import React, { useState, useRef, useEffect } from "react";
-import cl from "./Tabs.module.css";
-import Button from "../UI/button/Button";
-// import courseImg from '../../assets/images/course.png';
+import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import courseImg from "../../assets/icons/course.svg";
 import courseImg2 from "../../assets/icons/image 27.svg";
 import courseImg3 from "../../assets/icons/image 28.svg";
 import courseImg4 from "../../assets/icons/image 29.svg";
-
-import { Link } from "react-router-dom";
-
-import { useTranslation } from "react-i18next";
-
 import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
+import Button from "../UI/button/Button";
+import cl from "./Tabs.module.css";
 
-function Tabs({ text }) {
+const Tabs = ({ text }) => {
   const { styles } = useStyle();
-
   const { t } = useTranslation();
-
   const [activeTab, setActiveTab] = useState(1);
   const [imagesHidden, setImagesHidden] = useState(false);
 
@@ -26,33 +20,30 @@ function Tabs({ text }) {
     setActiveTab(index);
   };
 
-  const containerRef = useRef();
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const container = containerRef.current;
-    const content = container.querySelector(".content");
+    const content = container?.querySelector(".content");
     const maxLines = 3;
 
-    if (container.scrollHeight > container.clientHeight) {
+    if (container && container.scrollHeight > container.clientHeight) {
       while (
         container.scrollHeight > container.clientHeight &&
-        content.clientHeight > maxLines * content.offsetHeight
+        content?.clientHeight > maxLines * content.offsetHeight
       ) {
-        content.textContent = content.textContent.replace(/\W*\s(\S)*$/, "...");
+        if (content) content.textContent = content.textContent.replace(/\W*\s(\S)*$/, "...");
       }
     }
   }, [text]);
 
   const handleRemoveImages = () => {
-    console.log("Images hidden");
-
     setImagesHidden(true);
   };
 
   const handleShowImages = () => {
     setImagesHidden(false);
   };
-
 
   useEffect(() => {
     setImagesHidden(!styles.showImage);
@@ -72,10 +63,7 @@ function Tabs({ text }) {
             : "#000",
       }}
     >
-      <VisualModal
-        onRemoveImages={handleRemoveImages}
-        onShowImages={handleShowImages}
-      />
+      <VisualModal onRemoveImages={handleRemoveImages} onShowImages={handleShowImages} />
       <div
         className={cl.tabHeader}
         style={{
@@ -89,100 +77,16 @@ function Tabs({ text }) {
               : "#000",
         }}
       >
-        <div
-          className={
-            activeTab === 1 ? cl.btnTab + " " + cl.activeTab : cl.btnTab
-          }
-          style={{
-            color: activeTab === 1 ? "#03094e" : "",
-            width: activeTab === 1 ? "100%" : "",
-            boxShadow: activeTab === 1 ? "4px 4px 4px 4px rgba(1, 1, 0.25, 0.25)" : "",
-            fontWeight: activeTab === 1 ? "600" : "",
-            
-            background:
-                  styles.colorMode === "dark"
-                ? "#000"
-                : styles.colorMode === "light"
-                ? "#fff"
-                : styles.colorMode === "blue"
-                ? "#9dd1ff"
-                : "#000",
-          }}
-          onClick={() => handleTabClick(1)}
-        >
-          {!imagesHidden && <img src={courseImg} alt="" />}
-          {t("core")}
-        </div>
-        <div
-          className={
-            activeTab === 2 ? cl.btnTab + " " + cl.activeTab : cl.btnTab
-          }
-          style={{
-            color: activeTab === 2 ? "#03094e" : "",
-            width: activeTab === 2 ? "100%" : "",
-            boxShadow: activeTab === 2 ? "4px 4px 4px 4px rgba(1, 1, 0.25, 0.25)" : "",
-            fontWeight: activeTab === 2 ? "600" : "",
-            background:
-              styles.colorMode === "dark"
-                ? "#000"
-                : styles.colorMode === "light"
-                ? "#fff"
-                : styles.colorMode === "blue"
-                ? "#9dd1ff"
-                : "#000",
-          }}
-          onClick={() => handleTabClick(2)}
-        >
-          {!imagesHidden && <img src={courseImg2} alt="" />}
-          {t("specialized")}
-        </div>
-        <div
-          className={
-            activeTab === 3 ? cl.btnTab + " " + cl.activeTab : cl.btnTab
-          }
-          style={{
-            color: activeTab === 3 ? "#03094e" : "",
-            width: activeTab === 3 ? "100%" : "",
-            boxShadow: activeTab === 3 ? "4px 4px 4px 4px rgba(1, 1, 0.25, 0.25)" : "",
-            fontWeight: activeTab === 3 ? "600" : "",
-            background:
-              styles.colorMode === "dark"
-                ? "#000"
-                : styles.colorMode === "light"
-                ? "#fff"
-                : styles.colorMode === "blue"
-                ? "#9dd1ff"
-                : "#000",
-          }}
-          onClick={() => handleTabClick(3)}
-        >
-          {!imagesHidden && <img src={courseImg3} alt="" />}
-          {t("advanced")}
-        </div>
-        <div
-          className={
-            activeTab === 4 ? cl.btnTab + " " + cl.activeTab : cl.btnTab
-          }
-          style={{
-            color: activeTab === 4 ? "#03094e" : "",
-            width: activeTab === 4 ? "100%" : "",
-            fontWeight: activeTab === 4 ? "600" : "",
-            boxShadow: activeTab === 4 ? "4px 4px 4px 4px rgba(1, 1, 0.25, 0.25)" : "",
-            border: activeTab === 4 ? "4px black" : "",
-            background:
-              styles.colorMode === "dark"
-                ? "#000"
-                : styles.colorMode === "light"
-                ? "#fff"
-                : styles.colorMode === "blue"
-                ? "#9dd1ff"
-                : "#000",
-          }}
-          onClick={() => handleTabClick(4)}
-        >
-          {!imagesHidden && <img src={courseImg4} alt="" />}
-          {t("thematic")}
-        </div>
+        {[courseImg, courseImg2, courseImg3, courseImg4].map((imgSrc, index) => (
+          <div
+            key={index}
+            className={`${cl.btnTab} ${activeTab === index + 1 ? 'active' : ''}`}
+            onClick={() => handleTabClick(index + 1)}
+          >
+            {!imagesHidden && <img src={imgSrc} alt="" />}
+            <div className="nameTab">{t(index === 0 ? "core" : index === 1 ? "specialized" : index === 2 ? "advanced" : "thematic")}</div>
+          </div>
+        ))}
       </div>
       <div
         className={cl.tabContent}
@@ -195,7 +99,7 @@ function Tabs({ text }) {
               : styles.colorMode === "blue"
               ? "#9dd1ff"
               : "#000",
-          color: styles.colorMode == "dark" ? "#FFF" : "#000",
+          color: styles.colorMode === "dark" ? "#FFF" : "#000",
         }}
       >
         {activeTab === 1 && (
@@ -245,7 +149,6 @@ function Tabs({ text }) {
                     : "#000",
               }}
             >
-              {" "}
               {t("descBasic")}
             </p>
             <Link to="/courses/8" style={{ textDecoration: "none" }}>
@@ -391,6 +294,6 @@ function Tabs({ text }) {
       </div>
     </div>
   );
-}
+};
 
 export default Tabs;

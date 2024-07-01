@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-import './style.scss';
-import ringImage from './../assets/ring-image.png';
-import headerBg from './../assets/main-header-background.png';
-import { NavbarProfile } from '../navbar';
-import { FaChevronRight  } from "react-icons/fa6";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { FaChevronRight } from "react-icons/fa6";
+import { NavbarProfile } from '../navbar';
+import headerBg from './../assets/main-header-background.png';
+import ringImage from './../assets/ring-image.png';
+import './style.scss';
 
-import { levels } from './mockDatas';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
+import { useNavigate } from 'react-router';
+import { levels } from './mockDatas';
 
 function GameMain() {
     const [tabIndex, setTabIndex] = useState(1);
@@ -193,6 +194,7 @@ const LevelCard = ({
     level
 }) => {
     const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
     
     return (
         <div className={`level ${open ? 'open' : ''}`} key={index}>
@@ -207,7 +209,7 @@ const LevelCard = ({
                         {
                             level.subLevels.map((subLevel, idx) => {
 
-                                return <div>
+                                return <div onClick={()=>{navigate(`/courses/aml-games/game/read/1/${index + 1}/${idx + 1}`)}}>
                                     <MdOutlineAlternateEmail />
                                     <div className="sublevel-name">Уровень {index + 1}.{idx + 1} : {subLevel.name}</div>
                                 </div>

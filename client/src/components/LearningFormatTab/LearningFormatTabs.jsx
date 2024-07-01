@@ -1,27 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
-import cl from "./Tabs.module.css";
-import Button from "../UI/button/Button";
-// import courseImg from '../../assets/images/course.png';
-import courseImg from "../../assets/icons/remote.svg";
-import courseImg2 from "../../assets/icons/online-education.svg";
-import courseImg3 from "../../assets/icons/offline.svg";
-
-import { Link } from "react-router-dom";
-
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-
+import { Link } from "react-router-dom";
+import courseImg3 from "../../assets/icons/offline.svg";
+import courseImg2 from "../../assets/icons/online-education.svg";
+import courseImg from "../../assets/icons/remote.svg";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
-import './LearningFormat.scss';
-import { useCategoryFormat  } from '../../pages/Context/Context';
+import { useCategoryFormat } from '../../pages/Context/Context';
+import Button from "../UI/button/Button";
+import cl from "./Tabs.module.css";
 
-
-function LearningFormatTabs({ text }) {
+const LearningFormatTabs = ({ text }) => {
   const { styles } = useStyle();
-  const { categoryFormat, handleChangeCategoryFormat } = useCategoryFormat();
-
   const { t } = useTranslation();
-
+  const { handleChangeCategoryFormat } = useCategoryFormat();
   const [activeTab, setActiveTab] = useState(1);
   const [imagesHidden, setImagesHidden] = useState(false);
 
@@ -29,26 +21,24 @@ function LearningFormatTabs({ text }) {
     setActiveTab(index);
   };
 
-  const containerRef = useRef();
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const container = containerRef.current;
-    const content = container.querySelector(".content");
+    const content = container?.querySelector(".content");
     const maxLines = 3;
 
-    if (container.scrollHeight > container.clientHeight) {
+    if (container && container.scrollHeight > container.clientHeight) {
       while (
         container.scrollHeight > container.clientHeight &&
-        content.clientHeight > maxLines * content.offsetHeight
+        content?.clientHeight > maxLines * content.offsetHeight
       ) {
-        content.textContent = content.textContent.replace(/\W*\s(\S)*$/, "...");
+        if (content) content.textContent = content.textContent.replace(/\W*\s(\S)*$/, "...");
       }
     }
   }, [text]);
 
   const handleRemoveImages = () => {
-    console.log("Images hidden");
-
     setImagesHidden(true);
   };
 
@@ -74,10 +64,7 @@ function LearningFormatTabs({ text }) {
             : "#000",
       }}
     >
-      <VisualModal
-        onRemoveImages={handleRemoveImages}
-        onShowImages={handleShowImages}
-      />
+      <VisualModal onRemoveImages={handleRemoveImages} onShowImages={handleShowImages} />
       <div
         className={cl.tabHeader}
         style={{
@@ -91,82 +78,16 @@ function LearningFormatTabs({ text }) {
               : "#000",
         }}
       >
-        <div
-          className={
-            activeTab === 1 ? cl.btnTab + " " + cl.activeTab : cl.btnTab
-          }
-          style={{
-            color: activeTab === 1 ? "#03094e" : "",
-            width: activeTab === 1 ? "100%" : "",
-            boxShadow: activeTab === 1 ? "4px 4px 4px 4px rgba(1, 1, 0.25, 0.25)" : "",
-            fontWeight: activeTab === 1 ? "600" : "",
-            background:
-              styles.colorMode === "dark"
-                ? "#000"
-                : styles.colorMode === "light"
-                ? "#fff"
-                : styles.colorMode === "blue"
-                ? "#9dd1ff"
-                : "#000",
-          }}
-          onClick={() => handleTabClick(1)}
-        >
-          {!imagesHidden && <img style={{width:'18%',}} src={courseImg} alt="" />}
-          <div className="nameTab">
-          {t("remote")}
+        {[courseImg, courseImg2, courseImg3].map((imgSrc, index) => (
+          <div
+            key={index}
+            className={`${cl.btnTab} ${activeTab === index + 1 ? 'active' : ''}`}
+            onClick={() => handleTabClick(index + 1)}
+          >
+            {!imagesHidden && <img src={imgSrc} alt="" />}
+            <div className="nameTab">{t(index === 0 ? "remote" : index === 1 ? "online" : "offline")}</div>
           </div>
-        </div>
-        <div
-          className={
-            activeTab === 2 ? cl.btnTab + " " + cl.activeTab : cl.btnTab
-          }
-          style={{
-            color: activeTab === 2 ? "#03094e" : "",
-            width: activeTab === 2 ? "100%" : "",
-            boxShadow: activeTab === 2 ? "4px 4px 4px 4px rgba(1, 1, 0.25, 0.25)" : "",
-            fontWeight: activeTab === 2 ? "600" : "",
-            background:
-              styles.colorMode === "dark"
-                ? "#000"
-                : styles.colorMode === "light"
-                ? "#fff"
-                : styles.colorMode === "blue"
-                ? "#9dd1ff"
-                : "#000",
-          }}
-          onClick={() => handleTabClick(2)}
-        >
-          {!imagesHidden && <img style={{width:'18%',}} src={courseImg2} alt="" />}
-          <div className="nameTab">
-            {t("online")}
-          </div>
-        </div>
-        <div
-          className={
-            activeTab === 3 ? cl.btnTab + " " + cl.activeTab : cl.btnTab
-          }
-          style={{
-            color: activeTab === 3 ? "#03094e" : "",
-            width: activeTab === 3 ? "100%" : "",
-            boxShadow: activeTab === 3 ? "4px 4px 4px 4px rgba(1, 1, 0.25, 0.25)" : "",
-            fontWeight: activeTab === 3 ? "600" : "",
-            background:
-              styles.colorMode === "dark"
-                ? "#000"
-                : styles.colorMode === "light"
-                ? "#fff"
-                : styles.colorMode === "blue"
-                ? "#9dd1ff"
-                : "#000",
-          }}
-          onClick={() => handleTabClick(3)}
-        >
-          {!imagesHidden && <img style={{width:'18%',}} src={courseImg3} alt="" />}
-          <div className="nameTab">
-            {t("offline")}
-          </div>
-        </div>
-        
+        ))}
       </div>
       <div
         className={cl.tabContent}
@@ -179,7 +100,7 @@ function LearningFormatTabs({ text }) {
               : styles.colorMode === "blue"
               ? "#9dd1ff"
               : "#000",
-          color: styles.colorMode == "dark" ? "#FFF" : "#000",
+          color: styles.colorMode === "dark" ? "#FFF" : "#000",
         }}
       >
         {activeTab === 1 && (
@@ -229,11 +150,10 @@ function LearningFormatTabs({ text }) {
                     : "#000",
               }}
             >
-              {" "}
               {t("descRemote")}
             </p>
             <Link to="/courses/catalog#top" style={{ textDecoration: "none" }}>
-              <Button onClick={handleChangeCategoryFormat('Дистанционно')} className={cl.more}>{t("go to catalog")}</Button>
+              <Button onClick={() => handleChangeCategoryFormat('Дистанционно')} className={cl.more}>{t("go to catalog")}</Button>
             </Link>
           </div>
         )}
@@ -278,7 +198,7 @@ function LearningFormatTabs({ text }) {
               {t("descOnline")}
             </p>
             <Link to="/courses/catalog#top" style={{ textDecoration: "none" }}>
-              <Button onClick={handleChangeCategoryFormat('Онлайн')} className={cl.more}>{t("go to catalog")}</Button>
+              <Button onClick={() => handleChangeCategoryFormat('Онлайн')} className={cl.more}>{t("go to catalog")}</Button>
             </Link>
           </div>
         )}
@@ -323,11 +243,11 @@ function LearningFormatTabs({ text }) {
               {t("descOffline")}
             </p>
             <Link to="/courses/catalog#top" style={{ textDecoration: "none" }}>
-              <Button className={cl.more}>{t("go to catalog")}</Button>
+              <Button onClick={() => handleChangeCategoryFormat('Очное')} className={cl.more}>{t("go to catalog")}</Button>
             </Link>
           </div>
         )}
-       </div>
+      </div>
     </div>
   );
 }

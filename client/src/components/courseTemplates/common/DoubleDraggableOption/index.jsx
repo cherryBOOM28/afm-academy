@@ -1,30 +1,26 @@
-// DragAndDropComponent.js
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import './style.scss';
 
-const DragAndDropComponent = (
-  {
-    answerOptions = [
-      { id: 1, text: 'если сумма операции равна или превышает сумму, установленную Законом о ПОД/ФТ;' },
-      { id: 2, text: 'подлежат финансовому мониторингу независимо от формы их осуществления и суммы, на которую они совершены либо могут или могли быть совершены.' }
-    ],
-    fieldOptions = [
-      { text: '- пороговые операции', correctId: 1 },
-      { text: '- подозрительные операции', correctId: 2 }
-    ]
-  }
-) => {
+const DragAndDropComponent = ({
+  answerOptions = [
+    { id: 1, text: 'если сумма операции равна или превышает сумму, установленную Законом о ПОД/ФТ;' },
+    { id: 2, text: 'подлежат финансовому мониторингу независимо от формы их осуществления и суммы, на которую они совершены либо могут или могли быть совершены.' }
+  ],
+  fieldOptions = [
+    { text: '- пороговые операции', correctId: 1 },
+    { text: '- подозрительные операции', correctId: 2 }
+  ]
+}) => {
+  const { id } = useParams();
+  const courseId = parseInt(id, 10);
 
-  
   const [answers, setAnswers] = useState(answerOptions);
   const [fields, setFields] = useState({ field1: [], field2: [] });
   const [isCorrect, setIsCorrect] = useState(false);
   const [showResetButton, setShowResetButton] = useState(false);
-  
   const [_fieldOptions, setFieldOptions] = useState(fieldOptions);
 
-  const [isLoading, setLoading] = useState(true);
-  
   const handleDragStart = (event, answer) => {
     event.dataTransfer.setData('text/plain', answer.id.toString());
   };
@@ -71,16 +67,10 @@ const DragAndDropComponent = (
     return array;
   }
 
-  if (!isLoading) {
-    return (
-      <p>Загрузка...</p>
-    )
-  }
-
   return (
     <div className={`drag-and-drop-component ${isCorrect ? 'correctDouble' : ''}`}>
       <div className="description">
-        Перетащите варианты ответов в правильные поля. Один вариант в одно поле.
+        {courseId === 81 ? 'Жауаптарды Сәйкестендіріңіз' : 'Перетащите варианты ответов в правильные поля. Один вариант в одно поле.'}
       </div>
       <div className="fields-container">
         <div
@@ -88,7 +78,7 @@ const DragAndDropComponent = (
           onDragOver={handleDragOver}
           onDrop={(event) => handleDrop(event, 'field1')}
         >
-          <div>{_fieldOptions[0]? _fieldOptions[0].text : 'Text 1'}</div>
+          <div>{_fieldOptions[0] ? _fieldOptions[0].text : 'Text 1'}</div>
           {fields.field1.map((answer) => (
             <div key={answer.id} className="dragged-answer">
               {answer.text}
@@ -122,11 +112,15 @@ const DragAndDropComponent = (
         ))}
       </div>
       <div className="check-button">
-        <button className="btnCheck"onClick={checkAnswers}>Проверить</button>
+        <button className="btnCheck" onClick={checkAnswers}>
+          {courseId === 81 ? 'Тексеру' : 'Проверить'}
+        </button>
       </div>
       {showResetButton && !isCorrect && (
         <div className="reset-button">
-          <button className="btnReset"onClick={handleReset}>Неправильно Повторить!</button>
+          <button className="btnReset" onClick={handleReset}>
+            {courseId === 81 ? 'Қате қайтадан көру!' : 'Неправильно Повторить!'}
+          </button>
         </div>
       )}
     </div>

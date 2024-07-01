@@ -1,5 +1,6 @@
 import Divider from '@mui/material/Divider';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Sizebox from "../../../../components/courseTemplates/common/Sizebox/index.jsx";
 import AsianMan from "../../assets/asian-man.png";
 import AsianWomen from "../../assets/asian-woman.png";
@@ -8,23 +9,30 @@ import WhiteMan from "../../assets/white-man.png";
 import QuizCards from "../../components/QuizCards";
 import VerticalCarousel from '../../components/VerticalCarousel/index.jsx';
 import MessagesPage from "../MessagePage/MessagesPage.tsx";
+import { addAnswer } from '../store/slices/answersSlice.ts'; // Импортируйте действие
 
 const cardData = [
     { name: 'Айжан', date: '01.02.1998', id: '**KAZAKHSTAN001**', characterImg: AsianWomen },
     { name: 'Дамир', date: '01.02.1999', id: '**KAZAKHSTAN002**', characterImg: AsianMan },
     { name: 'Дархан', date: '01.02.2000', id: '**KAZAKHSTAN003**', characterImg: WhiteMan }
 ];
+
 const quizCardsData = [
     { id: 1, text: 'Разработку и согласование, внесение изменений и (или) дополнений в ПВК, а также мониторинг реализации и соблюдения ПВК' },
     { id: 2, text: 'Разработку и согласование, внесение изменений и (или) дополнений в ПВК, а также мониторинг реализации и соблюдения ПВК' },
 ];
 
-
 function Level_1_2() {
     const [finished, setFinished] = useState(false);
+    const dispatch = useDispatch(); // Используйте хук useDispatch
 
     useEffect(() => {
-    }, [finished])
+    }, [finished]);
+
+    const handleConfirm = (pageId, taskId, answer) => {
+        dispatch(addAnswer({ pageId, taskId, answer }));
+        setFinished(true);
+    };
 
     return ( 
         <>
@@ -46,9 +54,7 @@ function Level_1_2() {
                 <div className="actions">
                     <button 
                         className='blue'
-                        onClick={() => {
-                            setFinished(true);
-                        }}
+                        onClick={() => handleConfirm(1, 1, 'Айжан')} // Пример передачи данных
                     >Подтвердить</button>
                 </div>
             </div>

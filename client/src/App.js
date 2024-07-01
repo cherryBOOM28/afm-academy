@@ -12,18 +12,15 @@ import NewsPage from './pages/News/News.jsx';
 import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigationCourse/index.jsx';
 import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
-import Game_1 from './pages/aml-games/game-1/index.jsx';
-import GameReader from './pages/aml-games/game-2/index.jsx';
-import GameMain from './pages/aml-games/main/index.jsx';
 import Login from './pages/login/Login';
 import Registration from './pages/registration/Registration';
 import './settings/i18n.js';
-const GamePage = lazy(()=>import ('./pages/GamePage/index.jsx'))
 const Home = lazy(() => import ('./pages/home/Home'))
+const Game_1 = lazy(() => import('./pages/aml-games/game-1/index.jsx'))
+const GameReader = lazy(() => import('./pages/aml-games/game-2/index.jsx'))
+const GameMain = lazy(() => import ('./pages/aml-games/main/index.jsx'))
 const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
-//import Home from './pages/home/Home';
 const AboutUs = lazy(()=> import('./pages/aboutPage/aboutUs/AboutUs'))
-//import AboutUs from './pages/aboutPage/aboutUs/AboutUs';
 const Management = lazy(() => import('./pages/aboutPage/management/Management'))
 const Contacts = lazy(() => import('./pages/aboutPage/contacts/Contacts.jsx'))
 const DevelopmentOfIcps = lazy(() => import('./pages/sfm/ReadyMadeSolutionsCatalog/DevelopmentOfIcps/DevelopmentOfIcps.jsx'))
@@ -35,29 +32,15 @@ const MainTasksAndActivities = lazy(() => import('./pages/ric/mainTasksAndActivi
 const PublicOfferAgreement = lazy(() => import('./pages/PublicOfferAgreement'))
 const PlansAndReports = lazy(() => import('./pages/ric/plansAndReports'))
 const PrivacyPolicy = lazy(() => import('./pages/aboutPage/privacyPolicy/privacyPolicy.jsx'))
-//import Management from './pages/aboutPage/management/Management';
 const Structure = lazy(()=>import('./pages/aboutPage/structure/Structure'))
-//import Structure from './pages/aboutPage/structure/Structure';
 const DirectorPage = lazy(()=>import('./pages/aboutPage/director/DirectorPage'))
-//import DirectorPage from './pages/aboutPage/director/DirectorPage';
 const Charter = lazy(()=>import('./pages/aboutPage/charter/Charter'))
-//import Charter from './pages/aboutPage/charter/Charter';
 const Subjects = lazy(()=>import('./pages/sfm/subjects/Subjects'))
-//import Subjects from './pages/sfm/subjects/Subjects';
-// const Login = lazy(()=>import('./pages/login/Login'))
-
-// const Registration = lazy(() => import('./pages/registration/Registration'));
-
 const Rules = lazy(() => import('./pages/sfm/rules/Rules'));
-//import Rules from './pages/sfm/rules/Rules';
 const Operations = lazy(() => import('./pages/sfm/operations/Operations'));
-//import Operations from './pages/sfm/operations/Operations';
 const AntiLaundering = lazy(() => import('./pages/podft/antiLaundering/AntiLaundering'));
-//import AntiLaundering from './pages/podft/antiLaundering/AntiLaundering';
 const Fatf = lazy(() => import('./pages/podft/fatf/Fatf'));
-//import Fatf from './pages/podft/fatf/Fatf';
 const Eag = lazy(() => import('./pages/podft/eag/Eag'));
-//import Eag from './pages/podft/eag/Eag';
 const MutualEvaluation = lazy(() => import('./pages/podft/mutualEvaluation/MutualEvaluation'));
 const CalendarPage = lazy(() => import('./pages/calendar/Calendar'));
 const InfoPage = lazy(() => import('./pages/courseInfoPage/InfoPage'));
@@ -69,12 +52,10 @@ const Catalog = lazy(() => import('./pages/courseCatalog/Catalog'));
 const MyCourses = lazy(() => import('./pages/myCourses/MyCourses'));
 const Profile = lazy(() => import('./pages/profilePage/Profile'));
 const PaymentPage = lazy(() => import('./pages/paymentPage/PaymentPage'));
-const PaymentHalyk = lazy(() => import('./pages/paymentPage/PaymentHalyk.jsx'));
 const Sandbox = lazy(() => import('./pages/Sandbox'));
 const Basic_course = lazy(() => import('./pages/basic-course'));
-
 const CryptoCourse = lazy(() => import('./pages/ReadCourses/CryptoCourse'));
-const AmlGamesProfiile = lazy(() => import('./pages/aml-games/profile'));
+const AmlGamesProfile = lazy(() => import('./pages/aml-games/profile'));
 
 function App() {
     const [jwtToken, setJwtToken] = useState('');
@@ -108,12 +89,10 @@ function App() {
                             <Route path="/" element={<Suspense ><Home /></Suspense>}></Route>
                             <Route path="/:scroll" element={<Suspense ><Home /></Suspense>}></Route>
                             <Route path="/about" element={<Suspense ><AboutUs /></Suspense>}></Route>
-
-                            <Route path="/courses/aml-games/:id" element={<GamePage />}></Route>
-                            <Route path='/courses/aml-games/game/survey/:id' element={<Game_1 />}></Route>
-                            <Route path='/courses/aml-games/game/main/:id' element={<GameMain />}></Route>
-                            <Route path='/courses/aml-games/game/profile/:id' element={<AmlGamesProfiile />}></Route>
-                            <Route path='/courses/aml-games/game/read/:id/:level/:subLevel' element={<GameReader />}></Route>
+                            <Route path='/courses/aml-games/game/survey/:id' element={<Suspense><Game_1 /></Suspense>}></Route>
+                            <Route path='/courses/aml-games/game/main/:id' element={<Suspense><GameMain/></Suspense>}></Route>
+                            <Route path='/courses/aml-games/game/profile/:id' element={<AmlGamesProfile />}></Route>
+                            <Route path='/courses/aml-games/game/read/:id/:level/:subLevel' element={<Suspense><GameReader /></Suspense>}></Route>
 
                             <Route path="/management" element={<Suspense ><Management /></Suspense>}></Route>
                             <Route path="/contacts" element={<Suspense ><Contacts /></Suspense>}></Route>
