@@ -124,7 +124,7 @@ const Elements = {
                 { name: 'lineColor', label: 'Цвет полосы', type: 'color' },
                 { name: 'version', label: '', type: 'ignore' },
             ],
-        }, //children (span for bold), header (for usual text), headerColor, lineColor
+        },
         'Текст': {
             component: RandomGlossary,
             example: RandomGlossaryExample,
@@ -153,10 +153,10 @@ const Elements = {
             name: 'RandomParapraph',
             icon: randomParagraphIcon,
             inputs: [
-              { name: 'children', label: 'Текст (Children)', type: 'formatTextarea' },
-              { name: 'isCentered', label: 'Централизировать', type: 'checkbox' },
-              { name: 'color', label: 'Цвет', type: 'color' },
-              { name: 'fontSize', label: 'Размер шрифта', type: 'number' },
+                { name: 'children', label: 'Текст (Children)', type: 'formatTextarea' },
+                { name: 'isCentered', label: 'Централизировать', type: 'checkbox' },
+                { name: 'color', label: 'Цвет', type: 'color' },
+                { name: 'fontSize', label: 'Размер шрифта', type: 'number' },
             ],
         }, //children, color, fontSize
         'Цветной фон': {
@@ -170,14 +170,13 @@ const Elements = {
                 { name: 'color', label: 'Цвет текста', type: 'color' },
                 { name: 'backgroundColor', label: 'Цвет фона', type: 'color' },
             ],
-              
         }, //text [,,], color, backgroundColor
         'Текст с синим фоном': {
             component: JustTextWithP,
-            example: TextWithBackgroundExample,
+            example: HeaderWithLineExample,
             name: 'JustTextWithP',
             icon: imageIcon,
-            inputs: [ { name: 'textData', label: 'Текст', type: 'text' },],    
+            inputs: [ { name: 'textData', label: 'Текст', type: 'formatTextarea' },]
         },
 
         'Заголовок + текст': {
