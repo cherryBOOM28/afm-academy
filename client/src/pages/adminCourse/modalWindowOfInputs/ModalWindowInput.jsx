@@ -2826,7 +2826,7 @@ const Formatable_Textarea = ({
           <button className='btn-red' onClick={() => wrapSelected('|r|', '|r|')}>r</button>
           <button className='btn-link' onClick={() => wrapSelected('|a|', '|a|')}>Link</button>
           <button className='btn-ordered-list' onClick={() => wrapSelected('|1|', '|1|')}>1.</button>
-          <button className='btn-unordered-list' onClick={() => wrapSelected('|*|', '|*|')}>•</button>
+          <button className='btn-unordered-list' onClick={() => wrapSelected('|•|', '|•|')}>•</button>
         </div>
         <textarea
           style={{ minHeight: `${minHeight}px` }}
