@@ -1,23 +1,23 @@
-import React, {useEffect, useState} from 'react'
-import './tabBasicInfo.scss'
-import plusSign from '../images/pluc-image.svg'
-import base64Course from './course-default';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import base_url from '../../../settings/base_url';
+import plusSign from '../images/pluc-image.svg';
+import base64Course from './course-default';
+import './tabBasicInfo.scss';
 
 function fileToBase64(file, callback) {
     if (!file) {
-      return;
+        return;
     }
-  
+
     const reader = new FileReader();
-    
+
     reader.onloadend = () => {
-      if (typeof callback === 'function') {
-        callback(reader.result);
-      }
+        if (typeof callback === 'function') {
+            callback(reader.result);
+        }
     };
-  
+
     reader.readAsDataURL(file);
 }
 
@@ -28,7 +28,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
     const [category, setCategory] = useState(initCTG || 0)
     const [price, setPrice] = useState(initPrice || 0)
     const [image, setImage] = useState(initImage || "")
-    
+
     const [imageSource, setImageSource] = useState('');
 
     const [defImage, setDefImage] = useState(true)
@@ -50,82 +50,57 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
                     setAudience(res.data.course_for_member_of_the_system || "")
                     setCategory(res.data.courseCategory ? res.data.courseCategory.category_id : 0)
                     setPrice(res.data.course_price || 0)
-                    setImage(res.data.course_image || "")
+                    setImage(res.data.course_image || plusSign)
                     setEditingExisting(true)
                 })
         }
     }, [id])
 
-
-    // useEffect(() => {
-    //     if (image) {
-    //       setImageSource(image)
-    //     } else {
-    //       setImageSource(plusSign);
-    //     }
-    // }, [image]);
-
-    // useEffect(() => {
-    //     if (defImage) {
-    //         setImage(base64Course)
-    //         setImageSource(base64Course)
-    //     } else {
-    //         setImage(base64Course)
-    //         setImageSource(plusSign)
-    //     }
-    // }, [defImage]);
-
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
-      
-        fileToBase64(selectedFile, (base64String) => {
-            setImage(base64String)
-            setDefImage(false)
-        });
-    };
-    
-    const saveAndNext = () => {
 
-        let urlPath = '/api/aml/course/saveBasicInfoDraft'
+        if (selectedFile) {
+            setImage(selectedFile);
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImageSource(reader.result);
+                setDefImage(false);
+            };
+            reader.readAsDataURL(selectedFile);
+        }
+    };
+
+    const saveAndNext = () => {
+        let urlPath = '/api/aml/course/saveBasicInfoDraft';
 
         if (editingExisting) {
-            urlPath = '/api/aml/course/updateBasicInfo/' + id
+            urlPath = '/api/aml/course/updateBasicInfo/' + id;
         }
-        let formData = {
-            title,
-            audience,
-            lang,
-            category,
-            price,
-            image,
-        };
-        
-          // Check if any of the values are still in their initial state
-        if (
-            Object.values(formData).some(value => value === '' || value === 0)
-            ) {
-            // Alert the user to fill in all the fields
-            alert('Для продолжения необходимо заполнить все поля');
-        } else {
-            formData = {
-                title,
-                audience,
-                lang,
-                category,
-                price,
-                image: image,
-            };
 
-            axios
-                .post(base_url + urlPath, formData) 
-                .then((res) => {
-                    // console.log(res.data)
-                    nextStep(res.data);
-                })
-        
-            // Call your nextStep function or perform any other action
+        if (title === "" || audience === "" || lang === "" || category === 0 || price === 0) {
+            alert('Для продолжения необходимо заполнить все поля');
+            return;
         }
-    }
+
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("audience", audience);
+        formData.append("lang", lang);
+        formData.append("category", category.toString());
+        formData.append("price", price.toString());
+        if (image) {
+            formData.append("image", image);
+        } else if (defImage) {
+            formData.append("image", base64Course);
+        }
+
+        axios
+            .post(base_url + urlPath, formData)
+            .then((res) => {
+                nextStep(res.data);
+            });
+    };
+
 
     return (
         <div className="tab-container">
@@ -136,7 +111,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
                         <label htmlFor="title">Введите название курса</label>
                         <input value={title} onChange={(e) => {
                             setTitle(e.target.value)
-                        }} type="text" name="title" id="cheese" placeholder=""/>
+                        }} type="text" name="title" id="cheese" placeholder="" />
                     </div>
                     <div className="other-basic-inputs">
                         <div className="input-audience">
@@ -176,7 +151,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
                             <label htmlFor="price">Цена</label>
                             <input value={price} onChange={(e) => {
                                 setPrice(e.target.value)
-                            }} type="number" min="0" name="price" id="price"/>
+                            }} type="number" min="0" name="price" id="price" />
                         </div>
                     </div>
                 </div>
@@ -195,7 +170,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
                             </label>
                         }
                         <input onChange={handleFileChange} className="input-image" type="file" id="photo" name="photo" accept="image/png, image/jpeg, image/jpg" />
-                    
+
                     </div>
                     <div>
                         <input onChange={handleFileChange} type="file" id="photo" name="photo" accept="image/png, image/jpeg" />
@@ -210,7 +185,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
                                 setImageSource(plusSign)
                                 setDefImage(!defImage)
                             }
-                            }} type="checkbox" id="default" name="default" value="default" />
+                        }} type="checkbox" id="default" name="default" value="default" />
                         <label htmlFor="default">Использовать обложку по умолчанию</label>
                     </div>
                 </div>
