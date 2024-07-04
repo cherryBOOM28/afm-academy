@@ -12,10 +12,10 @@ const CoursesComponent = () => {
 
     useEffect(() => {
         const fetchedCourses = [
-            { name: 'Базовый', imageSrc: baseCourseImg },
-            { name: 'Профильный', imageSrc: profileCourseImg },
-            { name: 'Продвинутый', imageSrc: advancedCourseImg },
-            { name: 'Тематический', imageSrc: tematicCourseImg }
+            { name: 'Базовый', imageSrc: baseCourseImg, courseId: 8 },
+            { name: 'Профильный', imageSrc: profileCourseImg, courseId: 'catalog#top' },
+            { name: 'Продвинутый', imageSrc: advancedCourseImg, courseId: 'catalog#top' },
+            { name: 'Тематический', imageSrc: tematicCourseImg, courseId: 'catalog#top' }
         ];
 
         setCourses(fetchedCourses);
@@ -27,7 +27,7 @@ const CoursesComponent = () => {
             <div className='courses-grid-wrapper'>
                 <div className="courses-grid">
                     {courses.slice(-4).map((course, index) => (
-                        <Card key={index} name={course.name} imageSrc={course.imageSrc} />
+                        <Card key={index} name={course.name} imageSrc={course.imageSrc} courseId={course.courseId} />
                     ))}
                 </div>
             </div>

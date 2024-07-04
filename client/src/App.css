@@ -3,7 +3,6 @@
 
 .App {
     font-family: 'Inter', sans-serif;
-    
 }
 .App img {
   -webkit-user-drag: none; /* Для WebKit браузеров (Chrome, Safari) */

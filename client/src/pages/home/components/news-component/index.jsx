@@ -1,8 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 import './style.css';
 
 const NewsComponent = ({ news }) => {
+    const navigate = useNavigate();
     if (news.length < 6) return <div>Loading...</div>;
+    function handleNavigate() {
+        navigate("/news-page")
+    }
 
     return (
         <div className="news-container">
@@ -47,6 +52,11 @@ const NewsComponent = ({ news }) => {
                         <p className="news-date">{news[3].date}</p>
                     </div>
                 </div>
+            </div>
+            <div className='button-wrapper'>
+                <button className="all-news-button" onClick={handleNavigate}>
+                    Все новости
+                </button>
             </div>
         </div>
     );

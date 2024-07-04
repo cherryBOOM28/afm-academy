@@ -15,6 +15,7 @@
     align-items: center;
     justify-content: space-between;
     height: calc(100vh - 153px);
+    margin-bottom: -20px;
 }
 
 
