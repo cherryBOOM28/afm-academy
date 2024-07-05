@@ -71,36 +71,47 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
     };
 
     const saveAndNext = () => {
-        let urlPath = '/api/aml/course/saveBasicInfoDraft';
+
+        let urlPath = '/api/aml/course/saveBasicInfoDraft'
 
         if (editingExisting) {
-            urlPath = '/api/aml/course/updateBasicInfo/' + id;
+            urlPath = '/api/aml/course/updateBasicInfo/' + id
         }
+        let formData = {
+            title,
+            audience,
+            lang,
+            category,
+            price,
+            image,
+        };
 
-        if (title === "" || audience === "" || lang === "" || category === 0 || price === 0) {
+        // Check if any of the values are still in their initial state
+        if (
+            Object.values(formData).some(value => value === '' || value === 0)
+        ) {
+            // Alert the user to fill in all the fields
             alert('Для продолжения необходимо заполнить все поля');
-            return;
+        } else {
+            formData = {
+                title,
+                audience,
+                lang,
+                category,
+                price,
+                image: image,
+            };
+
+            axios
+                .post(base_url + urlPath, formData)
+                .then((res) => {
+                    // console.log(res.data)
+                    nextStep(res.data);
+                })
+
+            // Call your nextStep function or perform any other action
         }
-
-        const formData = new FormData();
-        formData.append("title", title);
-        formData.append("audience", audience);
-        formData.append("lang", lang);
-        formData.append("category", category.toString());
-        formData.append("price", price.toString());
-        if (image) {
-            formData.append("image", image);
-        } else if (defImage) {
-            formData.append("image", base64Course);
-        }
-
-        axios
-            .post(base_url + urlPath, formData)
-            .then((res) => {
-                nextStep(res.data);
-            });
-    };
-
+    }
 
     return (
         <div className="tab-container">
