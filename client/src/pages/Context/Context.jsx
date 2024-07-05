@@ -1,14 +1,13 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-// Создайте контекст
 const CategoryFormatContext = createContext();
 
-// Создайте кастомный хук для использования контекста
+
 export const useCategoryFormat = () => useContext(CategoryFormatContext);
 
-// Создайте провайдер контекста
+
 export const CategoryFormatProvider = ({ children }) => {
-  const [categoryFormat, setCategoryFormat] = useState('Дистанционно'); // Начальное значение формата - 'Дистанционно'
+  const [categoryFormat, setCategoryFormat] = useState('Дистанционно'); 
 
   const handleChangeCategoryFormat = (format) => {
     setCategoryFormat(format);

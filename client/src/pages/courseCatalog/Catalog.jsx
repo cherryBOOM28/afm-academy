@@ -1,25 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Footer from "../../components/footer/Footer";
-import './catalog.scss';
-import { useLocation } from 'react-router-dom';
-import { AiFillFolder } from "react-icons/ai";
-import { BsFilter } from "react-icons/bs";
-import { BiSearch } from "react-icons/bi";
-import { AiFillStar } from "react-icons/ai";
-import { MdOndemandVideo } from "react-icons/md";
-import base_url from "../../settings/base_url";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import axios from "axios";
-import Header from "../../components/header/Header";
-import { useCategoryFormat } from '../Context/Context.jsx';
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material';
-import Alert from '@mui/material/Alert';
-import CheckIcon from '@mui/icons-material/Check';
-import { t } from "i18next";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { AiFillFolder, AiFillStar } from "react-icons/ai";
+import { BiSearch } from "react-icons/bi";
+import { MdOndemandVideo } from "react-icons/md";
+import { useLocation, useNavigate } from "react-router-dom";
+import Footer from "../../components/footer/Footer";
+import Header from "../../components/header/Header";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
-import base64Course from "./course-default";
+import base_url from "../../settings/base_url";
+import { useCategoryFormat } from '../Context/Context.jsx';
+import './catalog.scss';
 
 
 
@@ -59,12 +52,12 @@ function Catalog() {
                     response = await axios.get(`${base_url}${url1}`);
                 }
                 console.log(response.data);
-              
-    
+
+
                 let courses = [
                     ...response.data,
 
-                    ];
+                ];
                 const _coursesByCategory = {};
                 if (response.status === 200) {
                     courses.forEach((course) => {
@@ -87,13 +80,13 @@ function Catalog() {
                         }
                     });
                     console.log(_groupedCourses);
-                   
+
 
                     // console.log(_coursesByCategory)
                     setCoursesByCategory(_coursesByCategory);
                     setGroupedCourses(_groupedCourses)
                     setData(response.data);
-    
+
                     // console.log(_coursesByCategory)
                     setCoursesByCategory(_coursesByCategory);
                     setData(response.data);
@@ -102,19 +95,19 @@ function Catalog() {
                     setError(response.statusText);
                     // console.log(response.statusText);
                 }
-    
+
                 // Iterate through the courses and categorize them
             } catch (error) {
                 setError(error);
                 console.error(error);
             }
-    
+
             setLoading(false);
         };
-    
+
         fetchData();
     }, []);
-   
+
     const [activeTab, setActiveTab] = useState(1);
     const handleColorModeChange = (mode) => {
         // Remove previous color mode classes
@@ -154,7 +147,7 @@ function Catalog() {
     useEffect(() => {
         const hash = location.hash;
         console.log(hash)
-        if (hash === '#top'){
+        if (hash === '#top') {
             window.scrollTo(0, 0); // Scrolls to the top of the page
         }
         const textContentElement = document.querySelector(".text-content");
@@ -168,75 +161,75 @@ function Catalog() {
 
     const fontSizes = {
         small: {
-          fontSize: "15px",
-          lineHeight: "17px",
-          caption: { fontSize: "26px", lineHeight: "28px" },
-          subtitle: { fontSize: "14px", lineHeight: "16px" },
+            fontSize: "15px",
+            lineHeight: "17px",
+            caption: { fontSize: "26px", lineHeight: "28px" },
+            subtitle: { fontSize: "14px", lineHeight: "16px" },
         },
         standard: {
-          fontSize: "16px",
-          lineHeight: "18px",
-          caption: { fontSize: "36px", lineHeight: "38px" },
-          subtitle: { fontSize: "18px", lineHeight: "20px" },
+            fontSize: "16px",
+            lineHeight: "18px",
+            caption: { fontSize: "36px", lineHeight: "38px" },
+            subtitle: { fontSize: "18px", lineHeight: "20px" },
         },
         large: {
-          fontSize: "24px",
-          lineHeight: "26px",
-          caption: { fontSize: "39px", lineHeight: "41px" },
-          subtitle: { fontSize: "22px", lineHeight: "24px" },
+            fontSize: "24px",
+            lineHeight: "26px",
+            caption: { fontSize: "39px", lineHeight: "41px" },
+            subtitle: { fontSize: "22px", lineHeight: "24px" },
         },
-      };
-      useEffect(() => {
+    };
+    useEffect(() => {
         if (!checkStyle) return;
         console.log(userEntry);
         if (userEntry) return;
-    
+
         const textContentElement = document.querySelectorAll(".text-content");
         const size = styles.fontSize;
         setImagesHidden(!styles.showImage);
-    
+
         if (textContentElement) {
-          textContentElement.forEach((item) => {
-            switch (size) {
-              case "small":
-              case "large":
-                // Use specified size for small and large modes
-                item.style.fontSize = fontSizes[size].fontSize;
-                item.style.lineHeight = fontSizes[size].lineHeight;
-    
-                // Adjust size for caption and subtitle in small and large modes
-                if (item.classList.contains("caption")) {
-                  item.style.fontSize = fontSizes[size].caption.fontSize;
-                  item.style.lineHeight = fontSizes[size].caption.lineHeight;
-                } else if (item.classList.contains("subtitle")) {
-                  item.style.fontSize = fontSizes[size].subtitle.fontSize;
-                  item.style.lineHeight = fontSizes[size].subtitle.lineHeight;
+            textContentElement.forEach((item) => {
+                switch (size) {
+                    case "small":
+                    case "large":
+                        // Use specified size for small and large modes
+                        item.style.fontSize = fontSizes[size].fontSize;
+                        item.style.lineHeight = fontSizes[size].lineHeight;
+
+                        // Adjust size for caption and subtitle in small and large modes
+                        if (item.classList.contains("caption")) {
+                            item.style.fontSize = fontSizes[size].caption.fontSize;
+                            item.style.lineHeight = fontSizes[size].caption.lineHeight;
+                        } else if (item.classList.contains("subtitle")) {
+                            item.style.fontSize = fontSizes[size].subtitle.fontSize;
+                            item.style.lineHeight = fontSizes[size].subtitle.lineHeight;
+                        }
+                        break;
+
+                    case "standard":
+                        // Use different sizes for different elements in standard mode
+                        if (item.classList.contains("caption")) {
+                            item.style.fontSize = fontSizes[size].caption.fontSize;
+                            item.style.lineHeight = fontSizes[size].caption.lineHeight;
+                        } else if (item.classList.contains("subtitle")) {
+                            item.style.fontSize = fontSizes[size].subtitle.fontSize;
+                            item.style.lineHeight = fontSizes[size].subtitle.lineHeight;
+                        } else {
+                            // Default size for other elements
+                            item.style.fontSize = fontSizes[size].fontSize;
+                            item.style.lineHeight = fontSizes[size].lineHeight;
+                        }
+                        break;
+
+                    default:
+                        break;
                 }
-                break;
-    
-              case "standard":
-                // Use different sizes for different elements in standard mode
-                if (item.classList.contains("caption")) {
-                  item.style.fontSize = fontSizes[size].caption.fontSize;
-                  item.style.lineHeight = fontSizes[size].caption.lineHeight;
-                } else if (item.classList.contains("subtitle")) {
-                  item.style.fontSize = fontSizes[size].subtitle.fontSize;
-                  item.style.lineHeight = fontSizes[size].subtitle.lineHeight;
-                } else {
-                  // Default size for other elements
-                  item.style.fontSize = fontSizes[size].fontSize;
-                  item.style.lineHeight = fontSizes[size].lineHeight;
-                }
-                break;
-    
-              default:
-                break;
-            }
-          });
+            });
         }
         handleColorModeChange();
-    
-      }, [checkStyle, userEntry, styles, setImagesHidden, fontSizes]);
+
+    }, [checkStyle, userEntry, styles, setImagesHidden, fontSizes]);
 
 
     useEffect(() => {
@@ -258,12 +251,12 @@ function Catalog() {
         const [fullName, setFullName] = useState('');
         const [contacts, setContacts] = useState('');
         const [email, setEmail] = useState('');
-        
-    
+
+
         const handleSubmit = () => {
             setLoading(true);
             console.log('clicked')
-    
+
             const fetchData = async () => {
                 const formData = new FormData();
                 formData.append('userCourse', JSON.stringify({
@@ -272,20 +265,20 @@ function Catalog() {
                     email: email,
                     progress_percentage: 0.0
                 }));
-              
-    
+
+
                 try {
                     const response = await axios.post(
-                        `${base_url}/api/aml/course/saveUserRequest/course/${selectedCourseId}`, 
-                        formData, 
+                        `${base_url}/api/aml/course/saveUserRequest/course/${selectedCourseId}`,
+                        formData,
                         {
                         }
                     );
                     console.log(fullName);
                     alert("Заявка отправлена!!!");
                     handleCloseModal()
-                   
-                    
+
+
                 } catch (error) {
                     console.log(error);
                     alert("Ошибка")
@@ -300,24 +293,24 @@ function Catalog() {
                 })
             });
             setCoursesData(updatedCoursesData);
-        
+
             fetchData();
             setLoading(false);
         }
-    
-    
-    
+
+
+
         return (
-            <Dialog open={open} onClose={handleClose}  PaperProps={{
+            <Dialog open={open} onClose={handleClose} PaperProps={{
                 component: 'form',
                 onSubmit: (event) => {
-                  event.preventDefault();
-                  const formData = new FormData(event.currentTarget);
-                  const formJson = Object.fromEntries(formData.entries());
+                    event.preventDefault();
+                    const formData = new FormData(event.currentTarget);
+                    const formJson = Object.fromEntries(formData.entries());
                     handleSubmit();
                     handleClose();
                 },
-              }}>
+            }}>
                 <DialogTitle>Подать заявку на курс</DialogTitle>
                 <DialogContent>
                     <TextField
@@ -349,7 +342,7 @@ function Catalog() {
                         fullWidth
                         type="email"
                     />
-                     <TextField
+                    <TextField
                         label="Курс"
                         value={courseName}
                         readOnly={true}
@@ -368,16 +361,16 @@ function Catalog() {
             </Dialog>
         );
     };
-    
-    
-    
+
+
+
 
     const [data, setData] = useState(null);
 
     useEffect(() => {
         // Этот код будет выполнен при каждом изменении числа
         console.log('Число изменилось:', data);
-      }, [data]);
+    }, [data]);
     const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(true);
 
@@ -385,6 +378,8 @@ function Catalog() {
     console.log(coursesByCategory);
 
     const jwtToken = localStorage.getItem("jwtToken");
+    const catalog = localStorage.getItem('catalog');
+    console.log(catalog);
     const [selectedCourseId, setSelectedCourseId] = useState(null);
     const [selectedCourseName, setSelectedCourseName] = useState(null);
 
@@ -475,7 +470,7 @@ function Catalog() {
                     response = await axios.get(`${base_url}${url1}`);
                 }
                 console.log(response.data);
-              
+
 
                 let courses = [
                     ...response.data,
@@ -533,7 +528,7 @@ function Catalog() {
                         }
                     });
                     console.log(_groupedCourses);
-                   
+
 
                     // console.log(_coursesByCategory)
                     setCoursesByCategory(_coursesByCategory);
@@ -557,8 +552,8 @@ function Catalog() {
 
         fetchData();
     }, []);
-   
-   
+
+
 
 
     return (
@@ -587,8 +582,8 @@ function Catalog() {
                 open={openVisualModal}
                 onRemoveImages={handleRemoveImages}
                 onShowImages={handleShowImages}
-                onFontFamily={() => {}}
-                onIntervalChange={() => {}}
+                onFontFamily={() => { }}
+                onIntervalChange={() => { }}
                 styles={styles}
             />
             <Header
@@ -653,8 +648,8 @@ function Catalog() {
                                                                 : "#000",
                                             }}
                                         >
-                      {t("categories")}
-                    </span>
+                                            {t("categories")}
+                                        </span>
                                     </div>
                                     <div
                                         className="categories"
@@ -707,10 +702,10 @@ function Catalog() {
                                         })}
                                     </div>
                                 </div>
-                               
+
                             </div>
                             <div className="filters">
-                                <div> 
+                                <div>
                                     <div
                                         onClick={() => {
                                             setCategoryFormatOpen((prev) => !prev);
@@ -731,8 +726,8 @@ function Catalog() {
                                                                 : "#000",
                                             }}
                                         >
-                      {t("format")}
-                    </span>
+                                            {t("format")}
+                                        </span>
                                     </div>
                                     <div
                                         className="categories"
@@ -743,23 +738,23 @@ function Catalog() {
                                             setCategoryFormatOpen(false);
                                         }}
                                     >
-                                        
+
                                         <div>
                                             <input
                                                 onClick={() => handleChangeCategoryFormat('Онлайн')}
-                                                checked={categoryFormat==='Онлайн'}
+                                                checked={categoryFormat === 'Онлайн'}
                                                 type="checkbox"
                                                 value={""}
                                             />
                                             <label className="inline-text">
-                                            {t("online")}
+                                                {t("online")}
                                             </label>
                                         </div>
-                                            
+
                                         <div>
                                             <input
                                                 onClick={() => handleChangeCategoryFormat('Дистанционно')}
-                                                checked={categoryFormat==='Дистанционно'}
+                                                checked={categoryFormat === 'Дистанционно'}
                                                 type="checkbox"
                                                 value={""}
                                             />
@@ -767,22 +762,22 @@ function Catalog() {
                                                 {t("remote")}
                                             </label>
                                         </div>
-                                        
+
                                         <div>
                                             <input
                                                 onClick={() => handleChangeCategoryFormat('Офлайн')}
-                                                checked={categoryFormat==='Офлайн'}
+                                                checked={categoryFormat === 'Офлайн'}
                                                 type="checkbox"
                                                 value={""}
                                             />
                                             <label className="inline-text">
-                                            {t("offline")}
+                                                {t("offline")}
                                             </label>
                                         </div>
-                                     
+
                                     </div>
                                 </div>
-                           
+
                             </div>
                             <div
                                 className="search"
@@ -807,112 +802,112 @@ function Catalog() {
                         </div>
                     </div>
                 </div>
-             {isLoading ? (
-        <div className="container">
-           <div className="container">
-                        <div
-                            className="loading"
-                            style={{
-                                margin: "20px 0px",
-                            }}
-                        >
-                            <div>загружаем</div>
-                            <div>загружаем</div>
-                            <div>загружаем</div>
-                            {/* <div>загружаем</div>
+                {isLoading ? (
+                    <div className="container">
+                        <div className="container">
+                            <div
+                                className="loading"
+                                style={{
+                                    margin: "20px 0px",
+                                }}
+                            >
+                                <div>загружаем</div>
+                                <div>загружаем</div>
+                                <div>загружаем</div>
+                                {/* <div>загружаем</div>
                                 <div>загружаем</div> */}
+                            </div>
                         </div>
                     </div>
-        </div>
-    ) : (
-        <>
-            {coursesByCategory !== null && (
-                <>
-                    {categoryFormat === "Онлайн" && (
-                        <div className="TableMain">
-                            <table className="CategoryTable">
-                            <div className="TableMain">
-                    <table className="CategoryTable">
-                      <thead>
-                        <tr className="ColumnNames">
-                          <th>Курсы</th>
-                          <th>Аудитория</th>
-                          <th>Формат</th>
-                          <th>Группа</th>
-                          <th>Стоимость</th>
-                          <th>Стоимость с учетом корпоративной скидки</th>
-                          <th>Заявка</th>
-                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                    {data && data.length > 0 ? (
-                        // Группируем курсы по типу
-                        Object.entries(groupedCourses).map(([group, courses]) => (
-                            <React.Fragment key={group}>
-                                <tr>
-                                    <td colSpan="8" className={"groups"}>{group}</td>
-                                </tr>
-                                {courses.filter(course => course.courseDTO.type_of_study === 'онлайн').map((course) => (
-                                    <tr className="Rows" key={course.courseDTO.course_id} style={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                        <td>{course.courseDTO.course_name}</td>
-                                        <td>{course.courseDTO.course_for_member_of_the_system}</td>
-                                        <td>{course.courseDTO.type_of_study}</td>
-                                        <td>{course.courseDTO.group_of_person}</td>
-                                        <td>{course.courseDTO.course_price}</td>
-                                        <td>{course.courseDTO.course_price_sale}</td>
-                                        <td>
-                                            <Button onClick={() => { setSelectedCourseId(course.courseDTO.course_id); setSelectedCourseName(course.courseDTO.course_name); handleOpenModal(); }}>Подать заявку</Button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </React.Fragment>
-                        ))
-                    ) : (
-                        <tr>
-                            <td colSpan="8">Нет данных для отображения</td>
-                        </tr>
-                    )}
-                </tbody>
+                ) : (
+                    <>
+                        {coursesByCategory !== null && (
+                            <>
+                                {categoryFormat === "Онлайн" && (
+                                    <div className="TableMain">
+                                        <table className="CategoryTable">
+                                            <div className="TableMain">
+                                                <table className="CategoryTable">
+                                                    <thead>
+                                                        <tr className="ColumnNames">
+                                                            <th>Курсы</th>
+                                                            <th>Аудитория</th>
+                                                            <th>Формат</th>
+                                                            <th>Группа</th>
+                                                            <th>Стоимость</th>
+                                                            <th>Стоимость с учетом корпоративной скидки</th>
+                                                            <th>Заявка</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {data && data.length > 0 ? (
+                                                            // Группируем курсы по типу
+                                                            Object.entries(groupedCourses).map(([group, courses]) => (
+                                                                <React.Fragment key={group}>
+                                                                    <tr>
+                                                                        <td colSpan="8" className={"groups"}>{group}</td>
+                                                                    </tr>
+                                                                    {courses.filter(course => course.courseDTO.type_of_study === 'онлайн').map((course) => (
+                                                                        <tr className="Rows" key={course.courseDTO.course_id} style={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                                                            <td>{course.courseDTO.course_name}</td>
+                                                                            <td>{course.courseDTO.course_for_member_of_the_system}</td>
+                                                                            <td>{course.courseDTO.type_of_study}</td>
+                                                                            <td>{course.courseDTO.group_of_person}</td>
+                                                                            <td>{course.courseDTO.course_price}</td>
+                                                                            <td>{course.courseDTO.course_price_sale}</td>
+                                                                            <td>
+                                                                                <Button onClick={() => { setSelectedCourseId(course.courseDTO.course_id); setSelectedCourseName(course.courseDTO.course_name); handleOpenModal(); }}>Подать заявку</Button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    ))}
+                                                                </React.Fragment>
+                                                            ))
+                                                        ) : (
+                                                            <tr>
+                                                                <td colSpan="8">Нет данных для отображения</td>
+                                                            </tr>
+                                                        )}
+                                                    </tbody>
 
-                    </table>
-                  </div>
-                            </table>
-                        </div>
-                                    )}
-                                     <ApplicationModal
-                                        open={modalOpen}
-                                        handleClose={handleCloseModal}
-                                        courseId={selectedCourseId}
-                                        courseName={selectedCourseName}
-                                    />
+                                                </table>
+                                            </div>
+                                        </table>
+                                    </div>
+                                )}
+                                <ApplicationModal
+                                    open={modalOpen}
+                                    handleClose={handleCloseModal}
+                                    courseId={selectedCourseId}
+                                    courseName={selectedCourseName}
+                                />
 
-                    {categoryFormat === "Дистанционно" && (
-                        <>
-                            {Object.keys(coursesByCategory).map((categoryName) => {
-                                if (
-                                    !categoryFilter.includes("Все категории") &&
-                                    !categoryFilter.includes(categoryName)
-                                )
-                                    return null;
-                                    
-                                return (
-                                    <CoursesBlock
-                                        key={categoryName}
-                                        categoryName={categoryName}
-                                        categoryDesc={categoryName}
-                                        courses={coursesByCategory[categoryName]}
-                                    />
-                                );
-                            })}
-                        </>
-                    )}
-                </>
-            )}
-        </>
-    )}
+                                {categoryFormat === "Дистанционно" && (
+                                    <>
+                                        {Object.keys(coursesByCategory).map((categoryName) => {
+                                            if (
+                                                !categoryFilter.includes("Все категории") &&
+                                                !categoryFilter.includes(categoryName)
+                                            )
+                                                return null;
+
+                                            return (
+                                                <CoursesBlock
+                                                    key={categoryName}
+                                                    categoryName={categoryName}
+                                                    categoryDesc={categoryName}
+                                                    courses={coursesByCategory[categoryName]}
+                                                />
+                                            );
+                                        })}
+                                    </>
+                                )}
+                            </>
+                        )}
+                    </>
+                )}
             </main>
 
-           <br /><br /><br />
+            <br /><br /><br />
 
             <Footer />
         </div>
@@ -978,7 +973,7 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
 
                         var status =
                             paymentInfo === null ? "available" : paymentInfo.status;
-                        if(courseDTO.course_id === 86){
+                        if (courseDTO.course_id === 86) {
                             status = "free";
                         }
 
@@ -991,15 +986,15 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                                         navigate(`/courses/${course.courseDTO.course_id}/read`);
                                     }
                                     else
-                                    if (availability === "soon") {
-                                        navigate(`/courses/catalog`);
-                                    }
-                                    else {
-                                        navigate(`/courses/${course.courseDTO.course_id}`);
-                                    }
+                                        if (availability === "soon") {
+                                            navigate(`/courses/catalog`);
+                                        }
+                                        else {
+                                            navigate(`/courses/${course.courseDTO.course_id}`);
+                                        }
                                 }}
                             >
-                                <div className={`soon-text ${availability === "soon" ? "soon" : ""}`}>Скоро . . .</div> 
+                                <div className={`soon-text ${availability === "soon" ? "soon" : ""}`}>Скоро . . .</div>
                                 <div className="image">
                                     <img src={course_image} alt={course_name} />
                                     <div className={`status ${status}`}>
@@ -1033,107 +1028,107 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                             </div>
                         );
                     })}
-              
+
             </div>
-        <div className="container">
-            <h1
-                className="inline-text"
-                style={{
-                    fontFamily: "Ubuntu",
-                    fontSize: "20px",
-                    fontWeight: "500",
-                    lineHeight: "23px",
-                    letterSpacing: "0em",
-                    textAlign: "left",
-                }}
-            >
-                {categoryName}
-            </h1>
-            <p
-                className="inline-text"
-                style={{
-                    fontFamily: "Ubuntu",
-                    fontSize: "16px",
-                    fontWeight: "400",
-                    lineHeight: "19px",
-                    letterSpacing: "0em",
-                    textAlign: "left",
-                    color: "#656678",
-                }}
-            >
-                Для правоохранительных органов
-            </p>
-        </div>
-        <div className="courses-block container">
-            {filteredProCourses
-                .sort((a, b) => a.shortStatus - b.shortStatus )
-                .map((course, index) => {
-                    const courseDTO = course.courseDTO;
-                    const { course_image, course_name } = courseDTO;
-                    const { paymentInfo } = course;
-                    const availability = courseDTO.group_of_person;
-                    const law_enforcement_agencies = courseDTO.course_for_member_of_the_system;
+            <div className="container">
+                <h1
+                    className="inline-text"
+                    style={{
+                        fontFamily: "Ubuntu",
+                        fontSize: "20px",
+                        fontWeight: "500",
+                        lineHeight: "23px",
+                        letterSpacing: "0em",
+                        textAlign: "left",
+                    }}
+                >
+                    {categoryName}
+                </h1>
+                <p
+                    className="inline-text"
+                    style={{
+                        fontFamily: "Ubuntu",
+                        fontSize: "16px",
+                        fontWeight: "400",
+                        lineHeight: "19px",
+                        letterSpacing: "0em",
+                        textAlign: "left",
+                        color: "#656678",
+                    }}
+                >
+                    Для правоохранительных органов
+                </p>
+            </div>
+            <div className="courses-block container">
+                {filteredProCourses
+                    .sort((a, b) => a.shortStatus - b.shortStatus)
+                    .map((course, index) => {
+                        const courseDTO = course.courseDTO;
+                        const { course_image, course_name } = courseDTO;
+                        const { paymentInfo } = course;
+                        const availability = courseDTO.group_of_person;
+                        const law_enforcement_agencies = courseDTO.course_for_member_of_the_system;
 
-                    var status =
-                        paymentInfo === null ? "available" : paymentInfo.status;
-                    if(courseDTO.course_id === 86){
-                        status = "free";
-                    }
+                        var status =
+                            paymentInfo === null ? "available" : paymentInfo.status;
+                        if (courseDTO.course_id === 86) {
+                            status = "free";
+                        }
 
-                    return (
-                        <div
-                            className={`course-card ${law_enforcement_agencies === "Для правоохранительных органов" ? "soon" : ""}`}
-                            key={index}
-                            onClick={() => {
-                                if ((status === "process" || status === "finished") && (law_enforcement_agencies !== "Для правоохранительных органов")) {
-                                    navigate(`/courses/${course.courseDTO.course_id}/read`);
-                                }
-                                else
-                                if (law_enforcement_agencies === "Для правоохранительных органов") {
-                                    navigate(`/courses/catalog`);
-                                }
-                                else {
-                                    navigate(`/courses/${course.courseDTO.course_id}`);
-                                }
-                            }}
-                        >
-                            <div className={`soon-text ${law_enforcement_agencies === "Для правоохранительных органов" ? "soon" : ""}`}>Для правоохранительных органов</div>
-                            <div className="image">
-                                <img src={course_image} alt={course_name} />
-                                <div className={`status ${status}`}>
-                                    {status === "available"
-                                        ? "Доступно"
-                                        : status === "process"
-                                            ? "В процессе"
-                                            : status == "free" ? "Бесплатно" : "Завершен"}
-                                </div>
-                            </div>
-                            <div className="info">
-                                <div className="course-name">{course_name}</div>
-                                <div className="langAndDuration">
-                                    {"РУС"} | {course.courseDTO.duration}
-                                </div>
-                                <div className="rating">
-                                    <div className="stars">
-                                        <AiFillStar className="star-icon" size={23} />
-                                        <AiFillStar className="star-icon" size={23} />
-                                        <AiFillStar className="star-icon" size={23} />
-                                        <AiFillStar className="star-icon" size={23} />
-                                        <AiFillStar className="star-icon" size={23} />
+                        return (
+                            <div
+                                className={`course-card ${law_enforcement_agencies === "Для правоохранительных органов" ? "soon" : ""}`}
+                                key={index}
+                                onClick={() => {
+                                    if ((status === "process" || status === "finished") && (law_enforcement_agencies !== "Для правоохранительных органов")) {
+                                        navigate(`/courses/${course.courseDTO.course_id}/read`);
+                                    }
+                                    else
+                                        if (law_enforcement_agencies === "Для правоохранительных органов") {
+                                            navigate(`/courses/catalog`);
+                                        }
+                                        else {
+                                            navigate(`/courses/${course.courseDTO.course_id}`);
+                                        }
+                                }}
+                            >
+                                <div className={`soon-text ${law_enforcement_agencies === "Для правоохранительных органов" ? "soon" : ""}`}>Для правоохранительных органов</div>
+                                <div className="image">
+                                    <img src={course_image} alt={course_name} />
+                                    <div className={`status ${status}`}>
+                                        {status === "available"
+                                            ? "Доступно"
+                                            : status === "process"
+                                                ? "В процессе"
+                                                : status == "free" ? "Бесплатно" : "Завершен"}
                                     </div>
-                                    <span>{(course.courseDTO.rating % 1 === 0 ? course.courseDTO.rating.toFixed(1) + '.0' : course.courseDTO.rating.toFixed(1)).replace(/\.0$/, '')}</span>
                                 </div>
-                                <div className="type">
-                                    <MdOndemandVideo size={23} />
-                                    <span>{course.courseDTO.course_for_member_of_the_system}</span>
+                                <div className="info">
+                                    <div className="course-name">{course_name}</div>
+                                    <div className="langAndDuration">
+                                        {"РУС"} | {course.courseDTO.duration}
+                                    </div>
+                                    <div className="rating">
+                                        <div className="stars">
+                                            <AiFillStar className="star-icon" size={23} />
+                                            <AiFillStar className="star-icon" size={23} />
+                                            <AiFillStar className="star-icon" size={23} />
+                                            <AiFillStar className="star-icon" size={23} />
+                                            <AiFillStar className="star-icon" size={23} />
+                                        </div>
+                                        <span>{(course.courseDTO.rating % 1 === 0 ? course.courseDTO.rating.toFixed(1) + '.0' : course.courseDTO.rating.toFixed(1)).replace(/\.0$/, '')}</span>
+                                    </div>
+                                    <div className="type">
+                                        <MdOndemandVideo size={23} />
+                                        <span>{course.courseDTO.course_for_member_of_the_system}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    );
-                })}
+                        );
+                    })}
 
-        </div>
-    </>
+            </div>
+        </>
     );
 };
 

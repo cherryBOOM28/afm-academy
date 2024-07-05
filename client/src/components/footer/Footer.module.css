@@ -1,6 +1,7 @@
 .footerWrapper {
     /* background: #1F3C88; */
     padding: 63px 0 134px;
+    margin-top:-20px
 }
 
 .footerWrapper.light-mode {

@@ -6,7 +6,7 @@ const EventCard = ({ event, type }) => {
     const cardClass = type === 'main' ? 'cards main-card' : 'cards secondary-card';
     const navigate = useNavigate();
     function handleNavigate() {
-        navigate('/vebinars')
+        navigate('/vebinars#top')
     }
     return (
         <div className={`${cardClass} hover-card`}>
