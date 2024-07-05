@@ -166,7 +166,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
                             </label>
                             :
                             <label htmlFor="photo">
-                                <img className="image-album" src={image} alt="+"></img>
+                                <img className="image-album" src={`${base_url}/aml/${image}`} alt="+"></img>
                             </label>
                         }
                         <input onChange={handleFileChange} className="input-image" type="file" id="photo" name="photo" accept="image/png, image/jpeg, image/jpg" />
