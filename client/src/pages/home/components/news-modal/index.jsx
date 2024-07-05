@@ -1,7 +1,7 @@
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import * as React from 'react';
-import './style.scss';
+import './style.css';
 const style = {
     position: 'absolute',
     top: '20%',
@@ -9,7 +9,6 @@ const style = {
     width:'40%',
     transform: 'translate(-50%, -50%)',
     bgcolor: 'background.paper',
-    border: '2px solid #000',
     boxShadow: 24,
     p: 4,
 };

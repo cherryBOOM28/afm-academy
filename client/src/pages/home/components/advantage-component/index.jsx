@@ -15,7 +15,7 @@ const advantages = [
     { icon: advantage2, text: 'Удобный формат обучения (онлайн, оффлайн, дистанционный)' },
     { icon: advantage3, text: 'Тесное взаимодействие с Агентством Финансового Мониторинга РК' },
     { icon: advantage4, text: 'Программы, разработанные в соответствии с требованиями законодательства о ПОД/ФТ' },
-    { icon: advantage4, text: 'Example fifth advantage' },
+    { icon: advantage1, text: 'Квалифицированные эксперты с опытом работы в сфере ПОД/ФТ' },
 ];
 
 const NextArrow = ({ onClick }) => {

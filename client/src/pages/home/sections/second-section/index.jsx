@@ -19,7 +19,7 @@ const SecondSection = () => {
             id: 1,
             title: 'Новость 1',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            date: '06 июнь 2024',
+            date: '04 июнь 2024',
             imageUrl: news2,
         },
         {

@@ -32,7 +32,7 @@ function SamplePrevArrow(props) {
       style={{ ...style, display: "block", boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)", borderRadius: "1000px" }}
       onClick={onClick}
     ><ArrowCircleLeftIcon /></div>
-  );
+  ); 
 }
 const NewsTab = ({ Width }) => {
   const { styles } = useStyle();

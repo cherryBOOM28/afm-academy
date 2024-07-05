@@ -1,8 +1,43 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
+import base_url from '../../../../settings/base_url';
+import NewsModal from '../news-modal';
 import './style.css';
 
 const NewsComponent = ({ news }) => {
+    const [newsData, setNewsData] = useState(news)
+    const [newsModalData, setNewsModalData] = useState('')
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${base_url}/api/aml/course/getAllNews?type=news`)
+                const truncatedData = response.data.map((item) => ({
+                    ...item,
+                    name: truncateName(item.name)
+                }));
+                console.log(response.data);
+                setNewsData(truncatedData)
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchData()
+    }, [])
+    const truncateName = (name) => {
+        return name.length > 60 ? name.slice(0, 60) + '...' : name;
+    };
+    const handleOpenModal = (index) => {
+        setNewsModalData(newsData[index]);
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setNewsModalData(null);
+    };
+
     const navigate = useNavigate();
     if (news.length < 6) return <div>Loading...</div>;
     function handleNavigate() {
@@ -13,43 +48,45 @@ const NewsComponent = ({ news }) => {
         <div className="news-container">
             <h1 className="news-title">Новости AML Academy</h1>
             <div className="news-grid">
-                <div className="column column-1">
-                    <div className="news-item text-item">
+                <div className="column column-1"> 
+                    <div className="news-item text-item" onClick={() =>handleOpenModal(4)}>
                         <div className="news-badge">Новости</div>
-                        <p className='news-description'>{news[4].description}</p>
-                        <p className="news-date">{news[4].date}</p>
+                        <p className='news-description'>{newsData[4].name}</p>
+                        <p className="news-date">{new Date(newsData[4].date).toLocaleDateString()}</p>
                     </div>
-                    <div className="news-item image-item">
+                    <div className="news-item image-item" onClick={() =>handleOpenModal(2)}>
                         <div className='side-img-wrapper'>
-                            <img className="side-img" src={news[2].imageUrl} alt={news[2].title} />
+                            <img className="side-img" src={newsData[2].image} alt={newsData[2].title} />
                         </div>
-                        <p className='news-description'>{news[2].description}</p>
-                        <p className="news-date">{news[2].date}</p>
+                        <p className='news-description'>{newsData[2].name}</p>
+                        <p className="news-date">{new Date(newsData[2].date).toLocaleDateString()}</p>
                     </div>
                 </div>
                 <div className="column column-2">
-                    <div className="news-item image-item large-item">
-                        <img className="main-img" src={news[0].imageUrl} alt={news[0].title} />
-                        <p className='news-description'>{news[0].description}</p>
-                        <p className="news-date">{news[0].date}</p>
+                    <div className="news-item image-item large-item" onClick={() =>handleOpenModal(0)}>
+                        <div className='main-img-wrapper'>
+                            <img className="main-img" src={newsData[0].image} alt={newsData[0].title} />
+                        </div>
+                        <p className='news-description'>{newsData[0].name}</p>
+                        <p className="news-date">{new Date(newsData[0].date).toLocaleDateString()}</p>
                     </div>
-                    <div className="news-item text-item large-item">
-                        <p className='news-description'>{news[5].description}</p>
-                        <p className="news-date">{news[5].date}</p>
+                    <div className="news-item text-item large-item" onClick={() =>handleOpenModal(5)}>
+                        <p className='news-description'>{newsData[5].name}</p>
+                        <p className="news-date">{new Date(newsData[5].date).toLocaleDateString()}</p>
                     </div>
                 </div>
                 <div className="column column-3">
-                    <div className="news-item text-item">
+                    <div className="news-item text-item" onClick={() =>handleOpenModal(1)}>
                         <div className="news-badge">Новости</div>
-                        <p className='news-description'>{news[1].description}</p>
-                        <p className="news-date">{news[1].date}</p>
+                        <p className='news-description'>{newsData[1].name}</p>
+                        <p className="news-date">{new Date(newsData[1].date).toLocaleDateString()}</p>
                     </div>
-                    <div className="news-item image-item">
+                    <div className="news-item image-item" onClick={() =>handleOpenModal(3)}>
                         <div className='side-img-wrapper'>
-                            <img className="side-img" src={news[3].imageUrl} alt={news[3].title} />
+                            <img className="side-img" src={newsData[3].image} alt={newsData[3].title} />
                         </div>
-                        <p className='news-description'>{news[3].description}</p>
-                        <p className="news-date">{news[3].date}</p>
+                        <p className='news-description'>{newsData[3].name}</p>
+                        <p className="news-date">{new Date(newsData[3].date).toLocaleDateString()}</p>
                     </div>
                 </div>
             </div>
@@ -58,6 +95,15 @@ const NewsComponent = ({ news }) => {
                     Все новости
                 </button>
             </div>
+            {newsModalData && (
+                <NewsModal
+                    name={newsModalData.name}
+                    image={newsModalData.image}
+                    description={newsModalData.description}
+                    handleClose={handleCloseModal}
+                    open={isModalOpen}
+                />
+            )}
         </div>
     );
 };

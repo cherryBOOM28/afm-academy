@@ -1,7 +1,12 @@
-import React from 'react'
-import './style.css'
+import React from 'react';
+import { useNavigate } from 'react-router';
+import './style.css';
 
 const StartLearning = () => {
+    const navigate = useNavigate();
+    function handleNavigate() {
+        navigate('/courses/86/read')
+    }
     return (
         <div className='start-learning'>
             <div className='start-learning-wrapper'>
@@ -9,7 +14,7 @@ const StartLearning = () => {
                     Начни учиться бесплатно
                 </div>
                 <div className='button'>
-                    <button>
+                    <button onClick={handleNavigate}>
                         Получить первый урок
                     </button>
                 </div>
