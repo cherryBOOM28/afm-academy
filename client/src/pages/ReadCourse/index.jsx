@@ -440,6 +440,9 @@ function ReadCourse() {
             {activeLesson.componentEntries.map((component, index) => {
                 const Component = componentMap[component.componentName];
 
+                console.log(component.componentName);
+                console.log(Component);
+
                 if (!Component) {
                     return <div key={index}>Component not found: {component.componentName}</div>;
                 }

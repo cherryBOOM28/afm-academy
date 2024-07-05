@@ -27,7 +27,7 @@ const AboutUsSection = ({ imagesHidden }) => {
               <CourseBox link="/courses/catalog" imgSrc={basicCourse} text={t('education')} imagesHidden={imagesHidden} />
               <CourseBox link="/ready-made-solutions" imgSrc={proCourse} text={t('ric')} imagesHidden={imagesHidden} />
               <CourseBox link="/#" imgSrc={deepCourse} text={t('it')} imagesHidden={imagesHidden} />
-              
+              <CourseBox link="/#" imgSrc={povish} text={"Повышение квалификации"} imagesHidden={imagesHidden} />
             </div>
           </div>
         </div>

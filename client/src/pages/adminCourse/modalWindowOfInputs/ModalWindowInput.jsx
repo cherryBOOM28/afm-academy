@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './modalWindowInput.scss'
+import './modalWindowInput.scss';
 
 import AdvancedInput from './AdvancedInput';
 
@@ -2750,29 +2750,27 @@ const Formatable_Textarea = ({
 
   const textAreaRef = useRef(null);
 
-  const wrapSelected = (symbol, endSymbol=symbol) => {
+  const wrapSelected = (symbol, endSymbol = symbol) => {
     const textArea = textAreaRef.current;
     const start = textArea.selectionStart;
     const end = textArea.selectionEnd;
     const selectedText = value.substring(start, end);
-    
-    // Only proceed if there is a selection
+
     if (start !== end) {
       const before = value.substring(0, start);
       const after = value.substring(end);
 
-      // **bold**
-      // ||italic||
       const newText = `${before}${symbol}${selectedText}${endSymbol}${after}`;
 
-      handleChange(name, newText, type)
-      
+      handleChange(name, newText, type);
+
       setTimeout(() => {
         textArea.selectionStart = start;
-        textArea.selectionEnd = end + 4; // Adjust for the added characters
+        textArea.selectionEnd = end + symbol.length + endSymbol.length;
       }, 0);
     }
   };
+
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -2809,50 +2807,37 @@ const Formatable_Textarea = ({
       }
     }
   };
+  const convertToHtml = (text) => {
+    const linkRegex = /\|a\|(.*?)\|a\|/g;
+    return text.replace(linkRegex, '<a href="$1">$1</a>');
+  };
+
+  const formattedValue = convertToHtml(value);
 
   return (
     <div className="format-textarea">
       {label ? <label>{label}</label> : null}
       <div className="inner">
         <div className="actions">
-          <button 
-            className='btn-bold'
-            onClick={() => wrapSelected('|b|')}
-          >Ж</button>
-          <button 
-            className='btn-italic'
-            onClick={() => wrapSelected('|i|')}
-          >К</button>
-          {/* <button 
-            className='btn-bold btn-italic'
-            onClick={() => wrapSelected('|bi|', '|bi|')}
-          >ЖК</button> */}
-          <button 
-            className='btn-underline'
-            onClick={() => wrapSelected('|u|', '|u|')}
-          >П</button>
-          <button 
-            className='btn-highlight'
-            onClick={() => wrapSelected('|h|', '[Вставьте скрытый текст сюда]|h|')}
-          >H</button>
-          <button 
-            className='btn-red'
-            onClick={() => wrapSelected('|r|', '|r|')}
-          >r</button>
+          <button className='btn-bold' onClick={() => wrapSelected('|b|')}>Ж</button>
+          <button className='btn-italic' onClick={() => wrapSelected('|i|')}>К</button>
+          <button className='btn-underline' onClick={() => wrapSelected('|u|', '|u|')}>П</button>
+          <button className='btn-highlight' onClick={() => wrapSelected('|h|', '[Вставьте скрытый текст сюда]|h|')}>H</button>
+          <button className='btn-red' onClick={() => wrapSelected('|r|', '|r|')}>r</button>
+          <button className='btn-link' onClick={() => wrapSelected('|a|', '|a|')}>Link</button>
+          <button className='btn-ordered-list' onClick={() => wrapSelected('|1|', '|1|')}>1.</button>
+          <button className='btn-unordered-list' onClick={() => wrapSelected('|•|', '|•|')}>•</button>
         </div>
-
         <textarea
           style={{ minHeight: `${minHeight}px` }}
           ref={textAreaRef}
-          type="text"
           value={value}
           onKeyDown={handleKeyDown}
           onChange={(e) => handleChange(name, e.target.value, type)}
         ></textarea>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
 export default Modal;

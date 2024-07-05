@@ -1,10 +1,24 @@
-// LupaZone.js
 import React, { useState } from 'react';
-import './LupaZone.scss'
-import Lupa from './index.jsx';
+import { useParams } from 'react-router-dom';
 import parseText from '../../../../util/ParseTextFromFormatTextarea.js';
+import './LupaZone.scss';
+import Lupa from './index.jsx';
 
-const LupaZone = ({ options, correctOptions, imgUrl, Width, Height, another, img, version=1 }) => {
+
+
+const LupaZone = ({
+  options,
+  correctOptions,
+  imgUrl,
+  Width,
+  Height,
+  another,
+  img,
+  version = 1,
+}) => {
+  const { id } = useParams();
+  const courseId = parseInt(id, 10);
+
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [showResults, setShowResults] = useState(false);
 
@@ -16,7 +30,6 @@ const LupaZone = ({ options, correctOptions, imgUrl, Width, Height, another, img
     e.preventDefault();
     const option = e.dataTransfer.getData('text/plain');
 
-    // Проверяем, чтобы выбранные ответы были не более двух
     if (selectedOptions.length < 3) {
       setSelectedOptions([...selectedOptions, option]);
     }
@@ -42,9 +55,9 @@ const LupaZone = ({ options, correctOptions, imgUrl, Width, Height, another, img
             <Lupa version={version} key={index} option={option} onDragStart={handleDragStart} />
           ))}
         </div>
-        <b className='B'></b>
-        
-        <div className='dropZoneParent'>
+        <b className="B"></b>
+
+        <div className="dropZoneParent">
           <div
             className={`drop-zone ${isCorrectAns ? 'correct-lupa' : isIncorrectSelectionAns ? 'incorrect-lupa' : ''}`}
             onDrop={handleDrop}
@@ -60,10 +73,9 @@ const LupaZone = ({ options, correctOptions, imgUrl, Width, Height, another, img
             </ul>
           </div>
           <button className="BtnRetry" onClick={handleTryAgain}>
-           Попробовать еще раз
-           </button>
+            {courseId === 81 ? 'тағы да тексеріп көру' : 'Попробовать еще раз'}
+          </button>
         </div>
-        
       </div>
       <div className="selected-options"></div>
       {showResults && (
@@ -71,7 +83,6 @@ const LupaZone = ({ options, correctOptions, imgUrl, Width, Height, another, img
           {isCorrectAns ? 'Правильно!' : 'Попробуйте еще раз, выбрав правильные ответы.'}
         </div>
       )}
-      
     </div>
   );
 };

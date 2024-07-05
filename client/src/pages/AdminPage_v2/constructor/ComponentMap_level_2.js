@@ -1,5 +1,3 @@
-import Quote from '../../../components/courseTemplates/common_v2/Quote'
-import Centered from '../../../components/courseTemplates/common/Centered'
 import FileDownloader from '../../../components/courseTemplates/common/FileDownloader'
 import HeaderWithLine from '../../../components/courseTemplates/common/HeaderWithLine'
 import ImageLine from '../../../components/courseTemplates/common/ImageLine'
@@ -10,35 +8,36 @@ import RandomGlossary from '../../../components/courseTemplates/common/RandomGlo
 import RandomH2 from '../../../components/courseTemplates/common/RandomH2'
 import RandomParapraph from '../../../components/courseTemplates/common/RandomParagraph'
 import Sizebox from '../../../components/courseTemplates/common/Sizebox'
-import SmallNotNuberedDots from '../../../components/courseTemplates/common/SmallNotNuberedDots'
 import ImageSequence from '../../../components/courseTemplates/common_v2/ImageSequence'
+import Quote from '../../../components/courseTemplates/common_v2/Quote'
 
 import Table_1 from '../../../components/courseTemplates/common/Tables/Table-1'
 
-import FlexRow from '../../../components/courseTemplates/common_v2/FlexRow'
-import FlexBoxes from '../../../components/courseTemplates/common_v2/FlexBoxes'
-import FancyList from '../../../components/courseTemplates/common_v2/FancyList'
+import DragAndDropZone from '../../../components/courseTemplates/common/DraggableOption/DragAndDropZone'
+import JustTextWithP from '../../../components/courseTemplates/common/JustTextWithP'
+import QuizWithCardComponent from '../../../components/courseTemplates/common/QuizWithCardComponent'
+import SimpleTable from '../../../components/courseTemplates/common/SimpleTable'
+import TableComponent from '../../../components/courseTemplates/common/Tables/TableComponent'
 import TextWithBackground from '../../../components/courseTemplates/common/TextWithBackground'
 import TextWithTitle from '../../../components/courseTemplates/common/TextWithTitle'
 import VideoLine from '../../../components/courseTemplates/common/VideoLine'
-import Report_Information from '../../../components/courseTemplates/common/Warnings/Report_Information'
-import TabsGlossary from '../../../components/courseTemplates/complex/TabsGlossary'
-import VideoWithTitleAndText from '../../../components/courseTemplates/complex/Video/VideoWithTitleAndText'
-import TextAndLink from '../../../components/courseTemplates/complex/TextAndLink'
-import DropdownList from '../../../components/courseTemplates/complex/interactives/DropdownList'
-import ShortBiography from '../../../components/courseTemplates/complex/images/ShortBiography'
-import DragAndDropTwoSide from '../../../components/courseTemplates/complex/DragAndDropTwoSide'
-import DropdownGlossaryList from '../../../components/courseTemplates/complex/DropdownGlossaryList'
-import DataChain from '../../../components/courseTemplates/complex/DataChain'
-import SimpleTable from '../../../components/courseTemplates/common/SimpleTable'
-import DropDownTextWithTabs from '../../../components/courseTemplates/complex/DropDownTextWithTabs'
-import IconDots from '../../../components/courseTemplates/common_v2/IconDots'
 import Report_Warning from '../../../components/courseTemplates/common/Warnings/Report'
+import Report_Information from '../../../components/courseTemplates/common/Warnings/Report_Information'
+import FancyList from '../../../components/courseTemplates/common_v2/FancyList'
+import FlexBoxes from '../../../components/courseTemplates/common_v2/FlexBoxes'
+import FlexRow from '../../../components/courseTemplates/common_v2/FlexRow'
+import IconDots from '../../../components/courseTemplates/common_v2/IconDots'
 import ImageAndColumns from '../../../components/courseTemplates/common_v2/ImageAndColumns'
 import CustomCarousel from '../../../components/courseTemplates/complex/CustomCarousel'
-import DragAndDropZone from '../../../components/courseTemplates/common/DraggableOption/DragAndDropZone'
-import TableComponent from '../../../components/courseTemplates/common/Tables/TableComponent'
-import QuizWithCardComponent from '../../../components/courseTemplates/common/QuizWithCardComponent'
+import DataChain from '../../../components/courseTemplates/complex/DataChain'
+import DragAndDropTwoSide from '../../../components/courseTemplates/complex/DragAndDropTwoSide'
+import DropDownTextWithTabs from '../../../components/courseTemplates/complex/DropDownTextWithTabs'
+import DropdownGlossaryList from '../../../components/courseTemplates/complex/DropdownGlossaryList'
+import TabsGlossary from '../../../components/courseTemplates/complex/TabsGlossary'
+import TextAndLink from '../../../components/courseTemplates/complex/TextAndLink'
+import VideoWithTitleAndText from '../../../components/courseTemplates/complex/Video/VideoWithTitleAndText'
+import ShortBiography from '../../../components/courseTemplates/complex/images/ShortBiography'
+import DropdownList from '../../../components/courseTemplates/complex/interactives/DropdownList'
 import DropdownList_r5 from '../../../components/courseTemplates/complex/interactives/DropdownList_r5'
 
 const componentMap_level_2 = {
@@ -80,6 +79,7 @@ const componentMap_level_2 = {
     DragAndDropZone,
     TableComponent,
     QuizWithCardComponent,
+    JustTextWithP
     // Add other components here
 };
 

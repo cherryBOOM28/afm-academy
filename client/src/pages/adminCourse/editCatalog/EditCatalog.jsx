@@ -28,7 +28,7 @@ const EditCatalog = () => {
     const [courses, setCourses] = useState([])
 
     const [deletingCourse, setDeletingCourse] = useState(false)
-    const [selectedCourse, setSelectedCourse] = useState({course_id: 0, course_name: ""})
+    const [selectedCourse, setSelectedCourse] = useState({ course_id: 0, course_name: "" })
     const [selectedUser, setSelectedUser] = useState('');
     const [selectedCourses, setSelectedCourses] = useState('');
     const jwtToken = localStorage.getItem('jwtToken');
@@ -43,7 +43,7 @@ const EditCatalog = () => {
 
     const [isLoading, setLoading] = useState(true);
 
-    
+
 
     useEffect(() => {
         axios
@@ -55,7 +55,7 @@ const EditCatalog = () => {
                 setLoading(false);
             })
     }, [])
-    
+
     useEffect(() => {
         axios
             .get(base_url + "/api/aml/course/getRequest")
@@ -65,7 +65,7 @@ const EditCatalog = () => {
             })
     }, [dataReload])
     const handleReloadData = () => {
-        setDataReload(dataReload+1)
+        setDataReload(dataReload + 1)
     }
 
     useMemo(() => {
@@ -100,9 +100,9 @@ const EditCatalog = () => {
             setLoading(true);
 
             try {
-                const response = await  axios
+                const response = await axios
                     .get(base_url + "/api/aml/course/getRequest")
-                    .then((res) => { setRequestData(res.data)})
+                    .then((res) => { setRequestData(res.data) })
                 console.log(response.data);
             } catch (error) {
                 console.error(error);
@@ -178,7 +178,7 @@ const EditCatalog = () => {
     }, []);
 
     const setCourse = (course_id, course_name) => {
-        setSelectedCourse({course_id, course_name})
+        setSelectedCourse({ course_id, course_name })
     }
 
     const publishCourse = (course_id) => {
@@ -204,7 +204,7 @@ const EditCatalog = () => {
         const day = String(_date.getDate()).padStart(2, '0');
         const month = String(_date.getMonth() + 1).padStart(2, '0'); // JavaScript months are 0-based
         const year = _date.getFullYear();
-        const hour = (_date.getHours()-6);
+        const hour = (_date.getHours() - 6);
         const minutes = _date.getMinutes();
 
         // Assemble the components into the desired format
@@ -217,10 +217,10 @@ const EditCatalog = () => {
 
     return (
         <div>
-            <BuilderNavbar/>
+            <BuilderNavbar />
             <div className="tab-content">
                 {deletingCourse ?
-                    <Confirm course_title={selectedCourse.course_name} course_id={selectedCourse.course_id} closeModal={closeModal} deleteCourse={deleteCourse}/>
+                    <Confirm course_title={selectedCourse.course_name} course_id={selectedCourse.course_id} closeModal={closeModal} deleteCourse={deleteCourse} />
                     : ""
                 }
 
@@ -250,8 +250,8 @@ const EditCatalog = () => {
                                 selectedPage === 'newsPage'
                                     ? "/create-news"
                                     : selectedPage === 'requestPage'
-                                    ? ""
-                                    : '/new-admin-page'
+                                        ? ""
+                                        : '/new-admin-page'
                             )
                         }} className='create-course-button'>
                             <a>
@@ -259,8 +259,8 @@ const EditCatalog = () => {
                                     selectedPage === 'newsPage'
                                         ? "Добавить новость"
                                         : selectedPage === 'requestPage'
-                                        ? null
-                                        : "Создать курс"
+                                            ? null
+                                            : "Создать курс"
                                 }
                             </a>
                         </div>
@@ -299,7 +299,7 @@ const EditCatalog = () => {
                                                             </div>
                                                             <div className="action-of-card">
                                                                 <div
-                                                                    onClick={()=> {
+                                                                    onClick={() => {
                                                                         setDeletingCourse(true)
                                                                         setCourse(x.course_id, x.course_name)
                                                                     }}
@@ -307,7 +307,7 @@ const EditCatalog = () => {
                                                                 >
                                                                     <img src={deletIcon} alt="del"></img>
                                                                 </div>
-                                                                <div onClick={() => {navigate('/new-admin-page/?id=' + x.course_id)}} className="edit">
+                                                                <div onClick={() => { navigate('/new-admin-page/?id=' + x.course_id) }} className="edit">
                                                                     <img src={editIcon} alt="edit"></img>
                                                                 </div>
                                                                 {/* onClick={publishCourse(x.course_id)}  */}
@@ -327,7 +327,7 @@ const EditCatalog = () => {
                                                             key={index}
                                                         >
                                                             <div className="img-course">
-                                                                <img src={x.image} alt="img"/>
+                                                                <img src={x.image} alt="img" />
                                                             </div>
                                                             <div className="text-of-card">
                                                                 <h2>{x.name}</h2>
@@ -335,13 +335,13 @@ const EditCatalog = () => {
                                                             </div>
                                                             <div className="action-of-card">
                                                                 <div
-                                                                    onClick={()=> {
+                                                                    onClick={() => {
                                                                         // setDeletingCourse(true)
                                                                         // setCourse(x.course_id, x.course_name)
                                                                     }}
                                                                     className="delete"
                                                                 >
-                                                                    <img src={deletIcon} alt="del"/>
+                                                                    <img src={deletIcon} alt="del" />
                                                                 </div>
                                                                 <div
                                                                     onClick={() => {
@@ -350,47 +350,47 @@ const EditCatalog = () => {
                                                                     }
                                                                     className="edit"
                                                                 >
-                                                                    <img src={editIcon} alt="edit"/>
+                                                                    <img src={editIcon} alt="edit" />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     )
                                                 })
                                             ) : (<div className="tableDiv" style={{}}> <TableContainer component={Paper}>
-                                                     <Stack direction="row" spacing={2}>
-                                                        <Button onClick={handleReloadData}>Обнавить список</Button>
-                                                    </Stack>
+                                                <Stack direction="row" spacing={2}>
+                                                    <Button onClick={handleReloadData}>Обнавить список</Button>
+                                                </Stack>
                                                 <Table sx={{ minWidth: 900 }} aria-label="simple table">
-                                                  <TableHead>
-                                                      <TableRow>
-                                                      <TableCell>Дата и время</TableCell>
-                                                      <TableCell>ФИО</TableCell>
-                                                      <TableCell align="right">Email</TableCell>
-                                                      <TableCell align="right">Номер телефона</TableCell>
-                                                      <TableCell align="right">Название курса</TableCell>
-                                                      <TableCell align="right">ID Курса</TableCell>
-                                                      
-                                                    </TableRow>
-                                                  </TableHead>
-                                                  <TableBody>
-                                                    {requestData.map((course) => (
-                                                      <TableRow
-                                                        key={course.id}
-                                                        sx={{ '&:last-child td, &:last-child th': { border: 0 }, fontSize:'25px' }}
-                                                        >
-                                                        <TableCell>{getDate(course.payment_date)}</TableCell>
-                                                        <TableCell component="th" scope="course">
-                                                          {course.fio}
-                                                        </TableCell>
-                                                        <TableCell align="right">{course.email}</TableCell>
-                                                        <TableCell align="right">{course.phone_number}</TableCell>
-                                                        <TableCell align="right">{course.course.course_name}</TableCell>    
-                                                        <TableCell align="right">{course.course.course_id}</TableCell>
-                                                      </TableRow>
-                                                    ))}
-                                                  </TableBody>
+                                                    <TableHead>
+                                                        <TableRow>
+                                                            <TableCell>Дата и время</TableCell>
+                                                            <TableCell>ФИО</TableCell>
+                                                            <TableCell align="right">Email</TableCell>
+                                                            <TableCell align="right">Номер телефона</TableCell>
+                                                            <TableCell align="right">Название курса</TableCell>
+                                                            <TableCell align="right">ID Курса</TableCell>
+
+                                                        </TableRow>
+                                                    </TableHead>
+                                                    <TableBody>
+                                                        {requestData.map((course) => (
+                                                            <TableRow
+                                                                key={course.id}
+                                                                sx={{ '&:last-child td, &:last-child th': { border: 0 }, fontSize: '25px' }}
+                                                            >
+                                                                <TableCell>{getDate(course.payment_date)}</TableCell>
+                                                                <TableCell component="th" scope="course">
+                                                                    {course.fio}
+                                                                </TableCell>
+                                                                <TableCell align="right">{course.email}</TableCell>
+                                                                <TableCell align="right">{course.phone_number}</TableCell>
+                                                                <TableCell align="right">{course.course.course_name}</TableCell>
+                                                                <TableCell align="right">{course.course.course_id}</TableCell>
+                                                            </TableRow>
+                                                        ))}
+                                                    </TableBody>
                                                 </Table>
-                                              </TableContainer></div>)
+                                            </TableContainer></div>)
 
                                 }
                             </div>
@@ -436,7 +436,7 @@ const EditCatalog = () => {
 
 
 
-const Confirm = ({course_title, course_id, closeModal, deleteCourse}) => {
+const Confirm = ({ course_title, course_id, closeModal, deleteCourse }) => {
     return (
         <div className="confirm">
             <h1 className="question">Вы уверены что хотите удалить курс: <pre>{course_title}? </pre></h1>
