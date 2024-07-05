@@ -1,5 +1,7 @@
 import React from 'react';
 import eventImg from '../../assets/jpg/test.jpg';
+import eventImg1 from '../../assets/загрузка.png';
+
 import EventCard from '../event-card';
 import SectionTitles from '../section-titles';
 import './style.css';
@@ -13,9 +15,9 @@ export const mockEvents = [
     },
     {
         id: 2,
-        title: 'Презентация проекта AML Game',
-        date: '22-23 июня 2024',
-        image: eventImg,
+        title: 'ВСТРЕЧА НА ПЛОЩАДКЕ "СОВЕТ КОМПЛАЕНС"',
+        date: '17 мая 2024',
+        image: eventImg1,
     },
     {
         id: 3,
