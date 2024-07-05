@@ -7,7 +7,7 @@ import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/v2";
 import cl from "./Home.module.css";
 import AboutUsSection from "./sections/AboutUsSection";
-import SecondSection from "./sections/second-section";
+import SecondSection from "./sections/second-section/index";
 
 function Home() {
   const navigate = useNavigate();

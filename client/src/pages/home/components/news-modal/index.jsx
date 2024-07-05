@@ -32,7 +32,7 @@ export default function NewsModal({name, image, description, imagesHidden, handl
                 }}
             >
                 <div id="Modal" style={style}>
-                    <div className='modal-wrapper'>
+                    <div className='modal-wrapper-news'>
                         <div className="details-modal1">
                             <div className="details-content1">
                                 <div style={{ textAlign: 'center' }}>
