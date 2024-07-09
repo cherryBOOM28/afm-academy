@@ -1,10 +1,13 @@
+// src/pages/NewsPage.tsx
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from 'react-redux';
 import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
+import { selectNews } from '../../redux/slices/newsSlice';
 import base_url from "../../settings/base_url";
 import "./style.css";
 
@@ -12,13 +15,13 @@ function NewsPage() {
   const { t } = useTranslation();
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
-  const [letterInterval, setLetterInterval] = useState("standard");
   const { i18n } = useTranslation();
   const [newsData, setNewsData] = useState([]);
   const currentLanguage = i18n.language;
-  const [selectedRowBtn, setSelectedRowBtn] = useState(1);
+  const [selectedRowBtn, setSelectedRowBtn] = useState(null);
   const [activeTab, setActiveTab] = useState("news");
-  const [selectedNews, setSelectedNews] = useState(1);
+  const dispatch = useDispatch();
+  const selectedNews = useSelector((state) => state.news.selectedNews);
 
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -60,7 +63,7 @@ function NewsPage() {
     }
   };
 
-  const handleShowDetailsBtn = (selectedRowBtn ) => {
+  const handleShowDetailsBtn = (selectedRowBtn) => {
     setSelectedRowBtn(selectedRowBtn);
   };
 
@@ -119,7 +122,7 @@ function NewsPage() {
     const formattedDate = `${day} ${month} ${hour.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
 
     return (
-      <div className="cardContainer" key={item.id} onClick={() => setSelectedNews(item)}>
+      <div className="cardContainer" key={item.id} onClick={() => dispatch(selectNews(item))}>
         <div className="cardContent">
           <p className="cardTitle">{item.name}</p>
           <div className="dateContent">
@@ -148,12 +151,12 @@ function NewsPage() {
           {displayedNews && (
             <div className="latestNews">
               <h2 className="latestNewsTitle">{displayedNews.name}</h2>
-              {!imagesHidden && displayedNews.image && <div className="latestNewsImgWrapper"><img src={displayedNews.image} alt="" className="latestNewsImg" /></div>}
+              {!imagesHidden && displayedNews.image && <img src={displayedNews.image} alt="" className="latestNewsImg" />}
               <p className="latestNewsText">{displayedNews.description}</p>
             </div>
           )}
           <div className="otherNews">
-            {newsData.filter((item) => item.id !== displayedNews.id).slice(0,6).map((item) => renderCardContent(item))}
+            {newsData.filter((item) => item.id !== displayedNews.id).slice(0, 6).map((item) => renderCardContent(item))}
           </div>
         </div>
       </div>
