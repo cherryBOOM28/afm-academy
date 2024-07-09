@@ -51,6 +51,10 @@ function NewsPage() {
     }
     handleColorModeChange();
   }, []);
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleColorModeChange = (mode) => {
     const containerElement = document.querySelector(".text-content");
