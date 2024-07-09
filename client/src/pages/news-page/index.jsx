@@ -23,7 +23,7 @@ function NewsPage() {
   const dispatch = useDispatch();
   const selectedNews = useSelector((state) => state.news.selectedNews);
 
-  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
 
   useEffect(() => {
     if (!checkStyle) return;
@@ -51,7 +51,7 @@ function NewsPage() {
     }
     handleColorModeChange();
   }, []);
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
