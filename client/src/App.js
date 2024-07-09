@@ -6,13 +6,13 @@ import './App.css';
 import AdminRoute from './auth/AdminRoute.jsx';
 import { AuthProvider } from './auth/AuthContext';
 import PrivateRoute from './auth/PrivateRoute';
-import AdminPage_Main from './pages/AdminPage_v2/main/index.jsx';
-import CreateNews from './pages/CreateNews/index.jsx';
-import NewsPage from './pages/News/News.jsx';
-import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigationCourse/index.jsx';
 import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
+import AdminPage_Main from './pages/AdminPage_v2/main/index.jsx';
+import CreateNews from './pages/CreateNews/index.jsx';
 import Login from './pages/login/Login';
+import NewsPage from './pages/news-page';
+import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigationCourse/index.jsx';
 import Registration from './pages/registration/Registration';
 import './settings/i18n.js';
 const Home = lazy(() => import ('./pages/home/Home'))

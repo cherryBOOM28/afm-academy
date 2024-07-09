@@ -1,26 +1,22 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 import "./News.scss";
 
-import { Link } from "react-router-dom";
 // import { format } from 'date-fns';
 // import ruLocale from 'date-fns/locale/ru';
 
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import calendarIcon from "../../assets/icons/calendar.svg";
+import axios from "axios";
 import { useTranslation } from "react-i18next";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import calendarIcon from "../../assets/icons/calendar.svg";
 import Button from "../../components/UI/button/Button";
 import { useStyle } from "../../components/VisualModal/StyleContext";
-import Footer from "../../components/footer/Footer";
-import cl from "./Tabs.module.css";
-import axios from "axios";
-import base_url from "../../settings/base_url";
-import Header from "../../components/header/Header";
-import { t } from "i18next";
 import VisualModal from "../../components/VisualModal/VisualModal";
+import Footer from "../../components/footer/Footer";
+import Header from "../../components/header/Header";
+import base_url from "../../settings/base_url";
+import cl from "./Tabs.module.css";
 
 
 function NewsPage() {
@@ -118,7 +114,7 @@ function NewsPage() {
     };
   }, [selectedItem]);
 
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -180,10 +176,10 @@ function NewsPage() {
                 styles.colorMode === "dark"
                   ? "#fff"
                   : styles.colorMode === "light"
-                  ? "#000"
-                  : styles.colorMode === "blue"
-                  ? "#063462"
-                  : "#000",
+                    ? "#000"
+                    : styles.colorMode === "blue"
+                      ? "#063462"
+                      : "#000",
             }}
           >
             {item.name}
@@ -193,7 +189,7 @@ function NewsPage() {
               {!imagesHidden && <img src={calendarIcon} alt="calendar" />}
               <p className={cl.dateTime}>{formattedDate}</p>
             </div>
-            <Button id='newsButton'className={cl.cardBtn} onClick={() => handleShowDetailsBtn(item.id)}>
+            <Button id='newsButton' className={cl.cardBtn} onClick={() => handleShowDetailsBtn(item.id)}>
               {t("read more")}
             </Button>
           </div>
@@ -219,7 +215,7 @@ function NewsPage() {
     }
   };
 
-  
+
 
   const handleOpenVisualModal = () => {
     console.log("OPEN");
@@ -230,30 +226,15 @@ function NewsPage() {
 
 
   return (
-    <div
-      className={"vebinars-page text-content"}
-      style={{
-        background:
-          styles.colorMode === "dark"
-            ? "#000"
-            : styles.colorMode === "light"
-            ? "#f2f2f2"
-            : styles.colorMode === "blue"
-            ? "#9dd1ff"
-            : "#000",
-      }}
-      >
-            <VisualModal
+    <div className={"vebinars-page text-content"} style={{ background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f2f2f2" : styles.colorMode === "blue" ? "#9dd1ff" : "#000" }}>
+      <VisualModal
         open={openVisualModal}
         onRemoveImages={handleRemoveImages}
         onShowImages={handleShowImages}
-        onFontFamily={() => {}}
-        onIntervalChange={() => {}}
+        onFontFamily={() => { }}
+        onIntervalChange={() => { }}
         styles={styles}
       />
-
-      
-
       <div>
         <Header
           dark={styles.colorMode == "dark" ? false : true}
@@ -262,62 +243,50 @@ function NewsPage() {
         <div className="container"></div>
       </div>
       <div className="page-content container">
-          <div style={{display: "block" }}>
-              <div>
-
-        <div
-          className="interval"
-          style={{ letterSpacing: getLetterSpacing(letterInterval) }}
+        <div style={{ display: "block" }}>
+          <div>
+            <div
+              className="interval"
+              style={{ letterSpacing: getLetterSpacing(letterInterval) }}
             >
-                  <h1
-                className="text-content"
-                style={{
-                color:
-                  styles.colorMode === "dark"
-                    ? "#fff"
-                    : styles.colorMode === "light"
-                    ? "#343434"
-                    : styles.colorMode === "blue"
-                    ? "#063462"
-                    : "#000",
-                      }}
-                  >
-                   {t("news")}
+              <h1
+                className="text-content" style={{ color: styles.colorMode === "dark" ? "#fff" : styles.colorMode === "light" ? "#343434" : styles.colorMode === "blue" ? "#063462" : "#000", }}>
+                {t("news")}
               </h1>
-                <div>
-                  <div
-                    id="newsSection"
-                    className={cl.tabSliderContainer}
-                    style={{
-                      color:
-                        styles.colorMode === "dark"
-                          ? "#fff"
-                          : styles.colorMode === "light"
+              <div>
+                <div
+                  id="newsSection"
+                  className={cl.tabSliderContainer}
+                  style={{
+                    color:
+                      styles.colorMode === "dark"
+                        ? "#fff"
+                        : styles.colorMode === "light"
                           ? "#3A3939"
                           : styles.colorMode === "blue"
-                          ? "#063462"
-                          : "#000",
-                          background:'rgb(242, 242, 242)'
-                          }}
-                    >
-                    {selectedRowBtn !== null && selectedItem && (
-                   <div id='Modal'>
-                    <div className="details-modal2" >
-                      <div className="details-content2"> 
-                        <div style={{ textAlign: 'center' }}>
-                          <div style={{ display:'flex', textAlign:'left',marginTop:'25px',justifyContent:'space-between' }}>
-                           <p className='details-info2'>{selectedItem.name}</p>
-                           <span style={{textAlign:'right',justifyContent:'center'}}> 
-                            <button className="details-button12" onClick={() => handleShowDetailsBtn(null)}>X</button>
-                           </span>
+                            ? "#063462"
+                            : "#000",
+                    background: 'rgb(242, 242, 242)'
+                  }}
+                >
+                  {selectedRowBtn !== null && selectedItem && (
+                    <div id='Modal'>
+                      <div className="details-modal2" >
+                        <div className="details-content2">
+                          <div style={{ textAlign: 'center' }}>
+                            <div style={{ display: 'flex', textAlign: 'left', marginTop: '25px', justifyContent: 'space-between' }}>
+                              <p className='details-info2'>{selectedItem.name}</p>
+                              <span style={{ textAlign: 'right', justifyContent: 'center' }}>
+                                <button className="details-button12" onClick={() => handleShowDetailsBtn(null)}>X</button>
+                              </span>
+                            </div>
+                            {!imagesHidden && (<img src={selectedItem.image} alt="" className={'NewsModalImg'} />)}
+                            <p className='details-description2'>{selectedItem.description}</p>
                           </div>
-                           {!imagesHidden && (<img src={selectedItem.image} alt="" className={'NewsModalImg'} />)}
-                           <p className='details-description2'>{selectedItem.description}</p>
                         </div>
                       </div>
                     </div>
-                  </div>
-                    )}
+                  )}
                   <div
                     className={cl.sliderContainer}
                     style={{
@@ -325,10 +294,10 @@ function NewsPage() {
                         styles.colorMode === "dark"
                           ? "#fff"
                           : styles.colorMode === "light"
-                          ? "#000"
-                          : styles.colorMode === "blue"
-                          ? "#063462"
-                          : "#000",
+                            ? "#000"
+                            : styles.colorMode === "blue"
+                              ? "#063462"
+                              : "#000",
                     }}
                   >
                     {newsData && newsData.length > 0 ? (
@@ -338,67 +307,21 @@ function NewsPage() {
                     ) : (
                       <div style={{ width: "100%", textAlign: "center", paddingTop: "20px" }}>
                         <a style={{ fontSize: "24px", fontWeight: "600", opacity: "0.3" }}>Нет недавних новостей</a>
-                      </div> 
+                      </div>
                     )}
                   </div>
                 </div>
-             </div>
-          <h1
-            className="text-content"
-            style={{
-              color:
-                styles.colorMode === "dark"
-                  ? "#fff"
-                  : styles.colorMode === "light"
-                  ? "#343434"
-                  : styles.colorMode === "blue"
-                  ? "#063462"
-                  : "#000",
-            }}
-          >
-            Последние новости
-              </h1>
-              <h2
-            className="text-content"
-            style={{
-              color:
-                styles.colorMode === "dark"
-                  ? "#fff"
-                  : styles.colorMode === "light"
-                  ? "#343434"
-                  : styles.colorMode === "blue"
-                  ? "#063462"
-                  : "#000",
-            }}
-          >
-                <p className="last-news-time">
-                  {
-                    // formattedLastDate && 
-                    false 
-                    ? '' : ''
-                  }
-                </p>
-              </h2>
-              {newsData.length > 0 && (
-              <div style={{ textAlign: "left" }}>
-                <p className="last-news-info">
-                    <p className="last-news-name">{latestNews.name}</p>
-                    <p className="last-news-img"><img className="last-news-img-component" src={latestNews.image} alt="" /></p>
-                    <p className="last-news-description">{latestNews.description}</p>
-                    
-                 
-                </p>
-              </div>
-              )}
               </div>
             </div>
           </div>
         </div>
-        <br/><br/>
-          <Footer />
+      </div>
+      <br />
+      <br />
+      <br />
+      <Footer />
     </div>
   );
 }
 
-export default NewsPage
-;
+export default NewsPage;
