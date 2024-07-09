@@ -37,6 +37,7 @@
     flex-direction: column;
     border-bottom: 1px solid #ccc;
     padding-bottom: 5px;
+    line-height: 1.4;
   }
   
   .cardTitle {
@@ -50,7 +51,7 @@
     align-items: center;
   }
   .cardTitle:hover {
-    color: rgb(86, 86, 224);
+    color: rgb(48, 48, 213);
     transition: 0.3s;
     cursor: pointer;
   }
