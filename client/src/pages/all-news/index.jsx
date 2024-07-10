@@ -2,14 +2,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import calendarIcon from "../../assets/icons/calendar.svg";
+import Footer from "../../components/footer/Footer";
+import Header from "../../components/header/Header";
 import Button from "../../components/UI/button/Button";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
-import Footer from "../../components/footer/Footer";
-import Header from "../../components/header/Header";
+import { selectNews } from '../../redux/slices/newsSlice';
 import base_url from "../../settings/base_url";
 import "./News.scss";
 import cl from "./Tabs.module.css";
@@ -23,6 +26,9 @@ function AllNewsPage() {
     const [letterInterval, setLetterInterval] = useState("standard");
     const { i18n } = useTranslation();
     const [newsData, setNewsData] = useState([]);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const selectedNews = useSelector((state) => state.news.selectedNews);
     const settings = {
         dots: true,
         infinite: true,
@@ -32,12 +38,10 @@ function AllNewsPage() {
         autoplaySpeed: 2000,
         pauseOnHover: true
     };
-    const currentLanguage = i18n.language;
     const [selectedRowBtn, setSelectedRowBtn] = useState(null);
     const selectedItem = newsData.find((item) => item.id === selectedRowBtn);
 
     const [activeTab, setActiveTab] = useState('news');
-    const latestNews = newsData.length > 0 ? newsData.slice().sort((a, b) => new Date(b.date) - new Date(a.date))[0] : null;
 
 
     useEffect(() => {
@@ -109,7 +113,10 @@ function AllNewsPage() {
             document.removeEventListener('click', handleClickOutside);
         };
     }, [selectedItem]);
-
+    const handleNavigate = ({item}) => {
+        dispatch(selectNews(item));
+        navigate('/news-page');
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -185,7 +192,7 @@ function AllNewsPage() {
                             {!imagesHidden && <img src={calendarIcon} alt="calendar" />}
                             <p className={cl.dateTime}>{formattedDate}</p>
                         </div>
-                        <Button id='newsButton' className={cl.cardBtn} onClick={() => handleShowDetailsBtn(item.id)}>
+                        <Button id='newsButton' className={cl.cardBtn} onClick={() => handleNavigate({item})}>
                             {t("read more")}
                         </Button>
                     </div>
@@ -292,24 +299,6 @@ function AllNewsPage() {
                                         background: 'rgb(242, 242, 242)'
                                     }}
                                 >
-                                    {selectedRowBtn !== null && selectedItem && (
-                                        <div id='Modal'>
-                                            <div className="details-modal2" >
-                                                <div className="details-content2">
-                                                    <div style={{ textAlign: 'center' }}>
-                                                        <div style={{ display: 'flex', textAlign: 'left', marginTop: '25px', justifyContent: 'space-between' }}>
-                                                            <p className='details-info2'>{selectedItem.name}</p>
-                                                            <span style={{ textAlign: 'right', justifyContent: 'center' }}>
-                                                                <button className="details-button12" onClick={() => handleShowDetailsBtn(null)}>X</button>
-                                                            </span>
-                                                        </div>
-                                                        {!imagesHidden && (<img src={selectedItem.image} alt="" className={'NewsModalImg'} />)}
-                                                        <p className='details-description2'>{selectedItem.description}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
                                     <div
                                         className={cl.sliderContainer}
                                         style={{
@@ -335,53 +324,6 @@ function AllNewsPage() {
                                     </div>
                                 </div>
                             </div>
-                            <h1
-                                className="text-content"
-                                style={{
-                                    color:
-                                        styles.colorMode === "dark"
-                                            ? "#fff"
-                                            : styles.colorMode === "light"
-                                                ? "#343434"
-                                                : styles.colorMode === "blue"
-                                                    ? "#063462"
-                                                    : "#000",
-                                }}
-                            >
-                                Последние новости
-                            </h1>
-                            <h2
-                                className="text-content"
-                                style={{
-                                    color:
-                                        styles.colorMode === "dark"
-                                            ? "#fff"
-                                            : styles.colorMode === "light"
-                                                ? "#343434"
-                                                : styles.colorMode === "blue"
-                                                    ? "#063462"
-                                                    : "#000",
-                                }}
-                            >
-                                <p className="last-news-time">
-                                    {
-                                        // formattedLastDate && 
-                                        false
-                                            ? '' : ''
-                                    }
-                                </p>
-                            </h2>
-                            {newsData.length > 0 && (
-                                <div style={{ textAlign: "left" }}>
-                                    <p className="last-news-info">
-                                        <p className="last-news-name">{latestNews.name}</p>
-                                        <p className="last-news-img"><img className="last-news-img-component" src={latestNews.image} alt="" /></p>
-                                        <p className="last-news-description">{latestNews.description}</p>
-
-
-                                    </p>
-                                </div>
-                            )}
                         </div>
                     </div>
                 </div>
@@ -392,5 +334,4 @@ function AllNewsPage() {
     );
 }
 
-export default AllNewsPage
-    ;
+export default AllNewsPage;

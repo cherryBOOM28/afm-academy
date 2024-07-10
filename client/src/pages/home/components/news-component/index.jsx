@@ -35,11 +35,6 @@ const NewsComponent = ({ news }) => {
         return name.length > 60 ? name.slice(0, 60) + '...' : name;
     };
 
-    const handleOpenModal = (index) => {
-        setNewsModalData(newsData[index]);
-        setIsModalOpen(true);
-    };
-
     const handleCloseModal = () => {
         setIsModalOpen(false);
         setNewsModalData(null);
