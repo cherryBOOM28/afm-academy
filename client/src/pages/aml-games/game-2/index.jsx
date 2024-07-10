@@ -11,6 +11,7 @@ const Level_1_1 = lazy(() => import('./TaskMocks/level_1_1'));
 const Level_1_2 = lazy(() => import('./TaskMocks/level_1_2'));
 const Level_1_3 = lazy(() => import('./TaskMocks/level_1_3'));
 const Level_1_4 = lazy(() => import('./TaskMocks/level_1_4'));
+const Level_1_5 = lazy(() => import('./TaskMocks/level_1_5'));
 const Level_1_Result = lazy(() => import('./TaskMocks/level_1_result'));
 
 const GameReader = () => {
@@ -37,7 +38,7 @@ const GameReader = () => {
         }
     };
 
-    const isResultPage = subLevel === '5';
+    const isResultPage = subLevel === '6';
 
     return (
         <Provider store={store}>
@@ -82,7 +83,8 @@ const GetTaskPage = ({ level, subLevel }) => {
     if (levelNum === 1 && subLevelNum === 2) return <Suspense><Level_1_2 /></Suspense>;
     if (levelNum === 1 && subLevelNum === 3) return <Suspense><Level_1_3 /></Suspense>;
     if (levelNum === 1 && subLevelNum === 4) return <Suspense><Level_1_4 /></Suspense>;
-    if (levelNum === 1 && subLevelNum === 5) return <Suspense><Level_1_Result /></Suspense>;
+    if (levelNum === 1 && subLevelNum === 5) return <Suspense><Level_1_5 /></Suspense>;
+    if (levelNum === 1 && subLevelNum === 6) return <Suspense><Level_1_Result /></Suspense>;
 
     return null;
 };

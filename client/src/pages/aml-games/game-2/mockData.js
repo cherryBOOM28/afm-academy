@@ -81,12 +81,48 @@ export const mockTasks = [
         taskCount: 1,
         tasks: [
             {
-                name: 'Задание 1.4.1',
+                name: 'Задание 1.5.1',
                 description: testText,
                 goal: testText,
                 steps: testText,
                 risk: testText
             }
+        ]
+    },
+    {
+        level: 1,
+        subLevel: 5,
+        taskCount: 4,
+        name: 'Разработка анкеты «Знай своего клиента»',
+        tasks: [
+            {
+                name: 'Задание 1.5.1',
+                description: testText,
+                goal: testText,
+                steps: testText,
+                risk: testText
+            },
+            {
+                name: 'Задание 1.5.2',
+                description: testText,
+                goal: testText,
+                steps: testText,
+                risk: testText
+            },
+            {
+                name: 'Задание 1.5.3',
+                description: testText,
+                goal: testText,
+                steps: testText,
+                risk: testText
+            },
+            {
+                name: 'Задание 1.5.4',
+                description: testText,
+                goal: testText,
+                steps: testText,
+                risk: testText
+            },
         ]
     },
 ]
