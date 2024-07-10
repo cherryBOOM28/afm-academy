@@ -99,7 +99,7 @@ const NewsComponent = ({ news }) => {
                 </div>
             </div>
             <div className='button-wrapper'>
-                <button className="all-news-button" onClick={() => navigate("/news-page")}>
+                <button className="all-news-button" onClick={() => navigate("/all-news")}>
                     Все новости
                 </button>
             </div>

@@ -15,6 +15,7 @@ import NewsPage from './pages/news-page';
 import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigationCourse/index.jsx';
 import Registration from './pages/registration/Registration';
 import './settings/i18n.js';
+const AllNewsPage = lazy(() => import ('./pages/all-news/index.jsx'))
 const Home = lazy(() => import ('./pages/home/Home'))
 const Game_1 = lazy(() => import('./pages/aml-games/game-1/index.jsx'))
 const GameReader = lazy(() => import('./pages/aml-games/game-2/index.jsx'))
@@ -97,6 +98,7 @@ function App() {
                             <Route path="/management" element={<Suspense ><Management /></Suspense>}></Route>
                             <Route path="/contacts" element={<Suspense ><Contacts /></Suspense>}></Route>
                             <Route path="/news-page" element={<Suspense ><NewsPage /></Suspense>}></Route>
+                            <Route path="/all-news" element={<Suspense ><AllNewsPage /></Suspense>}></Route>
                             <Route path="/privacy-policy" element={<Suspense ><PrivacyPolicy /></Suspense>}></Route>
                             <Route path="/academic-council" element={<Suspense ><AcademicCouncil /></Suspense>}></Route>
                             <Route path="/plans-and-reports" element={<Suspense ><PlansAndReports /></Suspense>}></Route>
