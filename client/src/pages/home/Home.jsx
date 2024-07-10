@@ -176,9 +176,6 @@ function Home() {
         <Header handleOpenVisualModal={handleOpenVisualModal} />
         <AboutUsSection imagesHidden={imagesHidden} />
         <SecondSection />
-        {/* <EducationSection imagesHidden={imagesHidden} styles={styles} />
-        <CoursesSection styles={styles} />
-        <NewsSection styles={styles} /> */}
         <Footer />
       </div>
     </div>
