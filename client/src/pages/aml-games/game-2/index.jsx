@@ -84,7 +84,9 @@ const GetTaskPage = ({ level, subLevel }) => {
     if (levelNum === 1 && subLevelNum === 2) return <Suspense><Level_1_2 /></Suspense>;
     if (levelNum === 1 && subLevelNum === 3) return <Suspense><Level_1_3 /></Suspense>;
     if (levelNum === 1 && subLevelNum === 4) return <Suspense><Level_1_4 /></Suspense>;
-    if (levelNum === 1 && subLevelNum === 5) return <Suspense><Level_1_Result /></Suspense>;
+    if (levelNum === 1 && subLevelNum === 5) return <Suspense><Level_1_5 /></Suspense>;
+    
+    if (levelNum === 2 && subLevelNum === 1) return <Suspense><Level_2_1 /></Suspense>;
 
     return null;
 };
