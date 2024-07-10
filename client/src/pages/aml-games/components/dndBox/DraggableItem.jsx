@@ -11,13 +11,13 @@ const DraggableItem = ({ id, name }) => {
   }));
 
   return (
-    <div 
-      ref={drag} 
-      style={{ 
-        opacity: isDragging ? 0.5 : 1, 
-        padding: '8px', 
-        border: '1px dashed gray', 
-        margin: '4px', 
+    <div
+      ref={drag}
+      style={{
+        opacity: isDragging ? 0.5 : 1,
+        padding: '8px',
+        border: '1px dashed gray',
+        margin: '4px',
         textAlign: 'center',
         fontSize: '13px',
         backgroundColor: 'rgba(217, 217, 217, 0.13)',
