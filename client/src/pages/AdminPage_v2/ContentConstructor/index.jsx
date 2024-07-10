@@ -315,7 +315,7 @@ function ContentConstructor({
         if (notification.show) {
             timer = setTimeout(() => {
                 setNotification({ ...notification, show: false });
-            }, 3000); // 3 seconds
+            }, 1500); // 3 seconds
         }
         return () => clearTimeout(timer);
     }, [notification.show]);
