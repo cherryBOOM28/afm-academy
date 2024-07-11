@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import DraggableItem from '../../components/dndBox/DraggableItem';
-import DropZone from '../../components/dndBox/DropZone';
+import DnDContainer from '../../components/dndBox/DnDContainer'; // Импортируем новый компонент
 
 const initialItems = [
   { id: 1, name: 'ФИО' },
@@ -48,20 +45,7 @@ const Level_1_5 = () => {
         Задание: Разработайте Анкету «Знай своего клиента» с учетом информации
         необходимой для идентификации клиента.
       </p>
-      <DndProvider backend={HTML5Backend}>
-        <div className="container" style={{ display: 'flex', gap: '10px', margin: '10px', paddingTop: '20px' }}>
-          <div style={{ flex: 1, padding: '16px', background: 'rgba(217, 217, 217, 0.13)', borderRadius: '10px', display: 'flex', flexWrap: 'wrap' }}>
-            {items.map((item) => (
-              <DraggableItem key={item.id} id={item.id} name={item.name} />
-            ))}
-          </div>
-          <div style={{ flex: 2, display: 'flex', flexDirection: 'column', background: 'rgba(217, 217, 217, 0.13)', borderRadius: '10px' }}>
-            {Object.values(zones).map((zone) => (
-              <DropZone key={zone.id} id={zone.id} title={zone.title} items={zone.items} onDrop={handleDrop} />
-            ))}
-          </div>
-        </div>
-      </DndProvider>
+      <DnDContainer items={items} zones={zones} handleDrop={handleDrop} />
     </>
   );
 }
