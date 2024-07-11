@@ -4,7 +4,6 @@ import Divider from "../../../components/divider";
 import QuestionComponent from "../../../components/question-component";
 import TransactionForm from "../../../components/sumQuestions/TransactionForm";
 import Questionnaire from '../../../components/Questionnaire/Questionnaire';
-import Divider from "../../../components/divider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
