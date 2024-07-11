@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Sizebox from "../../../../../components/courseTemplates/common/Sizebox";
+import Divider from "../../../components/divider";
 import QuestionComponent from "../../../components/question-component";
 import TransactionForm from "../../../components/sumQuestions/TransactionForm";
 import Questionnaire from '../../../components/Questionnaire/Questionnaire';

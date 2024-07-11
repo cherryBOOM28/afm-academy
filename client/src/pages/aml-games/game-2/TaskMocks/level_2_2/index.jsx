@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Sizebox from "../../../../../components/courseTemplates/common/Sizebox";
+import Divider from "../../../components/divider";
 import DnDContainer from "../../../components/dndBox/DnDContainer";
 import bgIcon from "../../../components/dndBox/flags/Bulgaria.svg";
 import bfIcon from "../../../components/dndBox/flags/BurkinaFaso.svg";
@@ -134,7 +135,8 @@ const Level_2_2 = () => {
           <QuestionComponent key={question.id} question={question} />
         ))}
       </div>
-      <Sizebox height={40} style={{borderBottom:"1px solid blue"}} />
+      <Sizebox height={40} />
+      <Divider/>
       <h2>Задача 2</h2>
       <p>
         Задание: В этом задании вам предстоит распределить страны по трем
