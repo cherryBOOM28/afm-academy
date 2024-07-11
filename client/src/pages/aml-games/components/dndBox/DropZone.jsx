@@ -1,25 +1,17 @@
 import React from "react";
 import { useDrop } from "react-dnd";
 import idIcon from "./svg/9256632.svg";
-import contactIcon from "./svg/1509974.svg"
-import generalIcon from "./svg/3740813.svg"
+import contactIcon from "./svg/1509974.svg";
+import generalIcon from "./svg/3740813.svg";
 
 // Иконки SVG для каждого заголовка
 const icons = {
-  'Идентификационные данные': (
-    <img src={idIcon}/>
-  ),
-  'Контактные данные': (
-    <img src={contactIcon}/>
-
-  ),
-  'Общие сведения': (
-    <img src={generalIcon}/>
-
-  ),
+  "Идентификационные данные": <img src={idIcon} />,
+  "Контактные данные": <img src={contactIcon} />,
+  "Общие сведения": <img src={generalIcon} />,
 };
 
-const DropZone = ({ id, title, items, onDrop }) => {
+const DropZone = ({ id, title, items, onDrop, flag }) => {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "ITEM",
     drop: (item) => onDrop(id, item),
@@ -34,7 +26,6 @@ const DropZone = ({ id, title, items, onDrop }) => {
       style={{
         borderRadius: "10px 10px 0px 0px",
         background: isOver ? "lightblue" : "rgba(217, 217, 217, 0.13)",
-        minHeight: "150px",
       }}
     >
       <div
@@ -43,16 +34,25 @@ const DropZone = ({ id, title, items, onDrop }) => {
           padding: "8px",
           color: "white",
           display: "flex",
-          borderRadius: title === "Идентификационные данные" ? "10px 10px 00px 0px" : null,
+          borderRadius:
+            title === "Идентификационные данные" ? "10px 10px 00px 0px" : null,
         }}
       >
-        
-        <h3 style={{ marginLeft: '8px' }}>{title}</h3>
+        <h3 style={{ marginLeft: "8px" }}>{title}</h3>
       </div>
       <div style={{ padding: "8px", display: "flex", flexWrap: "wrap" }}>
-      {icons[title]}
+        {icons[title]}
         {items.length === 0 && (
-          <div style={{ textAlign: 'center', width: '100%', padding: '16px', color: 'gray' }}>
+          <div
+            style={{
+              textAlign: "center",
+              width: "100%",
+              padding: "16px",
+              color: "gray",
+              marginBottom: "20px",
+
+            }}
+          >
             Перетащите элементы сюда
           </div>
         )}
@@ -69,9 +69,18 @@ const DropZone = ({ id, title, items, onDrop }) => {
               borderRadius: "10px",
               width: "calc(50% - 29px)",
             }}
-          >
-            {item.name}
-          </div>
+          > {item.flag ? (
+            <div style={{ textAlign: "center" }}>
+              <div style={{ fontSize: "24px" }}>
+                <img src={item.flag} alt="" />
+              </div>
+              <div>{item.name}</div>
+            </div>
+          ) : (
+            <div>{item.name}</div>
+          )}
+        </div>
+
         ))}
       </div>
     </div>
