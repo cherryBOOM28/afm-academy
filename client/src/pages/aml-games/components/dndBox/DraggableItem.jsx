@@ -22,7 +22,7 @@ const DraggableItem = ({ id, name, flag }) => {
         fontSize: "13px",
         backgroundColor: "rgba(217, 217, 217, 0.13)",
         borderRadius: "10px",
-        width: flag ? "calc(50% - 86px)": "calc(50% - 8px)",
+        width: flag ? "calc(50% - 75px)": "calc(50% - 8px)",
         boxSizing: "border-box",
         height: flag ? "80px": "50px",
         display: "flex",

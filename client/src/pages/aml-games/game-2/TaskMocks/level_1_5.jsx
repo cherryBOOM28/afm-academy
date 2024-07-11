@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import DnDContainer from '../../components/dndBox/DnDContainer'; // Импортируем новый компонент
 
 const initialItems = [
-  { id: 1, name: 'ФИО' },
-  { id: 2, name: 'Документ удостоверяющий личность' },
-  { id: 3, name: 'ИИН' },
-  { id: 4, name: 'Номер и серия документа' },
-  { id: 5, name: 'Электронная почта' },
-  { id: 6, name: 'Адрес места регистрации' },
-  { id: 7, name: 'Номер контактного телефона' },
-  { id: 8, name: 'Дата заполнения анкеты' },
-  { id: 9, name: 'Кем выдан документ' },
-  { id: 10, name: 'Когда выдан документ' },
-  { id: 11, name: 'Дата рождения' },
-  { id: 12, name: 'Происхождение денежных средств' },
+  { id: 1, name: 'ФИО', initialZoneId: 0 },
+  { id: 2, name: 'Документ удостоверяющий личность', initialZoneId: 0 },
+  { id: 3, name: 'ИИН', initialZoneId: 0 },
+  { id: 4, name: 'Номер и серия документа', initialZoneId: 0 },
+  { id: 5, name: 'Электронная почта', initialZoneId: 0 },
+  { id: 6, name: 'Адрес места регистрации', initialZoneId: 0 },
+  { id: 7, name: 'Номер контактного телефона', initialZoneId: 0 },
+  { id: 8, name: 'Дата заполнения анкеты', initialZoneId: 0 },
+  { id: 9, name: 'Кем выдан документ', initialZoneId: 0 },
+  { id: 10, name: 'Когда выдан документ', initialZoneId: 0 },
+  { id: 11, name: 'Дата рождения', initialZoneId: 0 },
+  { id: 12, name: 'Происхождение денежных средств', initialZoneId: 0 },
 ];
 
 const Level_1_5 = () => {
@@ -27,17 +27,30 @@ const Level_1_5 = () => {
   const handleDrop = (zoneId, item) => {
     setZones((prevZones) => {
       const newZones = { ...prevZones };
-      const zoneItems = newZones[zoneId].items;
-
-      if (!zoneItems.find((zoneItem) => zoneItem.id === item.id)) {
-        newZones[zoneId].items = [...zoneItems, item];
+  
+      // Remove the item from the previous zone if it exists
+      Object.values(newZones).forEach((zone) => {
+        zone.items = zone.items.filter((zoneItem) => zoneItem.id !== item.id);
+      });
+  
+      // Add the item to the new zone if it's not the initial list (zoneId 0)
+      if (zoneId !== 0) {
+        newZones[zoneId].items = [...newZones[zoneId].items, item];
       }
+  
       return newZones;
     });
-
-    setItems((prevItems) => prevItems.filter((prevItem) => prevItem.id !== item.id));
+  
+    // Add the item back to the items list if it's returned to the initial list
+    if (zoneId === 0) {
+      setItems((prevItems) => [...prevItems, item]);
+    } else {
+      setItems((prevItems) =>
+        prevItems.filter((prevItem) => prevItem.id !== item.id)
+      );
+    }
   };
-
+  
   return (
     <>
       <h2>Задача 1</h2>
