@@ -45,7 +45,7 @@ const DropZone = ({ id, title, items, onDrop }) => {
         
         <h3 style={{ marginLeft: '8px' }}>{title}</h3>
       </div>
-      <div style={{padding: '8px', display: 'flex', flexWrap: 'wrap' }}>
+      <div style={{padding: '8px', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', maxHeight:'300px', overflowY:'auto' }}>
       {icons[title]}
         {items.length === 0 ? (
           <div
@@ -61,7 +61,7 @@ const DropZone = ({ id, title, items, onDrop }) => {
             Перетащите элементы сюда
           </div>
         ) : (
-          <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%', justifyContent: 'center' }}>
             {items.map((item) => (
               <DraggableItem key={item.id} id={item.id} name={item.name} flag={item.flag} />
             ))}
