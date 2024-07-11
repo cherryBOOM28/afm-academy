@@ -42,7 +42,7 @@ const GameReader = () => {
         }
     };
 
-    const isResultPage = subLevel === '6';
+    const isResultPage = subLevel === '6' && level === '1';
 
     return (
         <Provider store={store}>
