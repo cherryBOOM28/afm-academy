@@ -88,6 +88,21 @@ function ContentConstructor({
                 });
             });
 
+            modifiedHistory = modifiedHistory.map(component => {
+                if (component.componentName === "ComplexTable") {
+                    return {
+                        ...component,
+                        "values": {
+                            "columns": component.values.columns,
+                            "data_row": component.values.data,
+                            "version": 3,
+                        }
+                    }
+                }
+            })
+
+            console.log(modifiedHistory);
+
             axios
                 .post(base_url + '/api/aml/chapter/saveComponents/' + id, modifiedHistory, {
                     headers: {
