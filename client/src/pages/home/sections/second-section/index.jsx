@@ -4,7 +4,7 @@ import news1 from '../../assets/svg/news1.svg';
 import news2 from '../../assets/svg/news2.svg';
 import news3 from '../../assets/svg/news3.svg';
 import CoursesComponent from '../../components/courses-component';
-import EventsComponent from '../../components/event-component';
+// import EventsComponent from '../../components/event-component';
 import FormComponent from '../../components/form-component';
 import LearningFormat from '../../components/learning-format';
 import NewsComponent from '../../components/news-component';
@@ -61,7 +61,8 @@ const SecondSection = () => {
 
     return (
         <section className='second-section'>
-            <EventsComponent />
+            {/* <EventsComponent /> */}
+            <br /><br /><br />
             <CoursesComponent />
             <ThirdComponent />
             <LearningFormat />
