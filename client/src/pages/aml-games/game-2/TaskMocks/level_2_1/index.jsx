@@ -11,6 +11,14 @@ function Level_2_1() {
         { id: 3, text: 'Клиент без гражданства РК', correctAnswer: false },
         { id: 4, text: 'Клиент, не имеющий адреса регистрации в РК', correctAnswer: false },
         { id: 5, text: 'Клиент включенный в список ФТ', correctAnswer: false },
+        { id: 6, text: 'Клиент включенный в перечень ФРОМУ', correctAnswer: false },
+        { id: 7, text: 'Некоммерческая организация', correctAnswer: false },
+        { id: 8, text: 'Сомнительные документы представленные клиентом', correctAnswer: false },
+        { id: 9, text: 'Сомнительные схемы расчетов предлагаемые клиентом', correctAnswer: false },
+        { id: 10, text: 'Клиент в отношении которого ранее был определен высокий риск', correctAnswer: false },
+        { id: 11, text: 'Клиент уклоняется от процедуры НПК', correctAnswer: false },
+        { id: 12, text: 'Государственный орган', correctAnswer: false },
+        { id: 13, text: 'Международная организация', correctAnswer: false },
     ];
     useEffect(() => {
         // const fetchQuestions = async () => {

@@ -310,6 +310,16 @@ function ContentConstructor({
         displayContainer.scrollTop = '0px';
     }
 
+    useEffect(() => {
+        let timer;
+        if (notification.show) {
+            timer = setTimeout(() => {
+                setNotification({ ...notification, show: false });
+            }, 1500); // 3 seconds
+        }
+        return () => clearTimeout(timer);
+    }, [notification.show]);
+
     return (
         <div className="content-constructor">
             <div className='display' onScroll={(e) => handleDisplayScroll(e)}>

@@ -12,7 +12,6 @@ const QuestionComponent = ({ question }) => {
         <div className="question-container">
             <span className="question-text">{question.text}</span>
             <div className="buttons-container">
-                
                 <button
                     onClick={() => handleAnswer(true)}
                     className={`button ${selectedAnswer === true ? 'button-true' : ''}`}

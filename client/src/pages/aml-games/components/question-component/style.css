@@ -20,6 +20,8 @@
   .buttons-container {
     display: flex;
     padding-right: 10px;
+    padding-left: 5px;
+    border-left: 2px solid #E7E7E7;
   }
   
   .button {

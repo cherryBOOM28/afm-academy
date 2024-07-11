@@ -14,25 +14,24 @@ const NewsComponent = ({ news }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`${base_url}/api/aml/course/getAllNews?type=news`);
-                const truncatedData = response.data.map((item) => ({
-                    ...item,
-                    name: truncateName(item.name)
-                }));
-                setNewsData(truncatedData);
+                setNewsData(response.data);
+                setLoading(false);
             } catch (error) {
                 console.error(error);
+                setLoading(false);
             }
         };
         fetchData();
     }, []);
 
     const truncateName = (name) => {
-        return name.length > 60 ? name.slice(0, 60) + '...' : name;
+        return  name.length > 60 ? name.slice(0, 60) + '...' : name;
     };
 
     const handleCloseModal = () => {
@@ -45,6 +44,8 @@ const NewsComponent = ({ news }) => {
         navigate('/news-page');
     };
 
+    if (loading) return <div>Loading...</div>;
+    
     if (news.length < 6) return <div>Loading...</div>;
 
     return (
@@ -54,14 +55,14 @@ const NewsComponent = ({ news }) => {
                 <div className="column column-1">
                     <div className="news-item text-item" onClick={() => handleSelectNews(4)}>
                         <div className="news-badge">Новости</div>
-                        <p className='news-description'>{newsData[4].name}</p>
+                        <p className='news-description'>{truncateName(newsData[4].name)}</p>
                         <p className="news-date">{new Date(newsData[4].date).toLocaleDateString()}</p>
                     </div>
                     <div className="news-item image-item" onClick={() => handleSelectNews(2)}>
                         <div className='side-img-wrapper'>
                             <img className="side-img" src={newsData[2].image} alt={newsData[2].title} />
                         </div>
-                        <p className='news-description'>{newsData[2].name}</p>
+                        <p className='news-description'>{truncateName(newsData[2].name)}</p>
                         <p className="news-date">{new Date(newsData[2].date).toLocaleDateString()}</p>
                     </div>
                 </div>
@@ -70,25 +71,25 @@ const NewsComponent = ({ news }) => {
                         <div className='main-img-wrapper'>
                             <img className="main-img" src={newsData[0].image} alt={newsData[0].title} />
                         </div>
-                        <p className='news-description'>{newsData[0].name}</p>
+                        <p className='news-description'>{truncateName(newsData[0].name)}</p>
                         <p className="news-date">{new Date(newsData[0].date).toLocaleDateString()}</p>
                     </div>
                     <div className="news-item text-item large-item" onClick={() => handleSelectNews(5)}>
-                        <p className='news-description'>{newsData[5].name}</p>
+                        <p className='news-description'>{truncateName(newsData[5].name)}</p>
                         <p className="news-date">{new Date(newsData[5].date).toLocaleDateString()}</p>
                     </div>
                 </div>
                 <div className="column column-3">
                     <div className="news-item text-item" onClick={() => handleSelectNews(1)}>
                         <div className="news-badge">Новости</div>
-                        <p className='news-description'>{newsData[1].name}</p>
+                        <p className='news-description'>{truncateName(newsData[1].name)}</p>
                         <p className="news-date">{new Date(newsData[1].date).toLocaleDateString()}</p>
                     </div>
                     <div className="news-item image-item" onClick={() => handleSelectNews(3)}>
                         <div className='side-img-wrapper'>
                             <img className="side-img" src={newsData[3].image} alt={newsData[3].title} />
                         </div>
-                        <p className='news-description'>{newsData[3].name}</p>
+                        <p className='news-description'>{truncateName(newsData[3].name)}</p>
                         <p className="news-date">{new Date(newsData[3].date).toLocaleDateString()}</p>
                     </div>
                 </div>
