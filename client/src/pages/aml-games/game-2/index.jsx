@@ -16,7 +16,7 @@ const Level_2_1 = lazy(() => import('./TaskMocks/level_2_1/index.jsx'));
 
 const Level_2_3 = lazy(() => import('./TaskMocks/level_2_3/index.jsx'));
 const Level_2_4 = lazy(() => import('./TaskMocks/level_2_4/index.jsx'));
-const Level_1_Result = lazy(() => import('./TaskMocks/level_1_result'));
+const Level_Result = lazy(() => import('./TaskMocks/level_result'));
 
 const GameReader = () => {
     const navigate = useNavigate();
@@ -62,9 +62,9 @@ const GameReader = () => {
                                     <button
                                         className="blue"
                                         onClick={() => {
-                                            navigate(`/courses/aml-games/game/read/1/1/${Number(subLevel) + 1}`);
+                                            navigate(`/courses/aml-games/game/read/1/${level}/${Number(subLevel) + 1}`);
                                         }}
-                                    >
+                                    > 
                                         Далее
                                     </button>
                                 </div>
@@ -88,6 +88,7 @@ const GetTaskPage = ({ level, subLevel }) => {
     if (levelNum === 1 && subLevelNum === 3) return <Suspense><Level_1_3 /></Suspense>;
     if (levelNum === 1 && subLevelNum === 4) return <Suspense><Level_1_4 /></Suspense>;
     if (levelNum === 1 && subLevelNum === 5) return <Suspense><Level_1_5 /></Suspense>;
+    if (levelNum === 1 && subLevelNum === 6) return <Suspense><Level_Result level={1} /></Suspense>;
 
     if (levelNum === 2 && subLevelNum === 1) return <Suspense><Level_2_1 /></Suspense>;
 
