@@ -2,6 +2,4 @@
     display: flex;
     flex-direction: column;
     align-items: left;
-    padding-bottom: 40px;
-    border-bottom: 1px solid rgba(31, 60, 136, 0.7);
 }

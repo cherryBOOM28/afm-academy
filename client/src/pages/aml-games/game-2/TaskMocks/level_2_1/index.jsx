@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Sizebox from "../../../../../components/courseTemplates/common/Sizebox";
+import Divider from "../../../components/divider";
 import QuestionComponent from "../../../components/question-component";
 
 function Level_2_1() {
@@ -42,6 +43,8 @@ function Level_2_1() {
                     <QuestionComponent key={question.id} question={question} />
                 ))}
             </div>
+            <Sizebox height={40}/>
+            <Divider/>
         </>
     );
 }

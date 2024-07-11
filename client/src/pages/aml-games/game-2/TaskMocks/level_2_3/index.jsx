@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Sizebox from "../../../../../components/courseTemplates/common/Sizebox";
+import Divider from "../../../components/divider";
 import QuestionComponent from "../../../components/question-component";
 
 function Level_2_3() {
@@ -37,7 +38,7 @@ function Level_2_3() {
                 ))}
             </div>
             <Sizebox height={50} />
-            <Sizebox height={50} />
+            <Divider/>
             <h2>Задача 1</h2>
             <p>Задание: Вам предстоит распределить следующие критерии по двум группам: повышающие риски и понижающие риски.</p>
 
