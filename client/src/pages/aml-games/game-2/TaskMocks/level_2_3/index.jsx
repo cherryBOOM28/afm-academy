@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Sizebox from "../../../../../components/courseTemplates/common/Sizebox";
 import QuestionComponent from "../../../components/question-component";
+import Divider from "../../../components/divider";
 
 function Level_2_3() {
     const [questions, setQuestions] = useState([]);
@@ -36,6 +37,13 @@ function Level_2_3() {
                     <QuestionComponent key={question.id} question={question} />
                 ))}
             </div>
+            <Sizebox height={50} />
+            <Divider />
+            
+            <Sizebox height={50} />
+            <h2>Задача 1</h2>
+            <p>Задание: Вам предстоит распределить следующие критерии по двум группам: повышающие риски и понижающие риски.</p>
+
         </>
     );
 }
