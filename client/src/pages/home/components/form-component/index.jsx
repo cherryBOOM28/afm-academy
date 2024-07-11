@@ -53,9 +53,9 @@ const FormComponent= () => {
                     </div>
                     <div className='phone-number'>
                         <p>
-                            Пишите нам на <a href="https://wa.me/77081231212" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                            Пишите нам на <a href="https://wa.me/77087168416" target="_blank" rel="noopener noreferrer">WhatsApp</a>
                         </p>
-                        <p>Один телефон на все вопросы<br />+7 (708) 123 12 12</p>
+                        <p>Один телефон на все вопросы<br />+7 708 716 8416</p>
                     </div>
                 </div>
                 <div className="form-right">

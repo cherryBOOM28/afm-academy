@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import Sizebox from "../../../../../components/courseTemplates/common/Sizebox";
 import Divider from "../../../components/divider";
+import PdlComponent from "../../../components/pdl-component";
 import QuestionComponent from "../../../components/question-component";
+import './style.css';
 
 function Level_2_1() {
     const [questions, setQuestions] = useState([]);
@@ -44,7 +46,10 @@ function Level_2_1() {
                 ))}
             </div>
             <Sizebox height={40}/>
-            <Divider/>
+            <Divider />
+            <h2>Задача 2</h2>
+            <PdlComponent/>
+            
         </>
     );
 }
