@@ -45,7 +45,7 @@ const DropZone = ({ id, title, items, onDrop }) => {
         
         <h3 style={{ marginLeft: '8px' }}>{title}</h3>
       </div>
-      <div style={{padding: '8px', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', maxHeight:'300px', overflowY:'auto' }}>
+      <div style={{padding: '8px', display: 'flex', flexWrap: 'wrap', maxHeight:'300px', overflowY:'auto' }}>
       {icons[title]}
         {items.length === 0 ? (
           <div
