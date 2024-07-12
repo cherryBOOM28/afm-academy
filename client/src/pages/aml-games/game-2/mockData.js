@@ -81,7 +81,7 @@ export const mockTasks = [
         taskCount: 1,
         tasks: [
             {
-                name: 'Задание 1.5.1',
+                name: 'Задание 1.4.1',
                 description: testText,
                 goal: testText,
                 steps: testText,
@@ -123,6 +123,118 @@ export const mockTasks = [
                 steps: testText,
                 risk: testText
             },
+        ]
+    },
+    {
+        level: 2,
+        subLevel: 1,
+        taskCount: 1,
+        tasks: [
+            {
+                name: 'Задание 2.1.1',
+                description: testText,
+                goal: testText,
+                steps: testText,
+                risk: testText
+            }
+        ]
+    },
+    {
+        level: 2,
+        subLevel: 1,
+        taskCount: 2,
+        tasks: [
+            {
+                name: 'Задание 2.1.2',
+                description: testText,
+                goal: testText,
+                steps: testText,
+                risk: testText
+            }
+        ]
+    },
+    {
+        level: 2,
+        subLevel: 2,
+        taskCount: 1,
+        tasks: [
+            {
+                name: 'Задание 2.2.1',
+                description: testText,
+                goal: testText,
+                steps: testText,
+                risk: testText
+            }
+        ]
+    },
+    {
+        level: 2,
+        subLevel: 2,
+        taskCount: 2,
+        tasks: [
+            {
+                name: 'Задание 2.2.2',
+                description: testText,
+                goal: testText,
+                steps: testText,
+                risk: testText
+            }
+        ]
+    },
+    {
+        level: 2,
+        subLevel: 3,
+        taskCount: 1,
+        tasks: [
+            {
+                name: 'Задание 2.3.1',
+                description: testText,
+                goal: testText,
+                steps: testText,
+                risk: testText
+            }
+        ]
+    },
+    {
+        level: 2,
+        subLevel: 3,
+        taskCount: 2,
+        tasks: [
+            {
+                name: 'Задание 2.3.2',
+                description: testText,
+                goal: testText,
+                steps: testText,
+                risk: testText
+            }
+        ]
+    },
+    {
+        level: 2,
+        subLevel: 4,
+        taskCount: 1,
+        tasks: [
+            {
+                name: 'Задание 2.4.1',
+                description: testText,
+                goal: testText,
+                steps: testText,
+                risk: testText
+            }
+        ]
+    },
+    {
+        level: 2,
+        subLevel: 4,
+        taskCount: 2,
+        tasks: [
+            {
+                name: 'Задание 2.4.2',
+                description: testText,
+                goal: testText,
+                steps: testText,
+                risk: testText
+            }
         ]
     },
 ]

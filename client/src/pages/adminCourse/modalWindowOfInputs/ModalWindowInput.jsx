@@ -2755,7 +2755,7 @@ const Formatable_Textarea = ({
     const start = textArea.selectionStart;
     const end = textArea.selectionEnd;
     const selectedText = value.substring(start, end);
-
+ 
     if (start !== end) {
       const before = value.substring(0, start);
       const after = value.substring(end);
@@ -2766,7 +2766,7 @@ const Formatable_Textarea = ({
 
       setTimeout(() => {
         textArea.selectionStart = start;
-        textArea.selectionEnd = end + symbol.length + endSymbol.length;
+        textArea.selectionEnd = end + symbol.length + endSymbol.length + `[]`.length;
       }, 0);
     }
   };
@@ -2824,7 +2824,7 @@ const Formatable_Textarea = ({
           <button className='btn-underline' onClick={() => wrapSelected('|u|', '|u|')}>П</button>
           <button className='btn-highlight' onClick={() => wrapSelected('|h|', '[Вставьте скрытый текст сюда]|h|')}>H</button>
           <button className='btn-red' onClick={() => wrapSelected('|r|', '|r|')}>r</button>
-          <button className='btn-link' onClick={() => wrapSelected('|a|', '|a|')}>Link</button>
+          <button className='btn-link' onClick={() => wrapSelected('|a|[ Вставьте ссылку сюда ]', '|a|')}>Link</button>
           <button className='btn-ordered-list' onClick={() => wrapSelected('|1|', '|1|')}>1.</button>
           <button className='btn-unordered-list' onClick={() => wrapSelected('|•|', '|•|')}>•</button>
         </div>

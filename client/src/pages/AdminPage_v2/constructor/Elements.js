@@ -78,6 +78,7 @@ import DragAndDropZone from '../../../components/courseTemplates/common/Draggabl
 import JustTextWithP from '../../../components/courseTemplates/common/JustTextWithP'
 import LupaZone from '../../../components/courseTemplates/common/Lupa/LupaDragZone'
 import Table_1 from '../../../components/courseTemplates/common/Tables/Table-1'
+import PyramidList from '../../../components/courseTemplates/common_v2/PyramidList'
 import CustomCarouselExample from './../../../assets/images/Template Examples/CustomCarousel.png'
 import DataChainExample from './../../../assets/images/Template Examples/DataChain.png'
 import DragAndDropTwoSideExample from './../../../assets/images/Template Examples/DragAndDropTwoSide.png'
@@ -107,7 +108,6 @@ import Table_1Example from './../../../assets/images/Template Examples/Table_1.p
 import TabsGlossaryExample from './../../../assets/images/Template Examples/TabsGlossary.png'
 import TextAndLinkExample from './../../../assets/images/Template Examples/TextAndLink.png'
 import TextWithBackgroundExample from './../../../assets/images/Template Examples/TextWithBackground.png'
-import PyramidList from '../../../components/courseTemplates/common_v2/PyramidList'
 
 
 

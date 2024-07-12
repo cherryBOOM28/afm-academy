@@ -1,7 +1,7 @@
 import React from 'react';
 
 const parseText = (text) => {
-    const regex = /(\|a\|(.*?)\|a\|)|(\|•\|(.*?)\|•\|)|(\|b\|(.*?)\|b\|)|(\|i\|(.*?)\|i\|)|(\|u\|(.*?)\|u\|)|(\|h\|(.*?)\|h\|)|(\|r\|(.*?)\|r\|)|(\|\*\|(.*?)\|\*\|)|(\|1\|(.*?)\|1\|)/g;
+    const regex = /(\|a\|\[(.*?)\](.*?)\|a\|)|(\|•\|(.*?)\|•\|)|(\|b\|(.*?)\|b\|)|(\|i\|(.*?)\|i\|)|(\|u\|(.*?)\|u\|)|(\|h\|(.*?)\|h\|)|(\|r\|(.*?)\|r\|)|(\|\*\|(.*?)\|\*\|)|(\|1\|(.*?)\|1\|)/g;
 
     let parts = [];
     let match;
@@ -14,36 +14,37 @@ const parseText = (text) => {
 
         if (match[1]) { // Link text
             const url = match[2]; // Remove any leading or trailing whitespace
+            const displayText = match[3];
             parts.push(
                 <a href={url} key={parts.length} target="_blank" rel="noopener noreferrer">
-                    {url}
+                    {displayText}
                 </a>
             );
-        } else if (match[3]) { // Strikethrough text (new case)
-            parts.push(<ul className="strikethrough" key={parts.length}><li>{match[4].includes('|') ? parseText(match[4]) : match[4]}</li></ul>);
-        } else if (match[5]) { // Bold text
-            parts.push(<span key={parts.length} className="bold">{match[6].includes('|') ? parseText(match[6]) : match[6]}</span>);
-        } else if (match[7]) { // Italic text
-            parts.push(<span key={parts.length} className="italic">{match[8].includes('|') ? parseText(match[8]) : match[8]}</span>);
-        } else if (match[9]) { // Underline text
-            parts.push(<span key={parts.length} className="underline">{match[10].includes('|') ? parseText(match[10]) : match[10]}</span>);
-        } else if (match[11]) { // Highlight text
+        } else if (match[4]) { // Strikethrough text (new case)
+            parts.push(<ul className="strikethrough" key={parts.length}><li>{match[5].includes('|') ? parseText(match[5]) : match[5]}</li></ul>);
+        } else if (match[6]) { // Bold text
+            parts.push(<span key={parts.length} className="bold">{match[7].includes('|') ? parseText(match[7]) : match[7]}</span>);
+        } else if (match[8]) { // Italic text
+            parts.push(<span key={parts.length} className="italic">{match[9].includes('|') ? parseText(match[9]) : match[9]}</span>);
+        } else if (match[10]) { // Underline text
+            parts.push(<span key={parts.length} className="underline">{match[11].includes('|') ? parseText(match[11]) : match[11]}</span>);
+        } else if (match[12]) { // Highlight text
             parts.push(
                 <span
                     key={parts.length}
                     className="highlight"
                     randomtext={
-                        "(" + match[12].substring(match[12].indexOf('[') + 1, match[12].indexOf(']')) + ")"
+                        "(" + match[13].substring(match[13].indexOf('[') + 1, match[13].indexOf(']')) + ")"
                     }>
-                    {match[12].includes('|') ? parseText(match[12]) : match[12].substring(0, match[12].indexOf('['))}
+                    {match[13].includes('|') ? parseText(match[13]) : match[13].substring(0, match[13].indexOf('['))}
                 </span>
             );
-        } else if (match[13]) { // Red text
-            parts.push(<span key={parts.length} className="red">{match[14].includes('|') ? parseText(match[14]) : match[14]}</span>);
-        } else if (match[15]) { // Unordered list
-            parts.push(<ul key={parts.length}><li>{match[16].includes('|') ? parseText(match[16]) : match[16]}</li></ul>);
-        } else if (match[17]) { // Ordered list
-            parts.push(<ol key={parts.length}><li>{match[18].includes('|') ? parseText(match[18]) : match[18]}</li></ol>);
+        } else if (match[14]) { // Red text
+            parts.push(<span key={parts.length} className="red">{match[15].includes('|') ? parseText(match[15]) : match[15]}</span>);
+        } else if (match[16]) { // Unordered list
+            parts.push(<ul key={parts.length}><li>{match[17].includes('|') ? parseText(match[17]) : match[17]}</li></ul>);
+        } else if (match[18]) { // Ordered list
+            parts.push(<ol key={parts.length}><li>{match[19].includes('|') ? parseText(match[19]) : match[19]}</li></ol>);
         }
 
         lastIndex = match.index + match[0].length;
@@ -52,7 +53,7 @@ const parseText = (text) => {
     if (lastIndex < text.length) {
         parts.push(text.substring(lastIndex));
     }
-
+ 
     return parts;
 };
 
