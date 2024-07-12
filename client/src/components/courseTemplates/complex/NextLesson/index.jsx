@@ -11,7 +11,7 @@ function NextLesson({ nextLessonName, handleOnClick}) {
     useEffect(() => {
         console.log(location);
         if (
-            (location.search.indexOf('79') !== -1 || location.pathname.indexOf('81') !== -1)
+            (location.search.indexOf('81') !== -1 || location.pathname.indexOf('81') !== -1)
         ) {
             setKazakh(true);
         }

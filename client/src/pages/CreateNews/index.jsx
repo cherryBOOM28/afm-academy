@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import './style.scss';
-import { useLocation, useNavigate } from 'react-router';
-import { BuilderNavbar } from '../adminCourse/builderNavbar/BuilderNavbar';
 import axios from 'axios';
+import { useLocation, useNavigate } from 'react-router';
 import base_url from '../../settings/base_url';
+import { BuilderNavbar } from '../adminCourse/builderNavbar/BuilderNavbar';
+import './style.scss';
 
 function CreateNews() {
 
@@ -128,7 +128,7 @@ function CreateNews() {
                             value={description}
                             onChange={(e) => {
                                 setDescription(e.target.value)
-                            }} 
+                            }}
                         />
                     </div>
                     <div className='actions'>
