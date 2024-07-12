@@ -50,7 +50,7 @@ const FormComponent= () => {
             <div className="form-container">
                 <div className="form-left">
                     <div>
-                        <div>Остались вопросы ? <br /> <strong className='aml-academy-name'>AML ACADEMY</strong></div>
+                        <div>Остались ли вопросы ? <br /> <strong className='aml-academy-name'>AML ACADEMY</strong></div>
                     </div>
                     <img className="qr-aml" src={qr} alt="AML QR" />
                     <div className='phone-number'>

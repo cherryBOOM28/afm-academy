@@ -23,7 +23,9 @@ import ImageWithText from './../../components/courseTemplates/common/ImageWithTe
 import RandomParapraph from './../../components/courseTemplates/common/RandomParagraph';
 import lectorImage from './lectorImage.png';
 // import componentMap from '../adminCourse/tabConstructor/ComponentMap';
+import { useAuth } from '../../auth/AuthContext';
 import componentMap from '../AdminPage_v2/constructor/ComponentMap';
+
 
 function ReadCourse() {
 
@@ -34,6 +36,12 @@ function ReadCourse() {
     const [isLoading, setLoading] = useState(true);
 
     const jwtToken = localStorage.getItem('jwtToken');
+    const { isLoggedIn } = useAuth();
+    useEffect(() => {
+        if (!isLoggedIn) {
+            navigate('/login')
+        }
+    },[isLoggedIn])
 
     const [courseName, setCourseName] = useState('');
     const [isNavOpen, setIsNavOpen] = useState(true);
@@ -58,7 +66,7 @@ function ReadCourse() {
     useEffect(() => {
         console.log(location);
         if (
-            (location.search.indexOf('79') !== -1 || location.pathname.indexOf('79') !== -1)
+            (location.search.indexOf('81') !== -1 || location.pathname.indexOf('81') !== -1)
         ) {
             setKazakh(true);
         }
