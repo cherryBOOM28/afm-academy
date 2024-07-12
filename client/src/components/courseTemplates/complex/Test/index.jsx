@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import './style.scss'
+import './style.scss';
 
-import { FaCheck } from "react-icons/fa6";
 import axios from 'axios';
-import base_url from '../../../../settings/base_url';
+import { FaCheck } from "react-icons/fa6";
 import { useLocation } from 'react-router';
+import base_url from '../../../../settings/base_url';
 
 function TestPage({ 
     name, 
@@ -23,7 +23,7 @@ function TestPage({
     useEffect(() => {
         console.log(location);
         if (
-            (location.search.indexOf('79') !== -1 || location.pathname.indexOf('79') !== -1)
+            (location.search.indexOf('81') !== -1 || location.pathname.indexOf('81') !== -1)
         ) {
             setKazakh(true);
         }

@@ -1,6 +1,6 @@
+import { motion, useAnimation } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
-import './style.scss'
-import { motion, useAnimation, whileHover } from 'framer-motion';
+import './style.scss';
 
 import { BsArrowClockwise } from "react-icons/bs";
 import { useLocation } from 'react-router';
@@ -11,7 +11,7 @@ const QuestionContainer = ({ questions, leftAnswer, rightAnswer }) => {
 
     useEffect(() => {
         if (
-            (location.search.indexOf('79') !== -1 || location.pathname.indexOf('79') !== -1)
+            (location.search.indexOf('81') !== -1 || location.pathname.indexOf('81') !== -1)
         ) {
             setKazakh(true);
         }
