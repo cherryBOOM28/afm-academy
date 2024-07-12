@@ -17,6 +17,10 @@
 .aml-academy-name{
     font-weight: 600;
 }
+.qr-aml{
+    width: 220px;
+    border: 1px solid black;
+}
 .form-left {
     width: 45%;
     display: flex;

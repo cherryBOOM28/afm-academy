@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import qr from '../../assets/jpg/qr.jpg';
 import './style.css';
 
 const FormComponent= () => {
@@ -51,6 +52,7 @@ const FormComponent= () => {
                     <div>
                         <div>Остались вопросы ? <br /> <strong className='aml-academy-name'>AML ACADEMY</strong></div>
                     </div>
+                    <img className="qr-aml" src={qr} alt="AML QR" />
                     <div className='phone-number'>
                         <p>
                             Пишите нам на <a href="https://wa.me/77087168416" target="_blank" rel="noopener noreferrer">WhatsApp</a>

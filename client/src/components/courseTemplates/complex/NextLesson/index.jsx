@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GrLinkNext } from 'react-icons/gr';
 
-import './style.scss'
 import { useLocation } from 'react-router';
+import './style.scss';
 
 function NextLesson({ nextLessonName, handleOnClick}) {
     const location = useLocation();
@@ -11,7 +11,7 @@ function NextLesson({ nextLessonName, handleOnClick}) {
     useEffect(() => {
         console.log(location);
         if (
-            (location.search.indexOf('79') !== -1 || location.pathname.indexOf('79') !== -1)
+            (location.search.indexOf('79') !== -1 || location.pathname.indexOf('81') !== -1)
         ) {
             setKazakh(true);
         }
