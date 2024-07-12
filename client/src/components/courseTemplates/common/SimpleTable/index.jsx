@@ -15,18 +15,30 @@ function SimpleTable({ columns, data }) {
         ));
     };
 
+
+
     return (
         <div className="simpleTable">
             <div className="wrapper">
                 <table>
                     {
-                        columns ? (
-                            <thead>
-                                <tr>
-                                    {columns.map((column, index) => <th key={index}>{column}</th>)}
-                                </tr>
-                            </thead>
-                        ) : null
+                        columns 
+                            ? columns.length === 1 
+                                ? (
+                                    <thead>
+                                        <tr>
+                                            {columns.map((column, index) => <th key={index} style={{textAlign: 'center'}}>{column}</th>)}
+                                        </tr>
+                                    </thead>
+                                )
+                                : (
+                                    <thead>
+                                        <tr>
+                                            {columns.map((column, index) => <th key={index}>{column}</th>)}
+                                        </tr>
+                                    </thead>
+                                ) 
+                            : null
                     }
                     <tbody>
                         {data.map((row, rowIndex) => (
