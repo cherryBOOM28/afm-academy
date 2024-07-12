@@ -99,6 +99,8 @@ function ContentConstructor({
                         }
                     }
                 }
+
+                return component;
             })
 
             console.log(modifiedHistory);
