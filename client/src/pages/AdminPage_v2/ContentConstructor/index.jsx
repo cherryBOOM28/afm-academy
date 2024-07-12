@@ -102,6 +102,19 @@ function ContentConstructor({
 
                 return component;
             })
+            modifiedHistory = modifiedHistory.map(component => {
+                if (component.componentName === "DataChain") {
+                    return {
+                        ...component,
+                        "values": {
+                            "columns": component.values.columns,
+                            "data_row": component.values.data,
+                        }
+                    }
+                }
+
+                return component;
+            })
 
             console.log(modifiedHistory);
 
