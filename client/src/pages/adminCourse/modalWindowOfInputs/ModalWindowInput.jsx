@@ -2575,7 +2575,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                       Добавить новый элемент
                     </button>
                   </div>
-                )
+                ) 
                 : input.type === 'points_list' 
                 ? (
                   <div className='points_list-input'>
