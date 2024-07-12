@@ -103,7 +103,7 @@ function ContentConstructor({
                 return component;
             })
             modifiedHistory = modifiedHistory.map(component => {
-                if (component.componentName === "DataChain") {
+                if (component.componentName === "DataChain" || component.componentName === "FlexRow" ) {
                     return {
                         ...component,
                         "values": {
