@@ -5,7 +5,7 @@ import DraggableItem from './DraggableItem';
 import DropZone from './DropZone';
 import './DnDContainer.scss'; // Импортируем стили
 
-const DnDContainer = ({ items, zones, handleDrop }) => {
+const DnDContainer = ({ items, zones, handleDrop, onRemove }) => {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="container">
@@ -16,7 +16,7 @@ const DnDContainer = ({ items, zones, handleDrop }) => {
         </div>
         <div className="zones-container">
           {Object.values(zones).map((zone) => (
-            <DropZone key={zone.id} id={zone.id} title={zone.title} items={zone.items} onDrop={handleDrop} />
+            <DropZone key={zone.id} id={zone.id} title={zone.title} items={zone.items} onDrop={handleDrop} onRemove={onRemove} />
           ))}
         </div>
       </div>

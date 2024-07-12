@@ -12,59 +12,23 @@ const questions = [
 
 const TransactionForm = () => {
   return (
-    <div
-      style={{
-        padding: "20px",
-        maxWidth: "1000px",
-        margin: "20px",
-        borderRadius: "10px",
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: "#1A2751",
-          height: "50px",
-          borderRadius: "10px 10px 0 0",
-          
-        }}
-      ></div>
-      {questions.map((question, index) => (
-        <div
-          key={index}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            marginBottom: "10px",
-
-          }}
-        >
-          <div
-            className="blue-header"
-            style={{ backgroundColor: "#1A2751", borderRadius: "10px" }}
-          ></div>
-          <label
-            htmlFor={`amount-${index}`}
-            style={{ flex: 1, marginRight: "10px", fontSize: "1.125rem", marginTop: index === 0 ? '10px':null }}
-          >
-            {question}
-          </label>
-          <input
-            id={`amount-${index}`}
-            type="number"
-            placeholder="Введите сумму"
-            style={{
-              flex: "0 0 200px",
-              padding: "5px",
-              border: "none",
-              borderRadius: "10px",
-              backgroundColor: "#D9D9D9",
-              minHeight: "20px",
-              minWidth: "134px",
-              marginTop: index === 0 ? '10px':null
-            }}
-          />
-        </div>
-      ))}
+    <div style={{ padding: "20px", maxWidth: "1000px", margin: "20px", borderRadius: "10px"}}>
+      <div style={{ backgroundColor: "#1A2751", height: "50px", borderRadius: "10px 10px 0 0" }}></div>
+      <div style={{ backgroundColor: "#F7F7F7", padding: "20px", borderRadius: "0 0 10px 10px" }}>
+        {questions.map((question, index) => (
+          <div key={index} style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
+            <label htmlFor={`amount-${index}`} style={{ flex: 1, marginRight: "10px", fontSize: "1.125rem" }}>
+              {question}
+            </label>
+            <input
+              id={`amount-${index}`}
+              type="number"
+              placeholder="Введите сумму"
+              style={{ flex: "0 0 200px", padding: "5px", border: "none", borderRadius: "10px", backgroundColor: "#FFF" }}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

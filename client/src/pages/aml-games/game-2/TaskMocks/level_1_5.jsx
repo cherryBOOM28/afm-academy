@@ -45,22 +45,32 @@ const Level_1_5 = () => {
     if (zoneId === 0) {
       setItems((prevItems) => [...prevItems, item]);
     } else {
-      setItems((prevItems) =>
-        prevItems.filter((prevItem) => prevItem.id !== item.id)
-      );
+      setItems((prevItems) => prevItems.filter((prevItem) => prevItem.id !== item.id));
     }
   };
-  
+
+  const handleRemove = (itemId) => {
+    setZones((prevZones) => {
+      const newZones = { ...prevZones };
+      Object.values(newZones).forEach((zone) => {
+        zone.items = zone.items.filter((item) => item.id !== itemId);
+      });
+      return newZones;
+    });
+
+    // Add the item back to the initial list
+    setItems((prevItems) => {
+      const item = initialItems.find((i) => i.id === itemId);
+      return item ? [...prevItems, item] : prevItems;
+    });
+  };
+
   return (
-    <>
-      <h2>Задача 1</h2>
-      <p>
-        Задание: Разработайте Анкету «Знай своего клиента» с учетом информации
-        необходимой для идентификации клиента.
-      </p>
-      <DnDContainer items={items} zones={zones} handleDrop={handleDrop} />
-    </>
+    <div>
+      <h2>Level 1.5</h2>
+      <DnDContainer items={items} zones={zones} handleDrop={handleDrop} handleRemove={handleRemove} />
+    </div>
   );
-}
+};
 
 export default Level_1_5;

@@ -101,28 +101,41 @@ const Level_2_2 = () => {
   const handleDrop = (zoneId, item) => {
     setZones((prevZones) => {
       const newZones = { ...prevZones };
-
+  
       // Remove the item from the previous zone if it exists
       Object.values(newZones).forEach((zone) => {
         zone.items = zone.items.filter((zoneItem) => zoneItem.id !== item.id);
       });
-
+  
       // Add the item to the new zone if it's not the initial list (zoneId 0)
       if (zoneId !== 0) {
         newZones[zoneId].items = [...newZones[zoneId].items, item];
       }
-
+  
       return newZones;
     });
-
+  
     // Add the item back to the items list if it's returned to the initial list
     if (zoneId === 0) {
       setItems((prevItems) => [...prevItems, item]);
     } else {
-      setItems((prevItems) =>
-        prevItems.filter((prevItem) => prevItem.id !== item.id)
-      );
+      setItems((prevItems) => prevItems.filter((prevItem) => prevItem.id !== item.id));
     }
+  };
+
+  const handleRemove = (itemId) => {
+    setZones((prevZones) => {
+      const newZones = { ...prevZones };
+      Object.values(newZones).forEach((zone) => {
+        zone.items = zone.items.filter((item) => item.id !== itemId);
+      });
+      return newZones;
+    });
+
+    setItems((prevItems) => {
+      const item = initialItems.find((i) => i.id === itemId);
+      return item ? [...prevItems, item] : prevItems;
+    });
   };
 
   return (
@@ -144,7 +157,7 @@ const Level_2_2 = () => {
         задачей будет определить, к какой группе риска относится каждая из
         представленных стран.
       </p>
-      <DnDContainer items={items} zones={zones} handleDrop={handleDrop} />
+      <DnDContainer items={items} zones={zones} handleDrop={handleDrop} onRemove={handleRemove}/>
     </>
   );
 };

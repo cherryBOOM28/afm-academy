@@ -12,7 +12,7 @@ const icons = {
   'Общие сведения': <img src={generalIcon} />,
 };
 
-const DropZone = ({ id, title, items, onDrop }) => {
+const DropZone = ({ id, title, items, onDrop, onRemove }) => {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: 'ITEM',
     drop: (item) => onDrop(id, item),
@@ -39,14 +39,13 @@ const DropZone = ({ id, title, items, onDrop }) => {
           color: 'white',
           display: 'flex',
           alignItems: 'center',
-          borderRadius: title === 'Идентификационные данные' || title === 'Зеленый список' ? '10px 10px 0px 0px' : null
+          borderRadius: title === 'Идентификационные данные' || title === 'Зеленый список' ? '10px 10px 0px 0px' : null,
         }}
       >
-        
         <h3 style={{ marginLeft: '8px' }}>{title}</h3>
       </div>
-      <div style={{padding: '8px', display: 'flex', flexWrap: 'wrap', maxHeight:'300px', overflowY:'auto' }}>
-      {icons[title]}
+      <div style={{ padding: '8px', display: 'flex', flexWrap: 'wrap', maxHeight: '300px', overflowY: 'auto' }}>
+        {icons[title]}
         {items.length === 0 ? (
           <div
             style={{
@@ -55,7 +54,7 @@ const DropZone = ({ id, title, items, onDrop }) => {
               padding: '16px',
               color: 'gray',
               marginBottom: '20px',
-              flexGrow: 1, // Чтобы элемент занимал все доступное пространство
+              flexGrow: 1,
             }}
           >
             Перетащите элементы сюда
@@ -63,7 +62,7 @@ const DropZone = ({ id, title, items, onDrop }) => {
         ) : (
           <div style={{ display: 'flex', flexWrap: 'wrap', width: '100%', justifyContent: 'center' }}>
             {items.map((item) => (
-              <DraggableItem key={item.id} id={item.id} name={item.name} flag={item.flag} />
+              <DraggableItem key={item.id} id={item.id} name={item.name} flag={item.flag} onRemove={onRemove} />
             ))}
           </div>
         )}
