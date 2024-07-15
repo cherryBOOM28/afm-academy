@@ -1,84 +1,53 @@
-import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
+import './style.scss';
 
-import './style.scss'
+import defaultImage from './../../../../assets/images/Image_231.png';
 
-import image from './../../../../assets/images/Image_23.png';
+function ImageWithText({ img, imageText, color, children, version = 1 }) {
+    const validatedImg = img || defaultImage;
+    const validatedColor = color || '#000000';
+    const validatedImageText = imageText || '';
 
-
-function ImageWithText({ img, imageText, color, children, version=1 }) {
-    if (version === 2) {
-        const splitText = imageText.split('\n').map((text, index) => {
-            // Check if the text is just whitespace (or empty) and handle it accordingly
-            const isWhitespaceOnly = !text.trim();
+    const renderText = (text) => {
+        return text.split('\n').map((line, index) => {
+            const isWhitespaceOnly = !line.trim();
             return (
                 <span key={index} style={{ display: 'block', whiteSpace: isWhitespaceOnly ? 'pre' : 'normal' }}>
-                    {isWhitespaceOnly ? '\u00A0' : text}
+                    {isWhitespaceOnly ? '\u00A0' : line}
                 </span>
             );
         });
-        
+    };
 
-        return (
-            <div className="imageWithText">
-            <img src={img !== null && img !== undefined ? img : image} alt={imageText} />
-            <div className="image-text" style={{color: color !== undefined && color !== null ? color : '#000000'}}>
-                <div>
-                    <div
-                        style={{
-                            borderTop: `4px solid ${color !== undefined && color !== null ? color : '#000000'}`
-                        }}
-                    ></div>    
-                </div> 
-                <p
-                    style={{color: color !== undefined && color !== null ? color : '#000000'}}
-                >
-                    {splitText}
-                </p>
-            </div>
-            <div className="dim"></div>
-        </div>
-        );
-    }
-
-    if (children) {
-        return ( 
-            <div className="imageWithText">
-                <img src={img !== null && img !== undefined ? img : image} alt={imageText} />
-                <div className="image-text" style={{color: color !== undefined && color !== null ? color : '#000000'}}>
-                    <div>
-                        <div
-                            style={{
-                                borderTop: `4px solid ${color !== undefined && color !== null ? color : '#000000'}`
-                            }}
-                        ></div>    
-                    </div> 
-                    {children}
-                </div>
-                <div className="dim"></div>
-            </div>
-        );
-    }
-
-    return ( 
+    return (
         <div className="imageWithText">
-            <img src={img !== null && img !== undefined ? img : image} alt={imageText} />
-            <div className="image-text" style={{color: color !== undefined && color !== null ? color : '#000000'}}>
+            <img src={validatedImg} alt={validatedImageText} />
+            <div className="image-text" style={{ color: validatedColor }}>
                 <div>
-                    <div
-                        style={{
-                            borderTop: `4px solid ${color !== undefined && color !== null ? color : '#000000'}`
-                        }}
-                    ></div>    
-                </div> 
-                <p
-                    style={{color: color !== undefined && color !== null ? color : '#000000'}}
-                >
-                    {imageText}
-                </p>
+                    <div style={{ borderTop: `4px solid ${validatedColor}` }}></div>
+                </div>
+                {version === 2 ? (
+                    <p style={{ color: validatedColor }}>{renderText(validatedImageText)}</p>
+                ) : (
+                    children ? (
+                        children
+                    ) : (
+                        <p style={{ color: validatedColor }}>{validatedImageText}</p>
+                    )
+                )}
             </div>
             <div className="dim"></div>
         </div>
     );
 }
+
+ImageWithText.propTypes = {
+    img: PropTypes.string,
+    imageText: PropTypes.string,
+    color: PropTypes.string,
+    children: PropTypes.node,
+    version: PropTypes.number,
+};
 
 export default ImageWithText;

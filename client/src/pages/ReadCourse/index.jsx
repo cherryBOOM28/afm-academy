@@ -458,7 +458,11 @@ function ReadCourse() {
                 // Parse the JSON strings inside the values object to JavaScript objects
                 const props = {};
                 Object.keys(component.values.values).forEach(key => {
-                    props[key] = JSON.parse(component.values.values[key]);
+                    try {
+                        props[key] = JSON.parse(component.values.values[key]);
+                    } catch (e) {
+                        console.error(`Error parsing value for key "${key}":`, component.values.values[key]);
+                    }
                 });
 
                 return (

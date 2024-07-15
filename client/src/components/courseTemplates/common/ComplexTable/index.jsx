@@ -45,7 +45,7 @@ const ComplexTable = ({ columns, data, data_row, showCollapseButton = true, vers
                             </tr>
                         </thead>
                         <tbody>
-                            {data_row.slice(0, showRows).map((row, rowIndex) => (
+                            {data_row?.slice(0, showRows).map((row, rowIndex) => (
                                 <tr key={rowIndex}>
                                     {columns.map((column, colIndex) => {
                                         const colSpan = row['colSpan'] || 1;

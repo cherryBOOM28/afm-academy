@@ -108,7 +108,7 @@ function ContentConstructor({
                         ...component,
                         "values": {
                             "columns": component.values.columns,
-                            "data_row": component.values.data,
+                            "data_row": component.values.data_row,
                         }
                     }
                 }
