@@ -3622,7 +3622,7 @@ function GetLesson({
 
                     <Reveal>
                         <DataChain
-                            data={[
+                            data_row={[
                                 {
                                     title: 'Техническое соответствие',
                                     description:
