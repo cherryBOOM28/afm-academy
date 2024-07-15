@@ -1,7 +1,7 @@
 import React from 'react';
 
 const parseText = (text) => {
-    const regex = /(\|a\|\[(.*?)\](.*?)\|a\|)|(\|•\|(.*?)\|•\|)|(\|b\|(.*?)\|b\|)|(\|i\|(.*?)\|i\|)|(\|u\|(.*?)\|u\|)|(\|h\|(.*?)\|h\|)|(\|r\|(.*?)\|r\|)|(\|\*\|(.*?)\|\*\|)|(\|1\|(.*?)\|1\|)/g;
+    const regex = /(\|a\|\[(.*?)\](.*?)\|a\|)|(\|•\|(.*?)\|•\|)|(\|b\|(.*?)\|b\|)|(\|i\|(.*?)\|i\|)|(\|u\|(.*?)\|u\|)|(\|h\|(.*?)\|h\|)|(\|r\|(.*?)\|r\|)|(\|\*\|(.*?)\|\*\|)|(\|hr\|(.*?)\|hr\|)/g;
 
     let parts = [];
     let match;
@@ -43,8 +43,8 @@ const parseText = (text) => {
             parts.push(<span key={parts.length} className="red">{match[15].includes('|') ? parseText(match[15]) : match[15]}</span>);
         } else if (match[16]) { // Unordered list
             parts.push(<ul key={parts.length}><li>{match[17].includes('|') ? parseText(match[17]) : match[17]}</li></ul>);
-        } else if (match[18]) { // Ordered list
-            parts.push(<ol key={parts.length}><li>{match[19].includes('|') ? parseText(match[19]) : match[19]}</li></ol>);
+        } else if (match[18]) { // line
+            parts.push(<hr key={parts.length}/>);
         }
 
         lastIndex = match.index + match[0].length;

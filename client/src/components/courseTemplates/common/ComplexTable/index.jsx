@@ -13,7 +13,7 @@ const ComplexTable = ({ columns, data, data_row, showCollapseButton = true, vers
     const toggleCollapse = () => {
         setIsCollapsed(prevState => !prevState);
         if (isCollapsed) {
-            setShowRows(version === 2 ? data_row.length : data.length);
+            setShowRows(version === 3 ? data_row?.length : data?.length);
         } else {
             setShowRows(5);
         }
@@ -69,7 +69,7 @@ const ComplexTable = ({ columns, data, data_row, showCollapseButton = true, vers
                                                         </React.Fragment>
                                                     ))
                                                 ) : (
-                                                    row[column]
+                                                    parseText(row[column])
                                                 )}
                                             </td>
                                         );
@@ -124,7 +124,7 @@ const ComplexTable = ({ columns, data, data_row, showCollapseButton = true, vers
                                                 row[column].map((line, lineIndex) => (
                                                     <React.Fragment key={lineIndex}>
                                                         {lineIndex > 0 && <hr />}
-                                                        {line}
+                                                        {parseText(line)}
                                                     </React.Fragment>
                                                 ))
                                             ) : (
