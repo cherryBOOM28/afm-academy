@@ -94,7 +94,7 @@ function ContentConstructor({
                         ...component,
                         "values": {
                             "columns": component.values.columns,
-                            "data_row": component.values.data,
+                            "data_row": component.values.data || component.values.data_row ,
                             "version": 3,
                         }
                     }
@@ -108,7 +108,7 @@ function ContentConstructor({
                         ...component,
                         "values": {
                             "columns": component.values.columns,
-                            "data_row": component.values.data_row,
+                            "data_row": component.values.data || component.values.data_row,
                         }
                     }
                 }
