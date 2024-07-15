@@ -2342,7 +2342,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
 
                                           return {
                                             ...prevValues,
-                                            ['data']: updated
+                                            ['data_row']: updated
                                           }
 
                                         })
@@ -2367,7 +2367,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
 
                                         return {
                                           ...prevValues,
-                                          ['data']: updated
+                                          ['data_row']: updated
                                         }
 
                                       })
@@ -2381,8 +2381,8 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                       })
                     }
                     {
-                      values?.data !== undefined && values?.data !== null
-                      && values?.data.length === 0
+                      values?.data_row !== undefined && values?.data_row !== null
+                      && values?.data_row.length === 0
                         ? <p>Перед тем как добавить ряд, добавьте и заполните все колонки</p>
                         : null
                     }
@@ -2398,7 +2398,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                           return {
                             ...prevValues,
                             ['data']: [
-                              ...prevValues['data'],
+                              ...prevValues['data_row'],
                               newRow
                             ]
                           }
