@@ -220,7 +220,7 @@ function NewTabConstructor({saveCancel, save, id}) {
                                                 </svg>
                                                 <a>Добавить модуль</a>
                                             </div>
-                                            : ""
+                                            : "" 
                                         }
                                     </div>
                                     <div className='annotations'>

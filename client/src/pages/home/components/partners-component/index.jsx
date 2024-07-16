@@ -1,31 +1,31 @@
 import React from 'react'
-import partnerImg from '../../assets/svg/partners.svg'
+import partnerImg1 from '../../assets/jfif/Afm.jfif'
+import partnerImg2 from '../../assets/jfif/Sfm.jfif'
+import partnerImg5 from '../../assets/png/sudEkspertiza.png'
+import partnerImg3 from '../../assets/png/Turan.png'
+import partnerImg4 from '../../assets/png/uchetPob.png'
 import PartnersList from './partners-list'
 import './style.css'
 const partners = [
     {
-        img: partnerImg,
-        partnerName: 'partner1'
+        img: partnerImg1,
+        partnerName: 'Afm'
     },
     {
-        img: partnerImg,
-        partnerName: 'partner2'
+        img: partnerImg2,
+        partnerName: 'Sfm'
     },
     {
-        img: partnerImg,
-        partnerName: 'partner3'
+        img: partnerImg3,
+        partnerName: 'Turan'
     },
     {
-        img: partnerImg,
-        partnerName: 'partner4'
+        img: partnerImg4,
+        partnerName: 'UchetPob'
     },
     {
-        img: partnerImg,
-        partnerName: 'partner5'
-    },
-    {
-        img: partnerImg,
-        partnerName: 'partner6'
+        img: partnerImg5,
+        partnerName: 'SudEkspertiza'
     }
 ]
 
