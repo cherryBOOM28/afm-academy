@@ -43,6 +43,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
     const hasQuestions = inputs.some((x) => x.name == 'questions')
     const hasColumnsInput = inputs.some((x) => x.name == 'columns')
     const hasDataInput = inputs.some((x) => x.name == 'data')
+    const hasDataRowInput = inputs.some((x) => x.name == 'data_row')
     const hasDataBtnInput = inputs.some((x) => x.name == 'dataBtn')
     const hasIconInput = inputs.some((x) => x.name == 'icons');
     const hasCentered = inputs.some((x) => x.name == 'isCentered');
@@ -320,6 +321,9 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
         ...prevValues,
         'columns': exValues?.columns || ['Первая колонна', 'Вторая колонна'],
         'data': exValues?.data || [
+          // {'Первая колонна': '', 'Вторая колонна': ''}
+        ],
+        'data_row': exValues?.data || [
           // {'Первая колонна': '', 'Вторая колонна': ''}
         ],
       }));
@@ -2317,7 +2321,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                 ? (
                   <div className="data-rows-input">
                     {
-                      values?.data?.map((item, index) => {
+                      values?.data_row?.map((item, index) => {
 
                         console.log(item);
 
@@ -2337,12 +2341,12 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                                       onChange={(e) => {
                                         console.log(index, key, e.target.value)
                                         setValues(prevValues => {
-                                          const updated = prevValues.data;
+                                          const updated = prevValues.data_row;
                                           updated[index][key] = e.target.value;
 
                                           return {
                                             ...prevValues,
-                                            ['data_row']: updated
+                                            ['data']: updated
                                           }
 
                                         })
@@ -2362,12 +2366,12 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                                       let newValue = e.target.value;
 
                                       setValues(prevValues => {
-                                        const updated = prevValues.data;
+                                        const updated = prevValues.data_row;
                                         updated[index][key] = newValue;
 
                                         return {
                                           ...prevValues,
-                                          ['data_row']: updated
+                                          ['data']: updated
                                         }
 
                                       })
@@ -2381,7 +2385,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                       })
                     }
                     {
-                      values?.data_row !== undefined && values?.data_row !== null
+                      values?.data_row?.row !== undefined && values?.data_row !== null
                       && values?.data_row.length === 0
                         ? <p>Перед тем как добавить ряд, добавьте и заполните все колонки</p>
                         : null
@@ -2397,7 +2401,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
 
                           return {
                             ...prevValues,
-                            ['data']: [
+                            ['data_row']: [
                               ...prevValues['data_row'],
                               newRow
                             ]
@@ -2427,8 +2431,8 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
 
                           return {
                             ...prevValues,
-                            ['data']: [
-                              ...prevValues['data'],
+                            ['data_row']: [
+                              ...prevValues['data_row'],
                               newRow
                             ]
                           }
