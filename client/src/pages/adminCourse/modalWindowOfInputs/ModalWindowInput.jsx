@@ -2386,7 +2386,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                     }
                     {
                       values?.data_row?.row !== undefined && values?.data_row !== null
-                      && values?.data_row.length === 0
+                      && values?.data_row?.length === 0
                         ? <p>Перед тем как добавить ряд, добавьте и заполните все колонки</p>
                         : null
                     }
@@ -2415,7 +2415,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
                     <button
                       onClick={e => {
                         const newKey = values?.columns 
-                          ? values?.columns.length !== 0
+                          ? values?.columns?.length !== 0
                             ? values?.columns[0]
                             : 'key'
                           : 'key1'

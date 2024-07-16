@@ -13,7 +13,7 @@ const ComplexTable = ({ columns, data, data_row, showCollapseButton = true, vers
     const toggleCollapse = () => {
         setIsCollapsed(prevState => !prevState);
         if (isCollapsed) {
-            setShowRows(version === 3 ? data_row.length : data.length);
+            setShowRows(version === 3 ? data_row?.length : data?.length);
         } else {
             setShowRows(5);
         }
