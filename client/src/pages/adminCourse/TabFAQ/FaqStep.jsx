@@ -1,7 +1,8 @@
-import './faqStep.scss'
-import {useEffect, useState} from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router';
 import base_url from "../../../settings/base_url";
+import './faqStep.scss';
 
 const FAQStep = ({nextStep,id}) => {
     const [what_course_represents, setWhat_course_represents] = useState( "")
@@ -10,6 +11,7 @@ const FAQStep = ({nextStep,id}) => {
     const [what_is_availability, setWhat_is_availability] = useState("")
     const [what_is_agenda_of_course, setWhat_is_agenda_of_course] = useState("")
     const [what_you_will_get, setWhat_you_will_get] = useState("")
+    const navigate = useNavigate()
 
     const [isMounted, setIsMounted] = useState(true);
 
@@ -140,7 +142,7 @@ const FAQStep = ({nextStep,id}) => {
              </div>
              <div className='submit-or-back'>
                 <a className='button-next' onClick={saveAndNext}>Перейти далее</a>
-                <a className='button-back'>Вернутся назад</a>
+                <a className='button-back' >Вернутся назад</a>
             </div>
         </div>
     )

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import base_url from '../../../settings/base_url';
 import plusSign from '../images/pluc-image.svg';
 import base64Course from './course-default';
@@ -37,6 +38,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
 
     const [editingExisting, setEditingExisting] = useState(false)
 
+    const navigate = useNavigate()
     useEffect(() => {
         if (id != 0) {
             axios
@@ -204,7 +206,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
             </div>
             <div className='submit-or-back'>
                 <a className='button-next' onClick={saveAndNext}>Перейти далее</a>
-                <a className='button-back'>Вернутся назад</a>
+                <a className='button-back' onClick={() => navigate('/manager')}>Вернутся назад</a>
             </div>
         </div>
     )
