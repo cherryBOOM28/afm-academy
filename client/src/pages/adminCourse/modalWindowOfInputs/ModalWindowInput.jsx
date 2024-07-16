@@ -323,7 +323,7 @@ const Modal = ({ onClose, inputs, onSubmit, exValues, example }) => {
         'data': exValues?.data || [
           // {'Первая колонна': '', 'Вторая колонна': ''}
         ],
-        'data_row': exValues?.data || [
+        'data_row': exValues?.data_row || [
           // {'Первая колонна': '', 'Вторая колонна': ''}
         ],
       }));

@@ -19,6 +19,11 @@ const ComplexTable = ({ columns, data, data_row, showCollapseButton = true, vers
         }
     };
 
+    const collapseButton = data_row?.length > 5;
+
+
+    
+
     const collapseButtonText = isCollapsed
         ? (courseId === 81 ? 'Кестені ашу' : 'Развернуть Таблицу')
         : (courseId === 81 ? 'Кестені жабу' : 'Свернуть Таблицу');
@@ -27,7 +32,7 @@ const ComplexTable = ({ columns, data, data_row, showCollapseButton = true, vers
         return (
             <div className='divkaParent'>
                 <div className='divka'>
-                    {showCollapseButton && (
+                    { collapseButton && (
                         <button className='ComplexTableBtn' onClick={toggleCollapse}>
                             {collapseButtonText}
                         </button>
