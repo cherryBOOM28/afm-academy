@@ -300,3 +300,24 @@
         }
     }
 }
+.dropdown-container-select{
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 17px;
+    margin: 20px;
+    margin-left: 0;
+}
+.button-user{
+    padding: 15px;
+    border-radius: 18px;
+    background-color: #1a441a;
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+}
+.button-user:hover{
+    scale: 1.05;
+    transition: 0.2s;
+    background-color: #2f862f;
+}

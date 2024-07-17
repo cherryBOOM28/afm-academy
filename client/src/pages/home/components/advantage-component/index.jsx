@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -44,10 +45,11 @@ const AdvantagesCarousel = () => {
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
     };
+    const { t } = useTranslation(); 
 
     return (
         <div className="advantages-container">
-            <p className='advantage-title'>Преимущества</p>
+            <p className='advantage-title'>{ t('advantages') }</p>
             <p className='aml-academy'>AML ACADEMY</p>
 
             <Slider {...settings}>

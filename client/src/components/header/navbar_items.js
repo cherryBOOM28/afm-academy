@@ -1,10 +1,5 @@
 const navbar_items = [
     {
-        name: 'Главная',
-        route: '/',
-        subItems: []
-    },
-    {
       name: 'about us',
       route: null, 
       subItems: [

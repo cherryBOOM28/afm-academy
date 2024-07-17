@@ -28,10 +28,12 @@
   
   .questionnaire-button.not-relevant:hover {
     background-color: #80d473;
+    transition: 0.5s;
   }
   
   .questionnaire-button.relevant:hover {
     background-color: #fb4545;
+    transition: 0.5s;
   }
   
   .questionnaire-question {

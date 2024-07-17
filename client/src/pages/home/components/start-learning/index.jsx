@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import './style.css';
 
@@ -7,15 +8,16 @@ const StartLearning = () => {
     function handleNavigate() {
         navigate('/courses/86/read')
     }
+    const { t } = useTranslation()
     return (
         <div className='start-learning'>
             <div className='start-learning-wrapper'>
                 <div className='text'>
-                    Начни учиться бесплатно
+                    {t("start learning")}
                 </div>
                 <div className='button'>
                     <button onClick={handleNavigate}>
-                        Получить первый урок
+                        {t("get your first lesson")}
                     </button>
                 </div>
             </div>

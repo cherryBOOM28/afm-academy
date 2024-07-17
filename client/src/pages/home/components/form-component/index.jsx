@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import qr from '../../assets/jpg/qr.jpg';
 import './style.css';
 
@@ -10,6 +11,7 @@ const FormComponent= () => {
     const [comment, setComment] = useState('');
     const [isAgreed, setIsAgreed] = useState(false);
     const [isSubscribed, setIsSubscribed] = useState(false);
+    const { t } = useTranslation();
 
     const handlePhoneChange = (e) => {
         const phoneValue = e.target.value;
@@ -50,20 +52,20 @@ const FormComponent= () => {
             <div className="form-container">
                 <div className="form-left">
                     <div>
-                        <div>Остались ли вопросы ? <br /> <strong className='aml-academy-name'>AML ACADEMY</strong></div>
+                        <div>{t('do you still have questions?')} <br /> <strong className='aml-academy-name'>AML ACADEMY</strong></div>
                     </div>
                     <img className="qr-aml" src={qr} alt="AML QR" />
                     <div className='phone-number'>
                         <p>
-                            Пишите нам на <a href="https://wa.me/77087168416" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                            {t('write to us at')} <a href="https://wa.me/77087168416" target="_blank" rel="noopener noreferrer">WhatsApp</a>
                         </p>
-                        <p>Один телефон на все вопросы<br />+7 708 716 8416</p>
+                        <p>{t('one phone number for all questions')}<br />+7 708 716 8416</p>
                     </div>
                 </div>
                 <div className="form-right">
                     <input
                         type="text"
-                        placeholder="Введите ваше имя"
+                        placeholder={t('enter your name')}
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
@@ -75,12 +77,12 @@ const FormComponent= () => {
                     />
                     <input
                         type="email"
-                        placeholder="Введите вашу почту"
+                        placeholder={t('enter your email')}
                         value={email}
                         onChange={handleEmailChange}
                     />
                     <textarea
-                        placeholder="Ваш комментарий"
+                        placeholder={t('your comment')}
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                     />
@@ -91,7 +93,7 @@ const FormComponent= () => {
                                 checked={isAgreed}
                                 onChange={(e) => setIsAgreed(e.target.checked)}
                             />
-                            Я согласен(а) на обработку персональных данных и с политикой обработки персональных данных
+                            {t('i agree 1')}
                         </label>
                         <label>
                             <input
@@ -99,7 +101,7 @@ const FormComponent= () => {
                                 checked={isSubscribed}
                                 onChange={(e) => setIsSubscribed(e.target.checked)}
                             />
-                            Я согласен(а) на получение новостных рассылок
+                            {t('i agree 2')}
                         </label>
                     </div>
                     <button
@@ -107,7 +109,7 @@ const FormComponent= () => {
                         disabled={!isAgreed}
                         className={`submit-button ${isAgreed ? '' : 'disabled'}`}
                     >
-                        Оставить заявку
+                        {t('submit your application')}
                     </button>
                 </div>
             </div>

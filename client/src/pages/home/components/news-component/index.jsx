@@ -1,6 +1,7 @@
 // src/components/NewsComponent.tsx
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { selectNews } from '../../../../redux/slices/newsSlice';
@@ -15,6 +16,7 @@ const NewsComponent = ({ news }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
+    const {t} = useTranslation()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -50,11 +52,11 @@ const NewsComponent = ({ news }) => {
 
     return (
         <div className="news-container">
-            <h1 className="news-title">Новости AML Academy</h1>
+            <h1 className="news-title">{ t('news') }</h1>
             <div className="news-grid">
                 <div className="column column-1">
                     <div className="news-item text-item" onClick={() => handleSelectNews(4)}>
-                        <div className="news-badge">Новости</div>
+                        <div className="news-badge">{ t('news') }</div>
                         <p className='news-description'>{truncateName(newsData[4].name)}</p>
                         <p className="news-date">{new Date(newsData[4].date).toLocaleDateString()}</p>
                     </div>
@@ -81,7 +83,7 @@ const NewsComponent = ({ news }) => {
                 </div>
                 <div className="column column-3">
                     <div className="news-item text-item" onClick={() => handleSelectNews(1)}>
-                        <div className="news-badge">Новости</div>
+                        <div className="news-badge">{ t('news') }</div>
                         <p className='news-description'>{truncateName(newsData[1].name)}</p>
                         <p className="news-date">{new Date(newsData[1].date).toLocaleDateString()}</p>
                     </div>
@@ -96,7 +98,7 @@ const NewsComponent = ({ news }) => {
             </div>
             <div className='button-wrapper'>
                 <button className="all-news-button" onClick={() => navigate("/all-news")}>
-                    Все новости
+                    {t('all news')}
                 </button>
             </div>
             {newsModalData && (

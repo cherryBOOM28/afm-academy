@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import partnerImg1 from '../../assets/jfif/Afm.jfif'
 import partnerImg2 from '../../assets/jfif/Sfm.jfif'
 import partnerImg5 from '../../assets/png/sudEkspertiza.png'
@@ -30,10 +31,11 @@ const partners = [
 ]
 
 const PartnersComponent = () => {
+    const { t } = useTranslation();
     return (
         <div className='partners-component'>
             <div className='partners-title'>
-                Партнеры
+                {t('partners')}
             </div>
             <div className='partners-body'>
                 {partners.map((partner, index) => (

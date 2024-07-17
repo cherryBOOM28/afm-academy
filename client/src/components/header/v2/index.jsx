@@ -11,12 +11,13 @@ import './style.scss';
 function Header({
     handleOpenVisualModal
 }) {
+    const {t} = useTranslation()
     return ( 
         <div className="header-v2">
             <div className="row">
                 <div className="logo"> 
                     <img src={logo} alt="" />
-                    <span>Академия финансового мониторинга</span>
+                    <span>{ t("academy of financial monitoring")}</span>
                 </div>
                 <div className="navigation">
                     {navbar_items.map((item, index) => {
@@ -125,12 +126,10 @@ const NavItem = ({
     );
 }
 
-const LangBtn = ({
-
-}) => {
+const LangBtn = () => {
     const [open, setOpen] = useState(false);
+    const [currentLanguage, setCurrentLanguage] = useState('РУС');
     const _Ref = useRef(null);
-
     const { i18n } = useTranslation();
 
     useEffect(() => {
@@ -146,28 +145,30 @@ const LangBtn = ({
         };
     }, []);
 
-    const changeLanguage = (language) => {
+    const changeLanguage = (language, label) => {
         setOpen(false);
+        setCurrentLanguage(label);
         i18n.changeLanguage(language);
     };
-    
+
     return (
         <div className="lang" ref={_Ref}>
-            <div onClick={() => setOpen(prev => !prev)}>
-                <span>Рус</span>
+            <div className="lang-toggle" onClick={() => setOpen(prev => !prev)}>
+                <span>{currentLanguage}</span>
                 <FaChevronDown />
             </div>
             {
-                open ? (
-                    <div>
-                        <div onClick={() => changeLanguage('kz')}>ҚАЗ</div>
-                        <div onClick={() => changeLanguage('ru')}>РУС</div>
-                        <div onClick={() => changeLanguage('eng')}>ENG</div>
+                open && (
+                    <div className="lang-options">
+                        <div onClick={() => changeLanguage('kz', 'ҚАЗ')}>ҚАЗ</div>
+                        <div onClick={() => changeLanguage('ru', 'РУС')}>РУС</div>
+                        <div onClick={() => changeLanguage('eng', 'ENG')}>ENG</div>
                     </div>
-                ) : null
+                )
             }
         </div>
-    )
-}
+    );
+};
+
 
 export default Header;

@@ -57,7 +57,7 @@
     "anti-washing system of the RK": "ҚР жылыстатуға қарсы жүйесі",
     "fatf": "ФАТФ",
     "eag": "ЕАТ",
-    "mutual assessment": "Өзара бағалау",
+    "mutual assessment": "Өзара бағалау", 
 
     "ric":"ҒЗИ",
 
@@ -77,15 +77,28 @@
     "core": "Базалық",
     "specialized": "Мамандандырылған",
     "advanced": "Жетілдірілген",
-    "thematic":"Тематикалық", 
+    "thematic":"Тематикалық",
+    "enter your name":"Атыңызды енгізіңіз",
+    "enter your email":"Электронды почтаңызды енгізіңіз",
+    "your comment":"Сіздің пікіріңіз",
+    "i agree 1":"Мен дербес деректерді өңдеуге және дербес деректерді өңдеу саясатына келісемін",
+    "i agree 2":"Мен ақпараттық бюллетеньдерді алуға келісемін",
 
     "it":"IT",
     "education":"Білім беру",
-    
-    
+
+    "start learning":"Тегін оқуды бастау",
+    "get your first lesson":"Алғашқы сабақты алыңыз",
+    "all news":"Барлық жаңалықтар",
+    "partners":"Серіктестер",
+    "academy of financial monitoring":"Қаржы мониторингі академиясы",
+    "do you still have questions?":"Сізде әлі де сұрақтар бар ма?",
+    "write to us at":"Бізге жазыңыз",
+    "one phone number for all questions":"Барлық сұрақтарға арналған бір телефон нөмірі",
+    "submit your application":"өтініш қалдыру",
 
 
-    "advantages of academy": "Академияның басымдылығы",
+    "advantages": "Академияның басымдылықтары",
     "qualified experts": "КЖ/ТҚҚ саласында жұмыс тәжірибесі бар білікті сарапшылар",
     "convenient learning format": "Оқытудың ыңғайлы форматы",
     "qualified experts1": "- уәкілетті органда жұмыс тәжірибесі бар",
