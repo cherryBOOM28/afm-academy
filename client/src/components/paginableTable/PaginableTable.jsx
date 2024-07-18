@@ -1,10 +1,8 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, Button } from '@mui/material';
-import axios from 'axios';
-import React, { useState, useEffect, Children } from 'react';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 
-import {BiPlus, BiSave} from 'react-icons/bi';
-import {ImCancelCircle} from 'react-icons/im';
-import base_url from '../../settings/base_url';
+import { BiPlus, BiSave } from 'react-icons/bi';
+import { ImCancelCircle } from 'react-icons/im';
 import { useStyle } from '../VisualModal/StyleContext';
 
 
@@ -21,7 +19,7 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
 
     const [isAdding, setIsAdding] = useState(false);
 
-    const cellPadding = '20px 0px';
+    const cellPadding = '20px';
     const cellFont = `400 16px/normal 'Inter', sans-serif`;
     const headCellFont = `500 16px/normal 'Inter', sans-serif`;
     const cellColor = '#3A3939'
