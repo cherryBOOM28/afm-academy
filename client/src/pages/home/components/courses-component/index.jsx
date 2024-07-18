@@ -10,18 +10,19 @@ import './style.css';
 
 const CoursesComponent = () => {
     const [courses, setCourses] = useState([]);
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     useEffect(() => {
+        const isKazakh = i18n.language === 'kz';
         const fetchedCourses = [
-            { name: t('core'), imageSrc: baseCourseImg, courseId: 8 },
+            { name: t('core'), imageSrc: baseCourseImg, courseId: isKazakh ? 81 : 8 },
             { name: t('specialized'), imageSrc: profileCourseImg, courseId: 'catalog#top' },
             { name: t('advanced'), imageSrc: advancedCourseImg, courseId: 'catalog#top' },
             { name: t('thematic'), imageSrc: tematicCourseImg, courseId: 'catalog#top' }
         ];
 
         setCourses(fetchedCourses);
-    }, [t]);
+    }, [t, i18n.language]);
 
     return (
         <div>

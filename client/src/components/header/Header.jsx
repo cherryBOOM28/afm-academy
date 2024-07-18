@@ -517,7 +517,7 @@ const Hamburger = forwardRef(({
   };
   useEffect(() => {
     // Проверяем, содержит ли текущий маршрут "/courses/79"
-    if (location.pathname.includes("/courses/79")) {
+    if (location.pathname.includes("/courses/81")) {
       // Если да, то устанавливаем язык по умолчанию на казахский
       changeLanguage('kz');
     }
