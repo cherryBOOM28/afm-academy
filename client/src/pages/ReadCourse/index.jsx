@@ -59,6 +59,8 @@ function ReadCourse() {
     const [openQuizModal, setOpenQuizModal] = useState(false);
     const [quizStatus, setQuizStatus] = useState('');
 
+    const [a, setA] = useState(0);
+
     const [courseProgress, setCourseProgress] = useState(0);
     
     const [courseModules, setCourseModules] = useState([]);
@@ -84,8 +86,6 @@ function ReadCourse() {
         fetchData();
         setLoading(false);
     }, []);
-
-
     const fetchData = async () => {
 
         try {
@@ -103,7 +103,13 @@ function ReadCourse() {
                 setActiveModuleId(res.data.course.modules[0].module_id)
             } 
             if (res.data.course.modules.length > 0 && res.data.course.modules[0].lessons.length > 0) {   
-                setActiveSessionId(res.data.course.modules[0].lessons[0].lesson_id)
+                if ((location.search.indexOf('81') !== -1 || location.pathname.indexOf('81') !== -1)) {
+                    setActiveSessionId(-4)
+                } else {
+                    setActiveSessionId(res.data.course.modules[0].lessons[0].lesson_id)
+                    setA(res.data.course.modules[0].lessons[0].lesson_id)
+                    console.log(a);
+                }
             } 
 
             setCourseName(res.data.course.course_name);
@@ -264,6 +270,10 @@ function ReadCourse() {
         scrollToTopAnimated();
         if (_module_id !== null) setActiveModuleId(_module_id);
         setActiveSessionId(_lesson_id);
+        if (module_id === 69 && lesson_id === 167) {
+            setActiveSessionId(lesson_id)
+            setActiveModuleId(module_id)
+        }
     };
 
     const getLesson = (isModuleQuiz) => {
@@ -443,8 +453,8 @@ function ReadCourse() {
                 <Sizebox height={100}/>
 
                 <Reveal>
-                    <NextLesson handleOnClick={() => {
-                        CheckCurrentChapter(id, 58);
+                    <NextLesson nextLessonName='Негізгі түсініктер мен қысқартулар' handleOnClick={() => {
+                        CheckCurrentChapter(69, 167);
                     }}/>
                 </Reveal>
 
@@ -726,6 +736,7 @@ function ReadCourse() {
                         courseName={courseName}
                         courseModules={courseModules}
                         handleTestSessionClick={handleTestSessionClick}
+                        isLoadInfo={isLoadInfo}
                     />
 
                     <div className={isNavOpen ? "course-content open" : "course-content"}>
@@ -755,7 +766,8 @@ const CourseNavigation = ({
     courseProgress,
     courseName,
     courseModules,
-    handleTestSessionClick
+    handleTestSessionClick,
+    isLoadInfo
 }) => {
 
     const location = useLocation();
@@ -802,7 +814,7 @@ const CourseNavigation = ({
             </div>
             <div className="nav-body">
                 {
-                    course_id === '81' && (
+                    isLoadInfo && course_id === '81' && (
                         <Session
                             checked={true}
                             course_id={course_id}
@@ -884,7 +896,7 @@ const CourseNavigation = ({
                     ) : null
                 }
                 {
-                    course_id === '81' && (
+                    isLoadInfo && course_id === '81' && (
                         <Session
                             checked={true}
                             course_id={course_id}
