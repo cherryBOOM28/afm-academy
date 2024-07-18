@@ -362,3 +362,117 @@
 .dropdown-option:hover {
     background-color: #f1f1f1;
 }
+.webinar-grid {
+    display: flex;
+    gap: 20px;
+    position: absolute;
+    width: 1200px;
+}
+
+.webinar-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.img-webinar img {
+    width: 290px;
+    height: 300px;
+}
+
+.text-of-card {
+    padding: 10px;
+}
+
+.edit-button, .delete-button {
+    margin: 10px 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.create-button {
+    margin: 20px;
+    margin-left: 0;
+    padding: 10px 20px;
+    background-color: #334661;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-webinar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content-webinar {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    form{
+        display: flex;
+        gap: 15px;
+        flex-direction: column;
+        box-sizing: border-box;
+        align-items: center;
+    }
+    input{
+        width: 400px;
+        box-sizing: border-box;
+        border:none;
+        border-bottom: 2px solid rgb(97, 83, 58);
+    }
+    textarea{
+        width: 400px;
+        box-sizing: border-box;
+        border:none;
+        border-bottom: 2px solid rgb(105, 99, 87);
+    }
+    button{
+        width: 95px;
+        border-radius: 12px;
+        background-color: #2f862f;
+        color: white;
+        padding: 15px;
+        border:none;
+    }
+    button:hover{
+        scale: 1.05;
+        background-color: #3dda3d;
+    }
+}
+
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
