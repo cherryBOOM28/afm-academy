@@ -1,50 +1,46 @@
-import React, { useState, useEffect, Children } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import './style.scss'
+import './style.scss';
 import file1 from './Глоссарий.pdf';
 
 import { useNavigate, useParams } from 'react-router-dom';
-import { m, useMotionValueEvent, useScroll } from 'framer-motion';
 
-import { FaStar } from "react-icons/fa";
 
-import { BiSolidObjectsHorizontalRight } from 'react-icons/bi';
-import { MdClose } from "react-icons/md";
-import Sizebox from '../../../components/courseTemplates/common/Sizebox';
-import Reveal from '../../../components/Reveal';
 import HeaderWithLine from '../../../components/courseTemplates/common/HeaderWithLine';
+import Sizebox from '../../../components/courseTemplates/common/Sizebox';
 import NextLesson from '../../../components/courseTemplates/complex/NextLesson';
 import CourseHeader from '../../../components/courseTemplates/course-header';
+import Reveal from '../../../components/Reveal';
 import { Module, Session } from '../../../components/sessions/Sessions';
 
-import lectorImage from './lectorImage.png';
-import Report_Warning from '../../../components/courseTemplates/common/Warnings/Report';
 import Centered from '../../../components/courseTemplates/common/Centered';
-import RandomH2 from '../../../components/courseTemplates/common/RandomH2';
-import TextWithTitle from '../../../components/courseTemplates/common/TextWithTitle';
-import RandomParapraph from '../../../components/courseTemplates/common/RandomParagraph';
+import FileDownloader from '../../../components/courseTemplates/common/FileDownloader';
+import ImageLine from '../../../components/courseTemplates/common/ImageLine';
+import ImageWithText from '../../../components/courseTemplates/common/ImageWithText';
 import NotNumberedDots from '../../../components/courseTemplates/common/NotNumberedDots';
 import NumberedDots from '../../../components/courseTemplates/common/NumberedDots';
-import ImageWithText from '../../../components/courseTemplates/common/ImageWithText';
-import TextAndLink from '../../../components/courseTemplates/complex/TextAndLink';
-import FlexRow from '../../../components/courseTemplates/common_v2/FlexRow';
-import VideoWithTitleAndText from '../../../components/courseTemplates/complex/Video/VideoWithTitleAndText';
-import VideoLine from '../../../components/courseTemplates/common/VideoLine';
+import RandomH2 from '../../../components/courseTemplates/common/RandomH2';
+import RandomParapraph from '../../../components/courseTemplates/common/RandomParagraph';
 import SimpleTable from '../../../components/courseTemplates/common/SimpleTable';
+import TextWithBackground from '../../../components/courseTemplates/common/TextWithBackground';
+import TextWithTitle from '../../../components/courseTemplates/common/TextWithTitle';
+import VideoLine from '../../../components/courseTemplates/common/VideoLine';
+import Report_Warning from '../../../components/courseTemplates/common/Warnings/Report';
+import DotsOnRoad from '../../../components/courseTemplates/common_v2/DotsOnRoad';
 import FancyList from '../../../components/courseTemplates/common_v2/FancyList';
 import FlexBoxes from '../../../components/courseTemplates/common_v2/FlexBoxes';
-import ImageLine from '../../../components/courseTemplates/common/ImageLine';
-import DotsOnRoad from '../../../components/courseTemplates/common_v2/DotsOnRoad';
-import TwoColumnsDivider from '../../../components/courseTemplates/common_v2/TwoColumnsDivider';
 import Image from '../../../components/courseTemplates/common_v2/Image';
-import TextWithBackground from '../../../components/courseTemplates/common/TextWithBackground';
-import FileDownloader from '../../../components/courseTemplates/common/FileDownloader';
+import TwoColumnsDivider from '../../../components/courseTemplates/common_v2/TwoColumnsDivider';
+import TextAndLink from '../../../components/courseTemplates/complex/TextAndLink';
+import lectorImage from './lectorImage.png';
 
 import blockchainTransactions from '../../../assets/images/blockchain-transactions.png';
 import blockchainTransactions2 from '../../../assets/images/blockchain-transactions2.png';
 import AFM_logo from '../../../assets/images/crypto_AFM.png';
-import AML_logo from '../../../assets/images/crypto_AML.png';
 import crypto21 from '../../../assets/images/cryptocurrentcy21.png';
+import crypto210 from '../../../assets/images/cryptocurrentcy210.png';
+import crypto211 from '../../../assets/images/cryptocurrentcy211.png';
+import crypto212 from '../../../assets/images/cryptocurrentcy212.png';
 import crypto22 from '../../../assets/images/cryptocurrentcy22.png';
 import crypto23 from '../../../assets/images/cryptocurrentcy23.png';
 import crypto24 from '../../../assets/images/cryptocurrentcy24.png';
@@ -53,9 +49,6 @@ import crypto26 from '../../../assets/images/cryptocurrentcy26.png';
 import crypto27 from '../../../assets/images/cryptocurrentcy27.png';
 import crypto28 from '../../../assets/images/cryptocurrentcy28.png';
 import crypto29 from '../../../assets/images/cryptocurrentcy29.png';
-import crypto210 from '../../../assets/images/cryptocurrentcy210.png';
-import crypto211 from '../../../assets/images/cryptocurrentcy211.png';
-import crypto212 from '../../../assets/images/cryptocurrentcy212.png';
 import telegramSell1 from '../../../assets/images/telegramSell1.png';
 import telegramSell2 from '../../../assets/images/telegramSell2.png';
 

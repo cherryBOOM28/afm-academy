@@ -591,9 +591,7 @@ const CourseNavigation = ({
 
     useEffect(() => {
         console.log(location);
-        if (
-            (location.search.indexOf('81') !== -1 || location.pathname.indexOf('81') !== -1)
-        ) {
+        if ((location.search.indexOf('81') !== -1 || location.pathname.indexOf('81') !== -1)) {
             setKazakh(true);
         }
     }, [])
@@ -621,7 +619,6 @@ const CourseNavigation = ({
 
     return (
         <div className={isNavOpen ? "course-nav" : "course-nav hide"}>
-
             <div className="nav-head">
                 <div>
                     <h2>{courseName}</h2>
@@ -632,6 +629,20 @@ const CourseNavigation = ({
                 </div>
             </div>
             <div className="nav-body">
+                {
+                    course_id === '81' && (
+                        <Session
+                            checked={true}
+                            course_id={course_id}
+                            session={{
+                                id: -4,
+                                name: isKazakh ? 'Курс туралы' : 'О курсе',
+                            }}
+                            handleSessionClick={_handleSessionClick}
+                            isActive={-4 === activeSessionId}
+                        />
+                    )
+                }
                 {
                     courseModules.map((courseModule, index) => {
                         const module_id = courseModule.module_id;
@@ -700,6 +711,20 @@ const CourseNavigation = ({
                         />
                     ) : null
                 }
+                {
+                    course_id === '81' && (
+                        <Session
+                            checked={true}
+                            course_id={course_id}
+                            session={{
+                                id: -3,
+                                name: isKazakh ? 'Қорытынды' : 'Заключение',
+                            }}
+                            handleSessionClick={_handleSessionClick}
+                            isActive={-3 === activeSessionId}
+                        />
+                    )
+                }
             </div>
 
         </div>
@@ -713,18 +738,18 @@ const LessonPage = ({ children, name, lecturer }) => {
             <div className="content-header">
                 <h1>{name}</h1>
                 {
-                    lecturer ? 
+                    lecturer ?
                     (
                         <div className='lector'>
                             <img src={lectorImage} alt="lector-name" />
                             <p>{lecturer}</p>
                         </div>
                     ) : null
-                }                
+                }
             </div>
             {children}
         </>
-    ); 
+    );
 }
 
 export default ReadCourse;
