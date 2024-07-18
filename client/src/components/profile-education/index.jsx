@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { BiSolidFilePdf } from 'react-icons/bi';
 import PaginableTable from './../paginableTable/PaginableTable';
-import {BiSolidFilePdf} from 'react-icons/bi';
 
-import {AiFillStar} from 'react-icons/ai';
-import { FaStar } from "react-icons/fa";
 
-import './style.scss'
 import axios from 'axios';
-import base_url from '../../settings/base_url';
-import { Box, Modal } from '@mui/material';
-import { useStyle } from "../../components/VisualModal/StyleContext";
 import { useTranslation } from "react-i18next";
+import { useStyle } from "../../components/VisualModal/StyleContext";
+import base_url from '../../settings/base_url';
+import './style.scss';
 
 
 
@@ -197,8 +194,8 @@ function ProfileEducation({ handleOpenModal }) {
                         return {
                             org_name: course.courseDTO.course_name,
                             position: course.courseDTO.course_name.type_of_study || 'Электронное обучение',
-                            start_date: '2022-01-01', 
-                            end_date: '2022-02-01',
+                            start_date: '2024-01-01', 
+                            end_date: '2024-02-01',
                             id: course.courseDTO.course_id
                         }
                     });
@@ -265,7 +262,7 @@ function ProfileEducation({ handleOpenModal }) {
                           <span className='text-content'>Отзыв</span>
                           {/* <AiFillStar size={23} style={{color: '#F9CB36'}}/> */}
                       </div>
-                      <div className='edu-action' style={{order: 1}} onClick={() => {getFile(8)}}>
+                      <div className='edu-action' style={{order: 1}} onClick={() => {getFile(eduRows[0].id)}}>
                           <span className='text-content'>Сертификат</span>
                           <BiSolidFilePdf size={23} style={{color: '#1F3C88'}}/>
                       </div>
