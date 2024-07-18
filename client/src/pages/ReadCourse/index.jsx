@@ -23,7 +23,12 @@ import ImageWithText from './../../components/courseTemplates/common/ImageWithTe
 import RandomParapraph from './../../components/courseTemplates/common/RandomParagraph';
 import lectorImage from './lectorImage.png';
 // import componentMap from '../adminCourse/tabConstructor/ComponentMap';
+import courseaftor from '../../assets/images/courseAftor.png';
 import { useAuth } from '../../auth/AuthContext';
+import ImageLine from '../../components/courseTemplates/common/ImageLine';
+import NumberedDots from '../../components/courseTemplates/common/NumberedDots';
+import RandomH2 from '../../components/courseTemplates/common/RandomH2';
+import FancyList from '../../components/courseTemplates/common_v2/FancyList';
 import componentMap from '../AdminPage_v2/constructor/ComponentMap';
 
 
@@ -278,6 +283,173 @@ function ReadCourse() {
                 handleQuizFail={handleQuizFail}
                 handleQuizSuccesful={handleQuizSuccesful}
             />)
+        }
+        if (activeSessionId === -4) {
+            return (
+                <LessonPage name={'Курс туралы'}>
+                <Sizebox height={30}/>
+
+                <Reveal>
+
+                    <div
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            gap: '10px',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            padding: '0px 210px',
+                            width: '100%',
+                            boxSizing: 'border-box',
+                        }}
+                    >
+                        <img
+                            src={'https://gurk.kz/uploads/images/b2/d9/b5/b20d97b5ba0a593e567752302b279da7.jpg'}
+                            style={{
+                                height: '100px'
+                            }}
+                        />
+
+                    </div>
+                    <Sizebox height={50}/>
+                    <ImageLine img={courseaftor}></ImageLine>
+                </Reveal>
+                <Sizebox height={70}/>
+                <Reveal>
+                    <Centered>
+                        <RandomH2>
+                            Курстың мазмұны
+                        </RandomH2>
+                    </Centered>
+                </Reveal>
+                <Sizebox height={30}/>
+                <NumberedDots
+                    dotsColor={'white'}
+                    list={[
+                        'Негізгі түсініктер мен қысқартулар',
+                        'КЖ/ТҚҚ жүйесі',
+                        'Кірісті жылыстатудың алғашқы «сызбаларының» пайда болу тарихы',
+                        'Қазақстан Республикасындағы «кірістерді заңдастыру» түсінігінің құқықтық негізі',
+                        'Кірістерді жылыстатудың негізгі сатылары (кезеңдері)',
+                        'Кірістерді жылыстату схемалары ',
+                        'Терроризмді қаржыландыру'
+                    ]}
+                    header={'КЖ/ТҚҚ ұлттық жүйесінің жалпы сипаттамасы:'}
+                />
+                <Sizebox height={50}/>
+                <Reveal>
+                    <NumberedDots
+                        dotsColor={'white'}
+                        list={[
+                            'Кірістерді жылыстатуға қарсы қаржылық шараларды әзірлеу тобы (ФАТФ)',
+                            'ФАТФ типі бойынша аймақтық топтар',
+                            'ФАТФ ұсынымдары',
+                            '«Алдын алу шараларының» 4 тікелей нәтижесі',
+                            'Өзара бағалау туралы есеп',
+                            'Тәуекелдерді ұлттық бағалау ',
+                            'ФАТФ тізімі',
+                            'ЕАТ'
+                        ]}
+                        header={'КЖ/ТҚҚ халықаралық жүйесі:'}
+                    />
+                </Reveal>
+
+                <Sizebox height={50}/>
+
+                <Reveal>
+                    <NumberedDots
+                        dotsColor={'white'}
+                        list={[
+                            'Заңнама',
+                            'Қаржы мониторингі субъектілері ',
+                            'Қаржы мониторингі субъектілерінің клиенттерін тиісінше тексеруі',
+                            'Қаржы мониторингіне жататын, ақшамен және (немесе) өзге мүлікпен жасалатын операциялар',
+                            'Қаржы мониторингіне жататын операциялар туралы мәліметтер мен ақпарат жинау',
+                            'Терроризмнің және терроризмді қаржыландырудың алдын алуға және оны болғызбауға қатысты нысаналы қаржылық санкциялар',
+                            'Операцияларды жүргізуден бас тарту және оларды тоқтата тұру ',
+                        ]}
+                        header={'КЖ/ТҚҚ туралы заңнама:'}
+                    />
+                </Reveal>
+
+                <Sizebox height={50}/>
+
+                <Reveal>
+                    <NumberedDots
+                        dotsColor={'white'}
+                        list={[
+                            'Мемлекеттік бақылау',
+                        ]}
+                        header={'Қазақстан Республикасының КЖ/ТҚҚ туралы заңнамасының сақталуын мемлекеттік бақылау:'}
+                    />
+                </Reveal>
+                <Sizebox height={50}/>
+
+                <Reveal>
+                    <NumberedDots
+                        dotsColor={'white'}
+                        list={[
+                            'Қазақстан Республикасының Қаржылық мониторинг агенттігі',
+                            'Ведомствоаралық органдар мен жұмыс топтары',
+                        ]}
+                        header={'Қаржылық барлау бөлімшесі:'}
+                    />
+                </Reveal>
+                <Sizebox height={50}/>
+
+                <Reveal>
+                    <NumberedDots
+                        dotsColor={'white'}
+                        list={[
+                            'Ішкі бақылау қағидалары',
+                        ]}
+                        header={'Ішкі нормативтік құжаттарға қойылатын талаптар:'}
+                    />
+                </Reveal>
+                <Sizebox height={50}/>
+
+                <Reveal>
+                    <NumberedDots
+                        dotsColor={'white'}
+                        list={[
+                            'Қаржы мониторинг субъектілеріне КЖ/ТҚҚ саласындағы даяралу және оқыту бойынша қойылатын талаптар',
+                        ]}
+                        header={'Даярлау және оқыту:'}
+                    />
+                </Reveal>
+                <Sizebox height={100}/>
+
+                <Reveal>
+                    <Centered>
+                        <RandomH2>
+                            БҰЛ КУРСТА СІЗ МЫНАЛАРДЫ БІЛЕСІЗ
+                        </RandomH2>
+                    </Centered>
+                </Reveal>
+                <Sizebox height={30}/>
+                <Reveal>
+                    <FancyList
+                        listColor='#ccc'
+                        list={[
+                            'Кірістерді жылыстату дегеніміз не?',
+                            'Қаржы мониторингі субъектілері кімдер?',
+                            'Кірістерді жылыстатуға және терроризмді қаржыландыруға қарсы іс-қимыл жүйесі дегеніміз не?',
+                            'Қаржы мониторингі жөніндегі уәкілетті орган кім және оның мақсаты қандай?',
+                            'Қандай қаржылық операциялар мен мәмілелер қаржылық бақылауға жатады?'
+                        ]}
+                    />
+                </Reveal>
+
+                <Sizebox height={100}/>
+
+                <Reveal>
+                    <NextLesson handleOnClick={() => {
+                        CheckCurrentChapter(id, 58);
+                    }}/>
+                </Reveal>
+
+            </LessonPage>
+            )
         }
 
         if (activeSessionId === -2 ) {
