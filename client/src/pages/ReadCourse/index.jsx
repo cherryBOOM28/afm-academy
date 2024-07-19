@@ -25,7 +25,7 @@ import ImageWithText from './../../components/courseTemplates/common/ImageWithTe
 import RandomParapraph from './../../components/courseTemplates/common/RandomParagraph';
 import lectorImage from './lectorImage.png';
 // import componentMap from '../adminCourse/tabConstructor/ComponentMap';
-import courseaftor from '../../assets/images/courseAftor.png';
+import courseaftor from '../../assets/images/avtory.png';
 import { useAuth } from '../../auth/AuthContext';
 import ImageLine from '../../components/courseTemplates/common/ImageLine';
 import NumberedDots from '../../components/courseTemplates/common/NumberedDots';
