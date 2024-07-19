@@ -165,6 +165,7 @@ function BasicCourse() {
                 if (response.status === 200) {
                     setData(response.data);
                     setData2(responseUserCourse.data);
+                    console.log(responseUserCourse.data);
                 } else {
                     setError(response.statusText);
                 }
@@ -200,13 +201,13 @@ function BasicCourse() {
                                         {
                                             jwtToken !== null
                                                 ? (
-                                                    data !== null && [41, 47, 79].includes(data.course_id) && !data2.includes(user_idd)
+                                                    data !== null && [41, 47, 79, 81].includes(data.course_id) && !data2.includes(user_idd)
                                                         ? (
                                                             <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
                                                                 {t("buy a module")}
                                                             </Link>
                                                         ) :
-                                                        data !== null && data2.includes(user_idd)
+                                                        data !== null && [41, 47, 79].includes(data.course_id) && data2.includes(user_idd)
                                                             ? (
                                                                 <Link to={`/courses/${id}/read`} style={{ color: 'white', textDecoration: 'none' }}>
                                                                     {isKazakh ? 'Курсты өту' : 'Пройти курс'}
