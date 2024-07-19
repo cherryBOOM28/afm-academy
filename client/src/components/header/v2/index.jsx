@@ -127,10 +127,24 @@ const NavItem = ({
 }
 
 const LangBtn = () => {
-    const [open, setOpen] = useState(false);
-    const [currentLanguage, setCurrentLanguage] = useState('РУС');
-    const _Ref = useRef(null);
     const { i18n } = useTranslation();
+    const [open, setOpen] = useState(false);
+    const _Ref = useRef(null);
+
+    const getLanguageLabel = (language) => {
+        switch (language) {
+            case 'kz':
+                return 'ҚАЗ';
+            case 'ru':
+                return 'РУС';
+            case 'eng':
+                return 'ENG';
+            default:
+                return 'РУС';
+        }
+    };
+
+    const [currentLanguage, setCurrentLanguage] = useState(getLanguageLabel(i18n.language));
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -150,6 +164,10 @@ const LangBtn = () => {
         setCurrentLanguage(label);
         i18n.changeLanguage(language);
     };
+
+    useEffect(() => {
+        setCurrentLanguage(getLanguageLabel(i18n.language));
+    }, [i18n.language]);
 
     return (
         <div className="lang" ref={_Ref}>
