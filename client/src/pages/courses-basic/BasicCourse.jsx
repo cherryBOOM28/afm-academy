@@ -85,7 +85,7 @@ function BasicCourse() {
                     aria-describedby="alert-dialog-description"
                 >
                     <DialogTitle id="alert-dialog-title">
-                        {"Способ оплаты"}
+                        {isKazakh ? "Сатып алу түрі" : 'Способ оплаты'}
                     </DialogTitle>
 
                     <DialogContent>
@@ -103,7 +103,7 @@ function BasicCourse() {
                                 name='offer-contract'
                                 id='offer-contract'
                             />
-                            <label htmlFor="offer-contract">{isKazakh ? 'Мен оқыдым және' : 'Прочитал, и согласен с'}<Link to={'/offer-agreement'}>{isKazakh ? "жария Шартпен-Офертамен келісемін":"публичным договором-оферта"}</Link></label>
+                            <label htmlFor="offer-contract">{isKazakh ? 'Мен оқыдым және' : 'Прочитал, и согласен с'}{' '}<Link to={'/offer-agreement'}>{isKazakh ? "жария Шартпен-Офертамен келісемін":"публичным договором-оферта"}</Link></label>
                         </div>
                     </DialogContent>
 
