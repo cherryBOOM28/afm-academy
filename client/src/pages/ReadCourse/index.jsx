@@ -16,6 +16,8 @@ import NextLesson from './../../components/courseTemplates/complex/NextLesson';
 import CourseHeader from './../../components/courseTemplates/course-header';
 import { Module, Session, TestSession } from './../../components/sessions/Sessions';
 
+import theendbaza from './../../assets/images/theend.jpg';
+
 import ModalWindow from '../../components/ModalWindow/ModalWindow';
 import TestPage from '../../components/courseTemplates/complex/Test';
 import Centered from './../../components/courseTemplates/common/Centered';
@@ -28,6 +30,8 @@ import { useAuth } from '../../auth/AuthContext';
 import ImageLine from '../../components/courseTemplates/common/ImageLine';
 import NumberedDots from '../../components/courseTemplates/common/NumberedDots';
 import RandomH2 from '../../components/courseTemplates/common/RandomH2';
+import TextWithTitle from '../../components/courseTemplates/common/TextWithTitle';
+import Report_Information from '../../components/courseTemplates/common/Warnings/Report_Information';
 import FancyList from '../../components/courseTemplates/common_v2/FancyList';
 import componentMap from '../AdminPage_v2/constructor/ComponentMap';
 
@@ -457,6 +461,74 @@ function ReadCourse() {
                         CheckCurrentChapter(69, 167);
                     }}/>
                 </Reveal>
+
+            </LessonPage>
+            )
+        }
+        if (activeSessionId === -3) {
+            return (
+                <LessonPage name={'Қорытынды бөлім'}>
+                <Reveal>
+                    <HeaderWithLine
+                        header={'Құттықтаймыз, Сіз қашықтан оқу форматында Базалық курсты аяқтадыңыз.'}
+                    />
+                </Reveal>
+                <Sizebox height={20} />
+                <Reveal>
+                    <ImageLine
+                        img={theendbaza}
+                        color={'#FFFFFF'}
+                    />
+                    <Sizebox height={40} />
+                </Reveal>
+                <Sizebox height={50} />
+                <Reveal>
+                    <TextWithTitle
+                        title={"Осы курстың қорытындысы бойынша, яғни КЖ/ТҚҚ бойынша базалық курстан Сізге мыналар белгілі болды:"}
+                    />
+                    <Sizebox height={20} />
+                    <NumberedDots
+                        dotsColor={'#CADEFC'}
+                        list={[
+                            'Қазақстан Республикасындағы КЖ/ТҚҚ жүйесі, оның ішінде осы саладағы предикаттық қылмыстар;',
+                            'қаржы мониторингі субъектілер;',
+                            'кірістерді жылыстатуға және терроризмді қаржыландыруға қарсы іс-қимыл саласын реттейтін қандай халықаралық стандарттар (ФАТФ) бар;',
+                            'қаржы мониторингі жөніндегі уәкілетті органның функциялары мен міндеттері;',
+                            'қаржы мониторингі субъектісі үшін КЖ/ТҚҚ саласындағы ішкі нормативтік құжаттарға қойылатын негізгі талаптар.',
+
+                        ]}
+                    />
+                    <Sizebox height={40}/>
+                </Reveal>
+
+                <Reveal>
+                    <Sizebox height={60}></Sizebox>
+                    <TextWithTitle
+                        title={'Жоғарыда аталған тақырыптар мен басқа да материалдар кірістерді жылыстатуға және терроризмді қаржыландыруға қарсы іс-қимыл жөніндегі мемлекеттік жүйенің негізгі ұғымдарын, талаптары мен жұмысын түсінуге қол жеткізу мақсатында базалық курс құрылымына салынып, толық қамтылды.'}
+                    >
+                    </TextWithTitle> <Sizebox height={20}></Sizebox>
+                    <TextWithTitle
+                        title={'Сонымен қатар, Академия кірістерді жылыстатуға және терроризмді қаржыландыруға қарсы іс-қимыл тақырыбын тереңірек зерделеу үшін басқа курстар әзірлегенін хабарлаймыз, олар туралы толығырақ мына телефон арқылы білуге болады: 8 708 716 8416.'}
+
+                    >
+
+                    </TextWithTitle>
+                    <Sizebox height={60}></Sizebox>
+                </Reveal>
+                <Reveal>
+                    <Report_Information>
+                        <>
+                            <p className='italic'>
+                                Назарларыңызға үлкен рақмет!!!
+                            </p>
+                        </>
+                    </Report_Information>
+                    <Sizebox height={60}></Sizebox>
+
+
+                </Reveal>
+
+
 
             </LessonPage>
             )
