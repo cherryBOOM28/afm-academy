@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -33,7 +33,7 @@ function BasicCourse() {
     const jwtToken = localStorage.getItem('jwtToken');
     let user_id = localStorage.getItem("user_id");
     const { t } = useTranslation();
-    const {id} = useParams();
+    const { id } = useParams();
     let user_idd = parseInt(user_id, 10);
 
     const [showModal, setShowModal] = useState(false);
@@ -41,12 +41,20 @@ function BasicCourse() {
     const [data2, setData2] = useState(null);
     const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(true);
+    const location = useLocation();
 
     const [request, setRequest] = useState({
         email: '',
         name: '',
         phone: ''
     });
+    const [isKazakh, setKazakh] = useState(false);
+
+    useEffect(() => {
+        if (location.search.includes('81') || location.pathname.includes('81')) {
+            setKazakh(true);
+        }
+    }, [location]);
 
     const requestOnchange = (key, value) => {
         setRequest(
@@ -82,7 +90,7 @@ function BasicCourse() {
 
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            Каким способом хотели оплатить {data != null && [41, 47, 81].includes(data.course_id) ? 'модуль' : 'курс'}?
+                        {isKazakh ? 'Қандай жолмен төлегіңіз келеді -' : 'Каким способом хотели оплатить'}{data != null && [41, 47, 81].includes(data.course_id) ? 'модуль' : 'курс'}?
                         </DialogContentText>
 
                         <div className='offer-contract-wrapper'>
@@ -95,7 +103,7 @@ function BasicCourse() {
                                 name='offer-contract'
                                 id='offer-contract'
                             />
-                            <label htmlFor="offer-contract">Прочитал, и согласен с <Link to={'/offer-agreement'}>публичным договором-оферта</Link></label>
+                            <label htmlFor="offer-contract">{isKazakh ? 'Мен оқыдым және' : 'Прочитал, и согласен с'}<Link to={'/offer-agreement'}>{isKazakh ? "жария Шартпен-Офертамен келісемін":"публичным договором-оферта"}</Link></label>
                         </div>
                     </DialogContent>
 
@@ -201,14 +209,14 @@ function BasicCourse() {
                                                         data !== null && data2.includes(user_idd)
                                                             ? (
                                                                 <Link to={`/courses/${id}/read`} style={{ color: 'white', textDecoration: 'none' }}>
-                                                                    Пройти урок
+                                                                    {isKazakh ? 'Сабақты өту' : 'Пройти урок'}
                                                                 </Link>
                                                             )
                                                             : (
                                                                 data !== null && data.course_id === 86
                                                                     ? (
                                                                         <Link to={`/courses/86/read`} style={{ color: 'white', textDecoration: 'none' }}>
-                                                                            Пройти урок
+                                                                            {isKazakh ? 'Сабақты өту' : 'Пройти урок'}
                                                                         </Link>
                                                                     ) : <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
                                                                         {t("buy a course")}
@@ -221,7 +229,7 @@ function BasicCourse() {
                                                         ? (
 
                                                             <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
-                                                                Пройти урок
+                                                                {isKazakh ? 'Сабаққа өту' : 'Пройти урок'}
                                                             </Link>
                                                         ) :
                                                         (
@@ -355,7 +363,7 @@ function BasicCourse() {
                                                         data !== null && data.course_id === 86
                                                             ? (
                                                                 <Link to={`/courses/86/read`} style={{ color: 'white', textDecoration: 'none' }}>
-                                                                    Пройти урок
+                                                                    {isKazakh ? 'Сабаққа өту' : 'Пройти урок'}
                                                                 </Link>
                                                             ) : <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
                                                                 {t("buy a course")}
@@ -367,7 +375,7 @@ function BasicCourse() {
                                                     ? (
 
                                                         <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
-                                                            Пройти модуль
+                                                            {isKazakh ? 'Сабаққа өту' : 'Пройти урок'}
                                                         </Link>
                                                     ) :
                                                     (
