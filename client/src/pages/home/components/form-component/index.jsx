@@ -49,7 +49,7 @@ const FormComponent= () => {
 
     return (
         <div className='form-container-wrapper'>
-            <div className="form-container">
+            <div className="form-container-main">
                 <div className="form-left">
                     <div>
                         <div>{t('do you still have questions?')} <br /> <strong className='aml-academy-name'>AML ACADEMY</strong></div>

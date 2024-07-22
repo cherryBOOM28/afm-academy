@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import cl from './PaymentPage.module.css';
-import qrImg from '../../assets/images/qr.svg';
-import instructionsImg from '../../assets/images/instractions.svg'
-import whatsappIcon from '../../assets/icons/ic_outline-whatsapp.svg';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import whatsappIcon from '../../assets/icons/ic_outline-whatsapp.svg';
+import instructionsImg from '../../assets/images/instractions.svg';
+import qrImg from '../../assets/images/qr.svg';
 import base_url from '../../settings/base_url';
+import cl from './PaymentPage.module.css';
 
 function PaymentPage(props) {
     const {id} = useParams()
@@ -45,7 +45,7 @@ function PaymentPage(props) {
         <div className={cl.wrapper}>
             <div className={cl.qr_wrapper}>
                 <div className={cl.headline}>
-                    <p className={cl.headline_text}>"AML ACADEMY" қаржы мониторингі академиясы " АҚ қызмет ақысын қалай төлейді</p>
+                    <p className={cl.headline_text}>"AML ACADEMY" қаржылық мониторинг академиясы " АҚ қызмет ақысын қалай төлейді</p>
                     <div className={cl.line}></div>
                     <p className={cl.headline_text}>Как оплатить услугу в АО «Академия финансового мониторинга «AML ACADEMY»</p>
                     {data !== null ? 

@@ -136,6 +136,7 @@
 
                         &.active > *:first-child {
                             transform: rotate(90deg);
+                            transition: 0.5s;
                         }
 
                         > *:first-child {

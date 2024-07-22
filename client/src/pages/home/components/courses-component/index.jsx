@@ -16,9 +16,9 @@ const CoursesComponent = () => {
         const isKazakh = i18n.language === 'kz';
         const fetchedCourses = [
             { name: t('core'), imageSrc: baseCourseImg, courseId: isKazakh ? 81 : 8 },
-            { name: t('specialized'), imageSrc: profileCourseImg, courseId: 'catalog#top' },
-            { name: t('advanced'), imageSrc: advancedCourseImg, courseId: 'catalog#top' },
-            { name: t('thematic'), imageSrc: tematicCourseImg, courseId: 'catalog#top' }
+            { name: t('specialized'), imageSrc: profileCourseImg, courseId: '#top' },
+            { name: t('advanced'), imageSrc: advancedCourseImg, courseId: '#top' },
+            { name: t('thematic'), imageSrc: tematicCourseImg, courseId: '#top' }
         ];
 
         setCourses(fetchedCourses);
