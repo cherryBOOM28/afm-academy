@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import searchImg from '../../assets/search.svg'
 import './style.css'
 
-const SearchComponent = ({ peopleData }) => {
+const SearchComponent = ({ peopleData, typeOfPdl }) => {
     const [searchTerm, setSearchTerm] = useState('')
     const [filteredResults, setFilteredResults] = useState([])
 
@@ -30,7 +30,7 @@ const SearchComponent = ({ peopleData }) => {
                 </div>
                 <div className="search-component-description">
                     {searchTerm === '' ? (
-                        <p>Публичные должностные лица, их супруги и близкие родственники</p>
+                        <p>{ typeOfPdl }</p>
                     ) : (
                         <ul className="search-component-results">
                             {filteredResults.length > 0 ? (

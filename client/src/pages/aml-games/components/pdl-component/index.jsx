@@ -1,7 +1,7 @@
 import React from 'react'
 import SearchComponent from '../search-component'
 
-const PdlComponent = ({ peopleData, task }) => {
+const PdlComponent = ({ peopleData, task, typeOfPdl }) => {
     return (
         <div>
             <p>{ task.name }</p>
@@ -16,7 +16,7 @@ const PdlComponent = ({ peopleData, task }) => {
                 ))}
             </ol>
             <br />
-            <SearchComponent peopleData={peopleData} />
+            <SearchComponent peopleData={peopleData} typeOfPdl={typeOfPdl}/>
         </div>
     )
 }

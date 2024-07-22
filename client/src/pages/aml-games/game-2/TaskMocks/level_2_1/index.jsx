@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Sizebox from "../../../../../components/courseTemplates/common/Sizebox";
+import clientImg from '../../../assets/asian-woman.png';
+import ClientReview from "../../../components/client-review";
 import Divider from "../../../components/divider";
 import NameList from "../../../components/name-list";
 import PdlComponent from "../../../components/pdl-component";
@@ -9,7 +11,20 @@ import './style.css';
 function Level_2_1() {
     const [questions, setQuestions] = useState([]);
 
-    const testData= [
+    const clients = [
+        {
+            description: 'Иманова Асель Сергеевна планирует приобрести ювелирное колье в вашем магазине. \n\nАсель является частным лицом, гражданкой Республики Казахстан. В ходе надлежащей проверки клиента было установлено, что у неё имеется адрес регистрации в РК, и она предоставила полный пакет документов, которые не вызывают сомнений. Схема расчетов прямая, без использования сложных схем.',
+            img: clientImg,
+            fullName: 'Асель Сергеевна',
+        },
+        {
+            description: 'Описание второго клиента...',
+            img: clientImg,
+            fullName: 'ФИО второго клиента',
+        },
+    ];
+
+    const testData = [
         { id: 1, text: 'Публичное должностное лицо', correctAnswer: false },
         { id: 2, text: 'Бен. собственник клиента ПДЛ', correctAnswer: true },
         { id: 3, text: 'Клиент без гражданства РК', correctAnswer: false },
@@ -43,7 +58,7 @@ function Level_2_1() {
         // const fetchQuestions = async () => {
         //     try {
         //         const response = await axios.get('/api/questions');
-                setQuestions(testData);
+        setQuestions(testData);
         //     } catch (error) {
         //         console.error('Error fetching questions:', error);
         //     }
@@ -55,21 +70,37 @@ function Level_2_1() {
         name: 'Задание: Одним из повышающих факторов является критерий «публичные должностные лица, их супруги и близкие родственники».',
         description: 'Проверьте следующих лиц, на предмет отнесения их к ПДЛ:'
     }
+    const task1 = {
+        name: 'Задание: Одним из повышающих факторов является критерий «организации и лица, включенные в список лиц, причастных к ФТ/ФРОМУ».',
+        description: 'Проверьте следующих лиц, на предмет причастности их к ФТ/ФРОМУ:'
+    }
+    const type1 = 'Публичные должностные лица, их супруги и близкие родственники'
     return (
         <>
             <h2>Задача 1</h2>
             <p>Задание: Вам предстоит распределить следующие критерии по двум группам: повышающие риски и понижающие риски.</p>
-            <Sizebox height={40}/>
+            <Sizebox height={40} />
             <div className="main-container-questions">
                 {questions.map(question => (
                     <QuestionComponent key={question.id} question={question} />
                 ))}
             </div>
-            <Sizebox height={40}/>
+            <Sizebox height={40} />
             <Divider />
             <h2>Задача 2</h2>
-            <PdlComponent peopleData={peopleData} task={task} />
+            <PdlComponent peopleData={peopleData} task={task} typeOfPdl={type1} />
             <NameList peopleData={peopleData} />
+            <Sizebox height={40} />
+            <Divider />
+            <h2>Задача 3</h2>
+            <PdlComponent peopleData={peopleData} task={task1} />
+            <NameList peopleData={peopleData} />
+            <Sizebox height={40} />
+            <Divider />
+            <h2>Задача 4</h2>
+            <p>Задание: В этом задании вам предстоит определить клиентов с повышенными или пониженными рисками по типу клиента.</p>
+            <Sizebox height={40} />
+            <ClientReview clients={clients}/>
         </>
     );
 }

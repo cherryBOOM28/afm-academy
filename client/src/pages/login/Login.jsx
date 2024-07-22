@@ -13,6 +13,7 @@ import './login.scss';
 import { useAuth } from '../../auth/AuthContext';
 import base_url from '../../settings/base_url';
 
+import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
 
 
@@ -95,18 +96,22 @@ const Registration = () => {
 
     return (
         <div className='login-page'>
-            {`
-                {
-                    "@context": "http://schema.org",
-                    "@type": "VideoObject",
-                    "name": "Задний фон логин",
-                    "description": "Задний фон логин",
-                    "thumbnailUrl": "https://www.amlacdemy.kz/static/media/thumbnail.png",
-                    "uploadDate": "2024-07-14T08:57:20Z",
-                    "contentUrl": "https://www.amlacdemy.kz/static/media/ssssssss.78b66217f6905b1add0c.mp4",
-                    "embedUrl": "https://www.amlacdemy.kz/static/media/ssssssss.78b66217f6905b1add0c.mp4"
-                }
-            `}
+            <Helmet>
+                <script type="application/ld+json">
+                    {`
+                        {
+                        "@context": "http://schema.org",
+                        "@type": "VideoObject",
+                        "name": "Задний фон",
+                        "description": "Задний фон",
+                        "thumbnailUrl": "https://www.amlacdemy.kz/static/media/image.png",
+                        "uploadDate": "2024-07-14T08:57:20Z",
+                        "contentUrl": "https://www.amlacdemy.kz/static/media/ssssssss.78b66217f6905b1add0c.mp4",
+                        "embedUrl": "https://www.amlacdemy.kz/static/media/ssssssss.78b66217f6905b1add0c.mp4"
+                        }
+                    `}
+                </script>
+            </Helmet>
             <div className='backgroundVideo'>
                 <video autoPlay loop muted className='bg-video'>
                     <source src={backgroundVideo} type="video/mp4" />
