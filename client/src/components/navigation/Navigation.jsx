@@ -1,8 +1,8 @@
 import React from 'react';
-import cl from './Navigation.module.css';
-import './Navigation.scss'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../auth/AuthContext';
+import cl from './Navigation.module.css';
+import './Navigation.scss';
 
 function Navigation() {
     const { isLoggedIn } = useAuth();
@@ -167,7 +167,7 @@ function Navigation() {
                                 <a href='#' onClick={scrollToCourses} className={cl.links}>Виды курсов</a>
                             </li>  
                             <li>
-                                <Link to="/courses/catalog" className={cl.links}>Каталог курсов</Link>
+                                <Link to="/courses" className={cl.links}>Каталог курсов</Link>
                             </li>
                             {isLoggedIn ? <li>
                                 <Link to="/courses/myCourses" className={cl.links}>Мои курсы</Link>

@@ -152,7 +152,7 @@ const LearningFormatTabs = ({ text }) => {
             >
               {t("descRemote")}
             </p>
-            <Link to="/courses/catalog#top" style={{ textDecoration: "none" }}>
+            <Link to="/courses#top" style={{ textDecoration: "none" }}>
               <Button onClick={() => handleChangeCategoryFormat('Дистанционно')} className={cl.more}>{t("go to catalog")}</Button>
             </Link>
           </div>
@@ -197,7 +197,7 @@ const LearningFormatTabs = ({ text }) => {
             >
               {t("descOnline")}
             </p>
-            <Link to="/courses/catalog#top" style={{ textDecoration: "none" }}>
+            <Link to="/courses#top" style={{ textDecoration: "none" }}>
               <Button onClick={() => handleChangeCategoryFormat('Онлайн')} className={cl.more}>{t("go to catalog")}</Button>
             </Link>
           </div>
@@ -242,7 +242,7 @@ const LearningFormatTabs = ({ text }) => {
             >
               {t("descOffline")}
             </p>
-            <Link to="/courses/catalog#top" style={{ textDecoration: "none" }}>
+            <Link to="/courses#top" style={{ textDecoration: "none" }}>
               <Button onClick={() => handleChangeCategoryFormat('Очное')} className={cl.more}>{t("go to catalog")}</Button>
             </Link>
           </div>

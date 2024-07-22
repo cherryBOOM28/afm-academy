@@ -1,67 +1,48 @@
-import React, { useState, useEffect, Children } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import './style.scss'
-import file1 from './Порядок.docx';
 import file2 from './planning_slides.pdf';
+import './style.scss';
 import file3 from './образец 1 хронология событий.docx';
 import file4 from './образец 2 Таблица доказательств.docx';
 import file5 from './порядок планирования.xlsx';
-import file6 from './Ситуационнные задачи.docx';
+import file1 from './Порядок.docx';
 
 import { useNavigate, useParams } from 'react-router-dom';
-import { m, useMotionValueEvent, useScroll } from 'framer-motion';
 
-import { FaStar } from "react-icons/fa";
 
-import { BiSolidObjectsHorizontalRight } from 'react-icons/bi';
-import { MdClose } from "react-icons/md";
-import Sizebox from '../../../components/courseTemplates/common/Sizebox';
-import Reveal from '../../../components/Reveal';
 import HeaderWithLine from '../../../components/courseTemplates/common/HeaderWithLine';
+import Sizebox from '../../../components/courseTemplates/common/Sizebox';
 import NextLesson from '../../../components/courseTemplates/complex/NextLesson';
 import CourseHeader from '../../../components/courseTemplates/course-header';
+import Reveal from '../../../components/Reveal';
 import { Module, Session } from '../../../components/sessions/Sessions';
 
-import lectorImage from './lectorImage.png';
-import Report_Warning from '../../../components/courseTemplates/common/Warnings/Report';
 import Centered from '../../../components/courseTemplates/common/Centered';
-import RandomH2 from '../../../components/courseTemplates/common/RandomH2';
-import TextWithTitle from '../../../components/courseTemplates/common/TextWithTitle';
-import RandomParapraph from '../../../components/courseTemplates/common/RandomParagraph';
+import FileDownloader from '../../../components/courseTemplates/common/FileDownloader';
+import ImageLine from '../../../components/courseTemplates/common/ImageLine';
+import ImageWithText from '../../../components/courseTemplates/common/ImageWithText';
 import NotNumberedDots from '../../../components/courseTemplates/common/NotNumberedDots';
 import NumberedDots from '../../../components/courseTemplates/common/NumberedDots';
-import ImageWithText from '../../../components/courseTemplates/common/ImageWithText';
-import TextAndLink from '../../../components/courseTemplates/complex/TextAndLink';
-import FlexRow from '../../../components/courseTemplates/common_v2/FlexRow';
-import VideoWithTitleAndText from '../../../components/courseTemplates/complex/Video/VideoWithTitleAndText';
-import VideoLine from '../../../components/courseTemplates/common/VideoLine';
+import RandomH2 from '../../../components/courseTemplates/common/RandomH2';
+import RandomParapraph from '../../../components/courseTemplates/common/RandomParagraph';
 import SimpleTable from '../../../components/courseTemplates/common/SimpleTable';
-import FancyList from '../../../components/courseTemplates/common_v2/FancyList';
-import FlexBoxes from '../../../components/courseTemplates/common_v2/FlexBoxes';
-import ImageLine from '../../../components/courseTemplates/common/ImageLine';
-import DotsOnRoad from '../../../components/courseTemplates/common_v2/DotsOnRoad';
-import TwoColumnsDivider from '../../../components/courseTemplates/common_v2/TwoColumnsDivider';
-import Image from '../../../components/courseTemplates/common_v2/Image';
 import TextWithBackground from '../../../components/courseTemplates/common/TextWithBackground';
-import FileDownloader from '../../../components/courseTemplates/common/FileDownloader';
-import Quote from '../../../components/courseTemplates/common_v2/Quote';
+import TextWithTitle from '../../../components/courseTemplates/common/TextWithTitle';
+import VideoLine from '../../../components/courseTemplates/common/VideoLine';
+import Report_Warning from '../../../components/courseTemplates/common/Warnings/Report';
 import IconDots from '../../../components/courseTemplates/common_v2/IconDots';
+import Image from '../../../components/courseTemplates/common_v2/Image';
 import ImageSequence from '../../../components/courseTemplates/common_v2/ImageSequence';
-import ThreeColumnsDivider from '../../../components/courseTemplates/common_v2/ThreeColumnsDivider';
 import InTextFileDownloader from '../../../components/courseTemplates/common_v2/InTextFileDownloader';
-import ShortBiography from '../../../components/courseTemplates/complex/images/ShortBiography';
+import Quote from '../../../components/courseTemplates/common_v2/Quote';
+import ThreeColumnsDivider from '../../../components/courseTemplates/common_v2/ThreeColumnsDivider';
+import TextAndLink from '../../../components/courseTemplates/complex/TextAndLink';
+import lectorImage from './lectorImage.png';
 
 
-import AFM_logo from '../../../assets/images/crypto_AFM.png';
+import fiveFingers from '../../../assets/icons/five-fingers.png';
+import fourFingers from '../../../assets/icons/four-fingers.png';
 import icon1 from '../../../assets/icons/planning1.png';
-import icon2 from '../../../assets/icons/planning2.png';
-import icon3 from '../../../assets/icons/planning3.png';
-import icon4 from '../../../assets/icons/planning4.png';
-import xIcon from '../../../assets/icons/planning5.png';
-import acceptIcon from '../../../assets/icons/planning6.png';
-import icon5 from '../../../assets/icons/planning7.png';
-import icon6 from '../../../assets/icons/planning8.png';
-import icon7 from '../../../assets/icons/planning9.png';
 import icon10 from '../../../assets/icons/planning10.png';
 import icon11 from '../../../assets/icons/planning11.png';
 import icon12 from '../../../assets/icons/planning12.png';
@@ -72,16 +53,19 @@ import icon16 from '../../../assets/icons/planning16.png';
 import icon17 from '../../../assets/icons/planning17.png';
 import icon18 from '../../../assets/icons/planning18.png';
 import icon19 from '../../../assets/icons/planning19.png';
-import fourFingers from '../../../assets/icons/four-fingers.png'
-import fiveFingers from '../../../assets/icons/five-fingers.png'
-import paretto from '../../../assets/images/paretto.png'
+import icon2 from '../../../assets/icons/planning2.png';
+import icon3 from '../../../assets/icons/planning3.png';
+import icon4 from '../../../assets/icons/planning4.png';
+import xIcon from '../../../assets/icons/planning5.png';
+import acceptIcon from '../../../assets/icons/planning6.png';
+import icon5 from '../../../assets/icons/planning7.png';
+import icon6 from '../../../assets/icons/planning8.png';
+import icon7 from '../../../assets/icons/planning9.png';
+import AFM_logo from '../../../assets/images/crypto_AFM.png';
+import paretto from '../../../assets/images/paretto.png';
 
-import slide5 from '../../../assets/icons/planning_slide5.png';
-import slide61 from '../../../assets/icons/planning_slide61.png';
-import slide62 from '../../../assets/icons/planning_slide62.png';
-import slide7 from '../../../assets/icons/planning_slide7.png';
-import TestPage from '../../../components/courseTemplates/complex/Test';
 import axios from 'axios';
+import TestPage from '../../../components/courseTemplates/complex/Test';
 import base_url from '../../../settings/base_url';
 
 function PlanningInvestigationCourse() {

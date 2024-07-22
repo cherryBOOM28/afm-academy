@@ -1,28 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
-import DefaultHeader from "../../components/defaultHeader/DefaultHeader";
 
 import "./profile.scss";
 
 import { IoIosArrowBack } from "react-icons/io";
-import { BiSolidVideo } from "react-icons/bi";
-import { BsFillPersonFill } from "react-icons/bs";
-import { FaStar } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 
 import axios from "axios";
-import Vebinar from "./vebinar";
-import ProfileHeader from "../../components/profile-header";
-import ProfileGeneral from "../../components/profile-generalInfo";
-import ProfileJob from "../../components/profile-job";
-import ProfileEducation from "../../components/profile-education";
-import ProfilePassword from "../../components/profile-password";
-import base_url from "../../settings/base_url";
+import Rating from "react-rating-stars-component";
 import Header from "../../components/header/Header";
+import ProfileEducation from "../../components/profile-education";
+import ProfileGeneral from "../../components/profile-generalInfo";
+import ProfilePassword from "../../components/profile-password";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
-import Rating from "react-rating-stars-component";
+import base_url from "../../settings/base_url";
+import Vebinar from "./vebinar";
 
 import { useTranslation } from "react-i18next";
 
@@ -367,7 +361,7 @@ function Profile(props) {
       <div className="container text-content"></div>
       <div className="profile-page-wrapper text-content">
         <div className="container text-content">
-          <Link to="/courses/catalog" className="nav-back text-content">
+          <Link to="/courses" className="nav-back text-content">
             <IoIosArrowBack />
             <div>
               <a 

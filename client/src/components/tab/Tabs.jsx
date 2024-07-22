@@ -196,7 +196,7 @@ const Tabs = ({ text }) => {
             >
               {t("descSpec")}
             </p>
-            <Link to="/courses/catalog#top" style={{ textDecoration: "none" }}>
+            <Link to="/courses#top" style={{ textDecoration: "none" }}>
               <Button className={cl.more}>{t("read more")}</Button>
             </Link>
           </div>
@@ -241,7 +241,7 @@ const Tabs = ({ text }) => {
             >
               {t("descAdv")}
             </p>
-            <Link to="/courses/catalog#top" style={{ textDecoration: "none" }}>
+            <Link to="/courses#top" style={{ textDecoration: "none" }}>
               <Button className={cl.more}>{t("read more")}</Button>
             </Link>
           </div>
@@ -286,7 +286,7 @@ const Tabs = ({ text }) => {
             >
               {t("descThe")}
             </p>
-            <Link to="/courses/catalog#top" style={{ textDecoration: "none" }}>
+            <Link to="/courses#top" style={{ textDecoration: "none" }}>
               <Button className={cl.more}>{t("read more")}</Button>
             </Link>
           </div>

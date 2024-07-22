@@ -31,7 +31,7 @@ const navbar_items = [
       subItems: [
         {
           name: 'course catalog',
-          route: '/courses/catalog'
+          route: '/courses'
         },
         {
           name: 'my courses',

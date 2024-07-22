@@ -129,7 +129,7 @@ function App() {
                             <Route path="/vebinars/surveys" element={<Suspense ><SurveysPage /></Suspense>} />
                             <Route path="/vebinars/dictionary" element={<Suspense ><DictionaryPage /></Suspense>} />
                             <Route path="/vebinars/:id" element={<></>} />
-                            <Route path="/courses/catalog" element={<Suspense ><Catalog /></Suspense>}/>
+                            <Route path="/courses" element={<Suspense ><Catalog /></Suspense>}/>
                             <Route path="/courses/myCourses" element={<Suspense><PrivateRoute shouldBeLoggedIn={true} component={MyCourses} /></Suspense>} />
                             <Route path="/courses/myCourses/success" element={<Suspense><PrivateRoute shouldBeLoggedIn={true} component={MyCourses}/></Suspense>}/>
                             <Route path="/courses/info" element={<Suspense ><InfoPage /></Suspense>}/>

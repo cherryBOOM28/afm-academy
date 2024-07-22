@@ -987,7 +987,7 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                                     }
                                     else
                                         if (availability === "soon") {
-                                            navigate(`/courses/catalog`);
+                                            navigate(`/courses`);
                                         }
                                         else {
                                             navigate(`/courses/${course.courseDTO.course_id}`);
@@ -1085,7 +1085,7 @@ const CoursesBlock = ({ categoryName, categoryDesc, courses }) => {
                                     }
                                     else
                                         if (law_enforcement_agencies === "Для правоохранительных органов") {
-                                            navigate(`/courses/catalog`);
+                                            navigate(`/courses`);
                                         }
                                         else {
                                             navigate(`/courses/${course.courseDTO.course_id}`);

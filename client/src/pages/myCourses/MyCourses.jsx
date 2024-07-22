@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from 'react-helmet';
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 
@@ -360,6 +361,9 @@ function MyCourses() {
             : "#000",
       }}
     >
+      <Helmet>
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <div
         className="interval"
         style={{ letterSpacing: getLetterSpacing(letterInterval) }}

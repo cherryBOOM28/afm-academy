@@ -384,7 +384,7 @@ const NavigationBar = (props) => {
               <ul className={'dropdownSub text-content'}>
                     
                   <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
-                      <Link to="/courses/catalog" className={'subPages text-content'}>{t('course catalog')}</Link>
+                      <Link to="/courses" className={'subPages text-content'}>{t('course catalog')}</Link>
                   </li>
                   {isLoggedIn ? <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
                       <Link to="/courses/myCourses" className={'subPages text-content'}>{t('my courses')}</Link>

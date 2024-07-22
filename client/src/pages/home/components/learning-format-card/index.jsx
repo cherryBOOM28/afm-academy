@@ -15,7 +15,7 @@ const LearningFormatCard = ({ header, text, type_name }) => {
         } else {
             handleChangeCategoryFormat('Дистанционно');
         }
-        navigate('/courses/catalog#top')
+        navigate('/courses#top')
     }
 
     return (

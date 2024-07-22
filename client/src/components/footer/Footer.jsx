@@ -1,17 +1,15 @@
 import React from 'react';
 import cl from './Footer.module.css';
 
-import './footer.scss'
+import './footer.scss';
 
 import { Link } from 'react-router-dom';
-import igIcon from '../../assets/icons/ig.svg';
 import fbIcon from '../../assets/icons/fb.svg';
+import igIcon from '../../assets/icons/ig.svg';
 import tgIcon from '../../assets/icons/tg.svg';
-import Map from '../UI/map/Map';
 
 import { useTranslation } from 'react-i18next';
 
-import VisualModal from '../../components/VisualModal/VisualModal';
 import { useStyle } from '../VisualModal/StyleContext';
 
 
@@ -120,7 +118,7 @@ function Footer({ email, phoneNumber }) {
                                     <Link to="/courses" className={`${cl.footer__text} text-content`}>{t('types of courses')}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/courses/catalog" className={`${cl.footer__text} text-content`}>{t('course catalog')}</Link>
+                                    <Link to="/courses" className={`${cl.footer__text} text-content`}>{t('course catalog')}</Link>
                                 </li>
                                 <li>
                                     <Link to="/courses/myCourses" className={`${cl.footer__text} text-content`}>{t('my courses')}</Link>
