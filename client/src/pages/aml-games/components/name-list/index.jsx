@@ -1,8 +1,9 @@
-import React from 'react'
-import { FaChevronDown } from 'react-icons/fa6'
-import './style.css'
+import { Switch } from '@mui/material';
+import React from 'react';
+import './style.css';
 
-const NameList = ({peopleData}) => {
+const NameList = ({ peopleData }) => {
+    const label = { inputProps: { 'aria-label': 'Switch demo' } };
     return (
         <div className='name-list-wrapper'>
             {
@@ -12,7 +13,9 @@ const NameList = ({peopleData}) => {
                             {person.name}: {person.id}
                         </div>
                         <div className='person-item-empty'>
-                            <FaChevronDown style={{paddingRight:"15px", color:"rgba(0, 0, 0, 0.4)"}}/>
+                            Риск отсутствует
+                            <Switch {...label} />
+                            Риск имеется
                         </div>
                     </div>
                 ))
