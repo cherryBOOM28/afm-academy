@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./style.scss";
 import avatar from "./profileImg/profileIcon.png";
 import ToggleButton from "./ToggleButton/index";
+import { IoCheckmark } from "react-icons/io5";
+
 import {
   Radio,
   RadioGroup,
@@ -12,6 +14,8 @@ import {
 } from "@mui/material";
 
 const DossierComponent = () => {
+  const [isSubject, setIsSubject] = useState(false);
+
   const [participantType, setParticipantType] = useState("продавец");
   const [operationType, setOperationType] = useState(
     "продажа ювелирных изделий"
@@ -29,19 +33,19 @@ const DossierComponent = () => {
           <div className="form-fields">
             <div className="input-group">
               <label>Фамилия:</label>
-              <input type="text"   />
+              <input type="text" />
             </div>
             <div className="input-group">
               <label>Имя:</label>
-              <input type="text"   />
+              <input type="text" />
             </div>
             <div className="input-group">
               <label>Отчество:</label>
-              <input type="text"   />
+              <input type="text" />
             </div>
             <div className="input-group">
               <label>ИИН:</label>
-              <input type="text"   />
+              <input type="text" />
             </div>
           </div>
           <div className="avatar-container">
@@ -59,15 +63,15 @@ const DossierComponent = () => {
           </div>
           <div className="input-group">
             <label>Бенефициарный собственник:</label>
-            <input type="text"   />
+            <input type="text" />
           </div>
           <div className="input-group">
             <label>Адрес (юридический/фактический):</label>
-            <input type="text"   />
+            <input type="text" />
           </div>
           <div className="input-group">
             <label>Цель и характер деловых отношений:</label>
-            <input type="text"   />
+            <input type="text" />
           </div>
         </div>
       </div>
@@ -75,7 +79,7 @@ const DossierComponent = () => {
       <div className="operation-info">
         <h2>Информация по операции</h2>
         <div className="input-group">
-          <FormLabel component="legend" sx={{color: "#000"}}>Вид участника:</FormLabel>
+          <FormLabel component="legend" sx={{ color: "#000" }}>Вид участника:</FormLabel>
           <RadioGroup
             row
             aria-label="participantType"
@@ -97,7 +101,7 @@ const DossierComponent = () => {
           </RadioGroup>
         </div>
         <div className="input-group">
-          <FormLabel component="legend">Вид операции:</FormLabel>
+          <FormLabel component="legend" sx={{ color: "#000" }}>Вид операции:</FormLabel>
           <RadioGroup
             row
             aria-label="operationType"
@@ -119,11 +123,18 @@ const DossierComponent = () => {
           </RadioGroup>
         </div>
         <div className="input-group">
-            <label>Сумма:</label>
-            <input type="text"   />
-          </div>
+          <label>Сумма:</label>
+          <input type="text" />
+        </div>
       </div>
       <div className="footer-strip"></div>
+      <div className="operation-section">
+        <h2>Информация по операции</h2>
+        <div className="input-group">
+          <span className={`${isSubject ? 'active' : null}`} onClick={() => setIsSubject(true)}><IoCheckmark /> 
+          </span>
+        </div>
+      </div>
       <div className="risk-section">
         <h2>Риск-ориентированные показатели</h2>
         <div className="input-group">
