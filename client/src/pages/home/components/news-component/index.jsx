@@ -48,7 +48,7 @@ const NewsComponent = ({ news }) => {
 
     if (loading) return <div>Loading...</div>;
     
-    if (news.length < 6) return <div>Loading...</div>;
+    if (news?.length < 6) return <div>Loading...</div>;
 
     return (
         <div className="news-container">

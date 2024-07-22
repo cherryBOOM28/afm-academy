@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Sizebox from "../../../../../components/courseTemplates/common/Sizebox";
 import Divider from "../../../components/divider";
+import NameList from "../../../components/name-list";
 import PdlComponent from "../../../components/pdl-component";
 import QuestionComponent from "../../../components/question-component";
 import './style.css';
@@ -67,8 +68,8 @@ function Level_2_1() {
             <Sizebox height={40}/>
             <Divider />
             <h2>Задача 2</h2>
-            <PdlComponent peopleData={ peopleData } task={task} />
-            
+            <PdlComponent peopleData={peopleData} task={task} />
+            <NameList peopleData={peopleData} />
         </>
     );
 }
