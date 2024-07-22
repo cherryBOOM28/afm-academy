@@ -132,6 +132,7 @@ const Level_2_2 = () => {
       return newZones;
     });
 
+    // Add the item back to the initial list
     setItems((prevItems) => {
       const item = initialItems.find((i) => i.id === itemId);
       return item ? [...prevItems, item] : prevItems;
