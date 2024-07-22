@@ -67,8 +67,8 @@ const Level_1_5 = () => {
 
   return (
     <div>
-      <h2>Level 1.5</h2>
-      <DnDContainer items={items} zones={zones} handleDrop={handleDrop} handleRemove={handleRemove} />
+      <h2>Задание 1</h2>
+      <DnDContainer items={items} zones={zones} handleDrop={handleDrop} onRemove={handleRemove} />
     </div>
   );
 };
