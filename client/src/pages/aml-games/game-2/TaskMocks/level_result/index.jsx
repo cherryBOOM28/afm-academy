@@ -11,13 +11,13 @@ const subLevels = [
 
 ];
 
-function Level_1_5({level}) {
+function Level_Result({level}) {
     const navigate = useNavigate();
     return (
         <>
             <div className="result-page">
                 <div className="level-progress" >
-                    <LevelProgress level={1} title="Организация внутреннего контроля" subLevels={subLevels} />
+                    <LevelProgress level={level} title="Организация внутреннего контроля" subLevels={subLevels} />
                 </div>
                 <div className="level-summary">
                     <LevelSummary
@@ -44,4 +44,4 @@ function Level_1_5({level}) {
     );
 }
 
-export default Level_1_5;
+export default Level_Result;
