@@ -257,14 +257,10 @@ function ProfileEducation({ handleOpenModal }) {
             style={{ letterSpacing: getLetterSpacing(letterInterval) }}
             >
                 <PaginableTable 
-                  columns={eduColumns} rows={eduRows} rowsPerPage={eduRowsPerPage} isExtendable={false}>
+                  columns={eduColumns} rows={eduRows} rowsPerPage={eduRowsPerPage} isExtendable={false} getFile={getFile()}>
                       <div className='edu-action' style={{order: 2}} onClick={() => {handleOpenModal()}}>
                           <span className='text-content'>Отзыв</span>
                           {/* <AiFillStar size={23} style={{color: '#F9CB36'}}/> */}
-                      </div>
-                      <div className='edu-action' style={{order: 1}} onClick={() => {getFile(eduRows[0].id)}}>
-                          <span className='text-content'>Сертификат</span>
-                          <BiSolidFilePdf size={23} style={{color: '#1F3C88'}}/>
                       </div>
                 </PaginableTable>
             </div>

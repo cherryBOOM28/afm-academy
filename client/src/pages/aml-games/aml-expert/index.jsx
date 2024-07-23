@@ -42,7 +42,6 @@ const AmlExpert = () => {
                         <span>Ахметжан Дильназ</span>
                     </div>
                 </header>
-                
             </main>
         </div>
     );

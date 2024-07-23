@@ -1,10 +1,11 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
-import { BiPlus, BiSave } from 'react-icons/bi';
+import axios from "axios";
+import { BiPlus, BiSave, BiSolidFilePdf } from 'react-icons/bi';
 import { ImCancelCircle } from 'react-icons/im';
+import base_url from '../../settings/base_url';
 import { useStyle } from '../VisualModal/StyleContext';
-
 
 const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, handleOnAdd}) => {
     const [page,
@@ -24,6 +25,32 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
     const headCellFont = `500 16px/normal 'Inter', sans-serif`;
     const cellColor = '#3A3939'
     const headCellColor = '#20102B'
+    const getFile = async (id) => {
+        if (id) {
+            try {
+                const response = await axios.get(
+                    `${base_url}/api/aml/course/getCertificateByCourseId/${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${jwtToken}`,
+                        },
+                        responseType: 'blob', // Set the responseType to 'blob'
+                    }
+                );
+    
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'Сертификат.pdf');
+                document.body.appendChild(link);
+                link.click();
+                link.parentNode.removeChild(link);
+    
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    };
 
     const addInputStyle = {
         height: '35px',
@@ -207,6 +234,16 @@ const PaginableTable = ({columns, rows, rowsPerPage, children, isExtendable, han
                             </TableCell>
                             <TableCell 
                                 style={{ padding: cellPadding, font: cellFont, color: cellColor, display: 'flex', flexDirection: 'row-reverse', gap: '10px', letterSpacing: 'inherit'}} 
+                                align='right'
+                                onClick={() => { getFile(row.id) }}
+                                >
+                                <div className='edu-action' style={{ order: 1 }}>
+                                    <span className='text-content'>Сертификат</span>
+                                    <BiSolidFilePdf size={23} style={{color: '#1F3C88'}}/>
+                                </div>
+                            </TableCell>
+                            <TableCell 
+                                style={{ padding: cellPadding, font: cellFont, color: cellColor, display: 'flex', flexDirection: 'row-reverse', gap: '10px', letterSpacing: 'inherit', justifyContent:"center"}} 
                                 align='right'
                                 
                                 >
