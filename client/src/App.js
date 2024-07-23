@@ -9,6 +9,7 @@ import PrivateRoute from './auth/PrivateRoute';
 import CreateCoursePage from './pages/adminCourse/creation/CreateCourse';
 import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
 import AdminPage_Main from './pages/AdminPage_v2/main/index.jsx';
+import AmlExpert from './pages/aml-games/aml-expert/index.jsx';
 import CreateNews from './pages/CreateNews/index.jsx';
 import Login from './pages/login/Login';
 import NewsPage from './pages/news-page';
@@ -93,6 +94,7 @@ function App() {
                             <Route path='/courses/aml-games/game/survey/:id' element={<Suspense><Game_1 /></Suspense>}></Route>
                             <Route path='/courses/aml-games/game/main/:id' element={<Suspense><GameMain/></Suspense>}></Route>
                             <Route path='/courses/aml-games/game/profile/:id' element={<AmlGamesProfile />}></Route>
+                            <Route path='/courses/aml-games/game/aml-expert/:id' element={<AmlExpert />}></Route>
                             <Route path='/courses/aml-games/game/read/:id/:level/:subLevel' element={<Suspense><GameReader /></Suspense>}></Route>
 
                             <Route path="/management" element={<Suspense ><Management /></Suspense>}></Route>
