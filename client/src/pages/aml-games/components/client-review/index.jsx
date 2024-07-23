@@ -48,7 +48,7 @@ const ClientReview = ({ clients }) => {
                     </div>
                 </div>
 
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent:"space-around" }}>
                     <div className="client-review-stepper">
                         {clients.map((_, index) => (
                             <span

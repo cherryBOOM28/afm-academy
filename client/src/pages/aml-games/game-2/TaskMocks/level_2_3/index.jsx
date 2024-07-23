@@ -1,46 +1,41 @@
-import { useEffect, useState } from "react";
-import Sizebox from "../../../../../components/courseTemplates/common/Sizebox";
-import Divider from "../../../components/divider";
-import QuestionComponent from "../../../components/question-component";
-import TransactionForm from "../../../components/sumQuestions/TransactionForm";
-import Questionnaire from '../../../components/Questionnaire/Questionnaire';
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import Sizebox from "../../../../../components/courseTemplates/common/Sizebox";
+import clientImg from '../../../assets/asian-woman.png';
+import ClientReview from "../../../components/client-review";
+import Divider from "../../../components/divider";
+import QuestionMap from "../../../components/questien-map";
+import Questionnaire from '../../../components/Questionnaire/Questionnaire';
+import TransactionForm from "../../../components/sumQuestions/TransactionForm";
 
 function Level_2_3() {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const sumQuestions = [
-    'Получение выигрыша в наличной форме по результатам проведения пари, азартной игры в игорных заведениях и лотереи',
-    'Совершенно ломбардом операций с деньгами, ценными бумагами, драгоценными металлами и драгоценными камнями, ювелирными изделиями из них и иными ценностями',
-    'Переводы денег за границу на счета (во вклады), открытые на анонимного владельца, поступление денег из-за границы со счета (вклада), открытого на анонимного владельца',
-    'Купля-продажа драгоценных металлов и драгоценных камней, ювелирных изделий из них',
-    'Платежи и переводы денег, осуществляемые клиентом в пользу другого лица на безвозмездной основе',
-    'Снятие с банковского счета или зачисление на банковский счет клиента денег, а равно прием от клиента либо выдача клиенту наличных денег',
-    'Сделке с недвижимым имуществом, результатом совершения которой является переход права собственности на такое имущество'
-  ];
-
-  const handlePrev = () => {
-    if (currentQuestion > 0) {
-      setCurrentQuestion(currentQuestion - 1);
-    }
-  };
-
-  const handleNext = () => {
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
-    }
-  };
-
-  const carouselSettings = {
-    dots: false,
-    infinite: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    initialSlide: currentQuestion,
-    arrows: false, // или true, в зависимости от ваших предпочтений
-  };
-
-  const [questions, setQuestions] = useState([]);
+  const clients = [
+    {
+        description: 'Алибек Сеитов пришел в ювелирный магазин, чтобы купить золотое кольцо. Он часто посещает магазин, но его покупки обычно небольшие и разнообразные. Сегодня он приобрел кольцо на 500 000 тенге.',
+        img: clientImg,
+        fullName: 'Алибек Сеитов',
+    },
+    {
+        description: 'Описание третьего клиента...',
+        img: clientImg,
+        fullName: 'ФИО третьего клиента',
+    },
+    {
+        description: 'Описание четвертого клиента...',
+        img: clientImg,
+        fullName: 'ФИО четвертого клиента',
+    },
+    {
+        description: 'Описание пятого клиента...',
+        img: clientImg,
+        fullName: 'ФИО пятого клиента',
+    },
+    {
+        description: 'Описание шестого клиента...',
+        img: clientImg,
+        fullName: 'ФИО шестого клиента',
+  },
+];
 
   const testData = [
     {
@@ -63,18 +58,6 @@ function Level_2_3() {
     },
     { id: 7, text: "Необычно крупная сумма операции", correctAnswer: false },
   ];
-  useEffect(() => {
-    // const fetchQuestions = async () => {
-    //     try {
-    //         const response = await axios.get('/api/questions');
-    setQuestions(testData);
-    //     } catch (error) {
-    //         console.error('Error fetching questions:', error);
-    //     }
-    // };
-
-    // fetchQuestions();
-  }, []);
   return (
     <>
       <h2>Задача 1</h2>
@@ -83,11 +66,7 @@ function Level_2_3() {
         повышающие риски и понижающие риски.
       </p>
       <Sizebox height={40} />
-      <div className="main-container-questions">
-        {questions.map((question) => (
-          <QuestionComponent key={question.id} question={question} />
-        ))}
-      </div>
+      <QuestionMap testData={testData} typeOfQuestion={'По страновому риску'}/>
       <Sizebox height={50} />
       <Divider />
       <h2>Задача 2</h2>
@@ -101,15 +80,19 @@ function Level_2_3() {
      <TransactionForm/>
       <Sizebox height={50} />
       <Divider />
-
-      <Sizebox height={50} />
       <h2>Задача 3</h2>
       <p>
         Задание: Вам представлены описания сделок с ювелирными изделиями и
         указанные суммы. Ваша задача определить, какие из этих операций
         относятся к пороговым. 
       </p>
-      <Questionnaire/>
+      <Questionnaire />
+      <Sizebox />
+      <Divider/>
+      <h2>Задача 4</h2>
+      <p>Задание: Изучите представленные данные по клиентам и определите, кто из них имеет риски, связанные риском продукта или услуги. </p>
+      <Sizebox/>
+      <ClientReview clients={clients} />
     </>
   );
 }

@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Sizebox from "../../../../../components/courseTemplates/common/Sizebox";
+import clientImg from '../../../assets/asian-woman.png';
+import ClientReview from "../../../components/client-review";
 import Divider from "../../../components/divider";
 import DnDContainer from "../../../components/dndBox/DnDContainer";
 import bgIcon from "../../../components/dndBox/flags/Bulgaria.svg";
@@ -26,7 +28,7 @@ import tzIcon from "../../../components/dndBox/flags/Tanzania.svg";
 import vzIcon from "../../../components/dndBox/flags/Venezuela.svg";
 import vtIcon from "../../../components/dndBox/flags/VFlag.svg";
 import yeIcon from "../../../components/dndBox/flags/Yemen.svg";
-import QuestionComponent from "../../../components/question-component";
+import QuestionMap from "../../../components/questien-map";
 import './style.css';
 
 
@@ -88,10 +90,33 @@ const testData = [
 
 const Level_2_2 = () => {
   const [items, setItems] = useState(initialItems);
-  const [questions, setQuestions] = useState([]);
-  useEffect(() => {
-    setQuestions(testData)
-  })
+  const clients = [
+    {
+        description: 'Джон Смит приехал в ювелирный магазин для покупки золотого кольца. Джон проживает в штате Вайоминг, США. Это его первый визит в магазин, и он собирается оплатить покупку наличными.',
+        img: clientImg,
+        fullName: 'Джон Смит',
+    },
+    {
+        description: 'Описание третьего клиента...',
+        img: clientImg,
+        fullName: 'ФИО третьего клиента',
+    },
+    {
+        description: 'Описание четвертого клиента...',
+        img: clientImg,
+        fullName: 'ФИО четвертого клиента',
+    },
+    {
+        description: 'Описание пятого клиента...',
+        img: clientImg,
+        fullName: 'ФИО пятого клиента',
+    },
+    {
+        description: 'Описание шестого клиента...',
+        img: clientImg,
+        fullName: 'ФИО шестого клиента',
+  },
+];
   const [zones, setZones] = useState({
     1: { id: 1, title: "Зеленый список", items: [] },
     2: { id: 2, title: "Серый список", items: [] },
@@ -144,11 +169,7 @@ const Level_2_2 = () => {
       <h2>Задача 1</h2>
       <p>Задание: Вам предстоит распределить следующие критерии по двум группам: повышающие риски и понижающие риски. </p>
       <Sizebox height={40} />
-      <div className="main-container-questions">
-        {questions.map(question => (
-          <QuestionComponent key={question.id} question={question} />
-        ))}
-      </div>
+      <QuestionMap testData={testData} typeOfQuestion={'По страновому риску'}/>
       <Sizebox height={40} />
       <Divider/>
       <h2>Задача 2</h2>
@@ -158,7 +179,13 @@ const Level_2_2 = () => {
         задачей будет определить, к какой группе риска относится каждая из
         представленных стран.
       </p>
-      <DnDContainer items={items} zones={zones} handleDrop={handleDrop} onRemove={handleRemove}/>
+      <DnDContainer items={items} zones={zones} handleDrop={handleDrop} onRemove={handleRemove} />
+      <Sizebox height={40} />
+      <Divider />
+      <h2>Задача 3</h2>
+      <p>Задание: Изучите представленные данные по клиентам и определите, кто из них имеет риски, связанные с офшорными зонами. Отметьте тех клиентов, которые попадают под категорию «риска".</p>
+      <Sizebox/>
+      <ClientReview clients={clients}/>
     </>
   );
 };

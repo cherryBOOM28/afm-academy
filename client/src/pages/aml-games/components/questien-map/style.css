@@ -1,0 +1,10 @@
+.main-container-questions {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+.main-container-questions .type-of-questions{
+    font-weight: 600 !important;
+    font-size: 22px !important;
+    padding: 20px;
+}
