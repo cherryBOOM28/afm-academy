@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Sizebox from "../../../../../components/courseTemplates/common/Sizebox";
+import clientImg from '../../../assets/asian-woman.png';
+import ClientReview from "../../../components/client-review";
 import Divider from "../../../components/divider";
 import DnDContainer from "../../../components/dndBox/DnDContainer";
 import bgIcon from "../../../components/dndBox/flags/Bulgaria.svg";
@@ -26,7 +28,7 @@ import tzIcon from "../../../components/dndBox/flags/Tanzania.svg";
 import vzIcon from "../../../components/dndBox/flags/Venezuela.svg";
 import vtIcon from "../../../components/dndBox/flags/VFlag.svg";
 import yeIcon from "../../../components/dndBox/flags/Yemen.svg";
-import QuestionComponent from "../../../components/question-component";
+import QuestionMap from "../../../components/questien-map";
 import './style.css';
 
 
@@ -71,27 +73,46 @@ const initialItems = [
 ];
 
 const testData = [
-  { id: 1, text: 'Публичное должностное лицо', correctAnswer: false },
-  { id: 2, text: 'Бен. собственник клиента ПДЛ', correctAnswer: true },
-  { id: 3, text: 'Клиент без гражданства РК', correctAnswer: false },
-  { id: 4, text: 'Клиент, не имеющий адреса регистрации в РК', correctAnswer: false },
-  { id: 5, text: 'Клиент включенный в список ФТ', correctAnswer: false },
-  { id: 6, text: 'Клиент включенный в перечень ФРОМУ', correctAnswer: false },
-  { id: 7, text: 'Некоммерческая организация', correctAnswer: false },
-  { id: 8, text: 'Сомнительные документы представленные клиентом', correctAnswer: false },
-  { id: 9, text: 'Сомнительные схемы расчетов предлагаемые клиентом', correctAnswer: false },
-  { id: 10, text: 'Клиент в отношении которого ранее был определен высокий риск', correctAnswer: false },
-  { id: 11, text: 'Клиент уклоняется от процедуры НПК', correctAnswer: false },
-  { id: 12, text: 'Государственный орган', correctAnswer: false },
-  { id: 13, text: 'Международная организация', correctAnswer: false },
+  { id: 1, text: 'Страны из «Черного списка ФАТФ»', correctAnswer: false },
+  { id: 2, text: 'Страны из «Серого списка ФАТФ»', correctAnswer: true },
+  { id: 3, text: 'Санкционные страны', correctAnswer: false },
+  { id: 4, text: 'Офшорные зоны', correctAnswer: false },
+  { id: 5, text: 'Страны с высоким уровнем коррупции', correctAnswer: false },
+  { id: 6, text: 'Страны с высоким уровнем оборота наркотиков', correctAnswer: false },
+  { id: 7, text: 'Страны с высоким уровнем терроризма', correctAnswer: false },
+  { id: 8, text: 'Страны выполняющие рекомендации ФАТФ', correctAnswer: false },
+  { id: 9, text: 'Страны имеющие эффективную системы ПОД/ФТ', correctAnswer: false },
 ];
 
 const Level_2_2 = () => {
   const [items, setItems] = useState(initialItems);
-  const [questions, setQuestions] = useState([]);
-  useEffect(() => {
-    setQuestions(testData)
-  })
+  const clients = [
+    {
+        description: 'Джон Смит приехал в ювелирный магазин для покупки золотого кольца. Джон проживает в штате Вайоминг, США. Это его первый визит в магазин, и он собирается оплатить покупку наличными.',
+        img: clientImg,
+        fullName: 'Джон Смит',
+    },
+    {
+        description: 'Описание третьего клиента...',
+        img: clientImg,
+        fullName: 'ФИО третьего клиента',
+    },
+    {
+        description: 'Описание четвертого клиента...',
+        img: clientImg,
+        fullName: 'ФИО четвертого клиента',
+    },
+    {
+        description: 'Описание пятого клиента...',
+        img: clientImg,
+        fullName: 'ФИО пятого клиента',
+    },
+    {
+        description: 'Описание шестого клиента...',
+        img: clientImg,
+        fullName: 'ФИО шестого клиента',
+  },
+];
   const [zones, setZones] = useState({
     1: { id: 1, title: "Зеленый список", items: [] },
     2: { id: 2, title: "Серый список", items: [] },
@@ -144,11 +165,7 @@ const Level_2_2 = () => {
       <h2>Задача 1</h2>
       <p>Задание: Вам предстоит распределить следующие критерии по двум группам: повышающие риски и понижающие риски. </p>
       <Sizebox height={40} />
-      <div className="main-container-questions">
-        {questions.map(question => (
-          <QuestionComponent key={question.id} question={question} />
-        ))}
-      </div>
+      <QuestionMap testData={testData} typeOfQuestion={'По страновому риску'}/>
       <Sizebox height={40} />
       <Divider/>
       <h2>Задача 2</h2>
@@ -158,7 +175,13 @@ const Level_2_2 = () => {
         задачей будет определить, к какой группе риска относится каждая из
         представленных стран.
       </p>
-      <DnDContainer items={items} zones={zones} handleDrop={handleDrop} onRemove={handleRemove}/>
+      <DnDContainer items={items} zones={zones} handleDrop={handleDrop} onRemove={handleRemove} />
+      <Sizebox height={40} />
+      <Divider />
+      <h2>Задача 3</h2>
+      <p>Задание: Изучите представленные данные по клиентам и определите, кто из них имеет риски, связанные с офшорными зонами. Отметьте тех клиентов, которые попадают под категорию «риска".</p>
+      <Sizebox/>
+      <ClientReview clients={clients}/>
     </>
   );
 };

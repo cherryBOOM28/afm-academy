@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Sizebox from "../../../../../components/courseTemplates/common/Sizebox";
 import clientImg from '../../../assets/asian-woman.png';
 import ClientReview from "../../../components/client-review";
 import Divider from "../../../components/divider";
 import NameList from "../../../components/name-list";
 import PdlComponent from "../../../components/pdl-component";
-import QuestionComponent from "../../../components/question-component";
+import QuestionMap from "../../../components/questien-map";
 import './style.css';
 
 function Level_2_1() {
@@ -54,18 +54,6 @@ function Level_2_1() {
         { name: "Смагулова Жанна Еркиновна", id: "901204567890" },
         { name: "Турсунов Руслан Еркебуланович", id: "010423678901" }
     ];
-    useEffect(() => {
-        // const fetchQuestions = async () => {
-        //     try {
-        //         const response = await axios.get('/api/questions');
-        setQuestions(testData);
-        //     } catch (error) {
-        //         console.error('Error fetching questions:', error);
-        //     }
-        // };
-
-        // fetchQuestions();
-    }, []);
     const task = {
         name: 'Задание: Одним из повышающих факторов является критерий «публичные должностные лица, их супруги и близкие родственники».',
         description: 'Проверьте следующих лиц, на предмет отнесения их к ПДЛ:'
@@ -80,11 +68,7 @@ function Level_2_1() {
             <h2>Задача 1</h2>
             <p>Задание: Вам предстоит распределить следующие критерии по двум группам: повышающие риски и понижающие риски.</p>
             <Sizebox height={40} />
-            <div className="main-container-questions">
-                {questions.map(question => (
-                    <QuestionComponent key={question.id} question={question} />
-                ))}
-            </div>
+            <QuestionMap testData={testData} typeOfQuestion={'По типу клиента'}/>
             <Sizebox height={40} />
             <Divider />
             <h2>Задача 2</h2>

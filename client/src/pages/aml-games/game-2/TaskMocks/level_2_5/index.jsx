@@ -3,7 +3,7 @@ import clientImg from '../../../assets/asian-woman.png';
 import ClientReview from "../../../components/client-review";
 import QuestionMap from "../../../components/questien-map";
 
-function Level_2_4() {
+function Level_2_5() {
     const testData = [
         { id: 1, text: 'Онлайн', correctAnswer: false },
         { id: 2, text: 'НПК проводится через третьих лиц', correctAnswer: true },
@@ -51,4 +51,4 @@ function Level_2_4() {
     );
 }
 
-export default Level_2_4;
+export default Level_2_5;
