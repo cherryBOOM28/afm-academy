@@ -73,19 +73,15 @@ const initialItems = [
 ];
 
 const testData = [
-  { id: 1, text: 'Публичное должностное лицо', correctAnswer: false },
-  { id: 2, text: 'Бен. собственник клиента ПДЛ', correctAnswer: true },
-  { id: 3, text: 'Клиент без гражданства РК', correctAnswer: false },
-  { id: 4, text: 'Клиент, не имеющий адреса регистрации в РК', correctAnswer: false },
-  { id: 5, text: 'Клиент включенный в список ФТ', correctAnswer: false },
-  { id: 6, text: 'Клиент включенный в перечень ФРОМУ', correctAnswer: false },
-  { id: 7, text: 'Некоммерческая организация', correctAnswer: false },
-  { id: 8, text: 'Сомнительные документы представленные клиентом', correctAnswer: false },
-  { id: 9, text: 'Сомнительные схемы расчетов предлагаемые клиентом', correctAnswer: false },
-  { id: 10, text: 'Клиент в отношении которого ранее был определен высокий риск', correctAnswer: false },
-  { id: 11, text: 'Клиент уклоняется от процедуры НПК', correctAnswer: false },
-  { id: 12, text: 'Государственный орган', correctAnswer: false },
-  { id: 13, text: 'Международная организация', correctAnswer: false },
+  { id: 1, text: 'Страны из «Черного списка ФАТФ»', correctAnswer: false },
+  { id: 2, text: 'Страны из «Серого списка ФАТФ»', correctAnswer: true },
+  { id: 3, text: 'Санкционные страны', correctAnswer: false },
+  { id: 4, text: 'Офшорные зоны', correctAnswer: false },
+  { id: 5, text: 'Страны с высоким уровнем коррупции', correctAnswer: false },
+  { id: 6, text: 'Страны с высоким уровнем оборота наркотиков', correctAnswer: false },
+  { id: 7, text: 'Страны с высоким уровнем терроризма', correctAnswer: false },
+  { id: 8, text: 'Страны выполняющие рекомендации ФАТФ', correctAnswer: false },
+  { id: 9, text: 'Страны имеющие эффективную системы ПОД/ФТ', correctAnswer: false },
 ];
 
 const Level_2_2 = () => {

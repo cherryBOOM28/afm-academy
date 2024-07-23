@@ -6,6 +6,7 @@ import { NavbarProfile } from '../navbar';
 import { mockTasks } from './mockData';
 import { store } from './store/index.ts';
 import './style.scss';
+import Level_2_5 from './TaskMocks/level_2_5/index.jsx';
 
 const Level_1_1 = lazy(() => import('./TaskMocks/level_1_1'));
 const Level_1_2 = lazy(() => import('./TaskMocks/level_1_2'));
@@ -43,7 +44,7 @@ const GameReader = () => {
         }
     };
 
-    const isResultPage = (subLevel === '6' && level === '1') || (subLevel === '5' && level === '2');
+    const isResultPage = (subLevel === '6' && level === '1') || (subLevel === '6' && level === '2');
 
     return (
         <Provider store={store}>
@@ -95,7 +96,8 @@ const GetTaskPage = ({ level, subLevel }) => {
     if (levelNum === 2 && subLevelNum === 2) return <Suspense><Level_2_2 /></Suspense>;
     if (levelNum === 2 && subLevelNum === 3) return <Suspense><Level_2_3 /></Suspense>;
     if (levelNum === 2 && subLevelNum === 4) return <Suspense><Level_2_4 /></Suspense>;
-    if (levelNum === 2 && subLevelNum === 5) return <Suspense><Level_Result level={2} /></Suspense>;
+    if (levelNum === 2 && subLevelNum === 5) return <Suspense><Level_2_5 /></Suspense>;
+    if (levelNum === 2 && subLevelNum === 6) return <Suspense><Level_Result level={2} /></Suspense>;
 
     if (levelNum === 3 && subLevelNum === 1) return <Suspense><Level_3_1 /></Suspense>;
 

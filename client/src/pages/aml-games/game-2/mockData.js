@@ -79,6 +79,7 @@ export const mockTasks = [
         level: 1,
         subLevel: 4,
         taskCount: 1,
+        name:'Формирование досье клиента',
         tasks: [
             {
                 name: 'Задание 1.4.1',
@@ -129,6 +130,7 @@ export const mockTasks = [
         level: 2,
         subLevel: 1,
         taskCount: 1,
+        name:'Оценка риска в зависимости от типа клиента',
         tasks: [
             {
                 name: 'Задание 2.1.1',
@@ -157,6 +159,7 @@ export const mockTasks = [
         level: 2,
         subLevel: 2,
         taskCount: 1,
+        name:'Оценка странового риска',
         tasks: [
             {
                 name: 'Задание 2.2.1',
@@ -185,6 +188,7 @@ export const mockTasks = [
         level: 2,
         subLevel: 3,
         taskCount: 1,
+        name:'Оценка риска услуги и продукта',
         tasks: [
             {
                 name: 'Задание 2.3.1',
@@ -213,6 +217,7 @@ export const mockTasks = [
         level: 2,
         subLevel: 4,
         taskCount: 1,
+        name:'Оценка риска способа предоставления услуги',
         tasks: [
             {
                 name: 'Задание 2.4.1',
@@ -230,6 +235,21 @@ export const mockTasks = [
         tasks: [
             {
                 name: 'Задание 2.4.2',
+                description: testText,
+                goal: testText,
+                steps: testText,
+                risk: testText
+            }
+        ]
+    },
+    {
+        level: 2,
+        subLevel: 5,
+        taskCount: 1,
+        name:'Оценка риска способа предоставления услуги',
+        tasks: [
+            {
+                name: 'Задание 2.4.1',
                 description: testText,
                 goal: testText,
                 steps: testText,
