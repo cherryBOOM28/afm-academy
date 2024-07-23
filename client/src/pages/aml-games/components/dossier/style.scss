@@ -2,14 +2,14 @@
   width: 80%;
   font-family: Arial, sans-serif;
 }
-.header-background{
-  background-color: #f0f0f0;
-  border-radius: 10px 10px 0px 0px;
 
+.header-background {
+  background-color: #f0f0f0;
+  border-radius: 10px 10px 0 0;
 }
 
 .dossier-header {
-  background-color: #1A2751;
+  background-color: #1a2751;
   color: white;
   text-align: center;
   padding: 20px;
@@ -17,24 +17,33 @@
   font-size: 24px;
 }
 
-.client-info {
+.client-info,
+.operation-section,
+.risk-section,
+.type-section,
+.product-section,
+.rank-section {
   background-color: #f0f0f0;
   padding: 20px;
 }
 
-.client-info h2 {
-  color: #1A2751;
+.client-info h2,
+.operation-section h2,
+.risk-section h2 {
+  color: #1a2751;
 }
 
-.info-section {
+.info-section,
+.info-section-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+}
+.info-section-row .input-group input {
+  width: 45% !important; 
 }
 
 .info-section-row {
-  display: block;
-
+  flex-direction: column;
 }
 
 .form-fields {
@@ -44,7 +53,7 @@
 .input-group {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 10px 0px 10px 20px;
 }
 
 .input-group label {
@@ -56,7 +65,7 @@
   border: none;
   height: 10px;
   width: 30%;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -71,54 +80,54 @@
 
 .avatar-container img {
   width: 120%;
-  margin: 20px 90px 20px 0px;
+  margin: 20px 90px 20px 0;
   height: 100%;
 }
 
-.button-group {
-  display: flex;
-  gap: 10px;
+.footer-strip {
+  background-color: #1a2751;
+  height: 10px;
 }
 
-.button-group button {
-  padding: 10px 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f0f0f0;
+.custom-radio {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  position: relative;
   cursor: pointer;
 }
 
-.button-group button:hover {
-  background-color: #e0e0e0;
+.custom-radio input[type="radio"] {
+  display: none;
 }
 
-.footer-strip {
-  background-color: #1A2751;
-  height: 10px;
-}
-.operation-info{
-  padding: 20px;
-  background-color: #f0f0f0;
-
-}
-.risk-section{
-  padding: 20px;
-  background-color: #f0f0f0;
+.custom-radio-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #5792EB;
+  border-radius: 50%;
+  margin-right: 8px;
+  background-color: white;
 }
 
-.rank-section{
-  padding: 20px;
-  background-color: #f0f0f0;
-}
-.product-section{
-  padding: 20px;
-  background-color: #f0f0f0;
-}
-.type-section{
-  padding: 20px;
-  background-color: #f0f0f0;
-}
-.legend{
-  font-size: large;
+.custom-radio input[type="radio"]:checked + .custom-radio-icon {
+  background-color: #5792eb;
 }
 
+.custom-radio-icon svg {
+  width: 20px;
+  height: 20px;
+  color: white;
+}
+
+.radio-group {
+  display: flex;
+  margin: 20px;
+}
+
+.radio-group p {
+  margin-right: 20px;
+}
