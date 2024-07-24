@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import partnerImg1 from '../../assets/jfif/Afm.jfif'
 import partnerImg2 from '../../assets/jfif/Sfm.jfif'
+import partnerImg7 from '../../assets/png/image.png'
 import partnerImg6 from '../../assets/png/strike.png'
 import partnerImg5 from '../../assets/png/sudEkspertiza.png'
 import partnerImg3 from '../../assets/png/Turan.png'
@@ -32,7 +33,11 @@ const partners = [
     {
         img: partnerImg6,
         partnerName: 'Strike plagiarism'
-    }
+    },
+    {
+        img: partnerImg7,
+        partnerName: 'Paragraph'
+    },
 ]
 
 const PartnersComponent = () => {
