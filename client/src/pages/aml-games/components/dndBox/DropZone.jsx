@@ -1,15 +1,15 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
-import idIcon from './svg/9256632.svg';
+import DraggableItem from './DraggableItem';
 import contactIcon from './svg/1509974.svg';
 import generalIcon from './svg/3740813.svg';
-import DraggableItem from './DraggableItem';
+import idIcon from './svg/9256632.svg';
 
 // Иконки SVG для каждого заголовка
 const icons = {
-  'Идентификационные данные': <img src={idIcon} />,
-  'Контактные данные': <img src={contactIcon} />,
-  'Общие сведения': <img src={generalIcon} />,
+  'Идентификационные данные': <img src={idIcon} alt='Идентификационные данные'/>,
+  'Контактные данные': <img src={contactIcon} alt='Контактные данные'/>,
+  'Общие сведения': <img src={generalIcon} alt='Общие сведения'/>,
 };
 
 const DropZone = ({ id, title, items, onDrop, onRemove }) => {

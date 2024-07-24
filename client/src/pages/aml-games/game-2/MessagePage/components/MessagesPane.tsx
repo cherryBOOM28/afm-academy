@@ -21,9 +21,14 @@ export default function MessagesPane(props: MessagesPaneProps) {
   const [typing, setTyping] = useState(false);
   const [messageIndex, setMessageIndex] = useState(0);
 
+  
+
   useEffect(() => {
     setChatMessages([]);
     setMessageIndex(0);
+    console.log(messageIndex);
+    setRecipient('9umLzZWFyVSAagEU2xLcNikCqef1')
+    
 
     const timers = chat.messages.map((message, index) => {
       return setTimeout(() => {

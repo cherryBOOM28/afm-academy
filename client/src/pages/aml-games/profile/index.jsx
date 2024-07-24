@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import './style.scss';
 
+import { FaAngleLeft, FaAngleRight, FaCheckCircle } from "react-icons/fa";
 import { FaArrowLeft, FaRegNewspaper } from "react-icons/fa6";
-import { FaCheckCircle, FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import { FiUser } from "react-icons/fi";
 import { LuTimerReset } from "react-icons/lu";
+import { useNavigate } from 'react-router-dom';
+import { NavbarProfile } from '../navbar';
+import avatarImg from './avatar-image.png';
 import levelLogo from './level-logo.png';
 import ringImg from './ring-image.png';
-import avatarImg from './avatar-image.png';
-import { NavbarProfile } from '../navbar';
-import { Link, useNavigate } from 'react-router-dom';
 
 function GameProfile() {
     return ( 
@@ -228,9 +227,7 @@ const LevelCard = ({
     )
 }
 
-const RecomendationCard = ({
-
-}) => {
+const RecomendationCard = () => {
 
     return (
         <div className="recomendation">

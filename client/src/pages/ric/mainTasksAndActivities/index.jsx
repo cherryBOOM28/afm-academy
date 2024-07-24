@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 import "./style.scss";
 
 import Footer from "../../../components/footer/Footer";
-import igIcon from '../../../assets/images/Instagram_icon.png';
-import tgIcon from '../../../assets/images/Telegram_Messenger.png';
 
-import axios from "axios";
-import base_url from "../../../settings/base_url";
-import { Box, Modal } from "@mui/material";
 import Header from "../../../components/header/Header";
 
-import { t } from "i18next";
 import { useTranslation } from "react-i18next";
 
 import VisualModal from "../../../components/VisualModal/VisualModal";
@@ -22,80 +15,9 @@ import { useStyle } from "../../../components/VisualModal/StyleContext";
 function MainTasksAndActivities({ email, phoneNumber }) {
   const { t } = useTranslation();
 
-  const navigate = useNavigate();
-
-  const [vebinars, setVebinars] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoading, setLoading] = useState(true);
-
-  const [openModal, setOpenModal] = useState(false);
-  const handleEmailClick = () => {
-    window.location.href = `mailto:${email}`;
-};
-
-const handlePhoneClick = () => {
-    window.location.href = `tel:${phoneNumber}`;
-  };
-    const handleVebinarEnter = (webinar_id) => {
-        // Выполняем регистрацию на вебинар
-        const jwtToken = localStorage.getItem("jwtToken");
-        axios.post(
-            `${base_url}/api/aml/webinar/saveUser/webinar/${webinar_id}`,{}, {
-                headers: {
-                    Authorization: `Bearer ${jwtToken}`,
-                },
-            }).then(response => {
-            // Handle success
-            console.log("Participation added successfully", response.data);
-            // Optionally, you can refresh the data or notify the user
-        })
-            .catch(error => {
-                // Handle error
-                console.error("Error adding participation", error);
-                // Notify the user of the error
-            });;
-
-        setOpenModal(true);
-    };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${base_url}/api/aml/webinar/getWebinars`,
-          {
-            headers: {
-              Authorization: `Bearer ${jwtToken}`,
-            },
-          }
-        );
-
-        if (response.status === 200) {
-          // console.log(response.data)
-          setVebinars(response.data);
-        } else {
-          // Handle other status codes if needed
-          setError(response.statusText);
-          // console.log(response.statusText);
-        }
-      } catch (error) {
-        setError(error);
-        console.error(error);
-      }
-
-      setLoading(false);
-    };
-
-    fetchData();
-  }, []);
-
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
   const [letterInterval, setLetterInterval] = useState("standard");
-  const { i18n } = useTranslation();
-  const currentLanguage = i18n.language;
-
-  const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
     if (!checkStyle) return;
@@ -142,9 +64,6 @@ const handlePhoneClick = () => {
     }
   };
 
-  const handleTabClick = (tabIndex) => {
-    setActiveTab(tabIndex);
-  };
 
   const handleRemoveImages = () => {
     console.log("Images hidden");
@@ -154,16 +73,7 @@ const handlePhoneClick = () => {
 
   const handleShowImages = () => {
     setImagesHidden(false);
-  };
-
-  const handleIntervalChange = (interval) => {
-    console.log("Interval changed");
-    setLetterInterval(interval);
-  };
-
-  const getShowImage = () => {
-    return imagesHidden;
-  };
+  }
 
   const getLetterSpacing = (interval) => {
     interval = styles.letterInterval;
@@ -177,8 +87,6 @@ const handlePhoneClick = () => {
         return "1px";
     }
   };
-
-  const jwtToken = localStorage.getItem("jwtToken");
 
   const handleOpenVisualModal = () => {
     console.log("OPEN");
@@ -195,42 +103,44 @@ const handlePhoneClick = () => {
           styles.colorMode === "dark"
             ? "#000"
             : styles.colorMode === "light"
-            ? "#f2f2f2"
-            : styles.colorMode === "blue"
-            ? "#9dd1ff"
-            : "#000",
+              ? "#f2f2f2"
+              : styles.colorMode === "blue"
+                ? "#9dd1ff"
+                : "#000",
       }}
-      >
-            <VisualModal
+    >
+      <VisualModal
         open={openVisualModal}
         onRemoveImages={handleRemoveImages}
         onShowImages={handleShowImages}
-        onFontFamily={() => {}}
-        onIntervalChange={() => {}}
+        onFontFamily={() => { }}
+        onIntervalChange={() => { }}
         styles={styles}
       />
 
-      
+
 
       <div>
         <Header
-          dark={styles.colorMode == "dark" ? false : true}
+          dark={styles.colorMode === "dark" ? false : true}
           handleOpenVisualModal={handleOpenVisualModal}
         />
         <div className="container"></div>
       </div>
 
-      <div className="page-content container" style={{lineHeight:"1.5"}}>
+      <div className="page-content container" style={{ lineHeight: "1.5" }}>
         <div
           className="interval"
-          style={{ letterSpacing: getLetterSpacing(letterInterval),color:
-            styles.colorMode === "dark"
-              ? "#fff"
-              : styles.colorMode === "light"
-              ? "#343434"
-              : styles.colorMode === "blue"
-              ? "#063462"
-              : "#000", }}
+          style={{
+            letterSpacing: getLetterSpacing(letterInterval), color:
+              styles.colorMode === "dark"
+                ? "#fff"
+                : styles.colorMode === "light"
+                  ? "#343434"
+                  : styles.colorMode === "blue"
+                    ? "#063462"
+                    : "#000",
+          }}
         >
           <h1
             className="text-content"
@@ -239,58 +149,61 @@ const handlePhoneClick = () => {
                 styles.colorMode === "dark"
                   ? "#fff"
                   : styles.colorMode === "light"
-                  ? "#343434"
-                  : styles.colorMode === "blue"
-                  ? "#063462"
-                  : "#000",
+                    ? "#343434"
+                    : styles.colorMode === "blue"
+                      ? "#063462"
+                      : "#000",
             }}
           >
             {t("Main tasks and activities")}
-                  </h1>
-              </div>
-              <p style={{  color:
-                styles.colorMode === "dark"
-                  ? "#fff"
-                  : styles.colorMode === "light"
-                  ? "#343434"
-                  : styles.colorMode === "blue"
+          </h1>
+        </div>
+        <p style={{
+          color:
+            styles.colorMode === "dark"
+              ? "#fff"
+              : styles.colorMode === "light"
+                ? "#343434"
+                : styles.colorMode === "blue"
                   ? "#063462"
-                : "#000",
-                  fontSize: "20px",
-                  fontWeight:"600",
+                  : "#000",
+          fontSize: "20px",
+          fontWeight: "600",
         }}>{t("ricGroups")}</p>
         <br />
-              <ul>
-                  <li>{t("li1")}</li>
-             
-                  <li>{t("li2")}</li>
-                 
-                  <li>{ t("li3")}</li>
+        <ul>
+          <li>{t("li1")}</li>
+
+          <li>{t("li2")}</li>
+
+          <li>{t("li3")}</li>
         </ul>
         <br />
 
-        <p style={{  color:
-                styles.colorMode === "dark"
-                  ? "#fff"
-                  : styles.colorMode === "light"
-                  ? "#343434"
-                  : styles.colorMode === "blue"
+        <p style={{
+          color:
+            styles.colorMode === "dark"
+              ? "#fff"
+              : styles.colorMode === "light"
+                ? "#343434"
+                : styles.colorMode === "blue"
                   ? "#063462"
-                : "#000",
-                  fontSize: "20px",
-                  fontWeight:"600",
+                  : "#000",
+          fontSize: "20px",
+          fontWeight: "600",
         }}>{t("ricTask")}</p> <br /><p>{t("ricTaskDesk")}</p> <br />
-         <p style={{  color:
-                styles.colorMode === "dark"
-                  ? "#fff"
-                  : styles.colorMode === "light"
-                  ? "#343434"
-                  : styles.colorMode === "blue"
+        <p style={{
+          color:
+            styles.colorMode === "dark"
+              ? "#fff"
+              : styles.colorMode === "light"
+                ? "#343434"
+                : styles.colorMode === "blue"
                   ? "#063462"
-                : "#000",
-                  fontSize: "20px",
-                  fontWeight:"600",
-        }}>{t("generalTask")}</p> 
+                  : "#000",
+          fontSize: "20px",
+          fontWeight: "600",
+        }}>{t("generalTask")}</p>
         <br />
         <p>{t("task1")}</p>
         <br />
@@ -301,11 +214,11 @@ const handlePhoneClick = () => {
         <p>{t("task4")}</p>
         <br />
         <br />
-      
-      
-       
-          </div>
-         
+
+
+
+      </div>
+
 
       <Footer />
     </div>

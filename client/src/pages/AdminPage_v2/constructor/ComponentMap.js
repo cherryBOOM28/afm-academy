@@ -32,6 +32,7 @@ import FlexBoxes from '../../../components/courseTemplates/common_v2/FlexBoxes'
 import FlexRow from '../../../components/courseTemplates/common_v2/FlexRow'
 import IconDots from '../../../components/courseTemplates/common_v2/IconDots'
 import ImageAndColumns from '../../../components/courseTemplates/common_v2/ImageAndColumns'
+import PyramidList from '../../../components/courseTemplates/common_v2/PyramidList'
 import TwoColumnsDivider from '../../../components/courseTemplates/common_v2/TwoColumnsDivider'
 import Component52 from '../../../components/courseTemplates/complex/Component52'
 import CustomCarousel from '../../../components/courseTemplates/complex/CustomCarousel'
@@ -49,7 +50,6 @@ import DropdownList_r5 from '../../../components/courseTemplates/complex/interac
 import ImageWithPoints from '../../../components/courseTemplates/complex/interactives/ImageWithPoints'
 import InteractivePhases from '../../../components/courseTemplates/complex/interactives/InteractivePhases'
 import OneToFour from '../../../components/courseTemplates/complex/interactives/OneToFour'
-import PyramidList from '../../../components/courseTemplates/common_v2/PyramidList'
 
 const componentMap = {
     HeaderWithLine,

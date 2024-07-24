@@ -1,4 +1,3 @@
-import Centered from '../../../components/courseTemplates/common/Centered'
 import FileDownloader from '../../../components/courseTemplates/common/FileDownloader'
 import HeaderWithLine from '../../../components/courseTemplates/common/HeaderWithLine'
 import ImageLine from '../../../components/courseTemplates/common/ImageLine'
@@ -9,91 +8,89 @@ import RandomGlossary from '../../../components/courseTemplates/common/RandomGlo
 import RandomH2 from '../../../components/courseTemplates/common/RandomH2'
 import RandomParapraph from '../../../components/courseTemplates/common/RandomParagraph'
 import Sizebox from '../../../components/courseTemplates/common/Sizebox'
-import SmallNotNuberedDots from '../../../components/courseTemplates/common/SmallNotNuberedDots'
 
 import Table_1 from '../../../components/courseTemplates/common/Tables/Table-1'
 
-import FlexRow from '../../../components/courseTemplates/common_v2/FlexRow'
-import FlexBoxes from '../../../components/courseTemplates/common_v2/FlexBoxes'
-import FancyList from '../../../components/courseTemplates/common_v2/FancyList'
+import SimpleTable from '../../../components/courseTemplates/common/SimpleTable'
 import TextWithBackground from '../../../components/courseTemplates/common/TextWithBackground'
 import TextWithTitle from '../../../components/courseTemplates/common/TextWithTitle'
 import VideoLine from '../../../components/courseTemplates/common/VideoLine'
 import Report_Warning from '../../../components/courseTemplates/common/Warnings/Report'
 import Report_Information from '../../../components/courseTemplates/common/Warnings/Report_Information'
-import TabsGlossary from '../../../components/courseTemplates/complex/TabsGlossary'
-import VideoWithTitleAndText from '../../../components/courseTemplates/complex/Video/VideoWithTitleAndText'
-import TextAndLink from '../../../components/courseTemplates/complex/TextAndLink'
-import DropdownList from '../../../components/courseTemplates/complex/interactives/DropdownList'
-import DropdownList_r5 from '../../../components/courseTemplates/complex/interactives/DropdownList_r5'
-import ShortBiography from '../../../components/courseTemplates/complex/images/ShortBiography'
-import DragAndDropTwoSide from '../../../components/courseTemplates/complex/DragAndDropTwoSide'
-import DropdownGlossaryList from '../../../components/courseTemplates/complex/DropdownGlossaryList'
-import DataChain from '../../../components/courseTemplates/complex/DataChain'
-import SimpleTable from '../../../components/courseTemplates/common/SimpleTable'
-import DropDownTextWithTabs from '../../../components/courseTemplates/complex/DropDownTextWithTabs'
-import Quote from '../../../components/courseTemplates/common_v2/Quote'
+import FancyList from '../../../components/courseTemplates/common_v2/FancyList'
+import FlexBoxes from '../../../components/courseTemplates/common_v2/FlexBoxes'
+import FlexRow from '../../../components/courseTemplates/common_v2/FlexRow'
 import IconDots from '../../../components/courseTemplates/common_v2/IconDots'
 import ImageAndColumns from '../../../components/courseTemplates/common_v2/ImageAndColumns'
 import ImageSequence from '../../../components/courseTemplates/common_v2/ImageSequence'
+import Quote from '../../../components/courseTemplates/common_v2/Quote'
+import DataChain from '../../../components/courseTemplates/complex/DataChain'
+import DragAndDropTwoSide from '../../../components/courseTemplates/complex/DragAndDropTwoSide'
+import DropdownGlossaryList from '../../../components/courseTemplates/complex/DropdownGlossaryList'
+import DropDownTextWithTabs from '../../../components/courseTemplates/complex/DropDownTextWithTabs'
+import ShortBiography from '../../../components/courseTemplates/complex/images/ShortBiography'
+import DropdownList from '../../../components/courseTemplates/complex/interactives/DropdownList'
+import TabsGlossary from '../../../components/courseTemplates/complex/TabsGlossary'
+import TextAndLink from '../../../components/courseTemplates/complex/TextAndLink'
+import VideoWithTitleAndText from '../../../components/courseTemplates/complex/Video/VideoWithTitleAndText'
 
+import biographyIcon from '../images/biography-icon.svg'
+import block2Icon from '../images/blocks-2-icon.svg'
+import blockIcon from '../images/blocks-icon.svg'
+import fileDIcon from '../images/download-icon.svg'
+import dropDownListIcon from '../images/drop-down-list-icon.svg'
+import dropDownTableIcon from '../images/dropdropwithtext-icon.svg'
 import headerWithLineIcon from '../images/header-icon.svg'
-import imageWithTextIcon from '../images/textWithBackground-icon.svg'
+import imageIcon from '../images/imageLine-icon.svg'
+import listIcon from '../images/list-icon.png'
+import norNumberedDotsIcon from '../images/notNumberedDots-icon.svg'
+import numberedDotsIcon from '../images/numberedDots-icon.svg'
 import randomGlossaryIcon from '../images/randomGlossary-icon.svg'
 import randomH2Icon from '../images/randomh2-icon.svg'
 import randomParagraphIcon from '../images/randomParagraph-icon.svg'
-import textWithTitleIcon from '../images/textWithTitle-icon.svg'
-import reportIcon from '../images/reportWarning-icon.svg'
 import reportInformationIcon from '../images/reportIndormation-icon.svg'
-import norNumberedDotsIcon from '../images/notNumberedDots-icon.svg'
-import numberedDotsIcon from '../images/numberedDots-icon.svg'
-import table1Icon from '../images/table-1-icon.svg'
-import fileDIcon from '../images/download-icon.svg'
-import imageIcon from '../images/imageLine-icon.svg'
-import videoLineIcon from '../images/videoLine-icon.svg'
+import reportIcon from '../images/reportWarning-icon.svg'
 import sizeBoxIcon from '../images/sizeBox-icon.svg'
-import tabsGlossaryIcon from '../images/tabs-glossary-icon.svg'
-import dropDownTableIcon from '../images/dropdropwithtext-icon.svg'
-import textContentIcon from '../images/text-content-icon.svg'
-import dropDownListIcon from '../images/drop-down-list-icon.svg'
-import biographyIcon from '../images/biography-icon.svg'
-import dndTwoSideIcon from '../images/two-side-icon.svg'
-import listIcon from '../images/list-icon.png'
 import squareIcon from '../images/square-icon.svg'
-import blockIcon from '../images/blocks-icon.svg'
-import block2Icon from '../images/blocks-2-icon.svg'
+import table1Icon from '../images/table-1-icon.svg'
+import tabsGlossaryIcon from '../images/tabs-glossary-icon.svg'
+import textContentIcon from '../images/text-content-icon.svg'
+import imageWithTextIcon from '../images/textWithBackground-icon.svg'
+import textWithTitleIcon from '../images/textWithTitle-icon.svg'
+import dndTwoSideIcon from '../images/two-side-icon.svg'
+import videoLineIcon from '../images/videoLine-icon.svg'
 
 
 // Example images
-import HeaderWithLineExample from './../../../assets/images/Template Examples/HeaderWithLine.png'
-import NumberedDotsExample from './../../../assets/images/Template Examples/NumberedList.png'
-import NotNumberedDotsExample from './../../../assets/images/Template Examples/NotNumberedList.png'
-import QuoteExample from './../../../assets/images/Template Examples/Quote.png'
-import RandomParagraphExample from './../../../assets/images/Template Examples/RandomParagraph.png'
-import RandomH2Example from './../../../assets/images/Template Examples/RandomH2.png'
-import RandomGlossaryExample from './../../../assets/images/Template Examples/RandomGlossary.png'
-import TextWithBackgroundExample from './../../../assets/images/Template Examples/TextWithBackground.png'
-import ReportWarningExample from './../../../assets/images/Template Examples/ReportWarning.png'
-import ReportInformationExample from './../../../assets/images/Template Examples/ReportInformation.png'
-import FancyListExample from './../../../assets/images/Template Examples/FancyList.png'
-import DropdownListExample from './../../../assets/images/Template Examples/DropdownList.png'
+import TwoColumnsDivider from '../../../components/courseTemplates/common_v2/TwoColumnsDivider'
+import DataChainExample from './../../../assets/images/Template Examples/DataChain.png'
+import DragAndDropTwoSideExample from './../../../assets/images/Template Examples/DragAndDropTwoSide.png'
 import DropdownGlossaryListExample from './../../../assets/images/Template Examples/DropdownGlossaryList.png'
-import IconDotsExample from './../../../assets/images/Template Examples/IconDots.png'
-import TabsGlossaryExample from './../../../assets/images/Template Examples/TabsGlossary.png'
+import DropdownListExample from './../../../assets/images/Template Examples/DropdownList.png'
 import DropDownTextWithTabsExample from './../../../assets/images/Template Examples/DropDownTextWithTabs.png'
-import Table_1Example from './../../../assets/images/Template Examples/Table_1.png'
-import SimpleTableExample from './../../../assets/images/Template Examples/SimpleTable.png'
-import ImageWithTextExample from './../../../assets/images/Template Examples/ImageWithText.png'
+import FancyListExample from './../../../assets/images/Template Examples/FancyList.png'
+import FileDownloaderExample from './../../../assets/images/Template Examples/FileDownloader.png'
+import FlexBoxesExample from './../../../assets/images/Template Examples/FlexBoxes.png'
+import HeaderWithLineExample from './../../../assets/images/Template Examples/HeaderWithLine.png'
+import IconDotsExample from './../../../assets/images/Template Examples/IconDots.png'
+import ImageAndColumnsExample from './../../../assets/images/Template Examples/ImageAndColumns.png'
 import ImageLineExample from './../../../assets/images/Template Examples/ImageLine.png'
 import ImageSequenceExample from './../../../assets/images/Template Examples/ImageSequence.png'
-import FileDownloaderExample from './../../../assets/images/Template Examples/FileDownloader.png'
-import TextAndLinkExample from './../../../assets/images/Template Examples/TextAndLink.png'
+import ImageWithTextExample from './../../../assets/images/Template Examples/ImageWithText.png'
+import NotNumberedDotsExample from './../../../assets/images/Template Examples/NotNumberedList.png'
+import NumberedDotsExample from './../../../assets/images/Template Examples/NumberedList.png'
+import QuoteExample from './../../../assets/images/Template Examples/Quote.png'
+import RandomGlossaryExample from './../../../assets/images/Template Examples/RandomGlossary.png'
+import RandomH2Example from './../../../assets/images/Template Examples/RandomH2.png'
+import RandomParagraphExample from './../../../assets/images/Template Examples/RandomParagraph.png'
+import ReportInformationExample from './../../../assets/images/Template Examples/ReportInformation.png'
+import ReportWarningExample from './../../../assets/images/Template Examples/ReportWarning.png'
 import ShortBiographyExample from './../../../assets/images/Template Examples/ShortBiography.png'
-import DataChainExample from './../../../assets/images/Template Examples/DataChain.png'
-import FlexBoxesExample from './../../../assets/images/Template Examples/FlexBoxes.png'
-import ImageAndColumnsExample from './../../../assets/images/Template Examples/ImageAndColumns.png'
-import DragAndDropTwoSideExample from './../../../assets/images/Template Examples/DragAndDropTwoSide.png'
-import TwoColumnsDivider from '../../../components/courseTemplates/common_v2/TwoColumnsDivider'
+import SimpleTableExample from './../../../assets/images/Template Examples/SimpleTable.png'
+import Table_1Example from './../../../assets/images/Template Examples/Table_1.png'
+import TabsGlossaryExample from './../../../assets/images/Template Examples/TabsGlossary.png'
+import TextAndLinkExample from './../../../assets/images/Template Examples/TextAndLink.png'
+import TextWithBackgroundExample from './../../../assets/images/Template Examples/TextWithBackground.png'
 
 
 const Elements = {
@@ -138,9 +135,9 @@ const Elements = {
             name: 'RandomParapraph',
             icon: randomParagraphIcon,
             inputs: [
-              { name: 'children', label: 'Текст (Children)', type: 'formatTextarea' },
-              { name: 'color', label: 'Цвет', type: 'color' },
-              { name: 'fontSize', label: 'Размер шрифта', type: 'number' },
+                { name: 'children', label: 'Текст (Children)', type: 'formatTextarea' },
+                { name: 'color', label: 'Цвет', type: 'color' },
+                { name: 'fontSize', label: 'Размер шрифта', type: 'number' },
             ],
         }, //children, color, fontSize
         'Цветной фон': {
@@ -154,7 +151,6 @@ const Elements = {
                 { name: 'color', label: 'Цвет текста', type: 'color' },
                 { name: 'backgroundColor', label: 'Цвет фона', type: 'color' },
             ],
-              
         }, //text [,,], color, backgroundColor
         'Заголовок + текст': {
             component: TextWithTitle,
@@ -315,7 +311,6 @@ const Elements = {
                 { name: 'borderColor', label: 'Цвет границы', type: 'color' },
                 { name: 'color', label: 'Цвет текста', type: 'color' },
             ],
-              
         }, // rows [{first:, second:}], borderColor, color
         'Видовой': {
             component: SimpleTable,
@@ -326,8 +321,7 @@ const Elements = {
                 { name: 'columns', label: 'Колонны', type: 'table_headers' },
                 { name: 'data', label: 'Строки', type: 'table_rows' },
             ],
-              
-        }, 
+        },
     
     },
     'Медиа': {
@@ -341,7 +335,7 @@ const Elements = {
                 { name: 'imageText', label: 'Текст', type: 'text' },
                 { name: 'children', label: 'Children', type: 'text' },
                 { name: 'color', label: 'Цвет', type: 'color' },
-              ],
+            ],
         }, //img, imageText or children, color
         'Изображение': {
             component: ImageLine,
@@ -413,7 +407,7 @@ const Elements = {
                 { name: 'type', label: 'Тип', type: 'text' },
                 { name: 'color', label: 'Цвет', type: 'color' },
             ],
-              
+
         }, //file, fileName 
         'Ссылка': {
             component: TextAndLink,
@@ -428,7 +422,7 @@ const Elements = {
                 { name: 'linkColor', label: 'Цвет Ссылки', type: 'color' },
                 { name: 'linkBackgroundColor', label: 'Цвет заднего фона ссылки', type: 'color' },
             ],
-              
+                
         }, //file, fileName 
     },
     'Другие': {

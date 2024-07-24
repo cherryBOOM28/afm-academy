@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Sizebox from "../../../../../components/courseTemplates/common/Sizebox";
 import clientImg from '../../../assets/asian-woman.png';
 import ClientReview from "../../../components/client-review";
@@ -9,7 +8,6 @@ import QuestionMap from "../../../components/questien-map";
 import './style.css';
 
 function Level_2_1() {
-    const [questions, setQuestions] = useState([]);
 
     const clients = [
         {

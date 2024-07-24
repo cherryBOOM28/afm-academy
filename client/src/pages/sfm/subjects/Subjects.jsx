@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from "react";
-import cl from "./Subjects.module.css";
-import DefaultHeader from "../../../components/defaultHeader/DefaultHeader";
 import Footer from "../../../components/footer/Footer";
 import Header from "../../../components/header/Header";
+import cl from "./Subjects.module.css";
 
+import data_eng from '../../../components/data/subjectsData eng.json';
 import data_kz from '../../../components/data/subjectsData kz.json';
 import data_ru from '../../../components/data/subjectsData ru.json';
-import data_eng from '../../../components/data/subjectsData eng.json';
 
 import { useTranslation } from "react-i18next";
-import VisualModal from "../../../components/VisualModal/VisualModal";
 import { useStyle } from "../../../components/VisualModal/StyleContext";
+import VisualModal from "../../../components/VisualModal/VisualModal";
 
 function Subjects() {
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
 
     const { t } = useTranslation();
     const { i18n } = useTranslation();
-    const currentLanguage = i18n.language;
-    const [imagesHidden, setImagesHidden] = useState(false);
     const [letterInterval, setLetterInterval] = useState("standard");
 
 
@@ -53,7 +50,6 @@ function Subjects() {
     
       const textContentElement = document.querySelectorAll(".text-content");
       const size = styles.fontSize;
-      setImagesHidden(!styles.showImage);
     
       if (textContentElement) {
         textContentElement.forEach((item) => {
@@ -100,7 +96,7 @@ function Subjects() {
           }
         });
       }
-    }, [checkStyle, userEntry, styles, setImagesHidden, fontSizes]);
+    }, [checkStyle, userEntry, styles, fontSizes]);
 //currentLanguage, styles.fontSize, styles.showImage
   const handleColorModeChange = (mode) => {
     // Remove previous color mode classes
@@ -140,12 +136,9 @@ function Subjects() {
   const [openVisualModal, setOpenVisualModal] = useState(open);
   const handleRemoveImages = () => {
     console.log("Images hidden");
-
-    setImagesHidden(true);
   };
 
   const handleShowImages = () => {
-    setImagesHidden(false);
   };
 
   const handleIntervalChange = (interval) => {
@@ -180,7 +173,7 @@ function Subjects() {
         styles={styles}
       />
       <Header
-        dark={styles.colorMode == "dark" ? false : true}
+        dark={styles.colorMode === "dark" ? false : true}
         handleOpenVisualModal={handleOpenVisualModal}
       />
       <div className={cl.container}>

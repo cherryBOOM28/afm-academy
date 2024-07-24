@@ -4,13 +4,6 @@ import './style.css';
 
 const ClientReview = ({ clients }) => {
     const [currentClientIndex, setCurrentClientIndex] = useState(0);
-    const [riskStatus, setRiskStatus] = useState(Array(clients.length).fill(null));
-
-    const handleRiskChange = (index, status) => {
-        const newRiskStatus = [...riskStatus];
-        newRiskStatus[index] = status;
-        setRiskStatus(newRiskStatus);
-    };
 
     const nextClient = () => {
         if (currentClientIndex < clients?.length - 1) {

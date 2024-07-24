@@ -1,27 +1,20 @@
 import React, { useEffect, useState } from "react";
-import cl from "./Rules.module.css";
-import DefaultHeader from "../../../components/defaultHeader/DefaultHeader";
-import Footer from "../../../components/footer/Footer";
+import { useTranslation } from "react-i18next";
 import customerImg from "../../../assets/images/customer.svg";
 import circleFirst from "../../../assets/images/r1.svg";
 import circleSecond from "../../../assets/images/r2.svg";
 import circleThird from "../../../assets/images/r3.svg";
+import Footer from "../../../components/footer/Footer";
 import Header from "../../../components/header/Header";
-import { useTranslation } from "react-i18next";
 import { useStyle } from "../../../components/VisualModal/StyleContext";
 import VisualModal from "../../../components/VisualModal/VisualModal";
-
-import { t } from "i18next";
+import cl from "./Rules.module.css";
 
 function Rules() {
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
   const [letterInterval, setLetterInterval] = useState("standard");
   const { t } = useTranslation();
-  const { i18n } = useTranslation();
-  const currentLanguage = i18n.language;
-
-  const [activeTab, setActiveTab] = useState(1);
 
   const fontSizes = {
     small: {
@@ -114,10 +107,6 @@ function Rules() {
       containerElement.classList.add(colorMode + "-mode");
     }
   };
-
-  const handleTabClick = (tabIndex) => {
-    setActiveTab(tabIndex);
-  };
   const handleOpenVisualModal = () => {
     console.log("OPEN");
     setOpenVisualModal((prev) => !prev);
@@ -175,7 +164,7 @@ function Rules() {
         styles={styles}
       />
       <Header
-        dark={styles.colorMode == "dark" ? false : true}
+        dark={styles.colorMode === "dark" ? false : true}
         handleOpenVisualModal={handleOpenVisualModal}
       />
       <div className={`${cl.container} text-content`}>

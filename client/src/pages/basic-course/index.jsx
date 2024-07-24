@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
 
 import './style.scss';
 
@@ -19,10 +18,6 @@ function Basic_course(props) {
     const [activeSessionId, setActiveSessionId] = useState(1);
 
     const jwtToken = localStorage.getItem('jwtToken');
-
-    const { id } = useParams();
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
     const [isLoading, setLoading] = useState(true);
 
 
@@ -30,8 +25,6 @@ function Basic_course(props) {
     const [modules, setModules] = useState([]);
 
     const [courseProgress, setCourseProgress] = useState(0);
-
-    const [courseContent, setCourseContent] = useState(null);
 
     const [openQuizModal, setOpenQuizModal] = useState(false);
     const [quizStatus, setQuizStatus] = useState('');
@@ -49,62 +42,11 @@ function Basic_course(props) {
         setOpenQuizModal(true);
     }
 
-    const handleSendFeedback = () => {
-        // const fetchData = async () => {
-        //     try {
-        //         const data = {
-        //             'comment': feedbackText,
-        //             'rate': 5
-        //         };
-        //         const config = {
-        //             headers: {
-        //                 Authorization: `Bearer ${jwtToken}`,
-        //             },
-        //         }
 
-        //         console.log(`${base_url}/api/aml/course/createCourseComments/1`, data, config)
-        //         const response = await axios.post(
-        //             `${base_url}/api/aml/course/createCourseComments/1`,
-        //             data, config
-
-        //         );
-
-        //         if (response.status === 200) {
-        //             console.log(response.data)
-        //         } else {
-        //             console.log(response.statusText)
-        //         }
-
-        //     } catch (error) {
-        //         console.error(error);
-        //     }
-        // };
-
-        // fetchData();
-        handleCloseFeedbackModal();
-    }
-
-    const [feedbackText, setFeedbackText] = useState('');
-    const [stars, setStars] = useState(0);
     const [openFeedbackModal, setOpenFeedbackModal] = useState(false);
     const handleOpenFeedbackModal = () => {
         setOpenFeedbackModal(true);
     }
-    const handleCloseFeedbackModal = () => {
-        setOpenFeedbackModal(false);
-        handleOpenModal();
-    }
-
-    const [openSertificateModal, setOpenSertificateModal] = useState(false);
-    const handleOpenModal = () => {
-        setOpenSertificateModal(true);
-    }
-
-    const handleCloseModal = () => {
-        setOpenSertificateModal(false);
-    }
-
-    const navigate = useNavigate();
 
     const handleNavOpen = () => {
         setIsNavOpen(prev => !prev);
@@ -119,7 +61,6 @@ function Basic_course(props) {
     }
 
     function scrollToTopAnimated() {
-        const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
         const courseContent = document.querySelector('.course-content');
         const courseContentScroll = courseContent.scrollTop;
 
@@ -130,7 +71,7 @@ function Basic_course(props) {
     }
 
     const handleWindowResolution = () => {
-        const { width, height } = getWindowDimensions();
+        const { width } = getWindowDimensions();
         if (width <= 1300) {
             setIsNavOpen(false);
         }
@@ -151,7 +92,6 @@ function Basic_course(props) {
                 // console.log(response.data)
 
                 if (response.status === 200) {
-                    setData(response.data);
                     setCourseProgress(response.data.progress_percentage)
                     setModules(response.data.course.modules)
                     setQuizQuestions(response.data.course.modules[0].quiz.quizList)
@@ -159,13 +99,11 @@ function Basic_course(props) {
 
                 } else {
                     // Handle other status codes if needed
-                    setError(response.statusText);
                     // console.log(response.statusText);
                 }
 
 
             } catch (error) {
-                setError(error);
                 console.error(error);
             }
 
@@ -189,13 +127,11 @@ function Basic_course(props) {
                     setCourseProgress(response.data.progress_percentage)
                 } else {
                     // Handle other status codes if needed
-                    setError(response.statusText);
                     // console.log(response.statusText);
                 }
 
 
             } catch (error) {
-                setError(error);
                 console.error(error);
             }
         };
@@ -232,15 +168,12 @@ function Basic_course(props) {
                     // console.log(response.data);
                 } else {
                     // Handle other status codes if needed
-                    setError(response.statusText);
                     // console.log(response.statusText);
                 }
             } catch (error) {
                 if (error.response) {
-                    setError(error.response.data.message || 'An error occurred');
                     console.error(error.response.data);
                 } else {
-                    setError(error.message || 'An error occurred');
                     console.error(error.message);
                 }
             }

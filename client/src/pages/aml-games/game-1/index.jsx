@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavbarGame } from '../navbar';
 
-import './style.scss';
 import amlLogo from './../assets/aml-logo.svg';
-import shapkaImg from './../assets/shapka.png';
+import asianMan from './../assets/asian-man.png';
+import asianWoman from './../assets/asian-woman.png';
 import role_1 from './../assets/role-1.png';
 import role_2 from './../assets/role-2.png';
 import role_3 from './../assets/role-3.png';
 import role_4 from './../assets/role-4.png';
-import avatarImage from './../assets/avatar-image.png';
+import shapkaImg from './../assets/shapka.png';
 import whiteMan from './../assets/white-man.png';
 import whiteWoman from './../assets/white-woman.png';
-import asianMan from './../assets/asian-man.png';
-import asianWoman from './../assets/asian-woman.png';
+import './style.scss';
 
 import { FaQuestion } from "react-icons/fa6";
 import { IoCheckmark } from "react-icons/io5";
 
-import { questions } from './questions';
 import { useNavigate } from 'react-router';
+import { questions } from './questions';
 
 function Game_1() {
     const navigate = useNavigate();

@@ -1,26 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-import DefaultHeader from "../../components/defaultHeader/DefaultHeader";
 import Footer from "../../components/footer/Footer";
 
-import "./Surveys.scss";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
 import Header from "../../components/header/Header";
-import { useTranslation } from "react-i18next";
 import VisualModal from "../../components/VisualModal/VisualModal";
+import "./Surveys.scss";
 
 import { useStyle } from "../../components/VisualModal/StyleContext";
 
 function SurveysPage() {
   const { styles, open, setOpen, userEntry, checkStyle } = useStyle();
-  const [imagesHidden, setImagesHidden] = useState(false);
-  const [letterInterval, setLetterInterval] = useState("standard");
+  const letterInterval="standard";
   const { t } = useTranslation();
-  const { i18n } = useTranslation();
-  const currentLanguage = i18n.language;
-
-  const [activeTab, setActiveTab] = useState(1);
 
   const fontSizes = {
     small: {
@@ -44,13 +38,10 @@ function SurveysPage() {
   };
   useEffect(() => {
     if (!checkStyle) return;
-
     if (userEntry) return;
 
     const textContentElement = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
-    setImagesHidden(!styles.showImage);
-
     if (textContentElement) {
       textContentElement.forEach((item) => {
         switch (size) {
@@ -92,9 +83,9 @@ function SurveysPage() {
     }
     handleColorModeChange();
 
-  }, [checkStyle, userEntry, styles, setImagesHidden, fontSizes]);
+  }, [checkStyle, userEntry, styles, fontSizes]);
 
-  const handleColorModeChange = (mode) => {
+  const handleColorModeChange = () => {
     // Remove previous color mode classes
     const containerElement = document.querySelector(".text-content");
     if (containerElement) {
@@ -112,9 +103,6 @@ function SurveysPage() {
     }
   };
 
-  const handleTabClick = (tabIndex) => {
-    setActiveTab(tabIndex);
-  };
   const handleOpenVisualModal = () => {
     console.log("OPEN");
     setOpenVisualModal((prev) => !prev);
@@ -124,21 +112,9 @@ function SurveysPage() {
 
   const handleRemoveImages = () => {
     console.log("Images hidden");
-
-    setImagesHidden(true);
   };
 
   const handleShowImages = () => {
-    setImagesHidden(false);
-  };
-
-  const handleIntervalChange = (interval) => {
-    console.log("Interval changed");
-    setLetterInterval(interval);
-  };
-
-  const getShowImage = () => {
-    return imagesHidden;
   };
 
   const getLetterSpacing = (interval) => {
@@ -157,7 +133,7 @@ function SurveysPage() {
   const [isSurvey, setSurvey] = useState(true);
 
   const [surveyList, setSurveyList] = useState([]);
-  const [testList, setTestList] = useState([]);
+  const testList = [];
 
   const navigate = useNavigate();
 
@@ -228,7 +204,7 @@ function SurveysPage() {
           styles={styles}
         />
         <Header
-          dark={styles.colorMode == "dark" ? false : true}
+          dark={styles.colorMode === "dark" ? false : true}
           handleOpenVisualModal={handleOpenVisualModal}
         />
         <div>
@@ -242,7 +218,7 @@ function SurveysPage() {
             <h1
               className="text-content caption"
               style={{
-                color: styles.colorMode == "dark" ? "#fff" : "#343434",
+                color: styles.colorMode === "dark" ? "#fff" : "#343434",
               }}
             >
               {t("survey on topics for training")}
@@ -250,7 +226,7 @@ function SurveysPage() {
             <div
               className="surveys-list-block"
               style={{
-                color: styles.colorMode == "dark" ? "#fff" : "#000",
+                color: styles.colorMode === "dark" ? "#fff" : "#000",
                 background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f2f2f2" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
               }}
             >
@@ -265,7 +241,7 @@ function SurveysPage() {
                   }}
                   className={`${isSurvey ? "active" : ""} text-content`}
                   style={{
-                    color: styles.colorMode == "dark" ? "#fff" : "#000",
+                    color: styles.colorMode === "dark" ? "#fff" : "#000",
                     background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#d9d9d9" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
                   }}
                 >
@@ -277,7 +253,7 @@ function SurveysPage() {
                   }}
                   className={`${!isSurvey ? "active" : ""} text-content`}
                   style={{
-                    color: styles.colorMode == "dark" ? "#fff" : "#000",
+                    color: styles.colorMode === "dark" ? "#fff" : "#000",
                     background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#d9d9d9" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
                   }}
                 >
@@ -288,7 +264,7 @@ function SurveysPage() {
               <div
                 className="survey-list"
                 style={{
-                  color: styles.colorMode == "dark" ? "#fff" : "#000",
+                  color: styles.colorMode === "dark" ? "#fff" : "#000",
                   background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f2f2f2" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
                 }}
               >
@@ -310,7 +286,7 @@ function SurveysPage() {
                       <td
                         className="text-content !important"
                         style={{
-                          color: styles.colorMode == "dark" ? "#fff" : "#000",
+                          color: styles.colorMode === "dark" ? "#fff" : "#000",
                         }}
                       >
                         №
@@ -318,7 +294,7 @@ function SurveysPage() {
                       <td
                         className="text-content !important"
                         style={{
-                          color: styles.colorMode == "dark" ? "#fff" : "#000",
+                          color: styles.colorMode === "dark" ? "#fff" : "#000",
                           background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f2f2f2" : styles.colorMode === "blue" ? "#9dd1ff" : "#000"
 
 
@@ -329,7 +305,7 @@ function SurveysPage() {
                       <td
                         className="text-content !important"
                         style={{
-                          color: styles.colorMode == "dark" ? "#fff" : "#000",
+                          color: styles.colorMode === "dark" ? "#fff" : "#000",
                         }}
                       >
                         {t("title")}
@@ -337,7 +313,7 @@ function SurveysPage() {
                       <td
                         className="text-content !important"
                         style={{
-                          color: styles.colorMode == "dark" ? "#fff" : "#000",
+                          color: styles.colorMode === "dark" ? "#fff" : "#000",
                         }}
                       >
                         {t("status")}
@@ -366,7 +342,7 @@ function SurveysPage() {
                             <tr
                               style={{
                                 hover:
-                                  styles.colorMode == "dark" ? "#fff" : "#fff",
+                                  styles.colorMode === "dark" ? "#fff" : "#fff",
                               }}
                               onClick={() => {
                                 if (status === "active" && isLoggedIn) {

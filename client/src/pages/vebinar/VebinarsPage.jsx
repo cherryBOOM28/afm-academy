@@ -1,24 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import "./VebinarsPage.scss";
-
-import DefaultHeader from "../../components/defaultHeader/DefaultHeader";
-import Footer from "../../components/footer/Footer";
-
-import vebinarImg from "./../../assets/images/vebinar-img.png";
-import axios from "axios";
-import base_url from "../../settings/base_url";
 import { Box, Modal } from "@mui/material";
-import Header from "../../components/header/Header";
-
-import { t } from "i18next";
+import axios from "axios";
 import { useTranslation } from "react-i18next";
-
-import VisualModal from "../../components/VisualModal/VisualModal";
-
+import Footer from "../../components/footer/Footer";
+import Header from "../../components/header/Header";
 import { useStyle } from "../../components/VisualModal/StyleContext";
-import timeImagef from '../../assets/images/BLACKLISTTTT.png';
+import VisualModal from "../../components/VisualModal/VisualModal";
+import base_url from "../../settings/base_url";
+import "./VebinarsPage.scss";
 
 function VebinarsPage() {
   const { t } = useTranslation();
@@ -32,8 +23,9 @@ function VebinarsPage() {
   const [openModal, setOpenModal] = useState(false);
 
     const handleVebinarEnter = (webinar_id) => {
-        // Выполняем регистрацию на вебинар
-        const jwtToken = localStorage.getItem("jwtToken");
+      const jwtToken = localStorage.getItem("jwtToken");
+      console.log(error, isLoading);
+
         axios.post(
             `${base_url}/api/aml/webinar/saveUser/webinar/${webinar_id}`,{}, {
                 headers: {
@@ -86,20 +78,20 @@ function VebinarsPage() {
 
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
-  const [letterInterval, setLetterInterval] = useState("standard");
-  const { i18n } = useTranslation();
-  const currentLanguage = i18n.language;
+  const letterInterval = "standard";
 
   const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
     if (!checkStyle) return;
     console.log(userEntry);
+    console.log(imagesHidden);
+    setActiveTab(1)
     if (userEntry) return;
     const textContentElement = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
     setImagesHidden(!styles.showImage);
-
+    console.log(activeTab);
     if (textContentElement) {
       textContentElement.forEach((item) => {
         switch (size) {
@@ -137,10 +129,6 @@ function VebinarsPage() {
     }
   };
 
-  const handleTabClick = (tabIndex) => {
-    setActiveTab(tabIndex);
-  };
-
   const handleRemoveImages = () => {
     console.log("Images hidden");
 
@@ -149,15 +137,6 @@ function VebinarsPage() {
 
   const handleShowImages = () => {
     setImagesHidden(false);
-  };
-
-  const handleIntervalChange = (interval) => {
-    console.log("Interval changed");
-    setLetterInterval(interval);
-  };
-
-  const getShowImage = () => {
-    return imagesHidden;
   };
 
   const getLetterSpacing = (interval) => {
@@ -214,7 +193,7 @@ function VebinarsPage() {
 
       <div>
         <Header
-          dark={styles.colorMode == "dark" ? false : true}
+          dark={styles.colorMode === "dark" ? false : true}
           handleOpenVisualModal={handleOpenVisualModal}
         />
         <div className="container"></div>
@@ -367,8 +346,6 @@ const VebinarCard = (props) => {
     name,
     webinar_for_member_of_the_system,
     type,
-    cost,
-    contingent,
     date,
   } = props.vebinar;
   // console.log(webinar_for_member_of_the_system)
@@ -401,8 +378,6 @@ const VebinarCard = (props) => {
   const formattedDate = `${day} ${month} ${hour
     .toString()
     .padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
-
-  const navigate = useNavigate();
 
 
   return (

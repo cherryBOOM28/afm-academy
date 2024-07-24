@@ -1,6 +1,6 @@
-import './tabConstructor.scss'
-import React, {useState, useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from '../modalWindowOfInputs/ModalWindowInput'
+import './tabConstructor.scss'
 
 import QuestionnaireForm from '../fillQuestionnaire/Questionnaire'
 
@@ -9,17 +9,17 @@ import QuestionnaireForm from '../fillQuestionnaire/Questionnaire'
 import Reveal from '../../../components/Reveal'
 import saveButton from '../images/save-button.svg'
 
+import { BiCopyAlt } from "react-icons/bi"
+import { IoMdArrowDown, IoMdArrowUp } from "react-icons/io"
 import hatIcon from '../images/hat-light-icon.svg'
-import { IoMdArrowDown, IoMdArrowUp } from "react-icons/io";
-import { BiCopyAlt } from "react-icons/bi";
 
 import axios from 'axios'
 
-import base_url from '../../../settings/base_url'
 import { useNavigate } from 'react-router'
+import base_url from '../../../settings/base_url'
 
-import Elements from './Elements'
 import componentMap from './ComponentMap'
+import Elements from './Elements'
 
 function getKeyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
@@ -62,7 +62,7 @@ const TabConstructor = ({saveCancel, save, id}) => {
     }, [id])
 
     const addModule = ( ) => {
-        if (newModuleName != '') {
+        if (newModuleName !== '') {
             axios
                 .post(base_url + '/api/aml/chapter/addModule', {id, newModuleName})
                 .then((res) => {
@@ -120,9 +120,9 @@ const TabConstructor = ({saveCancel, save, id}) => {
 
     return (
         <div className="tab-container">
-            {stepConstructor == 'structure' ? 
+            {stepConstructor === 'structure' ? 
             <h1>Программа курса - конструктор</h1>
-            : stepConstructor == 'questionnaire' ?
+            : stepConstructor === 'questionnaire' ?
             <div className='button-title'>
                 <svg onClick={() => setStepConstructor(previous)} xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
                     <path d="M5.6665 14.1667L4.9594 14.8738L4.25229 14.1667L4.9594 13.4596L5.6665 14.1667ZM29.3332 25.5C29.3332 26.0523 28.8855 26.5 28.3332 26.5C27.7809 26.5 27.3332 26.0523 27.3332 25.5L29.3332 25.5ZM12.0427 21.9571L4.9594 14.8738L6.37361 13.4596L13.4569 20.5429L12.0427 21.9571ZM4.9594 13.4596L12.0427 6.37623L13.4569 7.79044L6.37361 14.8738L4.9594 13.4596ZM5.6665 13.1667L22.3332 13.1667L22.3332 15.1667L5.6665 15.1667L5.6665 13.1667ZM29.3332 20.1667L29.3332 25.5L27.3332 25.5L27.3332 20.1667L29.3332 20.1667ZM22.3332 13.1667C26.1992 13.1667 29.3332 16.3007 29.3332 20.1667L27.3332 20.1667C27.3332 17.4052 25.0946 15.1667 22.3332 15.1667L22.3332 13.1667Z" fill="#374761"/>
@@ -130,7 +130,7 @@ const TabConstructor = ({saveCancel, save, id}) => {
                 <h1>Тестирование модуля</h1>
             </div>
             : 
-            stepConstructor != 'constructor' ? 
+            stepConstructor !== 'constructor' ? 
             <div className='button-title'>
                 <svg onClick={() => setStepConstructor("structure")} xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
                     <path d="M5.6665 14.1667L4.9594 14.8738L4.25229 14.1667L4.9594 13.4596L5.6665 14.1667ZM29.3332 25.5C29.3332 26.0523 28.8855 26.5 28.3332 26.5C27.7809 26.5 27.3332 26.0523 27.3332 25.5L29.3332 25.5ZM12.0427 21.9571L4.9594 14.8738L6.37361 13.4596L13.4569 20.5429L12.0427 21.9571ZM4.9594 13.4596L12.0427 6.37623L13.4569 7.79044L6.37361 14.8738L4.9594 13.4596ZM5.6665 13.1667L22.3332 13.1667L22.3332 15.1667L5.6665 15.1667L5.6665 13.1667ZM29.3332 20.1667L29.3332 25.5L27.3332 25.5L27.3332 20.1667L29.3332 20.1667ZM22.3332 13.1667C26.1992 13.1667 29.3332 16.3007 29.3332 20.1667L27.3332 20.1667C27.3332 17.4052 25.0946 15.1667 22.3332 15.1667L22.3332 13.1667Z" fill="#374761"/>
@@ -145,7 +145,7 @@ const TabConstructor = ({saveCancel, save, id}) => {
                 <h1 className='lesson-title'>{title}</h1>
             </div>
             }
-            {stepConstructor == 'structure' ? 
+            {stepConstructor === 'structure' ? 
             <div className="base">
                 <a className="title">Структура</a>
                 <div className="list-of-modules">
@@ -259,10 +259,10 @@ const TabConstructor = ({saveCancel, save, id}) => {
                 </div>
                 
             </div>
-            : stepConstructor == 'questionnaire' ? 
+            : stepConstructor === 'questionnaire' ? 
             <QuestionnaireForm id={previous} saveCancel={saveCancel} save={save}/>
             : 
-            stepConstructor != 'constructor' ? <ModuleStructure id={stepConstructor} toQuestionnaire={toQuestionnaire} setLessonTitle={setLessonTitle} lessonById={lessonById}/>
+            stepConstructor !== 'constructor' ? <ModuleStructure id={stepConstructor} toQuestionnaire={toQuestionnaire} setLessonTitle={setLessonTitle} lessonById={lessonById}/>
             :
             <Constructor saveCancel={saveCancel} save={save} id={lesson} title={title} />
             }
@@ -288,7 +288,7 @@ const Constructor = ({saveCancel, save, id, title}) => {
                     for (const category in Elements) {
                         for (const element in Elements[category]) {
                             
-                            if (Elements[category][element].name == item.componentName) {
+                            if (Elements[category][element].name === item.componentName) {
                                 inputs = Elements[category][element].inputs;
                                 break;
                             }
@@ -793,7 +793,7 @@ const ModuleStructure = ({id, toQuestionnaire, lessonById, setLessonTitle }) => 
             .then((res) => {
                 setModule({
                     title: res.data.name || "",
-                    number_of_lessons: res.data.lessons.filter(x => x._active == true).length || 0
+                    number_of_lessons: res.data.lessons.filter(x => x._active === true).length || 0
                 })
                 setNewLessonName("Урок №" + (res.data.lessons.length + 1))
                 setCurrentLessons(res.data.lessons || [])
@@ -805,7 +805,7 @@ const ModuleStructure = ({id, toQuestionnaire, lessonById, setLessonTitle }) => 
     }, [id])
 
     const addLesson = ( ) => {
-        if (newLessonName != '') {
+        if (newLessonName !== '') {
             axios
                 .post(base_url + '/api/aml/chapter/addLesson', {id, newLessonName})
                 .then((res) => {
@@ -842,7 +842,7 @@ const ModuleStructure = ({id, toQuestionnaire, lessonById, setLessonTitle }) => 
         <div className="base">
                 <a className="title">{module.title}<span>: {module.number_of_lessons} Уроков</span></a>
                 <div className="list-of-modules">
-                    {currentLessons.filter(x => x._active == true).map((x, index) => {
+                    {currentLessons.filter(x => x._active === true).map((x, index) => {
                         return (
                             <div className="module-line" key={index}>
                                 <div className='name-icon'> 

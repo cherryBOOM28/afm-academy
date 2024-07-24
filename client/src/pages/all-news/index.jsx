@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
@@ -23,25 +23,14 @@ function AllNewsPage() {
 
     const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
     const [imagesHidden, setImagesHidden] = useState(false);
-    const [letterInterval, setLetterInterval] = useState("standard");
-    const { i18n } = useTranslation();
+    const letterInterval = "standard";
     const [newsData, setNewsData] = useState([]);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const selectedNews = useSelector((state) => state.news.selectedNews);
-    const settings = {
-        dots: true,
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        pauseOnHover: true
-    };
     const [selectedRowBtn, setSelectedRowBtn] = useState(null);
     const selectedItem = newsData.find((item) => item.id === selectedRowBtn);
 
-    const [activeTab, setActiveTab] = useState('news');
+    const activeTab = 'news';
 
 
     useEffect(() => {
@@ -255,7 +244,7 @@ function AllNewsPage() {
 
             <div>
                 <Header
-                    dark={styles.colorMode == "dark" ? false : true}
+                    dark={styles.colorMode === "dark" ? false : true}
                     handleOpenVisualModal={handleOpenVisualModal}
                 />
                 <div className="container"></div>

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-import './style.scss';
 import folderImg from './../../assets/folder-image.png';
 import userIcon from './../../assets/user-img.png';
+import './style.scss';
 
 function FolderQuiz({
     desc,

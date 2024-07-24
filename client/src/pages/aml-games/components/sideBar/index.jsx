@@ -1,12 +1,12 @@
 import { Typography } from '@mui/material';
-import { AccordionDetails, AccordionSummary, Accordion } from './AccordionOptions';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router';
+import { Accordion, AccordionDetails, AccordionSummary } from './AccordionOptions';
 
 const SideBar = ({
     response
 }) => {
-    const { level, subLevel } = useParams();
+    const { level } = useParams();
 
     return (
         <div className='aml-game-sidebar'>
@@ -24,10 +24,10 @@ const TaskNav = ({
     task
 }) => {
     const [expanded, setExpanded] = React.useState('panel1');
-    const { level, subLevel } = useParams();
 
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
+        console.log(event);
     };
 
     return (
