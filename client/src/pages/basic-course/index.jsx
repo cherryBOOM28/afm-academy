@@ -12,8 +12,8 @@ import base_url from '../../settings/base_url';
 import ModalWindow from './../../components/ModalWindow/ModalWindow';
 
 
-function Basic_course(props) {
-    const [courseName, setCourseName] = useState('Базовый курс');
+function Basic_course() {
+    const courseName = 'Базовый курс';
     const [isNavOpen, setIsNavOpen] = useState(true);
     const [activeSessionId, setActiveSessionId] = useState(1);
 
@@ -46,6 +46,7 @@ function Basic_course(props) {
     const [openFeedbackModal, setOpenFeedbackModal] = useState(false);
     const handleOpenFeedbackModal = () => {
         setOpenFeedbackModal(true);
+        console.log(openFeedbackModal);
     }
 
     const handleNavOpen = () => {
