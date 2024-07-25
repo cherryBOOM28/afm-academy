@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import './style.scss';
 
 function Modal({
-    open, handleClose, children
+    children
 }) {
     return ( 
         <div className="modal">

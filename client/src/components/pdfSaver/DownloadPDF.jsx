@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Button from '../UI/button/Button';
-import { useStyle } from "../../components/VisualModal/StyleContext";
+import React from "react";
 import irl from "../../assets/images/Устав Академия ФМ AML ACADEMY.pdf";
+import { useStyle } from "../../components/VisualModal/StyleContext";
+import Button from '../UI/button/Button';
 
 import { useTranslation } from 'react-i18next';
 
@@ -12,13 +12,9 @@ import VisualModal from "../../components/VisualModal/VisualModal";
 
 const DownloadPDF = () => {
   const { t } = useTranslation();
-  const [letterInterval, setLetterInterval] = useState("standard");
+  const letterInterval = "standard";
 
   const { styles } = useStyle();
-  const handleIntervalChange = (interval) => {
-    console.log("Interval changed");
-    setLetterInterval(interval);
-  };
   const getLetterSpacing = (interval) => {
     interval = styles.letterInterval;
 

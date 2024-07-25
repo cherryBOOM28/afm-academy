@@ -1,24 +1,17 @@
-import React, { useState, useEffect } from 'react';
-
-import closeIcon from './../../pages/testCoursePage/closeIcon.svg';
-import finishedIcon from './../../pages/testCoursePage/finishedIcon.svg';
+import React, { useEffect, useState } from 'react';
 import { AiFillCheckCircle } from "react-icons/ai";
 import { ImRadioUnchecked } from "react-icons/im";
 import { RiSurveyLine } from "react-icons/ri";
-import unfinishedIcon from './../../pages/testCoursePage/unfinishedIcon.svg';
-import lectureIcon from './lectureIcon.svg';
 import { VscListSelection } from "react-icons/vsc";
 
-import { RiArrowDownSLine, RiArrowUpSLine, RiArrowRightSLine } from "react-icons/ri";
-import arrowDownIcon from './../../pages/testCoursePage/arrowDownIcon.svg';
+import { RiArrowDownSLine, RiArrowRightSLine } from "react-icons/ri";
 
-import './sessions.scss';
 import axios from 'axios';
+import { motion, useAnimation } from 'framer-motion';
 import base_url from '../../settings/base_url';
-import { useAnimation, motion } from 'framer-motion';
+import './sessions.scss';
 
-export const Session = ({course_id, title, session, handleSessionClick, isActive, checked }) => {
-    const sessionFinished = session.progress === 100;
+export const Session = ({course_id, session, handleSessionClick, isActive, checked }) => {
     const [sessionChecked, setSessionChecked] = useState(false);
 
     const jwtToken = localStorage.getItem('jwtToken');
@@ -74,8 +67,6 @@ export const Session = ({course_id, title, session, handleSessionClick, isActive
 }
 
 export const TestSession = ({session, handleSessionClick, isActive, checked}) => {
-    const jwtToken = localStorage.getItem('jwtToken');
-
     return (
         <div 
             className={`session ${isActive ? 'active' : ''}`} 

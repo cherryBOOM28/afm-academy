@@ -1,33 +1,27 @@
 import {
+  Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  TableRow,
-  Paper,
   TablePagination,
-  Button,
+  TableRow,
 } from "@mui/material";
-import React, { useState, useEffect, Children } from "react";
-
-import { BiPlus } from "react-icons/bi";
+import React, { useEffect, useState } from "react";
 import img from "./../../assets/images/vebinar-img.png";
 
-import "./vebinarTable.scss";
 import axios from "axios";
 import base_url from "../../settings/base_url";
 import { useStyle } from "../VisualModal/StyleContext";
-import { useTranslation } from "react-i18next";
+import "./vebinarTable.scss";
 
 
 const VebinarTable = () => {
     const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
   const [letterInterval, setLetterInterval] = useState("standard");
-  const { t } = useTranslation();
-  const { i18n } = useTranslation();
-  const currentLanguage = i18n.language;
+
 
   const [activeTab, setActiveTab] = useState(1);
 
@@ -80,35 +74,9 @@ const VebinarTable = () => {
       containerElement.classList.add(colorMode + "-mode");
     }
   };
-
-  const handleTabClick = (tabIndex) => {
-    setActiveTab(tabIndex);
-  };
-  const handleOpenVisualModal = () => {
-    console.log("OPEN");
-    setOpenVisualModal((prev) => !prev);
-    setOpen((prev) => !prev);
-  };
   const [openVisualModal, setOpenVisualModal] = useState(open);
 
-  const handleRemoveImages = () => {
-    console.log("Images hidden");
-
-    setImagesHidden(true);
-  };
-
-  const handleShowImages = () => {
-    setImagesHidden(false);
-  };
-
-  const handleIntervalChange = (interval) => {
-    console.log("Interval changed");
-    setLetterInterval(interval);
-  };
-
-  const getShowImage = () => {
-    return imagesHidden;
-  };
+ 
 
   const getLetterSpacing = (interval) => {
     interval = styles.letterInterval;
@@ -234,10 +202,8 @@ const VebinarTable = () => {
   };
 
   const cellPadding = "20px 0px";
-  const cellFont = `400 16px/normal 'Inter', sans-serif`;
   const headCellFont = `400 16px/normal`;
-  const cellColor = "#3A3939";
-  const headCellColor = "#20102B";
+
 
   return (
     <>

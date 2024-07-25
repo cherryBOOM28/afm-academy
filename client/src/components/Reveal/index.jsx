@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useInView, useAnimation } from 'framer-motion';
+import { motion, useAnimation, useInView } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
 
 function Reveal({ children }) {
     const ref = useRef(null)
@@ -27,6 +27,6 @@ function Reveal({ children }) {
             >{children}</motion.div>
         </div>
     );
-}   
+}
 
 export default Reveal;

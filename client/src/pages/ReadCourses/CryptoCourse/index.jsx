@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import './style.scss';
 import file1 from './Глоссарий.pdf';
 
-import { useNavigate, useParams } from 'react-router-dom';
 
 
 import HeaderWithLine from '../../../components/courseTemplates/common/HeaderWithLine';
@@ -54,20 +53,11 @@ import telegramSell2 from '../../../assets/images/telegramSell2.png';
 
 
 function CryptoCourse() {
-    const [courseName, setCourseName] = useState('Учебный модуль по навыкам работы с виртуальными активами');
+    const courseName = 'Учебный модуль по навыкам работы с виртуальными активами';
     const [isNavOpen, setIsNavOpen] = useState(true);
     const [activeSessionId, setActiveSessionId] = useState(1);
 
-    const jwtToken = localStorage.getItem('jwtToken');
-
-    const { id } = useParams();
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
-    const [isLoading, setLoading] = useState(true);
-
-    const [courseProgress, setCourseProgress] = useState(0);
-
-    const navigate = useNavigate();
+    const courseProgress = 0;
 
     const handleNavOpen = () => {
         setIsNavOpen(prev => !prev);
@@ -82,12 +72,10 @@ function CryptoCourse() {
     }
 
     function scrollToTopAnimated() {
-        const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
         const courseContent = document.querySelector('.course-content');
         const courseContentScroll = courseContent.scrollTop;
 
         if (courseContentScroll > 0) {
-            //   window.requestAnimationFrame(scrollToTopAnimated);
             courseContent.scrollTo(0, 0);
         }
     }
@@ -102,68 +90,7 @@ function CryptoCourse() {
     useEffect(() => {
         handleWindowResolution();
         window.addEventListener('resize', handleWindowResolution);
-
-        // const fetchData = async () => {
-        //     try {
-        //         const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${1}`, {
-        //             headers: {
-        //                 Authorization: `Bearer ${jwtToken}`,
-        //             },
-        //         });
-
-        //         // console.log(response.data)
-
-        //         if (response.status === 200) {
-        //             setData(response.data);
-        //             setCourseProgress(response.data.progress_percentage)
-        //             setQuizQuestions(response.data.course.chapters[0].quiz.quizList)
-        //             // console.log(response.data.course.chapters[0].quiz.quizList)
-
-        //         } else {
-        //             // Handle other status codes if needed
-        //             setError(response.statusText);
-        //             // console.log(response.statusText);
-        //         }
-
-
-        //     } catch (error) {
-        //         setError(error);
-        //         console.error(error);
-        //     }
-
-        //     setLoading(false);
-        // };
-
-        // // console.log(jwtToken);
-        // fetchData();
     }, [])
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await axios.get(`${base_url}/api/aml/course/getCourseById/${1}`, {
-    //                 headers: {
-    //                     Authorization: `Bearer ${jwtToken}`,
-    //                 },
-    //             });
-
-    //             if (response.status === 200) {
-    //                 setCourseProgress(response.data.progress_percentage)
-    //             } else {
-    //                 // Handle other status codes if needed
-    //                 setError(response.statusText);
-    //                 // console.log(response.statusText);
-    //             }
-
-
-    //         } catch (error) {
-    //             setError(error);
-    //             console.error(error);
-    //         }
-    //     };
-
-    //     fetchData();
-    // }, [activeSessionId])
 
     const handleSessionClick = (id) => {
         scrollToTopAnimated();
@@ -171,39 +98,6 @@ function CryptoCourse() {
     }
 
     const CheckCurrentChapter = (chapterNum) => {
-        // const fetchData = async () => {
-        //     try {
-        //         const response = await axios.post(
-        //             `${base_url}/api/aml/chapter/checked/${chapterNum}`,
-        //             {},
-        //             {
-        //                 headers: {
-        //                     Authorization: `Bearer ${jwtToken}`,
-        //                 },
-        //             }
-        //         );
-
-
-        //         if (response.status === 200) {
-        //             // console.log(response.data);
-        //         } else {
-        //             // Handle other status codes if needed
-        //             setError(response.statusText);
-        //             // console.log(response.statusText);
-        //         }
-        //     } catch (error) {
-        //         if (error.response) {
-        //             setError(error.response.data.message || 'An error occurred');
-        //             console.error(error.response.data);
-        //         } else {
-        //             setError(error.message || 'An error occurred');
-        //             console.error(error.message);
-        //         }
-        //     }
-        // };
-
-        // // console.log(jwtToken);
-        // fetchData();
         scrollToTopAnimated();
         setActiveSessionId(activeSessionId + 1);
     };
@@ -211,6 +105,7 @@ function CryptoCourse() {
 
     const getLesson = (id) => {
         // console.log('getLesson', quizQuestions)
+        // eslint-disable-next-line default-case
         switch (id) {
             case 1:
                 return (<LessonPage name={'О модуле'}>
@@ -358,49 +253,6 @@ function CryptoCourse() {
                 </LessonPage>)
             case 2: 
                 return (<LessonPage name={'Введение в криптовалюты'}>
-
-                    {/* <FancyList 
-                        list={[
-                            'ЧТО ТАКОЕ КРИПТОВАЛЮТА?',
-                            'ЧТО ТАКОЕ КРИПТОВАЛЮТА?',
-                            'ЧТО ТАКОЕ КРИПТОВАЛЮТА?',
-                            'ЧТО ТАКОЕ КРИПТОВАЛЮТА?',
-                        ]}
-                    />
-
-                    <FlexBoxes 
-                        data={[
-                            `Цифровая форма наличных денег. С её помощью можно рапоряжаться как с деньгами, которые мы привыкли видеть`,
-                            'Не принадлежит какой-либо организации, является децентрализованной',
-                            `Для использования достаточно иметь мобильное приложение`,
-                            `Для использования достаточно иметь мобильное приложение`,
-                            `Для использования достаточно иметь мобильное приложение`,
-                        ]}
-                    />
-
-                    <Sizebox height={40} />
-*/}
-                    {/* <FlexRow
-                        icons={[
-                            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAgVBMVEX///8AAAAwMDClpaX5+fn8/Pzs7Ozd3d03Nzf6+vq9vb3v7+/19fUODg7n5+eDg4NhYWFpaWnLy8sjIyOxsbFmZmZSUlI8PDzT09NZWVmbm5sbGxupqamNjY3GxsZLS0tycnJ8fHwgICAWFhaAgIApKSmKioqWlpa1tbVFRUVNTU39c+xuAAAEV0lEQVR4nO2d6XKjQAyEZ2wwmMvgE2OMjeP7/R9wk01qQ/Mbaqp6+3sCqRykkdRSjBFCCCGEEEIIIYQQQgghhBBCCCGE+B9JmsC1CePiR+GmdG3EqJQ7a7eN79qM8chO9pPd2nNtyFh4e/uX24PVxcL+kBaJa1tG4W5/2cWurRmB0gKMWeOILj5d2zMC0Qe4eHRtzwh8pcMOBeHHmOVp18Ut4cc4u666Lr4avsyYVGHXxXDNlxm956vr4u0xc23R4PjLfdfFtM1cWzQ8wRlCKmM9lR0hpL4j1wYNT7KGXzGcujZoePwl/IqH1rVBI5Bd4GfcEhb+CYRUuyMMqfM7uLhqXBs0Ak9w0Vau7RmB5QRcXPC9Uk2wBRfPhB9j1kJZnJd8MXX2uHVdPEV8f6leDfXUpOarp0z07rqYEtZTptxAvGkJmxsBJv986dqg4YlrcPG1dm3Q8PgRPuEerg0agRJCatryZQ0T5PAzbgjfN7MFuPgm7N94U3BxQti/MRFW/pT11AlcvBMOb4ICXDwTvm9mC6in9oTvm3kF9VQY8ZWMZg3Dm5Sxnmow+R8Jk3/Q8sebB7i4J2ymJjWE1B1lPQXKjVtFWGyUEG8+FoT9mwzjTUEYbxJUip0I3zdmCpPUC2M91aBSbEoYbwKcpDLGmxjFKTlhvDH3Q9fFkLB/Y6Y4SWWspyKcpNaEzY0Smxt3wnoqw2ZqQfgxxhWIb9+E9ZS3huTPuFzkN5D8bw/CeIPN1AOj+HZ+7Fb+6f7nfTPhIcS5hp18h1TLTETvoX347B7aImH30BbsHp5Kcg+/FA2ubRiTwyLhjqXhdyd8SkNdb3Db5kn3+m72XQ/zJVs7I6mhfuKbKsYgmE7vdJ3T7NytKw5Tuul+AFrpC19HcQldmhXdJ2hwYXFClyRMCw7mrs0ZHA863imfQjoAffSNbkrqNbg2RNfsTupuEE03dEE0g/bhZUHXIcXjBJOKrcvtL0Ez9HqyPdS8J4i+t3S1koeHXvhiTNKCPoEvxmQoo+GrlXDPy/Jdk3xCw4nwfB1KEkO2LGh8VOqf564NGpoMV7srNgf9Jd4Ce7LFGG8NErYTnWomrrppPuU7A4bSrsOVLkuUUCutKrqmdgQPtQmfqmsKY5cXXYyZo9SZT80do0L2Slcrlb1aie4limtqlu+SEqp/L3Rp3qCC+0QXY7LeCSW6NF/25kps/Rg/wrlS7dqgoemtM7/oBmcZrqTznfjqnRXgO9PWOw3Btz2xxtteNVs/Zl5Bz3dHF2N6Z71yuodab5uQrx/T2wjlO+fZjzFstZJfwTuG7+xcfIW/UD4BUO9CQkH3CeKJ8pTuRLmHZ1hvdCLDGE9b8p1+6m3U850LTDDNF3Q9XzMDmeiCrlb6pPkdTFCeJjOdf9jxohvO/+D/xFK+hax/fB8n4+vHdMjO1vItZAFBThpjfvFoP0EhhBBCCCGEEEIIIYQQQgghhBBCCCGEEELQ8Ac8Xj6nD3B4AwAAAABJRU5ErkJggg==',
-                            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAgVBMVEX///8AAAAwMDClpaX5+fn8/Pzs7Ozd3d03Nzf6+vq9vb3v7+/19fUODg7n5+eDg4NhYWFpaWnLy8sjIyOxsbFmZmZSUlI8PDzT09NZWVmbm5sbGxupqamNjY3GxsZLS0tycnJ8fHwgICAWFhaAgIApKSmKioqWlpa1tbVFRUVNTU39c+xuAAAEV0lEQVR4nO2d6XKjQAyEZ2wwmMvgE2OMjeP7/R9wk01qQ/Mbaqp6+3sCqRykkdRSjBFCCCGEEEIIIYQQQgghhBBCCCGE+B9JmsC1CePiR+GmdG3EqJQ7a7eN79qM8chO9pPd2nNtyFh4e/uX24PVxcL+kBaJa1tG4W5/2cWurRmB0gKMWeOILj5d2zMC0Qe4eHRtzwh8pcMOBeHHmOVp18Ut4cc4u666Lr4avsyYVGHXxXDNlxm956vr4u0xc23R4PjLfdfFtM1cWzQ8wRlCKmM9lR0hpL4j1wYNT7KGXzGcujZoePwl/IqH1rVBI5Bd4GfcEhb+CYRUuyMMqfM7uLhqXBs0Ak9w0Vau7RmB5QRcXPC9Uk2wBRfPhB9j1kJZnJd8MXX2uHVdPEV8f6leDfXUpOarp0z07rqYEtZTptxAvGkJmxsBJv986dqg4YlrcPG1dm3Q8PgRPuEerg0agRJCatryZQ0T5PAzbgjfN7MFuPgm7N94U3BxQti/MRFW/pT11AlcvBMOb4ICXDwTvm9mC6in9oTvm3kF9VQY8ZWMZg3Dm5Sxnmow+R8Jk3/Q8sebB7i4J2ymJjWE1B1lPQXKjVtFWGyUEG8+FoT9mwzjTUEYbxJUip0I3zdmCpPUC2M91aBSbEoYbwKcpDLGmxjFKTlhvDH3Q9fFkLB/Y6Y4SWWspyKcpNaEzY0Smxt3wnoqw2ZqQfgxxhWIb9+E9ZS3huTPuFzkN5D8bw/CeIPN1AOj+HZ+7Fb+6f7nfTPhIcS5hp18h1TLTETvoX347B7aImH30BbsHp5Kcg+/FA2ubRiTwyLhjqXhdyd8SkNdb3Db5kn3+m72XQ/zJVs7I6mhfuKbKsYgmE7vdJ3T7NytKw5Tuul+AFrpC19HcQldmhXdJ2hwYXFClyRMCw7mrs0ZHA863imfQjoAffSNbkrqNbg2RNfsTupuEE03dEE0g/bhZUHXIcXjBJOKrcvtL0Ez9HqyPdS8J4i+t3S1koeHXvhiTNKCPoEvxmQoo+GrlXDPy/Jdk3xCw4nwfB1KEkO2LGh8VOqf564NGpoMV7srNgf9Jd4Ce7LFGG8NErYTnWomrrppPuU7A4bSrsOVLkuUUCutKrqmdgQPtQmfqmsKY5cXXYyZo9SZT80do0L2Slcrlb1aie4limtqlu+SEqp/L3Rp3qCC+0QXY7LeCSW6NF/25kps/Rg/wrlS7dqgoemtM7/oBmcZrqTznfjqnRXgO9PWOw3Btz2xxtteNVs/Zl5Bz3dHF2N6Z71yuodab5uQrx/T2wjlO+fZjzFstZJfwTuG7+xcfIW/UD4BUO9CQkH3CeKJ8pTuRLmHZ1hvdCLDGE9b8p1+6m3U850LTDDNF3Q9XzMDmeiCrlb6pPkdTFCeJjOdf9jxohvO/+D/xFK+hax/fB8n4+vHdMjO1vItZAFBThpjfvFoP0EhhBBCCCGEEEIIIYQQQgghhBBCCCGEEELQ8Ac8Xj6nD3B4AwAAAABJRU5ErkJggg==',
-                            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAgVBMVEX///8AAAAwMDClpaX5+fn8/Pzs7Ozd3d03Nzf6+vq9vb3v7+/19fUODg7n5+eDg4NhYWFpaWnLy8sjIyOxsbFmZmZSUlI8PDzT09NZWVmbm5sbGxupqamNjY3GxsZLS0tycnJ8fHwgICAWFhaAgIApKSmKioqWlpa1tbVFRUVNTU39c+xuAAAEV0lEQVR4nO2d6XKjQAyEZ2wwmMvgE2OMjeP7/R9wk01qQ/Mbaqp6+3sCqRykkdRSjBFCCCGEEEIIIYQQQgghhBBCCCGE+B9JmsC1CePiR+GmdG3EqJQ7a7eN79qM8chO9pPd2nNtyFh4e/uX24PVxcL+kBaJa1tG4W5/2cWurRmB0gKMWeOILj5d2zMC0Qe4eHRtzwh8pcMOBeHHmOVp18Ut4cc4u666Lr4avsyYVGHXxXDNlxm956vr4u0xc23R4PjLfdfFtM1cWzQ8wRlCKmM9lR0hpL4j1wYNT7KGXzGcujZoePwl/IqH1rVBI5Bd4GfcEhb+CYRUuyMMqfM7uLhqXBs0Ak9w0Vau7RmB5QRcXPC9Uk2wBRfPhB9j1kJZnJd8MXX2uHVdPEV8f6leDfXUpOarp0z07rqYEtZTptxAvGkJmxsBJv986dqg4YlrcPG1dm3Q8PgRPuEerg0agRJCatryZQ0T5PAzbgjfN7MFuPgm7N94U3BxQti/MRFW/pT11AlcvBMOb4ICXDwTvm9mC6in9oTvm3kF9VQY8ZWMZg3Dm5Sxnmow+R8Jk3/Q8sebB7i4J2ymJjWE1B1lPQXKjVtFWGyUEG8+FoT9mwzjTUEYbxJUip0I3zdmCpPUC2M91aBSbEoYbwKcpDLGmxjFKTlhvDH3Q9fFkLB/Y6Y4SWWspyKcpNaEzY0Smxt3wnoqw2ZqQfgxxhWIb9+E9ZS3huTPuFzkN5D8bw/CeIPN1AOj+HZ+7Fb+6f7nfTPhIcS5hp18h1TLTETvoX347B7aImH30BbsHp5Kcg+/FA2ubRiTwyLhjqXhdyd8SkNdb3Db5kn3+m72XQ/zJVs7I6mhfuKbKsYgmE7vdJ3T7NytKw5Tuul+AFrpC19HcQldmhXdJ2hwYXFClyRMCw7mrs0ZHA863imfQjoAffSNbkrqNbg2RNfsTupuEE03dEE0g/bhZUHXIcXjBJOKrcvtL0Ez9HqyPdS8J4i+t3S1koeHXvhiTNKCPoEvxmQoo+GrlXDPy/Jdk3xCw4nwfB1KEkO2LGh8VOqf564NGpoMV7srNgf9Jd4Ce7LFGG8NErYTnWomrrppPuU7A4bSrsOVLkuUUCutKrqmdgQPtQmfqmsKY5cXXYyZo9SZT80do0L2Slcrlb1aie4limtqlu+SEqp/L3Rp3qCC+0QXY7LeCSW6NF/25kps/Rg/wrlS7dqgoemtM7/oBmcZrqTznfjqnRXgO9PWOw3Btz2xxtteNVs/Zl5Bz3dHF2N6Z71yuodab5uQrx/T2wjlO+fZjzFstZJfwTuG7+xcfIW/UD4BUO9CQkH3CeKJ8pTuRLmHZ1hvdCLDGE9b8p1+6m3U850LTDDNF3Q9XzMDmeiCrlb6pPkdTFCeJjOdf9jxohvO/+D/xFK+hax/fB8n4+vHdMjO1vItZAFBThpjfvFoP0EhhBBCCCGEEEIIIYQQQgghhBBCCCGEEELQ8Ac8Xj6nD3B4AwAAAABJRU5ErkJggg==',
-                        ]}
-                        data={[
-                            { icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAgVBMVEX///8AAAAwMDClpaX5+fn8/Pzs7Ozd3d03Nzf6+vq9vb3v7+/19fUODg7n5+eDg4NhYWFpaWnLy8sjIyOxsbFmZmZSUlI8PDzT09NZWVmbm5sbGxupqamNjY3GxsZLS0tycnJ8fHwgICAWFhaAgIApKSmKioqWlpa1tbVFRUVNTU39c+xuAAAEV0lEQVR4nO2d6XKjQAyEZ2wwmMvgE2OMjeP7/R9wk01qQ/Mbaqp6+3sCqRykkdRSjBFCCCGEEEIIIYQQQgghhBBCCCGE+B9JmsC1CePiR+GmdG3EqJQ7a7eN79qM8chO9pPd2nNtyFh4e/uX24PVxcL+kBaJa1tG4W5/2cWurRmB0gKMWeOILj5d2zMC0Qe4eHRtzwh8pcMOBeHHmOVp18Ut4cc4u666Lr4avsyYVGHXxXDNlxm956vr4u0xc23R4PjLfdfFtM1cWzQ8wRlCKmM9lR0hpL4j1wYNT7KGXzGcujZoePwl/IqH1rVBI5Bd4GfcEhb+CYRUuyMMqfM7uLhqXBs0Ak9w0Vau7RmB5QRcXPC9Uk2wBRfPhB9j1kJZnJd8MXX2uHVdPEV8f6leDfXUpOarp0z07rqYEtZTptxAvGkJmxsBJv986dqg4YlrcPG1dm3Q8PgRPuEerg0agRJCatryZQ0T5PAzbgjfN7MFuPgm7N94U3BxQti/MRFW/pT11AlcvBMOb4ICXDwTvm9mC6in9oTvm3kF9VQY8ZWMZg3Dm5Sxnmow+R8Jk3/Q8sebB7i4J2ymJjWE1B1lPQXKjVtFWGyUEG8+FoT9mwzjTUEYbxJUip0I3zdmCpPUC2M91aBSbEoYbwKcpDLGmxjFKTlhvDH3Q9fFkLB/Y6Y4SWWspyKcpNaEzY0Smxt3wnoqw2ZqQfgxxhWIb9+E9ZS3huTPuFzkN5D8bw/CeIPN1AOj+HZ+7Fb+6f7nfTPhIcS5hp18h1TLTETvoX347B7aImH30BbsHp5Kcg+/FA2ubRiTwyLhjqXhdyd8SkNdb3Db5kn3+m72XQ/zJVs7I6mhfuKbKsYgmE7vdJ3T7NytKw5Tuul+AFrpC19HcQldmhXdJ2hwYXFClyRMCw7mrs0ZHA863imfQjoAffSNbkrqNbg2RNfsTupuEE03dEE0g/bhZUHXIcXjBJOKrcvtL0Ez9HqyPdS8J4i+t3S1koeHXvhiTNKCPoEvxmQoo+GrlXDPy/Jdk3xCw4nwfB1KEkO2LGh8VOqf564NGpoMV7srNgf9Jd4Ce7LFGG8NErYTnWomrrppPuU7A4bSrsOVLkuUUCutKrqmdgQPtQmfqmsKY5cXXYyZo9SZT80do0L2Slcrlb1aie4limtqlu+SEqp/L3Rp3qCC+0QXY7LeCSW6NF/25kps/Rg/wrlS7dqgoemtM7/oBmcZrqTznfjqnRXgO9PWOw3Btz2xxtteNVs/Zl5Bz3dHF2N6Z71yuodab5uQrx/T2wjlO+fZjzFstZJfwTuG7+xcfIW/UD4BUO9CQkH3CeKJ8pTuRLmHZ1hvdCLDGE9b8p1+6m3U850LTDDNF3Q9XzMDmeiCrlb6pPkdTFCeJjOdf9jxohvO/+D/xFK+hax/fB8n4+vHdMjO1vItZAFBThpjfvFoP0EhhBBCCCGEEEIIIYQQQgghhBBCCCGEEELQ8Ac8Xj6nD3B4AwAAAABJRU5ErkJggg==', title: 'Свобода от ограничении', desc: 'Вы можете использовать криптовалюту беспрепятственно. Централизованные платежные сервисы в свою очередь могут замораживать учетные записи или препятствовать совершению транзакций.' },
-                            { icon: null, title: 'Устойчива к взлому', desc: 'Устройство сети делает ее устойчивой к атакам хакеров и других злоумышленников' },
-                            { icon: null, title: 'Дешевый и быстрый способ оплаты', desc: 'Человек на другом конце света может получить от вас средства в считанные секунды. Комиссия за транзакцию значительно меньше, чем комиссия за международный денежный перевод.' },
-                        ]}
-                    /> */}
-{/*
-                    <DotsOnRoad
-                        data={[
-                            { title: 'Seed-фраза из 12-24  слов английского языка', desc: 'abort bird cat fly estimate came eight city map study agency space' },
-                            { title: 'Приватный ключ', desc: '5JPeWYZx922hXi49Lg2RIPWLIqcmDGS9YegMNgANvx8cJa6kNK8' },
-                            { title: 'Публичный ключ', desc: '03D7A51212E4EEFE40C72B201E74AA3557DEFD940ACESC3E107687577CD45FF962' },
-                            { title: 'Адрес кошелька', desc: '1DcEeFRGc4mfRLXWiVZySpmmXk7SsVLfNO' },
-                        ]}
-                    /> */}
 
                     <Sizebox height={28} />
 

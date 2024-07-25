@@ -10,7 +10,7 @@ function Navigation() {
     const scrollToNews = () => {
         const newsSection = document.getElementById('newsSection');
         if (newsSection) {
-          newsSection.scrollIntoView({ behavior: 'smooth' });
+            newsSection.scrollIntoView({ behavior: 'smooth' });
         }
     };
 
@@ -20,122 +20,6 @@ function Navigation() {
             coursesSection.scrollIntoView({ behavior: 'smooth' });
         }
     };
-
-    // return (
-    //     <div className='navbarBoxes'>
-    //         <div className={'menuBox'}>
-    //             <a className={'menu'}>О нас</a>
-    //             <ul className={'dropdownSub'}>
-    //                 <li>
-    //                     <Link to="/about" className={'subPages'}>Об Академии </Link>
-    //                 </li>
-    //                 <li>
-    //                     <Link to="/management" className={'subPages'}>Совет директоров</Link>
-    //                 </li>
-    //                 <li>
-    //                     <Link to="/structure" className={'subPages'}>Структура</Link>
-    //                 </li>
-    //                 <li>
-    //                     <Link to="/charter" className={'subPages'}>Устав</Link>
-    //                 </li>
-    //                 <li>
-    //                     <Link to="/roadmap" className={'subPages'}>План развития</Link>
-    //                 </li>
-    //             </ul>
-    //         </div>
-    //         <div className={'menuBox'}>
-    //             <a className={'menu'}>Обучение</a>
-    //             <ul className={'dropdownSub'}>
-    //                 <li>
-    //                     <a href='#' onClick={'scrollToCourses'} className={'subPages'}>Виды курсов</a>
-    //                 </li>  
-    //                 <li>
-    //                     <Link to="/courses/catalog" className={'subPages'}>Каталог курсов</Link>
-    //                 </li>
-    //                 {isLoggedIn ? <li>
-    //                     <Link to="/courses/myCourses" className={'subPages'}>Мои курсы</Link>
-    //                 </li> : null}
-    //             </ul>
-    //         </div>
-    //         <div className={'menuBox'}>
-    //             <a className={'menu'}>Библиотека</a>
-    //             <ul className={'dropdownSub'}>
-    //                 <li>
-    //                     <Link to="/services/service1" className={'subPages'}>НПА</Link>
-    //                 </li>
-    //                 <li>
-    //                     <Link to="/services/service2" className={'subPages'}>Документы международных организаций</Link>
-    //                 </li>
-    //                 <li>
-    //                     <Link to="/services/service2" className={'subPages'}>Иное </Link>
-    //                 </li>
-    //             </ul>
-    //         </div>
-    //         <div className={'menuBox'}>
-    //             <a className={'menu'}>Вебинары</a>
-    //             <ul className={'dropdownSub'}>
-    //                 <li>
-    //                     <Link to="/vebinars" className={'subPages'}>Все вебинары</Link>
-    //                 </li>
-    //                 <li>
-    //                     <Link to="/vebinars/calendar" className={'subPages'}>Календарь мероприятий</Link>
-    //                 </li>
-    //                 <li>
-    //                     <Link to="/vebinars/surveys" className={'subPages'}>Опросы</Link>
-    //                 </li>
-    //             </ul>
-    //         </div>
-    //         <div className={'menuBox'}>
-    //             <a className={'menu'}>Новости</a>
-    //         </div>
-    //         <div className={'menuBox'}>
-    //             <a className={'menu'}>ПОД/ФТ</a>
-    //             <ul className={'dropdownSub'}>
-    //                 <li>
-    //                     <Link to="/anti-laundering" className={'subPages'}>Антиотмывочная система РК</Link>
-    //                 </li>
-    //                 <li>
-    //                     <Link to="/fatf" className={'subPages'}>ФАТФ</Link>
-    //                 </li>
-    //                 <li>
-    //                     <Link to="/eag" className={'subPages'}>ЕАГ</Link>
-    //                 </li>
-    //                 <li>
-    //                     <Link to="/mutual-evaluation" className={'subPages'}>Взаимная оценка</Link>
-    //                 </li>
-    //             </ul>
-    //         </div>
-    //         <div className={'menuBox'}>
-    //             <a className={'menu'}>СФМ</a>
-    //             <ul className={'dropdownSub'}>
-    //                 <li>
-    //                     <Link to="/subjects" className={'subPages'}>Виды субъектов финансового мониторинга</Link>
-    //                 </li>
-    //                 <li>
-    //                     <Link to="/rules" className={'subPages'}>Правила внутреннего контроля</Link>
-    //                 </li>
-    //                 <li>
-    //                     <Link to="/operations" className={'subPages'}>Операции, подлежащие финансовому мониторингу</Link>
-    //                 </li>
-    //             </ul>
-    //         </div>
-    //         <div className={'menuBox'}>
-    //             <a className={'menu'}>Эксперты</a>
-    //             <ul className={'dropdownSub'}>
-    //                 <li>
-    //                     <Link to="/services/service1" className={'subPages'}>Пул экспертов Академии</Link>
-    //                 </li>
-    //                 <li>
-    //                     <Link to="/services/service2" className={'subPages'}>Заявка на позицию эксперта в Академии</Link>
-    //                 </li>
-    //                 <li>
-    //                     <Link to="/services/service2" className={'subPages'}>Вакансии</Link>
-    //                 </li>
-    //             </ul>
-    //         </div>
-    //     </div>
-    // )
-
     return (
         <div>
             <nav>

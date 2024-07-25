@@ -26,8 +26,7 @@ function Header(props) {
   const { t } = useTranslation();
 
   const navigate = useNavigate();
-  const [selectedVoiceName, setSelectedVoiceName] = useState(""); 
-  const [letterInterval, setLetterInterval] = useState("standard");
+  const letterInterval="standard";
   const role = localStorage.getItem('role')
 
   const [ openNavbar, setOpenNavbar] = useState(false);
@@ -35,28 +34,12 @@ function Header(props) {
 
 
   const jwtToken = localStorage.getItem('jwtToken');
-  const speak = (text, voiceName) => {
-    const synthesis = window.speechSynthesis;
-    setTimeout(() => {
-      synthesis.cancel();
-      const voices = synthesis.getVoices();
-      const selectedVoice = voices.find((voice) => voice.name === voiceName);
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.voice = selectedVoice;
-      synthesis.speak(utterance);
-    }, 100);
-  };
-
-  const userEmail = localStorage.getItem('email');
   const name = localStorage.getItem('firstname') + " " + localStorage.getItem('lastname')
   const pfp = name.split(' ')[0][0] + name.split(' ')[1][0]
 
   const [username, setUsername] = useState(localStorage.getItem('email'))
 
   const {
-    authUser,
-    setAuthUser,
-    isLoggedIn,
     setIsLoggedIn
   } = useAuth()
 
@@ -104,7 +87,7 @@ function Header(props) {
   }, []);
 
   const handleWindowResolution = () => {
-    const { width, height } = getWindowDimensions();
+    const { width } = getWindowDimensions();
     if (width > 1200) {
       setOpenNavbar(false);
     }
@@ -121,10 +104,6 @@ function Header(props) {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  const handleLogin = () => {
-    navigate('/login');
-  };
-
   const handleLogout = () => {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('email');
@@ -137,7 +116,7 @@ function Header(props) {
     setUsername('')
 
     navigate('/login')
-  }; 
+  };
 
   const profilePageLink = () => {
     navigate('/profile')
@@ -166,7 +145,7 @@ function Header(props) {
     filter: 'invert(0%)',
 
   };
-  const { styles, open, setOpen } = useStyle();
+  const { styles } = useStyle();
 
   const getLetterSpacing = (interval) => {
     interval = styles.letterInterval;
@@ -279,25 +258,7 @@ function Header(props) {
 }
 
 const NavigationBar = (props) => {
-  const navigate = useNavigate()
   const { isLoggedIn } = useAuth();
-
-  const scrollToNews = () => {
-      const newsSection = document.getElementById('newsSection');
-      if (newsSection) {
-        newsSection.scrollIntoView({ behavior: 'smooth' });
-      }
-  };
-
-  const scrollToCourses = () => {
-    // history.push('/');
-      navigate('/#coursesSection');
-      const coursesSection = document.getElementById('coursesSection');
-      if (coursesSection) {
-          coursesSection.scrollIntoView({ behavior: 'smooth' });
-      }
-  };
-
   const { styles } = useStyle(); 
   useEffect(() => {
     
@@ -318,16 +279,12 @@ const NavigationBar = (props) => {
     switch (size) {
       case "small":
         return "15px";
-        break;
       case "standard":
         return "20px";
-        break;
       case "large":
         return "24px";
-        break;
       default:
         return "20px";
-        break;
     }
   }
   const [isHovered, setIsHovered] = useState(false);
@@ -356,9 +313,7 @@ const NavigationBar = (props) => {
 
   return (
       <div className={`navbarBoxes text-content`}
-      
       >
-             
           <div className={`menuBox text-content`}>
               <a className={`menu ${props.dark? 'dark' : ''} text-content`}>{t('about us')}</a>
               <ul className={'dropdownSub text-content'}>
@@ -388,8 +343,8 @@ const NavigationBar = (props) => {
                   </li>
                   {isLoggedIn ? <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
                       <Link to="/courses/myCourses" className={'subPages text-content'}>{t('my courses')}</Link>
-                   </li> : null}
-                   <li>
+                  </li> : null}
+                  <li>
                       <Link to="/vebinars" className={'subPages text-content'}>{t('webinars')}</Link>
                   </li>
                   <li>
@@ -403,20 +358,6 @@ const NavigationBar = (props) => {
                   </li>
               </ul>
           </div>
-          {/* <div className={'menuBox'}>
-              <a className={`menu ${props.dark? 'dark' : ''}`}>Библиотека</a>
-              <ul className={'dropdownSub'}>
-                  <li>
-                      <Link to="/services/service1" className={'subPages'}>НПА</Link>
-                  </li>
-                  <li>
-                      <Link to="/services/service2" className={'subPages'}>Документы международных организаций</Link>
-                  </li>
-                  <li>
-                      <Link to="/services/service2" className={'subPages'}>Иное </Link>
-                  </li>
-              </ul>
-          </div> */}
       
           <div className={'menuBox'}>
               <a className={`menu ${props.dark? 'dark' : ''} text-content`}  href='/news-page'>{t('news')}</a>
@@ -465,7 +406,7 @@ const NavigationBar = (props) => {
                       <Link to="/operations" className={'subPages text-content'}>{t('transactions subject to financial monitoring')}</Link>
                   </li>
                   <li>
-                     <Link to="/ready-made-solutions" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={'subPages text-content'}>{t('ready-made solutions catalog')}</Link> 
+                    <Link to="/ready-made-solutions" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={'subPages text-content'}>{t('ready-made solutions catalog')}</Link> 
                                 <ul 
                                     style={{display: isHovered ? 'block' : 'none'}}
                                     className='subsub' >
@@ -477,24 +418,9 @@ const NavigationBar = (props) => {
                                         <Link to="/development-of-icps"    className={'subPages1 text-content'}>{t('Development of ICPs')}</Link>
                                         </li>
                                 </ul>
-                       
                   </li>
               </ul>
           </div>
-          {/* <div className={'menuBox'}>
-              <a className={`menu ${props.dark? 'dark' : ''}`}>Эксперты</a>
-              <ul className={'dropdownSub'}>
-                  <li>
-                      <Link to="/services/service1" className={'subPages'}>Пул экспертов Академии</Link>
-                  </li>
-                  <li>
-                      <Link to="/services/service2" className={'subPages'}>Заявка на позицию эксперта в Академии</Link>
-                  </li>
-                  <li>
-                      <Link to="/services/service2" className={'subPages'}>Вакансии</Link>
-                  </li>
-              </ul>
-          </div> */}
       </div>
 
   )

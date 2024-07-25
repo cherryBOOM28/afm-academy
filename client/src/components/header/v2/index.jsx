@@ -4,6 +4,7 @@ import { FaChevronDown } from "react-icons/fa6";
 import { IoMdEye } from "react-icons/io";
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../../auth/AuthContext';
 import navbar_items from '../navbar_items';
 import logo from './logo.svg';
 import './style.scss';
@@ -11,21 +12,21 @@ import './style.scss';
 function Header({
     handleOpenVisualModal
 }) {
-    const {t} = useTranslation()
-    return ( 
+    const { t } = useTranslation()
+    return (
         <div className="header-v2">
             <div className="row">
-                <div className="logo"> 
+                <div className="logo">
                     <img src={logo} alt="" />
-                    <span>{ t("academy of financial monitoring")}</span>
+                    <span>{t("academy of financial monitoring")}</span>
                 </div>
                 <div className="navigation">
                     {navbar_items.map((item, index) => {
                         return (
-                            <NavItem 
-                                name={item.name} 
-                                mainRoute={item.route} 
-                                subItems={item.subItems} 
+                            <NavItem
+                                name={item.name}
+                                mainRoute={item.route}
+                                subItems={item.subItems}
                                 key={index}
                             />
                         );
@@ -57,23 +58,69 @@ function Header({
 
 const UserAvatar = () => {
     const navigate = useNavigate();
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+    const userToggleRef = useRef(null);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const role = localStorage.getItem('role')
+    const {
+        setIsLoggedIn
+    } = useAuth()
 
+    const handleLogout = () => {
+        localStorage.removeItem('jwtToken');
+        localStorage.removeItem('email');
+        localStorage.removeItem('user_id');
+        localStorage.removeItem('firstname');
+        localStorage.removeItem('lastname');
+        console.log("works")
+        setIsLoggedIn(false)
+        navigate('/login')
+    };
     return (
-        <div 
-            className="user-avatar" 
-            onClick={() => {
-                navigate('/profile');
-            }}
-        >
-            <span>{[...localStorage.getItem('firstname')][0]}</span>
-            <span>{[...localStorage.getItem('lastname')][0]}</span>
-        </div>
+        <>
+            <div className='user-actions' onClick={() => toggleMenu()} >
+                <div className='user-icon toggle-user-button'>
+                    <p className='toggle-user-button'>
+                        <span>{[...localStorage.getItem('firstname')][0]}</span>
+                        <span>{[...localStorage.getItem('lastname')][0]}</span>
+                    </p>
+                </div>
+                <div className='user-toggle'
+                    style={{
+                        display: isMenuOpen ? 'flex' : 'none'
+                    }}
+                    ref={userToggleRef}
+                >
+                    <div onClick={() => navigate('/profile')} className='person-menu-item menu-item underline-item'>
+                        <div className='user-icon'>
+                            <a>
+                                <span>{[...localStorage.getItem('firstname')][0]}</span>
+                                <span>{[...localStorage.getItem('lastname')][0]}</span>
+                            </a>
+                        </div>
+                        <div>
+                        </div>
+                        <a className='user-toggle-links'>{localStorage.getItem('firstname')} {localStorage.getItem('lastname')}</a>
+                    </div>
+                    {role == 'ROLE_ADMIN' ?
+                        <div onClick={() => navigate('/manager')} className='person-menu-item menu-item underline-item'>
+                            <a className='user-toggle-links'>Админ панель</a>
+                        </div> : null
+                    }
+                    <div onClick={handleLogout} className='menu-item'>
+                        <a className='user-toggle-links'>Выйти</a>
+                    </div>
+                </div>
+            </div>
+        </>
     )
 }
 
-const NavItem = ({ 
-    name, 
-    mainRoute, 
+const NavItem = ({
+    name,
+    mainRoute,
     subItems
 }) => {
     const [open, setOpen] = useState(false);
@@ -109,7 +156,7 @@ const NavItem = ({
                     <div className="sub-items">
                         {
                             subItems.map((item, index) => (
-                                <div 
+                                <div
                                     key={index}
                                     onClick={() => {
                                         navigate(item.route)

@@ -127,23 +127,6 @@ function Footer({ email, phoneNumber }) {
                         </nav>
                         
                     </div>
-                    {/* <div className={'footer__block'}>
-                        <p className={'footer__headline'}>Библиотека</p>
-                        <nav className={'footer__content'}>
-                            <ul>
-                                <li>
-                                    <Link to="/npa" className={'footer__text'}>НПА</Link>
-                                </li>
-                                <li>
-                                    <Link to="/documents" className={'footer__text'}>Документы международных организаций</Link>
-                                </li>
-                                <li>
-                                    <Link to="/other" className={'footer__text'}>Иное</Link>
-                                </li>
-                            </ul>
-                        </nav>
-                        
-                    </div> */}
                     <div className={cl.socials}>
                         <a href='https://www.instagram.com/aml_academy/' className={cl.rounde}>
                             <img src={igIcon} alt="instagram" className={cl.icon} />
@@ -172,30 +155,6 @@ function Footer({ email, phoneNumber }) {
                             </ul>
                         </nav>
                     </div>
-                    {/* <div className={'footer__block__middle'}>
-                        <p className={'footer__headline'}>Эксперты</p>
-                        <nav className={'footer__content'}>
-                            <ul>
-                                <li>
-                                    <Link to="/experts" className={'footer__text'}>Эксперты</Link>
-                                </li>
-                                <li>
-                                    <Link to="/rules" className={'footer__text'}>Пул экспертов Академии</Link>
-                                </li>
-                                <li>
-                                    <Link to="" className={'footer__text'}>Заявка на позицию <br></br> эксперта в Академии</Link>
-                                </li>
-                                <li>
-                                    <Link to="/jobs" className={'footer__text'}>Вакансии</Link>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div> */}
-                    {/* <Map /> */}
-                    
-
-
-                    
                 </div>
             
             </div>
