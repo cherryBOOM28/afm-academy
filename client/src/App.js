@@ -1,4 +1,4 @@
-import { Suspense, lazy, startTransition, useEffect, useState } from 'react';
+import { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { StyleProvider } from './/components/VisualModal/StyleContext.jsx';
 import VisualModal from './/components/VisualModal/VisualModal.jsx';
@@ -18,7 +18,7 @@ import Registration from './pages/registration/Registration';
 import './settings/i18n.js';
 const AllNewsPage = lazy(() => import ('./pages/all-news/index.jsx'))
 const Home = lazy(() => import ('./pages/home/Home'))
-const Game_1 = lazy(() => import('./pages/aml-games/game-1/index.jsx'))
+const Game1 = lazy(() => import('./pages/aml-games/game-1/index.jsx'))
 const GameReader = lazy(() => import('./pages/aml-games/game-2/index.jsx'))
 const GameMain = lazy(() => import ('./pages/aml-games/main/index.jsx'))
 const ReadCourse = lazy(() => import ('./pages/ReadCourse'))
@@ -60,20 +60,6 @@ const CryptoCourse = lazy(() => import('./pages/ReadCourses/CryptoCourse'));
 const AmlGamesProfile = lazy(() => import('./pages/aml-games/profile'));
 
 function App() {
-    const [jwtToken, setJwtToken] = useState('');
-
-    useEffect(() => {
-
-
-        // console.log(storedJwtToken)
-
-        startTransition(() => {
-            const storedJwtToken = localStorage.getItem('jwtToken');
-            if (storedJwtToken) {
-                setJwtToken(storedJwtToken);
-            }
-        });
-    }, []);
 
     return (
         <div className="App">
@@ -91,7 +77,7 @@ function App() {
                             <Route path="/" element={<Suspense ><Home /></Suspense>}></Route>
                             <Route path="/:scroll" element={<Suspense ><Home /></Suspense>}></Route>
                             <Route path="/about" element={<Suspense ><AboutUs /></Suspense>}></Route>
-                            <Route path='/courses/aml-games/game/survey/:id' element={<Suspense><Game_1 /></Suspense>}></Route>
+                            <Route path='/courses/aml-games/game/survey/:id' element={<Suspense><Game1 /></Suspense>}></Route>
                             <Route path='/courses/aml-games/game/main/:id' element={<Suspense><GameMain/></Suspense>}></Route>
                             <Route path='/courses/aml-games/game/profile/:id' element={<AmlGamesProfile />}></Route>
                             <Route path='/courses/aml-games/game/aml-expert/:id' element={<AmlExpert />}></Route>
