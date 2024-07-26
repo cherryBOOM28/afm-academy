@@ -14,19 +14,21 @@ import './style.css';
 const AmlExpert = () => {
     return (
         <div className="aml-expert-container">
-            <aside className="sidebar-expert">
-                <div>
-                    <h2>AML Expert</h2>
-                    <h3>Сервисы</h3>
-                </div>
-                <ul>
-                    <li><img src={manager} alt="Панель управления" /> Панель управления</li>
-                    <li><img src={email} alt="Почта" /> Почта</li>
-                    <li><img src={history} alt="История" />История</li>
-                    <li><img src={list} alt="Список документов" />Список документов</li>
-                </ul>
-                <button className="logout"><img src={exit} alt="Выход" />Выход</button>
-            </aside>
+            <div className='sidebar-expert-wrapper'>
+                <aside className="sidebar-expert">
+                    <div>
+                        <h2>AML Expert</h2>
+                        <h3>Сервисы</h3>
+                    </div>
+                    <ul>
+                        <li><img src={manager} alt="Панель управления" /> Панель управления</li>
+                        <li><img src={email} alt="Почта" /> Почта</li>
+                        <li><img src={history} alt="История" />История</li>
+                        <li><img src={list} alt="Список документов" />Список документов</li>
+                    </ul>
+                    <button className="logout"><img src={exit} alt="Выход" />Выход</button>
+                </aside>
+            </div>
             <main className="main-content">
                 <header className="header">
                     <input type="text" placeholder="Поиск документа..." className="search-input" />
@@ -45,7 +47,18 @@ const AmlExpert = () => {
                     </div>
                 </header>
                 <Sizebox/>
-                <DossierComponent/>
+                <div className='dossier-wrapper'>
+                    <div>
+                        <h2>Документ: Досье</h2>
+                        <div>
+
+                        </div>
+                    </div>
+                    <div className='input-wrapper'>
+                        <input className="input-expert" type="text" placeholder='Адрес или почта отправки' />
+                    </div>
+                    <DossierComponent/>
+                </div>
             </main>
         </div>
     );
