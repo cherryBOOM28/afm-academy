@@ -1,7 +1,7 @@
+import { ChatProps, UserProps } from '../MessagePage/types.tsx';
 import Character3 from './../../assets/asian-man.png';
 import Character1 from './../../assets/asian-woman.png';
 import Character2 from './../../assets/white-woman.png';
-import { ChatProps, UserProps } from './types';
 
 export const users: UserProps[] = [
   {

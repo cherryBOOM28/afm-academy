@@ -1,12 +1,17 @@
 import Sheet from '@mui/joy/Sheet';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { chats } from '../data.tsx';
 import { ChatProps } from '../types';
 import ChatsPane from './ChatsPane.tsx';
 import MessagesPane from './MessagesPane.tsx';
 
-export default function MyProfile() {
+type MyMessagesProps = {
+  image: string;
+  chats: ChatProps[]
+};
+
+export default function MyProfile(props: MyMessagesProps) {
+  const { image, chats } = props;
   const [selectedChat, setSelectedChat] = useState<ChatProps>(chats[0]);
 
   useEffect(() => {
@@ -54,7 +59,7 @@ export default function MyProfile() {
           setSelectedChat={setSelectedChat}
         />
       </Sheet>
-      <MessagesPane key={selectedChat.id} chat={selectedChat} />
+      <MessagesPane key={selectedChat.id} chat={selectedChat} image={image} />
     </Sheet>
   );
 }

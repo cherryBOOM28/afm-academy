@@ -11,10 +11,11 @@ import MessagesPaneHeader from './MessagesPaneHeader.tsx';
 
 type MessagesPaneProps = {
   chat: ChatProps;
+  image: string;
 };
 
 export default function MessagesPane(props: MessagesPaneProps) {
-  const { chat } = props;
+  const { chat, image } = props;
   const [chatMessages, setChatMessages] = useState<MessageProps[]>([]);
   const [textAreaValue, setTextAreaValue] = useState('');
   const [recipient, setRecipient] = useState('9umLzZWFyVSAagEU2xLcNikCqef1');
@@ -66,13 +67,13 @@ export default function MessagesPane(props: MessagesPaneProps) {
   return (
     <Sheet
       sx={{
-        height: "571.5px",
+        height: image ? "821.5px" : "521.5px" ,
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: 'background.level1',
       }}
     >
-      <MessagesPaneHeader sender={chat.sender} />
+      <MessagesPaneHeader sender={chat.sender} image={image} />
       <Box
         sx={{
           display: 'flex',

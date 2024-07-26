@@ -8,6 +8,7 @@ import CardAmlLogo from "../../assets/card-aml-logo.svg";
 import WhiteMan from "../../assets/white-man.png";
 import QuizCards from "../../components/QuizCards";
 import VerticalCarousel from '../../components/VerticalCarousel/index.jsx';
+import { chats } from "../chat-datas/data1.tsx";
 import MessagesPage from "../MessagePage/MessagesPage.tsx";
 import { addAnswer } from '../store/slices/answersSlice.ts'; // Импортируйте действие
 
@@ -38,7 +39,7 @@ function Level_1_2() {
         <>
             <div className='message-page'>
                 <div className='message-page-container'>
-                    <MessagesPage />
+                    <MessagesPage image={ null } chats={chats}/>
                 </div>
             </div>
             <Sizebox height={100} />
