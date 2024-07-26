@@ -7,6 +7,8 @@ import manager from '../assets/manager.svg';
 import notify from '../assets/notification-icon.svg';
 import avatar from '../assets/user-avatar-icon.svg';
 
+import Sizebox from '../../../components/courseTemplates/common/Sizebox';
+import DossierComponent from '../components/dossier';
 import './style.css';
 
 const AmlExpert = () => {
@@ -42,6 +44,8 @@ const AmlExpert = () => {
                         <span>Ахметжан Дильназ</span>
                     </div>
                 </header>
+                <Sizebox/>
+                <DossierComponent/>
             </main>
         </div>
     );
