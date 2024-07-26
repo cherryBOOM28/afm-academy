@@ -19,11 +19,13 @@ const QuestionMap = ({testData, typeOfQuestion}) => {
     }, []);
 
     return (
-        <div className="main-container-questions">
+        <div className='centering-questions'>
+            <div className="main-container-questions">
             <p className='type-of-questions'>{ typeOfQuestion }</p>
                 {questions.map(question => (
                     <QuestionComponent key={question.id} question={question} />
                 ))}
+            </div>
         </div>
     )
 }

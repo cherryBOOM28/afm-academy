@@ -154,12 +154,15 @@ function NewsPage() {
         <div className="news-layout">
           {displayedNews && (
             <div className="latestNews">
+              <br />
               <h2 className="latestNewsTitle">{displayedNews.name}</h2>
+              <br />
               {!imagesHidden && displayedNews.image && <img src={displayedNews.image} alt="" className="latestNewsImg" />}
               <p className="latestNewsText" dangerouslySetInnerHTML={{ __html: displayedNews.description.replace(/\n/g, "<br />") }} ></p>
             </div>
           )}
           <div className="otherNews">
+            <br /><br /><br />
             {newsData.filter((item) => item.id !== displayedNews.id).slice(0, 6).map((item) => renderCardContent(item))}
           </div>
         </div>

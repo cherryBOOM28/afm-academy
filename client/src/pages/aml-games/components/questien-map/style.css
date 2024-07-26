@@ -1,7 +1,13 @@
 .main-container-questions {
     display: flex;
     flex-direction: column;
-    align-items: left;
+    
+    width: 90%;
+}
+.centering-questions{
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 .main-container-questions .type-of-questions{
     font-weight: 600 !important;
