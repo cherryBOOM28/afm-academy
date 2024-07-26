@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./style.scss";
-import avatar from "./profileImg/profileIcon.png";
-import ToggleButton from "./ToggleButton/index";
 import { IoCheckmark } from "react-icons/io5";
+import avatar from "./profileImg/profileIcon.png";
+import "./style.scss";
+import ToggleButton from "./ToggleButton/index";
 
 const CustomRadioButton = ({ name, value, checked, onChange, label }) => {
   return (
@@ -42,7 +42,7 @@ const DossierComponent = () => {
               </div>
             ))}
           </div>
-          <div className="avatar-container">
+          <div className="avatar-container-dossier">
             <img src={avatar} alt="Avatar" />
           </div>
         </div>
