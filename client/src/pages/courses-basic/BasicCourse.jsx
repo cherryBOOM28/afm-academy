@@ -210,14 +210,14 @@ function BasicCourse() {
                                                         data !== null && [41, 47, 79].includes(data.course_id) && data2.includes(user_idd)
                                                             ? (
                                                                 <Link to={`/courses/${id}/read`} style={{ color: 'white', textDecoration: 'none' }}>
-                                                                    {isKazakh ? 'Курсты өту' : 'Пройти курс'}
+                                                                    {isKazakh ? 'Сабақты өту' : 'Пройти урок'}
                                                                 </Link>
                                                             )
                                                             : (
                                                                 data !== null && data.course_id === 86
                                                                     ? (
                                                                         <Link to={`/courses/86/read`} style={{ color: 'white', textDecoration: 'none' }}>
-                                                                            {isKazakh ? 'Курсты өту' : 'Пройти курс'}
+                                                                            {isKazakh ? 'Сабақты өту' : 'Пройти урок'}
                                                                         </Link>
                                                                     ) : <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
                                                                         {t("buy a course")}
@@ -230,7 +230,7 @@ function BasicCourse() {
                                                         ? (
 
                                                             <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
-                                                                {isKazakh ? 'Курсты өту' : 'Пройти курс'}
+                                                                {isKazakh ? 'Сабақты өту' : 'Пройти урок'}
                                                             </Link>
                                                         ) :
                                                         (
@@ -364,7 +364,7 @@ function BasicCourse() {
                                                         data !== null && data.course_id === 86
                                                             ? (
                                                                 <Link to={`/courses/86/read`} style={{ color: 'white', textDecoration: 'none' }}>
-                                                                    {isKazakh ? 'Курсты өту' : 'Пройти курс'}
+                                                                    {isKazakh ? 'Сабақты өту' : 'Пройти урок'}
                                                                 </Link>
                                                             ) : <Link onClick={handleClickOpen} style={{ color: 'white', textDecoration: 'none' }}>
                                                                 {t("buy a course")}
@@ -376,7 +376,7 @@ function BasicCourse() {
                                                     ? (
 
                                                         <Link to={`/login`} style={{ color: 'white', textDecoration: 'none' }}>
-                                                            {isKazakh ? 'Курсты өту' : 'Пройти курс'}
+                                                            {isKazakh ? 'Сабақты өту' : 'Пройти урок'}
                                                         </Link>
                                                     ) :
                                                     (

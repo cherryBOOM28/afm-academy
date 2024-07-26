@@ -156,8 +156,9 @@ function NewsPage() {
             <div className="latestNews">
               <br />
               <h2 className="latestNewsTitle">{displayedNews.name}</h2>
+
               <br />
-              {!imagesHidden && displayedNews.image && <img src={displayedNews.image} alt="" className="latestNewsImg" />}
+              {displayedNews.image && <img src={displayedNews.image} alt="" className="latestNewsImg" />}
               <p className="latestNewsText" dangerouslySetInnerHTML={{ __html: displayedNews.description.replace(/\n/g, "<br />") }} ></p>
             </div>
           )}
