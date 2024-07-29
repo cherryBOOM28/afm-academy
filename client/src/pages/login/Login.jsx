@@ -92,10 +92,15 @@ const Registration = () => {
                 // console.log(error)
             })
     };
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleSubmit(event);
+        }
+    };
 
 
     return (
-        <div className='login-page'>
+        <div className='login-page' onKeyDown={handleKeyDown}>
             <Helmet>
                 <script type="application/ld+json">
                     {`
@@ -144,20 +149,7 @@ const Registration = () => {
                     </div>
                     {error && <div className="failedLogin">{error}</div>}
                     <div className='actions'>
-                        {/* <div className='remember-me'>
-                            <div>
-                                <div>
-                                    <img src={rememberMe ? SwitchOn : SwitchOff} alt="" />
-                                </div>
-                                <div>Запомнить меня</div>
-                            </div>
-                            <div className='forgot-password'>
-                                Забыли пароль?
-                            </div>
-                        </div> */}
                         <div className='reg-btn' onClick={(event) => handleSubmit(event)}>{t('login')}</div>
-
-
                         <div className='have-account'><Link to={'/registration'}><span>{t('newaccount')}</span></Link></div>
                     </div>
                 </div>
