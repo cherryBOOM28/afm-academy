@@ -37,12 +37,6 @@ const navbar_items = [
           name: 'my courses',
           route: '/courses/myCourses'
         },
-      ]
-    },
-    {
-      name: 'webinars',
-      route: null,
-      subItems: [
         {
           name: 'webinars',
           route: '/vebinars'
@@ -55,13 +49,24 @@ const navbar_items = [
           name: 'surveys',
           route: '/vebinars/surveys'
         },
+        {
+          name: 'AML словарь',
+          route: '/vebinars/dictionary'
+        },
       ]
     },
     {
       name: 'news',
-      route: '/news-page',
+      route: null,
       subItems: [
-        
+        {
+          name: 'Последние новости',
+          route: '/news-page'
+        },
+        {
+          name: 'Архив новостей',
+          route: '/all-news'
+        },
       ]
     },
     {

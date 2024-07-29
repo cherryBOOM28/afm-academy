@@ -19,6 +19,7 @@
 .start-learning .start-learning-wrapper .text{
     font-size: 35px;
     font-weight: 300;
+    flex-wrap: wrap;
 }
 
 .start-learning .start-learning-wrapper .button{
