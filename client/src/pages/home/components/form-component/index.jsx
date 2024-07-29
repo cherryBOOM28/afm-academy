@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import base_url from '../../../../settings/base_url';
 import qr from '../../assets/jpg/qr.jpg';
 import './style.css';
 
@@ -11,7 +12,10 @@ const FormComponent= () => {
     const [comment, setComment] = useState('');
     const [isAgreed, setIsAgreed] = useState(false);
     const [isSubscribed, setIsSubscribed] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
+    const [alertType, setAlertType] = useState('');
     const { t } = useTranslation();
+    const jwtToken = localStorage.getItem('jwtToken')
 
     const handlePhoneChange = (e) => {
         const phoneValue = e.target.value;
@@ -23,32 +27,48 @@ const FormComponent= () => {
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
     };
-
     const handleSubmit = async () => {
         if (isAgreed) {
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailPattern.test(email)) {
-                alert('Введите корректный адрес электронной почты.');
+                showAlert('Введите корректный адрес электронной почты.', 'error');
                 return;
             }
 
             try {
-                await axios.post('YOUR_BACKEND_URL', {
-                    name,
-                    phone,
-                    email,
-                    comment,
-                    isSubscribed,
+                await axios.post(`${base_url}/api/aml/auth/sendMessageToMail`, {
+                    "name": name,
+                    "phoneNumber": phone,
+                    "email": email,
+                    "comment": comment,
+                    "isNews": isSubscribed,
+                }, {
+                    headers: {
+                        'Authorization': `Bearer ${jwtToken}` // Add token to the request headers
+                    }
                 });
-                alert('Заявка отправлена!');
+
+                showAlert('Заявка отправлена!', 'success');
             } catch (error) {
-                alert('Произошла ошибка при отправке заявки.');
+                showAlert('Произошла ошибка при отправке заявки.', 'error');
             }
-        }
+        };
+    }
+    const showAlert = (message, type) => {
+        setAlertMessage(message);
+        setAlertType(type);
+        setTimeout(() => {
+            setAlertMessage('');
+        }, 2000);
     };
 
     return (
         <div className='form-container-wrapper'>
+            {alertMessage && (
+                <div className={`custom-alert ${alertType}`}>
+                    {alertMessage}
+                </div>
+            )}
             <div className="form-container-main">
                 <div className="form-left">
                     <div>

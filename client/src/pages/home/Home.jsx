@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useStyle } from "../../components/VisualModal/StyleContext";
 import VisualModal from "../../components/VisualModal/VisualModal";
 import Footer from "../../components/footer/Footer";
@@ -10,17 +9,13 @@ import AboutUsSection from "./sections/AboutUsSection";
 import SecondSection from "./sections/second-section/index";
 
 function Home() {
-  const navigate = useNavigate();
-  const [removeBackground, setRemoveBackground] = useState(false);
+  const removeBackground = false;
   const [imagesHidden, setImagesHidden] = useState(false);
-  const [letterInterval, setLetterInterval] = useState("standard");
+  const letterInterval = "standard";
   const { styles, open, setOpen, userEntry, checkStyle } = useStyle();
-  const { t, i18n } = useTranslation();
-  const currentLanguage = i18n.language;
   const location = useLocation();
-  const params = useParams();
   const [openVisualModal, setOpenVisualModal] = useState(open);
-  const [activeTab, setActiveTab] = useState(1);
+
 
   useEffect(() => {
     if (location.hash === "#coursesSection") {
@@ -96,9 +91,6 @@ function Home() {
     },
   };
 
-  const toggleRemoveBackground = () => {
-    setRemoveBackground((prevValue) => !prevValue);
-  };
 
   const scrollToCourses = () => {
     const coursesSection = document.getElementById("coursesSection");
@@ -112,14 +104,6 @@ function Home() {
     if (newsSection) {
       newsSection.scrollIntoView({ behavior: "smooth" });
     }
-  };
-
-  const toAbout = () => {
-    navigate("/about");
-  };
-
-  const handleTabClick = (tabIndex) => {
-    setActiveTab(tabIndex);
   };
 
   const handleOpenVisualModal = () => {
@@ -147,15 +131,6 @@ function Home() {
   const handleShowImages = () => {
     setImagesHidden(false);
   };
-
-  const handleIntervalChange = (interval) => {
-    setLetterInterval(interval);
-  };
-
-  const getShowImage = () => {
-    return imagesHidden;
-  };
-
   const getLetterSpacing = (interval) => {
     interval = styles.letterInterval;
 

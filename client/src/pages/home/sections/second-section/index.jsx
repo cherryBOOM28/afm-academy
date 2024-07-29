@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import news1 from '../../assets/svg/news1.svg';
 import news2 from '../../assets/svg/news2.svg';
 import news3 from '../../assets/svg/news3.svg';
@@ -13,7 +12,6 @@ import ThirdComponent from '../../components/third-component';
 import './style.css';
 
 const SecondSection = () => {
-    const { t } = useTranslation();
     const testData = [
         {
             id: 1,
