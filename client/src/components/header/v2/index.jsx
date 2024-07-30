@@ -125,7 +125,7 @@ const NavItem = ({
 }) => {
     const [open, setOpen] = useState(false);
     const navItemRef = useRef(null);
-    const { i18n, t } = useTranslation();
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     useEffect(() => {

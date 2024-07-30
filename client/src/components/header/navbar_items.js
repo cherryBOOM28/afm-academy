@@ -1,7 +1,14 @@
+const token = localStorage.getItem('jwtToken');
+
+const myCoursesItem = token ? {
+  name: 'my courses',
+  route: '/courses/myCourses'
+} : null;
+
 const navbar_items = [
     {
       name: 'about us',
-      route: null, 
+      route: null,
       subItems: [
         {
           name: 'about the academy',
@@ -33,10 +40,7 @@ const navbar_items = [
           name: 'course catalog',
           route: '/courses'
         },
-        {
-          name: 'my courses',
-          route: '/courses/myCourses'
-        },
+        myCoursesItem,
         {
           name: 'webinars',
           route: '/vebinars'
@@ -53,7 +57,7 @@ const navbar_items = [
           name: 'AML словарь',
           route: '/vebinars/dictionary'
         },
-      ]
+      ].filter(Boolean) // This filters out any null items
     },
     {
       name: 'news',
@@ -131,6 +135,6 @@ const navbar_items = [
         },
       ]
     },
-  ]
+]
 
 export default navbar_items;
