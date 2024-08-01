@@ -96,7 +96,8 @@
 
                 .component-edit {
                     // position: absolute;
-                    display: block;
+                    display: flex;
+                    justify-content: space-between;
                     svg {
                         padding-left: 10px;
                         padding-top: 5px;
