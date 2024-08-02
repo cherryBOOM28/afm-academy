@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import './style.scss';
 
-import hatIcon from '../images/hat-light-icon.svg'
-import saveButton from '../images/save-button.svg'
 import base_url from '../../../settings/base_url';
+import hatIcon from '../images/hat-light-icon.svg';
+import saveButton from '../images/save-button.svg';
 
 const ModuleStructure = ({id, toQuestionnaire, lessonById, setLessonTitle }) => {
     const navigate = useNavigate()
@@ -60,6 +60,7 @@ const ModuleStructure = ({id, toQuestionnaire, lessonById, setLessonTitle }) => 
     };
 
     const deleteLesson = (lessonId) => {
+        if (window.confirm('Вы точно хотите удалить модуль?')) {
         axios
             .post(base_url + '/api/aml/chapter/deleteLesson', null, {
                 params: {
@@ -73,6 +74,7 @@ const ModuleStructure = ({id, toQuestionnaire, lessonById, setLessonTitle }) => 
             .catch(function (error) {
                 // alert(error)
             })
+        }
     };
     
 
