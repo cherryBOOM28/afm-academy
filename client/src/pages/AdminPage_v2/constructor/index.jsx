@@ -81,6 +81,7 @@ function NewTabConstructor({ saveCancel, save, id }) {
                     setLoading(false);
                 });
         }
+        setTimeout(() => setNotification(false), 2000);
     };
 
 
