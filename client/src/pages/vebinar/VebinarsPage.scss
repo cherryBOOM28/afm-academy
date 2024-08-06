@@ -79,12 +79,11 @@
                 }
 
                 .info-block {
-                    width: 100%;
 
                     display: flex;
-                    justify-content: space-between;
-                
-                align-items: center;
+                    justify-content: center;
+                    gap:30px;
+                    flex-direction: column;
                     padding: 20px;
 
                 }
@@ -172,9 +171,9 @@
                         font-family: 'Inter', sans-serif;
                         font-size: 16px;
                         font-weight: 500;
-                        padding: 9px 5px;
+                        padding: 5px 9px;
                         letter-spacing: 0em;
-                        text-align: left;
+                        text-align: center;
 
                         cursor: pointer;
                     }
