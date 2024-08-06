@@ -22,7 +22,7 @@ const advantages = [
 const NextArrow = ({ onClick }) => {
     return (
         <div className="nav-button next-button" onClick={onClick}>
-            <img src={nextButton} alt="next-button" />
+            <img style={{width:"25px"}} src={nextButton} alt="next-button" />
         </div>
     );
 };
@@ -30,7 +30,7 @@ const NextArrow = ({ onClick }) => {
 const PrevArrow = ({ onClick }) => {
     return (
         <div className="nav-button prev-button" onClick={onClick}>
-            <img src={prevButton} alt="prev-button" />
+            <img style={{width:"25px"}} src={prevButton} alt="prev-button" />
         </div>
     );
 };

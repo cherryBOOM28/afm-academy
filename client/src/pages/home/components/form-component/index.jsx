@@ -71,8 +71,13 @@ const FormComponent= () => {
             )}
             <div className="form-container-main">
                 <div className="form-left">
-                    <div>
-                        <div>{t('do you still have questions?')} <br /> <strong className='aml-academy-name'>AML ACADEMY</strong></div>
+                    <div style={{display:"flex", flexDirection:"column", gap:"10px", lineHeight:"1"}}>
+                        <div>
+                            <div>
+                            {t('do you still have questions?')}
+                            </div>
+                            <strong className='aml-academy-name'>AML ACADEMY</strong>
+                        </div>
                     </div>
                     <img className="qr-aml" src={qr} alt="AML QR" />
                     <div className='phone-number'>

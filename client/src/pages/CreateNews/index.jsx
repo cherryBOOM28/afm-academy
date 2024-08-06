@@ -17,6 +17,7 @@ function CreateNews() {
     const [date, setDate] = useState('');
     const [type, setType] = useState('news');
     const [image, setImage] = useState('');
+    const [language, setLanguage] = useState('ru');
 
     const [jwtToken, setJwtToken] = useState('');
 
@@ -47,7 +48,8 @@ function CreateNews() {
                 name: name,
                 description: description,
                 date: date,
-                type: type
+                type: type,
+                lang: language
             }));
             formData.append('file', image);
 
@@ -121,6 +123,20 @@ function CreateNews() {
                                 setImage(e.target.files[0])
                             }} 
                         />
+                    </div>
+                    <div>
+                        <label>Язык</label>
+                        <select
+                            value={language}
+                            onChange={(e) => {
+                                setLanguage(e.target.value);
+                            }}
+                            className='news-lang'
+                        >
+                            <option value="kz">Казахский</option>
+                            <option value="ru">Русский</option>
+                            <option value="eng">Английский</option>
+                        </select>
                     </div>
                     <div>
                         <label>Описание</label>
