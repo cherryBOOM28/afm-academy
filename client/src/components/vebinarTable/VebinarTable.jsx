@@ -21,6 +21,9 @@ const VebinarTable = () => {
     const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
   const [letterInterval, setLetterInterval] = useState("standard");
+  const openLinkInNewTab = (url) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
 
 
   const [activeTab, setActiveTab] = useState(1);
@@ -408,7 +411,7 @@ const VebinarTable = () => {
                     </TableCell>
                     <TableCell align={"right"} className={"actions"}>
                       <div>
-                        <div className="text-content" >Ссылка на вебинар</div>
+                        <div className="text-content" onClick={()=> openLinkInNewTab(row.link)}>Ссылка на вебинар</div>
                         <div className="text-content" onClick={() => handleCancelParticipation(row.webinar_id)}>Отменить участие</div>
                       </div>
                     </TableCell>
