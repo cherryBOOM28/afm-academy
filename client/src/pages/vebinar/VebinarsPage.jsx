@@ -49,7 +49,7 @@ function VebinarsPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${base_url}/api/aml/webinar/getWebinars`,
+          `${base_url}/api/aml/webinar/archive/getWebinars`,
           {
             headers: {
               Authorization: `Bearer ${jwtToken}`,
@@ -342,73 +342,34 @@ const VebinarModal = ({ open, handleClose }) => {
 const VebinarCard = (props) => {
   const {
     webinar_id,
-    image,
+    webinar_image,
     name,
     webinar_for_member_of_the_system,
-    type,
-    date,
+    webinar_date,
   } = props.vebinar;
-  // console.log(webinar_for_member_of_the_system)
-
-  const datee = new Date(date);
-
-  const months = {
-    0: "января",
-    1: "февраля",
-    2: "марта",
-    3: "апреля",
-    4: "мая",
-    5: "июня",
-    6: "июля",
-    7: "августа",
-    8: "сентября",
-    9: "октября",
-    10: "ноября",
-    11: "декабря",
-  };
-
-  // Get the day, month, and hour from the date
-  const day = datee.getDate();
-  const monthIndex = datee.getMonth();
-  const month = months[monthIndex];
-  const hour = datee.getHours();
-  const minutes = datee.getMinutes();
-
-  // Format the date and time
-  const formattedDate = `${day} ${month} ${hour
-    .toString()
-    .padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
-
-
+  
   return (
     <div className="vebinar-card">
-      <img src={image} alt="" />
+      <img src={webinar_image} style={{width:"220px"}} alt="" />
       <div className="info-block">
         <div className="title">{name}</div>
         <div>
           <div className="vebinar-info">
             <p>Аудитория (для кого): {webinar_for_member_of_the_system}</p>
-            <p>Формат: {type}</p>
+            <p>Формат: Онлайн</p>
             <p>Стоимость: бесплатно</p>
             <p>Представители АФМ РК, AML ACADEMY и Комитета МФЦА</p>
-
-            <div className="date">{formattedDate}</div>
+            <div className="date">{webinar_date}</div>
           </div>
             <img src="timeImagef" alt=""/>
           <div className="lector-info">
-            <div className="lector-title">Обсуждаемые вопросы:</div>
-            <div className="lector-name">1. Охват и вовлеченность участников МФЦА</div>
-            <div className="lector-name">2. Осуществление надзора по вопросам ПОД/ФТ</div>
-            <div className="lector-name">3. Внесение изменений в «Требования к ПВК»</div>
-            {/*<div className="lector-text">*/}
-            {/*    2. Осуществление надзора по вопросам ПОД/ФТ*/}
-            {/*</div>*/}
-            {/*  <div className="lector-text">*/}
-            {/*      3. Внесение изменений в «Требования к ПВК»*/}
-            {/*</div>*/}
+            <div className="lector-title">{" "}</div>
+            <div className="lector-name">{" "}</div>
+            <div className="lector-name">{" "}</div>
+            <div className="lector-name">{" "}</div>
             <div
               className="action-btn"
-             onClick={() => props.handleVebinarEnter(webinar_id)}
+              onClick={() => props.handleVebinarEnter(webinar_id)}
             >
               Принять участие
             </div>
