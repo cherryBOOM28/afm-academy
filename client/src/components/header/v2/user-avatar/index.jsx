@@ -51,7 +51,7 @@ export default function UserAvatar(){
                         </div>
                         <p className='user-toggle-links'>{localStorage.getItem('firstname')} {localStorage.getItem('lastname')}</p>
                     </div>
-                    {role == 'ROLE_ADMIN' ?
+                    {role === 'ROLE_ADMIN' ?
                         <div onClick={() => navigate('/manager')} className='person-menu-item menu-item underline-item'>
                             <p className='user-toggle-links'>Админ панель</p>
                         </div> : null
