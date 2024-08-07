@@ -536,31 +536,31 @@ const EditCatalog = () => {
                 ) : ""}
                 <div className="tab">
                     <div className='creation-left-bar'>
-                        <a className='title'>Админ панель</a>
+                        <p className='title'>Админ панель</p>
                         <div className='folders'>
                             <div onClick={() => setSelectedPage('draftPage')} className={`folder ${selectedPage === 'draftPage' ? "active" : ""}`}>
                                 <img src={archiveIcon} alt="arch" />
-                                <a>Архив курсов</a>
+                                <p>Архив курсов</p>
                             </div>
                             <div onClick={() => setSelectedPage('coursesPage')} className={`folder ${selectedPage === 'coursesPage' ? "active" : ""}`}>
                                 <img src={folderIcon} alt="" />
-                                <a>Курсы</a>
+                                <p>Курсы</p>
                             </div>
                             <div onClick={() => setSelectedPage('newsPage')} className={`folder ${selectedPage === 'newsPage' ? "active" : ""}`}>
                                 <img src={folderIcon} alt="" />
-                                <a>Новости</a>
+                                <p>Новости</p>
                             </div>
                             <div onClick={() => setSelectedPage('requestPage')} className={`folder ${selectedPage === 'requestPage' ? "active" : ""}`}>
                                 <img src={folderIcon} alt="" />
-                                <a>Заявки</a>
+                                <p>Заявки</p>
                             </div>
                             <div onClick={() => setSelectedPage('VebinarArchivePage')} className={`folder ${selectedPage === 'VebinarArchivePage' ? "active" : ""}`}>
                                 <img src={folderIcon} alt="" />
-                                <a>Архив Вебинаров</a>
+                                <p>Архив Вебинаров</p>
                             </div>
                             <div onClick={() => setSelectedPage('VebinarPage')} className={`folder ${selectedPage === 'VebinarPage' ? "active" : ""}`}>
                                 <img src={folderIcon} alt="" />
-                                <a>Активные Вебинары</a>
+                                <p>Активные Вебинары</p>
                             </div>
                         </div>
                         <div onClick={() => {
@@ -697,7 +697,7 @@ const EditCatalog = () => {
                                         <div className="dropdown">
                                             <input
                                                 type="text"
-                                                placeholder="Search User"
+                                                placeholder="Искать пользователя"
                                                 value={userSearch}
                                                 onChange={(e) => {
                                                     setUserSearch(e.target.value);
@@ -727,7 +727,7 @@ const EditCatalog = () => {
                                         <div className="dropdown">
                                             <input
                                                 type="text"
-                                                placeholder="Search Course"
+                                                placeholder="Искать курс"
                                                 value={courseSearch}
                                                 onChange={(e) => {
                                                     setCourseSearch(e.target.value);
@@ -771,8 +771,8 @@ const Confirm = ({ course_title, course_id, closeModal, deleteCourse }) => {
         <div className="confirm">
             <h1 className="question">Вы уверены что хотите удалить курс: <pre>{course_title}? </pre></h1>
             <div>
-                <a onClick={closeModal} className="no-button">НЕТ</a>
-                <a onClick={() => deleteCourse(course_id)} className="yes-button">ДА</a>
+                <p onClick={closeModal} className="no-button">НЕТ</p>
+                <p onClick={() => deleteCourse(course_id)} className="yes-button">ДА</p>
             </div>
         </div>
     );
