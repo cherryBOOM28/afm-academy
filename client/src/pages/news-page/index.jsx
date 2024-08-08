@@ -9,19 +9,21 @@ import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import { selectNews } from '../../redux/slices/newsSlice';
 import base_url from "../../settings/base_url";
+import i18n from '../../settings/i18n';
 import "./style.css";
 
 function NewsPage() {
-  const { t } = useTranslation();
+
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
   const [imagesHidden, setImagesHidden] = useState(false);
-  const { i18n } = useTranslation();
   const [newsData, setNewsData] = useState([]);
-  const currentLanguage = i18n.language;
   const [selectedRowBtn, setSelectedRowBtn] = useState(null);
   const [activeTab, setActiveTab] = useState("news");
   const dispatch = useDispatch();
   const selectedNews = useSelector((state) => state.news.selectedNews);
+  const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
+  const currentLanguage = i18n.language;
 
   const months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
 
@@ -89,18 +91,16 @@ function NewsPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${base_url}/api/aml/course/getAllNews`, {
-          params: {
-            type: activeTab,
-          },
-        });
-        setNewsData(response.data);
+          const response = await axios.get(`${base_url}/api/aml/course/getAllNewsByLang/${currentLanguage === 'kz' ? 'kz' : currentLanguage === 'ru' ? 'ru' : 'eng'}`);
+          setNewsData(response.data);
+          setLoading(false);
       } catch (error) {
-        console.error(error);
+          console.error(error);
+          setLoading(false);
       }
-    };
-    fetchData();
-  }, [activeTab]);
+  };
+  fetchData();
+  }, [activeTab, currentLanguage]);
 
   const handleRemoveImages = () => {
     setImagesHidden(true);
@@ -158,8 +158,8 @@ function NewsPage() {
               <h2 className="latestNewsTitle">{displayedNews.name}</h2>
 
               <br />
-              {displayedNews.image && <img src={displayedNews.image} alt="" className="latestNewsImg" />}
-              <p className="latestNewsText" dangerouslySetInnerHTML={{ __html: displayedNews.description.replace(/\n/g, "<br />&nbsp;&nbsp;&nbsp;") }} ></p>
+              {displayedNews.image && <div className="latestNewsImgWrapper"><img src={displayedNews.image} alt="" className="latestNewsImg" /></div>}
+              <p className="latestNewsText" dangerouslySetInnerHTML={{ __html: displayedNews.description.replace(/\n/g, "<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;") }} ></p>
             </div>
           )}
           <div className="otherNews">
