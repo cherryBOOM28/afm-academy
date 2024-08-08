@@ -174,29 +174,34 @@ function Header(props) {
   </Link>
       <div className='tool-navigation-container'>
         <div className='language-container'>
-          <LangBtn/>
-        </div>
-        <div className='tool-container'>
-          <div className='social-icons'>
-            <a href='/' className='soc-icon blue-button' onClick={openVisualModal}>
-              <img src={language} alt="language" className='icon' />
-            </a>
-            <a href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
-              <img src={igIcon} alt="instagram" className='icon' />
-            </a>
-            <a href='https://t.me/aml_academy_23' className='soc-icon blue-button'>
-              <img src={tgIcon} alt="telegram" className='icon' />
-            </a>
-            <a href='https://wa.me/77087168416' className='soc-icon blue-button'>
-              <img src={waIcon} style={{width: '20px'}} alt="telegram" className='icon' />
-            </a>
+            <div className='social-icons'>
+                <a href='/' className='soc-icon blue-button' onClick={openVisualModal}>
+                  <img src={language} alt="language" className='icon' />
+                </a>
+                <a href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
+                  <img src={igIcon} alt="instagram" className='icon' />
+                </a>
+                <a href='https://t.me/aml_academy_23' className='soc-icon blue-button'>
+                  <img src={tgIcon} alt="telegram" className='icon' />
+                </a>
+                <a href='https://wa.me/77087168416' className='soc-icon blue-button'>
+                  <img src={waIcon} style={{width: '20px'}} alt="telegram" className='icon' />
+                </a>
+            </div>
+
+            <LangBtn />
           </div>
+          
+        <div className='tool-container'>
+            <div className={`navigation-container ${isMenuOpen ? 'menu-open' : ''}`}>
+                <NavigationBar dark={props.dark}/>
+            </div>
           {jwtToken ? 
             <div className='user-actions' onClick={() => toggleMenu()} >
               <div className='user-icon toggle-user-button'>
                 <p className='toggle-user-button'>{pfp.toUpperCase()}</p>
               </div>
-              <div className='user-toggle' 
+              <div className='user-toggle'
                 style={{
                   display: isMenuOpen ? 'flex' : 'none'
                 }}
@@ -204,23 +209,23 @@ function Header(props) {
               >
                 <div onClick={profilePageLink} className='person-menu-item menu-item underline-item'>
                   <div className='user-icon'>
-                    <a>{pfp.toUpperCase()}</a>
+                    <p>{pfp.toUpperCase()}</p>
                   </div>
                   <div>
                   </div>
-                  <a className='user-toggle-links'>{name}</a>
+                  <p className='user-toggle-links'>{name}</p>
                 </div>
-                {role == 'ROLE_ADMIN' ? 
+                {role === 'ROLE_ADMIN' ? 
                 <div onClick={() => navigate('/manager')} className='person-menu-item menu-item underline-item'>
-                  <a className='user-toggle-links'>Админ панель</a>
+                  <p className='user-toggle-links'>Админ панель</p>
                 </div> : null
                 }
                 <div onClick={handleLogout} className='menu-item'>
-                  <a className='user-toggle-links'>Выйти</a>
+                  <p className='user-toggle-links'>Выйти</p>
                 </div>
-              </div> 
-            </div> 
-            : 
+              </div>
+            </div>
+            :
             <div className='user-actions'>
               <a href='/registration' className='text-button text-content'>{t('regestration')}</a>
               <a href='/login' className={`contained-button blue-button ${props.dark? 'dark' : ''}`}>{t('signin')}</a>
@@ -234,9 +239,6 @@ function Header(props) {
             openVisualModal={openVisualModal}
             openNavbar={openNavbar}
           />
-        </div>
-        <div className={`navigation-container ${isMenuOpen ? 'menu-open' : ''}`}>
-          <NavigationBar dark={props.dark}/>
         </div>
       </div>
     </div>

@@ -35,34 +35,8 @@
     .language-container {
         display: flex;
         justify-content: flex-end;
-        
-        .lg-sm {
-            width: 150px;
-            display: flex;
-            justify-content: space-between;
-            background: linear-gradient(to right, #021753, #049af8);
-            // background-color: #1F3C88;
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        
-            .language {
-                cursor: pointer;
-                color: white;
-
-                &:hover {
-                    color: #F0DE7E;
-                }
-            }
-        }
-    }
-
-    .tool-container {
-        display: flex;
-        justify-content: flex-end;
-        display: flex;
+        gap: 30px;
         align-items: center;
-        gap: 20px;
 
         .social-icons {
         
@@ -88,8 +62,34 @@
                     transition: all 0.2s ease;
                 }
             }
-              
         }
+        
+        .lg-sm {
+            width: 150px;
+            display: flex;
+            justify-content: space-between;
+            background: linear-gradient(to right, #021753, #049af8);
+            // background-color: #1F3C88;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        
+            .language {
+                cursor: pointer;
+                color: white;
+
+                &:hover {
+                    color: #F0DE7E;
+                }
+            }
+        }
+    }
+
+    .tool-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 20px;
         .search-box {
             width: 50%;
             border-radius: 15px;
@@ -247,6 +247,12 @@
     .navigation-container.menu-open {
         pointer-events: none; /* Disable pointer events when the menu is open */
         /* Other styles to adjust appearance when the menu is open */
+        display: flex;
+        align-items: center;
+    }
+    .navigation-container{
+        display: flex;
+        align-items: center;
     }
 }
 

@@ -13,11 +13,11 @@ import AmlExpert from './pages/aml-games/aml-expert/index.jsx';
 import CreateNews from './pages/CreateNews/index.jsx';
 import EventsPage from './pages/events-page/index.jsx';
 import Login from './pages/login/Login';
-import NewsPage from './pages/news-page';
 import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigationCourse/index.jsx';
 import Registration from './pages/registration/Registration';
 import './settings/i18n.js';
-const AllNewsPage = lazy(() => import ('./pages/all-news/index.jsx'))
+const AllNewsPage = lazy(() => import('./pages/all-news/index.jsx'))
+const NewsPage = lazy(() => import('./pages/news-page'))
 const Home = lazy(() => import ('./pages/home/Home'))
 const Game1 = lazy(() => import('./pages/aml-games/game-1/index.jsx'))
 const GameReader = lazy(() => import('./pages/aml-games/game-2/index.jsx'))
