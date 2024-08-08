@@ -11,6 +11,7 @@ import EditCatalog from './pages/adminCourse/editCatalog/EditCatalog';
 import AdminPage_Main from './pages/AdminPage_v2/main/index.jsx';
 import AmlExpert from './pages/aml-games/aml-expert/index.jsx';
 import CreateNews from './pages/CreateNews/index.jsx';
+import EventsPage from './pages/events-page/index.jsx';
 import Login from './pages/login/Login';
 import NewsPage from './pages/news-page';
 import PlanningInvestigationCourse from './pages/ReadCourses/PlanningInvestigationCourse/index.jsx';
@@ -132,6 +133,7 @@ function App() {
                             <Route path='/createcourse' element={<AdminRoute component={CreateCoursePage} shouldBeLoggedIn={true} redirect={'/'} />}/>
                             <Route path='/new-admin-page' element={<AdminRoute component={AdminPage_Main} shouldBeLoggedIn={true} redirect={'/'} />}/>
                             <Route path='/create-news' element={<AdminRoute component={CreateNews} shouldBeLoggedIn={true} />} />
+                            <Route path='/events' element={<Suspense ><EventsPage /></Suspense>} />
                         </Routes>
                     </BrowserRouter>
                 </AuthProvider>

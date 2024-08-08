@@ -37,30 +37,7 @@ const FAQStep = ({ nextStep, id }) => {
                 })
         }
     }, [id])
-
-
-    // useEffect(() => {
-    //     if (image) {
-    //       setImageSource(image)
-    //     } else {
-    //       setImageSource(plusSign);
-    //     }
-    // }, [image]);
-
-    // useEffect(() => {
-    //     if (defImage) {
-    //         setImage(base64Course)
-    //         setImageSource(base64Course)
-    //     } else {
-    //         setImage(base64Course)
-    //         setImageSource(plusSign)
-    //     }
-    // }, [defImage]);
-
-
-
     const saveAndNext = () => {
-
         let urlPath = '/api/aml/course/saveBasicInfoDraft'
 
         if (editingExisting) {

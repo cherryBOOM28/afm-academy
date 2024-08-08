@@ -7,17 +7,17 @@ import './tabBasicInfo.scss';
 
 function fileToBase64(file, callback) {
     if (!file) {
-      return;
+        return;
     }
-  
+
     const reader = new FileReader();
-    
+
     reader.onloadend = () => {
-      if (typeof callback === 'function') {
-        callback(reader.result);
-      }
+        if (typeof callback === 'function') {
+            callback(reader.result);
+        }
     };
-  
+
     reader.readAsDataURL(file);
 }
 
@@ -28,12 +28,10 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
     const [category, setCategory] = useState(initCTG || 0)
     const [price, setPrice] = useState(initPrice || 0)
     const [image, setImage] = useState(initImage || "")
-    
+
     const [imageSource, setImageSource] = useState('');
 
     const [defImage, setDefImage] = useState(true)
-
-    const [isMounted, setIsMounted] = useState(true);
 
     const [editingExisting, setEditingExisting] = useState(false)
 
@@ -56,34 +54,14 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
         }
     }, [id])
 
-
-    // useEffect(() => {
-    //     if (image) {
-    //       setImageSource(image)
-    //     } else {
-    //       setImageSource(plusSign);
-    //     }
-    // }, [image]);
-
-    // useEffect(() => {
-    //     if (defImage) {
-    //         setImage(base64Course)
-    //         setImageSource(base64Course)
-    //     } else {
-    //         setImage(base64Course)
-    //         setImageSource(plusSign)
-    //     }
-    // }, [defImage]);
-
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
-      
         fileToBase64(selectedFile, (base64String) => {
             setImage(base64String)
             setDefImage(false)
         });
     };
-    
+
     const saveAndNext = () => {
 
         let urlPath = '/api/aml/course/saveBasicInfoDraft'
@@ -99,11 +77,11 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
             price,
             image,
         };
-        
-          // Check if any of the values are still in their initial state
+
+        // Check if any of the values are still in their initial state
         if (
             Object.values(formData).some(value => value === '' || value === 0)
-            ) {
+        ) {
             // Alert the user to fill in all the fields
             alert('Для продолжения необходимо заполнить все поля');
         } else {
@@ -117,12 +95,12 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
             };
 
             axios
-                .post(base_url + urlPath, formData) 
+                .post(base_url + urlPath, formData)
                 .then((res) => {
                     // console.log(res.data)
                     nextStep(res.data);
                 })
-        
+
             // Call your nextStep function or perform any other action
         }
     }
@@ -136,7 +114,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
                         <label htmlFor="title">Введите название курса</label>
                         <input value={title} onChange={(e) => {
                             setTitle(e.target.value)
-                        }} type="text" name="title" id="cheese" placeholder=""/>
+                        }} type="text" name="title" id="cheese" placeholder="" />
                     </div>
                     <div className="other-basic-inputs">
                         <div className="input-audience">
@@ -176,7 +154,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
                             <label htmlFor="price">Цена</label>
                             <input value={price} onChange={(e) => {
                                 setPrice(e.target.value)
-                            }} type="number" min="0" name="price" id="price"/>
+                            }} type="number" min="0" name="price" id="price" />
                         </div>
                     </div>
                 </div>
@@ -195,7 +173,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
                             </label>
                         }
                         <input onChange={handleFileChange} className="input-image" type="file" id="photo" name="photo" accept="image/png, image/jpeg, image/jpg" />
-                    
+
                     </div>
                     <div>
                         <input onChange={handleFileChange} type="file" id="photo" name="photo" accept="image/png, image/jpeg" />
@@ -210,7 +188,7 @@ const TabBasicInfo = ({ id, nextStep, title: initialTitle, audience: initAud, la
                                 setImageSource(plusSign)
                                 setDefImage(!defImage)
                             }
-                            }} type="checkbox" id="default" name="default" value="default" />
+                        }} type="checkbox" id="default" name="default" value="default" />
                         <label htmlFor="default">Использовать обложку по умолчанию</label>
                     </div>
                 </div>

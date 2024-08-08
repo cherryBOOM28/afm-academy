@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaChevronDown } from "react-icons/fa6";
-import '../style.scss';
+import './style.scss';
 
 export default function LangBtn () {
     const { i18n } = useTranslation();

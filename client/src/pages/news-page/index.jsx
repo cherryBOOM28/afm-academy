@@ -1,10 +1,8 @@
 // src/pages/NewsPage.tsx
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from 'react-redux';
 import { useStyle } from "../../components/VisualModal/StyleContext";
-import VisualModal from "../../components/VisualModal/VisualModal";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import { selectNews } from '../../redux/slices/newsSlice';
@@ -15,14 +13,11 @@ import "./style.css";
 function NewsPage() {
 
   const { styles, open, setOpen, checkStyle, userEntry } = useStyle();
-  const [imagesHidden, setImagesHidden] = useState(false);
   const [newsData, setNewsData] = useState([]);
   const [selectedRowBtn, setSelectedRowBtn] = useState(null);
-  const [activeTab, setActiveTab] = useState("news");
+  const activeTab = "news";
   const dispatch = useDispatch();
   const selectedNews = useSelector((state) => state.news.selectedNews);
-  const [loading, setLoading] = useState(true);
-  const { t } = useTranslation();
   const currentLanguage = i18n.language;
 
   const months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
@@ -32,7 +27,6 @@ function NewsPage() {
     if (userEntry) return;
     const textContentElement = document.querySelectorAll(".text-content");
     const size = styles.fontSize;
-    setImagesHidden(!styles.showImage);
 
     if (textContentElement) {
       textContentElement.forEach((item) => {
@@ -93,28 +87,17 @@ function NewsPage() {
       try {
           const response = await axios.get(`${base_url}/api/aml/course/getAllNewsByLang/${currentLanguage === 'kz' ? 'kz' : currentLanguage === 'ru' ? 'ru' : 'eng'}`);
           setNewsData(response.data);
-          setLoading(false);
       } catch (error) {
           console.error(error);
-          setLoading(false);
       }
   };
   fetchData();
   }, [activeTab, currentLanguage]);
-
-  const handleRemoveImages = () => {
-    setImagesHidden(true);
-  };
-
-  const handleShowImages = () => {
-    setImagesHidden(false);
-  };
+  
 
   const handleOpenVisualModal = () => {
-    setOpenVisualModal(prev => !prev);
     setOpen(prev => !prev);
   };
-  const [openVisualModal, setOpenVisualModal] = useState(open);
 
   const renderCardContent = (item) => {
     const datee = new Date(item.date);
@@ -143,12 +126,6 @@ function NewsPage() {
 
   return (
     <div className="vebinars-page text-content" style={{ background: styles.colorMode === "dark" ? "#000" : styles.colorMode === "light" ? "#f2f2f2" : styles.colorMode === "blue" ? "#9dd1ff" : "#000" }}>
-      <VisualModal
-        open={openVisualModal}
-        onRemoveImages={handleRemoveImages}
-        onShowImages={handleShowImages}
-        styles={styles}
-      />
       <Header dark={styles.colorMode === "dark" ? false : true} handleOpenVisualModal={handleOpenVisualModal} />
       <div className="page-content container">
         <div className="news-layout">

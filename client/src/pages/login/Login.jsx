@@ -35,8 +35,7 @@ const Registration = () => {
 
     }, [formData])
 
-    const [errorMessage,
-        setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
     const handleChange = (e, name) => {

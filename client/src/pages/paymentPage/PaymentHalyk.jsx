@@ -12,21 +12,21 @@ const PaymentHalyk = (id) => {
     const [dataBack, setDataBack] = useState('');
     const [paymentData, setPaymentData] = useState('');
     const [invoiceID, setInvoiceID] = useState('');
-    
 
-       
+
+
 
     // Функция для получения токена доступа
     const fetchToken = async () => {
         try {
             const responseData = await axios.get(`${base_url}/api/aml/course/invoiceID`, {
                 headers: {
-                  Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${token}`,
                 },
             });
             const courseData = await axios.get(`${base_url}/api/aml/course/justGetCourseById/${id.id}`, {
                 headers: {
-                  Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${token}`,
                 },
             });
             const price = courseData.data.course_price;
@@ -57,13 +57,13 @@ const PaymentHalyk = (id) => {
             const paymentObject = createPaymentObject(data, responseData.data.invoice_id, price, responseData.data.email);
             halyk.showPaymentWidget(paymentObject, (result) => {
                 // В этом колбэке обработайте результат показа виджета оплаты
-            
+
                 // Сначала вызовите ваш обработчик handlePaymentResult
                 handlePaymentResult(result);
-            
+
                 // Затем, если условие подходит (например, если оплата прошла успешно), вызовите handlePaymentResultFromBack
                 if (result.code === undefined) {
-                    handlePaymentResultFromBack(responseData.data.invoice_id,id.id,responseData.data.user_id,token);
+                    handlePaymentResultFromBack(responseData.data.invoice_id, id.id, responseData.data.user_id, token);
                 }
             });
 
@@ -73,7 +73,7 @@ const PaymentHalyk = (id) => {
             console.error('Error fetching token:', error);
         }
     };
-    
+
 
     const createPaymentObject = (auth, invoiceId, amount, email) => {
         return {
@@ -88,7 +88,7 @@ const PaymentHalyk = (id) => {
             accountId: email,
             terminal: 'a5e958ad-b799-41ff-9be9-f6d20ddc61a6',
             amount: amount,
-            name:email,
+            name: email,
             data: "{\"statement\":{\"name\":\"\",\"invoiceID\":\"\"}}",
             currency: "KZT",
             cardSave: true,
@@ -102,14 +102,14 @@ const PaymentHalyk = (id) => {
                 course_id: courseId,
                 user_id: userId
             };
-    
+
             // Выполняем PUT-запрос с помощью axios.put
             const response = await axios.put(`${base_url}/api/aml/course/saveUser/${userId}/course/${courseId}`, data, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-    
+
             // Обрабатываем успешный ответ от сервера
             console.log("Пользователь успешно добавлен курс:", response);
         } catch (error) {
@@ -133,24 +133,24 @@ const PaymentHalyk = (id) => {
                     addUserToCourse(course_id, user_id, token)
                 }
             } catch (error) {
-                
+
                 console.error('Error fetching post link:', error);
             }
         };
         fetchPostLink()
     }
- 
+
     // Функция для обработки результатов платежа
     const handlePaymentResult = (result) => {
-    
-        
+
+
         if (result.code === "ok") {
             console.log('Оплата прошла успешно');
-            
+
             //addUserToCourse(8,dataBack.user_id,token)
         } else {
             console.error("Проверка..........");
-           
+
         }
     };
     const [isHovered, setIsHovered] = useState(false);

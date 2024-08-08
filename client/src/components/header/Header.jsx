@@ -1,25 +1,21 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // import cl from './Header.module.css';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import igIcon from '../../assets/icons/ig.svg';
 import language from '../../assets/icons/lang.svg';
 import tgIcon from '../../assets/icons/tg.svg';
 import waIcon from '../../assets/icons/waIcon.svg';
 import logo from '../../assets/images/logo.svg';
+import { useAuth } from '../../auth/AuthContext';
 import './Header.scss';
 import './Navigation.scss';
-// import searchIcon from '../../assets/icons/search.svg';
-import SearchIcon from '@mui/icons-material/Search';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../../auth/AuthContext';
 
-import { t } from 'i18next';
 import { useTranslation } from 'react-i18next';
 
 import { useStyle } from '../VisualModal/StyleContext';
-
-import { FaCaretLeft } from "react-icons/fa";
-import navbar_items from './navbar_items';
+import { Hamburger } from './components/hamburger';
+import { NavigationBar } from './components/navigation-bar';
+import LangBtn from './v2/lang-btn';
 
 function Header(props) {
 
@@ -178,30 +174,22 @@ function Header(props) {
   </Link>
       <div className='tool-navigation-container'>
         <div className='language-container'>
-          <div className='lg-sm'>
-            <a className='language' onClick={() => changeLanguage('kz')}>ҚАЗ</a>
-            <a className='language' onClick={() => changeLanguage('ru')}>РУС</a>
-            <a className='language' onClick={() => changeLanguage('eng')}>ENG</a>
-          </div>
+          <LangBtn/>
         </div>
         <div className='tool-container'>
           <div className='social-icons'>
-            <a href='#' className='soc-icon blue-button' onClick={openVisualModal}>
+            <a href='/' className='soc-icon blue-button' onClick={openVisualModal}>
               <img src={language} alt="language" className='icon' />
             </a>
-            <a target='_blank' href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
+            <a href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
               <img src={igIcon} alt="instagram" className='icon' />
             </a>
-            <a target='_blank' href='https://t.me/aml_academy_23' className='soc-icon blue-button'>
+            <a href='https://t.me/aml_academy_23' className='soc-icon blue-button'>
               <img src={tgIcon} alt="telegram" className='icon' />
             </a>
-            <a target='_blank' href='https://wa.me/77087168416' className='soc-icon blue-button'>
+            <a href='https://wa.me/77087168416' className='soc-icon blue-button'>
               <img src={waIcon} style={{width: '20px'}} alt="telegram" className='icon' />
             </a>
-          </div>
-          <div className='search-box'>
-            <SearchIcon sx={{ color: 'white' }}/>
-            <input type='search' className={`search-input ${props.dark? 'dark' : ''}`} />
           </div>
           {jwtToken ? 
             <div className='user-actions' onClick={() => toggleMenu()} >
@@ -256,298 +244,4 @@ function Header(props) {
   )
 
 }
-
-const NavigationBar = (props) => {
-  const { isLoggedIn } = useAuth();
-  const { styles } = useStyle(); 
-  useEffect(() => {
-    
-  }, [])
-
-  const getLetterSpacing = (interval) => {
-    switch (interval) {
-      case "medium":
-        return "2px";
-      case "large":
-        return "4px";
-      default:
-        return "1px";
-    }
-  };
-
-  const getFontSize = (size) => {
-    switch (size) {
-      case "small":
-        return "15px";
-      case "standard":
-        return "20px";
-      case "large":
-        return "24px";
-      default:
-        return "20px";
-    }
-  }
-  const [isHovered, setIsHovered] = useState(false);
-  const [timeoutId, setTimeoutId] = useState(null);
-
-  const handleMouseEnter = () => {
-    clearTimeout(timeoutId); // Очистить предыдущий таймаут, если он существует
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    const id = setTimeout(() => {
-      setIsHovered(false);
-    }, 600); // 3000 миллисекунд (3 секунды)
-    setTimeoutId(id); // Сохранить идентификатор таймаута для последующей отмены
-  };
-  useEffect(() => {
-    return () => {
-      clearTimeout(timeoutId); // Очистить таймаут при размонтировании компонента
-    };
-  }, [timeoutId]);
-
-
-
-
-
-  return (
-      <div className={`navbarBoxes text-content`}
-      >
-          <div className={`menuBox text-content`}>
-              <a className={`menu ${props.dark? 'dark' : ''} text-content`}>{t('about us')}</a>
-              <ul className={'dropdownSub text-content'}>
-                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
-                      <Link to="/about" className={'subPages text-content'}>{t('about the academy')} </Link>
-                  </li>
-                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
-                      <Link to="/management" className={'subPages text-content'}>{t('board of directors')}</Link>
-                  </li>
-                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
-                      <Link to="/structure" className={'subPages text-content'}>{t('structure')}</Link>
-                  </li>
-                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
-                      <Link to="/charter" className={'subPages text-content'}>{t('corporate governance')}</Link>
-                  </li>
-                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
-                      <Link to="/contacts" className={'subPages text-content'}>{t('contacts')}</Link>
-                  </li>
-              </ul>
-          </div>
-          <div className={'menuBox'}>
-              <a className={`menu ${props.dark ? 'dark' : ''} text-content`}>{t('training')}</a>
-              <ul className={'dropdownSub text-content'}>
-                    
-                  <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
-                      <Link to="/courses" className={'subPages text-content'}>{t('course catalog')}</Link>
-                  </li>
-                  {isLoggedIn ? <li style={{letterSpacing: getLetterSpacing(styles.letterInterval), fontSize: getFontSize(styles.fontSize)}}>
-                      <Link to="/courses/myCourses" className={'subPages text-content'}>{t('my courses')}</Link>
-                  </li> : null}
-                  <li>
-                      <Link to="/vebinars" className={'subPages text-content'}>{t('webinars')}</Link>
-                  </li>
-                  <li>
-                      <Link to="/vebinars/calendar" className={'subPages text-content'}>{t('announcements')}</Link>
-                  </li>
-                  <li>
-                      <Link to="/vebinars/surveys" className={'subPages text-content'}>{t('surveys')}</Link>
-                  </li>
-                  <li>
-                      <Link to="/vebinars/dictionary" className={'subPages text-content'}>AML словарь</Link>
-                  </li>
-              </ul>
-          </div>
-      
-          <div className={'menuBox'}>
-              <a className={`menu ${props.dark? 'dark' : ''} text-content`}  href='/news-page'>{t('news')}</a>
-          </div>
-          <div className={'menuBox'}>
-        <a className={`menu ${props.dark ? 'dark' : ''} text-content`} >{t('ric')}</a>
-        <ul className={'dropdownSub'}>
-                  <li>
-                      <Link to="/main-tasks-and-activities" className={'subPages text-content'}>{t('Main tasks and activities')}</Link>
-                  </li>
-                  <li>
-                      <Link to="/academic-council" className={'subPages text-content'}>{t('Academic Council')}</Link>
-                  </li>
-                  <li>
-                      <Link to="/plans-and-reports" className={'subPages text-content'}>{t('Plans and reports')}</Link>
-                  </li>
-              </ul>
-          </div>
-          <div className={'menuBox'}>
-              <a className={`menu ${props.dark? 'dark' : ''} text-content`}>{t('aml/ft')}</a>
-              <ul className={'dropdownSub'}>
-                  <li>
-                      <Link to="/anti-laundering" className={'subPages text-content'}>{t('anti-washing system of the RK')}</Link>
-                  </li>
-                  <li>
-                      <Link to="/fatf" className={'subPages text-content'}>{t('fatf')}</Link>
-                  </li>
-                  <li>
-                      <Link to="/eag" className={'subPages text-content'}>{t('eag')}</Link>
-                  </li>
-                  <li>
-                      <Link to="/mutual-evaluation" className={'subPages text-content'}>{t('mutual assessment')}</Link>
-                  </li>
-              </ul>
-          </div>
-          <div className={'menuBox'}>
-              <a className={`menu ${props.dark? 'dark' : ''} text-content`}>{t('sfm')}</a>
-              <ul className={'dropdownSub'}>
-                  <li>
-                      <Link to="/subjects" className={'subPages text-content'}>{t('types of subjects of financial monitoring')}</Link>
-                  </li>
-                  <li>
-                      <Link to="/rules" className={'subPages text-content'}>{t('internal control rules')}</Link>
-                  </li>
-                  <li>
-                      <Link to="/operations" className={'subPages text-content'}>{t('transactions subject to financial monitoring')}</Link>
-                  </li>
-                  <li>
-                    <Link to="/ready-made-solutions" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={'subPages text-content'}>{t('ready-made solutions catalog')}</Link> 
-                                <ul 
-                                    style={{display: isHovered ? 'block' : 'none'}}
-                                    className='subsub' >
-                                      <li className='li1'   onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
-                                        <Link to="/preparation-and-support" className={'subPages1 text-content'}>{t('Preparation and support')}</Link>
-                                          </li>
-                                          <br />
-                                        <li className='li1'   onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
-                                        <Link to="/development-of-icps"    className={'subPages1 text-content'}>{t('Development of ICPs')}</Link>
-                                        </li>
-                                </ul>
-                  </li>
-              </ul>
-          </div>
-      </div>
-
-  )
-}
-
-const Hamburger = forwardRef(({
-  openNavbar,
-  setOpenNavbar,
-  setActiveNavItem,
-  activeNavItem,
-  openVisualModal,
-}, ref) => {
-
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { i18n, t } = useTranslation();
-
-  const changeLanguage = (language) => {
-    i18n.changeLanguage(language);
-  };
-  useEffect(() => {
-    // Проверяем, содержит ли текущий маршрут "/courses/79"
-    if (location.pathname.includes("/courses/81")) {
-      // Если да, то устанавливаем язык по умолчанию на казахский
-      changeLanguage('kz');
-    }
-  }, [location.pathname]);
-
-  useEffect(() => {
-    console.log(location)
-  }, [])
-
-  const isHomePage = location.pathname === '/';
-  const barStyle = {
-    backgroundColor: isHomePage ? 'white' : 'black'
-  }
-
-  return (
-    <div className="hamburger-navigation-wrapper">
-      <div className='hamburger-navigation' onClick={() => {
-        setOpenNavbar(prev => {
-          if (prev === true) {
-            setActiveNavItem('');
-            return false;
-          } 
-
-          return true;
-        });
-      }}>
-        <div className='bar' style={barStyle}></div>
-        <div className='bar' style={barStyle}></div>
-        <div className='bar' style={barStyle}></div>
-      </div>
-      {
-        openNavbar 
-          ? (
-            <div className='hamburger-navigation-body' ref={ref}>
-              {
-                navbar_items.map((item, index) => {
-
-                  return <div className="navigation-item-wrapper" key={index}>
-                    <div 
-                      className="navigation-item"
-                      onClick={() => {
-                        setActiveNavItem(item.name)
-                        if (item.route) 
-                          navigate(item.route)
-                      }}
-                    >
-                      {
-                        item.subItems.length > 0 
-                          ? <FaCaretLeft size={20}/>
-                          : <FaCaretLeft size={20} style={{ opacity: '0'}}/>
-                      }
-                      <span>{ t(item.name) }</span>
-                    </div>
-                    {
-                      activeNavItem === item.name
-                        ? (
-                          <div className="navigation-sub-items">
-                            {
-                              item.subItems.map((subItem, index) => {
-                                return <div 
-                                  className="navigation-sub-item"
-                                  key={index}
-                                  onClick={() => {
-                                    if (subItem.route)
-                                      navigate(subItem.route)
-                                  }}
-                                >
-                                  {
-                                    t(subItem.name)
-                                  }
-                                </div>
-                              })
-                            }
-                          </div>
-                        ) : null
-                    }
-                  </div>
-                })
-              }     
-              <div className="navigation-socials">
-                <a href='#' className='soc-icon blue-button' onClick={openVisualModal}>
-                  <img src={language} alt="language" className='icon' />
-                </a>
-                <a target='_blank' href='https://www.instagram.com/aml_academy/' className='soc-icon blue-button'>
-                  <img src={igIcon} alt="instagram" className='icon' />
-                </a>
-                <a target='_blank' href='https://t.me/s/afm_rk?before=1811' className='soc-icon blue-button'>
-                  <img src={tgIcon} alt="telegram" className='icon' />
-                </a>
-                <a target='_blank' href='https://wa.me/77087168416' className='soc-icon blue-button'>
-                  <img src={waIcon} style={{width: '20px'}} alt="telegram" className='icon' />
-                </a>
-              </div>
-              <div className="navigation-lang">
-                <a className='language' onClick={() => changeLanguage('kz')}>ҚАЗ</a>
-                <a className='language' onClick={() => changeLanguage('ru')}>РУС</a>
-                <a className='language' onClick={() => changeLanguage('eng')}>ENG</a>
-              </div>
-          </div>
-          )
-          : null
-      }
-    </div>
-  )
-})
-
 export default Header;
